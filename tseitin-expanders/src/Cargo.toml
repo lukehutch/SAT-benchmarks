@@ -1,0 +1,8 @@
+[package]
+name = "gen-tseitin-expanders"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-tseitin-expanders"
+path = "main.rs"

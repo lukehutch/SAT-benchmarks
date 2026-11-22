@@ -1,0 +1,19 @@
+{
+  "description": "Reproducible manifest of 14 curated SAT Competition 2023/2024 Main Track flat DIMACS CNFs (12 promoted into Table 4 of the Frobenius paper + two_trees_511v and mp1_nb7t42). Fetch any instance via https://benchmark-database.de/file/<gbd_hash>.",
+  "sat_competition_flat_cnfs": [
+    { "name": "tseitingrid6x200",     "year": 2024, "family": "SC24-Tseitin",  "ans": "UNSAT", "vars": 2400,  "clauses": 9600,   "gbd_hash": "35789168b67a74985804902008251269" },
+    { "name": "tseitin_d3_n10000",    "year": 2023, "family": "SC23-Tseitin",  "ans": "UNSAT", "vars": 15000, "clauses": 40000,  "gbd_hash": "1153a473e1d5dd21ccd33189d594a4aa" },
+    { "name": "urq45",                "year": 2023, "family": "SC23-Urquhart", "ans": "UNSAT", "vars": 74,    "clauses": 694,    "gbd_hash": "aa39c6d885d283a085d033ab7b89f8c8" },
+    { "name": "two_trees_511v",       "year": 2023, "family": "SC23-Parity",   "ans": "SAT",   "vars": 511,   "clauses": 2039,   "gbd_hash": "16c5482d8e658b54e20d59cfd4b1d588" },
+    { "name": "two_trees_1023v",      "year": 2023, "family": "SC23-Parity",   "ans": "SAT",   "vars": 1023,  "clauses": 4088,   "gbd_hash": "7db30d12cb06f0dc2f30abff80d96d6a" },
+    { "name": "intervals122",         "year": 2023, "family": "SC23-Card.",    "ans": "UNSAT", "vars": 2568,  "clauses": 57706,  "gbd_hash": "18416a9ac0909dce5fa96345f784c87e" },
+    { "name": "clique_n2_k10",        "year": 2024, "family": "SC24-Clique",   "ans": "UNSAT", "vars": 180,   "clauses": 3160,   "gbd_hash": "cb2e8b7fada420c5046f587ea754d052" },
+    { "name": "gzipfile_close_11",    "year": 2023, "family": "SC23-RegAlloc", "ans": "UNSAT", "vars": 187,   "clauses": 1348,   "gbd_hash": "72b5ad031bf852634bc081f9da9a5a60" },
+    { "name": "rand_net70_40_10",     "year": 2023, "family": "SC23-Miter",    "ans": "UNSAT", "vars": 5600,  "clauses": 16661,  "gbd_hash": "00f2eb377986e7decbc863931680a3b2" },
+    { "name": "hwmcc20_iso_rast_p06", "year": 2024, "family": "SC24-Miter",    "ans": "UNSAT", "vars": 85230, "clauses": 276273, "gbd_hash": "1545660e72158c7e90da5ad4c877a124" },
+    { "name": "hwmcc17_iso_bobsmfpu", "year": 2024, "family": "SC24-Miter",    "ans": "UNSAT", "vars": 62500, "clauses": 204019, "gbd_hash": "0a02751cacf5e1cdfcc842a7f220199f" },
+    { "name": "vmpc_24",              "year": 2023, "family": "SC23-Crypto",   "ans": "SAT",   "vars": 576,   "clauses": 67872,  "gbd_hash": "220bb8aa093e502c47afcdac3140d67c" },
+    { "name": "si2_b03m_m800_03",     "year": 2024, "family": "SC24-SubIso",   "ans": "SAT",   "vars": 10862, "clauses": 472588, "gbd_hash": "af750c18578d52e60472315692ad83c0" },
+    { "name": "mp1_nb7t42",           "year": 2024, "family": "SC24-PolyMul",  "ans": "SAT",   "vars": 52731, "clauses": 208936, "gbd_hash": "c0293283432a9b15cd743702163f5184" }
+  ]
+}

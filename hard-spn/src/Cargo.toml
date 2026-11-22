@@ -1,0 +1,8 @@
+[package]
+name = "gen-hard-spn"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-hard-spn"
+path = "main.rs"

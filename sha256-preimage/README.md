@@ -1,0 +1,42 @@
+# FIPS 180-4 SHA-256 Preimage Circuits (`sha256-preimage`)
+
+## Overview & Origin
+
+Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing the NIST **FIPS 180-4 SHA-256** compression function on the padded single-block message `"abc"`, constraining all message bits except $k \in \{16, 20, 32\}$ free bits of message word $W_0$ to match the target $R$-round digest (or a 1-bit-flipped impossible digest for `sha256_64r_k16_unsat`).
+
+- **Origin:** Developed in the Frobenius project (`sha256.rs`) following the round-reduced and partial-preimage SHA-256 SAT cryptanalysis literature (Mironov & Zhang, SAT 2006; Nossum, 2012; Nejati et al., SAT 2017).
+- **Sharp Phase Transition ($R = 16 \to 17$):** For $R \le 16$, $W_0$ enters only round 0 so backward propagation resolves all 32 bits in $O(R)$ time. At $R = 17$, the message schedule $W_{16} = W_0 + \sigma_0(W_1) + W_9 + \sigma_1(W_{14})$ re-injects $W_0$ into deep ARX mixing, creating a classic $2^k$ preimage cliff where standard CDCL solvers spend $275\text{--}2{,}607\;\text{s}$ (or time out past $5{,}000\;\text{s}$) at $R = 64, k \in \{16, 20\}$, whereas Frobenius's lifted 512-lane fused-adder AVX2 `CompiledAig256` solves them in **`89\text{--}99\;\text{ms}$`** ($>14{,}000\times$ faster while strictly obeying $2^k$ asymptotic scaling).
+
+## Directory Layout & Regeneration
+
+- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with Berkeley ABC).
+- `cnf-version/` — Tseitin **DIMACS `.cnf`** and native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
+
+## Problem Parameters & Data Sizes
+
+| Instance | Rounds $R$ | Add IV | Free Bits $k$ | Message / Target | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+|---|---:|:---:|---:|---|:---:|---:|---:|---:|---:|---:|---:|
+| `sha256_16r_k32` | 16 | No | 32 | `"abc"` exact | SAT | 32 | 30,142 | 74.8 KB | 7,438 | 47,125 | 949.4 KB |
+| `sha256_17r_k16` | 17 | No | 16 | `"abc"` exact | SAT | 16 | 31,712 | 78.8 KB | 7,829 | 49,504 | 997.0 KB |
+| `sha256_64r_k16_sat` | 64 | Yes | 16 | `"abc"` exact | SAT | 16 | 182,204 | 479.5 KB | 43,481 | 282,441 | 6.42 MB |
+| `sha256_64r_k16_unsat` | 64 | Yes | 16 | `"abc"` digest bit 0 flipped | UNSAT | 16 | 182,204 | 479.5 KB | 43,481 | 282,441 | 6.42 MB |
+| `sha256_64r_k20_sat` | 64 | Yes | 20 | `"abc"` exact | SAT | 20 | 183,109 | 481.8 KB | 43,624 | 283,828 | 6.46 MB |
+
+## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+
+Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
+
+| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+|---|---:|---:|---:|---:|---:|
+| `sha256_16r_k32` | **8.94 ms** | 9.61 ms | 17.32 ms | 18.61 ms | 13.70 ms |
+| `sha256_17r_k16` | **19.35 ms** | 7,719.28 ms | 4,160.70 ms | 4,838.70 ms | 2,177.97 ms |
+| `sha256_64r_k16_sat` | **89.35 ms** | 2,267,295.44 ms | 275,382.20 ms | >5,000 s (T/O) | 461,449.91 ms |
+| `sha256_64r_k16_unsat` | **98.86 ms** | 2,396,511.93 ms | 2,594,248.08 ms | >5,000 s (T/O) | >5,000 s (T/O) |
+| `sha256_64r_k20_sat` | **92.57 ms** | >5,000 s (T/O) | 2,606,732.29 ms | >5,000 s (T/O) | >5,000 s (T/O) |
+
+## References
+
+- NIST, *Secure Hash Standard (SHS)*, FIPS PUB 180-4, August 2015.
+- I. Mironov and L. Zhang, *Applications of SAT Solvers to Cryptanalysis of Hash Functions*, SAT 2006, LNCS 4121.
+- S. Nejati, J. Liang, C. Gebotys, K. Czarnecki, and V. Ganesh, *Adaptive Restart and CEGAR-based Solver for Inverting Cryptographic Hash Functions*, VSTTE 2017.

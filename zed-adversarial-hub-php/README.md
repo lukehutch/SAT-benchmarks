@@ -1,0 +1,62 @@
+# Adversarial Bit-Vector Hub & Pigeonhole Principle Circuits (`zed-adversarial-hub-php`)
+
+## Overview & Origin
+
+An 18-instance adversarial stress-audit and scaling suite combining two families originally constructed as bit-level AIGs (and exported to flat DIMACS CNF/XCNF):
+
+1. **Bit-Vector Hub Arithmetic Disjunctions (`hub_*`, 6 instances):** A 10-bit shared hub integer $h \in [\text{low}, 63]$ coupled to $n \in \{20, 24, 30, 60, 80\}$ pairs of 10-bit integer variables $(x_i, y_i)$ via bit-blasted two's-complement adder/multiplier chains enforcing $(-x_i - 2h + 40 + (i \bmod 7) \ge 0) \lor (y_i - h - 10 + (i \bmod 5) \ge 0)$ (`low = 31` is UNSAT; `low = 25` is SAT). Designed to audit BVE/congruence/AIG soundness under high shared-hub fanout.
+2. **Pigeonhole Principle Circuits (`php_*`, 12 instances):** Tseitin-encoded $\mathrm{PHP}^{m}_{n}$ circuits placing $m$ pigeons into $n$ holes, spanning UNSAT instances $\mathrm{PHP}^{9}_{8}$ through $\mathrm{PHP}^{50}_{49}$ (`64,875` CNF vars, `247,350` clauses) plus satisfiable bijection controls $\mathrm{PHP}^{20}_{20}$ and $\mathrm{PHP}^{30}_{30}$.
+
+- **Origin:** Developed during adversarial Rounds 1–2 soundness hardening in the Frobenius project (`main.rs::run_bench_zed`, `tests/zed_problems.rs`).
+- **Why they are hard:** Haken (1985) proved every pure Resolution / CDCL refutation of $\mathrm{PHP}^{n+1}_{n}$ requires $2^{\Omega(n)}$ steps. Kissat 4.0.4, CaDiCaL 3.1.0, and CryptoMiniSat 5.18.0 all time out past $600\;\text{s}$ by $\mathrm{PHP}^{16}_{15}$, whereas cardinality/cutting-planes & Cook (1976) Extended-Resolution refutation solves $\mathrm{PHP}^{50}_{49}$ in **`119.04 ms`** (and emits `cake_lpr`-verified Extended-Resolution LRAT proofs for direct AMO/ALO PHP instances).
+
+## Directory Layout & Regeneration
+
+- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with Berkeley ABC).
+- `cnf-version/` — Tseitin **DIMACS `.cnf`** and native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
+
+## Problem Parameters & Data Sizes
+
+| Instance | Family | Params | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+|---|---|---|:---:|---:|---:|---:|---:|---:|---:|
+| `hub_20_unsat` | Bit-Vector Hub | $n=20, \text{low}=31$ | UNSAT | 410 | 4,268 | 10.7 KB | 2,510 | 8,209 | 126.0 KB |
+| `hub_24_unsat` | Bit-Vector Hub | $n=24, \text{low}=31$ | UNSAT | 490 | 5,106 | 12.7 KB | 3,001 | 9,820 | 152.5 KB |
+| `hub_30_unsat` | Bit-Vector Hub | $n=30, \text{low}=31$ | UNSAT | 610 | 6,373 | 15.9 KB | 3,741 | 12,249 | 192.5 KB |
+| `hub_60_unsat` | Bit-Vector Hub | $n=60, \text{low}=31$ | UNSAT | 1,210 | 12,701 | 33.9 KB | 7,440 | 24,391 | 392.2 KB |
+| `hub_80_unsat` | Bit-Vector Hub | $n=80, \text{low}=31$ | UNSAT | 1,610 | 16,915 | 46.4 KB | 9,904 | 32,478 | 525.2 KB |
+| `hub_60_sat` | Bit-Vector Hub | $n=60, \text{low}=25$ | SAT | 1,210 | 12,698 | 33.9 KB | 7,438 | 24,385 | 392.1 KB |
+| `php_9_8_unsat` | Pigeonhole | 9 pigeons, 8 holes | UNSAT | 72 | 647 | 1.9 KB | 423 | 1,350 | 13.5 KB |
+| `php_13_12_unsat` | Pigeonhole | 13 pigeons, 12 holes | UNSAT | 156 | 2,027 | 6.3 KB | 1,235 | 4,186 | 44.7 KB |
+| `php_14_13_unsat` | Pigeonhole | 14 pigeons, 13 holes | UNSAT | 182 | 2,547 | 8.1 KB | 1,533 | 5,250 | 57.5 KB |
+| `php_15_14_unsat` | Pigeonhole | 15 pigeons, 14 holes | UNSAT | 210 | 3,149 | 10.0 KB | 1,875 | 6,480 | 72.2 KB |
+| `php_16_15_unsat` | Pigeonhole | 16 pigeons, 15 holes | UNSAT | 240 | 3,839 | 12.2 KB | 2,264 | 7,888 | 89.1 KB |
+| `php_17_16_unsat` | Pigeonhole | 17 pigeons, 16 holes | UNSAT | 272 | 4,623 | 15.0 KB | 2,703 | 9,486 | 108.3 KB |
+| `php_19_18_unsat` | Pigeonhole | 19 pigeons, 18 holes | UNSAT | 342 | 6,497 | 21.2 KB | 3,743 | 13,300 | 154.1 KB |
+| `php_20_19_unsat` | Pigeonhole | 20 pigeons, 19 holes | UNSAT | 380 | 7,599 | 24.8 KB | 4,350 | 15,540 | 181.0 KB |
+| `php_31_30_unsat` | Pigeonhole | 31 pigeons, 30 holes | UNSAT | 930 | 28,829 | 107.6 KB | 15,779 | 58,528 | 721.2 KB |
+| `php_50_49_unsat` | Pigeonhole | 50 pigeons, 49 holes | UNSAT | 2,450 | 122,499 | 517.7 KB | 64,875 | 247,350 | 3.24 MB |
+| `php_20_20_sat` | Pigeonhole | 20 pigeons, 20 holes | SAT | 400 | 7,999 | 26.1 KB | 4,580 | 16,360 | 191.0 KB |
+| `php_30_30_sat` | Pigeonhole | 30 pigeons, 30 holes | SAT | 900 | 26,999 | 100.1 KB | 14,820 | 54,840 | 673.2 KB |
+
+## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+
+Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on `php_9_8_unsat`, $T_{\max} = 600\;\text{s}$ on the 6 promoted Zed instances):
+
+| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+|---|---:|---:|---:|---:|---:|
+| `php_9_8_unsat` | **1.81 ms** | 26.86 ms | 32.96 ms | 438.14 ms | 474.27 ms |
+| `hub_20_unsat` | **9.14 ms** | 41.27 ms | 11.17 ms | 276.33 ms | 168.34 ms |
+| `hub_60_unsat` | **23.41 ms** | 85.89 ms | 24.35 ms | 697.72 ms | 409.68 ms |
+| `hub_60_sat` | **26.87 ms** | 78.82 ms | 46.78 ms | 653.06 ms | 434.73 ms |
+| `php_16_15_unsat` | **4.54 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) |
+| `php_20_19_unsat` | **8.15 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) |
+| `php_50_49_unsat` | **119.04 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) |
+
+*(Both `php_9_8_unsat` and `php_13_12_unsat` LRAT proofs emitted by Frobenius additionally pass formal verification in HOL4/CakeML `cake_lpr` and `lrat-check`.)*
+
+## References
+
+- A. Haken, *The Intractability of Resolution*, Theoretical Computer Science 39:297–308, 1985.
+- S. A. Cook, *A Short Proof of the Pigeon Hole Principle Using Extended Resolution*, ACM SIGACT News 8(4):28–32, 1976.
+- C. Sinz, *Towards an Optimal CNF Encoding of Boolean Cardinality Constraints*, CP 2005, LNCS 3709.

@@ -1,0 +1,36 @@
+# Rust build artifacts (for suite generators in */src/)
+**/target/
+**/Cargo.lock
+
+# Python bytecode & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+# C/C++ build artifacts
+*.o
+*.so
+*.a
+*.out
+build/
+
+# Temporary solver proofs, logs, and downloaded competition archives
+*.drat
+*.bdrat
+*.lrat
+*.lpr
+*.log
+*.tmp
+.cache/
+
+# Editor / OS clutter
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/

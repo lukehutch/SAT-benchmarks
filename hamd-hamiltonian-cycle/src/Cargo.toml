@@ -1,0 +1,8 @@
+[package]
+name = "gen-hamd-suite"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-hamd-suite"
+path = "main.rs"

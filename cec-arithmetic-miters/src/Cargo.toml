@@ -1,0 +1,8 @@
+[package]
+name = "gen-cec-arithmetic-miters"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-cec-arithmetic-miters"
+path = "main.rs"

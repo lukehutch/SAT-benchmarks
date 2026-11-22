@@ -1,0 +1,8 @@
+[package]
+name = "gen-integer-factoring"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-integer-factoring"
+path = "main.rs"
