@@ -362,10 +362,11 @@ def discover_suite_cnfs(suite_dir: Path) -> list[tuple[Path, str, Path | None, P
     items: list[tuple[Path, str, Path | None, Path | None]] = []
 
     def find_xcnf(rel_no_ext: Path) -> Path | None:
-        for ext in (".xcnf", ".xcnf.xz"):
-            cand = xcnf_ver / (str(rel_no_ext) + ext)
-            if cand.exists():
-                return cand
+        for base_dir in (xcnf_ver, suite_dir):
+            for ext in (".xcnf", ".xcnf.xz"):
+                cand = base_dir / (str(rel_no_ext) + ext)
+                if cand.exists():
+                    return cand
         return None
 
     def strip_cnf_ext(p: Path) -> Path:
