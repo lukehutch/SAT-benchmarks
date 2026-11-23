@@ -52,16 +52,16 @@ All **72 upstream DIMACS CNFs** (**47 Tier-1** in `tier1/` + **25 Tier-3** in `t
 
 | Tier-1 Family (Instances) | Frobenius 1C | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 |
 |---|---:|---:|---:|---:|---:|
-| Adder CEC (4) | **4/4 — 34.5 ms** | 4/4 — 120.5 ms | 4/4 — 120.4 ms | 4/4 — 94.0 ms | 4/4 — 300.9 ms |
-| Hamiltonian cycle (8) | 8/8 — 2,105.5 ms | 7/8 — 24,156.8 ms | **8/8 — 1,518.5 ms** | 8/8 — 20,794.2 ms | 7/8 — 30,849.9 ms |
-| Multiplier CEC (4) | 3/4 — 24,171.3 ms | 2/4 — 40,126.0 ms | 3/4 — 23,454.0 ms | 3/4 — 25,137.9 ms | **3/4 — 23,164.4 ms** |
-| Multiplier target (4) | 4/4 — 48.5 ms | **4/4 — 26.9 ms** | 4/4 — 53.3 ms | 4/4 — 27.3 ms | 4/4 — 238.1 ms |
-| Mutilated chessboard (5) | 5/5 — 8.2 ms | **5/5 — 5.7 ms** | 5/5 — 6,723.3 ms | 4/5 — 20,090.0 ms | 4/5 — 20,168.4 ms |
-| Pigeonhole PHP (5) | **5/5 — 7.6 ms** | 5/5 — 14.8 ms | 4/5 — 21,914.0 ms | 3/5 — 43,400.5 ms | 3/5 — 45,223.0 ms |
-| Random 3-SAT (4) | **4/4 — 489.7 ms** | 4/4 — 3,181.9 ms | 4/4 — 1,302.5 ms | 4/4 — 1,111.1 ms | 4/4 — 1,465.9 ms |
-| Tseitin parity (9) | 9/9 — 13.4 ms | **9/9 — 8.0 ms** | 7/9 — 40,204.7 ms | 7/9 — 40,216.8 ms | 9/9 — 168.3 ms |
-| XOR + random clauses (4) | **4/4 — 9.2 ms** | 4/4 — 12.1 ms | 4/4 — 64.3 ms | 4/4 — 63.9 ms | 4/4 — 135.8 ms |
-| **TOTAL (47 instances, PAR-2)** | **46/47 — 26,887.8 ms** *(fastest)* | 44/47 — 67,652.6 ms *(2.52x slower)* | 43/47 — 95,355.0 ms *(3.55x slower)* | 41/47 — 150,935.7 ms *(5.61x slower)* | 42/47 — 121,714.6 ms *(4.53x slower)* |
+| Adder CEC (4) | **4/4 — 22.8 ms** | 4/4 — 120.5 ms | 4/4 — 120.4 ms | 4/4 — 94.0 ms | 4/4 — 300.9 ms |
+| Hamiltonian cycle (8) | 8/8 — 1,572.3 ms | 7/8 — 24,156.8 ms | **8/8 — 1,518.5 ms** | 8/8 — 20,794.2 ms | 7/8 — 30,849.9 ms |
+| Multiplier CEC (4) | 3/4 — 24,048.8 ms | 2/4 — 40,126.0 ms | 3/4 — 23,454.0 ms | 3/4 — 25,137.9 ms | **3/4 — 23,164.4 ms** |
+| Multiplier target (4) | 4/4 — 35.8 ms | **4/4 — 26.9 ms** | 4/4 — 53.3 ms | 4/4 — 27.3 ms | 4/4 — 238.1 ms |
+| Mutilated chessboard (5) | 5/5 — 10.9 ms | **5/5 — 5.7 ms** | 5/5 — 6,723.3 ms | 4/5 — 20,090.0 ms | 4/5 — 20,168.4 ms |
+| Pigeonhole PHP (5) | **5/5 — 7.8 ms** | 5/5 — 14.8 ms | 4/5 — 21,914.0 ms | 3/5 — 43,400.5 ms | 3/5 — 45,223.0 ms |
+| Random 3-SAT (4) | **4/4 — 392.4 ms** | 4/4 — 3,181.9 ms | 4/4 — 1,302.5 ms | 4/4 — 1,111.1 ms | 4/4 — 1,465.9 ms |
+| Tseitin parity (9) | 9/9 — 19.4 ms | **9/9 — 8.0 ms** | 7/9 — 40,204.7 ms | 7/9 — 40,216.8 ms | 9/9 — 168.3 ms |
+| XOR + random clauses (4) | **4/4 — 9.9 ms** | 4/4 — 12.1 ms | 4/4 — 64.3 ms | 4/4 — 63.9 ms | 4/4 — 135.8 ms |
+| **TOTAL (47 instances, PAR-2)** | **46/47 — 26,120.2 ms** *(fastest)* | 44/47 — 67,652.6 ms *(2.59x slower)* | 43/47 — 95,355.0 ms *(3.65x slower)* | 41/47 — 150,935.7 ms *(5.78x slower)* | 42/47 — 121,714.6 ms *(4.66x slower)* |
 
 *(The sole unsolved instance across all five flat-CNF solvers at $T_{\max} = 10\;\text{s}$ is `cec_mult_10x10_arr_vs_wal.cnf`.)*
 

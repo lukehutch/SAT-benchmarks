@@ -38,23 +38,23 @@ All **50 CNFs** are committed verbatim alongside **50 exact Binary AIGER 1.9 con
 
 | Solver (1C) | Solved | SAT / UNSAT | Total PAR-2 | Relative PAR-2 |
 |---|---:|:---:|---:|---|
-| **Frobenius 1C** | **29 / 30** | **16 / 13** | **10,550.23 ms** | *(fastest)* |
-| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | 28 / 30 | 15 / 13 | 20,413.13 ms | *(1.93x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 25 / 30 | 16 / 9 | 53,065.48 ms | *(5.03x slower)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 24 / 30 | 16 / 8 | 63,765.07 ms | *(6.04x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0* | 20 / 30 | 12 / 8 | 100,870.73 ms | *(9.56x slower)* |
+| **Frobenius 1C** | **29 / 30** | **16 / 13** | **10,712.87 ms** | *(fastest)* |
+| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | 28 / 30 | 15 / 13 | 20,413.13 ms | *(1.91x slower)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 25 / 30 | 16 / 9 | 53,065.48 ms | *(4.95x slower)* |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 24 / 30 | 16 / 8 | 63,765.07 ms | *(5.95x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0* | 20 / 30 | 12 / 8 | 100,870.73 ms | *(9.42x slower)* |
 
-*\*[CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0's strict parser rejected 4 legacy SATLIB files (`hole9.cnf`, `par8-1-c..3-c.cnf`) that contain trailing tokens/EOF formatting from the original SATLIB archive; all other four solvers parsed and solved all 4.*
+*\* [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0's strict parser rejected 4 legacy SATLIB files (`hole9.cnf`, `par8-1-c..3-c.cnf`) that contain trailing tokens/EOF formatting from the original SATLIB archive; all other four solvers parsed and solved all 4.*
 
 ### B. 20-Instance Synthetic Suite (`instances/`) + Generated `chessboard368.cnf` (21 Instances, $T_{\max} = 5\;\text{s}$)
 
 | Solver (1C) | Solved | `chessboard368.cnf` (270k vars, 944k cls) | Total PAR-2 (21 files) | Relative PAR-2 |
 |---|---:|---:|---:|---|
-| **Frobenius 1C** | **21 / 21** | **239.55 ms** *(fastest)* | **323.84 ms** | *(fastest)* |
-| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | **21 / 21** | 434.76 ms *(1.81x slower)* | 466.92 ms | *(1.44x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,567.66 ms | *(218x slower)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,982.94 ms | *(219x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 71,525.43 ms | *(221x slower)* |
+| **Frobenius 1C** | **21 / 21** | **171.98 ms** *(fastest)* | **245.60 ms** | *(fastest)* |
+| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | **21 / 21** | 434.76 ms *(2.53x slower)* | 466.92 ms | *(1.90x slower)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,567.66 ms | *(287x slower)* |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,982.94 ms | *(289x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 71,525.43 ms | *(291x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

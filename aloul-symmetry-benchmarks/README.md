@@ -40,7 +40,7 @@ All **82 CNFs** (`6.21 MB` total) plus **82 exact Binary AIGER 1.9 conversions**
 | Solver (1C) | Solved | SAT / UNSAT | Total PAR-2 (21 files) | Relative PAR-2 |
 |---|---:|:---:|---:|---|
 | **[`dense-solver 0.0.4`](https://github.com/libdense/dense-solver)** | **21 / 21** | **11 / 10** | **27.45 ms** | *(fastest)* |
-| **Frobenius 1C** | **21 / 21** | **11 / 10** | **219.53 ms** | *(8.00x slower)* |
+| **Frobenius 1C** | **21 / 21** | **11 / 10** | **70.76 ms** | *(2.58x slower)* |
 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 12 / 21 | 11 / 1 | 92,980.13 ms | *(3,387x slower)* |
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 11 / 21 | 11 / 0 | 100,091.48 ms | *(3,646x slower)* |
 
