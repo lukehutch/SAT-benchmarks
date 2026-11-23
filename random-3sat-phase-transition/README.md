@@ -51,7 +51,7 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 - **Timeout:** $T_{\max} = 60\;\text{s}$ per instance.
 - **Same machine?** **Yes** — all six solver configurations were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT assignments independently verified clause-by-clause).
 
-| Instance ($m/n$) | Ans | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance ($m/n$) | Ans | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `rand3sat_n200_r380_sat` (3.80) | SAT | **3.18 ms** | 4.01 ms | 30.82 ms | 28.57 ms | 10.66 ms | 22.15 ms |
 | `rand3sat_n200_r400_sat` (4.00) | SAT | **3.11 ms** | 21.35 ms | 30.81 ms | 32.51 ms | 4.67 ms | 25.32 ms |

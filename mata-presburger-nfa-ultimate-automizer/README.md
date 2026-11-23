@@ -22,7 +22,7 @@ Note: Unlike the propositional SAT collections in this repository, MATA instance
 
 ## Published Benchmarks & References
 
-- **Chocholatý et al. (TACAS 2024):** Benchmarked [`Mata`](https://github.com/VeriFIT/mata) against [`Awali`](https://gitlab.in2p3.fr/vaucanson/awali), [`Automata.net`](https://github.com/AutomataDotNet/Automata), [`Brics`](https://www.brics.dk/automaton/), [`DK.Brics`](https://www.brics.dk/automaton/), [`FAdo`](https://fado.dcc.fc.up.pt/), [`OpenFST`](https://www.openfst.org/), and [`VATA`](https://github.com/ondrik/libvata) across string-constraint, regex, and Presburger complementation workloads, establishing Mata as a state-of-the-art C++ NFA engine.
+- **Chocholatý et al. (TACAS 2024):** Benchmarked [Mata](https://github.com/VeriFIT/mata) against [Awali](https://gitlab.in2p3.fr/vaucanson/awali), [Automata.net](https://github.com/AutomataDotNet/Automata), [Brics](https://www.brics.dk/automaton/), [DK.Brics](https://www.brics.dk/automaton/), [FAdo](https://fado.dcc.fc.up.pt/), [OpenFST](https://www.openfst.org/), and [VATA](https://github.com/ondrik/libvata) across string-constraint, regex, and Presburger complementation workloads, establishing Mata as a state-of-the-art C++ NFA engine.
 - **Ergodis Notes ([`@TravisRudd`](https://twitter.com/TravisRudd)):** Evaluated all 169 entries of `bench-single-presburger-explicit-complement.input` as an automata complementation stress test alongside SAT workloads.
 
 ## Comparative 1-Core Benchmark Results (All 153 NFAs, Native `.mata.xz`, $T_{\max} = 5\;\text{s}$)

@@ -1,4 +1,4 @@
-# [`dense-solver`](https://github.com/libdense/dense-solver) Public SAT Benchmarks (`dense-solver-public`)
+# [dense-solver](https://github.com/libdense/dense-solver) Public SAT Benchmarks (`dense-solver-public`)
 
 ## Provenance & Credit
 
@@ -6,13 +6,13 @@
 - **Upstream Repository:** [`libdense/dense-solver`](https://github.com/libdense/dense-solver)
 - **Zenodo Archive (v0.0.4):** [`zenodo.org/records/24443907`](https://zenodo.org/records/24443907)
 - **License & Attribution:**
-  - [`dense-solver`](https://github.com/libdense/dense-solver) scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
+  - [dense-solver](https://github.com/libdense/dense-solver) scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
   - Third-party public formulas retain their full upstream provenance, SHA-256 digests, and credits in [`SOURCES.md`](SOURCES.md), [`CITATION.cff`](CITATION.cff), and [`src/public-inputs.csv`](src/public-inputs.csv) (22 SATLIB formulas + 8 SAT Competition 2025 Main Track GBD formulas).
 - **Companion Collection:** [`dense-solver-synthetic/`](../dense-solver-synthetic/README.md) (20 multi-encoding PHP & mutilated chessboard CNFs).
 
 ## Problem Description
 
-This collection holds the **30 third-party public CNFs** (`public-instances/`) shipped with [`dense-solver v0.0.4`](https://github.com/libdense/dense-solver) (16 SAT / 14 UNSAT):
+This collection holds the **30 third-party public CNFs** (`public-instances/`) shipped with [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (16 SAT / 14 UNSAT):
 
 - **22 SATLIB classics:** `hole6..10` (John Hooker), `uf50-01..04` & `uuf50-01..04` (uniform random 3-SAT), `flat30-1..3` (Joseph Culberson graph coloring), `anomaly`, `medium`, `bw_large.a` (SATPLAN Blocks World), and `par8-1-c..par8-3-c` (James Crawford parity learning).
 - **8 compact SAT Competition 2025 Main Track representatives** (sourced via GBD / RocSAT selection): `sc25-subset-cardinality`, `sc25-fpga-routing`, `sc25-scheduling`, `sc25-hgen`, `sc25-tseitin-formulas`, `sc25-mutilated-chessboard`, `sc25-hamiltonian`, and `sc25-pigeon-hole`.
@@ -37,7 +37,7 @@ This collection holds the **30 third-party public CNFs** (`public-instances/`) s
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 30 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `anomaly` | SAT | 2.58 ms | 2.76 ms | 5.56 ms | 1.87 ms | **1.51 ms** |
 | `bw_large.a` | SAT | 15.55 ms | **4.22 ms** | 121.62 ms | 4.63 ms | 23.90 ms |
@@ -107,6 +107,6 @@ This collection holds the **30 third-party public CNFs** (`public-instances/`) s
 
 ## References
 
-- M. Numa, *[`dense-solver`](https://github.com/libdense/dense-solver) v0.0.4*, [GitHub](https://github.com/libdense/dense-solver) and [Zenodo `24443907`](https://zenodo.org/records/24443907) (2026).
+- M. Numa, *[dense-solver](https://github.com/libdense/dense-solver) v0.0.4*, [GitHub](https://github.com/libdense/dense-solver) and [Zenodo `24443907`](https://zenodo.org/records/24443907) (2026).
 - H. H. Hoos and T. Stützle, *"SATLIB: An Online Resource for Research on SAT"*, SAT 2000, pp. 283–292.
 - International SAT Competition 2025 & Global Benchmark Database (GBD): [`benchmark-database.de`](https://benchmark-database.de/).

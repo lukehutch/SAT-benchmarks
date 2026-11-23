@@ -47,7 +47,7 @@ Native unmodified `.xcnf.xz` files live in `xcnf-orig/` (`978.4 KB`); exact Tsei
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`.cnf`) | T/O | 193,256 (6,385/s) | 39.6M (1.31M/s) | T/O | 189,394 (6,300/s) | 82.8M (2.75M/s) |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.cnf`) | T/O | 48,128 (1,609/s) | — | T/O | 55,809 (1,867/s) | — |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) | T/O | 2,561 (74.8/s)\* | — | T/O | —\* | — |
-| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) (`.cnf`) | T/O | — | — | T/O | — | — |
+| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (`.cnf`) | T/O | — | — | T/O | — | — |
 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`.cnf`) | T/O | 376,058 (12,525/s) | 115.7M (3.85M/s) | T/O | 379,192 (12,606/s) | 117.0M (3.89M/s) |
 
 *\*On native `.xcnf`, CryptoMiniSat 5.18.0 spends $>16\text{--}50\;\text{s}$ initializing dense $\mathbb{F}_2$ Gaussian elimination over the $42{,}524 \times 58{,}524$ connected XOR system (`w126.unsolved.xcnf` did not exit Gauss initialization before the 50 s hard watchdog).*

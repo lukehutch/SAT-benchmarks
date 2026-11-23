@@ -94,7 +94,7 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 
 - **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run** (`taskset -c 0` sequential; CaDiCaL/Kissat 300 s reference runs pinned to dedicated cores 2 & 3), full wall-clock time from process start to answer (including parsing). Every SAT model is independently verified against 100% of clauses in the exact `.cnf.xz`; every UNSAT proof is independently verified with [`lrat-check`](https://github.com/marijnheule/drat-trim), [`drat-trim`](https://github.com/marijnheule/drat-trim), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr).
 - **Zero Verdict Disagreements:** All solvers agree 100% on every mutually solved instance.
-- **Cutoffs Reported:** All 5 solvers were evaluated sequentially at **$T_{\max} = 60\;\text{s}$** on identical uncompressed flat `.cnf` files (since [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 and [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) do not read `.xz` natively); **Frobenius 1C**, **[CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0**, and **[Kissat](https://github.com/arminbiere/kissat) 4.0.4** were additionally evaluated up to **$T_{\max} = 300\;\text{s}$** directly on the original `.cnf.xz` archives.
+- **Cutoffs Reported:** All 5 solvers were evaluated sequentially at **$T_{\max} = 60\;\text{s}$** on identical uncompressed flat `.cnf` files (since [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 and [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 do not read `.xz` natively); **Frobenius 1C**, **[CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0**, and **[Kissat](https://github.com/arminbiere/kissat) 4.0.4** were additionally evaluated up to **$T_{\max} = 300\;\text{s}$** directly on the original `.cnf.xz` archives.
 
 ### 1. 300 s Single-Core Comparison (`.cnf.xz`, Wall-Clock Time)
 
@@ -117,7 +117,7 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 
 ### 2. 60 s All-Five-Solver Comparison (Identical Uncompressed Flat `.cnf`, `taskset -c 0`)
 
-| Instance | Verdict ($\le 60\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict ($\le 60\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `c01` | UNSAT | >60 s *(62.34 s)* | 39.20 s | >60 s | >60 s | **27.58 s** |
 | `c02` | *TBD* | >60 s | >60 s | >60 s | >60 s | >60 s |

@@ -6,7 +6,7 @@ A curated, **four-format** (**Binary AIGER 1.9 `.aig.xz`**, **DIMACS `.cnf.xz`**
 
 Every collection lives at the repository root in its own flat, self-contained directory (`<collection>/`) with **zero** benchmark files at collection root and **zero** nested subcollection directories:
 
-- **`README.md`** — Provenance, contributor credits, upstream links and licenses, problem parameters, exact four-format data sizes, comparative 1-core solver timings (Frobenius 1C, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0, [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver), [Kissat](https://github.com/arminbiere/kissat) 4.0.4), proof verification status ([`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim)), auto-generated phase-transition & structural analysis, and literature citations.
+- **`README.md`** — Provenance, contributor credits, upstream links and licenses, problem parameters, exact four-format data sizes, comparative 1-core solver timings (Frobenius 1C, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0, [dense-solver](https://github.com/libdense/dense-solver) 0.0.4, [Kissat](https://github.com/arminbiere/kissat) 4.0.4), proof verification status ([`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim)), auto-generated phase-transition & structural analysis, and literature citations.
 - **`<orig-fmt>-orig/`** — Native original compressed files directly inside: `aig-orig/` (8 collections, 52 instances), `cnf-orig/` (51 collections, 731 instances), `xcnf-orig/` (1 collection, 2 instances), or `mata-orig/` (2 NFA collections, 174 automata).
 - **`<conv-fmt>-converted/`** — Exact lossless conversions for all remaining SAT formats directly inside:
   - `aig-converted/` (or `aig-orig/`): **785 / 785** **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT; `45.76 MB` total, independently verified with [Berkeley **ABC**](https://github.com/berkeley-abc/abc) `read_aiger`, `0` errors).
@@ -26,8 +26,8 @@ Every collection lives at the repository root in its own flat, self-contained di
 | [`aloul-fpga-sb-uns/`](aloul-fpga-sb-uns/README.md) | `cnf-orig/` | **Sourced** — Fadi A. Aloul ([`aloul.net`](https://www.aloul.net/benchmarks.html), SAT 2002 *"Homer"*, via [`@merlin_numa`](https://twitter.com/merlin_numa)) | 10 | 0 / 10 | Unsatisfiable symmetry-rich FPGA switch-box routing (`fpga10..11`) | Python |
 | [`cec-arithmetic-miters/`](cec-arithmetic-miters/README.md) | `aig-orig/` | **Original** *(classic EDA)* | 5 | 0 / 5 | EDA CEC miters: Ripple-Carry vs. Kogge–Stone; Array vs. Wallace vs. Karatsuba | Rust |
 | [`coupled-linear-nonlinear/`](coupled-linear-nonlinear/README.md) | `aig-orig/` | **Original** | 4 | 3 / 1 | Coupled $\mathbb{F}_2$ linear + nonlinear $\mathrm{And}/\mathrm{Maj}_3/\mathrm{Mux}$ circuits | Rust |
-| [`dense-solver-public/`](dense-solver-public/README.md) | `cnf-orig/` | **Sourced** — Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa), [`dense-solver`](https://github.com/libdense/dense-solver), [Zenodo](https://zenodo.org/records/24443907), MIT) | 30 | 16 / 14 | 22 SATLIB classics + 8 compact SC 2025 Main Track CNFs | Python |
-| [`dense-solver-synthetic/`](dense-solver-synthetic/README.md) | `cnf-orig/` | **Sourced** — Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa), [`dense-solver`](https://github.com/libdense/dense-solver), [Zenodo](https://zenodo.org/records/24443907), MIT) | 20 | 2 / 18 | Multi-encoding PHP ($\mathrm{PHP}^{65}_{64}$) & mutilated chessboards (`cb12..32`) | Python |
+| [`dense-solver-public/`](dense-solver-public/README.md) | `cnf-orig/` | **Sourced** — Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa), [dense-solver](https://github.com/libdense/dense-solver), [Zenodo](https://zenodo.org/records/24443907), MIT) | 30 | 16 / 14 | 22 SATLIB classics + 8 compact SC 2025 Main Track CNFs | Python |
+| [`dense-solver-synthetic/`](dense-solver-synthetic/README.md) | `cnf-orig/` | **Sourced** — Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa), [dense-solver](https://github.com/libdense/dense-solver), [Zenodo](https://zenodo.org/records/24443907), MIT) | 20 | 2 / 18 | Multi-encoding PHP ($\mathrm{PHP}^{65}_{64}$) & mutilated chessboards (`cb12..32`) | Python |
 | [`f2-frobenius-circulants/`](f2-frobenius-circulants/README.md) | `aig-orig/` | **Original** | 6 | 4 / 2 | Balanced $\mathbb{F}_2$ circulant parity circuits ($n=64\text{--}4{,}096$) | Rust |
 | [`fede-intern-challenge/`](fede-intern-challenge/README.md) | `cnf-orig/` | **Sourced** — [`@fede_intern`](https://twitter.com/fede_intern) (`frobenius-challenge-v2`, SC 2025 GBD CC-BY-4.0) | 12 | Mixed / Open | Random 3-SAT, quiet-planted 3-SAT, scrambled factoring ($40\text{--}64\text{b}$), SC25 unsolved (`R(4,4)`, clique-coloring) | Python |
 | [`hamd-hamiltonian-cycle/`](hamd-hamiltonian-cycle/README.md) | `cnf-orig/` | **Original** *(classic graphs)* | 22 | 12 / 10 | 6 provably SAT/UNSAT graph families ($GP$, Snarks, Meredith, Chvátal, Broken Crown, Planted) | Rust + Python |
@@ -47,7 +47,7 @@ Every collection lives at the repository root in its own flat, self-contained di
 | [`mata-presburger-nfa-ultimate-automizer/`](mata-presburger-nfa-ultimate-automizer/README.md) | `mata-orig/` | **Sourced** — VeriFIT MATA ([`nfa-bench`](https://github.com/VeriFIT/nfa-bench), MIT, via [`@TravisRudd`](https://twitter.com/TravisRudd)) | 153 | Automata | TACAS 2024 Presburger explicit-complement NFAs (Ultimate Automizer) | Python |
 | [`mod-circuit-sat/`](mod-circuit-sat/README.md) | `cnf-orig/` | **Sourced** — [`@vzhilin_me`](https://twitter.com/vzhilin_me) ([`vzhn/mod-circuit-sat`](https://github.com/vzhn/mod-circuit-sat), arXiv:2102.12579) | 11 | 5 / 4 / 2 Open | Exact optimal $B_2$ circuit synthesis for $\mathrm{MOD}_n^{3,r}$ ($n=3\text{--}6$) | Python |
 | [`pretolani-pret/`](pretolani-pret/README.md) | `cnf-orig/` | **Sourced** — Daniele Pretolani ([SATLIB PRET](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html), via [`@MMarchidann`](https://twitter.com/MMarchidann)) | 8 | 0 / 8 | Parity-charged graph 2-coloring UNSAT formulas ($n=60, 150$; 25%–75% Horn) | Python |
-| [`qdistsat-qldpc/`](qdistsat-qldpc/README.md) | `cnf-orig/` | **Sourced** — [`QDistSAT`](https://github.com/guluchen/QDistSAT) (GPL-3.0+) & Bravyi et al., via [`@TravisRudd`](https://twitter.com/TravisRudd) | 10 | 5 / 5 | CSS Quantum LDPC bivariate-bicycle code distance ($[[30..756]]$) + matrices | Python |
+| [`qdistsat-qldpc/`](qdistsat-qldpc/README.md) | `cnf-orig/` | **Sourced** — [QDistSAT](https://github.com/guluchen/QDistSAT) (GPL-3.0+) & Bravyi et al., via [`@TravisRudd`](https://twitter.com/TravisRudd) | 10 | 5 / 5 | CSS Quantum LDPC bivariate-bicycle code distance ($[[30..756]]$) + matrices | Python |
 | [`queen-armies/`](queen-armies/README.md) | `cnf-orig/` | **Original** *(inspired by [Christopher Wolfram](https://christopherwolfram.com/projects/queen-armies/))* | 8 | 4 / 4 | Peaceable Queen Armies ($A \in \{2, 3, 4\}$, OEIS A250000/A277433/A277434) | Python |
 | [`random-3sat-phase-transition/`](random-3sat-phase-transition/README.md) | `cnf-orig/` | **Original** *(classic ensemble, via [`@jasonslenderman`](https://twitter.com/jasonslenderman) & [`@tingan87`](https://twitter.com/tingan87))* | 8 | 4 / 4 | Uniform random 3-SAT across the phase transition $m/n \in [3.80, 5.00]$ ($n=200$) | Python |
 | [`rb-bench-model-rb/`](rb-bench-model-rb/README.md) | `cnf-orig/` | **Sourced** — Ke Xu ([`rb-bench.github.io`](https://rb-bench.github.io/), AIJ 2007, via [`@merlin_numa`](https://twitter.com/merlin_numa)) | 40 | 40 / 0 | Model RB forced-satisfiable phase-transition CSP-to-SAT (`frb30-15`–`frb59-26`) | Python |
@@ -111,7 +111,7 @@ Every collection lives at the repository root in its own flat, self-contained di
 | **Frobenius 1C** | **22 / 22** | **19 / 22** | **372.43 ms** *(fastest)* | 12/12 SAT cycles + 10/10 UNSAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK |
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 17 / 22 | 2 / 22 | 163,592.80 ms *(439x slower)* | 100% verdict agreement on solved instances |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 18 / 22 | 0 / 22 | 148,852.60 ms *(400x slower)* | 100% verdict agreement on solved instances |
-| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | 17 / 22 | 0 / 22 | 159,432.38 ms *(428x slower)* | 100% verdict agreement on solved instances |
+| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | 17 / 22 | 0 / 22 | 159,432.38 ms *(428x slower)* | 100% verdict agreement on solved instances |
 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 18 / 22 | 1 / 22 | 140,869.50 ms *(378x slower)* | 100% verdict agreement on solved instances |
 
 ### 3. Combinatorial Chessboard Suites (1-Core, Identical Flat `.cnf` Input)
@@ -119,7 +119,7 @@ Every collection lives at the repository root in its own flat, self-contained di
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30\;\text{s}$).
 - **Same machine?** **Yes** — all five solvers were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
 
-| Collection (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Collection (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
 | [**Obstacle Knight's Tour**](knights-tour-obstacles/README.md) (10, 15 s) | 10/10 — 54,045 ms *(6.23x)* | 10/10 — 11,302 ms *(1.30x)* | 10/10 — 9,121 ms *(1.05x)* | 2/10 — 250,274 ms *(28.8x)* | **10/10 — 8,678 ms** *(fastest)* |
 | [**Peaceable Queen Armies**](queen-armies/README.md) (8, 15 s) | **8/8 — 56,672 ms** *(fastest)* | 1/8 — 214,106 ms *(3.78x)* | 1/8 — 211,830 ms *(3.74x)* | 2/8 — 204,847 ms *(3.61x)* | 4/8 — 160,604 ms *(2.83x)* |
@@ -129,14 +129,14 @@ Every collection lives at the repository root in its own flat, self-contained di
 - **Timeout:** Per-instance $T_{\max}$ is listed in each row (PAR-2 penalty $= 2\,T_{\max}$).
 - **Same machine?** **Yes** — all solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 thread per run, 0 verdict disagreements, 100% SAT model verification; full-suite sweeps pinned across 8–14 dedicated physical cores with zero SMT sharing). **100% of every committed collection was benchmarked** (zero subsampling).
 
-| External Collection (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| External Collection (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
 | [**Aloul DAC02**](aloul-dac02-bench/README.md) (32, 5 s) | **32/32 — 360.3 ms** *(fastest)* | 17/32 — 154,076 ms *(428x)* | 23/32 — 96,866 ms *(269x)* | 32/32 — 450.7 ms *(1.25x)* | 24/32 — 87,033 ms *(242x)* |
 | [**Aloul DIFP-A**](aloul-difp-a/README.md) (14, 5 s) | 7/14 — 84,203 ms *(1.04x)* | 8/14 — 82,148 ms *(1.02x)* | 7/14 — 85,065 ms *(1.05x)* | 5/14 — 106,012 ms *(1.31x)* | **8/14 — 80,636 ms** *(fastest)* |
 | [**Aloul DIFP-W**](aloul-difp-w/README.md) (15, 5 s) | 5/15 — 113,241 ms *(1.28x)* | 6/15 — 101,152 ms *(1.14x)* | **7/15 — 88,571 ms** *(fastest)* | 4/15 — 115,672 ms *(1.31x)* | 7/15 — 97,101 ms *(1.10x)* |
 | [**Aloul FPGA Switch-Box**](aloul-fpga-sb-sat/README.md) ([SAT](aloul-fpga-sb-sat/README.md) + [UNSAT](aloul-fpga-sb-uns/README.md), 21, 5 s) | 21/21 — 43.7 ms *(1.17x)* | 11/21 — 100,093 ms *(2,676x)* | 11/21 — 100,380 ms *(2,684x)* | **21/21 — 37.4 ms** *(fastest)* | 12/21 — 93,237 ms *(2,493x)* |
-| [**`dense-solver` Public**](dense-solver-public/README.md) (30, 5 s) | **29/30 — 10,251 ms** *(fastest)* | 24/30 — 64,035 ms *(6.25x)* | 20/30 — 100,928 ms *(9.85x)* | 28/30 — 20,460 ms *(2.00x)* | 25/30 — 53,137 ms *(5.18x)* |
-| [**`dense-solver` Synthetic**](dense-solver-synthetic/README.md) (20, 5 s) | 20/20 — 103.8 ms *(2.28x)* | 14/20 — 61,075 ms *(1,339x)* | 14/20 — 61,636 ms *(1,352x)* | **20/20 — 45.6 ms** *(fastest)* | 14/20 — 60,601 ms *(1,329x)* |
+| [**dense-solver Public**](dense-solver-public/README.md) (30, 5 s) | **29/30 — 10,251 ms** *(fastest)* | 24/30 — 64,035 ms *(6.25x)* | 20/30 — 100,928 ms *(9.85x)* | 28/30 — 20,460 ms *(2.00x)* | 25/30 — 53,137 ms *(5.18x)* |
+| [**dense-solver Synthetic**](dense-solver-synthetic/README.md) (20, 5 s) | 20/20 — 103.8 ms *(2.28x)* | 14/20 — 61,075 ms *(1,339x)* | 14/20 — 61,636 ms *(1,352x)* | **20/20 — 45.6 ms** *(fastest)* | 14/20 — 60,601 ms *(1,329x)* |
 | [**`@fede_intern` 12-CNF Challenge**](fede-intern-challenge/README.md) (12, 60 s / 300 s) | **9/12 — 362.3 s** *(300 s: **10/12 — 1,264 s**)* | 3/12 — 1,120.2 s *(300 s: 4/12 — 5,002 s)* | 0/12 — 1,440.0 s | 0/12 — 1,440.0 s | 3/12 — 1,117.7 s *(300 s: 4/12 — 4,926 s)* |
 | [**Heule Matrix `xor6cut`**](heule-matrix-xor6cut/README.md) (6, 60 s; other 8 suites 37, 10 s: all 0/37) | 2/6 — 523,063 ms *(1.25x)* | 2/6 — 493,170 ms *(1.18x)* | 2/6 — 510,399 ms *(XCNF: 3/6 — 455,099 ms)* | 0/6 — 720,000 ms *(1.72x)* | **3/6 — 418,266 ms** *(fastest)* |
 | [**MATA Presburger NFAs**](mata-presburger-nfa-tptp/README.md) ([TPTP](mata-presburger-nfa-tptp/README.md) + [UAutomizer](mata-presburger-nfa-ultimate-automizer/README.md), 174, 5 s, `.mata.xz`) | **174/174 — 1,596 ms** *(antichain; emp 1,692 ms, exp 2,147 ms)* | — *(CNF only)* | — *(CNF/XCNF only)* | — *(CNF only)* | — *(CNF only)* |
@@ -160,13 +160,13 @@ Every collection lives at the repository root in its own flat, self-contained di
 | Track (400 CNFs each) | Solver (1C) | $T_{\max}=15\;\text{s}$ Solved & PAR-2 | $T_{\max}=60\;\text{s}$ Solved & PAR-2 |
 |---|---|---:|---:|
 | **SC 2024** | **Frobenius 1C** | **72 / 400 — 25.04 s** *(fastest)* | **111 / 400 — 91.02 s** *(fastest)* |
-| | [`CaDiCaL`](https://github.com/arminbiere/cadical) (Main #7) | 26 / 400 — 28.24 s *(1.13x slower)* | 54 / 400 — 106.69 s *(1.17x slower)* |
-| | [`kissat-sc2024`](https://github.com/arminbiere/kissat) (Main #1 Gold) | 43 / 400 — 27.15 s *(1.08x slower)* | 81 / 400 — 99.47 s *(1.09x slower)* |
+| | [CaDiCaL](https://github.com/arminbiere/cadical) (Main #7) | 26 / 400 — 28.24 s *(1.13x slower)* | 54 / 400 — 106.69 s *(1.17x slower)* |
+| | [kissat-sc2024](https://github.com/arminbiere/kissat) (Main #1 Gold) | 43 / 400 — 27.15 s *(1.08x slower)* | 81 / 400 — 99.47 s *(1.09x slower)* |
 | **SC 2025** | **Frobenius 1C** | **95 / 400 — 23.51 s** | **141 / 400 — 81.92 s** |
 | | *(Official SC 2025 published aggregate 5,000 s slide totals only; no per-instance CSV)* | — | — |
 | **SC 2026** | **Frobenius 1C** | **122 / 400 — 21.37 s** *(fastest)* | **139 / 400 — 80.24 s** *(fastest)* |
-| | [`Lymphosat`](https://c.mov/lymphosat/) (AI-Track #1 Gold) | 81 / 400 — 24.58 s *(1.15x slower)* | 109 / 400 — 90.07 s *(1.12x slower)* |
-| | [`satsuma-iter-kissat`](https://github.com/markusa4/satsuma) (Main #1 Gold) | 70 / 400 — 25.13 s *(1.18x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
+| | [Lymphosat](https://c.mov/lymphosat/) (AI-Track #1 Gold) | 81 / 400 — 24.58 s *(1.15x slower)* | 109 / 400 — 90.07 s *(1.12x slower)* |
+| | [satsuma-iter-kissat](https://github.com/markusa4/satsuma) (Main #1 Gold) | 70 / 400 — 25.13 s *(1.18x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
 
 ### 6. Four-Format Cross-Product Parity (`.aig.xz` × `.cnf.xz` × `.xcnf.xz` × `.anf.xz`, 1-Core)
 

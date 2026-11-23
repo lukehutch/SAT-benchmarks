@@ -48,7 +48,7 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 thread per run across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 verdict disagreements, 100% SAT model verification).
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
 | [`satlib-ais/`](../satlib-ais/README.md) (4) | 4/4 — 12.3 ms | 4/4 — 15.9 ms | 4/4 — 458.9 ms | 4/4 — 20.9 ms | **4/4 — 8.8 ms** |
 | [`satlib-beijing/`](../satlib-beijing/README.md) (16) | **16/16 — 1,294.3 ms** | 15/16 — 10,375.0 ms | 15/16 — 18,153.0 ms | 15/16 — 13,334.9 ms | 16/16 — 3,813.0 ms |

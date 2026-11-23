@@ -34,7 +34,7 @@
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 14 dedicated physical cores `0..13` with zero SMT sharing, $T_{\max} = 300\;\text{s}$, PAR-2 penalty $600\;\text{s}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 25 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 - **SAT vs. UNSAT Caveat (per [`@keithadler`](https://twitter.com/keithadler) and [`results/TIER3-LOCALSEARCH.md`](results/TIER3-LOCALSEARCH.md)):** All three leading solvers solve **17/25** instances (all **15 SAT** + both **$n = 300$ UNSAT**: `random3sat_n300_s1` and `random3sat_n300_s5`), while none of the 5 solvers finishes any of the 8 larger $n = 350\text{--}500$ instances within 300 s. As Keith Adler notes, **the 15 satisfiable instances are not the real test**: a textbook 60-line stochastic local search ([`src/probsat.c`](src/probsat.c)) solves all 15 in milliseconds on the same machine (see below). **The unsatisfiable instances are the true unstructured refutation test**, where [Kissat](https://github.com/arminbiere/kissat) 4.0.4 is fastest (`23.87 s` / `31.68 s` under 14-core load; `21.03 s` / `27.47 s` solo-CCD), followed by [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 and Frobenius 1C (which solves both and produces formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) UNSAT proofs).
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `random3sat_n300_s1` | UNSAT | 50.09 s | 36.83 s | 72.67 s | 86.72 s | **23.87 s** |
 | `random3sat_n300_s2` | SAT | **17.19 ms** | 499.35 ms | 1,422.73 ms | 3,323.79 ms | 103.22 ms |
@@ -67,7 +67,7 @@
 
 To eliminate 14-core L3/RAM contention on the two solved UNSAT instances highlighted in [`results/TIER3-BASELINE.md`](results/TIER3-BASELINE.md), all 5 solvers were additionally re-timed 1-per-CCD (**core 0** on CCD0 for `random3sat_n300_s1`, **core 8** on CCD1 for `random3sat_n300_s5`, independent 32 MB L3 caches). Frobenius's `--lrat` proofs were independently checked with both [`lrat-check`](https://github.com/marijnheule/drat-trim) and formally verified HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) (`s VERIFIED UNSAT`; the compressed `.lrat.xz` proofs are 116 MB and 128 MB and are kept outside Git due to GitHub's 100 MB file-size limit).
 
-| Instance | Frobenius 1C (solo) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (solo) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (solo) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) (solo) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (solo) | Frobenius LRAT Proof Verification |
+| Instance | Frobenius 1C (solo) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (solo) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (solo) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (solo) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (solo) | Frobenius LRAT Proof Verification |
 |---|---:|---:|---:|---:|---:|---|
 | `random3sat_n300_s1` | 41.18 s | 31.70 s | 57.45 s | 72.76 s | **21.03 s** | LRAT `52.10 s` (`457 MB` / `116 MB .xz`), `lrat-check` `6.81 s`, `cake_lpr` **OK** (`26.75 s`) |
 | `random3sat_n300_s5` | 60.80 s | 50.13 s | 115.96 s | 87.30 s | **27.47 s** | LRAT `60.33 s` (`505 MB` / `128 MB .xz`), `lrat-check` `7.66 s`, `cake_lpr` **OK** (`27.96 s`) |
@@ -77,7 +77,7 @@ To eliminate 14-core L3/RAM contention on the two solved UNSAT instances highlig
 
 Compiled verbatim (`cc -O2 -o probsat src/probsat.c -lm`) and run on **solo core 0** (seeds `1..5`, all 75 runs verified `SAT(checked)`), alongside **Frobenius 1C** on **solo core 0** (same uncontended core) and the 14-core [CaDiCaL](https://github.com/arminbiere/cadical) / [Kissat](https://github.com/arminbiere/kissat) wall times for reference:
 
-| Instance | Frobenius 1C (solo core 0) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (14C) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (14C) | [`probsat.c`](src/probsat.c) (solo core 0, 5 seeds) |
+| Instance | Frobenius 1C (solo core 0) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (14C) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (14C) | [probSAT](src/probsat.c) (solo core 0, 5 seeds) |
 |---|---:|---:|---:|---:|
 | `random3sat_n300_s2` | 5.52 ms | 499.35 ms | 103.22 ms | **0.60 ms** *(max 0.78 ms; wall med 2.44 ms)* |
 | `random3sat_n300_s3` | 63.90 ms | 1,132.77 ms | 2,035.60 ms | **9.97 ms** *(max 18.51 ms; wall med 12.04 ms)* |

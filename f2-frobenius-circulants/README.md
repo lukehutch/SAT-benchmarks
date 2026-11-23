@@ -37,7 +37,7 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
 
 Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-converted/*.xcnf`):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `f2_frobenius_n64` | **1.22 ms** *(fastest)* | 2.91 ms *(2.4x)* | 23.08 ms *(18.9x)* | 22.23 ms *(18.2x)* | 1.59 ms | 2.68 ms *(2.2x)* |
 | `f2_frobenius_n256` | **1.52 ms** *(fastest)* | 388.02 ms *(255x)* | 34.73 ms *(22.8x)* | 27.54 ms *(18.1x)* | 1.96 ms | 156.50 ms *(103x)* |

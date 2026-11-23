@@ -41,7 +41,7 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 | **Frobenius 1C** | **8 / 8** | **9.86 ms** | 1.13–1.57 ms | *(1.53x slower)* |
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 8 / 8 | 41.53 ms | 4.95–5.38 ms | *(6.46x slower)* |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 8 / 8 | 161.74 ms | 18.55–22.15 ms | *(25.2x slower)* |
-| **[`dense-solver 0.0.4`](https://github.com/libdense/dense-solver)** | **8 / 8** | **6.43 ms** | 0.72–0.98 ms | *(fastest)* |
+| **[dense-solver](https://github.com/libdense/dense-solver) 0.0.4** | **8 / 8** | **6.43 ms** | 0.72–0.98 ms | *(fastest)* |
 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 8 / 8 | 58.45 ms | 4.58–11.04 ms | *(9.09x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->

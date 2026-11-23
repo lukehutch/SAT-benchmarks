@@ -41,7 +41,7 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, sequential execution, identical flat `.cnf` input, 0 verdict disagreements; all 5/5 SAT models verified via `src/modsat.py decode`).
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `mod3_n3_r0_s3_sat.cnf` | SAT | 4.04 ms | 2.85 ms | 18.26 ms | **1.52 ms** | 1.94 ms |
 | `mod3_n3_r1_s3_unsat.cnf` | UNSAT | 3.61 ms | 2.32 ms | 12.84 ms | 1.66 ms | **1.57 ms** |

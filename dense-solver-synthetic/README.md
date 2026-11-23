@@ -1,4 +1,4 @@
-# [`dense-solver`](https://github.com/libdense/dense-solver) Synthetic Cardinality & Tiling Benchmarks (`dense-solver-synthetic`)
+# [dense-solver](https://github.com/libdense/dense-solver) Synthetic Cardinality & Tiling Benchmarks (`dense-solver-synthetic`)
 
 ## Provenance & Credit
 
@@ -10,7 +10,7 @@
 
 ## Problem Description
 
-This collection holds the **20 structured synthetic cardinality & domino-tiling CNFs** (`instances/`) shipped with [`dense-solver v0.0.4`](https://github.com/libdense/dense-solver) (2 SAT / 18 UNSAT):
+This collection holds the **20 structured synthetic cardinality & domino-tiling CNFs** (`instances/`) shipped with [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (2 SAT / 18 UNSAT):
 
 - **Pigeonhole Principle ($\mathrm{PHP}^n_{n-1}$ UNSAT and $\mathrm{PHP}^8_8$ SAT) across 8 distinct CNF encodings:** pairwise, pairwise-functional, Sinz sequential counter, renamed sequential counter, bitwise, ladder, sorting network, cardinality network, totalizer, modulo-totalizer, and $k$-modulo-totalizer, scaling up to $\mathrm{PHP}^{65}_{64}$ (both pairwise and sequential).
 - **Mutilated Chessboard domino-tiling UNSAT formulas:** `chessboard12`, `chessboard16`, and `chessboard32` (plus the generator `src/chessboard.py`, which produces larger boards such as `chessboard368.cnf` with $270{,}108$ variables and $943{,}544$ clauses).
@@ -35,7 +35,7 @@ This collection holds the **20 structured synthetic cardinality & domino-tiling 
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 20 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `chessboard12` | UNSAT | 1.71 ms | 421.38 ms | 494.60 ms | **1.66 ms** | 399.35 ms |
 | `chessboard16` | UNSAT | 2.53 ms | >5 s | >5 s | **2.09 ms** | >5 s |
@@ -92,7 +92,7 @@ This collection holds the **20 structured synthetic cardinality & domino-tiling 
 
 ## References
 
-- M. Numa, *[`dense-solver`](https://github.com/libdense/dense-solver) v0.0.4*, [GitHub](https://github.com/libdense/dense-solver) and [Zenodo `24443907`](https://zenodo.org/records/24443907) (2026).
+- M. Numa, *[dense-solver](https://github.com/libdense/dense-solver) v0.0.4*, [GitHub](https://github.com/libdense/dense-solver) and [Zenodo `24443907`](https://zenodo.org/records/24443907) (2026).
 - A. Biere, D. Le Berre, E. Lonca, and N. Manthey, *"Detecting Cardinality Constraints in CNF"*, SAT 2014, LNCS 8561, pp. 285–301.
 - M. J. H. Heule, B. Kiesl, and A. Biere, *"Clausal Proofs of Mutilated Chessboards"*, NFM 2019, LNCS 11460, pp. 204–210.
 - C. Sinz, *"Towards an Optimal CNF Encoding of Boolean Cardinality Constraints"*, CP 2005, LNCS 3709, pp. 827–831.
