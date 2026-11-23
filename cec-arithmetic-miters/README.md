@@ -12,9 +12,9 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with Berkeley ABC).
+- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -31,7 +31,7 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `cec_adder_32b_rc_vs_ks` | **8.56 ms** | 46.70 ms | 36.21 ms | 146.85 ms | 78.33 ms |
 | `cec_mult_6x6_arr_vs_wal` | **1.47 ms** | 213.67 ms | 146.33 ms | 494.59 ms | 285.64 ms |
@@ -40,5 +40,5 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 ## References
 
 - P. M. Kogge and H. S. Stone, *A Parallel Algorithm for the Efficient Solution of a General Class of Recurrence Equations*, IEEE Trans. Computers C-22(8):786–793, 1973.
-- D. Kaufmann, A. Biere, and M. Kauers, *Verifying Large Multipliers by Combining SAT and Computer Algebra (AMulet)*, FMCAD 2019.
+- D. Kaufmann, A. Biere, and M. Kauers, *Verifying Large Multipliers by Combining SAT and Computer Algebra ([AMulet](https://github.com/d-kaufmann/amulet))*, FMCAD 2019.
 - A. Mishchenko, S. Chatterjee, R. Jiang, and R. K. Brayton, *FRAIGs: A Unifying Representation for Logic Synthesis and Verification*, ERL Technical Report, UC Berkeley, 2005.

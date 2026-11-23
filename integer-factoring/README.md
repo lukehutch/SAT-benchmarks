@@ -9,9 +9,9 @@ Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with Berkeley ABC).
+- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -29,7 +29,7 @@ Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers operate strictly on flat `.cnf` with **zero number-theoretic shortcuts**):
 
-| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `factor_prime_28b_unsat` | **2.05 ms** | 25.29 ms | 5.99 ms | 75.60 ms | 38.82 ms |
 | `factor_wallace_32b` | **2.79 ms** | 25.43 ms | 5.60 ms | 121.22 ms | 82.24 ms |
@@ -40,6 +40,6 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 
 ## References
 
-- D. Kaufmann, A. Biere, and M. Kauers, *Verifying Large Multipliers by Combining SAT and Computer Algebra (AMulet)*, FMCAD 2019.
+- D. Kaufmann, A. Biere, and M. Kauers, *Verifying Large Multipliers by Combining SAT and Computer Algebra ([AMulet](https://github.com/d-kaufmann/amulet))*, FMCAD 2019.
 - C. S. Wallace, *A Suggestion for a Fast Multiplier*, IEEE Trans. Electronic Computers 13(1):14–17, 1964.
 - A. Karatsuba and Y. Ofman, *Multiplication of Many-Digital Numbers by Automatic Computers*, Doklady Akad. Nauk SSSR 145:293–294, 1962.

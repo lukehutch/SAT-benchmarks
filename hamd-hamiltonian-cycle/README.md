@@ -16,7 +16,7 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 ## Directory Layout & Regeneration
 
 - `*.cnf` — Original native **DIMACS CNF** encodings (compact binary-order MTZ).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (all 22/22 verified with Berkeley ABC).
+- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (all 22/22 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -48,20 +48,20 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; **10/10 UNSAT LRAT proofs** emitted by Frobenius verified `s VERIFIED UNSAT` in HOL4/CakeML `cake_lpr` and `c VERIFIED` in `lrat-check`; **12/12 SAT cycles** independently verified):
+Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; **10/10 UNSAT LRAT proofs** emitted by Frobenius verified `s VERIFIED UNSAT` in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and `c VERIFIED` in [`lrat-check`](https://github.com/marijnheule/drat-trim); **12/12 SAT cycles** independently verified):
 
-| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 | Formal Verification |
+| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 | Formal Verification |
 |---|---:|---:|---:|---:|---|
-| `hamd_snark_j5_unsat` | **4.81 ms** | 32.2 ms | 15.8 ms | 63.9 ms | `cake_lpr` + `lrat-check` OK (`1,205` lines) |
-| `hamd_gp_11_2_unsat` | **4.14 ms** | 114.2 ms | 64.7 ms | 167.2 ms | `cake_lpr` + `lrat-check` OK (`1,926` lines) |
-| `hamd_snark_j7_unsat` | **7.51 ms** | 113.9 ms | 63.9 ms | 114.7 ms | `cake_lpr` + `lrat-check` OK (`6,254` lines) |
-| `hamd_gp_17_2_unsat` | **8.99 ms** | 773.5 ms | 316.7 ms | 466.9 ms | `cake_lpr` + `lrat-check` OK (`13,461` lines) |
-| `hamd_meredith_k3_n50_unsat` | **1.51 ms** | 315.1 ms | 267.1 ms | 570.6 ms | ER-LRAT `cake_lpr` OK (`387,813` lines) |
-| `hamd_meredith_k4_n70_unsat` | **3.42 ms** | >15 s (T/O) | >15 s (T/O) | 12,466.0 ms | ER-LRAT `cake_lpr` OK (`1,322,451` lines) |
-| `hamd_chvatal_s3_q5_dense_unsat` | **1.76 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT `cake_lpr` OK (`18,747` lines) |
-| `hamd_chvatal_s4_q6_med_unsat` | **3.09 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT `cake_lpr` OK (`55,971` lines) |
-| `hamd_chvatal_s4_q7_dense_unsat` | **5.21 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT `cake_lpr` OK (`91,235` lines) |
-| `hamd_broken_crown_n8_v31_k0_unsat` | 70.29 ms | 66.2 ms | **12.2 ms** | 114.9 ms | `cake_lpr` + `lrat-check` OK (`420` lines) |
+| `hamd_snark_j5_unsat` | **4.81 ms** | 32.2 ms | 15.8 ms | 63.9 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`1,205` lines) |
+| `hamd_gp_11_2_unsat` | **4.14 ms** | 114.2 ms | 64.7 ms | 167.2 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`1,926` lines) |
+| `hamd_snark_j7_unsat` | **7.51 ms** | 113.9 ms | 63.9 ms | 114.7 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`6,254` lines) |
+| `hamd_gp_17_2_unsat` | **8.99 ms** | 773.5 ms | 316.7 ms | 466.9 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`13,461` lines) |
+| `hamd_meredith_k3_n50_unsat` | **1.51 ms** | 315.1 ms | 267.1 ms | 570.6 ms | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`387,813` lines) |
+| `hamd_meredith_k4_n70_unsat` | **3.42 ms** | >15 s (T/O) | >15 s (T/O) | 12,466.0 ms | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`1,322,451` lines) |
+| `hamd_chvatal_s3_q5_dense_unsat` | **1.76 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`18,747` lines) |
+| `hamd_chvatal_s4_q6_med_unsat` | **3.09 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`55,971` lines) |
+| `hamd_chvatal_s4_q7_dense_unsat` | **5.21 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`91,235` lines) |
+| `hamd_broken_crown_n8_v31_k0_unsat` | 70.29 ms | 66.2 ms | **12.2 ms** | 114.9 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`420` lines) |
 | `hamd_broken_crown_n8_v31_k1_sat` | 57.10 ms | 69.4 ms | **20.2 ms** | 170.7 ms | Cycle + CNF OK |
 | `hamd_broken_crown_n12_v51_k1_sat` | 103.98 ms | **66.5 ms** | 168.7 ms | 318.5 ms | Cycle + CNF OK |
 | `hamd_gp_15_2_sat` | **0.91 ms** | 268.2 ms | 65.2 ms | 167.4 ms | Cycle + CNF OK |
@@ -74,7 +74,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; **10/10 
 | `hamd_planted_n64_dense_sat` | **16.22 ms** | 8,099.2 ms | >15 s (T/O) | 8,211.6 ms | Cycle + CNF OK |
 | `hamd_planted_n100_sparse_sat` | **8.32 ms** | 669.8 ms | 1,016.6 ms | 1,320.8 ms | Cycle + CNF OK |
 | `hamd_planted_n80_vdense_sat` | **58.62 ms** | 7,838.6 ms | 10,564.7 ms | >15 s (T/O) | Cycle + CNF OK |
-| **TOTAL (22 instances, PAR-2)** | **22/22 (372.43 ms)** | 18/22 (140,869.50 ms) | 17/22 (163,592.80 ms) | 18/22 (148,852.60 ms) | **10/10 `cake_lpr` + 12/12 HC** |
+| **TOTAL (22 instances, PAR-2)** | **22/22 (372.43 ms)** | 18/22 (140,869.50 ms) | 17/22 (163,592.80 ms) | 18/22 (148,852.60 ms) | **10/10 [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + 12/12 HC** |
 
 ## References
 

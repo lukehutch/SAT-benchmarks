@@ -1,4 +1,4 @@
-# `dense-solver` Combinatorial & Public SAT Benchmarks (Merlin Numa)
+# [`dense-solver`](https://github.com/libdense/dense-solver) Combinatorial & Public SAT Benchmarks (Merlin Numa)
 
 ## Provenance & Credit
 
@@ -6,12 +6,12 @@
 - **Upstream Repository:** [`libdense/dense-solver`](https://github.com/libdense/dense-solver)
 - **Zenodo Archive (v0.0.4):** [`zenodo.org/records/24443907`](https://zenodo.org/records/24443907)
 - **License & Attribution:**
-  - `dense-solver` generator scripts and synthetic benchmarks are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
+  - [`dense-solver`](https://github.com/libdense/dense-solver) generator scripts and synthetic benchmarks are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
   - Third-party public formulas in `public-instances/` retain their full upstream provenance, SHA-256 digests, and credits in [`SOURCES.md`](SOURCES.md), [`CITATION.cff`](CITATION.cff), and [`src/public-inputs.csv`](src/public-inputs.csv) (22 SATLIB formulas + 8 SAT Competition 2025 Main Track GBD formulas).
 
 ## Problem Description
 
-This suite mirrors the complete benchmark corpus shipped with `dense-solver v0.0.4`, organized into two complementary collections:
+This suite mirrors the complete benchmark corpus shipped with [`dense-solver v0.0.4`](https://github.com/libdense/dense-solver), organized into two complementary collections:
 
 1. **`instances/` (20 structured cardinality & tiling CNFs):**
    - **Pigeonhole Principle ($\mathrm{PHP}^n_{n-1}$ UNSAT and $\mathrm{PHP}^8_8$ SAT) across 8 distinct CNF encodings:** pairwise, pairwise-functional, Sinz sequential counter, renamed sequential counter, bitwise, ladder, sorting network, cardinality network, totalizer, modulo-totalizer, and $k$-modulo-totalizer, scaling up to $\mathrm{PHP}^{65}_{64}$ (both pairwise and sequential).
@@ -22,7 +22,7 @@ This suite mirrors the complete benchmark corpus shipped with `dense-solver v0.0
 
 ## Corpus & Data Sizes
 
-All **50 CNFs** are committed verbatim alongside **50 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 50/50 verified with Berkeley ABC `read_aiger`) and the upstream Python generators (`src/generate.py`, `src/chessboard.py`, `src/fetch_public.py`, `src/public-inputs.csv`, `src/cnf2aig.py`):
+All **50 CNFs** are committed verbatim alongside **50 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 50/50 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and the upstream Python generators (`src/generate.py`, `src/chessboard.py`, `src/fetch_public.py`, `src/public-inputs.csv`, `src/cnf2aig.py`):
 
 | Directory | Instances | SAT / UNSAT | Vars Range | Clauses Range | Total CNF Size | AIG Files |
 |---|---:|:---:|---:|---:|---:|---:|
@@ -39,26 +39,26 @@ All **50 CNFs** are committed verbatim alongside **50 exact Binary AIGER 1.9 con
 | Solver (1C) | Solved | SAT / UNSAT | Total PAR-2 | Relative PAR-2 |
 |---|---:|:---:|---:|---|
 | **Frobenius 1C** | **29 / 30** | **16 / 13** | **10,550.23 ms** | *(fastest)* |
-| `dense-solver 0.0.4` | 28 / 30 | 15 / 13 | 20,413.13 ms | *(1.93x slower)* |
-| Kissat 4.0.4 | 25 / 30 | 16 / 9 | 53,065.48 ms | *(5.03x slower)* |
-| CaDiCaL 3.1.0 | 24 / 30 | 16 / 8 | 63,765.07 ms | *(6.04x slower)* |
-| CryptoMiniSat 5.18.0* | 20 / 30 | 12 / 8 | 100,870.73 ms | *(9.56x slower)* |
+| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | 28 / 30 | 15 / 13 | 20,413.13 ms | *(1.93x slower)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 25 / 30 | 16 / 9 | 53,065.48 ms | *(5.03x slower)* |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 24 / 30 | 16 / 8 | 63,765.07 ms | *(6.04x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0* | 20 / 30 | 12 / 8 | 100,870.73 ms | *(9.56x slower)* |
 
-*\*CryptoMiniSat 5.18.0's strict parser rejected 4 legacy SATLIB files (`hole9.cnf`, `par8-1-c..3-c.cnf`) that contain trailing tokens/EOF formatting from the original SATLIB archive; all other four solvers parsed and solved all 4.*
+*\*[CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0's strict parser rejected 4 legacy SATLIB files (`hole9.cnf`, `par8-1-c..3-c.cnf`) that contain trailing tokens/EOF formatting from the original SATLIB archive; all other four solvers parsed and solved all 4.*
 
 ### B. 20-Instance Synthetic Suite (`instances/`) + Generated `chessboard368.cnf` (21 Instances, $T_{\max} = 5\;\text{s}$)
 
 | Solver (1C) | Solved | `chessboard368.cnf` (270k vars, 944k cls) | Total PAR-2 (21 files) | Relative PAR-2 |
 |---|---:|---:|---:|---|
 | **Frobenius 1C** | **21 / 21** | **239.55 ms** *(fastest)* | **323.84 ms** | *(fastest)* |
-| `dense-solver 0.0.4` | **21 / 21** | 434.76 ms *(1.81x slower)* | 466.92 ms | *(1.44x slower)* |
-| Kissat 4.0.4 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,567.66 ms | *(218x slower)* |
-| CaDiCaL 3.1.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,982.94 ms | *(219x slower)* |
-| CryptoMiniSat 5.18.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 71,525.43 ms | *(221x slower)* |
+| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | **21 / 21** | 434.76 ms *(1.81x slower)* | 466.92 ms | *(1.44x slower)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,567.66 ms | *(218x slower)* |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,982.94 ms | *(219x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 71,525.43 ms | *(221x slower)* |
 
 ## References
 
-- M. Numa, *`dense-solver` v0.0.4*, [GitHub](https://github.com/libdense/dense-solver) and [Zenodo `24443907`](https://zenodo.org/records/24443907) (2026).
+- M. Numa, *[`dense-solver`](https://github.com/libdense/dense-solver) v0.0.4*, [GitHub](https://github.com/libdense/dense-solver) and [Zenodo `24443907`](https://zenodo.org/records/24443907) (2026).
 - A. Biere, D. Le Berre, E. Lonca, and N. Manthey, *"Detecting Cardinality Constraints in CNF"*, SAT 2014, LNCS 8561, pp. 285–301.
 - M. J. H. Heule, B. Kiesl, and A. Biere, *"Clausal Proofs of Mutilated Chessboards"*, NFM 2019, LNCS 11460, pp. 204–210.
 - C. Sinz, *"Towards an Optimal CNF Encoding of Boolean Cardinality Constraints"*, CP 2005, LNCS 3709, pp. 827–831.

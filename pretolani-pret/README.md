@@ -6,7 +6,7 @@
 - **Author:** Daniele Pretolani (Second DIMACS Implementation Challenge / SATLIB)
 - **Upstream Source:** [SATLIB PRET Benchmark Description & Archive](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html) (`pret.tar.gz`)
 - **License:** Classic public academic benchmark archive contributed to the Second DIMACS Implementation Challenge and redistributed by SATLIB; no separate upstream `LICENSE` file is bundled in `pret.tar.gz`.
-- **Format Hygiene Note:** The original 1990 DIMACS files in `pret.tar.gz` ended with a trailing `0` EOF sentinel after the final clause (`160` or `400`), which causes strict modern SAT Competition parsers (e.g., Kissat, CaDiCaL) to reject the file as having an extra empty clause. The `.cnf` files here preserve every original header comment and clause verbatim while stripping only that trailing sentinel line so all modern solvers parse the exact `p cnf 60 160` / `p cnf 150 400` formulas cleanly.
+- **Format Hygiene Note:** The original 1990 DIMACS files in `pret.tar.gz` ended with a trailing `0` EOF sentinel after the final clause (`160` or `400`), which causes strict modern SAT Competition parsers (e.g., [Kissat](https://github.com/arminbiere/kissat), [CaDiCaL](https://github.com/arminbiere/cadical)) to reject the file as having an extra empty clause. The `.cnf` files here preserve every original header comment and clause verbatim while stripping only that trailing sentinel line so all modern solvers parse the exact `p cnf 60 160` / `p cnf 150 400` formulas cleanly.
 
 ## Problem Description
 
@@ -16,7 +16,7 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 ## Corpus & Data Sizes
 
-All **8 UNSAT CNFs** plus exact **Binary AIGER 1.9** conversions in `aig-version/` (all 8/8 verified with Berkeley ABC `read_aiger`):
+All **8 UNSAT CNFs** plus exact **Binary AIGER 1.9** conversions in `aig-version/` (all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`):
 
 | Instance | Vars | Clauses | Target Horn % | CNF Size | AIG AND Gates (`aig-version/`) | Status |
 |---|---:|---:|---:|---:|---:|---|
@@ -35,11 +35,11 @@ All **8 UNSAT CNFs** plus exact **Binary AIGER 1.9** conversions in `aig-version
 
 | Solver (1C) | Solved | Total Wall Time (8 instances) | Per-Instance Range | Relative Speed |
 |---|---:|---:|---:|---|
-| **`dense-solver 0.0.4`** | **8 / 8** | **6.43 ms** | 0.72–0.98 ms | *(fastest)* |
+| **[`dense-solver 0.0.4`](https://github.com/libdense/dense-solver)** | **8 / 8** | **6.43 ms** | 0.72–0.98 ms | *(fastest)* |
 | **Frobenius 1C** | **8 / 8** | **9.86 ms** | 1.13–1.57 ms | *(1.53x slower)* |
-| CaDiCaL 3.1.0 | 8 / 8 | 41.53 ms | 4.95–5.38 ms | *(6.46x slower)* |
-| Kissat 4.0.4 | 8 / 8 | 58.45 ms | 4.58–11.04 ms | *(9.09x slower)* |
-| CryptoMiniSat 5.18.0 | 8 / 8 | 161.74 ms | 18.55–22.15 ms | *(25.2x slower)* |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 8 / 8 | 41.53 ms | 4.95–5.38 ms | *(6.46x slower)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 8 / 8 | 58.45 ms | 4.58–11.04 ms | *(9.09x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 8 / 8 | 161.74 ms | 18.55–22.15 ms | *(25.2x slower)* |
 
 ## References
 

@@ -5,13 +5,13 @@
 Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis benchmarks pairing a dense $\mathbb{F}_2$ linear diffusion layer ($r = n/2$ sparse 5-input parity assertions) with nonlinear $\mathrm{And}$, $\mathrm{Maj}_3$, and $\mathrm{Mux}$ S-box gates evaluated on **3-input $\mathbb{F}_2$ linear forms** $\ell_a = x_i \oplus x_j \oplus x_k$ rather than raw input wires. Both satisfiable planted instances ($n \in \{64, 96, 128\}$) and a deep unsatisfiable flipped-target instance (`spn_unsat_n48_d24`) are included.
 
 - **Origin:** **Original** benchmark suite (MIT [`../LICENSE`](../LICENSE)), modeled on algebraic LowMC-style ciphers (Albrecht et al., [EUROCRYPT 2015](https://eprint.iacr.org/2016/687)).
-- **Why they are hard:** Feeding 3-input linear forms into nonlinear gates couples the affine diffusion layer with nonlinear S-box constraints, making flat clausal propagation challenging: at $n = 128$, Kissat 4.0.4 takes `4,330 ms`, CaDiCaL 3.1.0 takes `2,137 ms`, and CryptoMiniSat CNF takes `10,805 ms`.
+- **Why they are hard:** Feeding 3-input linear forms into nonlinear gates couples the affine diffusion layer with nonlinear S-box constraints, making flat clausal propagation challenging: at $n = 128$, [Kissat](https://github.com/arminbiere/kissat) 4.0.4 takes `4,330 ms`, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 takes `2,137 ms`, and [CryptoMiniSat](https://github.com/msoos/cryptominisat) CNF takes `10,805 ms`.
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with Berkeley ABC).
+- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -27,7 +27,7 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `spn_unsat_n48_d24` | **2.35 ms** | 32.47 ms | 22.35 ms | 58.31 ms | 27.06 ms |
 | `spn_sat_n64_d32` | **2.18 ms** | 84.09 ms | 30.83 ms | 77.31 ms | 27.36 ms |

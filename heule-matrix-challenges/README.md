@@ -12,7 +12,7 @@
 
 Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a tensor decomposition of the $3\times 3$ matrix-multiplication tensor into $R$ rank-1 products (Laderman's 1976 scheme achieved $R = 23$, and whether $R \le 22$ exists over $\mathbb{F}_2$ or $\mathbb{Q}$ remains a famous open problem in algebraic complexity). Encoding the Brent equations over $\mathbb{F}_2$ yields structured, highly symmetric, non-linear XOR+AND polynomial systems whose clausal forms challenge both CDCL and local-search SAT solvers:
 
-- **`challenge1/` (10 instances, SAT):** $R = 23$ schemes with hardcoded pairings of type-3 terms and **no** streamlining constraints. Satisfiable, yet very hard for complete CDCL solvers (five were solved by `yalsat` in minutes in the SAT 2019 paper).
+- **`challenge1/` (10 instances, SAT):** $R = 23$ schemes with hardcoded pairings of type-3 terms and **no** streamlining constraints. Satisfiable, yet very hard for complete CDCL solvers (five were solved by [`yalsat`](https://github.com/arminbiere/yalsat) in minutes in the SAT 2019 paper).
 - **`challenge2/` (10 instances, expected UNSAT):** $R = 23$ subproblems with hardcoded pairings of type-3 terms intended as unsatisfiability targets for complete solvers.
 - **`challenge3/` (1 instance, open/hard):** Tests whether an $R = 23$ scheme exists in which the last summand contains no type-3 term (no streamlining constraints).
 - **`challenge4/` (1 instance, open frontier):** Plain Brent-equation encoding for an $R = 22$ matrix multiplication scheme over $\mathbb{F}_2$.
@@ -22,7 +22,7 @@ Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a ten
 
 ## Corpus & Data Sizes
 
-All **43 `.cnf.xz`** benchmark files from upstream are mirrored verbatim (`11.4 MB` compressed), together with exact **Binary AIGER 1.9** conversions in `aig-version/` for all **43 / 43** instances (all verified via Berkeley ABC `read_aiger`), lossless **CryptoMiniSat XCNF** conversions in `xcnf-version/` (`253,692` extracted native `x`-clauses across 40/43 files, `.xcnf.xz`), and the upstream C encoders/decoders plus `cnf2aig.py` / `cnf2xcnf.py` in `src/`:
+All **43 `.cnf.xz`** benchmark files from upstream are mirrored verbatim (`11.4 MB` compressed), together with exact **Binary AIGER 1.9** conversions in `aig-version/` for all **43 / 43** instances (all verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** conversions in `xcnf-version/` (`253,692` extracted native `x`-clauses across 40/43 files, `.xcnf.xz`), and the upstream C encoders/decoders plus `cnf2aig.py` / `cnf2xcnf.py` in `src/`:
 
 | Directory | Instances | Vars | Clauses | CNF (`.cnf.xz`) Size | AIG / XCNF Files | Status |
 |---|---:|---:|---:|---:|---:|---|
@@ -42,4 +42,4 @@ All **43 `.cnf.xz`** benchmark files from upstream are mirrored verbatim (`11.4 
 
 ## Published Results & References
 
-- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using `yalsat` local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on the satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
+- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [`yalsat`](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on the satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.

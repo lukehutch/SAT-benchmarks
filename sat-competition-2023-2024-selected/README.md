@@ -13,7 +13,7 @@ Twelve of these instances form the SAT Competition slice of the unified 50-bench
 ## Directory Layout & Reproducibility
 
 - `*.cnf` — Original native **DIMACS CNF** formulas (decompressed from official GBD `.cnf.xz` archives).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (all 14/14 verified with Berkeley ABC, including 1.09M-AND-gate `si2_b03m_m800_03.aig` at `4.24 MB`).
+- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (all 14/14 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc), including 1.09M-AND-gate `si2_b03m_m800_03.aig` at `4.24 MB`).
 - `src/sc23_24_manifest.json` & `src/fetch_and_convert.py` — Exact GBD MD5 hashes and script to re-fetch from `benchmark-database.de` and regenerate `aig-version/*.aig`.
 
 ## Problem Parameters & Data Sizes
@@ -41,7 +41,7 @@ Twelve of these instances form the SAT Competition slice of the unified 50-bench
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; all solvers read the identical flat `.cnf` file):
 
-| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `tseitingrid6x200` | **3.07 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 1,093.37 ms |
 | `tseitin_d3_n10000` | **7.66 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 731.97 ms |

@@ -12,13 +12,13 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
   where $b_i$ matches a planted assignment for $i > 0$ and is flipped at $i = 0$. Every variable appears in exactly 4 equations, so the $\mathbb{F}_2$ sum of all $n$ LHS rows is identically $0$ while $\sum_i b_i = 1 \pmod 2$, yielding a strictly balanced global parity contradiction.
 
 - **Origin:** **Original** suite of algebraic circulant parity benchmark circuits (MIT [`../LICENSE`](../LICENSE)).
-- **Why they are hard:** Every merge-tree DNF/ANF circuit solver incurs $\ge 2^{\sqrt{n}/(3\sqrt{2})}$ blowup, and pure CDCL solvers without $\mathbb{F}_2$ parity reasoning scale super-polynomially ($364\;\text{s}$ for Kissat and $211\;\text{s}$ for CaDiCaL at $n = 4{,}096$ SAT; CaDiCaL times out past $30\;\text{s}$ on `n1024_unsat`).
+- **Why they are hard:** Every merge-tree DNF/ANF circuit solver incurs $\ge 2^{\sqrt{n}/(3\sqrt{2})}$ blowup, and pure CDCL solvers without $\mathbb{F}_2$ parity reasoning scale super-polynomially ($364\;\text{s}$ for [Kissat](https://github.com/arminbiere/kissat) and $211\;\text{s}$ for [CaDiCaL](https://github.com/arminbiere/cadical) at $n = 4{,}096$ SAT; [CaDiCaL](https://github.com/arminbiere/cadical) times out past $30\;\text{s}$ on `n1024_unsat`).
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (`L = 0`, `O = 1` miter where `PO_0 = 1` iff all $n$ parity assertions hold; verified with Berkeley ABC).
+- `*.aig` — Original native **Binary AIGER 1.9** circuits (`L = 0`, `O = 1` miter where `PO_0 = 1` iff all $n$ parity assertions hold; verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -34,9 +34,9 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except CMS-X which receives `xcnf-version/*.xcnf`):
+Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-version/*.xcnf`):
 
-| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `f2_frobenius_n64` | **1.22 ms** *(fastest)* | 2.68 ms *(2.2x)* | 2.91 ms *(2.4x)* | 23.08 ms *(18.9x)* | 22.23 ms *(18.2x)* |
 | `f2_frobenius_n256` | **1.52 ms** *(fastest)* | 156.50 ms *(103x)* | 388.02 ms *(255x)* | 34.73 ms *(22.8x)* | 27.54 ms *(18.1x)* |
@@ -47,6 +47,6 @@ Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 
 
 ## References
 
-- A. Biere, T. Faller, K. Fazekas, M. Fleury, N. Froleyks, and F. Pollitt, *CaDiCaL 2.0 / Kissat 4.0*, CAV 2024.
-- M. Soos, K. Nohl, and C. Castelluccia, *Extending SAT Solvers to Cryptographic Problems (CryptoMiniSat)*, SAT 2009.
+- A. Biere, T. Faller, K. Fazekas, M. Fleury, N. Froleyks, and F. Pollitt, *[CaDiCaL](https://github.com/arminbiere/cadical) 2.0 / [Kissat](https://github.com/arminbiere/kissat) 4.0*, CAV 2024.
+- M. Soos, K. Nohl, and C. Castelluccia, *Extending SAT Solvers to Cryptographic Problems ([CryptoMiniSat](https://github.com/msoos/cryptominisat))*, SAT 2009.
 - A. Biere, *The AIGER And-Inverter Graph (AIG) Format Version 20071012*, FMV Technical Report 07/1, JKU Linz, 2007.

@@ -23,7 +23,7 @@ The formula is **SAT** iff $d_Z \le w$ and **UNSAT** iff $d_Z > w$. These couple
 
 ## Corpus & Data Sizes
 
-Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes), **10 paired boundary decision CNFs** ($w = d-1$ UNSAT and $w = d$ SAT), **10 native-XOR `.xcnf` files** in `xcnf-version/`, **10 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 10/10 verified via Berkeley ABC `read_aiger`), and the standalone exporter `src/export_qdist_cnf.py`:
+Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes), **10 paired boundary decision CNFs** ($w = d-1$ UNSAT and $w = d$ SAT), **10 native-XOR `.xcnf` files** in `xcnf-version/`, **10 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), and the standalone exporter `src/export_qdist_cnf.py`:
 
 | Code Stem | Parameters $[[n,k,d]]$ | Weight $w$ | Status | Vars | Clauses | AIG AND Gates |
 |---|---|---:|:---:|---:|---:|---:|
@@ -35,9 +35,9 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 
 ## Comparative 1-Core Benchmark Results (`BB_30`, `BB_72`, `BB_144`, $T_{\max} = 10\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, identical flat `.cnf` input for CNF solvers plus `xcnf-version/*.xcnf` for CryptoMiniSat XCNF, 0 disagreements).
+- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, identical flat `.cnf` input for CNF solvers plus `xcnf-version/*.xcnf` for [CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF, 0 disagreements).
 
-| Instance | Verdict | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CMS 5.18 (CNF) | CMS 5.18 (XCNF) |
+| Instance | Verdict | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CMS](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CMS](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|---:|
 | `BB_30_4_6_w5_unsat.cnf` | UNSAT | 585.09 ms | 14.89 ms | **12.67 ms** | 38.69 ms | 34.51 ms |
 | `BB_30_4_6_w6_sat.cnf` | SAT | 6.97 ms | 6.34 ms | **2.03 ms** | 30.53 ms | 25.60 ms |

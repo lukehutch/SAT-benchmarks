@@ -19,7 +19,7 @@ The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are
 
 ## Corpus & Data Sizes
 
-All **40 forced-SAT CNFs** (`39.0 MB` total) across all 8 size classes, plus **40 exact Binary AIGER 1.9 conversions** in `aig-version/` (`24.7 MB`, all 40/40 verified via Berkeley ABC `read_aiger`) and `src/cnf2aig.py`:
+All **40 forced-SAT CNFs** (`39.0 MB` total) across all 8 size classes, plus **40 exact Binary AIGER 1.9 conversions** in `aig-version/` (`24.7 MB`, all 40/40 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and `src/cnf2aig.py`:
 
 | Family | Instances | Status | Vars ($n \cdot d$) | Clauses | CNF Size (5 files) | AIG Files |
 |---|---:|:---:|---:|---:|---:|---:|
@@ -37,7 +37,7 @@ All **40 forced-SAT CNFs** (`39.0 MB` total) across all 8 size classes, plus **4
 
 - **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, identical flat `.cnf` input, 100% SAT consensus).
 
-| Instance | Verdict | Kissat 4.0.4 | CaDiCaL 3.1.0 | Frobenius 1C |
+| Instance | Verdict | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | Frobenius 1C |
 |---|---:|---:|---:|---:|
 | `frb30-15-1.cnf` | SAT | **110.50 ms** | 335.36 ms | 762.64 ms |
 | `frb30-15-2.cnf` | SAT | 320.92 ms | **49.27 ms** | 371.34 ms |

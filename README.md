@@ -1,15 +1,15 @@
 # SAT Benchmarks
 
-A curated, **three-format** (**Binary AIGER 1.9 `.aig`**, **DIMACS `.cnf`**, and **CryptoMiniSat `.xcnf`**) collection of **24 benchmark suites** spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, matrix multiplication, graph theory, combinatorial chessboard puzzles, symmetry breaking, exact circuit synthesis, hardware verification, finite-automata complementation, and SAT Competition corpora.
+A curated, **three-format** (**Binary AIGER 1.9 `.aig`**, **DIMACS `.cnf`**, and **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`**) collection of **24 benchmark suites** spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, matrix multiplication, graph theory, combinatorial chessboard puzzles, symmetry breaking, exact circuit synthesis, hardware verification, finite-automata complementation, and SAT Competition corpora.
 
 Every benchmark suite lives in its own top-level directory containing:
 - Native-format benchmark instances at the suite root (`.aig` for circuit-native suites; `.cnf` / `.cnf.xz` for clausal suites; `.mata.xz` for the MATA automata suite).
 - Exact conversions for the two remaining formats in subdirectories:
   - Originally-`.aig` suites provide `cnf-version/` (`.cnf`) and `xcnf-version/` (`.xcnf`).
   - Originally-`.cnf` suites provide `aig-version/` (`.aig`) and `xcnf-version/` (`.xcnf` / `.xcnf.xz`, with all complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
-  - Every single `.aig` file across all suites (**387 / 387**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with Berkeley **ABC** (`read_aiger`, `0` errors).
+  - Every single `.aig` file across all suites (**387 / 387**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with [Berkeley **ABC**](https://github.com/berkeley-abc/abc) (`read_aiger`, `0` errors).
 - Standalone generator, exporter, fetcher, or converter source code in `src/` (including `cnf2aig.py` and `cnf2xcnf.py`).
-- A detailed `README.md` documenting provenance, contributor credits, upstream links and licenses, mathematical/circuit parameters, exact data sizes, comparative 1-core solver timings (Frobenius 1C, `dense-solver 0.0.4`, Kissat 4.0.4, CaDiCaL 3.1.0, CryptoMiniSat 5.18.0 CNF & XCNF), proof verification status (`cake_lpr` / `lrat-check`), and literature citations.
+- A detailed `README.md` documenting provenance, contributor credits, upstream links and licenses, mathematical/circuit parameters, exact data sizes, comparative 1-core solver timings (Frobenius 1C, [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver), [Kissat](https://github.com/arminbiere/kissat) 4.0.4, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 CNF & XCNF), proof verification status ([`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim)), and literature citations.
 
 ## Benchmark Suites (24 Suites)
 
@@ -40,7 +40,7 @@ Every benchmark suite lives in its own top-level directory containing:
 | [`vlsat-2/`](vlsat-2/README.md) | CNF (`.cnf`) | **Sourced** — Garavel / CADP INRIA ([VLSAT-2](https://cadp.inria.fr/resources/vlsat/2.html), via `@TravisRudd`) | 10 + 100* | 1 / 9 *(first 10)* | Very Large SAT from Nested-Unit Petri Net decompositions (first 10 + 100 URIs) | Python + `.uri` (`src/`) |
 | [`zed-adversarial-hub-php/`](zed-adversarial-hub-php/README.md) | AIG (`.aig`) | **Original** | 18 | 3 / 15 | Bit-vector Hub disjunctions ($n=20\text{--}80$) & Pigeonhole ($\mathrm{PHP}^9_8\text{--}\mathrm{PHP}^{50}_{49}$) | Rust (`src/`) |
 
-\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`, 1,166 unique CNFs) and `vlsat-2/vlsat2_100.uri` stores all 100 INRIA URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **387 SAT benchmark instances** are committed in **all three formats** (**387** verified Binary AIGER 1.9 `.aig`, **387** DIMACS `.cnf`/`.cnf.xz`, and **387** CryptoMiniSat `.xcnf`/`.xcnf.xz` = **1,161** benchmark files), alongside **174 `.mata.xz` NFA benchmarks** and full generator/converter scripts.
+\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`, 1,166 unique CNFs) and `vlsat-2/vlsat2_100.uri` stores all 100 INRIA URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **387 SAT benchmark instances** are committed in **all three formats** (**387** verified Binary AIGER 1.9 `.aig`, **387** DIMACS `.cnf`/`.cnf.xz`, and **387** [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`/`.xcnf.xz` = **1,161** benchmark files), alongside **174 `.mata.xz` NFA benchmarks** and full generator/converter scripts.
 
 ## Highlighted Solver Summary
 
@@ -52,10 +52,10 @@ Every benchmark suite lives in its own top-level directory containing:
 | Solver (1C) | Solved | Fastest Wins | Part I PAR-2 (30, $T_{\max}=5{,}000\;\text{s}$) | Part II PAR-2 (20, $T_{\max}=600\;\text{s}$) | Unified 50 PAR-2 |
 |---|---:|---:|---:|---:|---:|
 | **Frobenius 1C** | **50 / 50** | **50 / 50** | **430.02 ms** *(fastest)* | **4,309.00 ms** *(fastest)* | **4,739.02 ms** *(fastest)* |
-| CryptoMiniSat 5.18.0 (XCNF) | 40 / 50 | 0 / 50 | 20,471,425.77 ms *(47,606x slower)* | 9,720,466.50 ms *(2,256x slower)* | 30,191,892.27 ms *(6,371x slower)* |
-| CaDiCaL 3.1.0 | 38 / 50 | 0 / 50 | 25,715,225.61 ms *(59,800x slower)* | 12,017,694.26 ms *(2,789x slower)* | 37,732,919.87 ms *(7,962x slower)* |
-| Kissat 4.0.4 | 40 / 50 | 0 / 50 | 35,047,925.98 ms *(81,503x slower)* | 8,651,994.22 ms *(2,008x slower)* | 43,699,920.20 ms *(9,221x slower)* |
-| CryptoMiniSat 5.18.0 (CNF) | 35 / 50 | 0 / 50 | 30,027,443.01 ms *(69,828x slower)* | 14,462,626.48 ms *(3,356x slower)* | 44,490,069.49 ms *(9,388x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | 40 / 50 | 0 / 50 | 20,471,425.77 ms *(47,606x slower)* | 9,720,466.50 ms *(2,256x slower)* | 30,191,892.27 ms *(6,371x slower)* |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 38 / 50 | 0 / 50 | 25,715,225.61 ms *(59,800x slower)* | 12,017,694.26 ms *(2,789x slower)* | 37,732,919.87 ms *(7,962x slower)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 40 / 50 | 0 / 50 | 35,047,925.98 ms *(81,503x slower)* | 8,651,994.22 ms *(2,008x slower)* | 43,699,920.20 ms *(9,221x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 35 / 50 | 0 / 50 | 30,027,443.01 ms *(69,828x slower)* | 14,462,626.48 ms *(3,356x slower)* | 44,490,069.49 ms *(9,388x slower)* |
 
 ### 2. 22-Instance Provable HAMD Suite (1-Core, Identical Flat `.cnf` Input)
 
@@ -64,17 +64,17 @@ Every benchmark suite lives in its own top-level directory containing:
 
 | Solver (1C) | Solved | Fastest Wins | Total PAR-2 ($T_{\max}=15\;\text{s}$) | Proof / Model Verification |
 |---|---:|---:|---:|---|
-| **Frobenius 1C** | **22 / 22** | **19 / 22** | **372.43 ms** *(fastest)* | 12/12 SAT cycles + 10/10 UNSAT `cake_lpr` + `lrat-check` OK |
-| Kissat 4.0.4 | 18 / 22 | 1 / 22 | 140,869.50 ms *(378x slower)* | 100% verdict agreement on solved instances |
-| CryptoMiniSat 5.18.0 (CNF) | 18 / 22 | 0 / 22 | 148,852.60 ms *(400x slower)* | 100% verdict agreement on solved instances |
-| CaDiCaL 3.1.0 | 17 / 22 | 2 / 22 | 163,592.80 ms *(439x slower)* | 100% verdict agreement on solved instances |
+| **Frobenius 1C** | **22 / 22** | **19 / 22** | **372.43 ms** *(fastest)* | 12/12 SAT cycles + 10/10 UNSAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 18 / 22 | 1 / 22 | 140,869.50 ms *(378x slower)* | 100% verdict agreement on solved instances |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 18 / 22 | 0 / 22 | 148,852.60 ms *(400x slower)* | 100% verdict agreement on solved instances |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 17 / 22 | 2 / 22 | 163,592.80 ms *(439x slower)* | 100% verdict agreement on solved instances |
 
 ### 3. Combinatorial Chessboard Suites (1-Core, Identical Flat `.cnf` Input)
 
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30\;\text{s}$).
 - **Same machine?** **Yes** — all five solvers were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
 
-| Suite (Instances, $T_{\max}$) | Frobenius 1C | `dense-solver 0.0.4` | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18.0 |
+| Suite (Instances, $T_{\max}$) | Frobenius 1C | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 |
 |---|---:|---:|---:|---:|---:|
 | [**Obstacle Knight's Tour**](knights-tour-obstacles/README.md) (10, 15 s) | 10/10 — 54,045 ms *(6.23x)* | 2/10 — 250,274 ms *(28.8x)* | **10/10 — 8,678 ms** *(fastest)* | 10/10 — 11,302 ms *(1.30x)* | 10/10 — 9,121 ms *(1.05x)* |
 | [**Peaceable Queen Armies**](queen-armies/README.md) (8, 15 s) | **8/8 — 56,672 ms** *(fastest)* | 2/8 — 204,847 ms *(3.61x)* | 4/8 — 160,604 ms *(2.83x)* | 1/8 — 214,106 ms *(3.78x)* | 1/8 — 211,830 ms *(3.74x)* |
@@ -84,7 +84,7 @@ Every benchmark suite lives in its own top-level directory containing:
 - **Timeout:** Per-instance $T_{\max}$ is listed in each row (PAR-2 penalty $= 2\,T_{\max}$).
 - **Same machine?** **Yes** — all solvers were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
 
-| External Suite (Instances, $T_{\max}$) | Frobenius 1C | `dense-solver 0.0.4` | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18.0 |
+| External Suite (Instances, $T_{\max}$) | Frobenius 1C | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 |
 |---|---:|---:|---:|---:|---:|
 | [**Aloul FPGA Switch-Box**](aloul-symmetry-benchmarks/README.md) (21, 5 s) | 21/21 — 219.53 ms *(8.00x)* | **21/21 — 27.45 ms** *(fastest)* | 12/21 — 92,980 ms *(3,387x)* | 11/21 — 100,091 ms *(3,646x)* | — |
 | [**`dense-solver` Public**](dense-solver-benchmarks/README.md) (30, 5 s) | **29/30 — 10,550 ms** *(fastest)* | 28/30 — 20,413 ms *(1.93x)* | 25/30 — 53,065 ms *(5.03x)* | 24/30 — 63,765 ms *(6.04x)* | 20/30 — 100,871 ms *(9.56x)* |
@@ -107,18 +107,18 @@ Every benchmark suite lives in its own top-level directory containing:
 | Track (400 CNFs each) | Solver (1C) | $T_{\max}=15\;\text{s}$ Solved & PAR-2 | $T_{\max}=60\;\text{s}$ Solved & PAR-2 |
 |---|---|---:|---:|
 | **SC 2024** | **Frobenius 1C** | **72 / 400 — 25.04 s** *(fastest)* | **111 / 400 — 91.02 s** *(fastest)* |
-| | `kissat-sc2024` (Main #1 Gold) | 43 / 400 — 27.15 s *(1.08x slower)* | 81 / 400 — 99.47 s *(1.09x slower)* |
-| | `CaDiCaL` (Main #7) | 26 / 400 — 28.24 s *(1.13x slower)* | 54 / 400 — 106.69 s *(1.17x slower)* |
+| | [`kissat-sc2024`](https://github.com/arminbiere/kissat) (Main #1 Gold) | 43 / 400 — 27.15 s *(1.08x slower)* | 81 / 400 — 99.47 s *(1.09x slower)* |
+| | [`CaDiCaL`](https://github.com/arminbiere/cadical) (Main #7) | 26 / 400 — 28.24 s *(1.13x slower)* | 54 / 400 — 106.69 s *(1.17x slower)* |
 | **SC 2025** | **Frobenius 1C** | **95 / 400 — 23.51 s** | **141 / 400 — 81.92 s** |
 | | *(Official SC 2025 published aggregate 5,000 s slide totals only; no per-instance CSV)* | — | — |
 | **SC 2026** | **Frobenius 1C** | **122 / 400 — 21.37 s** *(fastest)* | **139 / 400 — 80.24 s** *(fastest)* |
-| | `Lymphosat` (AI-Track #1 Gold) | 81 / 400 — 24.58 s *(1.15x slower)* | 109 / 400 — 90.07 s *(1.12x slower)* |
-| | `satsuma-iter-kissat` (Main #1 Gold) | 70 / 400 — 25.13 s *(1.18x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
+| | [`Lymphosat`](https://c.mov/lymphosat/) (AI-Track #1 Gold) | 81 / 400 — 24.58 s *(1.15x slower)* | 109 / 400 — 90.07 s *(1.12x slower)* |
+| | [`satsuma-iter-kissat`](https://github.com/markusa4/satsuma) (Main #1 Gold) | 70 / 400 — 25.13 s *(1.18x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
 
 ## Format Conventions
 
-- **Binary AIGER 1.9 (`.aig`):** Standard Armin Biere combinational AIGER format (`aig M I 0 1 A`) with `L = 0` latches and `O = 1` primary output `PO_0` that evaluates to `1` iff all circuit assertions / CNF clauses are satisfied. Readable directly by Berkeley `abc`, `aigtoaig`, `aigtocnf`, Yosys, and HWMCC toolchains.
-- **DIMACS CNF / XCNF (`.cnf`, `.xcnf`):** Standard SAT Competition `p cnf <vars> <clauses>` format; `.xcnf` files include native CryptoMiniSat `x l1 ... lk 0` XOR parity clauses.
+- **Binary AIGER 1.9 (`.aig`):** Standard Armin Biere combinational AIGER format (`aig M I 0 1 A`) with `L = 0` latches and `O = 1` primary output `PO_0` that evaluates to `1` iff all circuit assertions / CNF clauses are satisfied. Readable directly by Berkeley [`abc`](https://github.com/berkeley-abc/abc), `aigtoaig`, `aigtocnf`, [Yosys](https://github.com/YosysHQ/yosys), and HWMCC toolchains.
+- **DIMACS CNF / XCNF (`.cnf`, `.xcnf`):** Standard SAT Competition `p cnf <vars> <clauses>` format; `.xcnf` files include native [CryptoMiniSat](https://github.com/msoos/cryptominisat) `x l1 ... lk 0` XOR parity clauses.
 - **MATA Automata (`.mata.xz`):** Standard VeriFIT `.mata` NFA format stored xz-compressed.
 
 ## License

@@ -16,7 +16,7 @@ Designed by Keith Adler to separate two distinct phenomena in SAT solver evaluat
 
 ## Corpus & Data Sizes
 
-All **25 Tier-3 CNFs** (SHA-256 verified against upstream `MANIFEST-tier3.sha256`), **25 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 25/25 verified via Berkeley ABC `read_aiger`), the upstream baseline result logs in `results/`, and all generator/benchmark scripts in `src/`:
+All **25 Tier-3 CNFs** (SHA-256 verified against upstream `MANIFEST-tier3.sha256`), **25 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 25/25 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), the upstream baseline result logs in `results/`, and all generator/benchmark scripts in `src/`:
 
 | Size Group | Instances | Vars ($n$) | Clauses ($m$) | Ratio $m/n$ | CNF Size (each) | AIG AND Gates (each) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -30,12 +30,12 @@ All **25 Tier-3 CNFs** (SHA-256 verified against upstream `MANIFEST-tier3.sha256
 ## Published Upstream Baseline & Same-Machine Spot Check
 
 ### Upstream Tier-3 Baseline (`results/TIER3-BASELINE.md`)
-- **Kissat 4.0.4 (default options, 300 s wall limit, 4 concurrent on 8-core Apple laptop):** Solved **17 / 25** (15 SAT, 2 UNSAT: `n300_s1` in 43.15 CPU s and `n300_s5` in 56.21 CPU s); 8 instances timed out past 300 s.
+- **[Kissat](https://github.com/arminbiere/kissat) 4.0.4 (default options, 300 s wall limit, 4 concurrent on 8-core Apple laptop):** Solved **17 / 25** (15 SAT, 2 UNSAT: `n300_s1` in 43.15 CPU s and `n300_s5` in 56.21 CPU s); 8 instances timed out past 300 s.
 
 ### Same-Machine 1-Core Spot Check on Tier-3 $n = 300$ (`s1..s5`, $T_{\max} = 15\;\text{s}$)
 - **Hardware & Protocol:** AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 15\;\text{s}$ (PAR-2 penalty $30{,}000\;\text{ms}$), identical flat `.cnf` input.
 
-| Instance | Verdict | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 |
+| Instance | Verdict | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 |
 |---|---|---:|---:|---:|
 | `random3sat_n300_s1.cnf` | UNSAT *(>15 s)* | T/O | T/O | T/O |
 | `random3sat_n300_s2.cnf` | SAT | **4.47 ms** | 39.67 ms | 173.26 ms |

@@ -10,7 +10,7 @@ Uniform random 3-SAT formulas sampled directly at the critical satisfiability ph
 ## Directory Layout & Regeneration
 
 - `*.cnf` — Original native **DIMACS CNF** formulas.
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (verified with Berkeley ABC).
+- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `src/gen_rand3sat.py` — Standalone zero-dependency Python 3 generator (`python3 src/gen_rand3sat.py`).
 
 ## Problem Parameters & Data Sizes
@@ -24,12 +24,12 @@ Uniform random 3-SAT formulas sampled directly at the critical satisfiability ph
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 600\;\text{s}$):
 
-| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `rand3sat_n200_sat` | **2.77 ms** | 56.71 ms | 83.81 ms | 58.79 ms | 59.76 ms |
 | `rand3sat_n200_unsat` | **370.37 ms** | 582.15 ms | 525.20 ms | 1,099.71 ms | 890.47 ms |
 
-*(Across a broader 10-seed $n = 200, m = 852$ cohort [7 SAT / 3 UNSAT], Frobenius achieved median `115.68 ms` / mean `274.43 ms` vs. Kissat `98.41 / 305.15 ms`, CaDiCaL `318.43 / 402.75 ms`, and CMS `303.07 / 534.09 ms`; across 10 seeds at $n = 250, m = 1{,}065$ [3 SAT / 7 UNSAT], Frobenius achieved `8.01 s` median / `7.80 s` mean vs. Kissat `4.50 / 4.46 s`, CaDiCaL `6.69 / 6.50 s`, CMS `7.88 / 10.58 s`.)*
+*(Across a broader 10-seed $n = 200, m = 852$ cohort [7 SAT / 3 UNSAT], Frobenius achieved median `115.68 ms` / mean `274.43 ms` vs. [Kissat](https://github.com/arminbiere/kissat) `98.41 / 305.15 ms`, [CaDiCaL](https://github.com/arminbiere/cadical) `318.43 / 402.75 ms`, and [CMS](https://github.com/msoos/cryptominisat) `303.07 / 534.09 ms`; across 10 seeds at $n = 250, m = 1{,}065$ [3 SAT / 7 UNSAT], Frobenius achieved `8.01 s` median / `7.80 s` mean vs. [Kissat](https://github.com/arminbiere/kissat) `4.50 / 4.46 s`, [CaDiCaL](https://github.com/arminbiere/cadical) `6.69 / 6.50 s`, [CMS](https://github.com/msoos/cryptominisat) `7.88 / 10.58 s`.)*
 
 ## References
 

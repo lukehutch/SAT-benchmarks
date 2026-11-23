@@ -16,7 +16,7 @@ For a fixed input width $n$, modulus $m = 3$, target residue $r \in \{0, 1, 2\}$
 
 ## Corpus & Data Sizes
 
-Generated via `src/modsat.py` and `src/gen_open_cases.py`: **11 CNFs** (9 decidable optimality-boundary instances for $n \in \{3, 4, 5\}$ + 2 open $n = 6$ frontier instances), **11 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 11/11 verified via Berkeley ABC `read_aiger`), and **11 decoder variable maps** in `maps/`:
+Generated via `src/modsat.py` and `src/gen_open_cases.py`: **11 CNFs** (9 decidable optimality-boundary instances for $n \in \{3, 4, 5\}$ + 2 open $n = 6$ frontier instances), **11 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 11/11 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), and **11 decoder variable maps** in `maps/`:
 
 | Instance | $(n, m, r, s)$ | Status | Vars | Clauses | CNF Size | AIG AND Gates |
 |---|---|:---:|---:|---:|---:|---:|
@@ -36,7 +36,7 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`: **11 CNFs** (9 decida
 
 - **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20{,}000\;\text{ms}$, identical flat `.cnf` input, 0 disagreements).
 
-| Instance | Verdict | Kissat 4.0.4 | CaDiCaL 3.1.0 | Frobenius 1C |
+| Instance | Verdict | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | Frobenius 1C |
 |---|---:|---:|---:|---:|
 | `mod3_n3_r0_s3_sat.cnf` | SAT | **0.86 ms** | 1.96 ms | 3.06 ms |
 | `mod3_n3_r1_s3_unsat.cnf` | UNSAT | **1.19 ms** | 1.54 ms | 3.39 ms |
