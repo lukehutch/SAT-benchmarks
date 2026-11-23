@@ -12,33 +12,34 @@ An 18-instance adversarial stress-audit and scaling suite combining two families
 
 ## Directory Layout & Regeneration
 
-- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`254.2 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`746.6 KB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`691.6 KB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`418.4 KB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Family | Params | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
+| Instance | Family | Params | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.anf.xz` |
 |---|---|---|:---:|---:|---:|---:|---:|---:|---:|
-| `hub_20_unsat` | Bit-Vector Hub | $n=20, \text{low}=31$ | UNSAT | 410 | 4,268 | 4.7 KB | 2,510 | 8,209 | 20.3 KB |
-| `hub_24_unsat` | Bit-Vector Hub | $n=24, \text{low}=31$ | UNSAT | 490 | 5,106 | 5.5 KB | 3,001 | 9,820 | 24.1 KB |
-| `hub_30_unsat` | Bit-Vector Hub | $n=30, \text{low}=31$ | UNSAT | 610 | 6,373 | 6.7 KB | 3,741 | 12,249 | 30.0 KB |
-| `hub_60_unsat` | Bit-Vector Hub | $n=60, \text{low}=31$ | UNSAT | 1,210 | 12,701 | 13.2 KB | 7,440 | 24,391 | 58.8 KB |
-| `hub_80_unsat` | Bit-Vector Hub | $n=80, \text{low}=31$ | UNSAT | 1,610 | 16,915 | 17.3 KB | 9,904 | 32,478 | 78.1 KB |
-| `hub_60_sat` | Bit-Vector Hub | $n=60, \text{low}=25$ | SAT | 1,210 | 12,698 | 13.2 KB | 7,438 | 24,385 | 58.5 KB |
-| `php_9_8_unsat` | Pigeonhole | 9 pigeons, 8 holes | UNSAT | 72 | 647 | 1.1 KB | 423 | 1,350 | 2.3 KB |
-| `php_13_12_unsat` | Pigeonhole | 13 pigeons, 12 holes | UNSAT | 156 | 2,027 | 2.8 KB | 1,235 | 4,186 | 6.5 KB |
-| `php_14_13_unsat` | Pigeonhole | 14 pigeons, 13 holes | UNSAT | 182 | 2,547 | 3.2 KB | 1,533 | 5,250 | 7.9 KB |
-| `php_15_14_unsat` | Pigeonhole | 15 pigeons, 14 holes | UNSAT | 210 | 3,149 | 3.8 KB | 1,875 | 6,480 | 9.7 KB |
-| `php_16_15_unsat` | Pigeonhole | 16 pigeons, 15 holes | UNSAT | 240 | 3,839 | 4.6 KB | 2,264 | 7,888 | 10.8 KB |
-| `php_17_16_unsat` | Pigeonhole | 17 pigeons, 16 holes | UNSAT | 272 | 4,623 | 5.1 KB | 2,703 | 9,486 | 12.8 KB |
-| `php_19_18_unsat` | Pigeonhole | 19 pigeons, 18 holes | UNSAT | 342 | 6,497 | 6.9 KB | 3,743 | 13,300 | 17.2 KB |
-| `php_20_19_unsat` | Pigeonhole | 20 pigeons, 19 holes | UNSAT | 380 | 7,599 | 8.3 KB | 4,350 | 15,540 | 19.0 KB |
-| `php_31_30_unsat` | Pigeonhole | 31 pigeons, 30 holes | UNSAT | 930 | 28,829 | 26.6 KB | 15,779 | 58,528 | 63.3 KB |
-| `php_50_49_unsat` | Pigeonhole | 50 pigeons, 49 holes | UNSAT | 2,450 | 122,499 | 99.3 KB | 64,875 | 247,350 | 249.0 KB |
-| `php_20_20_sat` | Pigeonhole | 20 pigeons, 20 holes | SAT | 400 | 7,999 | 8.6 KB | 4,580 | 16,360 | 18.6 KB |
-| `php_30_30_sat` | Pigeonhole | 30 pigeons, 30 holes | SAT | 900 | 26,999 | 23.4 KB | 14,820 | 54,840 | 59.7 KB |
+| `hub_20_unsat` | Bit-Vector Hub | $n=20, \text{low}=31$ | UNSAT | 4,268 | 4.7 KB | 2,510 | 8,209 | 20.3 KB | 15.9 KB |
+| `hub_24_unsat` | Bit-Vector Hub | $n=24, \text{low}=31$ | UNSAT | 5,106 | 5.5 KB | 3,001 | 9,820 | 24.1 KB | 19.1 KB |
+| `hub_30_unsat` | Bit-Vector Hub | $n=30, \text{low}=31$ | UNSAT | 6,373 | 6.7 KB | 3,741 | 12,249 | 30.0 KB | 23.6 KB |
+| `hub_60_unsat` | Bit-Vector Hub | $n=60, \text{low}=31$ | UNSAT | 12,701 | 13.2 KB | 7,440 | 24,391 | 58.8 KB | 46.9 KB |
+| `hub_80_unsat` | Bit-Vector Hub | $n=80, \text{low}=31$ | UNSAT | 16,915 | 17.3 KB | 9,904 | 32,478 | 78.1 KB | 62.5 KB |
+| `hub_60_sat` | Bit-Vector Hub | $n=60, \text{low}=25$ | SAT | 12,698 | 13.2 KB | 7,438 | 24,385 | 58.5 KB | 46.8 KB |
+| `php_9_8_unsat` | Pigeonhole | 9 pigeons, 8 holes | UNSAT | 647 | 1.1 KB | 423 | 1,350 | 2.3 KB | 1.2 KB |
+| `php_13_12_unsat` | Pigeonhole | 13 pigeons, 12 holes | UNSAT | 2,027 | 2.8 KB | 1,235 | 4,186 | 6.5 KB | 3.0 KB |
+| `php_14_13_unsat` | Pigeonhole | 14 pigeons, 13 holes | UNSAT | 2,547 | 3.2 KB | 1,533 | 5,250 | 7.9 KB | 3.6 KB |
+| `php_15_14_unsat` | Pigeonhole | 15 pigeons, 14 holes | UNSAT | 3,149 | 3.8 KB | 1,875 | 6,480 | 9.7 KB | 4.3 KB |
+| `php_16_15_unsat` | Pigeonhole | 16 pigeons, 15 holes | UNSAT | 3,839 | 4.6 KB | 2,264 | 7,888 | 10.8 KB | 4.7 KB |
+| `php_17_16_unsat` | Pigeonhole | 17 pigeons, 16 holes | UNSAT | 4,623 | 5.1 KB | 2,703 | 9,486 | 12.8 KB | 5.8 KB |
+| `php_19_18_unsat` | Pigeonhole | 19 pigeons, 18 holes | UNSAT | 6,497 | 6.9 KB | 3,743 | 13,300 | 17.2 KB | 7.7 KB |
+| `php_20_19_unsat` | Pigeonhole | 20 pigeons, 19 holes | UNSAT | 7,599 | 8.3 KB | 4,350 | 15,540 | 19.0 KB | 8.8 KB |
+| `php_31_30_unsat` | Pigeonhole | 31 pigeons, 30 holes | UNSAT | 28,829 | 26.6 KB | 15,779 | 58,528 | 63.3 KB | 23.7 KB |
+| `php_50_49_unsat` | Pigeonhole | 50 pigeons, 49 holes | UNSAT | 122,499 | 99.3 KB | 64,875 | 247,350 | 249.0 KB | 110.7 KB |
+| `php_20_20_sat` | Pigeonhole | 20 pigeons, 20 holes | SAT | 7,999 | 8.6 KB | 4,580 | 16,360 | 18.6 KB | 7.0 KB |
+| `php_30_30_sat` | Pigeonhole | 30 pigeons, 30 holes | SAT | 26,999 | 23.4 KB | 14,820 | 54,840 | 59.7 KB | 22.9 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
@@ -82,7 +83,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 | `php_50_49_unsat` | 64,875 | 247,350 | 3.81 | 1.24 | **3.08x** (Over) | 1.91 | 2.01 (3) | 50% | 99% | 38% | 2.39 | 0 |
 | `php_9_8_unsat` | 423 | 1,350 | 3.19 | 1.25 | **2.56x** (Over) | 1.55 | 2.04 (3) | 52% | 95% | 38% | 0.80 | 0 |
 
-**Suite Phase-Transition Summary (18 instances):** median $\rho_{\mathrm{crit}} = 2.76\times$ (range `1.42x–3.08x`), median $\kappa = 1.69$, regime split **0 Under / 0 Near-critical / 18 Over**, total extracted native XOR parity clauses = **10,146**.
+**Collection Phase-Transition Summary (18 instances, 4 formats: 18 CNF / 18 AIG / 18 XCNF / 18 ANF):** median $\rho_{\mathrm{crit}} = 2.76\times$ (range `1.42x–3.08x`), median $\kappa = 1.69$, regime split **0 Under / 0 Near-critical / 18 Over**, total extracted native XOR parity clauses = **10,146**, total ANF equations = **151,922**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

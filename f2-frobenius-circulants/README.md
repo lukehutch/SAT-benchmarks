@@ -16,25 +16,26 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
 
 ## Directory Layout & Regeneration
 
-- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (`L = 0`, `O = 1` miter where `PO_0 = 1` iff all $n$ parity assertions hold; verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`33.7 KB`, `L = 0`, `O = 1` miter where `PO_0 = 1` iff all $n$ parity assertions hold; verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`114.3 KB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`23.7 KB`).
+- `anf-converted/` — Lossless degree-1 linear **DIMACS-ANF `.anf.xz`** conversions (`29.6 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | $k$ | $n = 2^k$ | Stride $s$ | Arity | Seed | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
-|---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|
-| `f2_frobenius_n64` | 6 | 64 | 8 | 3-XOR | `12351` | SAT | 64 | 447 | 0.6 KB | 128 | 576 | 1.6 KB |
-| `f2_frobenius_n256` | 8 | 256 | 16 | 3-XOR | `12353` | SAT | 256 | 1,791 | 1.7 KB | 512 | 2,304 | 4.7 KB |
-| `f2_frobenius_n1024` | 10 | 1,024 | 32 | 3-XOR | `12355` | SAT | 1,024 | 7,167 | 5.3 KB | 2,048 | 9,216 | 15.3 KB |
-| `f2_frobenius_n4096` | 12 | 4,096 | 64 | 3-XOR | `12357` | SAT | 4,096 | 28,671 | 17.6 KB | 8,192 | 36,864 | 58.4 KB |
-| `f2_frobenius_n256_unsat` | 8 | 256 | 16 | 4-XOR | `22353` | UNSAT | 256 | 2,559 | 2.0 KB | 768 | 3,328 | 7.7 KB |
-| `f2_frobenius_n1024_unsat` | 10 | 1,024 | 32 | 4-XOR | `22355` | UNSAT | 1,024 | 10,239 | 6.6 KB | 3,072 | 13,312 | 26.6 KB |
+| Instance | $k$ | $n = 2^k$ | Stride $s$ | Arity | Seed | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
+|---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
+| `f2_frobenius_n64` | 6 | 64 | 8 | 3-XOR | `12351` | SAT | 447 | 0.6 KB | 128 | 576 | 1.6 KB | 0.5 KB | 0.5 KB |
+| `f2_frobenius_n256` | 8 | 256 | 16 | 3-XOR | `12353` | SAT | 1,791 | 1.7 KB | 512 | 2,304 | 4.7 KB | 1.2 KB | 1.4 KB |
+| `f2_frobenius_n1024` | 10 | 1,024 | 32 | 3-XOR | `12355` | SAT | 7,167 | 5.3 KB | 2,048 | 9,216 | 15.3 KB | 3.1 KB | 4.3 KB |
+| `f2_frobenius_n4096` | 12 | 4,096 | 64 | 3-XOR | `12357` | SAT | 28,671 | 17.6 KB | 8,192 | 36,864 | 58.4 KB | 10.7 KB | 17.4 KB |
+| `f2_frobenius_n256_unsat` | 8 | 256 | 16 | 4-XOR | `22353` | UNSAT | 2,559 | 2.0 KB | 768 | 3,328 | 7.7 KB | 1.9 KB | 1.4 KB |
+| `f2_frobenius_n1024_unsat` | 10 | 1,024 | 32 | 4-XOR | `22355` | UNSAT | 10,239 | 6.6 KB | 3,072 | 13,312 | 26.6 KB | 6.3 KB | 4.5 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-version/*.xcnf`):
+Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-converted/*.xcnf`):
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
@@ -59,7 +60,7 @@ Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 
 | `f2_frobenius_n4096` | 8,192 | 36,864 | 4.50 | 4.98 | **0.90x** (Near-crit) | 0.87 | 3.67 (4) | 0% | 56% | 50% | 0.45 | 4,096 |
 | `f2_frobenius_n64` | 128 | 576 | 4.50 | 4.98 | **0.90x** (Near-crit) | 0.87 | 3.67 (4) | 0% | 56% | 50% | 0.45 | 64 |
 
-**Suite Phase-Transition Summary (6 instances):** median $\rho_{\mathrm{crit}} = 0.90\times$ (range `0.90x–0.91x`), median $\kappa = 0.87$, regime split **0 Under / 6 Near-critical / 0 Over**, total extracted native XOR parity clauses = **8,000**.
+**Collection Phase-Transition Summary (6 instances, 4 formats: 6 CNF / 6 AIG / 6 XCNF / 6 ANF):** median $\rho_{\mathrm{crit}} = 0.90\times$ (range `0.90x–0.91x`), median $\kappa = 0.87$, regime split **0 Under / 6 Near-critical / 0 Over**, total extracted native XOR parity clauses = **8,000**, total ANF equations = **6,720**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

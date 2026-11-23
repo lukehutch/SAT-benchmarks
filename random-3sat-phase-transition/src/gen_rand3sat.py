@@ -8,8 +8,8 @@ curve around the critical clause-to-variable phase transition alpha_c ~= 4.26:
   - Critical threshold:            alpha = 4.26 (1 SAT + 1 UNSAT)
   - Over-constrained (UNSAT side): alpha in {4.45, 4.65, 5.00}
 
-Also writes Binary AIGER 1.9 conversions to `../aig-version/` and CryptoMiniSat
-`.xcnf` conversions to `../xcnf-version/`.
+Also writes native CNFs to `../cnf-orig/`, Binary AIGER 1.9 conversions to
+`../aig-converted/`, and CryptoMiniSat `.xcnf` conversions to `../xcnf-converted/`.
 """
 from __future__ import annotations
 
@@ -19,8 +19,9 @@ import sys
 from pathlib import Path
 
 SUITE_DIR = Path(__file__).resolve().parent.parent
-AIG_DIR = SUITE_DIR / "aig-version"
-XCNF_DIR = SUITE_DIR / "xcnf-version"
+CNF_DIR = SUITE_DIR / "cnf-orig"
+AIG_DIR = SUITE_DIR / "aig-converted"
+XCNF_DIR = SUITE_DIR / "xcnf-converted"
 
 INSTANCES = [
     ("rand3sat_n200_r380_sat",   200,  760, 203800, "SAT"),
@@ -59,10 +60,11 @@ def main() -> None:
     from cnf2aig import cnf_to_aiger
     from cnf2xcnf import cnf_to_xcnf
 
+    CNF_DIR.mkdir(parents=True, exist_ok=True)
     AIG_DIR.mkdir(parents=True, exist_ok=True)
     XCNF_DIR.mkdir(parents=True, exist_ok=True)
     for name, n, m, seed, ans in INSTANCES:
-        cnf_path = SUITE_DIR / f"{name}.cnf.xz"
+        cnf_path = CNF_DIR / f"{name}.cnf.xz"
         aig_path = AIG_DIR / f"{name}.aig.xz"
         xcnf_path = XCNF_DIR / f"{name}.xcnf.xz"
         if not cnf_path.exists():
@@ -72,10 +74,10 @@ def main() -> None:
             _, _, ands = cnf_to_aiger(
                 cnf_path, aig_path, comment=f"benchmark={name}\nseed={seed}\nexpected={ans}\norigin=CNF"
             )
-            print(f"Generated {cnf_path.name} ({n} vars, {m} clauses) & aig-version/{aig_path.name} ({ands} ANDs)")
+            print(f"Generated cnf-orig/{cnf_path.name} ({n} vars, {m} clauses) & aig-converted/{aig_path.name} ({ands} ANDs)")
         if not xcnf_path.exists():
             cnf_to_xcnf(cnf_path, xcnf_path)
-            print(f"Generated xcnf-version/{xcnf_path.name}")
+            print(f"Generated xcnf-converted/{xcnf_path.name}")
 
 
 if __name__ == "__main__":

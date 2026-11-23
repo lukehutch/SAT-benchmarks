@@ -27,25 +27,26 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 
 ## Directory Layout & Regeneration
 
-- `*.cnf.xz` — Original native **DIMACS CNF** encodings (10 instances: 5 SAT / 5 UNSAT; each file includes an ASCII diagram of the obstacle layout in its header comments).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (10/10 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `xcnf-version/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `cnf-orig/` — Original native **DIMACS CNF** encodings (10 `.cnf.xz` files, `610.9 KB`, 5 SAT / 5 UNSAT; each file includes an ASCII diagram of the obstacle layout in its header comments).
+- `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`813.7 KB`, 10/10 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `xcnf-converted/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`608.7 KB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`2.16 MB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/gen_knights_tour.py` — Standalone zero-dependency Python 3 generator and closed-tour verifier (`python3 src/gen_knights_tour.py --generate-suite .`), plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Board | Density $d$ | Obstacles | Free Squares $|V|$ | Seed | Status | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
+| Instance | Board | Density $d$ | Obstacles | Free Squares $|V|$ | Seed | Status | CNF Vars | CNF Clauses | `.cnf.xz` | `.aig.xz` | `.anf.xz` |
 |---|:---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| `knights_12x12_d15_obs16_s12150144_sat` | $12 \times 12$ | 0.15 | 16 | 128 | `12150144` | SAT | 6,185 | 17,111 | 44.9 KB | 47,997 | 61.3 KB |
-| `knights_14x14_d26_obs52_s34280941_sat` | $14 \times 14$ | 0.26 | 52 | 144 | `34280941` | SAT | 6,782 | 18,886 | 50.3 KB | 53,431 | 67.1 KB |
-| `knights_14x14_d20_obs34_s14203078_sat` | $14 \times 14$ | 0.20 | 34 | 162 | `14203078` | SAT | 8,402 | 23,259 | 60.6 KB | 65,749 | 80.9 KB |
-| `knights_15x15_d24_obs55_s35244162_sat` | $15 \times 15$ | 0.24 | 55 | 170 | `35244162` | SAT | 8,634 | 23,901 | 62.4 KB | 67,577 | 83.5 KB |
-| `knights_16x16_d25_obs66_s365029087_sat` | $16 \times 16$ | 0.25 | 66 | 190 | `365029087` | SAT | 9,502 | 26,430 | 69.3 KB | 74,715 | 91.4 KB |
-| `knights_15x15_d22_obs41_s956712163_unsat` | $15 \times 15$ | 0.22 | 41 | 184 | `956712163` | UNSAT | 9,828 | 27,156 | 71.0 KB | 76,723 | 93.1 KB |
-| `knights_15x15_d22_obs51_s756748105_unsat` | $15 \times 15$ | 0.22 | 51 | 174 | `756748105` | UNSAT | 8,838 | 24,739 | 64.0 KB | 69,909 | 86.6 KB |
-| `knights_15x15_d21_obs55_s956405106_unsat` | $15 \times 15$ | 0.21 | 55 | 170 | `956405106` | UNSAT | 8,248 | 22,841 | 59.2 KB | 64,593 | 80.5 KB |
-| `knights_15x15_d22_obs53_s756776522_unsat` | $15 \times 15$ | 0.22 | 53 | 172 | `756776522` | UNSAT | 8,780 | 24,214 | 63.8 KB | 68,435 | 84.5 KB |
-| `knights_15x15_d21_obs51_s556324743_unsat` | $15 \times 15$ | 0.21 | 51 | 174 | `556324743` | UNSAT | 8,890 | 24,674 | 65.5 KB | 69,731 | 84.7 KB |
+| `knights_12x12_d15_obs16_s12150144_sat` | $12 \times 12$ | 0.15 | 16 | 128 | `12150144` | SAT | 6,185 | 17,111 | 44.9 KB | 61.3 KB | 159.0 KB |
+| `knights_14x14_d26_obs52_s34280941_sat` | $14 \times 14$ | 0.26 | 52 | 144 | `34280941` | SAT | 6,782 | 18,886 | 50.3 KB | 67.1 KB | 182.7 KB |
+| `knights_14x14_d20_obs34_s14203078_sat` | $14 \times 14$ | 0.20 | 34 | 162 | `14203078` | SAT | 8,402 | 23,259 | 60.6 KB | 80.9 KB | 220.7 KB |
+| `knights_15x15_d24_obs55_s35244162_sat` | $15 \times 15$ | 0.24 | 55 | 170 | `35244162` | SAT | 8,634 | 23,901 | 62.4 KB | 83.5 KB | 227.2 KB |
+| `knights_16x16_d25_obs66_s365029087_sat` | $16 \times 16$ | 0.25 | 66 | 190 | `365029087` | SAT | 9,502 | 26,430 | 69.3 KB | 91.4 KB | 250.3 KB |
+| `knights_15x15_d22_obs41_s956712163_unsat` | $15 \times 15$ | 0.22 | 41 | 184 | `956712163` | UNSAT | 9,828 | 27,156 | 71.0 KB | 93.1 KB | 257.5 KB |
+| `knights_15x15_d22_obs51_s756748105_unsat` | $15 \times 15$ | 0.22 | 51 | 174 | `756748105` | UNSAT | 8,838 | 24,739 | 64.0 KB | 86.6 KB | 234.2 KB |
+| `knights_15x15_d21_obs55_s956405106_unsat` | $15 \times 15$ | 0.21 | 55 | 170 | `956405106` | UNSAT | 8,248 | 22,841 | 59.2 KB | 80.5 KB | 216.8 KB |
+| `knights_15x15_d22_obs53_s756776522_unsat` | $15 \times 15$ | 0.22 | 53 | 172 | `756776522` | UNSAT | 8,780 | 24,214 | 63.8 KB | 84.5 KB | 229.8 KB |
+| `knights_15x15_d21_obs51_s556324743_unsat` | $15 \times 15$ | 0.21 | 51 | 174 | `556324743` | UNSAT | 8,890 | 24,674 | 65.5 KB | 84.7 KB | 234.9 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 
@@ -84,7 +85,7 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 | `knights_15x15_d24_obs55_s35244162_sat` | 8,634 | 23,901 | 2.77 | 2.88 | **0.96x** (Near-crit) | 0.54 | 3.29 (8) | 24% | 74% | 42% | 1.04 | 0 |
 | `knights_16x16_d25_obs66_s365029087_sat` | 9,502 | 26,430 | 2.78 | 2.87 | **0.97x** (Near-crit) | 0.54 | 3.29 (8) | 24% | 74% | 42% | 1.03 | 0 |
 
-**Suite Phase-Transition Summary (10 instances):** median $\rho_{\mathrm{crit}} = 0.97\times$ (range `0.96x–1.04x`), median $\kappa = 0.54$, regime split **0 Under / 10 Near-critical / 0 Over**, total extracted native XOR parity clauses = **0**.
+**Collection Phase-Transition Summary (10 instances, 4 formats: 10 CNF / 10 AIG / 10 XCNF / 10 ANF):** median $\rho_{\mathrm{crit}} = 0.97\times$ (range `0.96x–1.04x`), median $\kappa = 0.54$, regime split **0 Under / 10 Near-critical / 0 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **356,221**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

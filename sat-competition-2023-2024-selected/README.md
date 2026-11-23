@@ -12,28 +12,30 @@ Twelve of these instances form the SAT Competition slice of the unified 50-bench
 
 ## Directory Layout & Reproducibility
 
-- `*.cnf.xz` — Original native **DIMACS CNF** formulas (xz-compressed directly from official GBD `.cnf.xz` archives).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (all 14/14 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc), including 1.09M-AND-gate `si2_b03m_m800_03.aig.xz` at `1.06 MB`).
-- `src/sc23_24_manifest.json` & `src/fetch_and_convert.py` — Exact GBD MD5 hashes and script to re-fetch from `benchmark-database.de` and regenerate `aig-version/*.aig.xz`.
+- `cnf-orig/` — Original native **DIMACS CNF** formulas (14 `.cnf.xz` files, `3.11 MB`, xz-compressed directly from official GBD `.cnf.xz` archives).
+- `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`3.79 MB`, all 14/14 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc), including 1.09M-AND-gate `si2_b03m_m800_03.aig.xz` at `1.06 MB`).
+- `xcnf-converted/` — Lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`2.60 MB`, `71,848` extracted native XOR clauses).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`27.89 MB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- `src/sc23_24_manifest.json` & `src/fetch_and_convert.py` — Exact GBD MD5 hashes and script to re-fetch from `benchmark-database.de` and regenerate `aig-converted/*.aig.xz`, plus `src/cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Year | Family | GBD Hash | Ans | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
+| Instance | Year | Family | GBD Hash | Ans | CNF Vars | CNF Clauses | `.cnf.xz` | `.aig.xz` | `.anf.xz` |
 |---|---:|---|---|---:|---:|---:|---:|---:|---:|
-| `tseitingrid6x200` | 2024 | SC24-Tseitin | `35789168b67a...` | UNSAT | 2,400 | 9,600 | 54.0 KB | 28,799 | 62.7 KB |
-| `tseitin_d3_n10000` | 2023 | SC23-Tseitin | `1153a473e1d5...` | UNSAT | 15,000 | 40,000 | 112.8 KB | 119,999 | 138.6 KB |
-| `urq45` | 2023 | SC23-Urquhart | `aa39c6d885d2...` | UNSAT | 74 | 694 | 1.7 KB | 1,943 | 3.6 KB |
-| `two_trees_511v` | 2023 | SC23-Parity | `16c5482d8e65...` | SAT | 511 | 2,039 | 6.2 KB | 6,039 | 10.0 KB |
-| `two_trees_1023v` | 2023 | SC23-Parity | `7db30d12cb06...` | SAT | 1,023 | 4,088 | 12.3 KB | 12,098 | 17.6 KB |
-| `intervals122` | 2023 | SC23-Card. | `18416a9ac090...` | UNSAT | 2,568 | 57,706 | 107.0 KB | 117,770 | 163.9 KB |
-| `clique_n2_k10` | 2024 | SC24-Clique | `cb2e8b7fada4...` | UNSAT | 180 | 3,160 | 4.1 KB | 6,479 | 4.6 KB |
-| `gzipfile_close_11` | 2023 | SC23-RegAlloc | `72b5ad031bf8...` | UNSAT | 187 | 1,348 | 2.5 KB | 2,848 | 1.7 KB |
-| `rand_net70_40_10` | 2023 | SC23-Miter | `00f2eb377986...` | UNSAT | 5,600 | 16,661 | 88.7 KB | 39,111 | 86.8 KB |
-| `hwmcc20_iso_rast_p06` | 2024 | SC24-Miter | `1545660e7215...` | UNSAT | 85,230 | 276,273 | 657.7 KB | 696,006 | 936.9 KB |
-| `hwmcc17_iso_bobsmfpu` | 2024 | SC24-Miter | `0a02751cacf5...` | UNSAT | 62,500 | 204,019 | 536.0 KB | 504,001 | 728.6 KB |
-| `vmpc_24` | 2023 | SC23-Crypto | `220bb8aa093e...` | SAT | 576 | 67,872 | 84.5 KB | 162,816 | 257.9 KB |
-| `si2_b03m_m800_03` | 2024 | SC24-SubIso | `af750c18578d...` | SAT | 10,862 | 472,588 | 1.17 MB | 1,093,425 | 1.06 MB |
-| `mp1_nb7t42` | 2024 | SC24-PolyMul | `c0293283432a...` | SAT | 52,731 | 208,936 | 317.0 KB | 550,367 | 376.3 KB |
+| `tseitingrid6x200` | 2024 | SC24-Tseitin | `35789168b67a...` | UNSAT | 2,400 | 9,600 | 54.0 KB | 62.7 KB | 10.8 KB |
+| `tseitin_d3_n10000` | 2023 | SC23-Tseitin | `1153a473e1d5...` | UNSAT | 15,000 | 40,000 | 112.8 KB | 138.6 KB | 65.8 KB |
+| `urq45` | 2023 | SC23-Urquhart | `aa39c6d885d2...` | UNSAT | 74 | 694 | 1.7 KB | 3.6 KB | 10.9 KB |
+| `two_trees_511v` | 2023 | SC23-Parity | `16c5482d8e65...` | SAT | 511 | 2,039 | 6.2 KB | 10.0 KB | 4.6 KB |
+| `two_trees_1023v` | 2023 | SC23-Parity | `7db30d12cb06...` | SAT | 1,023 | 4,088 | 12.3 KB | 17.6 KB | 9.4 KB |
+| `intervals122` | 2023 | SC23-Card. | `18416a9ac090...` | UNSAT | 2,568 | 57,706 | 107.0 KB | 163.9 KB | 160.9 KB |
+| `clique_n2_k10` | 2024 | SC24-Clique | `cb2e8b7fada4...` | UNSAT | 180 | 3,160 | 4.1 KB | 4.6 KB | 6.5 KB |
+| `gzipfile_close_11` | 2023 | SC23-RegAlloc | `72b5ad031bf8...` | UNSAT | 187 | 1,348 | 2.5 KB | 1.7 KB | 4.4 KB |
+| `rand_net70_40_10` | 2023 | SC23-Miter | `00f2eb377986...` | UNSAT | 5,600 | 16,661 | 88.7 KB | 86.8 KB | 132.0 KB |
+| `hwmcc20_iso_rast_p06` | 2024 | SC24-Miter | `1545660e7215...` | UNSAT | 85,230 | 276,273 | 657.7 KB | 936.9 KB | 965.0 KB |
+| `hwmcc17_iso_bobsmfpu` | 2024 | SC24-Miter | `0a02751cacf5...` | UNSAT | 62,500 | 204,019 | 536.0 KB | 728.6 KB | 904.5 KB |
+| `vmpc_24` | 2023 | SC23-Crypto | `220bb8aa093e...` | SAT | 576 | 67,872 | 84.5 KB | 257.9 KB | 203.9 KB |
+| `si2_b03m_m800_03` | 2024 | SC24-SubIso | `af750c18578d...` | SAT | 10,862 | 472,588 | 1.17 MB | 1.06 MB | 25.01 MB |
+| `mp1_nb7t42` | 2024 | SC24-PolyMul | `c0293283432a...` | SAT | 52,731 | 208,936 | 317.0 KB | 376.3 KB | 466.2 KB |
 
 *(Full 32-character GBD hashes are listed in [`src/sc23_24_manifest.json`](src/sc23_24_manifest.json).)*
 
@@ -78,7 +80,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; all solv
 | `urq45` | 74 | 694 | 9.38 | 25.55 | **0.37x** (Under) | 0.32 | 6.16 (7) | 0% | 12% | 50% | 0.68 | 24 |
 | `vmpc_24` | 576 | 67,872 | 117.8 | 1.87 | **62.9x** (Over) | 32.94 | 2.62 (24) | 39% | 100% | 24% | 0.01 | 0 |
 
-**Suite Phase-Transition Summary (14 instances):** median $\rho_{\mathrm{crit}} = 1.92\times$ (range `0.37x–62.9x`), median $\kappa = 0.97$, regime split **3 Under / 2 Near-critical / 9 Over**, total extracted native XOR parity clauses = **71,848**.
+**Collection Phase-Transition Summary (14 instances, 4 formats: 14 CNF / 14 AIG / 14 XCNF / 14 ANF):** median $\rho_{\mathrm{crit}} = 1.92\times$ (range `0.37x–62.9x`), median $\kappa = 0.97$, regime split **3 Under / 2 Near-critical / 9 Over**, total extracted native XOR parity clauses = **71,848**, total ANF equations = **6,201,418**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

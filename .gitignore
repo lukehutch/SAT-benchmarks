@@ -25,6 +25,7 @@ build/
 *.log
 *.tmp
 .cache/
+fede-intern-challenge/outputs/
 
 # Editor / OS clutter
 .DS_Store

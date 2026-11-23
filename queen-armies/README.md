@@ -25,23 +25,24 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 
 ## Directory Layout & Regeneration
 
-- `*.cnf.xz` — Original native **DIMACS CNF** encodings (8 instances: 4 SAT / 4 UNSAT).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `xcnf-version/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `cnf-orig/` — Original native **DIMACS CNF** encodings (8 `.cnf.xz` files, `139.8 KB`, 4 SAT / 4 UNSAT).
+- `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`197.8 KB`, 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `xcnf-converted/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`142.4 KB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`456.7 KB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/gen_queen_armies.py` — Standalone zero-dependency Python 3 generator and witness verifier (`python3 src/gen_queen_armies.py --generate-suite .`), plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Armies $A$ | Board $R \times C$ | Army Size $k$ | Status | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
+| Instance | Armies $A$ | Board $R \times C$ | Army Size $k$ | Status | CNF Vars | CNF Clauses | `.cnf.xz` | `.aig.xz` | `.anf.xz` |
 |---|---:|:---:|---:|:---:|---:|---:|---:|---:|---:|
-| `queen_armies_a3_13x16_k14_sat` | 3 | $13 \times 16$ | 14 | SAT | 9,330 | 19,032 | 25.4 KB | 46,481 | 35.6 KB |
-| `queen_armies_a4_14x16_k9_sat` | 4 | $14 \times 16$ | 9 | SAT | 9,152 | 19,020 | 26.1 KB | 45,919 | 37.0 KB |
-| `queen_armies_a2_15x16_k33_sat` | 2 | $15 \times 16$ | 33 | SAT | 15,351 | 31,002 | 36.7 KB | 76,719 | 49.6 KB |
-| `queen_armies_a3_15x16_k16_sat` | 3 | $15 \times 16$ | 16 | SAT | 12,141 | 24,732 | 32.1 KB | 60,572 | 43.9 KB |
-| `queen_armies_a3_7x8_k5_unsat` | 3 | $7 \times 8$ | 5 | UNSAT | 1,095 | 2,232 | 4.1 KB | 5,255 | 6.7 KB |
-| `queen_armies_a3_6x10_k5_unsat` | 3 | $6 \times 10$ | 5 | UNSAT | 1,176 | 2,397 | 4.4 KB | 5,645 | 7.2 KB |
-| `queen_armies_a3_6x11_k6_unsat` | 3 | $6 \times 11$ | 6 | UNSAT | 1,476 | 3,006 | 5.5 KB | 7,133 | 8.4 KB |
-| `queen_armies_a2_7x10_k12_unsat` | 2 | $7 \times 10$ | 12 | UNSAT | 1,733 | 3,510 | 5.5 KB | 8,541 | 9.5 KB |
+| `queen_armies_a3_13x16_k14_sat` | 3 | $13 \times 16$ | 14 | SAT | 9,330 | 19,032 | 25.4 KB | 35.6 KB | 85.1 KB |
+| `queen_armies_a4_14x16_k9_sat` | 4 | $14 \times 16$ | 9 | SAT | 9,152 | 19,020 | 26.1 KB | 37.0 KB | 82.7 KB |
+| `queen_armies_a2_15x16_k33_sat` | 2 | $15 \times 16$ | 33 | SAT | 15,351 | 31,002 | 36.7 KB | 49.6 KB | 131.0 KB |
+| `queen_armies_a3_15x16_k16_sat` | 3 | $15 \times 16$ | 16 | SAT | 12,141 | 24,732 | 32.1 KB | 43.9 KB | 107.3 KB |
+| `queen_armies_a3_7x8_k5_unsat` | 3 | $7 \times 8$ | 5 | UNSAT | 1,095 | 2,232 | 4.1 KB | 6.7 KB | 9.8 KB |
+| `queen_armies_a3_6x10_k5_unsat` | 3 | $6 \times 10$ | 5 | UNSAT | 1,176 | 2,397 | 4.4 KB | 7.2 KB | 10.9 KB |
+| `queen_armies_a3_6x11_k6_unsat` | 3 | $6 \times 11$ | 6 | UNSAT | 1,476 | 3,006 | 5.5 KB | 8.4 KB | 13.9 KB |
+| `queen_armies_a2_7x10_k12_unsat` | 2 | $7 \times 10$ | 12 | UNSAT | 1,733 | 3,510 | 5.5 KB | 9.5 KB | 16.1 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 
@@ -76,7 +77,7 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 | `queen_armies_a3_7x8_k5_unsat` | 1,095 | 2,232 | 2.04 | 1.37 | **1.48x** (Over) | 0.69 | 2.35 (3) | 64% | 64% | 55% | 0.47 | 0 |
 | `queen_armies_a4_14x16_k9_sat` | 9,152 | 19,020 | 2.08 | 1.46 | **1.42x** (Over) | 0.67 | 2.41 (3) | 59% | 59% | 57% | 0.66 | 0 |
 
-**Suite Phase-Transition Summary (8 instances):** median $\rho_{\mathrm{crit}} = 1.39\times$ (range `1.29x–1.48x`), median $\kappa = 0.66$, regime split **0 Under / 0 Near-critical / 8 Over**, total extracted native XOR parity clauses = **0**.
+**Collection Phase-Transition Summary (8 instances, 4 formats: 8 CNF / 8 AIG / 8 XCNF / 8 ANF):** median $\rho_{\mathrm{crit}} = 1.39\times$ (range `1.29x–1.48x`), median $\kappa = 0.66$, regime split **0 Under / 0 Near-critical / 8 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **104,931**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

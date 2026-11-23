@@ -9,19 +9,20 @@ Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an unde
 
 ## Directory Layout & Regeneration
 
-- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`19.0 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`43.4 KB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`25.7 KB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`16.7 KB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear Gates | Seed | Ans | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
-|---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| `coupled_n128_d64` | 128 | 64 | 64 | 96 | `0xFEEDFACE115122A2` | SAT | 1,161 | 2.1 KB | 411 | 1,640 | 4.7 KB |
-| `coupled_n128_d32_unsat` | 128 | 96 | 32 | 84 (last flipped) | `0xCAFEBABE0003` | UNSAT | 1,514 | 2.6 KB | 488 | 2,036 | 5.7 KB |
-| `coupled_n256_d128` | 256 | 128 | 128 | 180 | `0xFEEDFACE11912322` | SAT | 2,292 | 4.0 KB | 809 | 3,222 | 9.0 KB |
-| `coupled_n512_d128` | 512 | 384 | 128 | 420 | `0xFEEDFACE10912022` | SAT | 6,489 | 10.4 KB | 2,074 | 9,001 | 24.1 KB |
+| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear Gates | Seed | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
+|---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
+| `coupled_n128_d64` | 128 | 64 | 64 | 96 | `0xFEEDFACE115122A2` | SAT | 1,161 | 2.1 KB | 411 | 1,640 | 4.7 KB | 2.9 KB | 1.9 KB |
+| `coupled_n128_d32_unsat` | 128 | 96 | 32 | 84 (last flipped) | `0xCAFEBABE0003` | UNSAT | 1,514 | 2.6 KB | 488 | 2,036 | 5.7 KB | 3.1 KB | 2.1 KB |
+| `coupled_n256_d128` | 256 | 128 | 128 | 180 | `0xFEEDFACE11912322` | SAT | 2,292 | 4.0 KB | 809 | 3,222 | 9.0 KB | 5.7 KB | 3.6 KB |
+| `coupled_n512_d128` | 512 | 384 | 128 | 420 | `0xFEEDFACE10912022` | SAT | 6,489 | 10.4 KB | 2,074 | 9,001 | 24.1 KB | 14.1 KB | 9.2 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
@@ -46,7 +47,7 @@ Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 
 | `coupled_n256_d128` | 809 | 3,222 | 3.98 | 3.41 | **1.17x** (Over) | 0.98 | 3.09 (4) | 4% | 50% | 50% | 0.82 | 377 |
 | `coupled_n512_d128` | 2,074 | 9,001 | 4.34 | 3.56 | **1.22x** (Over) | 1.03 | 3.13 (4) | 3% | 48% | 50% | 0.93 | 1,144 |
 
-**Suite Phase-Transition Summary (4 instances):** median $\rho_{\mathrm{crit}} = 1.18\times$ (range `1.14x–1.22x`), median $\kappa = 0.99$, regime split **0 Under / 0 Near-critical / 4 Over**, total extracted native XOR parity clauses = **1,987**.
+**Collection Phase-Transition Summary (4 instances, 4 formats: 4 CNF / 4 AIG / 4 XCNF / 4 ANF):** median $\rho_{\mathrm{crit}} = 1.18\times$ (range `1.14x–1.22x`), median $\kappa = 0.99$, regime split **0 Under / 0 Near-critical / 4 Over**, total extracted native XOR parity clauses = **1,987**, total ANF equations = **2,546**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

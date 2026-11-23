@@ -94,8 +94,12 @@ fn build_cec_mult_miter(width: usize, use_karatsuba: bool) -> Aig {
 
 fn main() {
     let suite = Path::new("..");
-    let cnf_dir = suite.join("cnf-version");
-    fs::create_dir_all(&cnf_dir).expect("create cnf-version");
+    let aig_dir = suite.join("aig-orig");
+    let cnf_dir = suite.join("cnf-converted");
+    let xcnf_dir = suite.join("xcnf-converted");
+    fs::create_dir_all(&aig_dir).expect("create aig-orig");
+    fs::create_dir_all(&cnf_dir).expect("create cnf-converted");
+    fs::create_dir_all(&xcnf_dir).expect("create xcnf-converted");
     let items = vec![
         ("cec_adder_32b_rc_vs_ks", build_cec_adder_miter(32)),
         ("cec_mult_6x6_arr_vs_wal", build_cec_mult_miter(6, false)),
@@ -104,9 +108,9 @@ fn main() {
         ("cec_wallace_vs_karat_12x12", build_cec_mult_miter(12, true)),
     ];
     for (name, aig) in items {
-        aig.write_aiger_binary(&suite.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected=UNSAT\norigin=AIG")).unwrap();
+        aig.write_aiger_binary(&aig_dir.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected=UNSAT\norigin=AIG")).unwrap();
         aig.write_dimacs(&cnf_dir.join(format!("{name}.cnf")), false).unwrap();
-        aig.write_dimacs(&cnf_dir.join(format!("{name}.xcnf")), true).unwrap();
-        println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}}");
+        aig.write_dimacs(&xcnf_dir.join(format!("{name}.xcnf")), true).unwrap();
+        println!("Generated aig-orig/{name}.aig + cnf-converted/{name}.cnf + xcnf-converted/{name}.xcnf");
     }
 }

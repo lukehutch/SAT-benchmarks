@@ -14,20 +14,23 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 *(Historical note: the SATLIB summary webpage table historically contained a typo listing `pret60_*` and `pret150_*` as satisfiable, whereas the DIMACS file headers and mathematical construction explicitly specify `Charge = 1` / UNSAT.)*
 
-## Corpus & Data Sizes
+## Corpus & Data Sizes (Four Formats)
 
-All **8 UNSAT `.cnf.xz` files** plus exact **Binary AIGER 1.9 `.aig.xz`** conversions in `aig-version/` (all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`):
+- **`cnf-orig/`:** All 8 UNSAT `.cnf.xz` files (`10.1 KB`).
+- **`aig-converted/`:** 8 exact Binary AIGER 1.9 `.aig.xz` conversions (`10.2 KB`, all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
+- **`xcnf-converted/`:** 8 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` conversions (`6.3 KB`, `560` extracted native XOR clauses).
+- **`anf-converted/`:** 8 lossless degree-1 linear DIMACS-ANF `.anf.xz` conversions (`4.3 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 
-| Instance | Vars | Clauses | Target Horn % | `.cnf.xz` Size | AIG AND Gates (`aig-version/`) | Status |
-|---|---:|---:|---:|---:|---:|---|
-| `pret60_25.cnf.xz` | 60 | 160 | 25% | 0.9 KB | 479 | UNSAT |
-| `pret60_40.cnf.xz` | 60 | 160 | 40% | 0.9 KB | 479 | UNSAT |
-| `pret60_60.cnf.xz` | 60 | 160 | 60% | 0.9 KB | 479 | UNSAT |
-| `pret60_75.cnf.xz` | 60 | 160 | 75% | 0.9 KB | 479 | UNSAT |
-| `pret150_25.cnf.xz` | 150 | 400 | 25% | 1.6 KB | 1,199 | UNSAT |
-| `pret150_40.cnf.xz` | 150 | 400 | 40% | 1.6 KB | 1,199 | UNSAT |
-| `pret150_60.cnf.xz` | 150 | 400 | 60% | 1.6 KB | 1,199 | UNSAT |
-| `pret150_75.cnf.xz` | 150 | 400 | 75% | 1.6 KB | 1,199 | UNSAT |
+| Instance | Vars | Clauses | Target Horn % | `.cnf.xz` | AIG ANDs | `.xcnf.xz` | `.anf.xz` | Status |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| `pret60_25` | 60 | 160 | 25% | 0.9 KB | 479 | 0.7 KB | 0.4 KB | UNSAT |
+| `pret60_40` | 60 | 160 | 40% | 0.9 KB | 479 | 0.7 KB | 0.4 KB | UNSAT |
+| `pret60_60` | 60 | 160 | 60% | 0.9 KB | 479 | 0.7 KB | 0.4 KB | UNSAT |
+| `pret60_75` | 60 | 160 | 75% | 0.9 KB | 479 | 0.7 KB | 0.4 KB | UNSAT |
+| `pret150_25` | 150 | 400 | 25% | 1.6 KB | 1,199 | 0.9 KB | 0.7 KB | UNSAT |
+| `pret150_40` | 150 | 400 | 40% | 1.6 KB | 1,199 | 0.9 KB | 0.7 KB | UNSAT |
+| `pret150_60` | 150 | 400 | 60% | 1.6 KB | 1,199 | 0.9 KB | 0.7 KB | UNSAT |
+| `pret150_75` | 150 | 400 | 75% | 1.6 KB | 1,199 | 0.9 KB | 0.7 KB | UNSAT |
 
 ## Comparative 1-Core Benchmark Results
 
@@ -35,11 +38,11 @@ All **8 UNSAT `.cnf.xz` files** plus exact **Binary AIGER 1.9 `.aig.xz`** conver
 
 | Solver (1C) | Solved | Total Wall Time (8 instances) | Per-Instance Range | Relative Speed |
 |---|---:|---:|---:|---|
-| **[`dense-solver 0.0.4`](https://github.com/libdense/dense-solver)** | **8 / 8** | **6.43 ms** | 0.72–0.98 ms | *(fastest)* |
 | **Frobenius 1C** | **8 / 8** | **9.86 ms** | 1.13–1.57 ms | *(1.53x slower)* |
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 8 / 8 | 41.53 ms | 4.95–5.38 ms | *(6.46x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 8 / 8 | 58.45 ms | 4.58–11.04 ms | *(9.09x slower)* |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 8 / 8 | 161.74 ms | 18.55–22.15 ms | *(25.2x slower)* |
+| **[`dense-solver 0.0.4`](https://github.com/libdense/dense-solver)** | **8 / 8** | **6.43 ms** | 0.72–0.98 ms | *(fastest)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 8 / 8 | 58.45 ms | 4.58–11.04 ms | *(9.09x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
@@ -57,7 +60,7 @@ All **8 UNSAT `.cnf.xz` files** plus exact **Binary AIGER 1.9 `.aig.xz`** conver
 | `pret60_60` | 60 | 160 | 2.67 | 4.27 | **0.62x** (Under) | 0.51 | 3.00 (3) | 0% | 61% | 50% | 0.00 | 40 |
 | `pret60_75` | 60 | 160 | 2.67 | 4.27 | **0.62x** (Under) | 0.51 | 3.00 (3) | 0% | 74% | 50% | 0.00 | 40 |
 
-**Suite Phase-Transition Summary (8 instances):** median $\rho_{\mathrm{crit}} = 0.62\times$ (range `0.62x–0.62x`), median $\kappa = 0.51$, regime split **8 Under / 0 Near-critical / 0 Over**, total extracted native XOR parity clauses = **560**.
+**Collection Phase-Transition Summary (8 instances, 4 formats: 8 CNF / 8 AIG / 8 XCNF / 8 ANF):** median $\rho_{\mathrm{crit}} = 0.62\times$ (range `0.62x–0.62x`), median $\kappa = 0.51$, regime split **8 Under / 0 Near-critical / 0 Over**, total extracted native XOR parity clauses = **560**, total ANF equations = **560**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

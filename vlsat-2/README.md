@@ -13,25 +13,28 @@ VLSAT-2 ("Very Large SAT", version 2) is a curated collection of **100 SAT formu
 
 During curation (2020), the CADP authors filtered out every formula solved in under 60 s by at least one of [CaDiCaL](https://github.com/arminbiere/cadical) 1.3.0, [Kissat](https://github.com/arminbiere/kissat) 1.0.3, [MathSAT](https://mathsat.fbk.eu/) 5.6.5, [MiniSat](https://github.com/niklasso/minisat) 2.2.0, or [Z3](https://github.com/Z3Prover/z3) 4.8.9, and retained formulas spanning increasing hardness up to 2 hours on a Xeon E5-2630 v4. Twenty-five percent of VLSAT-2 was later adopted by official SAT Competitions.
 
-## Corpus & Data Sizes
+## Corpus & Data Sizes (Four Formats)
 
 Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/TravisRudd) (first 10 smallest instances committed directly + full 100-instance manifest):
-- **First 10 VLSAT-2 `.cnf.xz` files** committed directly (`139.2 KB` xz-compressed), with **10 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
+- **`cnf-orig/`:** First 10 VLSAT-2 `.cnf.xz` files (`139.2 KB` xz-compressed).
+- **`aig-converted/`:** 10 exact Binary AIGER 1.9 `.aig.xz` conversions (`87.1 KB`, all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
+- **`xcnf-converted/`:** 10 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` conversions (`139.5 KB`).
+- **`anf-converted/`:** 10 lossless linear-size DIMACS-ANF `.anf.xz` conversions (`266.5 KB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - **[`vlsat2_100.uri`](vlsat2_100.uri):** Complete list of all 100 official INRIA HTTPS URLs (`vlsat2_*.cnf.bz2`).
-- **`src/cnf2aig.py`:** Standalone DIMACS `.cnf`/`.cnf.xz` to Binary AIGER 1.9 (`.aig`/`.aig.xz`) converter.
+- **`src/`:** Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
-| Instance | Vars | Clauses | Upstream Status | `.cnf.xz` Size | AIG AND Gates |
-|---|---:|---:|:---:|---:|---:|
-| `vlsat2_544_8738.cnf.xz` | 544 | 8,738 | UNSAT | 10.1 KB | 17,831 |
-| `vlsat2_600_11440.cnf.xz` | 600 | 11,440 | UNSAT | 12.4 KB | 23,294 |
-| `vlsat2_684_9417.cnf.xz` | 684 | 9,417 | UNSAT | 10.2 KB | 19,337 |
-| `vlsat2_684_13953.cnf.xz` | 684 | 13,953 | UNSAT | 14.9 KB | 28,409 |
-| `vlsat2_708_10259.cnf.xz` | 708 | 10,259 | UNSAT | 11.2 KB | 21,041 |
-| `vlsat2_736_11022.cnf.xz` | 736 | 11,022 | UNSAT | 11.5 KB | 22,567 |
-| `vlsat2_798_17543.cnf.xz` | 798 | 17,543 | UNSAT | 17.9 KB | 35,678 |
-| `vlsat2_1000_22250.cnf.xz` | 1,000 | 22,250 | SAT | 15.4 KB | 45,209 |
-| `vlsat2_1022_14955.cnf.xz` | 1,022 | 14,955 | UNSAT | 16.1 KB | 30,694 |
-| `vlsat2_1125_15795.cnf.xz` | 1,125 | 15,795 | UNSAT | 19.5 KB | 32,459 |
+| Instance | Vars | Clauses | Upstream Status | `.cnf.xz` | AIG ANDs | `.anf.xz` |
+|---|---:|---:|:---:|---:|---:|---:|
+| `vlsat2_544_8738` | 544 | 8,738 | UNSAT | 10.1 KB | 17,831 | 18.5 KB |
+| `vlsat2_600_11440` | 600 | 11,440 | UNSAT | 12.4 KB | 23,294 | 21.3 KB |
+| `vlsat2_684_9417` | 684 | 9,417 | UNSAT | 10.2 KB | 19,337 | 20.0 KB |
+| `vlsat2_684_13953` | 684 | 13,953 | UNSAT | 14.9 KB | 28,409 | 27.1 KB |
+| `vlsat2_708_10259` | 708 | 10,259 | UNSAT | 11.2 KB | 21,041 | 21.3 KB |
+| `vlsat2_736_11022` | 736 | 11,022 | UNSAT | 11.5 KB | 22,567 | 23.3 KB |
+| `vlsat2_798_17543` | 798 | 17,543 | UNSAT | 17.9 KB | 35,678 | 36.1 KB |
+| `vlsat2_1000_22250` | 1,000 | 22,250 | SAT | 15.4 KB | 45,209 | 31.0 KB |
+| `vlsat2_1022_14955` | 1,022 | 14,955 | UNSAT | 16.1 KB | 30,694 | 34.7 KB |
+| `vlsat2_1125_15795` | 1,125 | 15,795 | UNSAT | 19.5 KB | 32,459 | 33.3 KB |
 
 ## Comparative 1-Core Benchmark Results (First 10 Instances, $T_{\max} = 5\;\text{s}$)
 
@@ -69,7 +72,7 @@ Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/Tr
 | `vlsat2_736_11022` | 736 | 11,022 | 14.98 | 1.00 | **14.9x** (Over) | 6.19 | 2.05 (16) | 100% | 100% | 3% | 0.40 | 0 |
 | `vlsat2_798_17543` | 798 | 17,543 | 21.98 | 1.00 | **21.9x** (Over) | 9.10 | 2.03 (14) | 100% | 100% | 2% | 0.18 | 0 |
 
-**Suite Phase-Transition Summary (10 instances):** median $\rho_{\mathrm{crit}} = 15.5\times$ (range `13.7x–22.2x`), median $\kappa = 6.42$, regime split **0 Under / 0 Near-critical / 10 Over**, total extracted native XOR parity clauses = **0**.
+**Collection Phase-Transition Summary (10 instances, 4 formats: 10 CNF / 10 AIG / 10 XCNF / 10 ANF):** median $\rho_{\mathrm{crit}} = 15.5\times$ (range `13.7x–22.2x`), median $\kappa = 6.42$, regime split **0 Under / 0 Near-critical / 10 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **140,639**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

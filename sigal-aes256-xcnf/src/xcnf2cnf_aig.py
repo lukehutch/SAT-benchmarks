@@ -2,9 +2,9 @@
 """Lossless converter for Victor Sigal's AES-256 XCNF benchmarks (`w5.solved.xcnf.xz`, `w126.unsolved.xcnf.xz`).
 
 Produces:
-  - `cnf-version/<stem>.cnf.xz`: exact Tseitin-encoded DIMACS CNF (splitting XOR clauses of length > 4
+  - `cnf-converted/<stem>.cnf.xz`: exact Tseitin-encoded DIMACS CNF (splitting XOR clauses of length > 4
     via fresh auxiliary variables and expanding each parity constraint of length <= 4 into 2^{k-1} clauses).
-  - `aig-version/<stem>.aig.xz`: exact Binary AIGER 1.9 combinational miter (`L = 0, O = 1`, 256 primary inputs
+  - `aig-converted/<stem>.aig.xz`: exact Binary AIGER 1.9 combinational miter (`L = 0, O = 1`, 256 primary inputs
     corresponding to the 256-bit AES-256 key, `PO_0 = 1` iff all 256 ciphertext output bits match target).
 """
 from __future__ import annotations
@@ -246,12 +246,13 @@ def write_binary_aig(num_vars: int, units, bins, xors, out_path: Path) -> tuple[
 
 def main() -> None:
     suite_dir = Path(__file__).resolve().parent.parent
-    xcnf_files = sorted(suite_dir.glob("*.xcnf.xz")) or sorted(suite_dir.glob("*.xcnf"))
+    xcnf_dir = suite_dir / "xcnf-orig"
+    xcnf_files = sorted(xcnf_dir.glob("*.xcnf.xz")) or sorted(xcnf_dir.glob("*.xcnf"))
     for xcnf_path in xcnf_files:
         stem = xcnf_path.name.removesuffix(".xz").removesuffix(".xcnf")
         nvars, units, bins, other, xors = parse_xcnf(xcnf_path)
-        cnf_out = suite_dir / "cnf-version" / f"{stem}.cnf.xz"
-        aig_out = suite_dir / "aig-version" / f"{stem}.aig.xz"
+        cnf_out = suite_dir / "cnf-converted" / f"{stem}.cnf.xz"
+        aig_out = suite_dir / "aig-converted" / f"{stem}.aig.xz"
         cn, cm = write_tseitin_cnf_xz(nvars, units, bins, other, xors, cnf_out)
         ai, aa = write_binary_aig(nvars, units, bins, xors, aig_out)
         print(

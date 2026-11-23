@@ -9,23 +9,24 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 ## Directory Layout & Regeneration
 
-- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`6.0 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`15.1 KB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`4.4 KB`).
+- `anf-converted/` — Lossless degree-1 linear **DIMACS-ANF `.anf.xz`** conversions (`4.0 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Graph Family | Vertices $n$ | Edges $m$ | Seed | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
-|---|---|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|
-| `tseitin_exp_n60` | 3-reg expander | 60 | 90 | `777` | UNSAT | 90 | 419 | 0.6 KB | 150 | 540 | 1.3 KB |
-| `tseitin_exp_n120` | 3-reg expander | 120 | 180 | `778` | UNSAT | 180 | 839 | 1.0 KB | 300 | 1,080 | 2.4 KB |
-| `tseitin_exp_n300` | 3-reg expander | 300 | 450 | `779` | UNSAT | 450 | 2,099 | 1.9 KB | 750 | 2,700 | 5.2 KB |
-| `tseitin_prism_n400` | Prism $C_{200} \times K_2$ | 400 | 600 | — | UNSAT | 600 | 2,799 | 2.5 KB | 1,000 | 3,600 | 6.2 KB |
+| Instance | Graph Family | Vertices $n$ | Edges $m$ | Seed | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
+|---|---|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
+| `tseitin_exp_n60` | 3-reg expander | 60 | 90 | `777` | UNSAT | 419 | 0.6 KB | 150 | 540 | 1.3 KB | 0.5 KB | 0.5 KB |
+| `tseitin_exp_n120` | 3-reg expander | 120 | 180 | `778` | UNSAT | 839 | 1.0 KB | 300 | 1,080 | 2.4 KB | 0.8 KB | 0.7 KB |
+| `tseitin_exp_n300` | 3-reg expander | 300 | 450 | `779` | UNSAT | 2,099 | 1.9 KB | 750 | 2,700 | 5.2 KB | 1.6 KB | 1.6 KB |
+| `tseitin_prism_n400` | Prism $C_{200} \times K_2$ | 400 | 600 | — | UNSAT | 2,799 | 2.5 KB | 1,000 | 3,600 | 6.2 KB | 1.6 KB | 1.3 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-version/*.xcnf`):
+Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-converted/*.xcnf`):
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
@@ -48,7 +49,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 | `tseitin_exp_n60` | 150 | 540 | 3.60 | 4.98 | **0.72x** (Under) | 0.70 | 3.67 (4) | 0% | 56% | 49% | 0.26 | 60 |
 | `tseitin_prism_n400` | 1,000 | 3,600 | 3.60 | 4.98 | **0.72x** (Under) | 0.70 | 3.67 (4) | 0% | 56% | 48% | 0.26 | 400 |
 
-**Suite Phase-Transition Summary (4 instances):** median $\rho_{\mathrm{crit}} = 0.72\times$ (range `0.72x–0.72x`), median $\kappa = 0.70$, regime split **4 Under / 0 Near-critical / 0 Over**, total extracted native XOR parity clauses = **880**.
+**Collection Phase-Transition Summary (4 instances, 4 formats: 4 CNF / 4 AIG / 4 XCNF / 4 ANF):** median $\rho_{\mathrm{crit}} = 0.72\times$ (range `0.72x–0.72x`), median $\kappa = 0.70$, regime split **4 Under / 0 Near-critical / 0 Over**, total extracted native XOR parity clauses = **880**, total ANF equations = **880**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

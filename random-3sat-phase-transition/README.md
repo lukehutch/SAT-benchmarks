@@ -16,34 +16,35 @@ These 8 instances (**4 SAT / 4 UNSAT**) provide a pure unstructured baseline wit
 
 ## Related Critical Phase-Transition Random 3-SAT Benchmarks in This Repo
 
-Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommendation to evaluate sampled SATLIB random UNSAT/SAT 3-SAT instances around the critical threshold (such as `uuf250-1065`), companion critical-threshold random 3-SAT corpora are also committed directly in this repository (in all three formats: `.cnf.xz`, `.aig.xz`, and `.xcnf.xz`):
+Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommendation to evaluate sampled SATLIB random UNSAT/SAT 3-SAT instances around the critical threshold (such as `uuf250-1065`), companion critical-threshold random 3-SAT corpora are also committed directly in this repository (in all four formats: `.cnf.xz`, `.aig.xz`, `.xcnf.xz`, and `.anf.xz`):
 
-- **SATLIB Uniform Random 3-SAT ([`../satlib-benchmarks/rnd3sat/`](../satlib-benchmarks/rnd3sat/), [UBC SATLIB RND3SAT](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/descr.html)):**
-  - **`uuf250-1065` / `uf250-1065`** ($n = 250, m = 1{,}065, \alpha = 4.26, \rho_{\mathrm{crit}} = 1.00\times$): [`uuf250-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uuf250-01.cnf.xz) (UNSAT) & [`uf250-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uf250-01.cnf.xz) (SAT), plus full 100-instance UBC archives ([`uuf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf250-1065.tar.gz), [`uf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uf250-1065.tar.gz)).
-  - **`uuf200-860` / `uf200-860` & `uuf225-960`** ($n = 200\text{--}225, \alpha \approx 4.27\text{--}4.30$): [`uuf200-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uuf200-01.cnf.xz) (UNSAT) & [`uf200-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uf200-01.cnf.xz) (SAT), plus [`uuf225-960.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf225-960.tar.gz) and [`uuf200-860.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf200-860.tar.gz).
-  - **`uuf150-645`, `uuf100-430`, `uuf50-218`** (and SAT `uf*` counterparts): committed in [`../satlib-benchmarks/rnd3sat/`](../satlib-benchmarks/rnd3sat/), with all 19 official SATLIB RND3SAT archive URLs listed in [`../satlib-benchmarks/satlib_all_97_archives.uri`](../satlib-benchmarks/satlib_all_97_archives.uri).
-- **SATLIB Large Random 3-SAT ([`../satlib-benchmarks/dimacs-lran/`](../satlib-benchmarks/dimacs-lran/)):** `f600`, `f1000`, `f2000` ($n \in \{600, 1{,}000, 2{,}000\}, \alpha = 4.25, \rho_{\mathrm{crit}} = 1.00\times$).
-- **SAT Shortcut Challenge Tier 3 ([`../sat-shortcut-challenge/tier3/`](../sat-shortcut-challenge/tier3/)):** 25 uniform random 3-SAT instances scaling across $n \in \{300, 350, 400, 450, 500\}$ at $\alpha = 4.26$ ($\rho_{\mathrm{crit}} = 1.00\times$).
+- **SATLIB Uniform Random 3-SAT ([`../satlib-rnd3sat/`](../satlib-rnd3sat/README.md), [UBC SATLIB RND3SAT](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/descr.html)):**
+  - **`uuf250-1065` / `uf250-1065`** ($n = 250, m = 1{,}065, \alpha = 4.26, \rho_{\mathrm{crit}} = 1.00\times$): [`uuf250-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uuf250-01.cnf.xz) (UNSAT) & [`uf250-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uf250-01.cnf.xz) (SAT), plus full 100-instance UBC archives ([`uuf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf250-1065.tar.gz), [`uf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uf250-1065.tar.gz)).
+  - **`uuf200-860` / `uf200-860` & `uuf225-960`** ($n = 200\text{--}225, \alpha \approx 4.27\text{--}4.30$): [`uuf200-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uuf200-01.cnf.xz) (UNSAT) & [`uf200-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uf200-01.cnf.xz) (SAT), plus [`uuf225-960.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf225-960.tar.gz) and [`uuf200-860.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf200-860.tar.gz).
+  - **`uuf150-645`, `uuf100-430`, `uuf50-218`** (and SAT `uf*` counterparts): committed in [`../satlib-rnd3sat/`](../satlib-rnd3sat/README.md), with all 19 official SATLIB RND3SAT archive URLs listed in [`../satlib-archive-uris/satlib_all_97_archives.uri`](../satlib-archive-uris/satlib_all_97_archives.uri).
+- **SATLIB Large Random 3-SAT ([`../satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md)):** `f600`, `f1000`, `f2000` ($n \in \{600, 1{,}000, 2{,}000\}, \alpha = 4.25, \rho_{\mathrm{crit}} = 1.00\times$).
+- **SAT Shortcut Challenge Tier 3 ([`../sat-shortcut-challenge-tier3/`](../sat-shortcut-challenge-tier3/README.md)):** 25 uniform random 3-SAT instances scaling across $n \in \{300, 350, 400, 450, 500\}$ at $\alpha = 4.26$ ($\rho_{\mathrm{crit}} = 1.00\times$).
 
 ## Directory Layout & Regeneration
 
-- `*.cnf.xz` — Original native **DIMACS CNF** formulas (8 instances: 4 SAT / 4 UNSAT).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `xcnf-version/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `cnf-orig/` — Original native **DIMACS CNF** formulas (8 `.cnf.xz` files, `35.2 KB`, 4 SAT / 4 UNSAT).
+- `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`42.5 KB`, all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `xcnf-converted/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`35.7 KB`).
+- `anf-converted/` — Lossless degree-3 **DIMACS-ANF `.anf.xz`** conversions (`63.4 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/gen_rand3sat.py` — Standalone zero-dependency Python 3 generator (`python3 src/gen_rand3sat.py`), alongside `src/cnf2aig.py` and `src/cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Regime | Vars $n$ | Clauses $m$ | Ratio $m/n$ | Python `random.Random` Seed | Ans | CNF (`.cnf.xz`) Size | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size |
+| Instance | Regime | Vars $n$ | Clauses $m$ | Ratio $m/n$ | Seed | Ans | `.cnf.xz` | AIG ANDs | `.aig.xz` | `.anf.xz` |
 |---|---|---:|---:|---:|---:|:---:|---:|---:|---:|---:|
-| `rand3sat_n200_r380_sat` | Under-constrained | 200 | 760 | 3.80 | `203800` | SAT | 3.9 KB | 200 | 2,274 | 4.8 KB |
-| `rand3sat_n200_r400_sat` | Under-constrained | 200 | 800 | 4.00 | `204000` | SAT | 4.1 KB | 200 | 2,393 | 5.0 KB |
-| `rand3sat_n200_r410_sat` | Near-threshold SAT | 200 | 820 | 4.10 | `204100` | SAT | 4.2 KB | 200 | 2,452 | 5.1 KB |
-| `rand3sat_n200_sat` | Critical threshold | 200 | 852 | 4.26 | `200000` | SAT | 4.3 KB | 200 | 2,549 | 5.3 KB |
-| `rand3sat_n200_unsat` | Critical threshold | 200 | 852 | 4.26 | `200005` | UNSAT | 4.3 KB | 200 | 2,549 | 5.2 KB |
-| `rand3sat_n200_r445_unsat` | Near-threshold UNSAT | 200 | 890 | 4.45 | `204450` | UNSAT | 4.5 KB | 200 | 2,661 | 5.5 KB |
-| `rand3sat_n200_r465_unsat` | Over-constrained | 200 | 930 | 4.65 | `204650` | UNSAT | 4.7 KB | 200 | 2,785 | 5.3 KB |
-| `rand3sat_n200_r500_unsat` | Over-constrained | 200 | 1,000 | 5.00 | `205000` | UNSAT | 5.1 KB | 200 | 2,990 | 6.2 KB |
+| `rand3sat_n200_r380_sat` | Under-constrained | 200 | 760 | 3.80 | `203800` | SAT | 3.9 KB | 2,274 | 4.8 KB | 7.0 KB |
+| `rand3sat_n200_r400_sat` | Under-constrained | 200 | 800 | 4.00 | `204000` | SAT | 4.1 KB | 2,393 | 5.0 KB | 7.3 KB |
+| `rand3sat_n200_r410_sat` | Near-threshold SAT | 200 | 820 | 4.10 | `204100` | SAT | 4.2 KB | 2,452 | 5.1 KB | 7.6 KB |
+| `rand3sat_n200_sat` | Critical threshold | 200 | 852 | 4.26 | `200000` | SAT | 4.3 KB | 2,549 | 5.3 KB | 7.8 KB |
+| `rand3sat_n200_unsat` | Critical threshold | 200 | 852 | 4.26 | `200005` | UNSAT | 4.3 KB | 2,549 | 5.2 KB | 7.8 KB |
+| `rand3sat_n200_r445_unsat` | Near-threshold UNSAT | 200 | 890 | 4.45 | `204450` | UNSAT | 4.5 KB | 2,661 | 5.5 KB | 8.2 KB |
+| `rand3sat_n200_r465_unsat` | Over-constrained | 200 | 930 | 4.65 | `204650` | UNSAT | 4.7 KB | 2,785 | 5.3 KB | 8.5 KB |
+| `rand3sat_n200_r500_unsat` | Over-constrained | 200 | 1,000 | 5.00 | `205000` | UNSAT | 5.1 KB | 2,990 | 6.2 KB | 9.1 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
@@ -80,7 +81,7 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 | `rand3sat_n200_sat` | 200 | 852 | 4.26 | 4.27 | **1.00x** (Near-crit) | 0.82 | 3.00 (3) | 0% | 52% | 49% | 0.28 | 0 |
 | `rand3sat_n200_unsat` | 200 | 852 | 4.26 | 4.27 | **1.00x** (Near-crit) | 0.82 | 3.00 (3) | 0% | 52% | 49% | 0.29 | 0 |
 
-**Suite Phase-Transition Summary (8 instances):** median $\rho_{\mathrm{crit}} = 1.00\times$ (range `0.89x–1.17x`), median $\kappa = 0.82$, regime split **1 Under / 6 Near-critical / 1 Over**, total extracted native XOR parity clauses = **0**.
+**Collection Phase-Transition Summary (8 instances, 4 formats: 8 CNF / 8 AIG / 8 XCNF / 8 ANF):** median $\rho_{\mathrm{crit}} = 1.00\times$ (range `0.89x–1.17x`), median $\kappa = 0.82$, regime split **1 Under / 6 Near-critical / 1 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **6,904**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

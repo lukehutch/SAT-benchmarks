@@ -12,20 +12,21 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 
 ## Directory Layout & Regeneration
 
-- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`9.4 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`28.6 KB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`20.7 KB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`23.8 KB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Circuit A vs. Circuit B | Width | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
-|---|---|---:|:---:|---:|---:|---:|---:|---:|---:|
-| `cec_adder_32b_rc_vs_ks` | Ripple-Carry vs. Kogge–Stone Adder | 32b | UNSAT | 64 | 871 | 1.5 KB | 606 | 2,059 | 5.6 KB |
-| `cec_mult_6x6_arr_vs_wal` | Array vs. Wallace Multiplier | 6×6 | UNSAT | 12 | 591 | 0.9 KB | 183 | 918 | 2.5 KB |
-| `cec_mult_8x8_arr_vs_wal` | Array vs. Wallace Multiplier | 8×8 | UNSAT | 16 | 1,148 | 1.4 KB | 340 | 1,769 | 4.4 KB |
-| `cec_array_vs_wallace_10x10` | Array vs. Wallace Multiplier | 10×10 | UNSAT | 20 | 1,868 | 2.1 KB | 530 | 2,850 | 6.6 KB |
-| `cec_wallace_vs_karat_12x12` | Wallace vs. Karatsuba Multiplier | 12×12 | UNSAT | 24 | 2,673 | 3.4 KB | 814 | 4,247 | 9.5 KB |
+| Instance | Circuit A vs. Circuit B | Width | Ans | AIG Inputs | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
+|---|---|---:|:---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `cec_adder_32b_rc_vs_ks` | Ripple-Carry vs. Kogge–Stone Adder | 32b | UNSAT | 64 | 871 | 1.5 KB | 606 | 2,059 | 5.6 KB | 4.5 KB | 3.5 KB |
+| `cec_mult_6x6_arr_vs_wal` | Array vs. Wallace Multiplier | 6×6 | UNSAT | 12 | 591 | 0.9 KB | 183 | 918 | 2.5 KB | 1.7 KB | 2.0 KB |
+| `cec_mult_8x8_arr_vs_wal` | Array vs. Wallace Multiplier | 8×8 | UNSAT | 16 | 1,148 | 1.4 KB | 340 | 1,769 | 4.4 KB | 3.2 KB | 3.7 KB |
+| `cec_array_vs_wallace_10x10` | Array vs. Wallace Multiplier | 10×10 | UNSAT | 20 | 1,868 | 2.1 KB | 530 | 2,850 | 6.6 KB | 4.3 KB | 5.7 KB |
+| `cec_wallace_vs_karat_12x12` | Wallace vs. Karatsuba Multiplier | 12×12 | UNSAT | 24 | 2,673 | 3.4 KB | 814 | 4,247 | 9.5 KB | 6.9 KB | 8.9 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
@@ -50,7 +51,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 | `cec_mult_8x8_arr_vs_wal` | 340 | 1,769 | 5.20 | 3.81 | **1.36x** (Over) | 0.91 | 3.32 (4) | 11% | 56% | 49% | 0.34 | 131 |
 | `cec_wallace_vs_karat_12x12` | 814 | 4,247 | 5.22 | 3.66 | **1.42x** (Over) | 0.93 | 3.30 (4) | 12% | 57% | 49% | 0.35 | 301 |
 
-**Suite Phase-Transition Summary (5 instances):** median $\rho_{\mathrm{crit}} = 1.36\times$ (range `1.36x–1.64x`), median $\kappa = 0.91$, regime split **0 Under / 0 Near-critical / 5 Over**, total extracted native XOR parity clauses = **831**.
+**Collection Phase-Transition Summary (5 instances, 4 formats: 5 CNF / 5 AIG / 5 XCNF / 5 ANF):** median $\rho_{\mathrm{crit}} = 1.36\times$ (range `1.36x–1.64x`), median $\kappa = 0.91$, regime split **0 Under / 0 Near-critical / 5 Over**, total extracted native XOR parity clauses = **831**, total ANF equations = **3,819**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

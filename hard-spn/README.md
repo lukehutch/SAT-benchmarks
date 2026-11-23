@@ -9,19 +9,20 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 
 ## Directory Layout & Regeneration
 
-- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`12.3 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`29.6 KB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`12.8 KB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`12.1 KB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear S-box Gates | Seed | Ans | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
-|---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| `spn_unsat_n48_d24` | 48 | 24 | 24 | 38 (last flipped) | `0x777788889999AAAA` | UNSAT | 969 | 1.6 KB | 247 | 1,363 | 3.8 KB |
-| `spn_sat_n64_d32` | 64 | 32 | 32 | 55 | `0x13572468ABCD0064` | SAT | 1,395 | 2.1 KB | 350 | 1,984 | 5.3 KB |
-| `spn_sat_n96_d48` | 96 | 48 | 48 | 85 | `0x13572468ABCD0096` | SAT | 2,205 | 3.2 KB | 539 | 3,060 | 7.6 KB |
-| `spn_sat_n128_d64` | 128 | 64 | 64 | 150 | `0x13572468ABCD7981` | SAT | 3,643 | 5.3 KB | 856 | 5,104 | 12.8 KB |
+| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear S-box Gates | Seed | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
+|---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
+| `spn_unsat_n48_d24` | 48 | 24 | 24 | 38 (last flipped) | `0x777788889999AAAA` | UNSAT | 969 | 1.6 KB | 247 | 1,363 | 3.8 KB | 1.6 KB | 1.5 KB |
+| `spn_sat_n64_d32` | 64 | 32 | 32 | 55 | `0x13572468ABCD0064` | SAT | 1,395 | 2.1 KB | 350 | 1,984 | 5.3 KB | 2.2 KB | 2.1 KB |
+| `spn_sat_n96_d48` | 96 | 48 | 48 | 85 | `0x13572468ABCD0096` | SAT | 2,205 | 3.2 KB | 539 | 3,060 | 7.6 KB | 3.4 KB | 3.1 KB |
+| `spn_sat_n128_d64` | 128 | 64 | 64 | 150 | `0x13572468ABCD7981` | SAT | 3,643 | 5.3 KB | 856 | 5,104 | 12.8 KB | 5.5 KB | 5.4 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
@@ -46,7 +47,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 | `spn_sat_n96_d48` | 539 | 3,060 | 5.68 | 5.31 | **1.07x** (Near-crit) | 0.92 | 3.59 (4) | 2% | 51% | 50% | 1.26 | 358 |
 | `spn_unsat_n48_d24` | 247 | 1,363 | 5.52 | 5.21 | **1.06x** (Near-crit) | 0.91 | 3.58 (4) | 2% | 50% | 50% | 1.17 | 161 |
 
-**Suite Phase-Transition Summary (4 instances):** median $\rho_{\mathrm{crit}} = 1.07\times$ (range `1.06x–1.11x`), median $\kappa = 0.92$, regime split **0 Under / 3 Near-critical / 1 Over**, total extracted native XOR parity clauses = **1,328**.
+**Collection Phase-Transition Summary (4 instances, 4 formats: 4 CNF / 4 AIG / 4 XCNF / 4 ANF):** median $\rho_{\mathrm{crit}} = 1.07\times$ (range `1.06x–1.11x`), median $\kappa = 0.92$, regime split **0 Under / 3 Near-critical / 1 Over**, total extracted native XOR parity clauses = **1,328**, total ANF equations = **1,825**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

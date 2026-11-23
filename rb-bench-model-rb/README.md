@@ -17,21 +17,25 @@ Model RB generates random binary Constraint Satisfaction Problems (CSPs) whose d
 
 The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are direct CNF encodings of Model RB CSPs with $k = 2$, $\alpha = 0.8$, and $r = 0.8 / (\ln 4 - \ln 3)$, located precisely at the critical phase-transition threshold with a hidden planted solution. Every instance is **guaranteed SAT**, yet because the constraint structure hides the planted assignment among exponentially many near-solutions, larger sizes (`frb45`–`frb59`) remain very difficult for complete CDCL solvers.
 
-## Corpus & Data Sizes
+## Corpus & Data Sizes (Four Formats)
 
-All **40 forced-SAT `.cnf.xz` files** (`4.98 MB` xz-compressed) across all 8 size classes, plus **40 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (`5.80 MB` xz-compressed, all 40/40 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and `src/cnf2aig.py`:
+- **`cnf-orig/`:** All 40 forced-SAT `.cnf.xz` files (`4.98 MB` xz-compressed) across all 8 size classes.
+- **`aig-converted/`:** 40 exact Binary AIGER 1.9 `.aig.xz` conversions (`5.80 MB` xz-compressed, all 40/40 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
+- **`xcnf-converted/`:** 40 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` conversions (`4.80 MB`).
+- **`anf-converted/`:** 40 lossless linear-size DIMACS-ANF `.anf.xz` conversions (`6.54 MB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **`src/`:** Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
-| Family | Instances | Status | Vars ($n \cdot d$) | Clauses | `.cnf.xz` Size (5 files) | AIG Files |
+| Family | Instances | Status | Vars ($n \cdot d$) | Clauses | `.cnf.xz` Size (5 files) | 4-Format Files |
 |---|---:|:---:|---:|---:|---:|---:|
-| `frb30-15-1..5.cnf.xz` | 5 | SAT | 450 | 19,084 | 160.5 KB | 5 |
-| `frb35-17-1..5.cnf.xz` | 5 | SAT | 595 | 29,707 | 244.5 KB | 5 |
-| `frb40-19-1..5.cnf.xz` | 5 | SAT | 760 | 43,780 | 365.8 KB | 5 |
-| `frb45-21-1..5.cnf.xz` | 5 | SAT | 945 | 61,855 | 509.8 KB | 5 |
-| `frb50-23-1..5.cnf.xz` | 5 | SAT | 1,150 | 84,508 | 739.7 KB | 5 |
-| `frb53-24-1..5.cnf.xz` | 5 | SAT | 1,272 | 98,921 | 874.8 KB | 5 |
-| `frb56-25-1..5.cnf.xz` | 5 | SAT | 1,400 | 114,668 | 1013.3 KB | 5 |
-| `frb59-26-1..5.cnf.xz` | 5 | SAT | 1,534 | 132,295 | 1.16 MB | 5 |
-| **Total** | **40** | **40 SAT** | **450–1,534** | **19,084–132,295** | **4.98 MB** | **40** |
+| `frb30-15-1..5` | 5 | SAT | 450 | 19,084 | 160.5 KB | 20 |
+| `frb35-17-1..5` | 5 | SAT | 595 | 29,707 | 244.5 KB | 20 |
+| `frb40-19-1..5` | 5 | SAT | 760 | 43,780 | 365.8 KB | 20 |
+| `frb45-21-1..5` | 5 | SAT | 945 | 61,855 | 509.8 KB | 20 |
+| `frb50-23-1..5` | 5 | SAT | 1,150 | 84,508 | 739.7 KB | 20 |
+| `frb53-24-1..5` | 5 | SAT | 1,272 | 98,921 | 874.8 KB | 20 |
+| `frb56-25-1..5` | 5 | SAT | 1,400 | 114,668 | 1013.3 KB | 20 |
+| `frb59-26-1..5` | 5 | SAT | 1,534 | 132,295 | 1.16 MB | 20 |
+| **Total** | **40** | **40 SAT** | **450–1,534** | **19,084–132,295** | **4.98 MB** | **160** |
 
 ## Comparative 1-Core Spot Check (`frb30-15-1..5`, $T_{\max} = 5\;\text{s}$)
 
@@ -62,5 +66,5 @@ All **40 forced-SAT `.cnf.xz` files** (`4.98 MB` xz-compressed) across all 8 siz
 | `frb56-25` | 5 | 1,400 | 114,668 | 81.91 | 1.00 | **81.9x** [81.9x–81.9x] (Over) | 33.98 | 2.01 | 100% | 100% | 0.19 | 0 |
 | `frb59-26` | 5 | 1,534 | 132,295 | 86.24 | 1.00 | **86.2x** [86.2x–86.2x] (Over) | 35.78 | 2.01 | 100% | 100% | 0.19 | 0 |
 
-**Suite Phase-Transition Summary (40 instances):** median $\rho_{\mathrm{crit}} = 69.4\times$ (range `42.3x–86.2x`), median $\kappa = 28.81$, regime split **0 Under / 0 Near-critical / 40 Over**, total extracted native XOR parity clauses = **0**.
+**Collection Phase-Transition Summary (40 instances, 4 formats: 40 CNF / 40 AIG / 40 XCNF / 40 ANF):** median $\rho_{\mathrm{crit}} = 69.4\times$ (range `42.3x–86.2x`), median $\kappa = 28.81$, regime split **0 Under / 0 Near-critical / 40 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **2,959,100**.
 <!-- END_STRUCTURAL_ANALYSIS -->

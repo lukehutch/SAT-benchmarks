@@ -9,20 +9,21 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 
 ## Directory Layout & Regeneration
 
-- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`648.7 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`2.13 MB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`1.24 MB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`2.00 MB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Rounds $R$ | Add IV | Free Bits $k$ | Message / Target | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
-|---|---:|:---:|---:|---|:---:|---:|---:|---:|---:|---:|---:|
-| `sha256_16r_k32` | 16 | No | 32 | `"abc"` exact | SAT | 32 | 30,142 | 33.3 KB | 7,438 | 47,125 | 107.2 KB |
-| `sha256_17r_k16` | 17 | No | 16 | `"abc"` exact | SAT | 16 | 31,712 | 35.4 KB | 7,829 | 49,504 | 114.7 KB |
-| `sha256_64r_k16_sat` | 64 | Yes | 16 | `"abc"` exact | SAT | 16 | 182,204 | 193.7 KB | 43,481 | 282,441 | 653.2 KB |
-| `sha256_64r_k16_unsat` | 64 | Yes | 16 | `"abc"` digest bit 0 flipped | UNSAT | 16 | 182,204 | 193.7 KB | 43,481 | 282,441 | 653.2 KB |
-| `sha256_64r_k20_sat` | 64 | Yes | 20 | `"abc"` exact | SAT | 20 | 183,109 | 192.5 KB | 43,624 | 283,828 | 652.6 KB |
+| Instance | Rounds $R$ | Add IV | Free Bits $k$ | Message / Target | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
+|---|---:|:---:|---:|---|:---:|---:|---:|---:|---:|---:|---:|---:|
+| `sha256_16r_k32` | 16 | No | 32 | `"abc"` exact | SAT | 30,142 | 33.3 KB | 7,438 | 47,125 | 107.2 KB | 64.0 KB | 101.3 KB |
+| `sha256_17r_k16` | 17 | No | 16 | `"abc"` exact | SAT | 31,712 | 35.4 KB | 7,829 | 49,504 | 114.7 KB | 68.0 KB | 107.2 KB |
+| `sha256_64r_k16_sat` | 64 | Yes | 16 | `"abc"` exact | SAT | 182,204 | 193.7 KB | 43,481 | 282,441 | 653.2 KB | 377.4 KB | 612.2 KB |
+| `sha256_64r_k16_unsat` | 64 | Yes | 16 | `"abc"` digest bit 0 flipped | UNSAT | 182,204 | 193.7 KB | 43,481 | 282,441 | 653.2 KB | 377.4 KB | 612.2 KB |
+| `sha256_64r_k20_sat` | 64 | Yes | 20 | `"abc"` exact | SAT | 183,109 | 192.5 KB | 43,624 | 283,828 | 652.6 KB | 378.1 KB | 616.7 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
@@ -49,7 +50,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 | `sha256_64r_k16_unsat` | 43,481 | 282,441 | 6.50 | 5.58 | **1.16x** (Over) | 0.94 | 3.52 (4) | 2% | 50% | 50% | 0.65 | 23,154 |
 | `sha256_64r_k20_sat` | 43,624 | 283,828 | 6.51 | 5.60 | **1.16x** (Over) | 0.93 | 3.52 (4) | 2% | 50% | 50% | 0.65 | 23,251 |
 
-**Suite Phase-Transition Summary (5 instances):** median $\rho_{\mathrm{crit}} = 1.16\times$ (range `1.16x–1.23x`), median $\kappa = 0.94$, regime split **0 Under / 0 Near-critical / 5 Over**, total extracted native XOR parity clauses = **77,329**.
+**Collection Phase-Transition Summary (5 instances, 4 formats: 5 CNF / 5 AIG / 5 XCNF / 5 ANF):** median $\rho_{\mathrm{crit}} = 1.16\times$ (range `1.16x–1.23x`), median $\kappa = 0.94$, regime split **0 Under / 0 Near-critical / 5 Over**, total extracted native XOR parity clauses = **77,329**, total ANF equations = **309,573**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

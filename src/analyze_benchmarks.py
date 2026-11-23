@@ -4,9 +4,9 @@ Structural & Phase-Transition Analyzer for the SAT Benchmarks Repository.
 
 Computes exact critical-threshold positioning and graph/syntactic structural
 statistics for every DIMACS CNF (`.cnf` / `.cnf.xz`) benchmark instance (plus
-paired `.aig` and `.xcnf` metadata when present), and optionally updates the
-auto-generated `## Phase-Transition & Structural Analysis` section in every
-suite's `README.md` and the repository overview table.
+paired `.aig.xz`, `.xcnf.xz`, and `.anf.xz` four-format metadata when present),
+and optionally updates the auto-generated `## Phase-Transition & Structural Analysis`
+section in every collection's `README.md` and the repository overview table.
 
 Mathematical definitions (standard SAT / statistical-physics conventions):
   - Clause-to-variable ratio:
@@ -40,8 +40,10 @@ Mathematical definitions (standard SAT / statistical-physics conventions):
         positive literal balance (Pos%), pure-literal variable count,
         variable-degree mean / max / coefficient of variation (Deg CV = sigma/mu,
         measuring uniformity vs. scale-free hub structure), VIG connected
-        components, lossless native XOR parity equation count (from xcnf-version/),
-        and Binary AIGER 1.9 AND-gate count.
+        components, lossless native XOR parity equation count (from `xcnf-orig/`
+        or `xcnf-converted/`), Binary AIGER 1.9 AND-gate count (from `aig-orig/`
+        or `aig-converted/`), and DIMACS-ANF variable/equation counts (from
+        `anf-converted/`).
 
 Usage:
     python3 src/analyze_benchmarks.py --all
@@ -135,6 +137,8 @@ class InstanceStats:
     vig_components: int
     xor_clauses: int
     aig_ands: int | None
+    anf_vars: int | None
+    anf_eqs: int | None
 
 
 class DSU:
@@ -187,12 +191,29 @@ def read_aig_ands(aig_path: Path | None) -> int | None:
     return None
 
 
+def read_anf_header(anf_path: Path | None) -> tuple[int | None, int | None]:
+    if anf_path is None or not anf_path.exists():
+        return None, None
+    with open_text_maybe_xz(anf_path) as f:
+        for line in f:
+            s = line.strip()
+            if not s or s.startswith("c"):
+                continue
+            if s.startswith("p "):
+                parts = s.split()
+                if len(parts) >= 4 and parts[1].lower() == "anf":
+                    return int(parts[2]), int(parts[3])
+            break
+    return None, None
+
+
 def analyze_cnf(
     cnf_path: Path,
     suite: str = "",
     group: str = "",
     xcnf_path: Path | None = None,
     aig_path: Path | None = None,
+    anf_path: Path | None = None,
 ) -> InstanceStats:
     declared_vars = 0
     num_clauses = 0
@@ -258,6 +279,7 @@ def analyze_cnf(
     active_set = set(pos_deg.keys()) | set(neg_deg.keys())
     n = len(active_set)
     m = num_clauses
+    anf_nv, anf_neq = read_anf_header(anf_path)
     if n == 0 or m == 0:
         return InstanceStats(
             suite=suite, group=group, name=cnf_path.name.removesuffix(".xz").removesuffix(".cnf"),
@@ -267,7 +289,7 @@ def analyze_cnf(
             pct_unit=0.0, pct_bin=0.0, pct_tern=0.0, pct_long=0.0,
             pct_horn=0.0, pct_pos=0.0, pure_vars=0, deg_mean=0.0, deg_max=0,
             deg_cv=0.0, vig_components=0, xor_clauses=count_xors(xcnf_path),
-            aig_ands=read_aig_ands(aig_path),
+            aig_ands=read_aig_ands(aig_path), anf_vars=anf_nv, anf_eqs=anf_neq,
         )
 
     # Exact phase-transition metrics
@@ -352,26 +374,22 @@ def analyze_cnf(
         vig_components=vig_components,
         xor_clauses=count_xors(xcnf_path),
         aig_ands=read_aig_ands(aig_path),
+        anf_vars=anf_nv,
+        anf_eqs=anf_neq,
     )
 
 
-def discover_suite_cnfs(suite_dir: Path) -> list[tuple[Path, str, Path | None, Path | None]]:
+def discover_suite_cnfs(suite_dir: Path) -> list[tuple[Path, str, Path | None, Path | None, Path | None]]:
     """
-    Returns list of (cnf_path, group_name, xcnf_path, aig_path) for a suite directory.
-    Handles both AIG-native suites (`cnf-version/`) and CNF-native suites (root or subdirs).
+    Returns list of (cnf_path, group_name, xcnf_path, aig_path, anf_path) for a collection directory.
+    Supports the uniform 4-format `<fmt>-orig/` + `<fmt>-converted/` layout
+    (as well as legacy `*-version/` layouts as fallback).
     """
-    cnf_ver = suite_dir / "cnf-version"
-    xcnf_ver = suite_dir / "xcnf-version"
-    aig_ver = suite_dir / "aig-version"
-    items: list[tuple[Path, str, Path | None, Path | None]] = []
-
-    def find_xcnf(rel_no_ext: Path) -> Path | None:
-        for base_dir in (xcnf_ver, suite_dir):
-            for ext in (".xcnf", ".xcnf.xz"):
-                cand = base_dir / (str(rel_no_ext) + ext)
-                if cand.exists():
-                    return cand
-        return None
+    cnf_dirs = [d for d in (suite_dir / "cnf-orig", suite_dir / "cnf-converted", suite_dir / "cnf-version") if d.is_dir()]
+    xcnf_dirs = [d for d in (suite_dir / "xcnf-orig", suite_dir / "xcnf-converted", suite_dir / "xcnf-version") if d.is_dir()]
+    aig_dirs = [d for d in (suite_dir / "aig-orig", suite_dir / "aig-converted", suite_dir / "aig-version") if d.is_dir()]
+    anf_dirs = [d for d in (suite_dir / "anf-converted", suite_dir / "anf-orig") if d.is_dir()]
+    items: list[tuple[Path, str, Path | None, Path | None, Path | None]] = []
 
     def strip_cnf_ext(p: Path) -> Path:
         s = str(p)
@@ -381,34 +399,29 @@ def discover_suite_cnfs(suite_dir: Path) -> list[tuple[Path, str, Path | None, P
             return Path(s[:-4])
         return p
 
-    def find_aig(base_dir: Path, rel_no_ext: Path) -> Path | None:
-        for ext in (".aig.xz", ".aig"):
-            cand = base_dir / (str(rel_no_ext) + ext)
-            if cand.exists():
-                return cand
+    def find_fmt(dirs: list[Path], rel_no_ext: Path, exts: tuple[str, ...]) -> Path | None:
+        for base_dir in dirs:
+            for ext in exts:
+                cand = base_dir / (str(rel_no_ext) + ext)
+                if cand.exists():
+                    return cand
         return None
 
-    if cnf_ver.is_dir():
-        # AIG-native suite
-        for p in sorted(cnf_ver.rglob("*")):
+    if cnf_dirs:
+        cnf_base = cnf_dirs[0]
+        for p in sorted(cnf_base.rglob("*")):
             if not p.is_file() or not (p.name.endswith(".cnf") or p.name.endswith(".cnf.xz")):
                 continue
-            rel = p.relative_to(cnf_ver)
+            rel = p.relative_to(cnf_base)
             rel_base = strip_cnf_ext(rel)
             grp = rel.parent.as_posix() if rel.parent != Path(".") else suite_dir.name
-            items.append((p, grp, find_xcnf(rel_base), find_aig(suite_dir, rel_base)))
-    else:
-        # CNF-native suite
-        skip_top = {"aig-version", "xcnf-version", "outputs", "src", "results", "matrices", "maps"}
-        for p in sorted(suite_dir.rglob("*")):
-            if not p.is_file() or not (p.name.endswith(".cnf") or p.name.endswith(".cnf.xz")):
-                continue
-            rel = p.relative_to(suite_dir)
-            if rel.parts[0] in skip_top:
-                continue
-            rel_base = strip_cnf_ext(rel)
-            grp = rel.parent.as_posix() if rel.parent != Path(".") else suite_dir.name
-            items.append((p, grp, find_xcnf(rel_base), find_aig(aig_ver, rel_base)))
+            items.append((
+                p,
+                grp,
+                find_fmt(xcnf_dirs, rel_base, (".xcnf.xz", ".xcnf")),
+                find_fmt(aig_dirs, rel_base, (".aig.xz", ".aig")),
+                find_fmt(anf_dirs, rel_base, (".anf.xz", ".anf")),
+            ))
     return items
 
 
@@ -439,7 +452,7 @@ def analyze_mata_suite(suite_dir: Path) -> str:
         "",
         "*Auto-generated by [`../src/analyze_benchmarks.py`](../src/analyze_benchmarks.py). Because MATA benchmarks encode non-deterministic finite automata rather than clausal CNF formulas, clause-to-variable phase-transition ratios ($\\alpha / \\alpha_c$) do not apply; instead we report NFA state, transition, and alphabet densities (transition-to-state ratio $\\delta = |\\Delta|/|Q|$).*",
         "",
-        "| Subdirectory | NFAs | States $|Q|$ (Med / Max) | Transitions $|\\Delta|$ (Med / Max) | Symbols $|\\Sigma|$ (Med / Max) | Transition Density $|\\Delta|/|Q|$ (Med) |",
+        "| Directory | NFAs | States $|Q|$ (Med / Max) | Transitions $|\\Delta|$ (Med / Max) | Symbols $|\\Sigma|$ (Med / Max) | Transition Density $|\\Delta|/|Q|$ (Med) |",
         "|---|---:|---:|---:|---:|---:|",
     ]
     all_q, all_t, all_s, all_d = [], [], [], []
@@ -455,11 +468,12 @@ def analyze_mata_suite(suite_dir: Path) -> str:
             f"{int(statistics.median(ts)):,} / {max(ts):,} | {int(statistics.median(ss)):,} / {max(ss):,} | "
             f"{statistics.median(ds):.2f} |"
         )
-    lines.append(
-        f"| **Total** | **{len(files)}** | **{int(statistics.median(all_q)):,} / {max(all_q):,}** | "
-        f"**{int(statistics.median(all_t)):,} / {max(all_t):,}** | **{int(statistics.median(all_s)):,} / {max(all_s):,}** | "
-        f"**{statistics.median(all_d):.2f}** |"
-    )
+    if len(by_grp) > 1:
+        lines.append(
+            f"| **Total** | **{len(files)}** | **{int(statistics.median(all_q)):,} / {max(all_q):,}** | "
+            f"**{int(statistics.median(all_t)):,} / {max(all_t):,}** | **{int(statistics.median(all_s)):,} / {max(all_s):,}** | "
+            f"**{statistics.median(all_d):.2f}** |"
+        )
     lines.append(END_MARKER)
     return "\n".join(lines)
 
@@ -550,13 +564,17 @@ def render_suite_markdown(suite_name: str, stats: list[InstanceStats]) -> str:
     med_r = statistics.median(rhos)
     med_kap = statistics.median(x.kappa for x in stats)
     tot_xor = sum(x.xor_clauses for x in stats)
+    n_aig = sum(1 for x in stats if x.aig_ands is not None)
+    n_anf = sum(1 for x in stats if x.anf_eqs is not None)
+    tot_anf_eqs = sum(x.anf_eqs or 0 for x in stats)
     lines.append("")
     med_r_tex = fmt_rho(med_r).replace("x", r"\times")
     lines.append(
-        f"**Suite Phase-Transition Summary ({len(stats)} instances):** "
+        f"**Collection Phase-Transition Summary ({len(stats)} instances, 4 formats: "
+        f"{len(stats)} CNF / {n_aig} AIG / {len(stats)} XCNF / {n_anf} ANF):** "
         f"median $\\rho_{{\\mathrm{{crit}}}} = {med_r_tex}$ (range `{fmt_rho(min(rhos))}–{fmt_rho(max(rhos))}`), "
         f"median $\\kappa = {med_kap:.2f}$, regime split **{n_under} Under / {n_near} Near-critical / {n_over} Over**, "
-        f"total extracted native XOR parity clauses = **{tot_xor:,}**."
+        f"total extracted native XOR parity clauses = **{tot_xor:,}**, total ANF equations = **{tot_anf_eqs:,}**."
     )
     lines.append(END_MARKER)
     return "\n".join(lines)
@@ -582,17 +600,23 @@ def upsert_section(readme_path: Path, block: str) -> bool:
 
 
 def render_root_overview(suite_results: dict[str, list[InstanceStats]]) -> str:
+    total_inst = sum(len(gs) for gs in suite_results.values())
+    n_colls = sum(1 for gs in suite_results.values() if gs)
+    n_anf = sum(1 for gs in suite_results.values() for x in gs if x.anf_eqs is not None)
+    n_aig = sum(1 for gs in suite_results.values() for x in gs if x.aig_ands is not None)
     lines = [
         BEGIN_MARKER,
-        "## Cross-Suite Phase-Transition & Structural Profile",
+        "## Cross-Collection Phase-Transition & Structural Profile",
         "",
-        "*Auto-generated across all 771 committed SAT instances by [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py). "
-        "Each row summarizes where the suite sits relative to the clause-length-weighted critical threshold "
+        f"*Auto-generated across all **{total_inst:,} committed SAT instances** spanning **{n_colls} SAT collections** "
+        f"(all four formats: {total_inst:,} `.cnf.xz`, {n_aig:,} `.aig.xz`, {total_inst:,} `.xcnf.xz`, {n_anf:,} `.anf.xz` = "
+        f"**{total_inst + n_aig + total_inst + n_anf:,}** compressed files) by [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py). "
+        "Each row summarizes where the collection sits relative to the clause-length-weighted critical threshold "
         "$\\rho_{\\mathrm{crit}} = \\frac{1}{n}\\sum_k m_k / \\alpha_c(k)$ (`Under` $<0.90\\times$, `Near-crit` $0.90\\text{--}1.10\\times$, `Over` $>1.10\\times$), "
-        "Gent–Walsh constrainedness $\\kappa$, clause geometry ($\\bar{k}$, `%Bin`, `%Horn`), variable-degree skew (`Deg CV`), and extracted XOR parity blocks.*",
+        "Gent–Walsh constrainedness $\\kappa$, clause geometry ($\\bar{k}$, `%Bin`, `%Horn`), variable-degree skew (`Deg CV`), extracted XOR parity blocks, and total ANF equations.*",
         "",
-        "| Suite | CNFs | Med $\\alpha$ | Med $\\alpha_c^{\\mathrm{eff}}$ | Med $\\rho_{\\mathrm{crit}}$ [Min–Max] | Regime Split (U/N/O) | Med $\\kappa$ | Med $\\bar{k}$ | Bin% | Horn% | Deg CV | XORs |",
-        "|---|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|",
+        "| Collection | Inst | Med $\\alpha$ | Med $\\alpha_c^{\\mathrm{eff}}$ | Med $\\rho_{\\mathrm{crit}}$ [Min–Max] | Regime Split (U/N/O) | Med $\\kappa$ | Med $\\bar{k}$ | Bin% | Horn% | Deg CV | XORs | ANF Eqs |",
+        "|---|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for suite in sorted(suite_results):
         gs = suite_results[suite]
@@ -611,19 +635,20 @@ def render_root_overview(suite_results: dict[str, list[InstanceStats]]) -> str:
         med_horn = statistics.median(x.pct_horn for x in gs)
         med_cv = statistics.median(x.deg_cv for x in gs)
         tot_xor = sum(x.xor_clauses for x in gs)
+        tot_anf = sum(x.anf_eqs or 0 for x in gs)
         r_span = f"{fmt_rho(min(rhos))}–{fmt_rho(max(rhos))}" if len(gs) > 1 else fmt_rho(med_r)
         lines.append(
             f"| [`{suite}/`]({suite}/README.md) | {len(gs)} | {fmt_alpha(med_a)} | {fmt_alpha(med_ac)} | "
             f"**{fmt_rho(med_r)}** [{r_span}] | {n_u} / {n_n} / {n_o} | {med_kap:.2f} | {med_kavg:.2f} | "
-            f"{med_bin:.0f}% | {med_horn:.0f}% | {med_cv:.2f} | {tot_xor:,} |"
+            f"{med_bin:.0f}% | {med_horn:.0f}% | {med_cv:.2f} | {tot_xor:,} | {tot_anf:,} |"
         )
     lines.append(END_MARKER)
     return "\n".join(lines)
 
 
-def _analyze_job(job: tuple[str, Path, str, Path | None, Path | None]) -> InstanceStats:
-    sname, cnf, grp, xcnf, aig = job
-    return analyze_cnf(cnf, suite=sname, group=grp, xcnf_path=xcnf, aig_path=aig)
+def _analyze_job(job: tuple[str, Path, str, Path | None, Path | None, Path | None]) -> InstanceStats:
+    sname, cnf, grp, xcnf, aig, anf = job
+    return analyze_cnf(cnf, suite=sname, group=grp, xcnf_path=xcnf, aig_path=aig, anf_path=anf)
 
 
 def main() -> None:
@@ -652,14 +677,14 @@ def main() -> None:
         ap.print_help()
         return
 
-    all_jobs: list[tuple[str, Path, str, Path | None, Path | None]] = []
+    all_jobs: list[tuple[str, Path, str, Path | None, Path | None, Path | None]] = []
     mata_suites: list[Path] = []
     uri_only_suites: list[Path] = []
     for sd in suites:
         items = discover_suite_cnfs(sd)
         if items:
-            for cnf, grp, xcnf, aig in items:
-                all_jobs.append((sd.name, cnf, grp, xcnf, aig))
+            for cnf, grp, xcnf, aig, anf in items:
+                all_jobs.append((sd.name, cnf, grp, xcnf, aig, anf))
         elif list(sd.rglob("*.mata.xz")):
             mata_suites.append(sd)
         else:
@@ -672,7 +697,12 @@ def main() -> None:
     for st in results:
         by_suite[st.suite].append(st)
 
-    print(f"Analyzed {len(results)} SAT instances across {len(by_suite)} CNF/AIG suites (+ {len(mata_suites)} NFA, {len(uri_only_suites)} URI-only)")
+    n_aig_all = sum(1 for x in results if x.aig_ands is not None)
+    n_anf_all = sum(1 for x in results if x.anf_eqs is not None)
+    print(
+        f"Analyzed {len(results)} SAT instances ({len(results)} CNF / {n_aig_all} AIG / {len(results)} XCNF / {n_anf_all} ANF) "
+        f"across {len(by_suite)} SAT collections (+ {len(mata_suites)} NFA, {len(uri_only_suites)} URI-only)"
+    )
     for sname in sorted(by_suite):
         gs = by_suite[sname]
         rhos = [x.rho_crit for x in gs]
@@ -700,15 +730,25 @@ def main() -> None:
         for sd in uri_only_suites:
             uri_files = sorted(sd.glob("*.uri"))
             total_uris = sum(len([l for l in u.read_text().splitlines() if l.strip()]) for u in uri_files)
+            if sd.name == "satlib-archive-uris":
+                desc = (
+                    f"This directory stores **{total_uris:,} official UBC SATLIB `.tar.gz` archive URIs** "
+                    f"across {len(uri_files)} manifest(s) rather than duplicating multi-gigabyte synthetic archives in Git; "
+                    f"run `python3 src/fetch_satlib.py --all-archives <out_dir>` to download upstream tarballs, or inspect the "
+                    f"22 committed standalone SATLIB collections (`../satlib-*/`) for full four-format structural and phase-transition metrics."
+                )
+            else:
+                desc = (
+                    f"This directory stores **{total_uris:,} immutable GBD URI entries** across {len(uri_files)} manifest(s) "
+                    f"rather than raw multi-gigabyte CNFs; run `python3 ../src/analyze_benchmarks.py --file <downloaded.cnf.xz>` "
+                    f"on any downloaded instance, or see [`../sat-competition-2023-2024-selected/README.md`](../sat-competition-2023-2024-selected/README.md) "
+                    f"for structural and phase-transition metrics on 14 curated SAT Competition Main Track CNFs."
+                )
             md = "\n".join([
                 BEGIN_MARKER,
                 "## Phase-Transition & Structural Analysis",
                 "",
-                f"*Auto-generated by [`../src/analyze_benchmarks.py`](../src/analyze_benchmarks.py). "
-                f"This directory stores **{total_uris:,} immutable GBD URI entries** across {len(uri_files)} manifest(s) "
-                f"rather than raw multi-gigabyte CNFs; run `python3 ../src/analyze_benchmarks.py --file <downloaded.cnf.xz>` "
-                f"on any downloaded instance, or see [`../sat-competition-2023-2024-selected/README.md`](../sat-competition-2023-2024-selected/README.md) "
-                f"for structural and phase-transition metrics on 14 curated SAT Competition Main Track CNFs.*",
+                f"*Auto-generated by [`../src/analyze_benchmarks.py`](../src/analyze_benchmarks.py). {desc}*",
                 END_MARKER,
             ])
             if upsert_section(sd / "README.md", md):

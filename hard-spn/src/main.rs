@@ -60,8 +60,12 @@ fn build_spn(n_in: usize, rank_eqs: usize, n_nl: usize, flip_last_unsat: bool, s
 
 fn main() {
     let suite = Path::new("..");
-    let cnf_dir = suite.join("cnf-version");
-    fs::create_dir_all(&cnf_dir).expect("create cnf-version");
+    let aig_dir = suite.join("aig-orig");
+    let cnf_dir = suite.join("cnf-converted");
+    let xcnf_dir = suite.join("xcnf-converted");
+    fs::create_dir_all(&aig_dir).expect("create aig-orig");
+    fs::create_dir_all(&cnf_dir).expect("create cnf-converted");
+    fs::create_dir_all(&xcnf_dir).expect("create xcnf-converted");
     let items = vec![
         ("spn_unsat_n48_d24", "UNSAT", build_spn(48, 24, 38, true, 0x7777_8888_9999_AAAA)),
         ("spn_sat_n64_d32", "SAT", build_spn(64, 32, 55, false, 0x1357_2468_ABCD_0064)),
@@ -69,9 +73,9 @@ fn main() {
         ("spn_sat_n128_d64", "SAT", build_spn(128, 64, 150, false, 0x1357_2468_ABCD_EF01 ^ 128 ^ (150 << 8))),
     ];
     for (name, ans, aig) in items {
-        aig.write_aiger_binary(&suite.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected={ans}\norigin=AIG")).unwrap();
+        aig.write_aiger_binary(&aig_dir.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected={ans}\norigin=AIG")).unwrap();
         aig.write_dimacs(&cnf_dir.join(format!("{name}.cnf")), false).unwrap();
-        aig.write_dimacs(&cnf_dir.join(format!("{name}.xcnf")), true).unwrap();
-        println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}}");
+        aig.write_dimacs(&xcnf_dir.join(format!("{name}.xcnf")), true).unwrap();
+        println!("Generated aig-orig/{name}.aig + cnf-converted/{name}.cnf + xcnf-converted/{name}.xcnf");
     }
 }

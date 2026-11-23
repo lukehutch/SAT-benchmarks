@@ -7,8 +7,12 @@ use std::path::Path;
 
 fn main() {
     let suite = Path::new("..");
-    let cnf_dir = suite.join("cnf-version");
-    fs::create_dir_all(&cnf_dir).expect("create cnf-version");
+    let aig_dir = suite.join("aig-orig");
+    let cnf_dir = suite.join("cnf-converted");
+    let xcnf_dir = suite.join("xcnf-converted");
+    fs::create_dir_all(&aig_dir).expect("create aig-orig");
+    fs::create_dir_all(&cnf_dir).expect("create cnf-converted");
+    fs::create_dir_all(&xcnf_dir).expect("create xcnf-converted");
     let blk_abc = pad_single_block(b"abc");
     let d16 = sha256_compress_rounds(&blk_abc, 16, false);
     let free32: Vec<usize> = (0..32).collect();
@@ -27,9 +31,9 @@ fn main() {
         ("sha256_64r_k20_sat", "SAT", Sha256PreimageInstance::build(64, true, blk_abc, &free20, d64).aig),
     ];
     for (name, ans, aig) in items {
-        aig.write_aiger_binary(&suite.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected={ans}\norigin=AIG")).unwrap();
+        aig.write_aiger_binary(&aig_dir.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected={ans}\norigin=AIG")).unwrap();
         aig.write_dimacs(&cnf_dir.join(format!("{name}.cnf")), false).unwrap();
-        aig.write_dimacs(&cnf_dir.join(format!("{name}.xcnf")), true).unwrap();
-        println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}}");
+        aig.write_dimacs(&xcnf_dir.join(format!("{name}.xcnf")), true).unwrap();
+        println!("Generated aig-orig/{name}.aig + cnf-converted/{name}.cnf + xcnf-converted/{name}.xcnf");
     }
 }

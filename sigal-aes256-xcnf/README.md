@@ -25,14 +25,14 @@ $$\mathrm{AES\text{-}256}(K, P_1) = C_1 \quad \land \quad \mathrm{AES\text{-}256
   - **`w5.solved.xcnf.xz`**: Hamming-weight-5 key ($\binom{256}{5} \approx 8.8 \times 10^9 \approx 2^{33}$ candidates — reachable via specialized low-weight search if the weight bound is known, though **no weight constraint is encoded in the XCNF**).
   - **`w126.unsolved.xcnf.xz`**: Balanced weight-126 key ($\binom{256}{126} \approx 2^{252}$ candidates — **full-strength 14-round AES-256** key recovery, matching the best known $\approx 2^{254.4}$ classical cryptanalytic barrier).
 
-## Corpus & Data Sizes (Three Formats)
+## Corpus & Data Sizes (Four Formats)
 
-Native unmodified `.xcnf.xz` files (xz-compressed) live at the suite root; exact Tseitin DIMACS `.cnf.xz` conversions (`cnf-version/`) and [Berkeley ABC](https://github.com/berkeley-abc/abc)-verified Binary AIGER 1.9 `.aig.xz` miters (`aig-version/`, `0` errors via `read_aiger`) are generated reproducibly by [`src/xcnf2cnf_aig.py`](src/xcnf2cnf_aig.py):
+Native unmodified `.xcnf.xz` files live in `xcnf-orig/` (`978.4 KB`); exact Tseitin DIMACS `.cnf.xz` conversions (`cnf-converted/`, `3.83 MB`) and [Berkeley ABC](https://github.com/berkeley-abc/abc)-verified Binary AIGER 1.9 `.aig.xz` miters (`aig-converted/`, `914.6 KB`, `0` errors via `read_aiger`) are generated reproducibly by [`src/xcnf2cnf_aig.py`](src/xcnf2cnf_aig.py), and lossless degree-$\le 2$ **DIMACS-ANF `.anf.xz`** conversions (`anf-converted/`, `1.26 MB`, `59,324` vars / `165,824` eqs each) are generated via [`../src/to_anf.py`](../src/to_anf.py):
 
-| Instance | Status | XCNF Vars / CNF + XOR Clauses | `.xcnf.xz` Size | Tseitin CNF Vars / Clauses | `.cnf.xz` Size | AIG PIs / AND Gates | `.aig.xz` Size |
+| Instance | Status | `.xcnf.xz` (`xcnf-orig/`) | Tseitin CNF Vars / Clauses | `.cnf.xz` (`cnf-converted/`) | AIG PIs / AND Gates | `.aig.xz` (`aig-converted/`) | `.anf.xz` (`anf-converted/`) |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `w5.solved` | SAT *(known unique)* | 59,324 / 123,012 + 42,812 | 489.2 KB | 119,644 / 811,268 | 1.93 MB | 256 / 460,695 | 457.1 KB |
-| `w126.unsolved` | Open *(expected unique SAT)* | 59,324 / 123,012 + 42,812 | 489.2 KB | 119,644 / 811,268 | 1.89 MB | 256 / 460,647 | 457.5 KB |
+| `w5.solved` | SAT *(known unique)* | 489.2 KB | 119,644 / 811,268 | 1.93 MB | 256 / 460,695 | 457.1 KB | 643.4 KB |
+| `w126.unsolved` | Open *(expected unique SAT)* | 489.2 KB | 119,644 / 811,268 | 1.89 MB | 256 / 460,647 | 457.5 KB | 643.4 KB |
 
 ## Comparative 1-Core Benchmark Results ($T_{\max} = 30\;\text{s}$)
 
@@ -43,12 +43,12 @@ Native unmodified `.xcnf.xz` files (xz-compressed) live at the suite root; exact
 |---|:---:|---:|---:|:---:|---:|---:|
 | **Frobenius 1C (`.aig`)** | T/O | **1,606,528 (53,369/s)** | 144.1M (4.79M/s) | T/O | **1,498,176 (49,508/s)** | 197.4M (6.52M/s) |
 | **Frobenius 1C (`.xcnf`)** | T/O | **1,221,568 (40,531/s)** | **245.9M (8.16M/s)** | T/O | **1,172,096 (38,917/s)** | **208.7M (6.93M/s)** |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`.cnf`) | T/O | 376,058 (12,525/s) | 115.7M (3.85M/s) | T/O | 379,192 (12,606/s) | 117.0M (3.89M/s) |
+| **Frobenius 1C (`.cnf`)** | T/O | 7,552 (250/s) | 106.5M (3.52M/s) | T/O | 7,744 (252/s) | 111.9M (3.64M/s) |
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`.cnf`) | T/O | 193,256 (6,385/s) | 39.6M (1.31M/s) | T/O | 189,394 (6,300/s) | 82.8M (2.75M/s) |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.cnf`) | T/O | 48,128 (1,609/s) | — | T/O | 55,809 (1,867/s) | — |
-| Frobenius 1C (`.cnf`) | T/O | 7,552 (250/s) | 106.5M (3.52M/s) | T/O | 7,744 (252/s) | 111.9M (3.64M/s) |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) | T/O | 2,561 (74.8/s)\* | — | T/O | —\* | — |
 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) (`.cnf`) | T/O | — | — | T/O | — | — |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`.cnf`) | T/O | 376,058 (12,525/s) | 115.7M (3.85M/s) | T/O | 379,192 (12,606/s) | 117.0M (3.89M/s) |
 
 *\*On native `.xcnf`, CryptoMiniSat 5.18.0 spends $>16\text{--}50\;\text{s}$ initializing dense $\mathbb{F}_2$ Gaussian elimination over the $42{,}524 \times 58{,}524$ connected XOR system (`w126.unsolved.xcnf` did not exit Gauss initialization before the 50 s hard watchdog).*
 
@@ -62,5 +62,5 @@ Native unmodified `.xcnf.xz` files (xz-compressed) live at the suite root; exact
 | `w126.unsolved` | 119,644 | 811,268 | 6.78 | 3.85 | **1.76x** (Over) | 1.08 | 3.53 (4) | 15% | 54% | 48% | 1.14 | 42,812 |
 | `w5.solved` | 119,644 | 811,268 | 6.78 | 3.85 | **1.76x** (Over) | 1.08 | 3.53 (4) | 15% | 54% | 48% | 1.14 | 42,812 |
 
-**Suite Phase-Transition Summary (2 instances):** median $\rho_{\mathrm{crit}} = 1.76\times$ (range `1.76x–1.76x`), median $\kappa = 1.08$, regime split **0 Under / 0 Near-critical / 2 Over**, total extracted native XOR parity clauses = **85,624**.
+**Collection Phase-Transition Summary (2 instances, 4 formats: 2 CNF / 2 AIG / 2 XCNF / 2 ANF):** median $\rho_{\mathrm{crit}} = 1.76\times$ (range `1.76x–1.76x`), median $\kappa = 1.08$, regime split **0 Under / 0 Near-critical / 2 Over**, total extracted native XOR parity clauses = **85,624**, total ANF equations = **331,648**.
 <!-- END_STRUCTURAL_ANALYSIS -->

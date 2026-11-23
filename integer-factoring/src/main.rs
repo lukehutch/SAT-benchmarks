@@ -38,8 +38,12 @@ fn build_masked_mult_32b_xor16() -> Aig {
 
 fn main() {
     let suite = Path::new("..");
-    let cnf_dir = suite.join("cnf-version");
-    fs::create_dir_all(&cnf_dir).expect("create cnf-version");
+    let aig_dir = suite.join("aig-orig");
+    let cnf_dir = suite.join("cnf-converted");
+    let xcnf_dir = suite.join("xcnf-converted");
+    fs::create_dir_all(&aig_dir).expect("create aig-orig");
+    fs::create_dir_all(&cnf_dir).expect("create cnf-converted");
+    fs::create_dir_all(&xcnf_dir).expect("create xcnf-converted");
     let items = vec![
         ("factor_prime_28b_unsat", "UNSAT", FactoringInstance::build(268_435_399u128, MultTopology::Wallace, true).aig),
         ("factor_wallace_32b", "SAT", FactoringInstance::build(65519u128 * 65521u128, MultTopology::Wallace, true).aig),
@@ -49,9 +53,9 @@ fn main() {
         ("masked_mult_32b_xor16", "SAT", build_masked_mult_32b_xor16()),
     ];
     for (name, ans, aig) in items {
-        aig.write_aiger_binary(&suite.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected={ans}\norigin=AIG")).unwrap();
+        aig.write_aiger_binary(&aig_dir.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected={ans}\norigin=AIG")).unwrap();
         aig.write_dimacs(&cnf_dir.join(format!("{name}.cnf")), false).unwrap();
-        aig.write_dimacs(&cnf_dir.join(format!("{name}.xcnf")), true).unwrap();
-        println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}}");
+        aig.write_dimacs(&xcnf_dir.join(format!("{name}.xcnf")), true).unwrap();
+        println!("Generated aig-orig/{name}.aig + cnf-converted/{name}.cnf + xcnf-converted/{name}.xcnf");
     }
 }

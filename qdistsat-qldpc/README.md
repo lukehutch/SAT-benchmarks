@@ -21,21 +21,26 @@ Given a CSS quantum LDPC code defined by binary parity-check matrices $H_X, H_Z$
 
 The formula is **SAT** iff $d_Z \le w$ and **UNSAT** iff $d_Z > w$. These coupled sparse $\mathbb{F}_2$-linear + low-Hamming-weight cardinality instances are notorious stress tests for both CDCL and XOR-aware SAT solvers.
 
-## Corpus & Data Sizes
+## Corpus & Data Sizes (Four Formats)
 
-Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes), **10 paired boundary decision `.cnf.xz` files** ($w = d-1$ UNSAT and $w = d$ SAT), **10 native-XOR `.xcnf.xz` files** in `xcnf-version/`, **10 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), and the standalone exporter `src/export_qdist_cnf.py`:
+Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes) plus all 10 paired boundary decision instances ($w = d-1$ UNSAT and $w = d$ SAT) in all four compressed formats:
+- **`cnf-orig/`:** 10 `.cnf.xz` files (`259.2 KB`).
+- **`aig-converted/`:** 10 exact Binary AIGER 1.9 `.aig.xz` conversions (`344.4 KB`, all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
+- **`xcnf-converted/`:** 10 native-XOR [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` files (`174.4 KB`).
+- **`anf-converted/`:** 10 lossless linear-size DIMACS-ANF `.anf.xz` conversions (`402.1 KB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **`src/`:** Standalone exporter `export_qdist_cnf.py` plus `cnf2aig.py`.
 
-| Code Stem | Parameters $[[n,k,d]]$ | Weight $w$ | Status | Vars | Clauses | AIG AND Gates |
-|---|---|---:|:---:|---:|---:|---:|
-| `BB_30_4_6` | `[[30, 4, 6]]` | 5 / 6 | UNSAT / SAT | 254 / 283 | 691 / 748 | 1,855 / 1,996 |
-| `BB_72_12_6` | `[[72, 12, 6]]` | 5 / 6 | UNSAT / SAT | 623 / 694 | 1,705 / 1,846 | 4,623 / 4,974 |
-| `BB_144_12_12` ("gross") | `[[144, 12, 12]]` | 11 / 12 | UNSAT / SAT | 2,077 / 2,220 | 5,007 / 5,292 | 13,161 / 13,872 |
-| `BB_360_12_24` | `[[360, 12, 24]]` | 23 / 24 | UNSAT / SAT | 9,731 / 10,090 | 22,027 / 22,744 | 57,093 / 58,884 |
-| `BB_756_16_34` | `[[756, 16, 34]]` | 33 / 34 | UNSAT / SAT | 29,581 / 30,336 | 67,705 / 69,214 | 176,671 / 180,442 |
+| Code Stem | Parameters $[[n,k,d]]$ | Weight $w$ | Status | Vars | Clauses | AIG AND Gates | `.anf.xz` (UNSAT / SAT) |
+|---|---|---:|:---:|---:|---:|---:|---:|
+| `BB_30_4_6` | `[[30, 4, 6]]` | 5 / 6 | UNSAT / SAT | 254 / 283 | 691 / 748 | 1,855 / 1,996 | 1.5 KB / 1.8 KB |
+| `BB_72_12_6` | `[[72, 12, 6]]` | 5 / 6 | UNSAT / SAT | 623 / 694 | 1,705 / 1,846 | 4,623 / 4,974 | 3.4 KB / 3.9 KB |
+| `BB_144_12_12` ("gross") | `[[144, 12, 12]]` | 11 / 12 | UNSAT / SAT | 2,077 / 2,220 | 5,007 / 5,292 | 13,161 / 13,872 | 11.0 KB / 11.9 KB |
+| `BB_360_12_24` | `[[360, 12, 24]]` | 23 / 24 | UNSAT / SAT | 9,731 / 10,090 | 22,027 / 22,744 | 57,093 / 58,884 | 49.7 KB / 52.7 KB |
+| `BB_756_16_34` | `[[756, 16, 34]]` | 33 / 34 | UNSAT / SAT | 29,581 / 30,336 | 67,705 / 69,214 | 176,671 / 180,442 | 133.2 KB / 132.9 KB |
 
 ## Comparative 1-Core Benchmark Results (`BB_30`, `BB_72`, `BB_144`, $T_{\max} = 10\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, identical flat `.cnf` input for CNF solvers plus `xcnf-version/*.xcnf` for [CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF, 0 disagreements).
+- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, identical flat `.cnf` input for CNF solvers plus `xcnf-converted/*.xcnf` for [CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF, 0 disagreements).
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CMS](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CMS](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -65,5 +70,5 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 | `BB_756_16_34_w33_unsat` | 29,581 | 67,705 | 2.29 | 1.88 | **1.22x** (Over) | 0.64 | 2.61 (16) | 39% | 81% | 43% | 1.56 | 394 |
 | `BB_756_16_34_w34_sat` | 30,336 | 69,214 | 2.28 | 1.87 | **1.22x** (Over) | 0.64 | 2.61 (16) | 39% | 81% | 43% | 1.57 | 394 |
 
-**Suite Phase-Transition Summary (10 instances):** median $\rho_{\mathrm{crit}} = 1.24\times$ (range `1.22x–1.25x`), median $\kappa = 0.66$, regime split **0 Under / 0 Near-critical / 10 Over**, total extracted native XOR parity clauses = **1,474**.
+**Collection Phase-Transition Summary (10 instances, 4 formats: 10 CNF / 10 AIG / 10 XCNF / 10 ANF):** median $\rho_{\mathrm{crit}} = 1.24\times$ (range `1.22x–1.25x`), median $\kappa = 0.66$, regime split **0 Under / 0 Near-critical / 10 Over**, total extracted native XOR parity clauses = **1,474**, total ANF equations = **147,815**.
 <!-- END_STRUCTURAL_ANALYSIS -->

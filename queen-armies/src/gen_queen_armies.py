@@ -204,12 +204,13 @@ def main() -> None:
         from cnf2xcnf import cnf_to_xcnf
 
         suite_dir = args.generate_suite
+        (suite_dir / "cnf-orig").mkdir(parents=True, exist_ok=True)
         for fname, A, rows, cols, k, status in CURATED_SUITE:
-            cnf_path = suite_dir / f"{fname}.xz"
+            cnf_path = suite_dir / "cnf-orig" / f"{fname}.xz"
             nv, nc = write_cnf(cnf_path, rows, cols, k, A, status)
             stem = fname.removesuffix(".cnf")
-            aig_path = suite_dir / "aig-version" / f"{stem}.aig.xz"
-            xcnf_path = suite_dir / "xcnf-version" / f"{stem}.xcnf.xz"
+            aig_path = suite_dir / "aig-converted" / f"{stem}.aig.xz"
+            xcnf_path = suite_dir / "xcnf-converted" / f"{stem}.xcnf.xz"
             _, _, na = cnf_to_aiger(
                 cnf_path,
                 aig_path,

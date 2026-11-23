@@ -15,9 +15,11 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 ## Directory Layout & Regeneration
 
-- `*.cnf.xz` — Original native **DIMACS CNF** encodings (compact binary-order MTZ).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (all 22/22 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
+- `cnf-orig/` — Original native **DIMACS CNF** encodings (22 `.cnf.xz` files, `478.7 KB`, compact binary-order MTZ).
+- `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (22 files, `699.0 KB`, all 22/22 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `xcnf-converted/` — Lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (22 files, `481.0 KB`).
+- `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (22 files, `1.70 MB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`) plus `cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
 
@@ -106,7 +108,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; **10/10 
 | `hamd_snark_j7_plus_e_sat` | 541 | 1,402 | 2.59 | 2.61 | **0.99x** (Near-crit) | 0.54 | 3.18 (4) | 28% | 73% | 41% | 0.63 | 0 |
 | `hamd_snark_j7_unsat` | 531 | 1,361 | 2.56 | 2.63 | **0.98x** (Near-crit) | 0.53 | 3.19 (4) | 27% | 73% | 42% | 0.62 | 0 |
 
-**Suite Phase-Transition Summary (22 instances):** median $\rho_{\mathrm{crit}} = 0.99\times$ (range `0.75x–1.31x`), median $\kappa = 0.54$, regime split **6 Under / 7 Near-critical / 9 Over**, total extracted native XOR parity clauses = **0**.
+**Collection Phase-Transition Summary (22 instances, 4 formats: 22 CNF / 22 AIG / 22 XCNF / 22 ANF):** median $\rho_{\mathrm{crit}} = 0.99\times$ (range `0.75x–1.31x`), median $\kappa = 0.54$, regime split **6 Under / 7 Near-critical / 9 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **298,001**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References
