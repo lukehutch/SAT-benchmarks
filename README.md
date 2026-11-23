@@ -22,7 +22,7 @@ Every benchmark suite lives in its own top-level directory containing:
 | [`integer-factoring/`](integer-factoring/README.md) | AIG (`.aig`) | **Original** *(classic problem)* | 6 | 5 / 1 | Wallace & Karatsuba multiplier inversion (28–40b) + XOR-masked mult | Rust (`src/`) |
 | [`sha256-preimage/`](sha256-preimage/README.md) | AIG (`.aig`) | **Original** *(FIPS 180-4)* | 5 | 4 / 1 | Exact FIPS 180-4 SHA-256 CSA preimages ($R = 16, 17, 64$; $k = 16, 20, 32$) | Rust (`src/`) |
 | [`cec-arithmetic-miters/`](cec-arithmetic-miters/README.md) | AIG (`.aig`) | **Original** *(classic EDA)* | 5 | 0 / 5 | EDA CEC miters: Ripple-Carry vs. Kogge–Stone; Array vs. Wallace vs. Karatsuba | Rust (`src/`) |
-| [`zed-adversarial-hub-php/`](zed-adversarial-hub-php/README.md) | AIG (`.aig`) | **Sourced** ([`zed-impl`](https://github.com/lukehutch/zed-impl), MIT) + PHP | 18 | 3 / 15 | Bit-vector Hub disjunctions ($n=20\text{--}80$) & Pigeonhole ($\mathrm{PHP}^9_8\text{--}\mathrm{PHP}^{50}_{49}$) | Rust (`src/`) |
+| [`zed-adversarial-hub-php/`](zed-adversarial-hub-php/README.md) | AIG (`.aig`) | **Original** | 18 | 3 / 15 | Bit-vector Hub disjunctions ($n=20\text{--}80$) & Pigeonhole ($\mathrm{PHP}^9_8\text{--}\mathrm{PHP}^{50}_{49}$) | Rust (`src/`) |
 | [`hamd-hamiltonian-cycle/`](hamd-hamiltonian-cycle/README.md) | CNF (`.cnf`) | **Original** *(classic graphs)* | 22 | 12 / 10 | 6 provably SAT/UNSAT graph families ($GP$, Snarks, Meredith, Chvátal, Broken Crown, Planted) | Rust (`src/`) |
 | [`random-3sat-phase-transition/`](random-3sat-phase-transition/README.md) | CNF (`.cnf`) | **Original** *(classic ensemble)* | 2 | 1 / 1 | Uniform random 3-SAT at critical phase transition $m/n = 4.26$ ($n=200$) | Python (`src/`) |
 | [`sat-competition-2023-2024-selected/`](sat-competition-2023-2024-selected/README.md) | CNF (`.cnf`) | **Sourced** ([SC 23/24](https://satcompetition.github.io/) / [GBD](https://benchmark-database.de/), CC-BY-4.0) | 14 | 5 / 9 | 14 curated SC 2023/2024 Main Track CNFs across 11 domains (with GBD hashes) | Python + manifest (`src/`) |
@@ -112,7 +112,6 @@ Every benchmark suite lives in its own top-level directory containing:
 
 - Repository-authored original suites and generator/conversion scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
 - Sourced suites retain their original upstream licenses, notices, and provenance links inside their respective directories:
-  - [`zed-adversarial-hub-php/LICENSE`](zed-adversarial-hub-php/LICENSE) — MIT License (`zed-impl`).
   - [`sat-competition-2023-2024-selected/LICENSE`](sat-competition-2023-2024-selected/LICENSE) & [`sat-competition-2024-2026-main-track/LICENSE`](sat-competition-2024-2026-main-track/LICENSE) — Creative Commons Attribution 4.0 International (**CC-BY-4.0**) for SAT Competition / GBD archives + MIT for scripts.
   - [`sat-shortcut-challenge/LICENSE`](sat-shortcut-challenge/LICENSE) — **Apache License 2.0** (`keithadler/sat-shortcut-challenge`).
   - [`dense-solver-benchmarks/LICENSE`](dense-solver-benchmarks/LICENSE) & [`SOURCES.md`](dense-solver-benchmarks/SOURCES.md) — **MIT License** (`libdense/dense-solver`) + preserved SATLIB / SC 2025 attributions.
