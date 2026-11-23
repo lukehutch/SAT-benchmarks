@@ -10,7 +10,8 @@ Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an unde
 ## Directory Layout & Regeneration
 
 - `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with Berkeley ABC).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** and native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
+- `xcnf-version/` — Native-XOR **CryptoMiniSat `.xcnf`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes

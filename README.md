@@ -1,11 +1,14 @@
 # SAT Benchmarks
 
-A curated, dual-format (**Binary AIGER 1.9 `.aig`** and **DIMACS `.cnf` / `.xcnf`**) collection of **22 benchmark suites** spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, matrix multiplication, graph theory, symmetry breaking, exact circuit synthesis, hardware verification, finite-automata complementation, and SAT Competition corpora.
+A curated, **three-format** (**Binary AIGER 1.9 `.aig`**, **DIMACS `.cnf`**, and **CryptoMiniSat `.xcnf`**) collection of **22 benchmark suites** spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, matrix multiplication, graph theory, symmetry breaking, exact circuit synthesis, hardware verification, finite-automata complementation, and SAT Competition corpora.
 
 Every benchmark suite lives in its own top-level directory containing:
 - Native-format benchmark instances at the suite root (`.aig` for circuit-native suites; `.cnf` / `.cnf.xz` for clausal suites; `.mata.xz` for the MATA automata suite).
-- Exact dual-format conversions in `cnf-version/` (for originally-AIG suites) or `aig-version/` (for originally-CNF suites). Every single `.aig` file across all suites (**357 / 357**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with Berkeley **ABC** (`read_aiger`, `0` errors).
-- Standalone generator, exporter, fetcher, or converter source code in `src/`.
+- Exact conversions for the two remaining formats in subdirectories:
+  - Originally-`.aig` suites provide `cnf-version/` (`.cnf`) and `xcnf-version/` (`.xcnf`).
+  - Originally-`.cnf` suites provide `aig-version/` (`.aig`) and `xcnf-version/` (`.xcnf` / `.xcnf.xz`, with all complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
+  - Every single `.aig` file across all suites (**369 / 369**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with Berkeley **ABC** (`read_aiger`, `0` errors).
+- Standalone generator, exporter, fetcher, or converter source code in `src/` (including `cnf2aig.py` and `cnf2xcnf.py`).
 - A detailed `README.md` documenting provenance, contributor credits, upstream links and licenses, mathematical/circuit parameters, exact data sizes, comparative 1-core solver timings (Frobenius 1C, `dense-solver 0.0.4`, Kissat 4.0.4, CaDiCaL 3.1.0, CryptoMiniSat 5.18.0 CNF & XCNF), proof verification status (`cake_lpr` / `lrat-check`), and literature citations.
 
 ## Benchmark Suites (22 Suites)
@@ -35,7 +38,7 @@ Every benchmark suite lives in its own top-level directory containing:
 | [`pretolani-pret/`](pretolani-pret/README.md) | CNF (`.cnf`) | **Sourced** — Daniele Pretolani ([SATLIB PRET](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html), via `@MMarchidann`) | 8 | 0 / 8 | Parity-charged graph 2-coloring UNSAT formulas ($n=60, 150$; 25%–75% Horn) | Python (`src/`) |
 | [`mod-circuit-sat/`](mod-circuit-sat/README.md) | CNF (`.cnf`) | **Sourced** — `@vzhilin_me` ([`vzhn/mod-circuit-sat`](https://github.com/vzhn/mod-circuit-sat), arXiv:2102.12579) | 11 | 5 / 4 / 2 Open | Exact optimal $B_2$ circuit synthesis for $\mathrm{MOD}_n^{3,r}$ ($n=3\text{--}6$) | Python (`src/`) |
 
-\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`, 1,166 unique CNFs) and `vlsat-2/vlsat2_100.uri` stores all 100 INRIA URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **369 SAT benchmark instances**, **357 verified Binary AIGER 1.9 `.aig` files**, **174 `.mata.xz` NFA benchmarks**, and full generator/converter scripts are committed directly.
+\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`, 1,166 unique CNFs) and `vlsat-2/vlsat2_100.uri` stores all 100 INRIA URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **369 SAT benchmark instances** are committed in **all three formats** (**369** verified Binary AIGER 1.9 `.aig`, **369** DIMACS `.cnf`/`.cnf.xz`, and **369** CryptoMiniSat `.xcnf`/`.xcnf.xz` = **1,107** benchmark files), alongside **174 `.mata.xz` NFA benchmarks** and full generator/converter scripts.
 
 ## Highlighted Solver Summary
 

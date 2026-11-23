@@ -10,7 +10,8 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 ## Directory Layout & Regeneration
 
 - `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with Berkeley ABC).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** and native-XOR **CryptoMiniSat `.xcnf`** conversions.
+- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
+- `xcnf-version/` — Native-XOR **CryptoMiniSat `.xcnf`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -24,7 +25,7 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except CMS-X which receives `cnf-version/*.xcnf`):
+Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except CMS-X which receives `xcnf-version/*.xcnf`):
 
 | Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|

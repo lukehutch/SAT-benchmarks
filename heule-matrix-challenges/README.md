@@ -22,18 +22,18 @@ Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a ten
 
 ## Corpus & Data Sizes
 
-All **43 `.cnf.xz`** benchmark files from upstream are mirrored verbatim (`11.4 MB` compressed), together with exact Binary AIGER 1.9 conversions in `aig-version/` for all **31** core instances (`challenge1..4`, `fraction`, `xor6cut`, `44.3 MB` uncompressed, all verified via Berkeley ABC `read_aiger`), plus the upstream C encoders/decoders and `cnf2aig.py` in `src/`:
+All **43 `.cnf.xz`** benchmark files from upstream are mirrored verbatim (`11.4 MB` compressed), together with exact **Binary AIGER 1.9** conversions in `aig-version/` for all **43 / 43** instances (all verified via Berkeley ABC `read_aiger`), lossless **CryptoMiniSat XCNF** conversions in `xcnf-version/` (`253,692` extracted native `x`-clauses across 40/43 files, `.xcnf.xz`), and the upstream C encoders/decoders plus `cnf2aig.py` / `cnf2xcnf.py` in `src/`:
 
-| Directory | Instances | Vars | Clauses | CNF (`.cnf.xz`) Size | AIG Files (`aig-version/`) | Status |
+| Directory | Instances | Vars | Clauses | CNF (`.cnf.xz`) Size | AIG / XCNF Files | Status |
 |---|---:|---:|---:|---:|---:|---|
-| `challenge1/` | 10 | 26,541 | 117,206–117,219 | 1.86 MB | 10 | SAT (hard for CDCL) |
-| `challenge2/` | 10 | 26,541 | 117,203–117,207 | 1.94 MB | 10 | Expected UNSAT |
-| `challenge3/` | 1 | 26,541 | 117,153 | 165 KB | 1 | Open / Hard |
-| `challenge4/` | 1 | 24,975 | 111,780 | 193 KB | 1 | Open ($R = 22$) |
-| `6pooled3and/` | 12 | 19,548–21,033 | 180,792–186,717 | 3.97 MB | *(re-encoding of `challenge1,3,4`)* | Mixed / Open |
-| `fraction/` | 3 | 152,785 | 150,314 | 948 KB | 3 | Hard |
-| `xor6cut/` | 6 | 19,548–24,786 | 180,858–221,697 | 2.08 MB | 6 | Mixed ($R=22\text{--}27$) |
-| **Total** | **43** | **19,548–152,785** | **111,780–221,697** | **11.4 MB** | **31** | |
+| `challenge1/` | 10 | 26,541 | 117,206–117,219 | 1.86 MB | 10 / 10 | SAT (hard for CDCL) |
+| `challenge2/` | 10 | 26,541 | 117,203–117,207 | 1.94 MB | 10 / 10 | Expected UNSAT |
+| `challenge3/` | 1 | 26,541 | 117,153 | 165 KB | 1 / 1 | Open / Hard |
+| `challenge4/` | 1 | 24,975 | 111,780 | 193 KB | 1 / 1 | Open ($R = 22$) |
+| `6pooled3and/` | 12 | 19,548–21,033 | 180,792–186,717 | 3.97 MB | 12 / 12 | Mixed / Open |
+| `fraction/` | 3 | 152,785 | 150,314 | 948 KB | 3 / 3 | Hard |
+| `xor6cut/` | 6 | 19,548–24,786 | 180,858–221,697 | 2.08 MB | 6 / 6 | Mixed ($R=22\text{--}27$) |
+| **Total** | **43** | **19,548–152,785** | **111,780–221,697** | **11.4 MB** | **43 / 43** | |
 
 ## Source Code (`src/`)
 
