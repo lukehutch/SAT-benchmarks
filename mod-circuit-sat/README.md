@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Author & Recommended by:** `@vzhilin_me` (Twitter/X, GitHub [`vzhn`](https://github.com/vzhn))
+- **Author & Recommended by:** [`@vzhilin_me`](https://twitter.com/vzhilin_me) (Twitter/X, GitHub [`vzhn`](https://github.com/vzhn))
 - **Upstream Repository:** [`vzhn/mod-circuit-sat`](https://github.com/vzhn/mod-circuit-sat)
 - **Underlying Encoding Paper:** A. S. Kulikov, D. Pechenev, and N. Slezkin, *"SAT-based Circuit Local Improvement"*, [`arXiv:2102.12579`](https://arxiv.org/abs/2102.12579) (with symmetry and structure reductions added in `vzhn/mod-circuit-sat`).
 - **License:** Upstream repository does not bundle a separate `LICENSE` file; `src/modsat.py` and `src/gen_open_cases.py` are mirrored verbatim from `vzhn/mod-circuit-sat` for reproducibility and benchmarking.

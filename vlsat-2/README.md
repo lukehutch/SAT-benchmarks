@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** `@TravisRudd` (Twitter/X)
+- **Recommended by:** [`@TravisRudd`](https://twitter.com/TravisRudd) (Twitter/X)
 - **Authors & Maintainers:** Hubert Garavel, Pierre Bouvier, and the CADP team at INRIA Grenoble – Rhône-Alpes
 - **Upstream Homepage:** [VLSAT-2 Benchmark Suite — CADP Resources (INRIA)](https://cadp.inria.fr/resources/vlsat/2.html)
 - **License:** Public scientific benchmark collection published by INRIA / CADP for academic research and SAT competitions; no separate `LICENSE` file is bundled with the `.cnf.bz2` downloads.
@@ -15,7 +15,7 @@ During curation (2020), the CADP authors filtered out every formula solved in un
 
 ## Corpus & Data Sizes
 
-Following the benchmark protocol noted by `@TravisRudd` (first 10 smallest instances committed directly + full 100-instance manifest):
+Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/TravisRudd) (first 10 smallest instances committed directly + full 100-instance manifest):
 - **First 10 VLSAT-2 CNFs** committed directly (`1.59 MB` total), with **10 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **[`vlsat2_100.uri`](vlsat2_100.uri):** Complete list of all 100 official INRIA HTTPS URLs (`vlsat2_*.cnf.bz2`).
 - **`src/cnf2aig.py`:** Standalone DIMACS `.cnf` to Binary AIGER 1.9 converter.

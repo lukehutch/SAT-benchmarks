@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Author & Created by:** Keith Adler (`@keithadler` on Twitter/X)
+- **Author & Created by:** Keith Adler ([`@keithadler`](https://twitter.com/keithadler) on Twitter/X)
 - **Upstream Repository:** [`keithadler/sat-shortcut-challenge`](https://github.com/keithadler/sat-shortcut-challenge)
 - **License:** Apache License 2.0 — see [`LICENSE`](LICENSE) (copied verbatim from upstream).
 

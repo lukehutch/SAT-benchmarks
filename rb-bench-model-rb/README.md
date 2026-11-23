@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** `@merlin_numa` (Twitter/X)
+- **Recommended by:** [`@merlin_numa`](https://twitter.com/merlin_numa) (Twitter/X)
 - **Author:** Prof. Ke Xu (Beihang University) and collaborators
 - **Upstream Homepage:** [RB-bench — Prof. Ke Xu's Homepage](https://rb-bench.github.io/) ([Forced Satisfiable CSP and SAT Benchmarks of Model RB](https://rb-bench.github.io/forced-sat-csp/))
 - **License:** Public academic benchmark collection distributed on `rb-bench.github.io` and used in SAT Competitions since 2004; no separate upstream `LICENSE` file is bundled in the archives.

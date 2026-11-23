@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** `@MMarchidann` (Twitter/X)
+- **Recommended by:** [`@MMarchidann`](https://twitter.com/MMarchidann) (Twitter/X)
 - **Author:** Daniele Pretolani (Second DIMACS Implementation Challenge / SATLIB)
 - **Upstream Source:** [SATLIB PRET Benchmark Description & Archive](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html) (`pret.tar.gz`)
 - **License:** Classic public academic benchmark archive contributed to the Second DIMACS Implementation Challenge and redistributed by SATLIB; no separate upstream `LICENSE` file is bundled in `pret.tar.gz`.

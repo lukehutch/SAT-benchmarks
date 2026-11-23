@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Author & Recommended by:** Merlin Numa (`@merlin_numa` on Twitter/X)
+- **Author & Recommended by:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
 - **Upstream Repository:** [`libdense/dense-solver`](https://github.com/libdense/dense-solver)
 - **Zenodo Archive (v0.0.4):** [`zenodo.org/records/24443907`](https://zenodo.org/records/24443907)
 - **License & Attribution:**

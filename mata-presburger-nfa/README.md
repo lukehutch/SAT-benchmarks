@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** `@TravisRudd` (Twitter/X)
+- **Recommended by:** [`@TravisRudd`](https://twitter.com/TravisRudd) (Twitter/X)
 - **Upstream Benchmark Repository:** [`VeriFIT/nfa-bench`](https://github.com/VeriFIT/nfa-bench) (`bench-single-presburger-explicit-complement.input` / Presburger explicit-complement set)
 - **Upstream Automata Library:** [`VeriFIT/mata`](https://github.com/VeriFIT/mata) (Brno University of Technology, VeriFIT group)
 - **License:** MIT License — see [`LICENSE`](LICENSE) (copied from `VeriFIT/mata`).
@@ -29,4 +29,4 @@ To regenerate or refresh the archive from upstream, see [`src/fetch_mata_presbur
 ## Published Benchmarks & References
 
 - **Chocholatý et al. (TACAS 2024):** Benchmarked [`Mata`](https://github.com/VeriFIT/mata) against [`Awali`](https://gitlab.in2p3.fr/vaucanson/awali), [`Automata.net`](https://github.com/AutomataDotNet/Automata), [`Brics`](https://www.brics.dk/automaton/), [`DK.Brics`](https://www.brics.dk/automaton/), [`FAdo`](https://fado.dcc.fc.up.pt/), [`OpenFST`](https://www.openfst.org/), and [`VATA`](https://github.com/ondrik/libvata) across string-constraint, regex, and Presburger complementation workloads, establishing Mata as a state-of-the-art C++ NFA engine.
-- **Ergodis Notes (`@TravisRudd`):** Evaluated all 169 entries of `bench-single-presburger-explicit-complement.input` as an automata complementation stress test alongside SAT workloads.
+- **Ergodis Notes ([`@TravisRudd`](https://twitter.com/TravisRudd)):** Evaluated all 169 entries of `bench-single-presburger-explicit-complement.input` as an automata complementation stress test alongside SAT workloads.
