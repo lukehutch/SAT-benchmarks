@@ -77,30 +77,30 @@ Every benchmark suite lives in its own top-level directory containing:
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30\;\text{s}$).
 - **Same machine?** **Yes** — all five solvers were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
 
-| Suite (Instances, $T_{\max}$) | Frobenius 1C | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 |
+| Suite (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| [**Obstacle Knight's Tour**](knights-tour-obstacles/README.md) (10, 15 s) | 10/10 — 54,045 ms *(6.23x)* | 2/10 — 250,274 ms *(28.8x)* | **10/10 — 8,678 ms** *(fastest)* | 10/10 — 11,302 ms *(1.30x)* | 10/10 — 9,121 ms *(1.05x)* |
-| [**Peaceable Queen Armies**](queen-armies/README.md) (8, 15 s) | **8/8 — 56,672 ms** *(fastest)* | 2/8 — 204,847 ms *(3.61x)* | 4/8 — 160,604 ms *(2.83x)* | 1/8 — 214,106 ms *(3.78x)* | 1/8 — 211,830 ms *(3.74x)* |
+| [**Obstacle Knight's Tour**](knights-tour-obstacles/README.md) (10, 15 s) | 10/10 — 54,045 ms *(6.23x)* | 10/10 — 11,302 ms *(1.30x)* | 10/10 — 9,121 ms *(1.05x)* | 2/10 — 250,274 ms *(28.8x)* | **10/10 — 8,678 ms** *(fastest)* |
+| [**Peaceable Queen Armies**](queen-armies/README.md) (8, 15 s) | **8/8 — 56,672 ms** *(fastest)* | 1/8 — 214,106 ms *(3.78x)* | 1/8 — 211,830 ms *(3.74x)* | 2/8 — 204,847 ms *(3.61x)* | 4/8 — 160,604 ms *(2.83x)* |
 
 ### 4. Imported External Benchmark Suites (1-Core, Identical Flat `.cnf` Input)
 
 - **Timeout:** Per-instance $T_{\max}$ is listed in each row (PAR-2 penalty $= 2\,T_{\max}$).
 - **Same machine?** **Yes** — all solvers were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
 
-| External Suite (Instances, $T_{\max}$) | Frobenius 1C | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 |
+| External Suite (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| [**Aloul FPGA Switch-Box**](aloul-symmetry-benchmarks/README.md) (21, 5 s) | 21/21 — 70.76 ms *(2.58x)* | **21/21 — 27.45 ms** *(fastest)* | 12/21 — 92,980 ms *(3,387x)* | 11/21 — 100,091 ms *(3,646x)* | — |
-| [**`dense-solver` Public**](dense-solver-benchmarks/README.md) (30, 5 s) | **29/30 — 10,713 ms** *(fastest)* | 28/30 — 20,413 ms *(1.91x)* | 25/30 — 53,065 ms *(4.95x)* | 24/30 — 63,765 ms *(5.95x)* | 20/30 — 100,871 ms *(9.42x)* |
-| [**`dense-solver` Synth + `cb368`**](dense-solver-benchmarks/README.md) (21, 5 s) | **21/21 — 245.60 ms** *(fastest)* | 21/21 — 466.92 ms *(1.90x)* | 14/21 — 70,568 ms *(287x)* | 14/21 — 70,983 ms *(289x)* | 14/21 — 71,525 ms *(291x)* |
-| [**`mod-circuit-sat`**](mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **9/9 — 17,346 ms** *(fastest)* | 8/9 — 67,769 ms *(3.91x)* | 9/9 — 25,994 ms *(1.50x)* | 9/9 — 29,702 ms *(1.71x)* | 8/9 — 67,344 ms *(3.88x)* |
-| [**Model RB `frb30-15`**](rb-bench-model-rb/README.md) (5, 5 s) | 5/5 — 3,165 ms *(3.43x)* | — | **5/5 — 923.51 ms** *(fastest)* | 5/5 — 1,377 ms *(1.49x)* | — |
-| [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | 8/8 — 9.86 ms *(1.53x)* | **8/8 — 6.43 ms** *(fastest)* | 8/8 — 58.45 ms *(9.09x)* | 8/8 — 41.53 ms *(6.46x)* | 8/8 — 161.74 ms *(25.2x)* |
-| [**QDistSAT `BB_30..144`**](qdistsat-qldpc/README.md) (6, 10 s) | 5/6 — 20,685 ms *(1.03x)* | — | 5/6 — 20,081 ms *(1.00x)* | **5/6 — 20,072 ms** *(fastest)* | 5/6 — 20,495 ms *(1.02x)* |
-| [**SAT Competition 2023/2024 Selected**](sat-competition-2023-2024-selected/README.md)\* (12, 600 s) | **12/12 — 3,745 ms** *(fastest)* | — | 8/12 — 5,051,149 ms *(1,349x)* | 5/12 — 8,417,003 ms *(2,248x)* | 3/12 — 10,859,841 ms *(2,900x)* |
-| [**SAT Shortcut Challenge**](sat-shortcut-challenge/README.md) Tier-1 (47, 10 s) | **46/47 — 26,120 ms** *(fastest)* | 44/47 — 67,653 ms *(2.59x)* | 43/47 — 95,355 ms *(3.65x)* | 41/47 — 150,936 ms *(5.78x)* | 42/47 — 121,715 ms *(4.66x)* |
-| [**SAT Shortcut Challenge**](sat-shortcut-challenge/README.md) Tier-3 $n=300$ (5, 15 s) | **3/5 — 60,028 ms** *(fastest)* | — | 3/5 — 62,585 ms *(1.04x)* | 3/5 — 61,966 ms *(1.03x)* | — |
-| [**SATLIB Classic Collection**](satlib-benchmarks/README.md) (331, 5 s) | **318/331 — 148,122 ms** *(fastest)* | 313/331 — 207,236 ms *(1.40x)* | 314/331 — 189,824 ms *(1.28x)* | 316/331 — 174,263 ms *(1.18x)* | 323/331 — 161,168 ms *(1.09x)* |
-| [**VLSAT-2 First 10**](vlsat-2/README.md) (10, 5 s) | **7/10 — 30,042 ms** *(fastest)* | — | 4/10 — 64,398 ms *(2.14x)* | 0/10 — 100,000 ms *(3.33x)* | — |
+| [**Aloul FPGA Switch-Box**](aloul-symmetry-benchmarks/README.md) (21, 5 s) | 21/21 — 70.76 ms *(2.58x)* | 11/21 — 100,091 ms *(3,646x)* | — | **21/21 — 27.45 ms** *(fastest)* | 12/21 — 92,980 ms *(3,387x)* |
+| [**`dense-solver` Public**](dense-solver-benchmarks/README.md) (30, 5 s) | **29/30 — 10,713 ms** *(fastest)* | 24/30 — 63,765 ms *(5.95x)* | 20/30 — 100,871 ms *(9.42x)* | 28/30 — 20,413 ms *(1.91x)* | 25/30 — 53,065 ms *(4.95x)* |
+| [**`dense-solver` Synth + `cb368`**](dense-solver-benchmarks/README.md) (21, 5 s) | **21/21 — 245.60 ms** *(fastest)* | 14/21 — 70,983 ms *(289x)* | 14/21 — 71,525 ms *(291x)* | 21/21 — 466.92 ms *(1.90x)* | 14/21 — 70,568 ms *(287x)* |
+| [**`mod-circuit-sat`**](mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **9/9 — 17,346 ms** *(fastest)* | 9/9 — 29,702 ms *(1.71x)* | 8/9 — 67,344 ms *(3.88x)* | 8/9 — 67,769 ms *(3.91x)* | 9/9 — 25,994 ms *(1.50x)* |
+| [**Model RB `frb30-15`**](rb-bench-model-rb/README.md) (5, 5 s) | 5/5 — 3,165 ms *(3.43x)* | 5/5 — 1,377 ms *(1.49x)* | — | — | **5/5 — 923.51 ms** *(fastest)* |
+| [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | 8/8 — 9.86 ms *(1.53x)* | 8/8 — 41.53 ms *(6.46x)* | 8/8 — 161.74 ms *(25.2x)* | **8/8 — 6.43 ms** *(fastest)* | 8/8 — 58.45 ms *(9.09x)* |
+| [**QDistSAT `BB_30..144`**](qdistsat-qldpc/README.md) (6, 10 s) | 5/6 — 20,685 ms *(1.03x)* | **5/6 — 20,072 ms** *(fastest)* | 5/6 — 20,495 ms *(1.02x)* | — | 5/6 — 20,081 ms *(1.00x)* |
+| [**SAT Competition 2023/2024 Selected**](sat-competition-2023-2024-selected/README.md)\* (12, 600 s) | **12/12 — 3,745 ms** *(fastest)* | 5/12 — 8,417,003 ms *(2,248x)* | 3/12 — 10,859,841 ms *(2,900x)* | — | 8/12 — 5,051,149 ms *(1,349x)* |
+| [**SAT Shortcut Challenge**](sat-shortcut-challenge/README.md) Tier-1 (47, 10 s) | **46/47 — 26,120 ms** *(fastest)* | 41/47 — 150,936 ms *(5.78x)* | 42/47 — 121,715 ms *(4.66x)* | 44/47 — 67,653 ms *(2.59x)* | 43/47 — 95,355 ms *(3.65x)* |
+| [**SAT Shortcut Challenge**](sat-shortcut-challenge/README.md) Tier-3 $n=300$ (5, 15 s) | **3/5 — 60,028 ms** *(fastest)* | 3/5 — 61,966 ms *(1.03x)* | — | — | 3/5 — 62,585 ms *(1.04x)* |
+| [**SATLIB Classic Collection**](satlib-benchmarks/README.md) (331, 5 s) | **318/331 — 148,122 ms** *(fastest)* | 316/331 — 174,263 ms *(1.18x)* | 323/331 — 161,168 ms *(1.09x)* | 313/331 — 207,236 ms *(1.40x)* | 314/331 — 189,824 ms *(1.28x)* |
+| [**VLSAT-2 First 10**](vlsat-2/README.md) (10, 5 s) | **7/10 — 30,042 ms** *(fastest)* | 0/10 — 100,000 ms *(3.33x)* | — | — | 4/10 — 64,398 ms *(2.14x)* |
 
 *\*`sat-competition-2023-2024-selected/` is also included in Part II of the Unified 50-Benchmark Flat-CNF Gauntlet (Section 1 above). Among the remaining external suites, [`heule-matrix-challenges/`](heule-matrix-challenges/README.md) targets open/hard $3\times 3$ matrix multiplication, [`mata-presburger-nfa/`](mata-presburger-nfa/README.md) contains non-CNF finite automata (`.mata.xz`), [`sigal-aes256-xcnf/`](sigal-aes256-xcnf/README.md) contains full 14-round AES-256 XCNF cryptanalytic challenges (throughput benchmarked in its suite README), and [`sat-competition-2024-2026-main-track/`](sat-competition-2024-2026-main-track/README.md) (cross-machine vs. official competition logs) is summarized in Section 5 below.*
 

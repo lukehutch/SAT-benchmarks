@@ -52,31 +52,31 @@ Every single instance from all **17 structured SATLIB, DIMACS, and Beijing colle
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input). **0 verdict disagreements / 0 errors across all 331 × 5 = 1,655 solver runs**; all Frobenius SAT assignments verified clause-by-clause.
 
-| Family (Instances) | Frobenius 1C | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 |
+| Family (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| `ais` (4) | **4/4 — 8.5 ms** | 4/4 — 39.1 ms | 4/4 — 24.2 ms | 4/4 — 26.3 ms | 4/4 — 425.8 ms |
-| `beijing` (16) | **16/16 — 1,042.9 ms** | 15/16 — 13,024.9 ms | 16/16 — 3,524.6 ms | 15/16 — 10,304.9 ms | 15/16 — 17,413.8 ms |
-| `bmc` (13) | 13/13 — 4,669.5 ms | 13/13 — 11,642.4 ms | **13/13 — 2,690.7 ms** | 13/13 — 4,974.2 ms | 13/13 — 17,643.5 ms |
-| `bms-rti` (4) | 4/4 — 17.9 ms | **4/4 — 8.2 ms** | 4/4 — 47.9 ms | 4/4 — 19.2 ms | 4/4 — 85.4 ms |
-| `cbs` (6) | 6/6 — 18.0 ms | **6/6 — 8.9 ms** | 6/6 — 99.3 ms | 6/6 — 26.0 ms | 6/6 — 163.5 ms |
-| `dimacs-aim` (72) | **72/72 — 175.5 ms** | 72/72 — 259.7 ms | 72/72 — 527.6 ms | 72/72 — 266.2 ms | 72/72 — 1,732.6 ms |
-| `dimacs-bf` (4) | 4/4 — 65.7 ms | 4/4 — 80.5 ms | 4/4 — 23.8 ms | **4/4 — 18.8 ms** | 4/4 — 182.8 ms |
-| `dimacs-dubois` (13) | 13/13 — 22.8 ms | **13/13 — 12.9 ms** | 13/13 — 19.2 ms | 13/13 — 26.9 ms | 13/13 — 219.7 ms |
-| `dimacs-gcp-large` (4) | 1/4 — 30,425.2 ms | 0/4 — 40,000.0 ms | 0/4 — 40,000.0 ms | **2/4 — 22,679.2 ms** | 1/4 — 31,350.3 ms |
-| `dimacs-hanoi` (2) | 2/2 — 337.3 ms | 2/2 — 195.1 ms | 2/2 — 513.1 ms | **2/2 — 169.5 ms** | 2/2 — 675.0 ms |
-| `dimacs-ii` (41) | 41/41 — 1,272.2 ms | 41/41 — 544.0 ms | 41/41 — 537.2 ms | **41/41 — 250.6 ms** | 41/41 — 11,340.7 ms |
-| `dimacs-jnh` (50) | 50/50 — 185.5 ms | **50/50 — 83.4 ms** | 50/50 — 271.5 ms | 50/50 — 135.8 ms | 50/50 — 1,093.0 ms |
-| `dimacs-lran` (3) | **3/3 — 1,227.2 ms** | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms | 2/3 — 13,354.1 ms | 0/3 — 30,000.0 ms |
-| `dimacs-parity` (30) | 20/30 — 100,089.7 ms | 20/30 — 100,310.5 ms | 20/30 — 100,368.3 ms | 20/30 — 100,505.7 ms | **30/30 — 11,016.0 ms** |
-| `dimacs-phole` (5) | 5/5 — 7.1 ms | **5/5 — 3.9 ms** | 5/5 — 1,471.3 ms | 4/5 — 13,510.0 ms | 4/5 — 15,254.6 ms |
-| `dimacs-ssa` (8) | 8/8 — 101.6 ms | 8/8 — 90.8 ms | **8/8 — 37.6 ms** | 8/8 — 38.1 ms | 8/8 — 272.8 ms |
-| `flat-gcp` (8) | 8/8 — 52.5 ms | **8/8 — 18.0 ms** | 8/8 — 51.1 ms | 8/8 — 30.8 ms | 8/8 — 242.1 ms |
-| `planning-blocksworld` (7) | 7/7 — 604.7 ms | **7/7 — 218.5 ms** | 7/7 — 357.0 ms | 7/7 — 403.4 ms | 7/7 — 1,934.1 ms |
-| `planning-logistics` (4) | 4/4 — 185.7 ms | 4/4 — 80.1 ms | 4/4 — 136.7 ms | **4/4 — 34.1 ms** | 4/4 — 1,018.0 ms |
-| `qg` (22) | 22/22 — 5,361.4 ms | 22/22 — 7,336.5 ms | 22/22 — 6,595.7 ms | **22/22 — 3,938.2 ms** | 22/22 — 14,660.5 ms |
-| `rnd3sat` (10) | **10/10 — 2,220.4 ms** | 10/10 — 3,264.0 ms | 10/10 — 2,481.1 ms | 10/10 — 3,536.1 ms | 10/10 — 4,166.5 ms |
-| `sw-gcp` (5) | 5/5 — 30.9 ms | 5/5 — 15.0 ms | 5/5 — 46.2 ms | **5/5 — 14.5 ms** | 5/5 — 277.5 ms |
-| **TOTAL (331 instances, PAR-2)** | **318/331 — 148,122 ms** *(fastest)* | 313/331 — 207,236 ms *(1.40x)* | 314/331 — 189,824 ms *(1.28x)* | 316/331 — 174,263 ms *(1.18x)* | 323/331 — 161,168 ms *(1.09x)* |
+| `ais` (4) | **4/4 — 8.5 ms** | 4/4 — 26.3 ms | 4/4 — 425.8 ms | 4/4 — 39.1 ms | 4/4 — 24.2 ms |
+| `beijing` (16) | **16/16 — 1,042.9 ms** | 15/16 — 10,304.9 ms | 15/16 — 17,413.8 ms | 15/16 — 13,024.9 ms | 16/16 — 3,524.6 ms |
+| `bmc` (13) | 13/13 — 4,669.5 ms | 13/13 — 4,974.2 ms | 13/13 — 17,643.5 ms | 13/13 — 11,642.4 ms | **13/13 — 2,690.7 ms** |
+| `bms-rti` (4) | 4/4 — 17.9 ms | 4/4 — 19.2 ms | 4/4 — 85.4 ms | **4/4 — 8.2 ms** | 4/4 — 47.9 ms |
+| `cbs` (6) | 6/6 — 18.0 ms | 6/6 — 26.0 ms | 6/6 — 163.5 ms | **6/6 — 8.9 ms** | 6/6 — 99.3 ms |
+| `dimacs-aim` (72) | **72/72 — 175.5 ms** | 72/72 — 266.2 ms | 72/72 — 1,732.6 ms | 72/72 — 259.7 ms | 72/72 — 527.6 ms |
+| `dimacs-bf` (4) | 4/4 — 65.7 ms | **4/4 — 18.8 ms** | 4/4 — 182.8 ms | 4/4 — 80.5 ms | 4/4 — 23.8 ms |
+| `dimacs-dubois` (13) | 13/13 — 22.8 ms | 13/13 — 26.9 ms | 13/13 — 219.7 ms | **13/13 — 12.9 ms** | 13/13 — 19.2 ms |
+| `dimacs-gcp-large` (4) | 1/4 — 30,425.2 ms | **2/4 — 22,679.2 ms** | 1/4 — 31,350.3 ms | 0/4 — 40,000.0 ms | 0/4 — 40,000.0 ms |
+| `dimacs-hanoi` (2) | 2/2 — 337.3 ms | **2/2 — 169.5 ms** | 2/2 — 675.0 ms | 2/2 — 195.1 ms | 2/2 — 513.1 ms |
+| `dimacs-ii` (41) | 41/41 — 1,272.2 ms | **41/41 — 250.6 ms** | 41/41 — 11,340.7 ms | 41/41 — 544.0 ms | 41/41 — 537.2 ms |
+| `dimacs-jnh` (50) | 50/50 — 185.5 ms | 50/50 — 135.8 ms | 50/50 — 1,093.0 ms | **50/50 — 83.4 ms** | 50/50 — 271.5 ms |
+| `dimacs-lran` (3) | **3/3 — 1,227.2 ms** | 2/3 — 13,354.1 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms |
+| `dimacs-parity` (30) | 20/30 — 100,089.7 ms | 20/30 — 100,505.7 ms | **30/30 — 11,016.0 ms** | 20/30 — 100,310.5 ms | 20/30 — 100,368.3 ms |
+| `dimacs-phole` (5) | 5/5 — 7.1 ms | 4/5 — 13,510.0 ms | 4/5 — 15,254.6 ms | **5/5 — 3.9 ms** | 5/5 — 1,471.3 ms |
+| `dimacs-ssa` (8) | 8/8 — 101.6 ms | 8/8 — 38.1 ms | 8/8 — 272.8 ms | 8/8 — 90.8 ms | **8/8 — 37.6 ms** |
+| `flat-gcp` (8) | 8/8 — 52.5 ms | 8/8 — 30.8 ms | 8/8 — 242.1 ms | **8/8 — 18.0 ms** | 8/8 — 51.1 ms |
+| `planning-blocksworld` (7) | 7/7 — 604.7 ms | 7/7 — 403.4 ms | 7/7 — 1,934.1 ms | **7/7 — 218.5 ms** | 7/7 — 357.0 ms |
+| `planning-logistics` (4) | 4/4 — 185.7 ms | **4/4 — 34.1 ms** | 4/4 — 1,018.0 ms | 4/4 — 80.1 ms | 4/4 — 136.7 ms |
+| `qg` (22) | 22/22 — 5,361.4 ms | **22/22 — 3,938.2 ms** | 22/22 — 14,660.5 ms | 22/22 — 7,336.5 ms | 22/22 — 6,595.7 ms |
+| `rnd3sat` (10) | **10/10 — 2,220.4 ms** | 10/10 — 3,536.1 ms | 10/10 — 4,166.5 ms | 10/10 — 3,264.0 ms | 10/10 — 2,481.1 ms |
+| `sw-gcp` (5) | 5/5 — 30.9 ms | **5/5 — 14.5 ms** | 5/5 — 277.5 ms | 5/5 — 15.0 ms | 5/5 — 46.2 ms |
+| **TOTAL (331 instances, PAR-2)** | **318/331 — 148,122 ms** *(fastest)* | 316/331 — 174,263 ms *(1.18x)* | 323/331 — 161,168 ms *(1.09x)* | 313/331 — 207,236 ms *(1.40x)* | 314/331 — 189,824 ms *(1.28x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

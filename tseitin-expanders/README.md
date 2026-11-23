@@ -27,12 +27,12 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-version/*.xcnf`):
 
-| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| `tseitin_exp_n60` | **1.19 ms** | 58.59 ms | 546.39 ms | 22.59 ms | 22.91 ms |
-| `tseitin_exp_n120` | **1.25 ms** | >5,000 s (T/O) | >5,000 s (T/O) | 27.62 ms | 23.45 ms |
-| `tseitin_exp_n300` | **1.36 ms** | >5,000 s (T/O) | >5,000 s (T/O) | 29.10 ms | 23.68 ms |
-| `tseitin_prism_n400` | **1.66 ms** | 13.60 ms | 9.56 ms | 27.82 ms | 23.21 ms |
+| `tseitin_exp_n60` | **1.19 ms** | 546.39 ms | 22.59 ms | 22.91 ms | 58.59 ms |
+| `tseitin_exp_n120` | **1.25 ms** | >5,000 s (T/O) | 27.62 ms | 23.45 ms | >5,000 s (T/O) |
+| `tseitin_exp_n300` | **1.36 ms** | >5,000 s (T/O) | 29.10 ms | 23.68 ms | >5,000 s (T/O) |
+| `tseitin_prism_n400` | **1.66 ms** | 9.56 ms | 27.82 ms | 23.21 ms | 13.60 ms |
 
 *(All three expander proofs emitted by Frobenius in LRAT format additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 

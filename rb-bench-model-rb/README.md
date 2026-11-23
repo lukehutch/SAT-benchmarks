@@ -37,14 +37,14 @@ All **40 forced-SAT CNFs** (`39.0 MB` total) across all 8 size classes, plus **4
 
 - **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, identical flat `.cnf` input, 100% SAT consensus).
 
-| Instance | Verdict | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | Frobenius 1C |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|
-| `frb30-15-1.cnf` | SAT | **110.50 ms** | 335.36 ms | 762.64 ms |
-| `frb30-15-2.cnf` | SAT | 320.92 ms | **49.27 ms** | 371.34 ms |
-| `frb30-15-3.cnf` | SAT | **48.75 ms** | 447.59 ms | 692.54 ms |
-| `frb30-15-4.cnf` | SAT | **347.33 ms** | 523.84 ms | 877.06 ms |
-| `frb30-15-5.cnf` | SAT | 96.01 ms | **20.54 ms** | 461.58 ms |
-| **Total (5 files)** | **5 / 5** | **923.51 ms** *(fastest)* | **1,376.60 ms** *(1.49x slower)* | **3,165.16 ms** *(3.43x slower)* |
+| `frb30-15-1.cnf` | SAT | 762.64 ms | 335.36 ms | **110.50 ms** |
+| `frb30-15-2.cnf` | SAT | 371.34 ms | **49.27 ms** | 320.92 ms |
+| `frb30-15-3.cnf` | SAT | 692.54 ms | 447.59 ms | **48.75 ms** |
+| `frb30-15-4.cnf` | SAT | 877.06 ms | 523.84 ms | **347.33 ms** |
+| `frb30-15-5.cnf` | SAT | 461.58 ms | **20.54 ms** | 96.01 ms |
+| **Total (5 files)** | **5 / 5** | **3,165.16 ms** *(3.43x slower)* | **1,376.60 ms** *(1.49x slower)* | **923.51 ms** *(fastest)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

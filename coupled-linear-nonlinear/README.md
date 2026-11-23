@@ -27,12 +27,12 @@ Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an unde
 
 Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on `coupled_n128_d32_unsat`):
 
-| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| `coupled_n128_d64` | **1.82 ms** *(fastest)* | 1.99 ms *(1.1x)* | 2.83 ms *(1.6x)* | 22.02 ms *(12.1x)* | 21.39 ms *(11.8x)* |
-| `coupled_n128_d32_unsat` | **2.02 ms** *(fastest)* | 14.75 ms *(7.3x)* | 2.63 ms *(1.3x)* | 71.15 ms *(35.2x)* | 24.73 ms *(12.2x)* |
-| `coupled_n256_d128` | **2.27 ms** *(fastest)* | 3.98 ms *(1.8x)* | 3.74 ms *(1.6x)* | 56.09 ms *(24.7x)* | 23.62 ms *(10.4x)* |
-| `coupled_n512_d128` | **2.65 ms** *(fastest)* | 3.63 ms *(1.4x)* | 5.51 ms *(2.1x)* | 7.24 ms *(2.7x)* | 5.65 ms *(2.1x)* |
+| `coupled_n128_d64` | **1.82 ms** *(fastest)* | 2.83 ms *(1.6x)* | 22.02 ms *(12.1x)* | 21.39 ms *(11.8x)* | 1.99 ms *(1.1x)* |
+| `coupled_n128_d32_unsat` | **2.02 ms** *(fastest)* | 2.63 ms *(1.3x)* | 71.15 ms *(35.2x)* | 24.73 ms *(12.2x)* | 14.75 ms *(7.3x)* |
+| `coupled_n256_d128` | **2.27 ms** *(fastest)* | 3.74 ms *(1.6x)* | 56.09 ms *(24.7x)* | 23.62 ms *(10.4x)* | 3.98 ms *(1.8x)* |
+| `coupled_n512_d128` | **2.65 ms** *(fastest)* | 5.51 ms *(2.1x)* | 7.24 ms *(2.7x)* | 5.65 ms *(2.1x)* | 3.63 ms *(1.4x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -52,19 +52,19 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30{,}000\;\text{ms}$).
 - **Same machine?** **Yes** — all five solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run; Frobenius 1C reports the exact median of 3 runs; 0 verdict disagreements; all 5/5 SAT Hamiltonian knight's tours decoded and independently verified).
 
-| Instance | Status | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) |
+| Instance | Status | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `knights_12x12_d15_obs16_s12150144_sat` | SAT | 5,441.1 ms | 1,327.4 ms | 1,127.5 ms | **776.6 ms** | >15 s (T/O) |
-| `knights_14x14_d26_obs52_s34280941_sat` | SAT | 5,382.9 ms | 973.9 ms | 2,751.0 ms | **806.3 ms** | >15 s (T/O) |
-| `knights_14x14_d20_obs34_s14203078_sat` | SAT | 4,732.6 ms | **951.8 ms** | 1,810.1 ms | 1,178.5 ms | >15 s (T/O) |
-| `knights_15x15_d24_obs55_s35244162_sat` | SAT | 3,180.2 ms | 2,028.9 ms | **1,516.1 ms** | 3,212.6 ms | >15 s (T/O) |
-| `knights_16x16_d25_obs66_s365029087_sat` | SAT | 6,057.3 ms | 2,535.1 ms | 3,307.6 ms | **931.4 ms** | >15 s (T/O) |
-| `knights_15x15_d22_obs41_s956712163_unsat` | UNSAT | 5,109.2 ms | 41.4 ms | **14.3 ms** | 271.7 ms | >15 s (T/O) |
-| `knights_15x15_d22_obs51_s756748105_unsat` | UNSAT | 5,209.6 ms | 39.9 ms | **13.2 ms** | 271.1 ms | >15 s (T/O) |
-| `knights_15x15_d21_obs55_s956405106_unsat` | UNSAT | 5,933.8 ms | 700.1 ms | 733.4 ms | **476.1 ms** | 3,359.8 ms |
-| `knights_15x15_d22_obs53_s756776522_unsat` | UNSAT | 5,821.2 ms | 40.6 ms | **13.5 ms** | 853.5 ms | >15 s (T/O) |
-| `knights_15x15_d21_obs51_s556324743_unsat` | UNSAT | 7,177.1 ms | 39.3 ms | **14.8 ms** | 343.1 ms | 6,914.1 ms |
-| **TOTAL (10 instances, PAR-2)** | **5 / 5** | 10/10 — 54,045.0 ms *(6.23x slower)* | **10/10 — 8,678.3 ms** *(fastest)* | 10/10 — 11,301.6 ms *(1.30x slower)* | 10/10 — 9,121.0 ms *(1.05x slower)* | 2/10 — 250,274.0 ms *(28.84x slower)* |
+| `knights_12x12_d15_obs16_s12150144_sat` | SAT | 5,441.1 ms | 1,127.5 ms | **776.6 ms** | >15 s (T/O) | 1,327.4 ms |
+| `knights_14x14_d26_obs52_s34280941_sat` | SAT | 5,382.9 ms | 2,751.0 ms | **806.3 ms** | >15 s (T/O) | 973.9 ms |
+| `knights_14x14_d20_obs34_s14203078_sat` | SAT | 4,732.6 ms | 1,810.1 ms | 1,178.5 ms | >15 s (T/O) | **951.8 ms** |
+| `knights_15x15_d24_obs55_s35244162_sat` | SAT | 3,180.2 ms | **1,516.1 ms** | 3,212.6 ms | >15 s (T/O) | 2,028.9 ms |
+| `knights_16x16_d25_obs66_s365029087_sat` | SAT | 6,057.3 ms | 3,307.6 ms | **931.4 ms** | >15 s (T/O) | 2,535.1 ms |
+| `knights_15x15_d22_obs41_s956712163_unsat` | UNSAT | 5,109.2 ms | **14.3 ms** | 271.7 ms | >15 s (T/O) | 41.4 ms |
+| `knights_15x15_d22_obs51_s756748105_unsat` | UNSAT | 5,209.6 ms | **13.2 ms** | 271.1 ms | >15 s (T/O) | 39.9 ms |
+| `knights_15x15_d21_obs55_s956405106_unsat` | UNSAT | 5,933.8 ms | 733.4 ms | **476.1 ms** | 3,359.8 ms | 700.1 ms |
+| `knights_15x15_d22_obs53_s756776522_unsat` | UNSAT | 5,821.2 ms | **13.5 ms** | 853.5 ms | >15 s (T/O) | 40.6 ms |
+| `knights_15x15_d21_obs51_s556324743_unsat` | UNSAT | 7,177.1 ms | **14.8 ms** | 343.1 ms | 6,914.1 ms | 39.3 ms |
+| **TOTAL (10 instances, PAR-2)** | **5 / 5** | 10/10 — 54,045.0 ms *(6.23x slower)* | 10/10 — 11,301.6 ms *(1.30x slower)* | 10/10 — 9,121.0 ms *(1.05x slower)* | 2/10 — 250,274.0 ms *(28.84x slower)* | **10/10 — 8,678.3 ms** *(fastest)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

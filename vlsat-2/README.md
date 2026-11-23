@@ -37,19 +37,19 @@ Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/Tr
 
 - **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 disagreements).
 
-| Instance | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|
 | `vlsat2_544_8738.cnf` | **2.96 ms** (UNSAT) | T/O | T/O |
 | `vlsat2_600_11440.cnf` | **3.58 ms** (UNSAT) | T/O | T/O |
-| `vlsat2_684_9417.cnf` | **8.66 ms** (UNSAT) | 695.62 ms (UNSAT) | T/O |
-| `vlsat2_684_13953.cnf` | **3.71 ms** (UNSAT) | 785.79 ms (UNSAT) | T/O |
-| `vlsat2_708_10259.cnf` | **8.51 ms** (UNSAT) | 589.62 ms (UNSAT) | T/O |
+| `vlsat2_684_9417.cnf` | **8.66 ms** (UNSAT) | T/O | 695.62 ms (UNSAT) |
+| `vlsat2_684_13953.cnf` | **3.71 ms** (UNSAT) | T/O | 785.79 ms (UNSAT) |
+| `vlsat2_708_10259.cnf` | **8.51 ms** (UNSAT) | T/O | 589.62 ms (UNSAT) |
 | `vlsat2_736_11022.cnf` | **3.63 ms** (UNSAT) | T/O | T/O |
 | `vlsat2_798_17543.cnf` | **11.44 ms** (UNSAT) | T/O | T/O |
 | `vlsat2_1000_22250.cnf` | T/O | T/O | T/O |
-| `vlsat2_1022_14955.cnf` | T/O | **2,327.33 ms** (UNSAT) | T/O |
+| `vlsat2_1022_14955.cnf` | T/O | T/O | **2,327.33 ms** (UNSAT) |
 | `vlsat2_1125_15795.cnf` | T/O | T/O | T/O |
-| **Summary (Solved / PAR-2)** | **7 / 10 — 30,042.49 ms** *(fastest)* | **4 / 10 — 64,398.36 ms** *(2.14x slower)* | **0 / 10 — 100,000.00 ms** *(3.33x slower)* |
+| **Summary (Solved / PAR-2)** | **7 / 10 — 30,042.49 ms** *(fastest)* | **0 / 10 — 100,000.00 ms** *(3.33x slower)* | **4 / 10 — 64,398.36 ms** *(2.14x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

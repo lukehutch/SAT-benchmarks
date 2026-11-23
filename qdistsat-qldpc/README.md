@@ -37,15 +37,15 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 
 - **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, identical flat `.cnf` input for CNF solvers plus `xcnf-version/*.xcnf` for [CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF, 0 disagreements).
 
-| Instance | Verdict | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CMS](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CMS](https://github.com/msoos/cryptominisat) 5.18 (XCNF) |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CMS](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CMS](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| `BB_30_4_6_w5_unsat.cnf` | UNSAT | 585.09 ms | 14.89 ms | **12.67 ms** | 38.69 ms | 34.51 ms |
-| `BB_30_4_6_w6_sat.cnf` | SAT | 6.97 ms | 6.34 ms | **2.03 ms** | 30.53 ms | 25.60 ms |
-| `BB_72_12_6_w5_unsat.cnf` | UNSAT | 87.66 ms | 56.43 ms | **50.94 ms** | 104.06 ms | 90.29 ms |
-| `BB_72_12_6_w6_sat.cnf` | SAT | 1.83 ms | **1.22 ms** | 2.35 ms | 67.94 ms | 35.26 ms |
+| `BB_30_4_6_w5_unsat.cnf` | UNSAT | 585.09 ms | **12.67 ms** | 38.69 ms | 34.51 ms | 14.89 ms |
+| `BB_30_4_6_w6_sat.cnf` | SAT | 6.97 ms | **2.03 ms** | 30.53 ms | 25.60 ms | 6.34 ms |
+| `BB_72_12_6_w5_unsat.cnf` | UNSAT | 87.66 ms | **50.94 ms** | 104.06 ms | 90.29 ms | 56.43 ms |
+| `BB_72_12_6_w6_sat.cnf` | SAT | 1.83 ms | 2.35 ms | 67.94 ms | 35.26 ms | **1.22 ms** |
 | `BB_144_12_12_w11_unsat.cnf` | UNSAT | T/O | T/O | T/O | T/O | T/O |
-| `BB_144_12_12_w12_sat.cnf` | SAT | 3.38 ms | **1.97 ms** | 3.93 ms | 253.40 ms | 100.13 ms |
-| **Solved (6 files)** | | **5 / 6** | **5 / 6** | **5 / 6** | **5 / 6** | **5 / 6** |
+| `BB_144_12_12_w12_sat.cnf` | SAT | 3.38 ms | 3.93 ms | 253.40 ms | 100.13 ms | **1.97 ms** |
+| **Solved (6 files)** |  | **5 / 6** | **5 / 6** | **5 / 6** | **5 / 6** | **5 / 6** |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

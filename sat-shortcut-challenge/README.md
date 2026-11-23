@@ -50,18 +50,18 @@ All **72 upstream DIMACS CNFs** (**47 Tier-1** in `tier1/` + **25 Tier-3** in `t
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20{,}000\;\text{ms}$). Every solver received **strictly the flat DIMACS `.cnf` file only** (zero access to original circuits or graphs); **0 verdict disagreements** across all 47 × 5 runs; all SAT models independently verified clause-by-clause.
 
-| Tier-1 Family (Instances) | Frobenius 1C | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 |
+| Tier-1 Family (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| Adder CEC (4) | **4/4 — 22.8 ms** | 4/4 — 120.5 ms | 4/4 — 120.4 ms | 4/4 — 94.0 ms | 4/4 — 300.9 ms |
-| Hamiltonian cycle (8) | 8/8 — 1,572.3 ms | 7/8 — 24,156.8 ms | **8/8 — 1,518.5 ms** | 8/8 — 20,794.2 ms | 7/8 — 30,849.9 ms |
-| Multiplier CEC (4) | 3/4 — 24,048.8 ms | 2/4 — 40,126.0 ms | 3/4 — 23,454.0 ms | 3/4 — 25,137.9 ms | **3/4 — 23,164.4 ms** |
-| Multiplier target (4) | 4/4 — 35.8 ms | **4/4 — 26.9 ms** | 4/4 — 53.3 ms | 4/4 — 27.3 ms | 4/4 — 238.1 ms |
-| Mutilated chessboard (5) | 5/5 — 10.9 ms | **5/5 — 5.7 ms** | 5/5 — 6,723.3 ms | 4/5 — 20,090.0 ms | 4/5 — 20,168.4 ms |
-| Pigeonhole PHP (5) | **5/5 — 7.8 ms** | 5/5 — 14.8 ms | 4/5 — 21,914.0 ms | 3/5 — 43,400.5 ms | 3/5 — 45,223.0 ms |
-| Random 3-SAT (4) | **4/4 — 392.4 ms** | 4/4 — 3,181.9 ms | 4/4 — 1,302.5 ms | 4/4 — 1,111.1 ms | 4/4 — 1,465.9 ms |
-| Tseitin parity (9) | 9/9 — 19.4 ms | **9/9 — 8.0 ms** | 7/9 — 40,204.7 ms | 7/9 — 40,216.8 ms | 9/9 — 168.3 ms |
-| XOR + random clauses (4) | **4/4 — 9.9 ms** | 4/4 — 12.1 ms | 4/4 — 64.3 ms | 4/4 — 63.9 ms | 4/4 — 135.8 ms |
-| **TOTAL (47 instances, PAR-2)** | **46/47 — 26,120.2 ms** *(fastest)* | 44/47 — 67,652.6 ms *(2.59x slower)* | 43/47 — 95,355.0 ms *(3.65x slower)* | 41/47 — 150,935.7 ms *(5.78x slower)* | 42/47 — 121,714.6 ms *(4.66x slower)* |
+| Adder CEC (4) | **4/4 — 22.8 ms** | 4/4 — 94.0 ms | 4/4 — 300.9 ms | 4/4 — 120.5 ms | 4/4 — 120.4 ms |
+| Hamiltonian cycle (8) | 8/8 — 1,572.3 ms | 8/8 — 20,794.2 ms | 7/8 — 30,849.9 ms | 7/8 — 24,156.8 ms | **8/8 — 1,518.5 ms** |
+| Multiplier CEC (4) | 3/4 — 24,048.8 ms | 3/4 — 25,137.9 ms | **3/4 — 23,164.4 ms** | 2/4 — 40,126.0 ms | 3/4 — 23,454.0 ms |
+| Multiplier target (4) | 4/4 — 35.8 ms | 4/4 — 27.3 ms | 4/4 — 238.1 ms | **4/4 — 26.9 ms** | 4/4 — 53.3 ms |
+| Mutilated chessboard (5) | 5/5 — 10.9 ms | 4/5 — 20,090.0 ms | 4/5 — 20,168.4 ms | **5/5 — 5.7 ms** | 5/5 — 6,723.3 ms |
+| Pigeonhole PHP (5) | **5/5 — 7.8 ms** | 3/5 — 43,400.5 ms | 3/5 — 45,223.0 ms | 5/5 — 14.8 ms | 4/5 — 21,914.0 ms |
+| Random 3-SAT (4) | **4/4 — 392.4 ms** | 4/4 — 1,111.1 ms | 4/4 — 1,465.9 ms | 4/4 — 3,181.9 ms | 4/4 — 1,302.5 ms |
+| Tseitin parity (9) | 9/9 — 19.4 ms | 7/9 — 40,216.8 ms | 9/9 — 168.3 ms | **9/9 — 8.0 ms** | 7/9 — 40,204.7 ms |
+| XOR + random clauses (4) | **4/4 — 9.9 ms** | 4/4 — 63.9 ms | 4/4 — 135.8 ms | 4/4 — 12.1 ms | 4/4 — 64.3 ms |
+| **TOTAL (47 instances, PAR-2)** | **46/47 — 26,120.2 ms** *(fastest)* | 41/47 — 150,935.7 ms *(5.78x slower)* | 42/47 — 121,714.6 ms *(4.66x slower)* | 44/47 — 67,652.6 ms *(2.59x slower)* | 43/47 — 95,355.0 ms *(3.65x slower)* |
 
 *(The sole unsolved instance across all five flat-CNF solvers at $T_{\max} = 10\;\text{s}$ is `cec_mult_10x10_arr_vs_wal.cnf`.)*
 
@@ -72,14 +72,14 @@ All **72 upstream DIMACS CNFs** (**47 Tier-1** in `tier1/` + **25 Tier-3** in `t
 ### C. Same-Machine 1-Core Spot Check on Tier-3 $n = 300$ (`s1..s5`, $T_{\max} = 15\;\text{s}$)
 - **Hardware & Protocol:** AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 15\;\text{s}$ (PAR-2 penalty $30{,}000\;\text{ms}$), identical flat `.cnf` input.
 
-| Instance | Verdict | Frobenius 1C | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---|---:|---:|---:|
 | `random3sat_n300_s1.cnf` | UNSAT *(>15 s)* | T/O | T/O | T/O |
-| `random3sat_n300_s2.cnf` | SAT | **4.47 ms** | 39.67 ms | 173.26 ms |
-| `random3sat_n300_s3.cnf` | SAT | **8.04 ms** | 853.24 ms | 382.07 ms |
-| `random3sat_n300_s4.cnf` | SAT | **15.07 ms** | 1,691.63 ms | 1,410.67 ms |
+| `random3sat_n300_s2.cnf` | SAT | **4.47 ms** | 173.26 ms | 39.67 ms |
+| `random3sat_n300_s3.cnf` | SAT | **8.04 ms** | 382.07 ms | 853.24 ms |
+| `random3sat_n300_s4.cnf` | SAT | **15.07 ms** | 1,410.67 ms | 1,691.63 ms |
 | `random3sat_n300_s5.cnf` | UNSAT *(>15 s)* | T/O | T/O | T/O |
-| **Total (3 solved SAT sum / 5-file PAR-2)** | **3 / 5** | **27.58 ms / 60,027.58 ms** *(fastest)* | **2,584.54 ms / 62,584.54 ms** *(1.04x)* | **1,966.00 ms / 61,966.00 ms** *(1.03x)* |
+| **Total (3 solved SAT sum / 5-file PAR-2)** | **3 / 5** | **27.58 ms / 60,027.58 ms** *(fastest)* | **1,966.00 ms / 61,966.00 ms** *(1.03x)* | **2,584.54 ms / 62,584.54 ms** *(1.04x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
