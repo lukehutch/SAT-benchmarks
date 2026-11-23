@@ -2,6 +2,7 @@
 
 ## Provenance & Credit
 
+- **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) (Twitter/X)
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
 - **Maintainers & Curators:** Holger H. Hoos and Thomas Stützle (University of British Columbia / TU Darmstadt)
 - **Primary Paper:** H. H. Hoos and T. Stützle, *"SATLIB: An Online Resource for Research on SAT"*, in I. P. Gent, H. van Maaren, and T. Walsh (eds.), *SAT 2000: Highlights of Satisfiability Research in the Year 2000*, IOS Press, pp. 283–292 (2000).

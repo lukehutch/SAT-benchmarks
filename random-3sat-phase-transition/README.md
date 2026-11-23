@@ -10,9 +10,20 @@ Uniform random 3-SAT formulas ($n = 200$ variables; clauses of 3 distinct unifor
 
 These 8 instances (**4 SAT / 4 UNSAT**) provide a pure unstructured baseline with zero gate, parity, cardinality, or symmetry structure on both flanks and at the peak of the phase transition.
 
-- **Recommended by:** [`@tingan87`](https://twitter.com/tingan87) (Twitter/X)
+- **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) and [`@tingan87`](https://twitter.com/tingan87) (Twitter/X)
 - **Origin:** **Original** generator (MIT [`../LICENSE`](../LICENSE)), sampling the canonical uniform random 3-SAT phase-transition ensemble (Mitchell, Selman, & Levesque, AAAI 1992; Crawford & Auton, [AIJ 1996](https://doi.org/10.1016/0004-3702(95)00046-1)).
 - **Why they are important:** They trace raw solver search and local-search behavior across the under-constrained SAT shoulder, the critical threshold peak, and the over-constrained UNSAT slope where structural preprocessing yields no simplification.
+
+## Related Critical Phase-Transition Random 3-SAT Benchmarks in This Repo
+
+Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommendation to evaluate sampled SATLIB random UNSAT/SAT 3-SAT instances around the critical threshold (such as `uuf250-1065`), companion critical-threshold random 3-SAT corpora are also committed directly in this repository (in all three formats: `.cnf`/`.cnf.xz`, `.aig`, and `.xcnf`/`.xcnf.xz`):
+
+- **SATLIB Uniform Random 3-SAT ([`../satlib-benchmarks/rnd3sat/`](../satlib-benchmarks/rnd3sat/), [UBC SATLIB RND3SAT](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/descr.html)):**
+  - **`uuf250-1065` / `uf250-1065`** ($n = 250, m = 1{,}065, \alpha = 4.26, \rho_{\mathrm{crit}} = 1.00\times$): [`uuf250-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uuf250-01.cnf.xz) (UNSAT) & [`uf250-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uf250-01.cnf.xz) (SAT), plus full 100-instance UBC archives ([`uuf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf250-1065.tar.gz), [`uf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uf250-1065.tar.gz)).
+  - **`uuf200-860` / `uf200-860` & `uuf225-960`** ($n = 200\text{--}225, \alpha \approx 4.27\text{--}4.30$): [`uuf200-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uuf200-01.cnf.xz) (UNSAT) & [`uf200-01.cnf.xz`](../satlib-benchmarks/rnd3sat/uf200-01.cnf.xz) (SAT), plus [`uuf225-960.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf225-960.tar.gz) and [`uuf200-860.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf200-860.tar.gz).
+  - **`uuf150-645`, `uuf100-430`, `uuf50-218`** (and SAT `uf*` counterparts): committed in [`../satlib-benchmarks/rnd3sat/`](../satlib-benchmarks/rnd3sat/), with all 19 official SATLIB RND3SAT archive URLs listed in [`../satlib-benchmarks/satlib_all_97_archives.uri`](../satlib-benchmarks/satlib_all_97_archives.uri).
+- **SATLIB Large Random 3-SAT ([`../satlib-benchmarks/dimacs-lran/`](../satlib-benchmarks/dimacs-lran/)):** `f600`, `f1000`, `f2000` ($n \in \{600, 1{,}000, 2{,}000\}, \alpha = 4.25, \rho_{\mathrm{crit}} = 1.00\times$).
+- **SAT Shortcut Challenge Tier 3 ([`../sat-shortcut-challenge/tier3/`](../sat-shortcut-challenge/tier3/)):** 25 uniform random 3-SAT instances scaling across $n \in \{300, 350, 400, 450, 500\}$ at $\alpha = 4.26$ ($\rho_{\mathrm{crit}} = 1.00\times$).
 
 ## Directory Layout & Regeneration
 
