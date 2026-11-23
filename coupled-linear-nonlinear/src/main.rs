@@ -4,7 +4,7 @@ use aig::Aig;
 use std::fs;
 use std::path::Path;
 
-fn build_coupled(n_in: usize, rank_eqs: usize, n_nl: usize, seed: u64) -> Aig {
+fn build_coupled(n_in: usize, rank_eqs: usize, n_nl: usize, seed: u64, flip_last_nl: bool) -> Aig {
     let mut rng = seed;
     let mut secret = vec![false; n_in];
     for b in &mut secret {
@@ -39,11 +39,14 @@ fn build_coupled(n_in: usize, rank_eqs: usize, n_nl: usize, seed: u64) -> Aig {
         let b = (rng >> 32) as usize % n_in;
         rng = rng.wrapping_mul(6364136223846793005).wrapping_add(1);
         let c = (rng >> 32) as usize % n_in;
-        let (lit, val) = match g % 3 {
+        let (lit, mut val) = match g % 3 {
             0 => (aig.maj3(xs[a], xs[b], xs[c]), (secret[a] & secret[b]) | (secret[a] & secret[c]) | (secret[b] & secret[c])),
             1 => (aig.and(xs[a], xs[b]), secret[a] & secret[b]),
             _ => (aig.mux(xs[a], xs[b], xs[c]), if secret[a] { secret[b] } else { secret[c] }),
         };
+        if flip_last_nl && g + 1 == n_nl {
+            val = !val;
+        }
         aig.assert_true(if val { lit } else { lit.neg() });
     }
     aig
@@ -54,14 +57,15 @@ fn main() {
     let cnf_dir = suite.join("cnf-version");
     fs::create_dir_all(&cnf_dir).expect("create cnf-version");
     let items = vec![
-        ("coupled_n128_d64", build_coupled(128, 64, 96, 0xFEED_FACE_1111_2222 ^ 128 ^ (64 << 16))),
-        ("coupled_n256_d128", build_coupled(256, 128, 180, 0xFEED_FACE_1111_2222 ^ 256 ^ (128 << 16))),
-        ("coupled_n512_d128", build_coupled(512, 384, 420, 0xFEED_FACE_1111_2222 ^ 512 ^ (384 << 16))),
+        ("coupled_n128_d64", "SAT", build_coupled(128, 64, 96, 0xFEED_FACE_1111_2222 ^ 128 ^ (64 << 16), false)),
+        ("coupled_n128_d32_unsat", "UNSAT", build_coupled(128, 96, 84, 0xCAFE_BABE_0003, true)),
+        ("coupled_n256_d128", "SAT", build_coupled(256, 128, 180, 0xFEED_FACE_1111_2222 ^ 256 ^ (128 << 16), false)),
+        ("coupled_n512_d128", "SAT", build_coupled(512, 384, 420, 0xFEED_FACE_1111_2222 ^ 512 ^ (384 << 16), false)),
     ];
-    for (name, aig) in items {
-        aig.write_aiger_binary(&suite.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected=SAT\norigin=AIG")).unwrap();
+    for (name, expected, aig) in items {
+        aig.write_aiger_binary(&suite.join(format!("{name}.aig")), &format!("benchmark={name}\nexpected={expected}\norigin=AIG")).unwrap();
         aig.write_dimacs(&cnf_dir.join(format!("{name}.cnf")), false).unwrap();
         aig.write_dimacs(&cnf_dir.join(format!("{name}.xcnf")), true).unwrap();
-        println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}}");
+        println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}} ({expected})");
     }
 }

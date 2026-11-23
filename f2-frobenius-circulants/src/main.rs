@@ -20,4 +20,14 @@ fn main() {
         aig.write_dimacs(&cnf_dir.join(format!("{name}.xcnf")), true).unwrap();
         println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}}");
     }
+    for &(k, name) in &[
+        (8usize, "f2_frobenius_n256_unsat"),
+        (10, "f2_frobenius_n1024_unsat"),
+    ] {
+        let aig = counterexamples::build_frobenius_circulant_unsat(k, 22345 + k as u64);
+        aig.write_aiger_binary(&suite.join(format!("{name}.aig")), &format!("benchmark={name}\nk={k}\nexpected=UNSAT\norigin=AIG")).unwrap();
+        aig.write_dimacs(&cnf_dir.join(format!("{name}.cnf")), false).unwrap();
+        aig.write_dimacs(&cnf_dir.join(format!("{name}.xcnf")), true).unwrap();
+        println!("Generated {name}.aig + cnf-version/{name}.{{cnf,xcnf}}");
+    }
 }

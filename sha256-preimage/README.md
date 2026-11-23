@@ -4,7 +4,7 @@
 
 Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing the NIST **FIPS 180-4 SHA-256** compression function on the padded single-block message `"abc"`, constraining all message bits except $k \in \{16, 20, 32\}$ free bits of message word $W_0$ to match the target $R$-round digest (or a 1-bit-flipped impossible digest for `sha256_64r_k16_unsat`).
 
-- **Origin:** Developed in the Frobenius project (`sha256.rs`) following the round-reduced and partial-preimage SHA-256 SAT cryptanalysis literature (Mironov & Zhang, SAT 2006; Nossum, 2012; Nejati et al., SAT 2017).
+- **Origin:** **Original** generator authored in the Frobenius project (`sha256.rs`; MIT [`../LICENSE`](../LICENSE)), implementing [NIST FIPS PUB 180-4](https://csrc.nist.gov/publications/detail/fips/180/4/final) following the round-reduced and partial-preimage SHA-256 SAT cryptanalysis literature (Mironov & Zhang, SAT 2006; Nossum, 2012; Nejati et al., SAT 2017).
 - **Sharp Phase Transition ($R = 16 \to 17$):** For $R \le 16$, $W_0$ enters only round 0 so backward propagation resolves all 32 bits in $O(R)$ time. At $R = 17$, the message schedule $W_{16} = W_0 + \sigma_0(W_1) + W_9 + \sigma_1(W_{14})$ re-injects $W_0$ into deep ARX mixing, creating a classic $2^k$ preimage cliff where standard CDCL solvers spend $275\text{--}2{,}607\;\text{s}$ (or time out past $5{,}000\;\text{s}$) at $R = 64, k \in \{16, 20\}$, whereas Frobenius's lifted 512-lane fused-adder AVX2 `CompiledAig256` solves them in **`89\text{--}99\;\text{ms}$`** ($>14{,}000\times$ faster while strictly obeying $2^k$ asymptotic scaling).
 
 ## Directory Layout & Regeneration
@@ -27,7 +27,7 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `sha256_16r_k32` | **8.94 ms** | 9.61 ms | 17.32 ms | 18.61 ms | 13.70 ms |
 | `sha256_17r_k16` | **19.35 ms** | 7,719.28 ms | 4,160.70 ms | 4,838.70 ms | 2,177.97 ms |

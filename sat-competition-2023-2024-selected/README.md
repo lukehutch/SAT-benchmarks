@@ -2,7 +2,7 @@
 
 ## Overview & Origin
 
-A curated 14-instance cross-domain suite imported from the **International SAT Competition 2023 and 2024 Main Tracks** via the **Global Benchmark Database (GBD)** (`https://benchmark-database.de/`), spanning 11 distinct industrial, cryptographic, hardware-verification, algebraic, and combinatorial domains:
+A curated 14-instance cross-domain suite **sourced from the International SAT Competition [2023](https://satcompetition.github.io/2023/) and [2024](https://satcompetition.github.io/2024/) Main Tracks** via the **[Global Benchmark Database (GBD)](https://benchmark-database.de/)** ([`Udopia/gbd`](https://github.com/Udopia/gbd)), spanning 11 distinct industrial, cryptographic, hardware-verification, algebraic, and combinatorial domains (upstream benchmark license: **CC-BY-4.0**, see [`LICENSE`](LICENSE)):
 - **Parity / Tseitin / Urquhart:** `tseitingrid6x200`, `tseitin_d3_n10000`, `urq45`, `two_trees_511v`, `two_trees_1023v`
 - **Cardinality / Combinatorial / Clique / Register Allocation:** `intervals122`, `clique_n2_k10`, `gzipfile_close_11`
 - **Hardware Verification Miters (HWMCC & Random Networks):** `rand_net70_40_10`, `hwmcc20_iso_rast_p06`, `hwmcc17_iso_bobsmfpu`
@@ -41,7 +41,7 @@ Twelve of these instances form the SAT Competition slice of the unified 50-bench
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; all solvers read the identical flat `.cnf` file):
 
-| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `tseitingrid6x200` | **3.07 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 1,093.37 ms |
 | `tseitin_d3_n10000` | **7.66 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 731.97 ms |

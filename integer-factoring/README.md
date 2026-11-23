@@ -4,7 +4,7 @@
 
 Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N$ (with odd-factor LSBs fixed to $1$ and $p \ge q$ / equal-half-bit symmetry breaking) across **Wallace-tree** and **Karatsuba** multiplier topologies, including a 28-bit prime UNSAT instance, 32–40-bit balanced semiprimes, and a 32-bit Wallace multiplier augmented with 16 sparse 4-bit $\mathbb{F}_2$ parity leakage constraints (`masked_mult_32b_xor16`, modeling side-channel / masked hardware cryptanalysis).
 
-- **Origin:** Developed in the Frobenius project (`factoring.rs`), motivated by classic bit-blasted factoring SAT benchmarks (Purdom & Sabry 2004; Srebrny 2004) and computer-algebra multiplier verification (Kaufmann, Biere, & Kauers, AMulet 2019).
+- **Origin:** **Original** generator authored in the Frobenius project (`factoring.rs`; MIT [`../LICENSE`](../LICENSE)), motivated by classic bit-blasted factoring SAT benchmarks (Purdom & Sabry 2004; Srebrny 2004) and computer-algebra multiplier verification (Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
 - **Why they are hard:** Bit-level carry chains create high-treewidth nonlinear arithmetic constraints; Karatsuba multiplication further couples partial products via extra adders/subtractors.
 
 ## Directory Layout & Regeneration
@@ -28,7 +28,7 @@ Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers operate strictly on flat `.cnf` with **zero number-theoretic shortcuts**):
 
-| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `factor_prime_28b_unsat` | **2.05 ms** | 25.29 ms | 5.99 ms | 75.60 ms | 38.82 ms |
 | `factor_wallace_32b` | **2.79 ms** | 25.43 ms | 5.60 ms | 121.22 ms | 82.24 ms |

@@ -11,6 +11,8 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 5. **Haythorpe Broken Crown Directed Graphs $\mathcal{B}_{n, k}$** (Haythorpe 2019): Asymmetric directed graphs ($N \in \{31, 51\}$) with *provably exact* $k = 0$ (UNSAT) or $k = 1$ unique (SAT) directed Hamiltonian cycles.
 6. **Planted Tunable-Density Random Graphs** (Vandegriend & Culberson 1998): Hidden randomly permuted Hamiltonian cycle inside sparse ($\rho = 0.06$), medium ($\rho = 0.18$), dense ($\rho = 0.30\text{--}0.35$), and very-dense ($\rho = 0.50$, $N = 80$, `28,389` CNF vars) graphs (SAT).
 
+- **Origin:** **Original** parameterized generator authored in the Frobenius project (`hamd_cnf.rs`; MIT [`../LICENSE`](../LICENSE)), instantiating classic graph-theoretic families (Watkins 1969; Chvátal 1973; Meredith 1973; Isaacs 1975; [Haythorpe FHCP / Broken Crowns](https://arxiv.org/abs/1902.10351); Vandegriend & Culberson 1998) in compact binary-order MTZ CNF ([StructHCP](https://arxiv.org/abs/2610.14780)).
+
 ## Directory Layout & Regeneration
 
 - `*.cnf` — Original native **DIMACS CNF** encodings (compact binary-order MTZ).
@@ -48,7 +50,7 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; **10/10 UNSAT LRAT proofs** emitted by Frobenius verified `s VERIFIED UNSAT` in HOL4/CakeML `cake_lpr` and `c VERIFIED` in `lrat-check`; **12/12 SAT cycles** independently verified):
 
-| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 | Formal Verification |
+| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 | Formal Verification |
 |---|---:|---:|---:|---:|---|
 | `hamd_snark_j5_unsat` | **4.81 ms** | 32.2 ms | 15.8 ms | 63.9 ms | `cake_lpr` + `lrat-check` OK (`1,205` lines) |
 | `hamd_gp_11_2_unsat` | **4.14 ms** | 114.2 ms | 64.7 ms | 167.2 ms | `cake_lpr` + `lrat-check` OK (`1,926` lines) |

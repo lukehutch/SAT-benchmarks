@@ -1,0 +1,26 @@
+Upstream Benchmark License & Attribution Notice
+===============================================
+
+1. International SAT Competition 2024, 2025, and 2026 Main Track Benchmark
+   Manifests (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`):
+
+   The benchmark URI manifests reference the official Main Track benchmark
+   corpora of the International SAT Competitions 2024, 2025, and 2026 hosted by
+   the Global Benchmark Database (GBD):
+     - SAT Competition 2024: https://satcompetition.github.io/2024/
+     - SAT Competition 2025: https://satcompetition.github.io/2025/
+     - SAT Competition 2026: https://satcompetition.github.io/2026/
+     - Global Benchmark Database (GBD): https://benchmark-database.de/
+     - GBD tooling (MIT License): https://github.com/Udopia/gbd
+
+   International SAT Competition benchmark packages are distributed under the
+   Creative Commons Attribution 4.0 International License (CC-BY-4.0):
+     https://creativecommons.org/licenses/by/4.0/
+
+   All downloaded `.cnf.xz` instances remain subject to CC-BY-4.0 and the
+   attribution terms of their original competition submitters.
+
+2. Download, Evaluation, Analysis, and Conversion Scripts (`src/*.py`):
+
+   Licensed under the MIT License (see repository root `../LICENSE`),
+   Copyright (c) 2026 Luke Hutchison.

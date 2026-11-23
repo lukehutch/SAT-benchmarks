@@ -7,7 +7,7 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 - **Array vs. Wallace-tree** multipliers ($6\times 6$, $8\times 8$, $10\times 10$)
 - **Wallace-tree vs. Karatsuba** recursive multiplier ($12\times 12$)
 
-- **Origin:** Developed in the Frobenius project (`main.rs::build_cec_adder_miter`, `build_cec_mult_miter`), modeled on industrial EDA multiplier equivalence benchmarks (Biere et al., HWMCC; Kaufmann, Biere, & Kauers, AMulet 2019).
+- **Origin:** **Original** generator authored in the Frobenius project (`main.rs::build_cec_adder_miter`, `build_cec_mult_miter`; MIT [`../LICENSE`](../LICENSE)), modeled on industrial EDA multiplier equivalence benchmarks ([HWMCC](https://hwmcc.github.io/); Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
 - **Why they are hard:** Multiplier miters between structurally divergent topologies (Array vs. Wallace vs. Karatsuba) have few internal equivalent wires, causing pure CDCL solvers to scale exponentially ($3.6\text{--}8.1\;\text{s}$ at $8\times 8$, exploding rapidly at $10\times 10$ and $12\times 12$), whereas algebraic rewriting / Gröbner-basis / FRAIG equivalence checking discharges them in milliseconds.
 
 ## Directory Layout & Regeneration
@@ -30,7 +30,7 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `cec_adder_32b_rc_vs_ks` | **8.56 ms** | 46.70 ms | 36.21 ms | 146.85 ms | 78.33 ms |
 | `cec_mult_6x6_arr_vs_wal` | **1.47 ms** | 213.67 ms | 146.33 ms | 494.59 ms | 285.64 ms |

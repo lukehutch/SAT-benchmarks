@@ -1,0 +1,28 @@
+Upstream Benchmark License & Attribution Notice
+===============================================
+
+1. Imported SAT Competition 2023 & 2024 CNF Instances (`*.cnf`) and
+   Derived Equivalent AIGER Conversions (`aig-version/*.aig`):
+
+   These 14 benchmark formulas were sourced from the International SAT
+   Competition 2023 and 2024 Main Tracks:
+     - SAT Competition 2023: https://satcompetition.github.io/2023/
+     - SAT Competition 2024: https://satcompetition.github.io/2024/
+     - Global Benchmark Database (GBD): https://benchmark-database.de/
+     - GBD tooling (MIT License): https://github.com/Udopia/gbd
+
+   International SAT Competition benchmark archives (published via the SAT
+   Competition proceedings and Zenodo archives) are distributed under the
+   Creative Commons Attribution 4.0 International License (CC-BY-4.0):
+     https://creativecommons.org/licenses/by/4.0/
+
+   Under CC-BY-4.0 you are free to share and adapt the benchmark files for any
+   purpose, provided appropriate attribution is given to the original benchmark
+   authors and the International SAT Competition / Global Benchmark Database.
+   Exact 32-character GBD MD5 identifiers and provenance metadata for every
+   instance are preserved in `src/sc23_24_manifest.json`.
+
+2. Fetcher / Converter Scripts (`src/fetch_and_convert.py`, `src/sc23_24_manifest.json`):
+
+   Licensed under the MIT License (see repository root `../LICENSE`),
+   Copyright (c) 2026 Luke Hutchison.

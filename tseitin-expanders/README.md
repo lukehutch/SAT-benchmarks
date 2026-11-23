@@ -4,7 +4,7 @@
 
 Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander graphs ($n \in \{60, 120, 300\}$ vertices; Hamiltonian cycle plus pseudorandom perfect matching) and the 3-regular prism graph $C_{200} \times K_2$ ($n = 400$ vertices), assigning total odd vertex charge ($c_0 = 1$, $c_v = 0$ for $v > 0$).
 
-- **Origin:** Classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart (1987); instantiated as circuit-native AIGs in the Frobenius project (`counterexamples.rs`).
+- **Origin:** **Original** circuit-native AIG generator authored in the Frobenius project (`counterexamples.rs`; MIT [`../LICENSE`](../LICENSE)), instantiating the classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart ([JACM 1987](https://doi.org/10.1145/7531.8928)).
 - **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both Kissat 4.0.4 and CaDiCaL 3.1.0 time out past $5{,}000\;\text{s}$ starting at $n = 120$, whereas $\mathbb{F}_2$ Gaussian elimination refutes all four instances in $< 2\;\text{ms}$ and emits polynomial-size `cake_lpr`-verified Extended-Resolution LRAT proofs via Philipp–Rebola-Pardo (2016) (up to `543,500` LRAT lines on `tseitin_exp_n300`).
 
 ## Directory Layout & Regeneration
@@ -26,7 +26,7 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except CMS-X which receives `cnf-version/*.xcnf`):
 
-| Instance | Frobenius 1C PGO | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
+| Instance | Frobenius 1C | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18 (CNF) | CryptoMiniSat 5.18 (XCNF) |
 |---|---:|---:|---:|---:|---:|
 | `tseitin_exp_n60` | **1.19 ms** | 58.59 ms | 546.39 ms | 22.59 ms | 22.91 ms |
 | `tseitin_exp_n120` | **1.25 ms** | >5,000 s (T/O) | >5,000 s (T/O) | 27.62 ms | 23.45 ms |

@@ -39,6 +39,46 @@ pub fn build_frobenius_circulant(k: usize, seed: u64) -> (Aig, Vec<bool>) {
     (aig, x_true)
 }
 
+/// Build a provably unsatisfiable, strictly balanced 4-XOR F2-Frobenius circulant on `n = 2^k`
+/// variables (`s = 2^{floor(k/2)}`):
+///     x_i ^ x_{(i+1) mod n} ^ x_{(i+s) mod n} ^ x_{(i+s+1) mod n} = b_i  (0 <= i < n),
+/// where `b_i` matches a planted assignment for all `i > 0` and is flipped at `i = 0`.
+/// Every variable occurs in exactly 4 equations, so the F2 sum of all `n` LHS rows is identically 0
+/// while `sum b_i = 1 (mod 2)` -> minimally unsatisfiable global parity contradiction!
+pub fn build_frobenius_circulant_unsat(k: usize, seed: u64) -> Aig {
+    assert!(k >= 4);
+    let n = 1usize << k;
+    let s = 1usize << (k / 2);
+
+    let mut state = seed ^ 0x517C_C1B7_2722_0A95;
+    let mut x_ref = vec![false; n];
+    for b in &mut x_ref {
+        state = state.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407);
+        *b = (state >> 63) != 0;
+    }
+
+    let mut aig = Aig::new();
+    let xs = aig.new_inputs(n);
+    {
+        let mut lin = aig.begin_linear_region("F2-Frobenius-UNSAT");
+        for i in 0..n {
+            let mut rhs = x_ref[i]
+                ^ x_ref[(i + 1) % n]
+                ^ x_ref[(i + s) % n]
+                ^ x_ref[(i + s + 1) % n];
+            if i == 0 {
+                rhs = !rhs;
+            }
+            lin.assert_xor_parity(
+                &[xs[i], xs[(i + 1) % n], xs[(i + s) % n], xs[(i + s + 1) % n]],
+                rhs,
+            );
+        }
+        lin.finish();
+    }
+    aig
+}
+
 /// Build an unsatisfiable MOD2-Tseitin AIG on the 3-regular prism graph C_m x K_2 (n = 2m vertices).
 pub fn build_tseitin_prism(m: usize) -> Aig {
     assert!(m >= 4);
