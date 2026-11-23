@@ -1,0 +1,25 @@
+random3sat_n300_s1.cnf	UNSAT	43.15
+random3sat_n300_s2.cnf	SAT	0.07
+random3sat_n300_s3.cnf	SAT	1.76
+random3sat_n300_s4.cnf	SAT	3.49
+random3sat_n300_s5.cnf	UNSAT	56.21
+random3sat_n350_s1.cnf	> 300 s	195.06
+random3sat_n350_s2.cnf	> 300 s	195.29
+random3sat_n350_s3.cnf	SAT	0.57
+random3sat_n350_s4.cnf	> 300 s	198.37
+random3sat_n350_s5.cnf	> 300 s	199.38
+random3sat_n400_s1.cnf	SAT	8.71
+random3sat_n400_s2.cnf	SAT	1.36
+random3sat_n400_s3.cnf	SAT	1.78
+random3sat_n400_s4.cnf	> 300 s	197.81
+random3sat_n400_s5.cnf	SAT	3.68
+random3sat_n450_s1.cnf	SAT	49.37
+random3sat_n450_s2.cnf	SAT	1.87
+random3sat_n450_s3.cnf	> 300 s	200.83
+random3sat_n450_s4.cnf	SAT	3.13
+random3sat_n450_s5.cnf	> 300 s	206.07
+random3sat_n500_s1.cnf	SAT	24.05
+random3sat_n500_s2.cnf	SAT	4.85
+random3sat_n500_s3.cnf	> 300 s	218.38
+random3sat_n500_s4.cnf	SAT	23.53
+random3sat_n500_s5.cnf	SAT	2.09

@@ -4,8 +4,8 @@
 
 Uniform random 3-SAT formulas sampled directly at the critical satisfiability phase transition $m / n = 4.26$ ($n = 200$ variables, $m = 852$ clauses of 3 distinct uniformly random variables with independent uniform polarities), providing a pure unstructured baseline with zero gate, parity, cardinality, or symmetry structure.
 
-- **Origin:** **Original** generator authored in the Frobenius project (MIT [`../LICENSE`](../LICENSE)), sampling the canonical uniform random 3-SAT phase-transition ensemble (Mitchell, Selman, & Levesque, AAAI 1992; Crawford & Auton, [AIJ 1996](https://doi.org/10.1016/0004-3702(95)00046-1)).
-- **Why they are important:** They measure raw CDCL BCP, conflict analysis, restart, clause-management, and ProbSAT local-search throughput when every structural/algebraic preprocessor is a strict no-op.
+- **Origin:** **Original** generator (MIT [`../LICENSE`](../LICENSE)), sampling the canonical uniform random 3-SAT phase-transition ensemble (Mitchell, Selman, & Levesque, AAAI 1992; Crawford & Auton, [AIJ 1996](https://doi.org/10.1016/0004-3702(95)00046-1)).
+- **Why they are important:** They measure raw solver search throughput on unstructured uniform random formulas where structural preprocessing yields no simplification.
 
 ## Directory Layout & Regeneration
 
@@ -35,4 +35,3 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max
 
 - D. Mitchell, B. Selman, and H. Levesque, *Hard and Easy Distributions of SAT Problems*, AAAI 1992.
 - J. M. Crawford and L. D. Auton, *Experimental Results on the Crossover Point in Random 3-SAT*, Artificial Intelligence 81(1–2):31–57, 1996.
-- A. Balint and U. Schöning, *Choosing Probability Distributions for Stochastic Local Search and the Role of Make versus Break (ProbSAT)*, SAT 2012, LNCS 7317.

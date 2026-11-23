@@ -1,12 +1,10 @@
 #![allow(dead_code)]
-//! Stage 1 & Stage 2 Paper Counterexample Benchmarks:
-//! 1. F2-Frobenius Circulant Psi_{k,b} (Theorem 4.5, 5.1, 9.1):
+//! Algebraic & Parity Counterexample Circuit Benchmarks:
+//! 1. F2-Frobenius Circulant Psi_{k,b}:
+//!    - Balanced invertible 3-XOR and minimally unsatisfiable 4-XOR circulants over F_2
 //!    - Forces >= 2^{sqrt(n)/(3*sqrt(2))} in every merge-tree DNF solver
-//!    - Exact fixed point of `bitcoinnew` + unbounded path-splitting GUS
-//!    - Solved in < 1 ms by our F2-Gauss engine (and in O(n log n) width-4 Resolution!).
-//! 2. MOD2-Tseitin on 3-Regular Prisms and Expanders (Theorem 4.4, 5.1, 5.2, 9.1):
-//!    - Forces 2^{Omega(n)} in general Resolution/CDCL without XOR
-//!    - Refuted in < 1 ms by our F2-Gauss engine!
+//! 2. MOD2-Tseitin on 3-Regular Prisms and Expanders:
+//!    - Forces 2^{Omega(n)} in general Resolution/CDCL without parity reasoning
 
 use crate::aig::Aig;
 

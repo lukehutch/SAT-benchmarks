@@ -1,5 +1,5 @@
 {
-  "description": "Reproducible manifest of 14 curated SAT Competition 2023/2024 Main Track flat DIMACS CNFs (12 promoted into Table 4 of the Frobenius paper + two_trees_511v and mp1_nb7t42). Fetch any instance via https://benchmark-database.de/file/<gbd_hash>.",
+  "description": "Reproducible manifest of 14 curated SAT Competition 2023/2024 Main Track flat DIMACS CNFs across 11 domains. Fetch any instance via https://benchmark-database.de/file/<gbd_hash>.",
   "sat_competition_flat_cnfs": [
     { "name": "tseitingrid6x200",     "year": 2024, "family": "SC24-Tseitin",  "ans": "UNSAT", "vars": 2400,  "clauses": 9600,   "gbd_hash": "35789168b67a74985804902008251269" },
     { "name": "tseitin_d3_n10000",    "year": 2023, "family": "SC23-Tseitin",  "ans": "UNSAT", "vars": 15000, "clauses": 40000,  "gbd_hash": "1153a473e1d5dd21ccd33189d594a4aa" },

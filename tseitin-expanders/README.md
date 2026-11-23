@@ -4,8 +4,8 @@
 
 Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander graphs ($n \in \{60, 120, 300\}$ vertices; Hamiltonian cycle plus pseudorandom perfect matching) and the 3-regular prism graph $C_{200} \times K_2$ ($n = 400$ vertices), assigning total odd vertex charge ($c_0 = 1$, $c_v = 0$ for $v > 0$).
 
-- **Origin:** **Original** circuit-native AIG generator authored in the Frobenius project (`counterexamples.rs`; MIT [`../LICENSE`](../LICENSE)), instantiating the classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart ([JACM 1987](https://doi.org/10.1145/7531.8928)).
-- **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both Kissat 4.0.4 and CaDiCaL 3.1.0 time out past $5{,}000\;\text{s}$ starting at $n = 120$, whereas $\mathbb{F}_2$ Gaussian elimination refutes all four instances in $< 2\;\text{ms}$ and emits polynomial-size `cake_lpr`-verified Extended-Resolution LRAT proofs via Philipp–Rebola-Pardo (2016) (up to `543,500` LRAT lines on `tseitin_exp_n300`).
+- **Origin:** **Original** circuit-native AIG generator (MIT [`../LICENSE`](../LICENSE)), instantiating the classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart ([JACM 1987](https://doi.org/10.1145/7531.8928)).
+- **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both Kissat 4.0.4 and CaDiCaL 3.1.0 time out past $5{,}000\;\text{s}$ starting at $n = 120$.
 
 ## Directory Layout & Regeneration
 

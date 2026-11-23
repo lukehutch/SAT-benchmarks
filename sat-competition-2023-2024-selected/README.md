@@ -8,7 +8,7 @@ A curated 14-instance cross-domain suite **sourced from the International SAT Co
 - **Hardware Verification Miters (HWMCC & Random Networks):** `rand_net70_40_10`, `hwmcc20_iso_rast_p06`, `hwmcc17_iso_bobsmfpu`
 - **Cryptography, Subgraph Isomorphism & Polynomial Multiplication:** `vmpc_24`, `si2_b03m_m800_03`, `mp1_nb7t42`
 
-Twelve of these instances form the SAT Competition slice of the unified 50-benchmark flat-CNF gauntlet (Table 4 of the Frobenius paper); `two_trees_511v` and `mp1_nb7t42` are companion SC 2023/2024 instances from the same audit batch.
+Twelve of these instances form the SAT Competition slice of the unified 50-benchmark flat-CNF gauntlet; `two_trees_511v` and `mp1_nb7t42` are companion SC 2023/2024 instances from the same selection.
 
 ## Directory Layout & Reproducibility
 

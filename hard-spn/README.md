@@ -4,8 +4,8 @@
 
 Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis benchmarks pairing a dense $\mathbb{F}_2$ linear diffusion layer ($r = n/2$ sparse 5-input parity assertions) with nonlinear $\mathrm{And}$, $\mathrm{Maj}_3$, and $\mathrm{Mux}$ S-box gates evaluated on **3-input $\mathbb{F}_2$ linear forms** $\ell_a = x_i \oplus x_j \oplus x_k$ rather than raw input wires. Both satisfiable planted instances ($n \in \{64, 96, 128\}$) and a deep unsatisfiable flipped-target instance (`spn_unsat_n48_d24`) are included.
 
-- **Origin:** **Original** suite authored in the Frobenius project (`main.rs::build_coupled_or_spn_aig`, `spn_forms = true`; MIT [`../LICENSE`](../LICENSE)), modeled on algebraic LowMC-style ciphers (Albrecht et al., [EUROCRYPT 2015](https://eprint.iacr.org/2016/687)).
-- **Why they are hard:** Feeding 3-input linear forms into nonlinear gates hides the affine subspace from pure clausal propagation: at $n = 128$, Kissat 4.0.4 takes `4,330 ms`, CaDiCaL 3.1.0 takes `2,137 ms`, and CryptoMiniSat CNF takes `10,805 ms`, whereas Frobenius's $K_4$-fused quotient-space $\mathrm{Res}(\oplus)$ engine (`FrobeniusFusion`) solves the identical flat `.cnf` in **`38.08 ms`** ($48.6\times\text{--}283.7\times$ faster).
+- **Origin:** **Original** benchmark suite (MIT [`../LICENSE`](../LICENSE)), modeled on algebraic LowMC-style ciphers (Albrecht et al., [EUROCRYPT 2015](https://eprint.iacr.org/2016/687)).
+- **Why they are hard:** Feeding 3-input linear forms into nonlinear gates couples the affine diffusion layer with nonlinear S-box constraints, making flat clausal propagation challenging: at $n = 128$, Kissat 4.0.4 takes `4,330 ms`, CaDiCaL 3.1.0 takes `2,137 ms`, and CryptoMiniSat CNF takes `10,805 ms`.
 
 ## Directory Layout & Regeneration
 

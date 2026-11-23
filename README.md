@@ -1,20 +1,20 @@
 # SAT Benchmarks
 
-A curated, dual-format (**Binary AIGER 1.9 `.aig`** and **DIMACS `.cnf` / `.xcnf`**) collection of Boolean satisfiability, circuit-inversion, algebraic, graph-theoretic, hardware-verification, and SAT Competition benchmark suites developed and imported during the development of the **Frobenius** SAT/circuit solver.
+A curated, dual-format (**Binary AIGER 1.9 `.aig`** and **DIMACS `.cnf` / `.xcnf`**) collection of **22 benchmark suites** spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, matrix multiplication, graph theory, symmetry breaking, exact circuit synthesis, hardware verification, finite-automata complementation, and SAT Competition corpora.
 
 Every benchmark suite lives in its own top-level directory containing:
-- Native-format benchmark instances at the suite root (`.aig` for circuit-native suites; `.cnf` for clausal suites).
-- Exact dual-format conversions in `cnf-version/` (for originally-AIG suites) or `aig-version/` (for originally-CNF suites). Every single `.aig` file across all suites (**90 / 90**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with Berkeley **ABC** (`read_aiger` + `sat` spot-checks).
-- Standalone, zero-dependency generator / fetcher / converter source code in `src/`.
-- A detailed `README.md` documenting provenance, upstream links and licenses, mathematical/circuit parameters, exact data sizes, comparative 1-core solver timings (Frobenius 1C, Kissat 4.0.4, CaDiCaL 3.1.0, CryptoMiniSat 5.18.0 CNF & XCNF), proof verification status (`cake_lpr` / `lrat-check`), and literature citations.
+- Native-format benchmark instances at the suite root (`.aig` for circuit-native suites; `.cnf` / `.cnf.xz` for clausal suites; `.mata.xz` for the MATA automata suite).
+- Exact dual-format conversions in `cnf-version/` (for originally-AIG suites) or `aig-version/` (for originally-CNF suites). Every single `.aig` file across all suites (**357 / 357**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with Berkeley **ABC** (`read_aiger`, `0` errors).
+- Standalone generator, exporter, fetcher, or converter source code in `src/`.
+- A detailed `README.md` documenting provenance, contributor credits, upstream links and licenses, mathematical/circuit parameters, exact data sizes, comparative 1-core solver timings (Frobenius 1C, `dense-solver 0.0.4`, Kissat 4.0.4, CaDiCaL 3.1.0, CryptoMiniSat 5.18.0 CNF & XCNF), proof verification status (`cake_lpr` / `lrat-check`), and literature citations.
 
-## Benchmark Suites
+## Benchmark Suites (22 Suites)
 
-| Suite | Origin Format | Provenance | Instances | SAT / UNSAT | Domain & Structural Focus | Generator / Scripts |
+| Suite | Origin Format | Provenance & Credit | Instances | SAT / UNSAT | Domain & Structural Focus | Generator / Scripts |
 |---|---|---|---:|:---:|---|---|
 | [`f2-frobenius-circulants/`](f2-frobenius-circulants/README.md) | AIG (`.aig`) | **Original** | 6 | 4 / 2 | Balanced $\mathbb{F}_2$ circulant parity circuits ($n=64\text{--}4{,}096$) | Rust (`src/`) |
 | [`tseitin-expanders/`](tseitin-expanders/README.md) | AIG (`.aig`) | **Original** *(classic family)* | 4 | 0 / 4 | $\mathrm{MOD}_2$-Tseitin 3-regular expanders & prism ($n=60\text{--}400$) | Rust (`src/`) |
-| [`coupled-linear-nonlinear/`](coupled-linear-nonlinear/README.md) | AIG (`.aig`) | **Original** | 4 | 3 / 1 | Coupled $\mathbb{F}_2$ nullspace + nonlinear $\mathrm{And}/\mathrm{Maj}_3/\mathrm{Mux}$ circuits | Rust (`src/`) |
+| [`coupled-linear-nonlinear/`](coupled-linear-nonlinear/README.md) | AIG (`.aig`) | **Original** | 4 | 3 / 1 | Coupled $\mathbb{F}_2$ linear + nonlinear $\mathrm{And}/\mathrm{Maj}_3/\mathrm{Mux}$ circuits | Rust (`src/`) |
 | [`hard-spn/`](hard-spn/README.md) | AIG (`.aig`) | **Original** | 4 | 3 / 1 | LowMC-style linear-form + S-box SPN algebraic cryptanalysis | Rust (`src/`) |
 | [`integer-factoring/`](integer-factoring/README.md) | AIG (`.aig`) | **Original** *(classic problem)* | 6 | 5 / 1 | Wallace & Karatsuba multiplier inversion (28–40b) + XOR-masked mult | Rust (`src/`) |
 | [`sha256-preimage/`](sha256-preimage/README.md) | AIG (`.aig`) | **Original** *(FIPS 180-4)* | 5 | 4 / 1 | Exact FIPS 180-4 SHA-256 CSA preimages ($R = 16, 17, 64$; $k = 16, 20, 32$) | Rust (`src/`) |
@@ -24,8 +24,18 @@ Every benchmark suite lives in its own top-level directory containing:
 | [`random-3sat-phase-transition/`](random-3sat-phase-transition/README.md) | CNF (`.cnf`) | **Original** *(classic ensemble)* | 2 | 1 / 1 | Uniform random 3-SAT at critical phase transition $m/n = 4.26$ ($n=200$) | Python (`src/`) |
 | [`sat-competition-2023-2024-selected/`](sat-competition-2023-2024-selected/README.md) | CNF (`.cnf`) | **Sourced** ([SC 23/24](https://satcompetition.github.io/) / [GBD](https://benchmark-database.de/), CC-BY-4.0) | 14 | 5 / 9 | 14 curated SC 2023/2024 Main Track CNFs across 11 domains (with GBD hashes) | Python + manifest (`src/`) |
 | [`sat-competition-2024-2026-main-track/`](sat-competition-2024-2026-main-track/README.md) | CNF (URIs) | **Sourced** ([SC 24–26](https://satcompetition.github.io/) / [GBD](https://benchmark-database.de/), CC-BY-4.0) | 1,166* | Mixed | Complete SC 2024, 2025, 2026 Main Track GBD URI manifests & eval harness | Python + `.uri` (`src/`) |
+| [`sat-shortcut-challenge/`](sat-shortcut-challenge/README.md) | CNF (`.cnf`) | **Sourced** — Keith Adler (`@keithadler`, [repo](https://github.com/keithadler/sat-shortcut-challenge), Apache-2.0) | 25 | Mixed | Tier-3 uniform random 3-SAT ($n=300\text{--}500$, $m/n=4.26$) + Tier-1 generators | Python (`src/`) |
+| [`heule-matrix-challenges/`](heule-matrix-challenges/README.md) | CNF (`.cnf.xz`) | **Sourced** — Heule, Kauers, Seidl ([repo](https://github.com/marijnheule/matrix-challenges), via `@SMT_Solvers`) | 43 | Mixed / Open | $3\times 3$ matrix multiplication over $\mathbb{F}_2$ ($R=22, 23$, SAT 2019) | C + Python (`src/`) |
+| [`vlsat-2/`](vlsat-2/README.md) | CNF (`.cnf`) | **Sourced** — Garavel / CADP INRIA ([VLSAT-2](https://cadp.inria.fr/resources/vlsat/2.html), via `@TravisRudd`) | 10 + 100* | 1 / 9 *(first 10)* | Very Large SAT from Nested-Unit Petri Net decompositions (first 10 + 100 URIs) | Python + `.uri` (`src/`) |
+| [`mata-presburger-nfa/`](mata-presburger-nfa/README.md) | NFA (`.mata.xz`) | **Sourced** — VeriFIT MATA ([`nfa-bench`](https://github.com/VeriFIT/nfa-bench), MIT, via `@TravisRudd`) | 174 | Automata | TACAS 2024 Presburger explicit-complement NFA benchmark set | Python (`src/`) |
+| [`qdistsat-qldpc/`](qdistsat-qldpc/README.md) | Matrices / CNF | **Sourced** — [`QDistSAT`](https://github.com/guluchen/QDistSAT) (GPL-3.0+) & Bravyi et al., via `@TravisRudd` | 10 | 5 / 5 | CSS Quantum LDPC bivariate-bicycle code distance ($[[30..756]]$, `.cnf`/`.xcnf`/`.aig`) | Python (`src/`) |
+| [`aloul-symmetry-benchmarks/`](aloul-symmetry-benchmarks/README.md) | CNF (`.cnf`) | **Sourced** — Fadi A. Aloul ([`aloul.net`](https://www.aloul.net/benchmarks.html), DAC 2002, via `@merlin_numa`) | 82 | Mixed | Symmetry-rich FPGA switch-box (Homer/Bart), routing, Urquhart, Array/Wallace factoring | Python (`src/`) |
+| [`rb-bench-model-rb/`](rb-bench-model-rb/README.md) | CNF (`.cnf`) | **Sourced** — Ke Xu ([`rb-bench.github.io`](https://rb-bench.github.io/), AIJ 2007, via `@merlin_numa`) | 40 | 40 / 0 | Model RB forced-satisfiable phase-transition CSP-to-SAT (`frb30-15`–`frb59-26`) | Python (`src/`) |
+| [`dense-solver-benchmarks/`](dense-solver-benchmarks/README.md) | CNF (`.cnf`) | **Sourced** — Merlin Numa (`@merlin_numa`, [`dense-solver`](https://github.com/libdense/dense-solver), [Zenodo](https://zenodo.org/records/24443907), MIT) | 50 | 18 / 32 | Multi-encoding PHP ($\mathrm{PHP}^{65}_{64}$), mutilated chessboards, 22 SATLIB + 8 SC25 CNFs | Python (`src/`) |
+| [`pretolani-pret/`](pretolani-pret/README.md) | CNF (`.cnf`) | **Sourced** — Daniele Pretolani ([SATLIB PRET](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html), via `@MMarchidann`) | 8 | 0 / 8 | Parity-charged graph 2-coloring UNSAT formulas ($n=60, 150$; 25%–75% Horn) | Python (`src/`) |
+| [`mod-circuit-sat/`](mod-circuit-sat/README.md) | CNF (`.cnf`) | **Sourced** — `@vzhilin_me` ([`vzhn/mod-circuit-sat`](https://github.com/vzhn/mod-circuit-sat), arXiv:2102.12579) | 11 | 5 / 4 / 2 Open | Exact optimal $B_2$ circuit synthesis for $\mathrm{MOD}_n^{3,r}$ ($n=3\text{--}6$) | Python (`src/`) |
 
-\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`) and download/conversion scripts rather than duplicating ~11 GiB of raw `.cnf.xz` archives in Git. All other 11 suites (**90 benchmarks, 180 dual-format `.aig`/`.cnf` files + `.xcnf` files**) are committed directly in full.
+\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`, 1,166 unique CNFs) and `vlsat-2/vlsat2_100.uri` stores all 100 INRIA URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **369 SAT benchmark instances**, **357 verified Binary AIGER 1.9 `.aig` files**, **174 `.mata.xz` NFA benchmarks**, and full generator/converter scripts are committed directly.
 
 ## Highlighted Solver Summary
 
@@ -54,7 +64,22 @@ Every benchmark suite lives in its own top-level directory containing:
 | CryptoMiniSat 5.18.0 (CNF) | 18 / 22 | 0 / 22 | 148,852.60 ms *(400x slower)* | 100% verdict agreement on solved instances |
 | CaDiCaL 3.1.0 | 17 / 22 | 2 / 22 | 163,592.80 ms *(439x slower)* | 100% verdict agreement on solved instances |
 
-### 3. SAT Competition 2024–2026 Main Track (1,166 Unique CNFs, 1-Core)
+### 3. Newly Imported External Suites (1-Core, Identical Flat `.cnf` Input)
+
+- **Timeout:** $T_{\max} = 5\;\text{s}$ per instance (PAR-2 penalty $10\;\text{s}$), except `mod-circuit-sat` ($T_{\max} = 10\;\text{s}$).
+- **Same machine?** **Yes** — all solvers run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
+
+| Suite (Instances, $T_{\max}$) | Frobenius 1C | `dense-solver 0.0.4` | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18.0 |
+|---|---:|---:|---:|---:|---:|
+| **`dense-solver` Public (30, 5 s)** | **29/30 — 10,550 ms** *(fastest)* | 28/30 — 20,413 ms *(1.93x)* | 25/30 — 53,065 ms *(5.03x)* | 24/30 — 63,765 ms *(6.04x)* | 20/30 — 100,871 ms *(9.56x)* |
+| **`dense-solver` Synth + `cb368` (21, 5 s)** | **21/21 — 323.84 ms** *(fastest)* | 21/21 — 466.92 ms *(1.44x)* | 14/21 — 70,568 ms *(218x)* | 14/21 — 70,983 ms *(219x)* | 14/21 — 71,525 ms *(221x)* |
+| **VLSAT-2 First 10 (10, 5 s)** | **7/10 — 30,042 ms** *(fastest)* | — | 4/10 — 64,398 ms *(2.14x)* | 0/10 — 100,000 ms *(3.33x)* | — |
+| **Pretolani PRET (8, 5 s)** | 8/8 — 9.86 ms *(1.53x)* | **8/8 — 6.43 ms** *(fastest)* | 8/8 — 58.45 ms *(9.09x)* | 8/8 — 41.53 ms *(6.46x)* | 8/8 — 161.74 ms *(25.2x)* |
+| **Aloul FPGA Switch-Box (21, 5 s)** | 21/21 — 219.53 ms *(8.00x)* | **21/21 — 27.45 ms** *(fastest)* | 12/21 — 92,980 ms *(3,387x)* | 11/21 — 100,091 ms *(3,646x)* | — |
+| **Model RB `frb30-15` (5, 5 s)** | 5/5 — 3,165 ms *(3.43x)* | — | **5/5 — 923.51 ms** *(fastest)* | 5/5 — 1,377 ms *(1.49x)* | — |
+| **`mod-circuit-sat` $n=3\text{--}5$ (9, 10 s)** | 8/9 — 30,054 ms *(1.20x)* | — | **8/9 — 25,054 ms** *(fastest)* | 8/9 — 27,363 ms *(1.09x)* | — |
+
+### 4. SAT Competition 2024–2026 Main Track (1,166 Unique CNFs, 1-Core)
 
 - **Timeout:** Evaluated at $T_{\max} = 15\;\text{s}$ and $T_{\max} = 60\;\text{s}$ cutoffs (official competition full runs used $T_{\max} = 5{,}000\;\text{s}$).
 - **Same machine?** **No (different machines)** — Frobenius 1C ran on our local **AMD Ryzen 9 5950X** workstation (1 core per instance, unrestricted available RAM), whereas competitor scores are taken directly from official published competition logs/slides (**StarExec** cluster for SC 2024; **LMU / competition sequential clusters** for SC 2025–2026). CPU differences affect absolute runtimes, so ratios below reflect cross-machine published PAR-2 comparisons.
@@ -74,11 +99,16 @@ Every benchmark suite lives in its own top-level directory containing:
 
 - **Binary AIGER 1.9 (`.aig`):** Standard Armin Biere combinational AIGER format (`aig M I 0 1 A`) with `L = 0` latches and `O = 1` primary output `PO_0` that evaluates to `1` iff all circuit assertions / CNF clauses are satisfied. Readable directly by Berkeley `abc`, `aigtoaig`, `aigtocnf`, Yosys, and HWMCC toolchains.
 - **DIMACS CNF / XCNF (`.cnf`, `.xcnf`):** Standard SAT Competition `p cnf <vars> <clauses>` format; `.xcnf` files include native CryptoMiniSat `x l1 ... lk 0` XOR parity clauses.
+- **MATA Automata (`.mata.xz`):** Standard VeriFIT `.mata` NFA format stored xz-compressed.
 
 ## License
 
-- Repository-authored original suites and generator scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
-- Sourced suites include their original upstream licenses and provenance links inside their respective directories:
-  - [`zed-adversarial-hub-php/LICENSE`](zed-adversarial-hub-php/LICENSE) — MIT License (copied from [`zed-impl`](https://github.com/lukehutch/zed-impl)).
-  - [`sat-competition-2023-2024-selected/LICENSE`](sat-competition-2023-2024-selected/LICENSE) — Creative Commons Attribution 4.0 International (**CC-BY-4.0**) for SAT Competition / GBD benchmark archives + MIT for scripts.
-  - [`sat-competition-2024-2026-main-track/LICENSE`](sat-competition-2024-2026-main-track/LICENSE) — Creative Commons Attribution 4.0 International (**CC-BY-4.0**) for SAT Competition / GBD benchmark corpora + MIT for scripts.
+- Repository-authored original suites and generator/conversion scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
+- Sourced suites retain their original upstream licenses, notices, and provenance links inside their respective directories:
+  - [`zed-adversarial-hub-php/LICENSE`](zed-adversarial-hub-php/LICENSE) — MIT License (`zed-impl`).
+  - [`sat-competition-2023-2024-selected/LICENSE`](sat-competition-2023-2024-selected/LICENSE) & [`sat-competition-2024-2026-main-track/LICENSE`](sat-competition-2024-2026-main-track/LICENSE) — Creative Commons Attribution 4.0 International (**CC-BY-4.0**) for SAT Competition / GBD archives + MIT for scripts.
+  - [`sat-shortcut-challenge/LICENSE`](sat-shortcut-challenge/LICENSE) — **Apache License 2.0** (`keithadler/sat-shortcut-challenge`).
+  - [`dense-solver-benchmarks/LICENSE`](dense-solver-benchmarks/LICENSE) & [`SOURCES.md`](dense-solver-benchmarks/SOURCES.md) — **MIT License** (`libdense/dense-solver`) + preserved SATLIB / SC 2025 attributions.
+  - [`mata-presburger-nfa/LICENSE`](mata-presburger-nfa/LICENSE) — **MIT License** (`VeriFIT/mata`).
+  - [`qdistsat-qldpc/LICENSE`](qdistsat-qldpc/LICENSE) & [`NOTICE`](qdistsat-qldpc/NOTICE) — **GNU General Public License v3.0 or later (`GPL-3.0-or-later`)** (`guluchen/QDistSAT` / `DistQLDPC`, with retained `codeDistancePYPI` MIT notices).
+  - Public academic archives without dedicated upstream `LICENSE` files (`heule-matrix-challenges`, `vlsat-2`, `aloul-symmetry-benchmarks`, `rb-bench-model-rb`, `pretolani-pret`, `mod-circuit-sat`) carry explicit author attributions, papers, and upstream links in each suite's `README.md`.

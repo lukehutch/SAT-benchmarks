@@ -4,8 +4,8 @@
 
 Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an under-determined system of sparse 5-variable $\mathbb{F}_2$ linear parity constraints ($\mathrm{rank} = r$, nullspace dimension $d = n - r$) with a layer of nonlinear Boolean gates ($\mathrm{Maj}_3$, $\mathrm{And}$, $\mathrm{Mux}$) directly over primary inputs. The three SAT instances are consistent with a planted secret assignment $x^{\star} \in \mathbb{F}_2^n$; the UNSAT instance (`coupled_n128_d32_unsat`) flips the final nonlinear gate polarity so both the linear layer ($d = 32$) and nonlinear gates are individually consistent while their coupled intersection is unsatisfiable.
 
-- **Origin:** **Original** suite authored in the Frobenius project (`main.rs::build_coupled_or_spn_aig`, `spn_forms = false`; MIT [`../LICENSE`](../LICENSE)) to benchmark simultaneous $\mathbb{F}_2$-nullspace contraction and nonlinear Boolean constraint satisfaction.
-- **Why they are interesting:** Pure linear algebra cannot handle the nonlinear $\mathrm{Maj}_3/\mathrm{And}/\mathrm{Mux}$ layer, while pure CDCL does not contract the $r$-equation affine subspace upfront. Fused nullspace-conditioned search solves all four circuits in $1.8\text{--}2.7\;\text{ms}$ on flat CNFs.
+- **Origin:** **Original** benchmark suite (MIT [`../LICENSE`](../LICENSE)) coupling $\mathbb{F}_2$-linear parity constraints with nonlinear Boolean gates ($\mathrm{Maj}_3$, $\mathrm{And}$, $\mathrm{Mux}$).
+- **Why they are interesting:** Pure linear algebra cannot handle the nonlinear $\mathrm{Maj}_3/\mathrm{And}/\mathrm{Mux}$ layer, while standard CDCL solvers must jointly satisfy both the $r$-equation parity layer and the nonlinear gate constraints.
 
 ## Directory Layout & Regeneration
 

@@ -11,8 +11,8 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
   $$x_i \oplus x_{(i+1) \bmod n} \oplus x_{(i+s) \bmod n} \oplus x_{(i+s+1) \bmod n} = b_i \quad (0 \le i < n),$$
   where $b_i$ matches a planted assignment for $i > 0$ and is flipped at $i = 0$. Every variable appears in exactly 4 equations, so the $\mathbb{F}_2$ sum of all $n$ LHS rows is identically $0$ while $\sum_i b_i = 1 \pmod 2$, yielding a strictly balanced global parity contradiction.
 
-- **Origin:** **Original** suite authored as Stage 1 algebraic inversion counterexamples in the Frobenius project (`counterexamples.rs`; MIT [`../LICENSE`](../LICENSE)).
-- **Why they are hard:** Every merge-tree DNF/ANF circuit solver incurs $\ge 2^{\sqrt{n}/(3\sqrt{2})}$ blowup, and pure CDCL without $\mathbb{F}_2$ Gaussian elimination scales super-polynomially ($364\;\text{s}$ for Kissat and $211\;\text{s}$ for CaDiCaL at $n = 4{,}096$ SAT; CaDiCaL times out past $30\;\text{s}$ on `n1024_unsat`), whereas M4RI / Gaussian elimination over $\mathbb{F}_2$ solves all six instances in milliseconds.
+- **Origin:** **Original** suite of algebraic circulant parity benchmark circuits (MIT [`../LICENSE`](../LICENSE)).
+- **Why they are hard:** Every merge-tree DNF/ANF circuit solver incurs $\ge 2^{\sqrt{n}/(3\sqrt{2})}$ blowup, and pure CDCL solvers without $\mathbb{F}_2$ parity reasoning scale super-polynomially ($364\;\text{s}$ for Kissat and $211\;\text{s}$ for CaDiCaL at $n = 4{,}096$ SAT; CaDiCaL times out past $30\;\text{s}$ on `n1024_unsat`).
 
 ## Directory Layout & Regeneration
 
@@ -46,7 +46,6 @@ Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 
 
 ## References
 
-- M. Albrecht, G. Bard, and W. Hart, *Algorithm 898: Efficient Multiplication of Dense Matrices over GF(2) (M4RI)*, ACM TOMS 37(1), 2010.
 - A. Biere, T. Faller, K. Fazekas, M. Fleury, N. Froleyks, and F. Pollitt, *CaDiCaL 2.0 / Kissat 4.0*, CAV 2024.
 - M. Soos, K. Nohl, and C. Castelluccia, *Extending SAT Solvers to Cryptographic Problems (CryptoMiniSat)*, SAT 2009.
 - A. Biere, *The AIGER And-Inverter Graph (AIG) Format Version 20071012*, FMV Technical Report 07/1, JKU Linz, 2007.

@@ -20,7 +20,7 @@ def load_uris(path: Path):
 
 
 def main():
-    json_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/tmp/sc-bench/frob_sc_pgo_60s.json")
+    json_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/tmp/sc-bench/sc_eval_60s.json")
     sc_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("/tmp/sc-bench")
     data = json.loads(json_path.read_text())
     results = data.get("results", data)

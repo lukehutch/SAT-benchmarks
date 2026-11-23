@@ -4,7 +4,7 @@
 
 Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N$ (with odd-factor LSBs fixed to $1$ and $p \ge q$ / equal-half-bit symmetry breaking) across **Wallace-tree** and **Karatsuba** multiplier topologies, including a 28-bit prime UNSAT instance, 32–40-bit balanced semiprimes, and a 32-bit Wallace multiplier augmented with 16 sparse 4-bit $\mathbb{F}_2$ parity leakage constraints (`masked_mult_32b_xor16`, modeling side-channel / masked hardware cryptanalysis).
 
-- **Origin:** **Original** generator authored in the Frobenius project (`factoring.rs`; MIT [`../LICENSE`](../LICENSE)), motivated by classic bit-blasted factoring SAT benchmarks (Purdom & Sabry 2004; Srebrny 2004) and computer-algebra multiplier verification (Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
+- **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), motivated by classic bit-blasted factoring SAT benchmarks (Purdom & Sabry 2004; Srebrny 2004) and multiplier verification benchmarks (Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
 - **Why they are hard:** Bit-level carry chains create high-treewidth nonlinear arithmetic constraints; Karatsuba multiplication further couples partial products via extra adders/subtractors.
 
 ## Directory Layout & Regeneration

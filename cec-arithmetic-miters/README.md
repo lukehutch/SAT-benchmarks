@@ -7,8 +7,8 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 - **Array vs. Wallace-tree** multipliers ($6\times 6$, $8\times 8$, $10\times 10$)
 - **Wallace-tree vs. Karatsuba** recursive multiplier ($12\times 12$)
 
-- **Origin:** **Original** generator authored in the Frobenius project (`main.rs::build_cec_adder_miter`, `build_cec_mult_miter`; MIT [`../LICENSE`](../LICENSE)), modeled on industrial EDA multiplier equivalence benchmarks ([HWMCC](https://hwmcc.github.io/); Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
-- **Why they are hard:** Multiplier miters between structurally divergent topologies (Array vs. Wallace vs. Karatsuba) have few internal equivalent wires, causing pure CDCL solvers to scale exponentially ($3.6\text{--}8.1\;\text{s}$ at $8\times 8$, exploding rapidly at $10\times 10$ and $12\times 12$), whereas algebraic rewriting / Gröbner-basis / FRAIG equivalence checking discharges them in milliseconds.
+- **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), modeled on industrial EDA multiplier equivalence benchmarks ([HWMCC](https://hwmcc.github.io/); Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
+- **Why they are hard:** Multiplier miters between structurally divergent topologies (Array vs. Wallace vs. Karatsuba) have few internal equivalent wires, causing pure CDCL solvers to scale exponentially ($3.6\text{--}8.1\;\text{s}$ at $8\times 8$, exploding rapidly at $10\times 10$ and $12\times 12$).
 
 ## Directory Layout & Regeneration
 
