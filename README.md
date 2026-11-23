@@ -127,7 +127,7 @@ Every collection lives at the repository root in its own flat, self-contained di
 ### 4. Imported External Benchmark Collections (1-Core, Identical Flat `.cnf` Input; Plus Native `.mata.xz`)
 
 - **Timeout:** Per-instance $T_{\max}$ is listed in each row (PAR-2 penalty $= 2\,T_{\max}$).
-- **Same machine?** **Yes** — all solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 thread per run, 0 verdict disagreements, 100% SAT model verification; full-suite sweeps pinned across 8 dedicated physical cores). **100% of every committed collection was benchmarked** (zero subsampling).
+- **Same machine?** **Yes** — all solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 thread per run, 0 verdict disagreements, 100% SAT model verification; full-suite sweeps pinned across 8–14 dedicated physical cores with zero SMT sharing). **100% of every committed collection was benchmarked** (zero subsampling).
 
 | External Collection (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
@@ -145,8 +145,8 @@ Every collection lives at the repository root in its own flat, self-contained di
 | [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | 8/8 — 9.86 ms *(1.53x)* | 8/8 — 41.53 ms *(6.46x)* | 8/8 — 161.74 ms *(25.2x)* | **8/8 — 6.43 ms** *(fastest)* | 8/8 — 58.45 ms *(9.09x)* |
 | [**QDistSAT Full Suite**](qdistsat-qldpc/README.md) `BB_30..756` (10, 10 s) | 5/10 — 100,733 ms *(1.01x)* | **5/10 — 100,078 ms** *(fastest)* | 5/10 — 100,515 ms *(XCNF: 100,297 ms)* | 5/10 — 100,119 ms *(1.00x)* | 5/10 — 100,090 ms *(1.00x)* |
 | [**SAT Competition 2023/2024 Selected**](sat-competition-2023-2024-selected/README.md)\* (12, 600 s) | **12/12 — 3,745 ms** *(fastest)* | 5/12 — 8,417,003 ms *(2,248x)* | 3/12 — 10,859,841 ms *(2,900x)* | — | 8/12 — 5,051,149 ms *(1,349x)* |
-| [**SAT Shortcut Challenge Tier-1**](sat-shortcut-challenge-tier1/README.md) (47, 10 s) | **46/47 — 26,510 ms** *(fastest)* | 41/47 — 150,909 ms *(5.69x)* | 42/47 — 121,621 ms *(4.59x)* | 44/47 — 67,674 ms *(2.55x)* | 43/47 — 95,506 ms *(3.60x)* |
-| [**SAT Shortcut Challenge Tier-3**](sat-shortcut-challenge-tier3/README.md) Full $n=300\text{--}500$ (25, 15 s) | **15/25 — 301,161 ms** *(fastest)* | 15/25 — 310,696 ms *(1.03x)* | 5/25 — 603,952 ms *(2.01x)* | 2/25 — 697,189 ms *(2.32x)* | 14/25 — 375,957 ms *(1.25x)* |
+| [**SAT Shortcut Challenge Tier-1**](sat-shortcut-challenge-tier1/README.md) (47, 300 s) | **46/47 — 646.0 s** *(fastest)* | 45/47 — 1,730.8 s *(2.68x)* | 46/47 — 1,004.2 s *(1.55x)* | 45/47 — 1,225.7 s *(1.90x)* | 45/47 — 1,323.2 s *(2.05x)* |
+| [**SAT Shortcut Challenge Tier-3**](sat-shortcut-challenge-tier3/README.md) (25, 300 s) | **17/25 — 4,920.5 s** *(fastest)* | 17/25 — 4,923.0 s *(1.001x)* | 12/25 — 8,583.6 s *(1.74x)* | 5/25 — 12,370.4 s *(2.51x)* | 17/25 — 5,055.9 s *(1.03x)* |
 | [**SATLIB All 22 Collections**](satlib-archive-uris/README.md) (331, 5 s) | **318/331 — 151,909 ms** *(fastest)* | 316/331 — 174,495 ms *(1.15x)* | 323/331 — 164,024 ms *(1.08x)* | 313/331 — 207,808 ms *(1.37x)* | 314/331 — 189,408 ms *(1.25x)* |
 | [**VLSAT-2 First 10**](vlsat-2/README.md) (10, 5 s) | **7/10 — 30,028 ms** *(fastest)* | 0/10 — 100,000 ms *(3.33x)* | 0/10 — 100,000 ms *(3.33x)* | 7/10 — 30,031 ms *(1.00x)* | 4/10 — 64,843 ms *(2.16x)* |
 

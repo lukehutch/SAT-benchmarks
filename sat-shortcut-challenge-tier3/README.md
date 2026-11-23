@@ -27,40 +27,74 @@
 | **Binary AIGER 1.9** | `aig-converted/` | 25 | Inputs: 300–500; ANDs: 3,825–6,386 | 232.1 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 25 | Native XOR clauses total: 0 | 228.9 KB |
 | **DIMACS-ANF** | `anf-converted/` | 25 | Vars: 300–500; Eqs: 1,278–2,130 (deg ≤ 3) | 415.2 KB |
-| **Total (4 Formats, Status: Mixed (15 SAT / 10 UNSAT))** | | **100** | | **1.08 MB** |
+| **Total (4 Formats, Status: 15 SAT / 2 UNSAT / 8 Unsolved >300 s, exp. UNSAT)** | | **100** | | **1.08 MB** |
 
-## Comparative 1-Core Benchmark Results (All 25 Instances, Flat `.cnf`, $T_{\max} = 15\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 25 Instances, Flat `.cnf`, $T_{\max} = 300\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 15\;\text{s}$, PAR-2 penalty $30,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 25 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 14 dedicated physical cores `0..13` with zero SMT sharing, $T_{\max} = 300\;\text{s}$, PAR-2 penalty $600\;\text{s}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 25 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **SAT vs. UNSAT Caveat (per [`@keithadler`](https://twitter.com/keithadler) and [`results/TIER3-LOCALSEARCH.md`](results/TIER3-LOCALSEARCH.md)):** All three leading solvers solve **17/25** instances (all **15 SAT** + both **$n = 300$ UNSAT**: `random3sat_n300_s1` and `random3sat_n300_s5`), while none of the 5 solvers finishes any of the 8 larger $n = 350\text{--}500$ instances within 300 s. As Keith Adler notes, **the 15 satisfiable instances are not the real test**: a textbook 60-line stochastic local search ([`src/probsat.c`](src/probsat.c)) solves all 15 in milliseconds on the same machine (see below). **The unsatisfiable instances are the true unstructured refutation test**, where [Kissat](https://github.com/arminbiere/kissat) 4.0.4 is fastest (`23.87 s` / `31.68 s` under 14-core load; `21.03 s` / `27.47 s` solo-CCD), followed by [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 and Frobenius 1C (which solves both and produces formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) UNSAT proofs).
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `random3sat_n300_s1` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n300_s2` | SAT | **4.23 ms** | 187.80 ms | 503.42 ms | 3,030.30 ms | 42.09 ms |
-| `random3sat_n300_s3` | SAT | **50.41 ms** | 399.63 ms | 143.72 ms | 4,159.11 ms | 893.02 ms |
-| `random3sat_n300_s4` | SAT | **193.11 ms** | 1,481.04 ms | 1,105.38 ms | >15 s | 1,777.73 ms |
-| `random3sat_n300_s5` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n350_s1` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n350_s2` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n350_s3` | SAT | 68.09 ms | 442.17 ms | **55.88 ms** | >15 s | 346.78 ms |
-| `random3sat_n350_s4` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n350_s5` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n400_s1` | SAT | **51.43 ms** | 454.75 ms | 2,143.16 ms | >15 s | 4,885.38 ms |
-| `random3sat_n400_s2` | SAT | **53.13 ms** | 418.85 ms | >15 s | >15 s | 807.84 ms |
-| `random3sat_n400_s3` | SAT | **63.68 ms** | 488.00 ms | >15 s | >15 s | 1,036.25 ms |
-| `random3sat_n400_s4` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n400_s5` | SAT | **52.53 ms** | 587.17 ms | >15 s | >15 s | 2,101.78 ms |
-| `random3sat_n450_s1` | SAT | **66.40 ms** | 1,782.01 ms | >15 s | >15 s | >15 s |
-| `random3sat_n450_s2` | SAT | **254.82 ms** | 2,007.61 ms | >15 s | >15 s | 1,093.39 ms |
-| `random3sat_n450_s3` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n450_s4` | SAT | **55.99 ms** | 471.34 ms | >15 s | >15 s | 1,769.72 ms |
-| `random3sat_n450_s5` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n500_s1` | SAT | **73.39 ms** | 513.10 ms | >15 s | >15 s | 13.98 s |
-| `random3sat_n500_s2` | SAT | **58.39 ms** | 507.25 ms | >15 s | >15 s | 2,907.76 ms |
-| `random3sat_n500_s3` | TIMEOUT | >15 s | >15 s | >15 s | >15 s | >15 s |
-| `random3sat_n500_s4` | SAT | **57.19 ms** | 447.71 ms | >15 s | >15 s | 13.03 s |
-| `random3sat_n500_s5` | SAT | **58.65 ms** | 507.23 ms | >15 s | >15 s | 1,286.99 ms |
-| **Total (25 files, PAR-2)** | **15/25** | **15/25 — 301,161.4 ms** *(fastest)* | 15/25 — 310,695.7 ms *(1.03x)* | 5/25 — 603,951.6 ms *(2.01x)* | 2/25 — 697,189.4 ms *(2.32x)* | 14/25 — 375,957.1 ms *(1.25x)* |
+| `random3sat_n300_s1` | UNSAT | 50.09 s | 36.83 s | 72.67 s | 86.72 s | **23.87 s** |
+| `random3sat_n300_s2` | SAT | **17.19 ms** | 499.35 ms | 1,422.73 ms | 3,323.79 ms | 103.22 ms |
+| `random3sat_n300_s3` | SAT | **77.66 ms** | 1,132.77 ms | 274.36 ms | 4,519.27 ms | 2,035.60 ms |
+| `random3sat_n300_s4` | SAT | **318.21 ms** | 2,870.13 ms | 3,306.37 ms | 169.24 s | 5,071.20 ms |
+| `random3sat_n300_s5` | UNSAT | 68.01 s | 59.43 s | 155.05 s | 106.57 s | **31.68 s** |
+| `random3sat_n350_s1` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n350_s2` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n350_s3` | SAT | **139.91 ms** | 1,263.10 ms | 147.30 ms | >300 s | 819.77 ms |
+| `random3sat_n350_s4` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n350_s5` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n400_s1` | SAT | **166.80 ms** | 1,530.80 ms | 2,458.20 ms | >300 s | 15.33 s |
+| `random3sat_n400_s2` | SAT | **154.16 ms** | 1,113.44 ms | 76.22 s | >300 s | 1,953.61 ms |
+| `random3sat_n400_s3` | SAT | **100.67 ms** | 975.86 ms | 91.51 s | >300 s | 2,510.80 ms |
+| `random3sat_n400_s4` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n400_s5` | SAT | **110.82 ms** | 1,024.97 ms | 87.88 s | >300 s | 5,264.40 ms |
+| `random3sat_n450_s1` | SAT | **169.98 ms** | 5,592.71 ms | >300 s | >300 s | 58.86 s |
+| `random3sat_n450_s2` | SAT | **499.00 ms** | 4,614.17 ms | >300 s | >300 s | 3,532.69 ms |
+| `random3sat_n450_s3` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n450_s4` | SAT | **128.15 ms** | 1,326.99 ms | 52.95 s | >300 s | 4,577.26 ms |
+| `random3sat_n450_s5` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n500_s1` | SAT | **113.46 ms** | 953.54 ms | 239.74 s | >300 s | 48.68 s |
+| `random3sat_n500_s2` | SAT | **147.42 ms** | 1,450.93 ms | >300 s | >300 s | 9,599.65 ms |
+| `random3sat_n500_s3` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
+| `random3sat_n500_s4` | SAT | **97.72 ms** | 956.91 ms | >300 s | >300 s | 38.70 s |
+| `random3sat_n500_s5` | SAT | **149.33 ms** | 1,482.56 ms | >300 s | >300 s | 3,286.19 ms |
+| **Total (25 files, PAR-2)** | **17/25** | **17/25 — 4,920.48 s** *(fastest)* | 17/25 — 4,923.04 s *(1.001x)* | 12/25 — 8,583.65 s *(1.74x)* | 5/25 — 12,370.38 s *(2.51x)* | 17/25 — 5,055.87 s *(1.03x)* |
+
+### Uncontended Solo-CCD Timings & Formally Verified UNSAT Proofs (`n = 300` UNSAT)
+
+To eliminate 14-core L3/RAM contention on the two solved UNSAT instances highlighted in [`results/TIER3-BASELINE.md`](results/TIER3-BASELINE.md), all 5 solvers were additionally re-timed 1-per-CCD (**core 0** on CCD0 for `random3sat_n300_s1`, **core 8** on CCD1 for `random3sat_n300_s5`, independent 32 MB L3 caches). Frobenius's `--lrat` proofs were independently checked with both [`lrat-check`](https://github.com/marijnheule/drat-trim) and formally verified HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) (`s VERIFIED UNSAT`; the compressed `.lrat.xz` proofs are 116 MB and 128 MB and are kept outside Git due to GitHub's 100 MB file-size limit).
+
+| Instance | Frobenius 1C (solo) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (solo) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (solo) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) (solo) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (solo) | Frobenius LRAT Proof Verification |
+|---|---:|---:|---:|---:|---:|---|
+| `random3sat_n300_s1` | 41.18 s | 31.70 s | 57.45 s | 72.76 s | **21.03 s** | LRAT `52.10 s` (`457 MB` / `116 MB .xz`), `lrat-check` `6.81 s`, `cake_lpr` **OK** (`26.75 s`) |
+| `random3sat_n300_s5` | 60.80 s | 50.13 s | 115.96 s | 87.30 s | **27.47 s** | LRAT `60.33 s` (`505 MB` / `128 MB .xz`), `lrat-check` `7.66 s`, `cake_lpr` **OK** (`27.96 s`) |
+| **Total (2 solved UNSATs)** | 101.99 s *(2.10x)* | 81.83 s *(1.69x)* | 173.40 s *(3.58x)* | 160.06 s *(3.30x)* | **48.50 s** *(fastest)* | 2/2 formally verified (`s VERIFIED UNSAT`) |
+
+### Same-Machine Comparison on the 15 Satisfiable Instances vs. Keith Adler's 60-Line `src/probsat.c`
+
+Compiled verbatim (`cc -O2 -o probsat src/probsat.c -lm`) and run on **solo core 0** (seeds `1..5`, all 75 runs verified `SAT(checked)`), alongside **Frobenius 1C** on **solo core 0** (same uncontended core) and the 14-core [CaDiCaL](https://github.com/arminbiere/cadical) / [Kissat](https://github.com/arminbiere/kissat) wall times for reference:
+
+| Instance | Frobenius 1C (solo core 0) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (14C) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (14C) | [`probsat.c`](src/probsat.c) (solo core 0, 5 seeds) |
+|---|---:|---:|---:|---:|
+| `random3sat_n300_s2` | 5.52 ms | 499.35 ms | 103.22 ms | **0.60 ms** *(max 0.78 ms; wall med 2.44 ms)* |
+| `random3sat_n300_s3` | 63.90 ms | 1,132.77 ms | 2,035.60 ms | **9.97 ms** *(max 18.51 ms; wall med 12.04 ms)* |
+| `random3sat_n300_s4` | 201.52 ms | 2,870.13 ms | 5,071.20 ms | **44.89 ms** *(max 216.66 ms; wall med 46.94 ms)* |
+| `random3sat_n350_s3` | 64.07 ms | 1,263.10 ms | 819.77 ms | **16.06 ms** *(max 23.44 ms; wall med 18.21 ms)* |
+| `random3sat_n400_s1` | 48.74 ms | 1,530.80 ms | 15.33 s | **17.01 ms** *(max 29.47 ms; wall med 19.19 ms)* |
+| `random3sat_n400_s2` | 50.91 ms | 1,113.44 ms | 1,953.61 ms | **1.75 ms** *(max 3.60 ms; wall med 4.41 ms)* |
+| `random3sat_n400_s3` | 53.30 ms | 975.86 ms | 2,510.80 ms | **3.82 ms** *(max 8.65 ms; wall med 5.82 ms)* |
+| `random3sat_n400_s5` | 48.91 ms | 1,024.97 ms | 5,264.40 ms | **9.09 ms** *(max 53.93 ms; wall med 11.10 ms)* |
+| `random3sat_n450_s1` | 67.89 ms | 5,592.71 ms | 58.86 s | **16.16 ms** *(max 33.65 ms; wall med 18.83 ms)* |
+| `random3sat_n450_s2` | 236.44 ms | 4,614.17 ms | 3,532.69 ms | **53.37 ms** *(max 98.10 ms; wall med 55.74 ms)* |
+| `random3sat_n450_s4` | 53.23 ms | 1,326.99 ms | 4,577.26 ms | **7.40 ms** *(max 34.41 ms; wall med 9.48 ms)* |
+| `random3sat_n500_s1` | 68.72 ms | 953.54 ms | 48.68 s | **13.94 ms** *(max 27.31 ms; wall med 16.21 ms)* |
+| `random3sat_n500_s2` | 55.42 ms | 1,450.93 ms | 9,599.65 ms | **5.12 ms** *(max 7.69 ms; wall med 7.29 ms)* |
+| `random3sat_n500_s4` | 55.56 ms | 956.91 ms | 38.70 s | **18.59 ms** *(max 51.98 ms; wall med 20.74 ms)* |
+| `random3sat_n500_s5` | 55.26 ms | 1,482.56 ms | 3,286.19 ms | **10.90 ms** *(max 15.11 ms; wall med 12.82 ms)* |
+| **Total (15 SAT instances)** | 1.13 s *(solo core 0)* | 26.79 s *(14-core)* | 200.32 s *(14-core)* | **228.7 ms** *(sum of search medians; wall sum 261.3 ms)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
