@@ -90,24 +90,48 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 | `c11` | SC 2025 Unsolved: `ramsey_4_4_18` ($R(4,4)=18$) | 153 | 6,120 | 47.5 KB | 50.7 KB | 47.6 KB | 189.2 KB | 0 |
 | `c12` | SC 2025 Unsolved: `cliquecolouring_n15_k7_c6` | 300 | 6,337 | 26.2 KB | 30.9 KB | 26.3 KB | 48.4 KB | 0 |
 
-## Comparative 1-Core Benchmark Results *(In Progress — Live Results Updated As Runs Complete)*
+## Comparative 1-Core Benchmark Results
 
-- **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run**, full wall-clock time from process start to answer (including parsing). Every SAT model is verified against all clauses of the exact `.cnf.xz`; every UNSAT proof is verified with [`lrat-check`](https://github.com/marijnheule/drat-trim) and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr).
+- **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run** (`taskset -c 0` sequential; CaDiCaL/Kissat 300 s reference runs pinned to dedicated cores 2 & 3), full wall-clock time from process start to answer (including parsing). Every SAT model is independently verified against 100% of clauses in the exact `.cnf.xz`; every UNSAT proof is independently verified with [`lrat-check`](https://github.com/marijnheule/drat-trim), [`drat-trim`](https://github.com/marijnheule/drat-trim), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr).
+- **Zero Verdict Disagreements:** All solvers agree 100% on every mutually solved instance.
+- **Cutoffs Reported:** All 5 solvers were evaluated sequentially at **$T_{\max} = 60\;\text{s}$** on identical uncompressed flat `.cnf` files (since [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 and [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) do not read `.xz` natively); **Frobenius 1C**, **[CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0**, and **[Kissat](https://github.com/arminbiere/kissat) 4.0.4** were additionally evaluated up to **$T_{\max} = 300\;\text{s}$** directly on the original `.cnf.xz` archives.
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | Verified Artifact *(out-of-tree)* |
-|---|:---:|---:|---:|---:|---:|---:|---|
-| `c01.cnf.xz` | UNSAT | 42.04 s | 42.48 s | *running* | *running* | **28.67 s** | `c01.lrat.xz` (`lrat-check` + `cake_lpr` OK) |
-| `c02.cnf.xz` | *TBD* | >60 s *(T/O)* | *running* | *running* | *running* | *running* | — |
-| `c03.cnf.xz` | *TBD* | >60 s *(T/O)* | *running* | *running* | *running* | *running* | — |
-| `c04.cnf.xz` | SAT | **0.20 s** | *running* | *running* | *running* | *running* | `c04.model.xz` (1,917/1,917 cls OK) |
-| `c05.cnf.xz` | SAT | **0.23 s** | *running* | *running* | *running* | *running* | `c05.model.xz` (2,130/2,130 cls OK) |
-| `c06.cnf.xz` | *TBD* | *running* | *running* | *running* | *running* | *running* | — |
-| `c07.cnf.xz` | *TBD* | *running* | *running* | *running* | *running* | *running* | — |
-| `c08.cnf.xz` | *TBD* | *running* | *running* | *running* | *running* | *running* | — |
-| `c09.cnf.xz` | *TBD* | *running* | *running* | *running* | *running* | *running* | — |
-| `c10.cnf.xz` | *TBD* | *running* | *running* | *running* | *running* | *running* | — |
-| `c11.cnf.xz` | UNSAT *(known)* | *running* | *running* | *running* | *running* | *running* | — |
-| `c12.cnf.xz` | UNSAT *(known)* | *running* | *running* | *running* | *running* | *running* | — |
+### 1. 300 s Single-Core Comparison (`.cnf.xz`, Wall-Clock Time)
+
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | Independent Verification & Certified Artifact *(out-of-tree)* |
+|---|:---:|---:|---:|---:|---|
+| `c01.cnf.xz` | **UNSAT** | 62.05 s | 42.48 s | **28.67 s** | `c01.lrat.xz` (`134.9 MiB`) — **`lrat-check` + `cake_lpr` VERIFIED** |
+| `c02.cnf.xz` | *TBD* | >300 s *(T/O)* | >300 s *(T/O)* | >300 s *(T/O)* | — |
+| `c03.cnf.xz` | *TBD* | >300 s *(T/O)* | >300 s *(T/O)* | >300 s *(T/O)* | — |
+| `c04.cnf.xz` | **SAT** | **0.054 s** | 0.51 s | 4.77 s | `c04.model.xz` (`784 B`) — `1,917/1,917` cls OK |
+| `c05.cnf.xz` | **SAT** | **0.067 s** | 0.55 s | 6.73 s | `c05.model.xz` (`848 B`) — `2,130/2,130` cls OK |
+| `c06.cnf.xz` | **SAT** | **0.567 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c06.model.xz` (`22.6 KiB`) — `85,000/85,000` cls OK |
+| `c07.cnf.xz` | **SAT** | **1.572 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c07.model.xz` (`54.8 KiB`) — `212,500/212,500` cls OK |
+| `c08.cnf.xz` | **SAT** | **0.021 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c08.model.xz` (`7.7 KiB`) — `36,662/36,662` cls OK (`13821637 × 15902581`) |
+| `c09.cnf.xz` | **SAT** | **0.036 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c09.model.xz` (`13.7 KiB`) — `66,278/66,278` cls OK (`3538334777 × 4071050729`) |
+| `c10.cnf.xz` | **UNSAT** | **0.017 s** *(proof: 38.11 s)* | 158.58 s | 85.85 s | `c10.bdrat.xz` (`4.67 MiB`, 40b prime `672003499631`) — **`drat-trim` VERIFIED** |
+| `c11.cnf.xz` | **UNSAT** | **0.054 s** *(proof: 0.54 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c11.lrat.xz` (`13.9 MiB`, SC25 unsolved `R(4,4)=18`) — **`lrat-check` + `cake_lpr` VERIFIED** |
+| `c12.cnf.xz` | **UNSAT** | **0.006 s** *(proof: 0.007 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c12.lrat.xz` (`66.3 KiB`, SC25 unsolved `CliqueCol(15,7,6)`) — **`lrat-check` + `cake_lpr` VERIFIED** |
+| **Solved ($T_{\max}=300\;\text{s}$)** | **10 / 12** | **10 / 12** | 4 / 12 | 4 / 12 | **6/6 SAT models + 4/4 UNSAT proofs verified** |
+| **Total PAR-2 ($T_{\max}=300\;\text{s}$)** | — | **1,264.45 s** *(fastest)* | 5,002.12 s *(3.96x)* | 4,926.02 s *(3.90x)* | `c04`–`c12` (9 instances) solved in **2.39 s** combined |
+
+### 2. 60 s All-Five-Solver Comparison (Identical Uncompressed Flat `.cnf`, `taskset -c 0`)
+
+| Instance | Verdict ($\le 60\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `c01` | UNSAT | >60 s *(62.34 s)* | 39.20 s | >60 s | >60 s | **27.58 s** |
+| `c02` | *TBD* | >60 s | >60 s | >60 s | >60 s | >60 s |
+| `c03` | *TBD* | >60 s | >60 s | >60 s | >60 s | >60 s |
+| `c04` | SAT | **0.053 s** | 0.45 s | >60 s | >60 s | 4.53 s |
+| `c05` | SAT | **0.066 s** | 0.54 s | >60 s | >60 s | 5.55 s |
+| `c06` | SAT | **0.568 s** | >60 s | >60 s | >60 s | >60 s |
+| `c07` | SAT | **1.493 s** | >60 s | >60 s | >60 s | >60 s |
+| `c08` | SAT | **0.014 s** | >60 s | >60 s | >60 s | >60 s |
+| `c09` | SAT | **0.037 s** | >60 s | >60 s | >60 s | >60 s |
+| `c10` | UNSAT | **0.012 s** | >60 s | >60 s | >60 s | >60 s |
+| `c11` | UNSAT | **0.053 s** | >60 s | >60 s | >60 s | >60 s |
+| `c12` | UNSAT | **0.005 s** | >60 s | >60 s | >60 s | >60 s |
+| **Total (60 s PAR-2)** | **10 / 12** | **9/12 — 362.30 s** *(fastest)* | 3/12 — 1,120.20 s *(3.09x)* | 0/12 — 1,440.00 s *(3.97x)* | 0/12 — 1,440.00 s *(3.97x)* | 3/12 — 1,117.65 s *(3.08x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -4,7 +4,7 @@ A curated, **four-format** (**Binary AIGER 1.9 `.aig.xz`**, **DIMACS `.cnf.xz`**
 
 ## Uniform Collection Layout
 
-Every collection lives at the repository root in its own flat, self-contained directory (`/home/luke/Work/SAT-benchmarks/<collection>/`) with **zero** benchmark files at collection root and **zero** nested subcollection directories:
+Every collection lives at the repository root in its own flat, self-contained directory (`<collection>/`) with **zero** benchmark files at collection root and **zero** nested subcollection directories:
 
 - **`README.md`** — Provenance, contributor credits, upstream links and licenses, problem parameters, exact four-format data sizes, comparative 1-core solver timings (Frobenius 1C, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0, [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver), [Kissat](https://github.com/arminbiere/kissat) 4.0.4), proof verification status ([`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim)), auto-generated phase-transition & structural analysis, and literature citations.
 - **`<orig-fmt>-orig/`** — Native original compressed files directly inside: `aig-orig/` (8 collections, 52 instances), `cnf-orig/` (51 collections, 731 instances), `xcnf-orig/` (1 collection, 2 instances), or `mata-orig/` (2 NFA collections, 174 automata).
@@ -130,9 +130,10 @@ Every collection lives at the repository root in its own flat, self-contained di
 
 | External Collection (Instances, $T_{\max}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| [**Aloul FPGA Switch-Box**](aloul-fpga-sb-sat/README.md) ([SAT](aloul-fpga-sb-sat/README.md) + [UNSAT](aloul-fpga-sb-uns/README.md), 21, 5 s) | 21/21 — 70.76 ms *(2.58x)* | 11/21 — 100,091 ms *(3,646x)* | — | **21/21 — 27.45 ms** *(fastest)* | 12/21 — 92,980 ms *(3,387x)* |
+| [**Aloul FPGA Switch-Box**](aloul-fpga-sb-sat/README.md) ([SAT](aloul-fpga-sb-sat/README.md) + [UNSAT](aloul-fpga-sb-uns/README.md), 21, 5 s) | 21/21 — 37.85 ms *(1.38x)* | 11/21 — 100,091 ms *(3,646x)* | — | **21/21 — 27.45 ms** *(fastest)* | 12/21 — 92,980 ms *(3,387x)* |
 | [**`dense-solver` Public**](dense-solver-public/README.md) (30, 5 s) | **29/30 — 10,713 ms** *(fastest)* | 24/30 — 63,765 ms *(5.95x)* | 20/30 — 100,871 ms *(9.42x)* | 28/30 — 20,413 ms *(1.91x)* | 25/30 — 53,065 ms *(4.95x)* |
 | [**`dense-solver` Synth + `cb368`**](dense-solver-synthetic/README.md) (21, 5 s) | **21/21 — 245.60 ms** *(fastest)* | 14/21 — 70,983 ms *(289x)* | 14/21 — 71,525 ms *(291x)* | 21/21 — 466.92 ms *(1.90x)* | 14/21 — 70,568 ms *(287x)* |
+| [**`@fede_intern` 12-CNF Challenge**](fede-intern-challenge/README.md) (12, 60 s / 300 s) | **9/12 — 362.30 s** *(300 s: **10/12 — 1,264 s**)* | 3/12 — 1,120.20 s *(300 s: 4/12 — 5,002 s)* | 0/12 — 1,440.00 s | 0/12 — 1,440.00 s | 3/12 — 1,117.65 s *(300 s: 4/12 — 4,926 s)* |
 | [**`mod-circuit-sat`**](mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **9/9 — 17,346 ms** *(fastest)* | 9/9 — 29,702 ms *(1.71x)* | 8/9 — 67,344 ms *(3.88x)* | 8/9 — 67,769 ms *(3.91x)* | 9/9 — 25,994 ms *(1.50x)* |
 | [**Model RB `frb30-15`**](rb-bench-model-rb/README.md) (5, 5 s) | 5/5 — 3,165 ms *(3.43x)* | 5/5 — 1,377 ms *(1.49x)* | — | — | **5/5 — 923.51 ms** *(fastest)* |
 | [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | 8/8 — 9.86 ms *(1.53x)* | 8/8 — 41.53 ms *(6.46x)* | 8/8 — 161.74 ms *(25.2x)* | **8/8 — 6.43 ms** *(fastest)* | 8/8 — 58.45 ms *(9.09x)* |
@@ -160,6 +161,31 @@ Every collection lives at the repository root in its own flat, self-contained di
 | **SC 2026** | **Frobenius 1C** | **122 / 400 — 21.37 s** *(fastest)* | **139 / 400 — 80.24 s** *(fastest)* |
 | | [`Lymphosat`](https://c.mov/lymphosat/) (AI-Track #1 Gold) | 81 / 400 — 24.58 s *(1.15x slower)* | 109 / 400 — 90.07 s *(1.12x slower)* |
 | | [`satsuma-iter-kissat`](https://github.com/markusa4/satsuma) (Main #1 Gold) | 70 / 400 — 25.13 s *(1.18x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
+
+### 6. Four-Format Cross-Product Parity (`.aig.xz` × `.cnf.xz` × `.xcnf.xz` × `.anf.xz`, 1-Core)
+
+- **Protocol:** **AMD Ryzen 9 5950X**, 1 core (`taskset -c 0`), 3-run median wall-clock time (including in-process `.xz` decompression, parsing, solving, and full model verification) at $T_{\max} = 30\;\text{s}$, across **18 representative benchmarks × 4 formats = 72 cells** (**70 / 72 solved**, **0 verdict disagreements**).
+
+| Origin | Benchmark | Verdict | Frobenius (`.aig.xz`) | Frobenius (`.cnf.xz`) | Frobenius (`.xcnf.xz`) | Frobenius (`.anf.xz`) |
+|---|---|---:|---:|---:|---:|---:|
+| `aig-orig` | `f2_frobenius_n4096` | SAT | 15.55 ms | 15.24 ms | **8.07 ms** | 13.30 ms |
+| `aig-orig` | `spn_sat_n96_d48` | SAT | 163.90 ms | 6.47 ms | **5.96 ms** | 102.18 ms |
+| `aig-orig` | `factor_wallace_40b` | SAT | **4.20 ms** | 5.73 ms | 4.86 ms | 806.62 ms |
+| `aig-orig` | `sha256_64r_k16_unsat` | UNSAT | **66.49 ms** | 112.04 ms | 81.58 ms | *>30 s* |
+| `aig-orig` | `spn_sat_n128_d64` | SAT | 8,689.03 ms | 38.75 ms | **36.42 ms** | 1,243.61 ms |
+| `aig-orig` | `coupled_n128_d32_unsat` | UNSAT | 2.45 ms | 2.66 ms | **2.21 ms** | 2.68 ms |
+| `aig-orig` | `coupled_n512_d128` | SAT | **3.08 ms** | 3.62 ms | 4.36 ms | 3.47 ms |
+| `cnf-orig` | `rand3sat_n200_unsat` | UNSAT | **175.49 ms** | 176.45 ms | 175.59 ms | 180.47 ms |
+| `cnf-orig` | `hamd_meredith_k3_n50_unsat` | UNSAT | 4.90 ms | 3.78 ms | **3.58 ms** | 5.34 ms |
+| `cnf-orig` | `php65x64-sequential` | UNSAT | 6.44 ms | **4.45 ms** | 4.50 ms | 9.40 ms |
+| `cnf-orig` | `mod3_n4_r0_s6_unsat` | UNSAT | 148.26 ms | **147.69 ms** | 150.23 ms | 148.74 ms |
+| `cnf-orig` | `pret150_25` | UNSAT | 1.96 ms | 2.08 ms | 1.77 ms | **1.70 ms** |
+| `cnf-orig` | `BB_72_12_6_w5_unsat` | UNSAT | 100.01 ms | 94.15 ms | **46.02 ms** | 89.07 ms |
+| `cnf-orig` | `BB_72_12_6_w6_sat` | SAT | 2.89 ms | **2.33 ms** | 3.03 ms | 21.02 ms |
+| `cnf-orig` | `c04` *(Fede rand 3-SAT)* | SAT | 53.89 ms | 55.21 ms | 54.64 ms | **53.39 ms** |
+| `cnf-orig` | `c08` *(Fede 48b factoring)* | SAT | 28.22 ms | 20.34 ms | **13.90 ms** | *>30 s* |
+| `cnf-orig` | `c11` *(SC25 `ramsey_4_4_18`)* | UNSAT | 60.18 ms | 53.33 ms | **52.83 ms** | 64.33 ms |
+| `cnf-orig` | `c12` *(SC25 `cliquecol`)* | UNSAT | 8.27 ms | 4.69 ms | **4.50 ms** | 7.45 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Cross-Collection Phase-Transition & Structural Profile
