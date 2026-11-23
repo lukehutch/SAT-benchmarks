@@ -9,20 +9,20 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Rounds $R$ | Add IV | Free Bits $k$ | Message / Target | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | Rounds $R$ | Add IV | Free Bits $k$ | Message / Target | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---:|:---:|---:|---|:---:|---:|---:|---:|---:|---:|---:|
-| `sha256_16r_k32` | 16 | No | 32 | `"abc"` exact | SAT | 32 | 30,142 | 74.8 KB | 7,438 | 47,125 | 949.4 KB |
-| `sha256_17r_k16` | 17 | No | 16 | `"abc"` exact | SAT | 16 | 31,712 | 78.8 KB | 7,829 | 49,504 | 997.0 KB |
-| `sha256_64r_k16_sat` | 64 | Yes | 16 | `"abc"` exact | SAT | 16 | 182,204 | 479.5 KB | 43,481 | 282,441 | 6.42 MB |
-| `sha256_64r_k16_unsat` | 64 | Yes | 16 | `"abc"` digest bit 0 flipped | UNSAT | 16 | 182,204 | 479.5 KB | 43,481 | 282,441 | 6.42 MB |
-| `sha256_64r_k20_sat` | 64 | Yes | 20 | `"abc"` exact | SAT | 20 | 183,109 | 481.8 KB | 43,624 | 283,828 | 6.46 MB |
+| `sha256_16r_k32` | 16 | No | 32 | `"abc"` exact | SAT | 32 | 30,142 | 33.3 KB | 7,438 | 47,125 | 107.2 KB |
+| `sha256_17r_k16` | 17 | No | 16 | `"abc"` exact | SAT | 16 | 31,712 | 35.4 KB | 7,829 | 49,504 | 114.7 KB |
+| `sha256_64r_k16_sat` | 64 | Yes | 16 | `"abc"` exact | SAT | 16 | 182,204 | 193.7 KB | 43,481 | 282,441 | 653.2 KB |
+| `sha256_64r_k16_unsat` | 64 | Yes | 16 | `"abc"` digest bit 0 flipped | UNSAT | 16 | 182,204 | 193.7 KB | 43,481 | 282,441 | 653.2 KB |
+| `sha256_64r_k20_sat` | 64 | Yes | 20 | `"abc"` exact | SAT | 20 | 183,109 | 192.5 KB | 43,624 | 283,828 | 652.6 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

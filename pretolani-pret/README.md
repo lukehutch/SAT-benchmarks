@@ -6,7 +6,7 @@
 - **Author:** Daniele Pretolani (Second DIMACS Implementation Challenge / SATLIB)
 - **Upstream Source:** [SATLIB PRET Benchmark Description & Archive](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html) (`pret.tar.gz`)
 - **License:** Classic public academic benchmark archive contributed to the Second DIMACS Implementation Challenge and redistributed by SATLIB; no separate upstream `LICENSE` file is bundled in `pret.tar.gz`.
-- **Format Hygiene Note:** The original 1990 DIMACS files in `pret.tar.gz` ended with a trailing `0` EOF sentinel after the final clause (`160` or `400`), which causes strict modern SAT Competition parsers (e.g., [Kissat](https://github.com/arminbiere/kissat), [CaDiCaL](https://github.com/arminbiere/cadical)) to reject the file as having an extra empty clause. The `.cnf` files here preserve every original header comment and clause verbatim while stripping only that trailing sentinel line so all modern solvers parse the exact `p cnf 60 160` / `p cnf 150 400` formulas cleanly.
+- **Format Hygiene Note:** The original 1990 DIMACS files in `pret.tar.gz` ended with a trailing `0` EOF sentinel after the final clause (`160` or `400`), which causes strict modern SAT Competition parsers (e.g., [Kissat](https://github.com/arminbiere/kissat), [CaDiCaL](https://github.com/arminbiere/cadical)) to reject the file as having an extra empty clause. The `.cnf.xz` files here preserve every original header comment and clause verbatim while stripping only that trailing sentinel line so all modern solvers parse the exact `p cnf 60 160` / `p cnf 150 400` formulas cleanly.
 
 ## Problem Description
 
@@ -16,18 +16,18 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 ## Corpus & Data Sizes
 
-All **8 UNSAT CNFs** plus exact **Binary AIGER 1.9** conversions in `aig-version/` (all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`):
+All **8 UNSAT `.cnf.xz` files** plus exact **Binary AIGER 1.9 `.aig.xz`** conversions in `aig-version/` (all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`):
 
-| Instance | Vars | Clauses | Target Horn % | CNF Size | AIG AND Gates (`aig-version/`) | Status |
+| Instance | Vars | Clauses | Target Horn % | `.cnf.xz` Size | AIG AND Gates (`aig-version/`) | Status |
 |---|---:|---:|---:|---:|---:|---|
-| `pret60_25.cnf` | 60 | 160 | 25% | 4.88 KB | 479 | UNSAT |
-| `pret60_40.cnf` | 60 | 160 | 40% | 4.88 KB | 479 | UNSAT |
-| `pret60_60.cnf` | 60 | 160 | 60% | 4.88 KB | 479 | UNSAT |
-| `pret60_75.cnf` | 60 | 160 | 75% | 4.88 KB | 479 | UNSAT |
-| `pret150_25.cnf` | 150 | 400 | 25% | 11.12 KB | 1,199 | UNSAT |
-| `pret150_40.cnf` | 150 | 400 | 40% | 11.12 KB | 1,199 | UNSAT |
-| `pret150_60.cnf` | 150 | 400 | 60% | 11.12 KB | 1,199 | UNSAT |
-| `pret150_75.cnf` | 150 | 400 | 75% | 11.12 KB | 1,199 | UNSAT |
+| `pret60_25.cnf.xz` | 60 | 160 | 25% | 0.9 KB | 479 | UNSAT |
+| `pret60_40.cnf.xz` | 60 | 160 | 40% | 0.9 KB | 479 | UNSAT |
+| `pret60_60.cnf.xz` | 60 | 160 | 60% | 0.9 KB | 479 | UNSAT |
+| `pret60_75.cnf.xz` | 60 | 160 | 75% | 0.9 KB | 479 | UNSAT |
+| `pret150_25.cnf.xz` | 150 | 400 | 25% | 1.6 KB | 1,199 | UNSAT |
+| `pret150_40.cnf.xz` | 150 | 400 | 40% | 1.6 KB | 1,199 | UNSAT |
+| `pret150_60.cnf.xz` | 150 | 400 | 60% | 1.6 KB | 1,199 | UNSAT |
+| `pret150_75.cnf.xz` | 150 | 400 | 75% | 1.6 KB | 1,199 | UNSAT |
 
 ## Comparative 1-Core Benchmark Results
 

@@ -176,8 +176,12 @@ def count_xors(xcnf_path: Path | None) -> int:
 def read_aig_ands(aig_path: Path | None) -> int | None:
     if aig_path is None or not aig_path.exists():
         return None
-    with open(aig_path, "rb") as f:
-        hdr = f.readline().decode("ascii", errors="ignore").split()
+    if aig_path.suffix == ".xz":
+        with lzma.open(aig_path, "rb") as f:
+            hdr = f.readline().decode("ascii", errors="ignore").split()
+    else:
+        with open(aig_path, "rb") as f:
+            hdr = f.readline().decode("ascii", errors="ignore").split()
     if len(hdr) >= 6 and hdr[0] in ("aig", "aag"):
         return int(hdr[5])
     return None
@@ -377,6 +381,13 @@ def discover_suite_cnfs(suite_dir: Path) -> list[tuple[Path, str, Path | None, P
             return Path(s[:-4])
         return p
 
+    def find_aig(base_dir: Path, rel_no_ext: Path) -> Path | None:
+        for ext in (".aig.xz", ".aig"):
+            cand = base_dir / (str(rel_no_ext) + ext)
+            if cand.exists():
+                return cand
+        return None
+
     if cnf_ver.is_dir():
         # AIG-native suite
         for p in sorted(cnf_ver.rglob("*")):
@@ -385,11 +396,10 @@ def discover_suite_cnfs(suite_dir: Path) -> list[tuple[Path, str, Path | None, P
             rel = p.relative_to(cnf_ver)
             rel_base = strip_cnf_ext(rel)
             grp = rel.parent.as_posix() if rel.parent != Path(".") else suite_dir.name
-            aig = suite_dir / (str(rel_base) + ".aig")
-            items.append((p, grp, find_xcnf(rel_base), aig if aig.exists() else None))
+            items.append((p, grp, find_xcnf(rel_base), find_aig(suite_dir, rel_base)))
     else:
         # CNF-native suite
-        skip_top = {"aig-version", "xcnf-version", "src", "results", "matrices", "maps"}
+        skip_top = {"aig-version", "xcnf-version", "outputs", "src", "results", "matrices", "maps"}
         for p in sorted(suite_dir.rglob("*")):
             if not p.is_file() or not (p.name.endswith(".cnf") or p.name.endswith(".cnf.xz")):
                 continue
@@ -398,8 +408,7 @@ def discover_suite_cnfs(suite_dir: Path) -> list[tuple[Path, str, Path | None, P
                 continue
             rel_base = strip_cnf_ext(rel)
             grp = rel.parent.as_posix() if rel.parent != Path(".") else suite_dir.name
-            aig = aig_ver / (str(rel_base) + ".aig")
-            items.append((p, grp, find_xcnf(rel_base), aig if aig.exists() else None))
+            items.append((p, grp, find_xcnf(rel_base), find_aig(aig_ver, rel_base)))
     return items
 
 

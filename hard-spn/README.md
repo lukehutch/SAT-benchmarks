@@ -9,19 +9,19 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear S-box Gates | Seed | Ans | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear S-box Gates | Seed | Ans | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| `spn_unsat_n48_d24` | 48 | 24 | 24 | 38 (last flipped) | `0x777788889999AAAA` | UNSAT | 969 | 2.5 KB | 247 | 1,363 | 20.1 KB |
-| `spn_sat_n64_d32` | 64 | 32 | 32 | 55 | `0x13572468ABCD0064` | SAT | 1,395 | 3.6 KB | 350 | 1,984 | 30.1 KB |
-| `spn_sat_n96_d48` | 96 | 48 | 48 | 85 | `0x13572468ABCD0096` | SAT | 2,205 | 5.6 KB | 539 | 3,060 | 47.1 KB |
-| `spn_sat_n128_d64` | 128 | 64 | 64 | 150 | `0x13572468ABCD7981` | SAT | 3,643 | 9.4 KB | 856 | 5,104 | 81.2 KB |
+| `spn_unsat_n48_d24` | 48 | 24 | 24 | 38 (last flipped) | `0x777788889999AAAA` | UNSAT | 969 | 1.6 KB | 247 | 1,363 | 3.8 KB |
+| `spn_sat_n64_d32` | 64 | 32 | 32 | 55 | `0x13572468ABCD0064` | SAT | 1,395 | 2.1 KB | 350 | 1,984 | 5.3 KB |
+| `spn_sat_n96_d48` | 96 | 48 | 48 | 85 | `0x13572468ABCD0096` | SAT | 2,205 | 3.2 KB | 539 | 3,060 | 7.6 KB |
+| `spn_sat_n128_d64` | 128 | 64 | 64 | 150 | `0x13572468ABCD7981` | SAT | 3,643 | 5.3 KB | 856 | 5,104 | 12.8 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

@@ -13,6 +13,7 @@ Also writes Binary AIGER 1.9 conversions to `../aig-version/` and CryptoMiniSat
 """
 from __future__ import annotations
 
+import lzma
 import random
 import sys
 from pathlib import Path
@@ -44,7 +45,8 @@ def gen_uniform_3sat(n: int, m: int, seed: int) -> list[list[int]]:
 
 
 def write_dimacs(path: Path, n: int, clauses: list[list[int]], seed: int, ans: str) -> None:
-    with open(path, "w") as f:
+    opener = (lambda p: lzma.open(p, "wt", preset=6)) if path.suffix == ".xz" else (lambda p: open(p, "w"))
+    with opener(path) as f:
         f.write(f"c Uniform Random 3-SAT at m/n={len(clauses)/n:.2f}, seed={seed}, expected={ans}\n")
         f.write(f"p cnf {n} {len(clauses)}\n")
         for cl in clauses:
@@ -60,9 +62,9 @@ def main() -> None:
     AIG_DIR.mkdir(parents=True, exist_ok=True)
     XCNF_DIR.mkdir(parents=True, exist_ok=True)
     for name, n, m, seed, ans in INSTANCES:
-        cnf_path = SUITE_DIR / f"{name}.cnf"
-        aig_path = AIG_DIR / f"{name}.aig"
-        xcnf_path = XCNF_DIR / f"{name}.xcnf"
+        cnf_path = SUITE_DIR / f"{name}.cnf.xz"
+        aig_path = AIG_DIR / f"{name}.aig.xz"
+        xcnf_path = XCNF_DIR / f"{name}.xcnf.xz"
         if not cnf_path.exists():
             clauses = gen_uniform_3sat(n, m, seed)
             write_dimacs(cnf_path, n, clauses, seed, ans)

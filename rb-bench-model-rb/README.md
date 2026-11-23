@@ -19,19 +19,19 @@ The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are
 
 ## Corpus & Data Sizes
 
-All **40 forced-SAT CNFs** (`39.0 MB` total) across all 8 size classes, plus **40 exact Binary AIGER 1.9 conversions** in `aig-version/` (`24.7 MB`, all 40/40 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and `src/cnf2aig.py`:
+All **40 forced-SAT `.cnf.xz` files** (`4.98 MB` xz-compressed) across all 8 size classes, plus **40 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (`5.80 MB` xz-compressed, all 40/40 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and `src/cnf2aig.py`:
 
-| Family | Instances | Status | Vars ($n \cdot d$) | Clauses | CNF Size (5 files) | AIG Files |
+| Family | Instances | Status | Vars ($n \cdot d$) | Clauses | `.cnf.xz` Size (5 files) | AIG Files |
 |---|---:|:---:|---:|---:|---:|---:|
-| `frb30-15-1..5.cnf` | 5 | SAT | 450 | 19,084 | 1.15 MB | 5 |
-| `frb35-17-1..5.cnf` | 5 | SAT | 595 | 29,707 | 1.80 MB | 5 |
-| `frb40-19-1..5.cnf` | 5 | SAT | 760 | 43,780 | 2.66 MB | 5 |
-| `frb45-21-1..5.cnf` | 5 | SAT | 945 | 61,855 | 3.79 MB | 5 |
-| `frb50-23-1..5.cnf` | 5 | SAT | 1,150 | 84,508 | 5.28 MB | 5 |
-| `frb53-24-1..5.cnf` | 5 | SAT | 1,272 | 98,921 | 6.26 MB | 5 |
-| `frb56-25-1..5.cnf` | 5 | SAT | 1,400 | 114,668 | 7.36 MB | 5 |
-| `frb59-26-1..5.cnf` | 5 | SAT | 1,534 | 132,295 | 8.66 MB | 5 |
-| **Total** | **40** | **40 SAT** | **450–1,534** | **19,084–132,295** | **39.0 MB** | **40** |
+| `frb30-15-1..5.cnf.xz` | 5 | SAT | 450 | 19,084 | 160.5 KB | 5 |
+| `frb35-17-1..5.cnf.xz` | 5 | SAT | 595 | 29,707 | 244.5 KB | 5 |
+| `frb40-19-1..5.cnf.xz` | 5 | SAT | 760 | 43,780 | 365.8 KB | 5 |
+| `frb45-21-1..5.cnf.xz` | 5 | SAT | 945 | 61,855 | 509.8 KB | 5 |
+| `frb50-23-1..5.cnf.xz` | 5 | SAT | 1,150 | 84,508 | 739.7 KB | 5 |
+| `frb53-24-1..5.cnf.xz` | 5 | SAT | 1,272 | 98,921 | 874.8 KB | 5 |
+| `frb56-25-1..5.cnf.xz` | 5 | SAT | 1,400 | 114,668 | 1013.3 KB | 5 |
+| `frb59-26-1..5.cnf.xz` | 5 | SAT | 1,534 | 132,295 | 1.16 MB | 5 |
+| **Total** | **40** | **40 SAT** | **450–1,534** | **19,084–132,295** | **4.98 MB** | **40** |
 
 ## Comparative 1-Core Spot Check (`frb30-15-1..5`, $T_{\max} = 5\;\text{s}$)
 

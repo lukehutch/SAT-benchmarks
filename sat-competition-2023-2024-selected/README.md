@@ -12,28 +12,28 @@ Twelve of these instances form the SAT Competition slice of the unified 50-bench
 
 ## Directory Layout & Reproducibility
 
-- `*.cnf` — Original native **DIMACS CNF** formulas (decompressed from official GBD `.cnf.xz` archives).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (all 14/14 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc), including 1.09M-AND-gate `si2_b03m_m800_03.aig` at `4.24 MB`).
-- `src/sc23_24_manifest.json` & `src/fetch_and_convert.py` — Exact GBD MD5 hashes and script to re-fetch from `benchmark-database.de` and regenerate `aig-version/*.aig`.
+- `*.cnf.xz` — Original native **DIMACS CNF** formulas (xz-compressed directly from official GBD `.cnf.xz` archives).
+- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (all 14/14 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc), including 1.09M-AND-gate `si2_b03m_m800_03.aig.xz` at `1.06 MB`).
+- `src/sc23_24_manifest.json` & `src/fetch_and_convert.py` — Exact GBD MD5 hashes and script to re-fetch from `benchmark-database.de` and regenerate `aig-version/*.aig.xz`.
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Year | Family | GBD Hash | Ans | CNF Vars | CNF Clauses | CNF Size | AIG ANDs | AIG Size |
+| Instance | Year | Family | GBD Hash | Ans | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
 |---|---:|---|---|---:|---:|---:|---:|---:|---:|
-| `tseitingrid6x200` | 2024 | SC24-Tseitin | `35789168b67a...` | UNSAT | 2,400 | 9,600 | 207.7 KB | 28,799 | 102.5 KB |
-| `tseitin_d3_n10000` | 2023 | SC23-Tseitin | `1153a473e1d5...` | UNSAT | 15,000 | 40,000 | 753.1 KB | 119,999 | 493.3 KB |
-| `urq45` | 2023 | SC23-Urquhart | `aa39c6d885d2...` | UNSAT | 74 | 694 | 15.5 KB | 1,943 | 5.0 KB |
-| `two_trees_511v` | 2023 | SC23-Parity | `16c5482d8e65...` | SAT | 511 | 2,039 | 29.3 KB | 6,039 | 19.1 KB |
-| `two_trees_1023v` | 2023 | SC23-Parity | `7db30d12cb06...` | SAT | 1,023 | 4,088 | 60.2 KB | 12,098 | 38.9 KB |
-| `intervals122` | 2023 | SC23-Card. | `18416a9ac090...` | UNSAT | 2,568 | 57,706 | 698.9 KB | 117,770 | 497.7 KB |
-| `clique_n2_k10` | 2024 | SC24-Clique | `cb2e8b7fada4...` | UNSAT | 180 | 3,160 | 33.9 KB | 6,479 | 19.7 KB |
-| `gzipfile_close_11` | 2023 | SC23-RegAlloc | `72b5ad031bf8...` | UNSAT | 187 | 1,348 | 14.7 KB | 2,848 | 8.9 KB |
-| `rand_net70_40_10` | 2023 | SC23-Miter | `00f2eb377986...` | UNSAT | 5,600 | 16,661 | 235.1 KB | 39,111 | 154.6 KB |
-| `hwmcc20_iso_rast_p06` | 2024 | SC24-Miter | `1545660e7215...` | UNSAT | 85,230 | 276,273 | 4.89 MB | 696,006 | 2.79 MB |
-| `hwmcc17_iso_bobsmfpu` | 2024 | SC24-Miter | `0a02751cacf5...` | UNSAT | 62,500 | 204,019 | 3.46 MB | 504,001 | 2.06 MB |
-| `vmpc_24` | 2023 | SC23-Crypto | `220bb8aa093e...` | SAT | 576 | 67,872 | 927.9 KB | 162,816 | 670.9 KB |
-| `si2_b03m_m800_03` | 2024 | SC24-SubIso | `af750c18578d...` | SAT | 10,862 | 472,588 | 29.14 MB | 1,093,425 | 4.24 MB |
-| `mp1_nb7t42` | 2024 | SC24-PolyMul | `c0293283432a...` | SAT | 52,731 | 208,936 | 3.89 MB | 550,367 | 2.45 MB |
+| `tseitingrid6x200` | 2024 | SC24-Tseitin | `35789168b67a...` | UNSAT | 2,400 | 9,600 | 54.0 KB | 28,799 | 62.7 KB |
+| `tseitin_d3_n10000` | 2023 | SC23-Tseitin | `1153a473e1d5...` | UNSAT | 15,000 | 40,000 | 112.8 KB | 119,999 | 138.6 KB |
+| `urq45` | 2023 | SC23-Urquhart | `aa39c6d885d2...` | UNSAT | 74 | 694 | 1.7 KB | 1,943 | 3.6 KB |
+| `two_trees_511v` | 2023 | SC23-Parity | `16c5482d8e65...` | SAT | 511 | 2,039 | 6.2 KB | 6,039 | 10.0 KB |
+| `two_trees_1023v` | 2023 | SC23-Parity | `7db30d12cb06...` | SAT | 1,023 | 4,088 | 12.3 KB | 12,098 | 17.6 KB |
+| `intervals122` | 2023 | SC23-Card. | `18416a9ac090...` | UNSAT | 2,568 | 57,706 | 107.0 KB | 117,770 | 163.9 KB |
+| `clique_n2_k10` | 2024 | SC24-Clique | `cb2e8b7fada4...` | UNSAT | 180 | 3,160 | 4.1 KB | 6,479 | 4.6 KB |
+| `gzipfile_close_11` | 2023 | SC23-RegAlloc | `72b5ad031bf8...` | UNSAT | 187 | 1,348 | 2.5 KB | 2,848 | 1.7 KB |
+| `rand_net70_40_10` | 2023 | SC23-Miter | `00f2eb377986...` | UNSAT | 5,600 | 16,661 | 88.7 KB | 39,111 | 86.8 KB |
+| `hwmcc20_iso_rast_p06` | 2024 | SC24-Miter | `1545660e7215...` | UNSAT | 85,230 | 276,273 | 657.7 KB | 696,006 | 936.9 KB |
+| `hwmcc17_iso_bobsmfpu` | 2024 | SC24-Miter | `0a02751cacf5...` | UNSAT | 62,500 | 204,019 | 536.0 KB | 504,001 | 728.6 KB |
+| `vmpc_24` | 2023 | SC23-Crypto | `220bb8aa093e...` | SAT | 576 | 67,872 | 84.5 KB | 162,816 | 257.9 KB |
+| `si2_b03m_m800_03` | 2024 | SC24-SubIso | `af750c18578d...` | SAT | 10,862 | 472,588 | 1.17 MB | 1,093,425 | 1.06 MB |
+| `mp1_nb7t42` | 2024 | SC24-PolyMul | `c0293283432a...` | SAT | 52,731 | 208,936 | 317.0 KB | 550,367 | 376.3 KB |
 
 *(Full 32-character GBD hashes are listed in [`src/sc23_24_manifest.json`](src/sc23_24_manifest.json).)*
 

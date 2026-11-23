@@ -22,17 +22,17 @@ $$\mathrm{AES\text{-}256}(K, P_1) = C_1 \quad \land \quad \mathrm{AES\text{-}256
   - **90,500 Gröbner-basis implied binary clauses** (`181` per S-box: `9,412` on the key schedule + `81,088` on encryption rounds).
   - **42,812 native [CryptoMiniSat](https://github.com/msoos/cryptominisat) `x...` XOR parity clauses** (lengths `3..15`, mean `6.02`) forming a single 59,324-variable connected component.
 - **Why `w5` vs. `w126` Differ in Difficulty:** Out of `165,824` total clauses (`123,012` CNF + `42,812` XOR), **`165,312` lines are byte-for-byte identical** across both files — only the 512 plaintext/ciphertext unit clauses differ. The filenames reflect the presumed Hamming weight of the secret key:
-  - **`w5.solved.xcnf`**: Hamming-weight-5 key ($\binom{256}{5} \approx 8.8 \times 10^9 \approx 2^{33}$ candidates — reachable via specialized low-weight search if the weight bound is known, though **no weight constraint is encoded in the XCNF**).
-  - **`w126.unsolved.xcnf`**: Balanced weight-126 key ($\binom{256}{126} \approx 2^{252}$ candidates — **full-strength 14-round AES-256** key recovery, matching the best known $\approx 2^{254.4}$ classical cryptanalytic barrier).
+  - **`w5.solved.xcnf.xz`**: Hamming-weight-5 key ($\binom{256}{5} \approx 8.8 \times 10^9 \approx 2^{33}$ candidates — reachable via specialized low-weight search if the weight bound is known, though **no weight constraint is encoded in the XCNF**).
+  - **`w126.unsolved.xcnf.xz`**: Balanced weight-126 key ($\binom{256}{126} \approx 2^{252}$ candidates — **full-strength 14-round AES-256** key recovery, matching the best known $\approx 2^{254.4}$ classical cryptanalytic barrier).
 
 ## Corpus & Data Sizes (Three Formats)
 
-Native unmodified `.xcnf` files live at the suite root; exact Tseitin DIMACS `.cnf.xz` conversions (`cnf-version/`) and [Berkeley ABC](https://github.com/berkeley-abc/abc)-verified Binary AIGER 1.9 miters (`aig-version/`, `0` errors via `read_aiger`) are generated reproducibly by [`src/xcnf2cnf_aig.py`](src/xcnf2cnf_aig.py):
+Native unmodified `.xcnf.xz` files (xz-compressed) live at the suite root; exact Tseitin DIMACS `.cnf.xz` conversions (`cnf-version/`) and [Berkeley ABC](https://github.com/berkeley-abc/abc)-verified Binary AIGER 1.9 `.aig.xz` miters (`aig-version/`, `0` errors via `read_aiger`) are generated reproducibly by [`src/xcnf2cnf_aig.py`](src/xcnf2cnf_aig.py):
 
-| Instance | Status | XCNF Vars / CNF + XOR Clauses | XCNF Size | Tseitin CNF Vars / Clauses | `cnf.xz` Size | AIG PIs / AND Gates | AIG Size |
+| Instance | Status | XCNF Vars / CNF + XOR Clauses | `.xcnf.xz` Size | Tseitin CNF Vars / Clauses | `.cnf.xz` Size | AIG PIs / AND Gates | `.aig.xz` Size |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `w5.solved` | SAT *(known unique)* | 59,324 / 123,012 + 42,812 | 3.40 MB | 119,644 / 811,268 | 1.93 MB | 256 / 460,695 | 1.38 MB |
-| `w126.unsolved` | Open *(expected unique SAT)* | 59,324 / 123,012 + 42,812 | 3.40 MB | 119,644 / 811,268 | 1.89 MB | 256 / 460,647 | 1.38 MB |
+| `w5.solved` | SAT *(known unique)* | 59,324 / 123,012 + 42,812 | 489.2 KB | 119,644 / 811,268 | 1.93 MB | 256 / 460,695 | 457.1 KB |
+| `w126.unsolved` | Open *(expected unique SAT)* | 59,324 / 123,012 + 42,812 | 489.2 KB | 119,644 / 811,268 | 1.89 MB | 256 / 460,647 | 457.5 KB |
 
 ## Comparative 1-Core Benchmark Results ($T_{\max} = 30\;\text{s}$)
 

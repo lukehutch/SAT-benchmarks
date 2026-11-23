@@ -22,13 +22,13 @@ This suite mirrors the complete benchmark corpus shipped with [`dense-solver v0.
 
 ## Corpus & Data Sizes
 
-All **50 CNFs** are committed verbatim alongside **50 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 50/50 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and the upstream Python generators (`src/generate.py`, `src/chessboard.py`, `src/fetch_public.py`, `src/public-inputs.csv`, `src/cnf2aig.py`):
+All **50 `.cnf.xz` files** are committed verbatim (xz-compressed) alongside **50 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 50/50 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and the upstream Python generators (`src/generate.py`, `src/chessboard.py`, `src/fetch_public.py`, `src/public-inputs.csv`, `src/cnf2aig.py`):
 
-| Directory | Instances | SAT / UNSAT | Vars Range | Clauses Range | Total CNF Size | AIG Files |
+| Directory | Instances | SAT / UNSAT | Vars Range | Clauses Range | Total `.cnf.xz` Size | AIG Files |
 |---|---:|:---:|---:|---:|---:|---:|
-| `instances/` | 20 | 2 / 18 | 64–8,256 | 168–133,185 | 2.33 MB | 20 |
-| `public-instances/` | 30 | 16 / 14 | 42–760 | 133–4,675 | 302 KB | 30 |
-| **Total** | **50** | **18 / 32** | **42–8,256** | **133–133,185** | **2.63 MB** | **50** |
+| `instances/` | 20 | 2 / 18 | 64–8,256 | 168–133,185 | 129.9 KB | 20 |
+| `public-instances/` | 30 | 16 / 14 | 42–760 | 133–4,675 | 70.4 KB | 30 |
+| **Total** | **50** | **18 / 32** | **42–8,256** | **133–133,185** | **200.3 KB** | **50** |
 
 ## Comparative 1-Core Benchmark Results
 

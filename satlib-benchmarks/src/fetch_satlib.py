@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Standalone SATLIB fetcher and three-format (.cnf.xz / .aig / .xcnf.xz) converter.
+Standalone SATLIB fetcher and three-format (.cnf.xz / .aig.xz / .xcnf.xz) converter.
 
 Reproduces all 331 committed SATLIB/DIMACS/Beijing benchmark instances from the
 official UBC SATLIB archive (https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html),

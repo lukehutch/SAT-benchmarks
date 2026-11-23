@@ -22,16 +22,16 @@ This classic EDA / symmetry-breaking collection contains **82 DIMACS CNF instanc
 
 ## Corpus & Data Sizes
 
-All **82 CNFs** (`6.21 MB` total) plus **82 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 82/82 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and `src/cnf2aig.py`:
+All **82 `.cnf.xz` files** (`1.55 MB` xz-compressed) plus **82 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 82/82 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`) and `src/cnf2aig.py`:
 
-| Subdirectory | Instances | Status | Vars Range | Clauses Range | CNF Size | AIG Files |
+| Subdirectory | Instances | Status | Vars Range | Clauses Range | `.cnf.xz` Size | AIG Files |
 |---|---:|:---:|---:|---:|---:|---:|
-| `DAC02Bench/` | 32 | Mixed | 46–1,056 | 204–10,862 | 1.06 MB | 32 |
-| `FPGA_SB_SAT/` | 11 | SAT | 120–234 | 448–1,242 | 118 KB | 11 |
-| `FPGA_SB_UNS/` | 10 | UNSAT | 220–440 | 1,122–4,220 | 251 KB | 10 |
-| `difp_a/` | 14 | SAT | 1,201–1,453 | 6,563–7,967 | 1.69 MB | 14 |
-| `difp_w/` | 15 | SAT | 1,755–2,125 | 10,446–12,677 | 3.09 MB | 15 |
-| **Total** | **82** | | **46–2,125** | **204–12,677** | **6.21 MB** | **82** |
+| `DAC02Bench/` | 32 | Mixed | 46–1,056 | 204–10,862 | 120.6 KB | 32 |
+| `FPGA_SB_SAT/` | 11 | SAT | 120–234 | 448–1,242 | 33.5 KB | 11 |
+| `FPGA_SB_UNS/` | 10 | UNSAT | 220–440 | 1,122–4,220 | 72.5 KB | 10 |
+| `difp_a/` | 14 | SAT | 1,201–1,453 | 6,563–7,967 | 500.1 KB | 14 |
+| `difp_w/` | 15 | SAT | 1,755–2,125 | 10,446–12,677 | 856.7 KB | 15 |
+| **Total** | **82** | | **46–2,125** | **204–12,677** | **1.55 MB** | **82** |
 
 ## Comparative 1-Core Benchmark Results (`FPGA_SB_UNS` + `FPGA_SB_SAT`, 21 Instances, $T_{\max} = 5\;\text{s}$)
 

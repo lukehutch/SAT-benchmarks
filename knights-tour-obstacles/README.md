@@ -27,25 +27,25 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 
 ## Directory Layout & Regeneration
 
-- `*.cnf` — Original native **DIMACS CNF** encodings (10 instances: 5 SAT / 5 UNSAT; each file includes an ASCII diagram of the obstacle layout in its header comments).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (10/10 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `xcnf-version/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.cnf.xz` — Original native **DIMACS CNF** encodings (10 instances: 5 SAT / 5 UNSAT; each file includes an ASCII diagram of the obstacle layout in its header comments).
+- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (10/10 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `xcnf-version/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/gen_knights_tour.py` — Standalone zero-dependency Python 3 generator and closed-tour verifier (`python3 src/gen_knights_tour.py --generate-suite .`), plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Board | Density $d$ | Obstacles | Free Squares $|V|$ | Seed | Status | CNF Vars | CNF Clauses | CNF Size | AIG ANDs | AIG Size |
+| Instance | Board | Density $d$ | Obstacles | Free Squares $|V|$ | Seed | Status | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
 |---|:---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| `knights_12x12_d15_obs16_s12150144_sat` | $12 \times 12$ | 0.15 | 16 | 128 | `12150144` | SAT | 6,185 | 17,111 | 326 KB | 47,997 | 176 KB |
-| `knights_14x14_d26_obs52_s34280941_sat` | $14 \times 14$ | 0.26 | 52 | 144 | `34280941` | SAT | 6,782 | 18,886 | 365 KB | 53,431 | 197 KB |
-| `knights_14x14_d20_obs34_s14203078_sat` | $14 \times 14$ | 0.20 | 34 | 162 | `14203078` | SAT | 8,402 | 23,259 | 451 KB | 65,749 | 247 KB |
-| `knights_15x15_d24_obs55_s35244162_sat` | $15 \times 15$ | 0.24 | 55 | 170 | `35244162` | SAT | 8,634 | 23,901 | 464 KB | 67,577 | 254 KB |
-| `knights_16x16_d25_obs66_s365029087_sat` | $16 \times 16$ | 0.25 | 66 | 190 | `365029087` | SAT | 9,502 | 26,430 | 514 KB | 74,715 | 282 KB |
-| `knights_15x15_d22_obs41_s956712163_unsat` | $15 \times 15$ | 0.22 | 41 | 184 | `956712163` | UNSAT | 9,828 | 27,156 | 527 KB | 76,723 | 290 KB |
-| `knights_15x15_d22_obs51_s756748105_unsat` | $15 \times 15$ | 0.22 | 51 | 174 | `756748105` | UNSAT | 8,838 | 24,739 | 480 KB | 69,909 | 263 KB |
-| `knights_15x15_d21_obs55_s956405106_unsat` | $15 \times 15$ | 0.21 | 55 | 170 | `956405106` | UNSAT | 8,248 | 22,841 | 444 KB | 64,593 | 242 KB |
-| `knights_15x15_d22_obs53_s756776522_unsat` | $15 \times 15$ | 0.22 | 53 | 172 | `756776522` | UNSAT | 8,780 | 24,214 | 470 KB | 68,435 | 258 KB |
-| `knights_15x15_d21_obs51_s556324743_unsat` | $15 \times 15$ | 0.21 | 51 | 174 | `556324743` | UNSAT | 8,890 | 24,674 | 479 KB | 69,731 | 263 KB |
+| `knights_12x12_d15_obs16_s12150144_sat` | $12 \times 12$ | 0.15 | 16 | 128 | `12150144` | SAT | 6,185 | 17,111 | 44.9 KB | 47,997 | 61.3 KB |
+| `knights_14x14_d26_obs52_s34280941_sat` | $14 \times 14$ | 0.26 | 52 | 144 | `34280941` | SAT | 6,782 | 18,886 | 50.3 KB | 53,431 | 67.1 KB |
+| `knights_14x14_d20_obs34_s14203078_sat` | $14 \times 14$ | 0.20 | 34 | 162 | `14203078` | SAT | 8,402 | 23,259 | 60.6 KB | 65,749 | 80.9 KB |
+| `knights_15x15_d24_obs55_s35244162_sat` | $15 \times 15$ | 0.24 | 55 | 170 | `35244162` | SAT | 8,634 | 23,901 | 62.4 KB | 67,577 | 83.5 KB |
+| `knights_16x16_d25_obs66_s365029087_sat` | $16 \times 16$ | 0.25 | 66 | 190 | `365029087` | SAT | 9,502 | 26,430 | 69.3 KB | 74,715 | 91.4 KB |
+| `knights_15x15_d22_obs41_s956712163_unsat` | $15 \times 15$ | 0.22 | 41 | 184 | `956712163` | UNSAT | 9,828 | 27,156 | 71.0 KB | 76,723 | 93.1 KB |
+| `knights_15x15_d22_obs51_s756748105_unsat` | $15 \times 15$ | 0.22 | 51 | 174 | `756748105` | UNSAT | 8,838 | 24,739 | 64.0 KB | 69,909 | 86.6 KB |
+| `knights_15x15_d21_obs55_s956405106_unsat` | $15 \times 15$ | 0.21 | 55 | 170 | `956405106` | UNSAT | 8,248 | 22,841 | 59.2 KB | 64,593 | 80.5 KB |
+| `knights_15x15_d22_obs53_s756776522_unsat` | $15 \times 15$ | 0.22 | 53 | 172 | `756776522` | UNSAT | 8,780 | 24,214 | 63.8 KB | 68,435 | 84.5 KB |
+| `knights_15x15_d21_obs51_s556324743_unsat` | $15 \times 15$ | 0.21 | 51 | 174 | `556324743` | UNSAT | 8,890 | 24,674 | 65.5 KB | 69,731 | 84.7 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 

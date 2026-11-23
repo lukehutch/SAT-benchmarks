@@ -17,6 +17,7 @@ Resulting formula is SAT iff the Z-distance satisfies d_Z <= w, and UNSAT iff d_
 """
 from __future__ import annotations
 
+import lzma
 import pathlib
 import sys
 
@@ -155,7 +156,8 @@ def encode_css_z_distance(
 
     num_vars = next_var[0] - 1
     out_cnf.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_cnf, "w") as f:
+    cnf_opener = (lambda path: lzma.open(path, "wt", preset=6)) if out_cnf.suffix == ".xz" else (lambda path: open(path, "w"))
+    with cnf_opener(out_cnf) as f:
         f.write(f"c CSS Quantum LDPC Z-distance decision problem (n={n}, w<={w})\n")
         f.write(f"p cnf {num_vars} {len(cnf_clauses)}\n")
         for cl in cnf_clauses:
@@ -163,7 +165,8 @@ def encode_css_z_distance(
 
     if out_xcnf is not None:
         out_xcnf.parent.mkdir(parents=True, exist_ok=True)
-        with open(out_xcnf, "w") as f:
+        xcnf_opener = (lambda path: lzma.open(path, "wt", preset=6)) if out_xcnf.suffix == ".xz" else (lambda path: open(path, "w"))
+        with xcnf_opener(out_xcnf) as f:
             f.write(f"c CSS Quantum LDPC Z-distance XCNF (n={n}, w<={w})\n")
             f.write(f"p cnf {num_vars} {len(xcnf_clauses) + len(xcnf_xors)}\n")
             for cl in xcnf_clauses:
@@ -180,7 +183,7 @@ def encode_css_z_distance(
 
 def main() -> None:
     if len(sys.argv) < 5:
-        print("Usage: export_qdist_cnf.py <Hx.txt> <Gz.txt> <w> <out.cnf> [out.xcnf]", file=sys.stderr)
+        print("Usage: export_qdist_cnf.py <Hx.txt> <Gz.txt> <w> <out.cnf[.xz]> [out.xcnf[.xz]]", file=sys.stderr)
         sys.exit(2)
     out_x = pathlib.Path(sys.argv[5]) if len(sys.argv) > 5 else None
     nv, nc = encode_css_z_distance(pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]), int(sys.argv[3]), pathlib.Path(sys.argv[4]), out_x)

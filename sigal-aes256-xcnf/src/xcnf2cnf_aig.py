@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Lossless converter for Victor Sigal's AES-256 XCNF benchmarks (`w5.solved.xcnf`, `w126.unsolved.xcnf`).
+"""Lossless converter for Victor Sigal's AES-256 XCNF benchmarks (`w5.solved.xcnf.xz`, `w126.unsolved.xcnf.xz`).
 
 Produces:
   - `cnf-version/<stem>.cnf.xz`: exact Tseitin-encoded DIMACS CNF (splitting XOR clauses of length > 4
     via fresh auxiliary variables and expanding each parity constraint of length <= 4 into 2^{k-1} clauses).
-  - `aig-version/<stem>.aig`: exact Binary AIGER 1.9 combinational miter (`L = 0, O = 1`, 256 primary inputs
+  - `aig-version/<stem>.aig.xz`: exact Binary AIGER 1.9 combinational miter (`L = 0, O = 1`, 256 primary inputs
     corresponding to the 256-bit AES-256 key, `PO_0 = 1` iff all 256 ciphertext output bits match target).
 """
 from __future__ import annotations
@@ -21,7 +21,8 @@ def parse_xcnf(path: Path):
     bins: list[tuple[int, int]] = []
     other_clauses: list[list[int]] = []
     xors: list[tuple[list[int], int]] = []
-    with path.open("r", encoding="latin-1") as f:
+    opener = lzma.open if path.suffix == ".xz" else open
+    with opener(path, "rt", encoding="latin-1") as f:
         for line in f:
             s = line.strip()
             if not s or s[0] == "c":
@@ -236,17 +237,21 @@ def write_binary_aig(num_vars: int, units, bins, xors, out_path: Path) -> tuple[
         encode_varint(buf, r0 - r1)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_bytes(buf)
+    if out_path.suffix == ".xz":
+        out_path.write_bytes(lzma.compress(bytes(buf), preset=6))
+    else:
+        out_path.write_bytes(buf)
     return I, A
 
 
 def main() -> None:
     suite_dir = Path(__file__).resolve().parent.parent
-    for xcnf_path in sorted(suite_dir.glob("*.xcnf")):
-        stem = xcnf_path.stem
+    xcnf_files = sorted(suite_dir.glob("*.xcnf.xz")) or sorted(suite_dir.glob("*.xcnf"))
+    for xcnf_path in xcnf_files:
+        stem = xcnf_path.name.removesuffix(".xz").removesuffix(".xcnf")
         nvars, units, bins, other, xors = parse_xcnf(xcnf_path)
         cnf_out = suite_dir / "cnf-version" / f"{stem}.cnf.xz"
-        aig_out = suite_dir / "aig-version" / f"{stem}.aig"
+        aig_out = suite_dir / "aig-version" / f"{stem}.aig.xz"
         cn, cm = write_tseitin_cnf_xz(nvars, units, bins, other, xors, cnf_out)
         ai, aa = write_binary_aig(nvars, units, bins, xors, aig_out)
         print(

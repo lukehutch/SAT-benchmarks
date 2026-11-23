@@ -15,36 +15,36 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 ## Directory Layout & Regeneration
 
-- `*.cnf` — Original native **DIMACS CNF** encodings (compact binary-order MTZ).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (all 22/22 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `*.cnf.xz` — Original native **DIMACS CNF** encodings (compact binary-order MTZ).
+- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (all 22/22 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Family | $N$ | $E$ | $\rho$ | Ans | CNF Vars | CNF Clauses | CNF Size | AIG ANDs | AIG Size |
+| Instance | Family | $N$ | $E$ | $\rho$ | Ans | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
 |---|---|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| `hamd_snark_j5_unsat` | Flower Snark | 20 | 30 | 0.158 | UNSAT | 371 | 949 | 14.3 KB | 2,639 | 7.8 KB |
-| `hamd_gp_11_2_unsat` | Gen. Petersen | 22 | 33 | 0.143 | UNSAT | 411 | 1,052 | 16.0 KB | 2,927 | 8.7 KB |
-| `hamd_snark_j7_unsat` | Flower Snark | 28 | 42 | 0.111 | UNSAT | 531 | 1,361 | 21.1 KB | 3,791 | 11.4 KB |
-| `hamd_gp_17_2_unsat` | Gen. Petersen | 34 | 51 | 0.091 | UNSAT | 780 | 1,958 | 31.5 KB | 5,519 | 16.6 KB |
-| `hamd_meredith_k3_n50_unsat` | Meredith $G_3$ | 50 | 75 | 0.061 | UNSAT | 1,164 | 2,926 | 48.3 KB | 8,255 | 25.0 KB |
-| `hamd_meredith_k4_n70_unsat` | Meredith $G_4$ | 70 | 140 | 0.058 | UNSAT | 2,395 | 6,566 | 114.9 KB | 18,579 | 61.2 KB |
-| `hamd_chvatal_s3_q5_dense_unsat` | Chvátal $t<1$ | 23 | 103 | 0.407 | UNSAT | 1,450 | 3,910 | 62.3 KB | 10,635 | 32.4 KB |
-| `hamd_chvatal_s4_q6_med_unsat` | Chvátal $t<1$ | 34 | 146 | 0.260 | UNSAT | 2,250 | 6,463 | 108.4 KB | 17,821 | 58.1 KB |
-| `hamd_chvatal_s4_q7_dense_unsat` | Chvátal $t<1$ | 39 | 251 | 0.339 | UNSAT | 4,066 | 11,268 | 207.2 KB | 31,095 | 109.3 KB |
-| `hamd_broken_crown_n8_v31_k0_unsat` | Broken Crown | 31 | 74 | 0.080 | UNSAT | 500 | 1,141 | 17.9 KB | 3,241 | 9.7 KB |
-| `hamd_broken_crown_n8_v31_k1_sat` | Broken Crown | 31 | 75 | 0.081 | SAT | 505 | 1,162 | 18.2 KB | 3,301 | 9.9 KB |
-| `hamd_broken_crown_n12_v51_k1_sat` | Broken Crown | 51 | 123 | 0.048 | SAT | 1,019 | 2,308 | 37.8 KB | 6,633 | 20.1 KB |
-| `hamd_gp_15_2_sat` | Gen. Petersen | 30 | 45 | 0.103 | SAT | 571 | 1,464 | 22.8 KB | 4,079 | 12.2 KB |
-| `hamd_snark_j7_plus_e_sat` | Flower Snark $+e$ | 28 | 43 | 0.114 | SAT | 541 | 1,402 | 21.7 KB | 3,903 | 11.7 KB |
-| `hamd_gp_21_2_sat` | Gen. Petersen | 42 | 63 | 0.073 | SAT | 972 | 2,442 | 39.5 KB | 6,887 | 20.7 KB |
-| `hamd_planted_n24_med_sat` | Planted Med | 24 | 50 | 0.181 | SAT | 575 | 1,704 | 26.0 KB | 4,681 | 13.9 KB |
-| `hamd_planted_n40_sparse_sat` | Planted Sparse | 40 | 94 | 0.121 | SAT | 1,326 | 3,936 | 64.2 KB | 10,935 | 32.9 KB |
-| `hamd_planted_n40_dense_sat` | Planted Dense | 40 | 273 | 0.350 | SAT | 4,402 | 12,249 | 225.3 KB | 33,781 | 119.9 KB |
-| `hamd_planted_n64_sparse_sat` | Planted Sparse | 64 | 202 | 0.100 | SAT | 3,162 | 8,908 | 157.8 KB | 24,671 | 84.9 KB |
-| `hamd_planted_n64_dense_sat` | Planted Dense | 64 | 605 | 0.300 | SAT | 9,750 | 27,592 | 514.6 KB | 76,131 | 291.0 KB |
-| `hamd_planted_n100_sparse_sat` | Planted Sparse | 100 | 297 | 0.060 | SAT | 5,197 | 14,769 | 279.0 KB | 41,307 | 149.8 KB |
-| `hamd_planted_n80_vdense_sat` | Planted VDense | 80 | 1,580 | 0.500 | SAT | 28,389 | 82,446 | 1.63 MB | 229,525 | 905.0 KB |
+| `hamd_snark_j5_unsat` | Flower Snark | 20 | 30 | 0.158 | UNSAT | 371 | 949 | 3.4 KB | 2,639 | 4.2 KB |
+| `hamd_gp_11_2_unsat` | Gen. Petersen | 22 | 33 | 0.143 | UNSAT | 411 | 1,052 | 3.7 KB | 2,927 | 4.9 KB |
+| `hamd_snark_j7_unsat` | Flower Snark | 28 | 42 | 0.111 | UNSAT | 531 | 1,361 | 4.4 KB | 3,791 | 6.0 KB |
+| `hamd_gp_17_2_unsat` | Gen. Petersen | 34 | 51 | 0.091 | UNSAT | 780 | 1,958 | 6.0 KB | 5,519 | 8.2 KB |
+| `hamd_meredith_k3_n50_unsat` | Meredith $G_3$ | 50 | 75 | 0.061 | UNSAT | 1,164 | 2,926 | 8.8 KB | 8,255 | 11.9 KB |
+| `hamd_meredith_k4_n70_unsat` | Meredith $G_4$ | 70 | 140 | 0.058 | UNSAT | 2,395 | 6,566 | 18.6 KB | 18,579 | 25.7 KB |
+| `hamd_chvatal_s3_q5_dense_unsat` | Chvátal $t<1$ | 23 | 103 | 0.407 | UNSAT | 1,450 | 3,910 | 10.2 KB | 10,635 | 15.4 KB |
+| `hamd_chvatal_s4_q6_med_unsat` | Chvátal $t<1$ | 34 | 146 | 0.260 | UNSAT | 2,250 | 6,463 | 16.7 KB | 17,821 | 25.0 KB |
+| `hamd_chvatal_s4_q7_dense_unsat` | Chvátal $t<1$ | 39 | 251 | 0.339 | UNSAT | 4,066 | 11,268 | 26.8 KB | 31,095 | 41.3 KB |
+| `hamd_broken_crown_n8_v31_k0_unsat` | Broken Crown | 31 | 74 | 0.080 | UNSAT | 500 | 1,141 | 4.0 KB | 3,241 | 5.2 KB |
+| `hamd_broken_crown_n8_v31_k1_sat` | Broken Crown | 31 | 75 | 0.081 | SAT | 505 | 1,162 | 4.0 KB | 3,301 | 5.3 KB |
+| `hamd_broken_crown_n12_v51_k1_sat` | Broken Crown | 51 | 123 | 0.048 | SAT | 1,019 | 2,308 | 7.1 KB | 6,633 | 9.7 KB |
+| `hamd_gp_15_2_sat` | Gen. Petersen | 30 | 45 | 0.103 | SAT | 571 | 1,464 | 4.6 KB | 4,079 | 6.4 KB |
+| `hamd_snark_j7_plus_e_sat` | Flower Snark $+e$ | 28 | 43 | 0.114 | SAT | 541 | 1,402 | 4.5 KB | 3,903 | 6.2 KB |
+| `hamd_gp_21_2_sat` | Gen. Petersen | 42 | 63 | 0.073 | SAT | 972 | 2,442 | 7.3 KB | 6,887 | 10.1 KB |
+| `hamd_planted_n24_med_sat` | Planted Med | 24 | 50 | 0.181 | SAT | 575 | 1,704 | 4.9 KB | 4,681 | 7.4 KB |
+| `hamd_planted_n40_sparse_sat` | Planted Sparse | 40 | 94 | 0.121 | SAT | 1,326 | 3,936 | 11.0 KB | 10,935 | 15.7 KB |
+| `hamd_planted_n40_dense_sat` | Planted Dense | 40 | 273 | 0.350 | SAT | 4,402 | 12,249 | 30.8 KB | 33,781 | 45.2 KB |
+| `hamd_planted_n64_sparse_sat` | Planted Sparse | 64 | 202 | 0.100 | SAT | 3,162 | 8,908 | 25.7 KB | 24,671 | 34.5 KB |
+| `hamd_planted_n64_dense_sat` | Planted Dense | 64 | 605 | 0.300 | SAT | 9,750 | 27,592 | 65.1 KB | 76,131 | 97.1 KB |
+| `hamd_planted_n100_sparse_sat` | Planted Sparse | 100 | 297 | 0.060 | SAT | 5,197 | 14,769 | 39.3 KB | 41,307 | 55.5 KB |
+| `hamd_planted_n80_vdense_sat` | Planted VDense | 80 | 1,580 | 0.500 | SAT | 28,389 | 82,446 | 172.0 KB | 229,525 | 258.0 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 

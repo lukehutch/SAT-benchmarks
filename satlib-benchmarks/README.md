@@ -18,7 +18,7 @@
 
 Every single instance from all **17 structured SATLIB, DIMACS, and Beijing collections** (298 instances in full, excluding `PRET` in `../pretolani-pret/`) plus **33 stratified representatives** spanning all **5 large synthetic ensembles** (`RND3SAT`, `BMS/RTI`, `CBS`, `flat-GCP`, `SW-GCP`) are committed in **all three formats**:
 - `<family>/*.cnf.xz` — **331** sanitized DIMACS CNFs (`9.26 MB` xz-compressed)
-- `aig-version/<family>/*.aig` — **331** exact Binary AIGER 1.9 conversions (`55.34 MB`, all **331 / 331** independently verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`, `0` errors)
+- `aig-version/<family>/*.aig.xz` — **331** exact Binary AIGER 1.9 conversions (`13.64 MB` xz-compressed, all **331 / 331** independently verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`, `0` errors)
 - `xcnf-version/<family>/*.xcnf.xz` — **331** lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF conversions (`8.87 MB`, extracting **`36,542`** native XOR parity clauses)
 - [`satlib_all_97_archives.uri`](satlib_all_97_archives.uri) & [`src/fetch_satlib.py`](src/fetch_satlib.py) — complete manifest of all **97 official UBC SATLIB `.tar.gz` URLs** (50,000+ total synthetic ensemble instances downloadable on demand), plus `src/cnf2aig.py` and `src/cnf2xcnf.py`.
 
@@ -46,7 +46,7 @@ Every single instance from all **17 structured SATLIB, DIMACS, and Beijing colle
 | `qg/` | Quasigroup / Latin Squares — Zhang (full) | 22 | 343–2,197 | 9,685–148,957 | 23,908–337,034 | 1.64 MB |
 | `rnd3sat/` | Uniform Random 3-SAT `uf`/`uuf50..250` (sample / 6,600*) | 10 | 50–250 | 218–1,065 | 643–3,186 | 33.1 KB |
 | `sw-gcp/` | Morphed Small-World 5-Colouring `lp0..p0` (sample / 901*) | 5 | 500 | 3,100 | 6,499 | 19.1 KB |
-| **Total** | **22 SATLIB Families (+ 97-archive URI list)** | **331** | **42–63,624** | **80–454,622** | **331 `.aig` + 331 `.xcnf.xz`** | **9.26 MB** |
+| **Total** | **22 SATLIB Families (+ 97-archive URI list)** | **331** | **42–63,624** | **80–454,622** | **331 `.aig.xz` + 331 `.xcnf.xz`** | **9.26 MB** |
 
 ## Comparative 1-Core Benchmark Results (All 331 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 

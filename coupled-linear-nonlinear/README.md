@@ -9,19 +9,19 @@ Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an unde
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear Gates | Seed | Ans | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear Gates | Seed | Ans | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| `coupled_n128_d64` | 128 | 64 | 64 | 96 | `0xFEEDFACE115122A2` | SAT | 1,161 | 3.1 KB | 411 | 1,640 | 22.9 KB |
-| `coupled_n128_d32_unsat` | 128 | 96 | 32 | 84 (last flipped) | `0xCAFEBABE0003` | UNSAT | 1,514 | 4.0 KB | 488 | 2,036 | 30.0 KB |
-| `coupled_n256_d128` | 256 | 128 | 128 | 180 | `0xFEEDFACE11912322` | SAT | 2,292 | 6.3 KB | 809 | 3,222 | 47.6 KB |
-| `coupled_n512_d128` | 512 | 384 | 128 | 420 | `0xFEEDFACE10912022` | SAT | 6,489 | 18.1 KB | 2,074 | 9,001 | 146.1 KB |
+| `coupled_n128_d64` | 128 | 64 | 64 | 96 | `0xFEEDFACE115122A2` | SAT | 1,161 | 2.1 KB | 411 | 1,640 | 4.7 KB |
+| `coupled_n128_d32_unsat` | 128 | 96 | 32 | 84 (last flipped) | `0xCAFEBABE0003` | UNSAT | 1,514 | 2.6 KB | 488 | 2,036 | 5.7 KB |
+| `coupled_n256_d128` | 256 | 128 | 128 | 180 | `0xFEEDFACE11912322` | SAT | 2,292 | 4.0 KB | 809 | 3,222 | 9.0 KB |
+| `coupled_n512_d128` | 512 | 384 | 128 | 420 | `0xFEEDFACE10912022` | SAT | 6,489 | 10.4 KB | 2,074 | 9,001 | 24.1 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

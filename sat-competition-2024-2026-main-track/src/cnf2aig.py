@@ -23,7 +23,7 @@ def _encode_varint(x: int, out: bytearray) -> None:
 
 
 def cnf_to_aiger(cnf_path: Path, aig_path: Path, comment: str = "") -> tuple[int, int, int]:
-    """Convert DIMACS CNF (`.cnf` or `.cnf.xz`) to Binary AIGER 1.9 (`.aig`)."""
+    """Convert DIMACS CNF (`.cnf` or `.cnf.xz`) to Binary AIGER 1.9 (`.aig` or `.aig.xz`)."""
     opener = lzma.open if str(cnf_path).endswith(".xz") else open
     num_vars = 0
     clauses: list[list[int]] = []
@@ -117,13 +117,16 @@ def cnf_to_aiger(cnf_path: Path, aig_path: Path, comment: str = "") -> tuple[int
         for line in comment.splitlines():
             buf.extend(line.encode("utf-8") + b"\n")
     aig_path.parent.mkdir(parents=True, exist_ok=True)
-    aig_path.write_bytes(buf)
+    if str(aig_path).endswith(".xz"):
+        aig_path.write_bytes(lzma.compress(bytes(buf), preset=6))
+    else:
+        aig_path.write_bytes(buf)
     return num_vars, len(clauses), len(ands)
 
 
 def main() -> None:
     if len(sys.argv) < 3:
-        print("Usage: cnf2aig.py <input.cnf[.xz]> <output.aig>", file=sys.stderr)
+        print("Usage: cnf2aig.py <input.cnf[.xz]> <output.aig[.xz]>", file=sys.stderr)
         sys.exit(2)
     nv, nc, na = cnf_to_aiger(Path(sys.argv[1]), Path(sys.argv[2]))
     print(f"Wrote {sys.argv[2]}: inputs={nv}, clauses={nc}, and_gates={na}")

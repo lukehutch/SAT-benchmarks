@@ -23,7 +23,7 @@ The formula is **SAT** iff $d_Z \le w$ and **UNSAT** iff $d_Z > w$. These couple
 
 ## Corpus & Data Sizes
 
-Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes), **10 paired boundary decision CNFs** ($w = d-1$ UNSAT and $w = d$ SAT), **10 native-XOR `.xcnf` files** in `xcnf-version/`, **10 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), and the standalone exporter `src/export_qdist_cnf.py`:
+Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes), **10 paired boundary decision `.cnf.xz` files** ($w = d-1$ UNSAT and $w = d$ SAT), **10 native-XOR `.xcnf.xz` files** in `xcnf-version/`, **10 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), and the standalone exporter `src/export_qdist_cnf.py`:
 
 | Code Stem | Parameters $[[n,k,d]]$ | Weight $w$ | Status | Vars | Clauses | AIG AND Gates |
 |---|---|---:|:---:|---:|---:|---:|

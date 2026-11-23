@@ -12,20 +12,20 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Circuit A vs. Circuit B | Width | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | Circuit A vs. Circuit B | Width | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---|---:|:---:|---:|---:|---:|---:|---:|---:|
-| `cec_adder_32b_rc_vs_ks` | Ripple-Carry vs. Kogge–Stone Adder | 32b | UNSAT | 64 | 871 | 2.4 KB | 606 | 2,059 | 27.3 KB |
-| `cec_mult_6x6_arr_vs_wal` | Array vs. Wallace Multiplier | 6×6 | UNSAT | 12 | 591 | 1.4 KB | 183 | 918 | 13.2 KB |
-| `cec_mult_8x8_arr_vs_wal` | Array vs. Wallace Multiplier | 8×8 | UNSAT | 16 | 1,148 | 2.7 KB | 340 | 1,769 | 27.0 KB |
-| `cec_array_vs_wallace_10x10` | Array vs. Wallace Multiplier | 10×10 | UNSAT | 20 | 1,868 | 4.3 KB | 530 | 2,850 | 45.0 KB |
-| `cec_wallace_vs_karat_12x12` | Wallace vs. Karatsuba Multiplier | 12×12 | UNSAT | 24 | 2,673 | 6.3 KB | 814 | 4,247 | 67.7 KB |
+| `cec_adder_32b_rc_vs_ks` | Ripple-Carry vs. Kogge–Stone Adder | 32b | UNSAT | 64 | 871 | 1.5 KB | 606 | 2,059 | 5.6 KB |
+| `cec_mult_6x6_arr_vs_wal` | Array vs. Wallace Multiplier | 6×6 | UNSAT | 12 | 591 | 0.9 KB | 183 | 918 | 2.5 KB |
+| `cec_mult_8x8_arr_vs_wal` | Array vs. Wallace Multiplier | 8×8 | UNSAT | 16 | 1,148 | 1.4 KB | 340 | 1,769 | 4.4 KB |
+| `cec_array_vs_wallace_10x10` | Array vs. Wallace Multiplier | 10×10 | UNSAT | 20 | 1,868 | 2.1 KB | 530 | 2,850 | 6.6 KB |
+| `cec_wallace_vs_karat_12x12` | Wallace vs. Karatsuba Multiplier | 12×12 | UNSAT | 24 | 2,673 | 3.4 KB | 814 | 4,247 | 9.5 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

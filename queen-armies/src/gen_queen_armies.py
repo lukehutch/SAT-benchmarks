@@ -29,6 +29,7 @@ License: MIT
 from __future__ import annotations
 
 import argparse
+import lzma
 from pathlib import Path
 
 # Curated 8-instance balanced suite (4 SAT / 4 UNSAT) across A in {2, 3, 4} armies,
@@ -141,7 +142,8 @@ def write_cnf(
 ) -> tuple[int, int]:
     nv, clauses = encode_queen_armies(rows, cols, k, num_armies)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w") as f:
+    opener = (lambda path: lzma.open(path, "wt", preset=6)) if out_path.suffix == ".xz" else (lambda path: open(path, "w"))
+    with opener(out_path) as f:
         f.write(
             f"c Peaceable Queen Armies: {num_armies} armies of k={k} queens on a {rows}x{cols} board\n"
         )
@@ -203,11 +205,11 @@ def main() -> None:
 
         suite_dir = args.generate_suite
         for fname, A, rows, cols, k, status in CURATED_SUITE:
-            cnf_path = suite_dir / fname
+            cnf_path = suite_dir / f"{fname}.xz"
             nv, nc = write_cnf(cnf_path, rows, cols, k, A, status)
-            stem = cnf_path.stem
-            aig_path = suite_dir / "aig-version" / f"{stem}.aig"
-            xcnf_path = suite_dir / "xcnf-version" / f"{stem}.xcnf"
+            stem = fname.removesuffix(".cnf")
+            aig_path = suite_dir / "aig-version" / f"{stem}.aig.xz"
+            xcnf_path = suite_dir / "xcnf-version" / f"{stem}.xcnf.xz"
             _, _, na = cnf_to_aiger(
                 cnf_path,
                 aig_path,

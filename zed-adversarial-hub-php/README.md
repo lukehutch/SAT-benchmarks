@@ -12,33 +12,33 @@ An 18-instance adversarial stress-audit and scaling suite combining two families
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Family | Params | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | Family | Params | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---|---|:---:|---:|---:|---:|---:|---:|---:|
-| `hub_20_unsat` | Bit-Vector Hub | $n=20, \text{low}=31$ | UNSAT | 410 | 4,268 | 10.7 KB | 2,510 | 8,209 | 126.0 KB |
-| `hub_24_unsat` | Bit-Vector Hub | $n=24, \text{low}=31$ | UNSAT | 490 | 5,106 | 12.7 KB | 3,001 | 9,820 | 152.5 KB |
-| `hub_30_unsat` | Bit-Vector Hub | $n=30, \text{low}=31$ | UNSAT | 610 | 6,373 | 15.9 KB | 3,741 | 12,249 | 192.5 KB |
-| `hub_60_unsat` | Bit-Vector Hub | $n=60, \text{low}=31$ | UNSAT | 1,210 | 12,701 | 33.9 KB | 7,440 | 24,391 | 392.2 KB |
-| `hub_80_unsat` | Bit-Vector Hub | $n=80, \text{low}=31$ | UNSAT | 1,610 | 16,915 | 46.4 KB | 9,904 | 32,478 | 525.2 KB |
-| `hub_60_sat` | Bit-Vector Hub | $n=60, \text{low}=25$ | SAT | 1,210 | 12,698 | 33.9 KB | 7,438 | 24,385 | 392.1 KB |
-| `php_9_8_unsat` | Pigeonhole | 9 pigeons, 8 holes | UNSAT | 72 | 647 | 1.9 KB | 423 | 1,350 | 13.5 KB |
-| `php_13_12_unsat` | Pigeonhole | 13 pigeons, 12 holes | UNSAT | 156 | 2,027 | 6.3 KB | 1,235 | 4,186 | 44.7 KB |
-| `php_14_13_unsat` | Pigeonhole | 14 pigeons, 13 holes | UNSAT | 182 | 2,547 | 8.1 KB | 1,533 | 5,250 | 57.5 KB |
-| `php_15_14_unsat` | Pigeonhole | 15 pigeons, 14 holes | UNSAT | 210 | 3,149 | 10.0 KB | 1,875 | 6,480 | 72.2 KB |
-| `php_16_15_unsat` | Pigeonhole | 16 pigeons, 15 holes | UNSAT | 240 | 3,839 | 12.2 KB | 2,264 | 7,888 | 89.1 KB |
-| `php_17_16_unsat` | Pigeonhole | 17 pigeons, 16 holes | UNSAT | 272 | 4,623 | 15.0 KB | 2,703 | 9,486 | 108.3 KB |
-| `php_19_18_unsat` | Pigeonhole | 19 pigeons, 18 holes | UNSAT | 342 | 6,497 | 21.2 KB | 3,743 | 13,300 | 154.1 KB |
-| `php_20_19_unsat` | Pigeonhole | 20 pigeons, 19 holes | UNSAT | 380 | 7,599 | 24.8 KB | 4,350 | 15,540 | 181.0 KB |
-| `php_31_30_unsat` | Pigeonhole | 31 pigeons, 30 holes | UNSAT | 930 | 28,829 | 107.6 KB | 15,779 | 58,528 | 721.2 KB |
-| `php_50_49_unsat` | Pigeonhole | 50 pigeons, 49 holes | UNSAT | 2,450 | 122,499 | 517.7 KB | 64,875 | 247,350 | 3.24 MB |
-| `php_20_20_sat` | Pigeonhole | 20 pigeons, 20 holes | SAT | 400 | 7,999 | 26.1 KB | 4,580 | 16,360 | 191.0 KB |
-| `php_30_30_sat` | Pigeonhole | 30 pigeons, 30 holes | SAT | 900 | 26,999 | 100.1 KB | 14,820 | 54,840 | 673.2 KB |
+| `hub_20_unsat` | Bit-Vector Hub | $n=20, \text{low}=31$ | UNSAT | 410 | 4,268 | 4.7 KB | 2,510 | 8,209 | 20.3 KB |
+| `hub_24_unsat` | Bit-Vector Hub | $n=24, \text{low}=31$ | UNSAT | 490 | 5,106 | 5.5 KB | 3,001 | 9,820 | 24.1 KB |
+| `hub_30_unsat` | Bit-Vector Hub | $n=30, \text{low}=31$ | UNSAT | 610 | 6,373 | 6.7 KB | 3,741 | 12,249 | 30.0 KB |
+| `hub_60_unsat` | Bit-Vector Hub | $n=60, \text{low}=31$ | UNSAT | 1,210 | 12,701 | 13.2 KB | 7,440 | 24,391 | 58.8 KB |
+| `hub_80_unsat` | Bit-Vector Hub | $n=80, \text{low}=31$ | UNSAT | 1,610 | 16,915 | 17.3 KB | 9,904 | 32,478 | 78.1 KB |
+| `hub_60_sat` | Bit-Vector Hub | $n=60, \text{low}=25$ | SAT | 1,210 | 12,698 | 13.2 KB | 7,438 | 24,385 | 58.5 KB |
+| `php_9_8_unsat` | Pigeonhole | 9 pigeons, 8 holes | UNSAT | 72 | 647 | 1.1 KB | 423 | 1,350 | 2.3 KB |
+| `php_13_12_unsat` | Pigeonhole | 13 pigeons, 12 holes | UNSAT | 156 | 2,027 | 2.8 KB | 1,235 | 4,186 | 6.5 KB |
+| `php_14_13_unsat` | Pigeonhole | 14 pigeons, 13 holes | UNSAT | 182 | 2,547 | 3.2 KB | 1,533 | 5,250 | 7.9 KB |
+| `php_15_14_unsat` | Pigeonhole | 15 pigeons, 14 holes | UNSAT | 210 | 3,149 | 3.8 KB | 1,875 | 6,480 | 9.7 KB |
+| `php_16_15_unsat` | Pigeonhole | 16 pigeons, 15 holes | UNSAT | 240 | 3,839 | 4.6 KB | 2,264 | 7,888 | 10.8 KB |
+| `php_17_16_unsat` | Pigeonhole | 17 pigeons, 16 holes | UNSAT | 272 | 4,623 | 5.1 KB | 2,703 | 9,486 | 12.8 KB |
+| `php_19_18_unsat` | Pigeonhole | 19 pigeons, 18 holes | UNSAT | 342 | 6,497 | 6.9 KB | 3,743 | 13,300 | 17.2 KB |
+| `php_20_19_unsat` | Pigeonhole | 20 pigeons, 19 holes | UNSAT | 380 | 7,599 | 8.3 KB | 4,350 | 15,540 | 19.0 KB |
+| `php_31_30_unsat` | Pigeonhole | 31 pigeons, 30 holes | UNSAT | 930 | 28,829 | 26.6 KB | 15,779 | 58,528 | 63.3 KB |
+| `php_50_49_unsat` | Pigeonhole | 50 pigeons, 49 holes | UNSAT | 2,450 | 122,499 | 99.3 KB | 64,875 | 247,350 | 249.0 KB |
+| `php_20_20_sat` | Pigeonhole | 20 pigeons, 20 holes | SAT | 400 | 7,999 | 8.6 KB | 4,580 | 16,360 | 18.6 KB |
+| `php_30_30_sat` | Pigeonhole | 30 pigeons, 30 holes | SAT | 900 | 26,999 | 23.4 KB | 14,820 | 54,840 | 59.7 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

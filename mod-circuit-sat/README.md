@@ -16,21 +16,21 @@ For a fixed input width $n$, modulus $m = 3$, target residue $r \in \{0, 1, 2\}$
 
 ## Corpus & Data Sizes
 
-Generated via `src/modsat.py` and `src/gen_open_cases.py`: **11 CNFs** (9 decidable optimality-boundary instances for $n \in \{3, 4, 5\}$ + 2 open $n = 6$ frontier instances), **11 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 11/11 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), and **11 decoder variable maps** in `maps/`:
+Generated via `src/modsat.py` and `src/gen_open_cases.py`: **11 `.cnf.xz` files** (9 decidable optimality-boundary instances for $n \in \{3, 4, 5\}$ + 2 open $n = 6$ frontier instances), **11 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 11/11 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), and **11 decoder variable maps** in `maps/`:
 
-| Instance | $(n, m, r, s)$ | Status | Vars | Clauses | CNF Size | AIG AND Gates |
+| Instance | $(n, m, r, s)$ | Status | Vars | Clauses | `.cnf.xz` Size | AIG AND Gates |
 |---|---|:---:|---:|---:|---:|---:|
-| `mod3_n3_r0_s3_sat.cnf` | $(3,3,0,3)$ | SAT | 65 | 435 | 5.4 KB | 1,053 |
-| `mod3_n3_r1_s3_unsat.cnf` | $(3,3,1,3)$ | UNSAT | 65 | 426 | 5.3 KB | 1,042 |
-| `mod3_n3_r1_s4_sat.cnf` | $(3,3,1,4)$ | SAT | 107 | 903 | 12.2 KB | 2,267 |
-| `mod3_n4_r2_s5_unsat.cnf` | $(4,3,2,5)$ | UNSAT | 250 | 4,124 | 64.0 KB | 9,896 |
-| `mod3_n4_r2_s6_sat.cnf` | $(4,3,2,6)$ | SAT | 343 | 6,762 | 114.2 KB | 16,515 |
-| `mod3_n4_r0_s6_unsat.cnf` | $(4,3,0,6)$ | UNSAT | 343 | 6,884 | 115.4 KB | 16,785 |
-| `mod3_n4_r0_s7_sat.cnf` | $(4,3,0,7)$ | SAT | 454 | 10,597 | 184.4 KB | 26,176 |
-| `mod3_n5_r1_s8_unsat.cnf` | $(5,3,1,8)$ | UNSAT | 825 | 33,493 | 618.3 KB | 81,208 |
-| `mod3_n5_r1_s9_sat.cnf` | $(5,3,1,9)$ | SAT | 1,019 | 46,402 | 871.1 KB | 113,738 |
-| `mod3_n6_r1_le12_open.cnf` | $(6,3,1,\le 12)$ | Open | 2,309 | 185,679 | 4.22 MB | 474,426 |
-| `mod3_n6_r2_le12_open.cnf` | $(6,3,2,\le 12)$ | Open | 2,309 | 185,760 | 4.22 MB | 474,549 |
+| `mod3_n3_r0_s3_sat.cnf.xz` | $(3,3,0,3)$ | SAT | 65 | 435 | 1.2 KB | 1,053 |
+| `mod3_n3_r1_s3_unsat.cnf.xz` | $(3,3,1,3)$ | UNSAT | 65 | 426 | 1.2 KB | 1,042 |
+| `mod3_n3_r1_s4_sat.cnf.xz` | $(3,3,1,4)$ | SAT | 107 | 903 | 2.2 KB | 2,267 |
+| `mod3_n4_r2_s5_unsat.cnf.xz` | $(4,3,2,5)$ | UNSAT | 250 | 4,124 | 7.6 KB | 9,896 |
+| `mod3_n4_r2_s6_sat.cnf.xz` | $(4,3,2,6)$ | SAT | 343 | 6,762 | 11.8 KB | 16,515 |
+| `mod3_n4_r0_s6_unsat.cnf.xz` | $(4,3,0,6)$ | UNSAT | 343 | 6,884 | 11.7 KB | 16,785 |
+| `mod3_n4_r0_s7_sat.cnf.xz` | $(4,3,0,7)$ | SAT | 454 | 10,597 | 17.6 KB | 26,176 |
+| `mod3_n5_r1_s8_unsat.cnf.xz` | $(5,3,1,8)$ | UNSAT | 825 | 33,493 | 46.0 KB | 81,208 |
+| `mod3_n5_r1_s9_sat.cnf.xz` | $(5,3,1,9)$ | SAT | 1,019 | 46,402 | 59.9 KB | 113,738 |
+| `mod3_n6_r1_le12_open.cnf.xz` | $(6,3,1,\le 12)$ | Open | 2,309 | 185,679 | 242.5 KB | 474,426 |
+| `mod3_n6_r2_le12_open.cnf.xz` | $(6,3,2,\le 12)$ | Open | 2,309 | 185,760 | 248.7 KB | 474,549 |
 
 ## Comparative 1-Core Benchmark Results ($n \in \{3, 4, 5\}$, 9 Decidable Instances, $T_{\max} = 10\;\text{s}$ & $30\;\text{s}$)
 

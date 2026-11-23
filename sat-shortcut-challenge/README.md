@@ -16,33 +16,33 @@ Designed by Keith Adler to separate two distinct phenomena in SAT solver evaluat
 
 ## Corpus & Data Sizes
 
-All **72 upstream DIMACS CNFs** (**47 Tier-1** in `tier1/` + **25 Tier-3** in `tier3/`, 100% SHA-256 verified against `results/MANIFEST-tier1.sha256` and `results/MANIFEST-tier3.sha256`), **72 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 72/72 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), **72 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf` conversions** in `xcnf-version/` (`6,793` native XOR clauses extracted across Tier-1), upstream result logs in `results/` (including `RESULTS.md`, `TIER3-BASELINE.md`, and `TIER3-LOCALSEARCH.md`), and all upstream generator/reference scripts in `src/` (including `probsat.c`, `cnf2aig.py`, and `cnf2xcnf.py`):
+All **72 upstream DIMACS `.cnf.xz` files** (**47 Tier-1** in `tier1/` + **25 Tier-3** in `tier3/`, 100% SHA-256 verified on decompressed payloads against `results/MANIFEST-tier1.sha256` and `results/MANIFEST-tier3.sha256`), **72 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 72/72 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`), **72 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` conversions** in `xcnf-version/` (`6,793` native XOR clauses extracted across Tier-1), upstream result logs in `results/` (including `RESULTS.md`, `TIER3-BASELINE.md`, and `TIER3-LOCALSEARCH.md`), and all upstream generator/reference scripts in `src/` (including `probsat.c`, `cnf2aig.py`, and `cnf2xcnf.py`):
 
 ### Tier 1 (`tier1/`, 47 Instances across 9 Families)
 
-| Family | Instances | Vars Range | Clauses Range | Total CNF Size | AIG AND Gates Range |
+| Family | Instances | Vars Range | Clauses Range | Total `.cnf.xz` Size | AIG AND Gates Range |
 |---|---:|---:|---:|---:|---:|
-| 1. Tseitin parity (`tseitin_n*`) | 9 | 30–300 | 80–800 | 42.0 KB | 239–2,399 |
-| 2. Pigeonhole Principle (`php_*`) | 5 | 56–156 | 204–949 | 25.2 KB | 447–2,027 |
-| 3. Random 3-SAT (`random3sat_n150..250*`) | 4 | 150–250 | 639–1,065 | 46.3 KB | 1,909–3,183 |
-| 4. Adder CEC: RC vs. KS (`cec_adder_*`) | 4 | 144–1,728 | 424–5,120 | 115.8 KB | 1,035–12,347 |
-| 5. Multiplier CEC: Array vs. Wallace (`cec_mult_*`) | 4 | 373–1,615 | 1,214–5,347 | 156.6 KB | 2,979–13,247 |
-| 6. Multiplier target inversion (`mult_target_*`) | 4 | 2,006–3,370 | 6,677–11,245 | 485.5 KB | 16,629–28,067 |
-| 7. Mutilated chessboard (`chessboard_*`) | 5 | 56–360 | 172–1,196 | 39.9 KB | 387–2,723 |
-| 8. Hamiltonian cycle (`ham_*`) | 8 | 225–1,600 | 4,651–115,281 | 3.00 MB | 9,690–233,600 |
-| 9. XOR system + random 3-clauses (`xor_plus_*`) | 4 | 100–240 | 404–1,048 | 42.2 KB | 1,208–3,138 |
-| **Total (Tier 1)** | **47** | **30–3,370** | **80–115,281** | **3.95 MB** | **47 `.aig` + 47 `.xcnf`** |
+| 1. Tseitin parity (`tseitin_n*`) | 9 | 30–300 | 80–800 | 10.6 KB | 239–2,399 |
+| 2. Pigeonhole Principle (`php_*`) | 5 | 56–156 | 204–949 | 4.9 KB | 447–2,027 |
+| 3. Random 3-SAT (`random3sat_n150..250*`) | 4 | 150–250 | 639–1,065 | 17.4 KB | 1,909–3,183 |
+| 4. Adder CEC: RC vs. KS (`cec_adder_*`) | 4 | 144–1,728 | 424–5,120 | 23.7 KB | 1,035–12,347 |
+| 5. Multiplier CEC: Array vs. Wallace (`cec_mult_*`) | 4 | 373–1,615 | 1,214–5,347 | 28.4 KB | 2,979–13,247 |
+| 6. Multiplier target inversion (`mult_target_*`) | 4 | 2,006–3,370 | 6,677–11,245 | 66.1 KB | 16,629–28,067 |
+| 7. Mutilated chessboard (`chessboard_*`) | 5 | 56–360 | 172–1,196 | 7.8 KB | 387–2,723 |
+| 8. Hamiltonian cycle (`ham_*`) | 8 | 225–1,600 | 4,651–115,281 | 153.6 KB | 9,690–233,600 |
+| 9. XOR system + random 3-clauses (`xor_plus_*`) | 4 | 100–240 | 404–1,048 | 10.5 KB | 1,208–3,138 |
+| **Total (Tier 1)** | **47** | **30–3,370** | **80–115,281** | **322.9 KB** | **47 `.aig.xz` + 47 `.xcnf.xz`** |
 
 ### Tier 3 (`tier3/`, 25 Instances)
 
-| Size Group | Instances | Vars ($n$) | Clauses ($m$) | Ratio $m/n$ | CNF Size (each) | AIG AND Gates (each) |
+| Size Group | Instances | Vars ($n$) | Clauses ($m$) | Ratio $m/n$ | `.cnf.xz` Size (each) | AIG AND Gates (each) |
 |---|---:|---:|---:|---:|---:|---:|
-| `random3sat_n300_s1..5.cnf` | 5 | 300 | 1,278 | 4.26 | 18.4 KB | 3,825–3,828 |
-| `random3sat_n350_s1..5.cnf` | 5 | 350 | 1,491 | 4.26 | 21.8 KB | 4,463–4,468 |
-| `random3sat_n400_s1..5.cnf` | 5 | 400 | 1,704 | 4.26 | 25.1 KB | 5,100–5,108 |
-| `random3sat_n450_s1..5.cnf` | 5 | 450 | 1,917 | 4.26 | 28.3 KB | 5,743–5,745 |
-| `random3sat_n500_s1..5.cnf` | 5 | 500 | 2,130 | 4.26 | 31.6 KB | 6,380–6,386 |
-| **Total (Tier 3)** | **25** | **300–500** | **1,278–2,130** | **4.26** | **626 KB** | **25 `.aig` + 25 `.xcnf`** |
+| `random3sat_n300_s1..5.cnf.xz` | 5 | 300 | 1,278 | 4.26 | 6.7 KB | 3,825–3,828 |
+| `random3sat_n350_s1..5.cnf.xz` | 5 | 350 | 1,491 | 4.26 | 7.9 KB | 4,463–4,468 |
+| `random3sat_n400_s1..5.cnf.xz` | 5 | 400 | 1,704 | 4.26 | 9.1 KB | 5,100–5,108 |
+| `random3sat_n450_s1..5.cnf.xz` | 5 | 450 | 1,917 | 4.26 | 10.3 KB | 5,743–5,745 |
+| `random3sat_n500_s1..5.cnf.xz` | 5 | 500 | 2,130 | 4.26 | 11.5 KB | 6,380–6,386 |
+| **Total (Tier 3)** | **25** | **300–500** | **1,278–2,130** | **4.26** | **227.5 KB** | **25 `.aig.xz` + 25 `.xcnf.xz`** |
 
 ## Comparative 1-Core Benchmark Results
 

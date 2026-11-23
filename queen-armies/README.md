@@ -25,23 +25,23 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 
 ## Directory Layout & Regeneration
 
-- `*.cnf` — Original native **DIMACS CNF** encodings (8 instances: 4 SAT / 4 UNSAT).
-- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig`** conversions (8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `xcnf-version/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.cnf.xz` — Original native **DIMACS CNF** encodings (8 instances: 4 SAT / 4 UNSAT).
+- `aig-version/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `xcnf-version/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/gen_queen_armies.py` — Standalone zero-dependency Python 3 generator and witness verifier (`python3 src/gen_queen_armies.py --generate-suite .`), plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Armies $A$ | Board $R \times C$ | Army Size $k$ | Status | CNF Vars | CNF Clauses | CNF Size | AIG ANDs | AIG Size |
+| Instance | Armies $A$ | Board $R \times C$ | Army Size $k$ | Status | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
 |---|---:|:---:|---:|:---:|---:|---:|---:|---:|---:|
-| `queen_armies_a3_13x16_k14_sat` | 3 | $13 \times 16$ | 14 | SAT | 9,330 | 19,032 | 268 KB | 46,481 | 185 KB |
-| `queen_armies_a4_14x16_k9_sat` | 4 | $14 \times 16$ | 9 | SAT | 9,152 | 19,020 | 267 KB | 45,919 | 183 KB |
-| `queen_armies_a2_15x16_k33_sat` | 2 | $15 \times 16$ | 33 | SAT | 15,351 | 31,002 | 465 KB | 76,719 | 315 KB |
-| `queen_armies_a3_15x16_k16_sat` | 3 | $15 \times 16$ | 16 | SAT | 12,141 | 24,732 | 358 KB | 60,572 | 246 KB |
-| `queen_armies_a3_7x8_k5_unsat` | 3 | $7 \times 8$ | 5 | UNSAT | 1,095 | 2,232 | 27 KB | 5,255 | 17 KB |
-| `queen_armies_a3_6x10_k5_unsat` | 3 | $6 \times 10$ | 5 | UNSAT | 1,176 | 2,397 | 30 KB | 5,645 | 19 KB |
-| `queen_armies_a3_6x11_k6_unsat` | 3 | $6 \times 11$ | 6 | UNSAT | 1,476 | 3,006 | 38 KB | 7,133 | 23 KB |
-| `queen_armies_a2_7x10_k12_unsat` | 2 | $7 \times 10$ | 12 | UNSAT | 1,733 | 3,510 | 46 KB | 8,541 | 27 KB |
+| `queen_armies_a3_13x16_k14_sat` | 3 | $13 \times 16$ | 14 | SAT | 9,330 | 19,032 | 25.4 KB | 46,481 | 35.6 KB |
+| `queen_armies_a4_14x16_k9_sat` | 4 | $14 \times 16$ | 9 | SAT | 9,152 | 19,020 | 26.1 KB | 45,919 | 37.0 KB |
+| `queen_armies_a2_15x16_k33_sat` | 2 | $15 \times 16$ | 33 | SAT | 15,351 | 31,002 | 36.7 KB | 76,719 | 49.6 KB |
+| `queen_armies_a3_15x16_k16_sat` | 3 | $15 \times 16$ | 16 | SAT | 12,141 | 24,732 | 32.1 KB | 60,572 | 43.9 KB |
+| `queen_armies_a3_7x8_k5_unsat` | 3 | $7 \times 8$ | 5 | UNSAT | 1,095 | 2,232 | 4.1 KB | 5,255 | 6.7 KB |
+| `queen_armies_a3_6x10_k5_unsat` | 3 | $6 \times 10$ | 5 | UNSAT | 1,176 | 2,397 | 4.4 KB | 5,645 | 7.2 KB |
+| `queen_armies_a3_6x11_k6_unsat` | 3 | $6 \times 11$ | 6 | UNSAT | 1,476 | 3,006 | 5.5 KB | 7,133 | 8.4 KB |
+| `queen_armies_a2_7x10_k12_unsat` | 2 | $7 \times 10$ | 12 | UNSAT | 1,733 | 3,510 | 5.5 KB | 8,541 | 9.5 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 

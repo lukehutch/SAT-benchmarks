@@ -16,21 +16,21 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (`L = 0`, `O = 1` miter where `PO_0 = 1` iff all $n$ parity assertions hold; verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (`L = 0`, `O = 1` miter where `PO_0 = 1` iff all $n$ parity assertions hold; verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | $k$ | $n = 2^k$ | Stride $s$ | Arity | Seed | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | $k$ | $n = 2^k$ | Stride $s$ | Arity | Seed | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|
-| `f2_frobenius_n64` | 6 | 64 | 8 | 3-XOR | `12351` | SAT | 64 | 447 | 1.2 KB | 128 | 576 | 8.4 KB |
-| `f2_frobenius_n256` | 8 | 256 | 16 | 3-XOR | `12353` | SAT | 256 | 1,791 | 4.8 KB | 512 | 2,304 | 39.1 KB |
-| `f2_frobenius_n1024` | 10 | 1,024 | 32 | 3-XOR | `12355` | SAT | 1,024 | 7,167 | 19.1 KB | 2,048 | 9,216 | 173.5 KB |
-| `f2_frobenius_n4096` | 12 | 4,096 | 64 | 3-XOR | `12357` | SAT | 4,096 | 28,671 | 88.9 KB | 8,192 | 36,864 | 772.1 KB |
-| `f2_frobenius_n256_unsat` | 8 | 256 | 16 | 4-XOR | `22353` | UNSAT | 256 | 2,559 | 6.8 KB | 768 | 3,328 | 54.4 KB |
-| `f2_frobenius_n1024_unsat` | 10 | 1,024 | 32 | 4-XOR | `22355` | UNSAT | 1,024 | 10,239 | 28.4 KB | 3,072 | 13,312 | 243.4 KB |
+| `f2_frobenius_n64` | 6 | 64 | 8 | 3-XOR | `12351` | SAT | 64 | 447 | 0.6 KB | 128 | 576 | 1.6 KB |
+| `f2_frobenius_n256` | 8 | 256 | 16 | 3-XOR | `12353` | SAT | 256 | 1,791 | 1.7 KB | 512 | 2,304 | 4.7 KB |
+| `f2_frobenius_n1024` | 10 | 1,024 | 32 | 3-XOR | `12355` | SAT | 1,024 | 7,167 | 5.3 KB | 2,048 | 9,216 | 15.3 KB |
+| `f2_frobenius_n4096` | 12 | 4,096 | 64 | 3-XOR | `12357` | SAT | 4,096 | 28,671 | 17.6 KB | 8,192 | 36,864 | 58.4 KB |
+| `f2_frobenius_n256_unsat` | 8 | 256 | 16 | 4-XOR | `22353` | UNSAT | 256 | 2,559 | 2.0 KB | 768 | 3,328 | 7.7 KB |
+| `f2_frobenius_n1024_unsat` | 10 | 1,024 | 32 | 4-XOR | `22355` | UNSAT | 1,024 | 10,239 | 6.6 KB | 3,072 | 13,312 | 26.6 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

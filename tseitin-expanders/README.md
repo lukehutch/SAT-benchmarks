@@ -9,19 +9,19 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Graph Family | Vertices $n$ | Edges $m$ | Seed | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | Graph Family | Vertices $n$ | Edges $m$ | Seed | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|
-| `tseitin_exp_n60` | 3-reg expander | 60 | 90 | `777` | UNSAT | 90 | 419 | 1.2 KB | 150 | 540 | 8.2 KB |
-| `tseitin_exp_n120` | 3-reg expander | 120 | 180 | `778` | UNSAT | 180 | 839 | 2.3 KB | 300 | 1,080 | 17.9 KB |
-| `tseitin_exp_n300` | 3-reg expander | 300 | 450 | `779` | UNSAT | 450 | 2,099 | 5.6 KB | 750 | 2,700 | 47.3 KB |
-| `tseitin_prism_n400` | Prism $C_{200} \times K_2$ | 400 | 600 | — | UNSAT | 600 | 2,799 | 7.4 KB | 1,000 | 3,600 | 63.6 KB |
+| `tseitin_exp_n60` | 3-reg expander | 60 | 90 | `777` | UNSAT | 90 | 419 | 0.6 KB | 150 | 540 | 1.3 KB |
+| `tseitin_exp_n120` | 3-reg expander | 120 | 180 | `778` | UNSAT | 180 | 839 | 1.0 KB | 300 | 1,080 | 2.4 KB |
+| `tseitin_exp_n300` | 3-reg expander | 300 | 450 | `779` | UNSAT | 450 | 2,099 | 1.9 KB | 750 | 2,700 | 5.2 KB |
+| `tseitin_prism_n400` | Prism $C_{200} \times K_2$ | 400 | 600 | — | UNSAT | 600 | 2,799 | 2.5 KB | 1,000 | 3,600 | 6.2 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

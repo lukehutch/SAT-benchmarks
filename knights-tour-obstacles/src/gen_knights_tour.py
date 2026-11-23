@@ -25,6 +25,7 @@ License: MIT
 from __future__ import annotations
 
 import argparse
+import lzma
 import random
 from pathlib import Path
 
@@ -163,7 +164,8 @@ def write_cnf(
     free, adj = build_knight_graph(rows, cols, obstacles)
     nv, clauses, arcs = encode_hamiltonian_cycle_cnf(len(free), adj)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w") as f:
+    opener = (lambda path: lzma.open(path, "wt", preset=6)) if out_path.suffix == ".xz" else (lambda path: open(path, "w"))
+    with opener(out_path) as f:
         f.write(
             f"c Obstacle Knight's Tour (Hamiltonian Cycle): {rows}x{cols} board, "
             f"density={density:.2f}, seed={seed}, obstacles={len(obstacles)}, free={len(free)}, arcs={len(arcs)}\n"
@@ -236,11 +238,11 @@ def main() -> None:
 
         suite_dir = args.generate_suite
         for fname, rows, cols, dens, seed, status in CURATED_SUITE:
-            cnf_path = suite_dir / fname
+            cnf_path = suite_dir / f"{fname}.xz"
             nv, nc, nobs, nfree = write_cnf(cnf_path, rows, cols, dens, seed, status)
-            stem = cnf_path.stem
-            aig_path = suite_dir / "aig-version" / f"{stem}.aig"
-            xcnf_path = suite_dir / "xcnf-version" / f"{stem}.xcnf"
+            stem = fname.removesuffix(".cnf")
+            aig_path = suite_dir / "aig-version" / f"{stem}.aig.xz"
+            xcnf_path = suite_dir / "xcnf-version" / f"{stem}.xcnf.xz"
             _, _, na = cnf_to_aiger(
                 cnf_path,
                 aig_path,

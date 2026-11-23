@@ -9,21 +9,21 @@ Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N
 
 ## Directory Layout & Regeneration
 
-- `*.aig` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
-- `cnf-version/` — Tseitin **DIMACS `.cnf`** conversions.
-- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf`** conversions.
+- `*.aig.xz` — Original native **Binary AIGER 1.9** circuits (verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-version/` — Tseitin **DIMACS `.cnf.xz`** conversions.
+- `xcnf-version/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions.
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
 
-| Instance | Target $N$ | Factors $(p, q)$ | Topology | Ans | AIG Inputs | AIG ANDs | AIG Size | CNF Vars | CNF Clauses | CNF Size |
+| Instance | Target $N$ | Factors $(p, q)$ | Topology | Ans | AIG Inputs | AIG ANDs | AIG (`.aig.xz`) Size | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size |
 |---|---:|---|---|---:|---:|---:|---:|---:|---:|---:|
-| `factor_prime_28b_unsat` | `268,435,399` | prime ($2^{28}-57$) | Wallace | UNSAT | 26 | 2,076 | 4.9 KB | 635 | 3,264 | 51.0 KB |
-| `factor_wallace_32b` | `4,292,870,399` | `65519 × 65521` | Wallace | SAT | 30 | 2,732 | 6.4 KB | 825 | 4,286 | 67.6 KB |
-| `factor_wallace_36b` | `68,715,282,487` | `262133 × 262139` | Wallace | SAT | 34 | 3,480 | 8.2 KB | 1,041 | 5,451 | 87.0 KB |
-| `factor_karatsuba_36b` | `68,715,282,487` | `262133 × 262139` | Karatsuba | SAT | 34 | 3,289 | 7.9 KB | 999 | 5,231 | 83.4 KB |
-| `factor_wallace_40b` | `1,006,647,906,441` | `960017 × 1048573` | Wallace | SAT | 38 | 4,296 | 10.1 KB | 1,271 | 6,717 | 111.7 KB |
-| `masked_mult_32b_xor16` | `4,292,870,399` | `65519 × 65521` + 16 XOR4 leaks | Wallace + $\mathbb{F}_2$ | SAT | 30 | 2,886 | 6.8 KB | 856 | 4,486 | 70.5 KB |
+| `factor_prime_28b_unsat` | `268,435,399` | prime ($2^{28}-57$) | Wallace | UNSAT | 26 | 2,076 | 2.5 KB | 635 | 3,264 | 7.2 KB |
+| `factor_wallace_32b` | `4,292,870,399` | `65519 × 65521` | Wallace | SAT | 30 | 2,732 | 3.1 KB | 825 | 4,286 | 9.1 KB |
+| `factor_wallace_36b` | `68,715,282,487` | `262133 × 262139` | Wallace | SAT | 34 | 3,480 | 3.7 KB | 1,041 | 5,451 | 11.5 KB |
+| `factor_karatsuba_36b` | `68,715,282,487` | `262133 × 262139` | Karatsuba | SAT | 34 | 3,289 | 3.9 KB | 999 | 5,231 | 11.3 KB |
+| `factor_wallace_40b` | `1,006,647,906,441` | `960017 × 1048573` | Wallace | SAT | 38 | 4,296 | 4.4 KB | 1,271 | 6,717 | 14.1 KB |
+| `masked_mult_32b_xor16` | `4,292,870,399` | `65519 × 65521` + 16 XOR4 leaks | Wallace + $\mathbb{F}_2$ | SAT | 30 | 2,886 | 3.3 KB | 856 | 4,486 | 9.7 KB |
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 

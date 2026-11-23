@@ -16,22 +16,22 @@ During curation (2020), the CADP authors filtered out every formula solved in un
 ## Corpus & Data Sizes
 
 Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/TravisRudd) (first 10 smallest instances committed directly + full 100-instance manifest):
-- **First 10 VLSAT-2 CNFs** committed directly (`1.59 MB` total), with **10 exact Binary AIGER 1.9 conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
+- **First 10 VLSAT-2 `.cnf.xz` files** committed directly (`139.2 KB` xz-compressed), with **10 exact Binary AIGER 1.9 `.aig.xz` conversions** in `aig-version/` (all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **[`vlsat2_100.uri`](vlsat2_100.uri):** Complete list of all 100 official INRIA HTTPS URLs (`vlsat2_*.cnf.bz2`).
-- **`src/cnf2aig.py`:** Standalone DIMACS `.cnf` to Binary AIGER 1.9 converter.
+- **`src/cnf2aig.py`:** Standalone DIMACS `.cnf`/`.cnf.xz` to Binary AIGER 1.9 (`.aig`/`.aig.xz`) converter.
 
-| Instance | Vars | Clauses | Upstream Status | CNF Size | AIG AND Gates |
+| Instance | Vars | Clauses | Upstream Status | `.cnf.xz` Size | AIG AND Gates |
 |---|---:|---:|:---:|---:|---:|
-| `vlsat2_544_8738.cnf` | 544 | 8,738 | UNSAT | 103.1 KB | 17,831 |
-| `vlsat2_600_11440.cnf` | 600 | 11,440 | UNSAT | 135.1 KB | 23,294 |
-| `vlsat2_684_9417.cnf` | 684 | 9,417 | UNSAT | 113.4 KB | 19,337 |
-| `vlsat2_684_13953.cnf` | 684 | 13,953 | UNSAT | 167.2 KB | 28,409 |
-| `vlsat2_708_10259.cnf` | 708 | 10,259 | UNSAT | 123.5 KB | 21,041 |
-| `vlsat2_736_11022.cnf` | 736 | 11,022 | UNSAT | 131.7 KB | 22,567 |
-| `vlsat2_798_17543.cnf` | 798 | 17,543 | UNSAT | 208.6 KB | 35,678 |
-| `vlsat2_1000_22250.cnf` | 1,000 | 22,250 | SAT | 266.2 KB | 45,209 |
-| `vlsat2_1022_14955.cnf` | 1,022 | 14,955 | UNSAT | 179.5 KB | 30,694 |
-| `vlsat2_1125_15795.cnf` | 1,125 | 15,795 | UNSAT | 193.2 KB | 32,459 |
+| `vlsat2_544_8738.cnf.xz` | 544 | 8,738 | UNSAT | 10.1 KB | 17,831 |
+| `vlsat2_600_11440.cnf.xz` | 600 | 11,440 | UNSAT | 12.4 KB | 23,294 |
+| `vlsat2_684_9417.cnf.xz` | 684 | 9,417 | UNSAT | 10.2 KB | 19,337 |
+| `vlsat2_684_13953.cnf.xz` | 684 | 13,953 | UNSAT | 14.9 KB | 28,409 |
+| `vlsat2_708_10259.cnf.xz` | 708 | 10,259 | UNSAT | 11.2 KB | 21,041 |
+| `vlsat2_736_11022.cnf.xz` | 736 | 11,022 | UNSAT | 11.5 KB | 22,567 |
+| `vlsat2_798_17543.cnf.xz` | 798 | 17,543 | UNSAT | 17.9 KB | 35,678 |
+| `vlsat2_1000_22250.cnf.xz` | 1,000 | 22,250 | SAT | 15.4 KB | 45,209 |
+| `vlsat2_1022_14955.cnf.xz` | 1,022 | 14,955 | UNSAT | 16.1 KB | 30,694 |
+| `vlsat2_1125_15795.cnf.xz` | 1,125 | 15,795 | UNSAT | 19.5 KB | 32,459 |
 
 ## Comparative 1-Core Benchmark Results (First 10 Instances, $T_{\max} = 5\;\text{s}$)
 

@@ -2,7 +2,7 @@
 """
 Fetch the 14 curated SAT Competition 2023/2024 flat DIMACS CNFs from the Global
 Benchmark Database (GBD: https://benchmark-database.de/file/<gbd_hash>) and
-convert each `.cnf` into Binary AIGER 1.9 inside `../aig-version/`.
+convert each `.cnf.xz` into Binary AIGER 1.9 (`.aig.xz`) inside `../aig-version/`.
 """
 from __future__ import annotations
 
@@ -27,14 +27,14 @@ def main() -> None:
     for item in data["sat_competition_flat_cnfs"]:
         name = item["name"]
         h = item["gbd_hash"]
-        cnf_path = SUITE_DIR / f"{name}.cnf"
-        aig_path = AIG_DIR / f"{name}.aig"
+        cnf_path = SUITE_DIR / f"{name}.cnf.xz"
+        aig_path = AIG_DIR / f"{name}.aig.xz"
         if not cnf_path.exists():
             url = f"https://benchmark-database.de/file/{h}"
             print(f"Downloading {name} ({h}) from {url} ...")
             raw = urllib.request.urlopen(url, timeout=60).read()
-            if raw[:6] == b"\xfd7zXZ\x00":
-                raw = lzma.decompress(raw)
+            if raw[:6] != b"\xfd7zXZ\x00":
+                raw = lzma.compress(raw, preset=6)
             cnf_path.write_bytes(raw)
         nv, nc, ands = cnf_to_aiger(
             cnf_path,
