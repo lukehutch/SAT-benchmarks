@@ -118,6 +118,38 @@ Every benchmark suite lives in its own top-level directory containing:
 | | [`Lymphosat`](https://c.mov/lymphosat/) (AI-Track #1 Gold) | 81 / 400 — 24.58 s *(1.15x slower)* | 109 / 400 — 90.07 s *(1.12x slower)* |
 | | [`satsuma-iter-kissat`](https://github.com/markusa4/satsuma) (Main #1 Gold) | 70 / 400 — 25.13 s *(1.18x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
 
+<!-- BEGIN_STRUCTURAL_ANALYSIS -->
+## Cross-Suite Phase-Transition & Structural Profile
+
+*Auto-generated across all 771 committed SAT instances by [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py). Each row summarizes where the suite sits relative to the clause-length-weighted critical threshold $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (`Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), Gent–Walsh constrainedness $\kappa$, clause geometry ($\bar{k}$, `%Bin`, `%Horn`), variable-degree skew (`Deg CV`), and extracted XOR parity blocks.*
+
+| Suite | CNFs | Med $\alpha$ | Med $\alpha_c^{\mathrm{eff}}$ | Med $\rho_{\mathrm{crit}}$ [Min–Max] | Regime Split (U/N/O) | Med $\kappa$ | Med $\bar{k}$ | Bin% | Horn% | Deg CV | XORs |
+|---|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|
+| [`aloul-symmetry-benchmarks/`](aloul-symmetry-benchmarks/README.md) | 82 | 5.59 | 1.20 | **3.43x** [0.31x–9.75x] | 6 / 0 / 76 | 1.43 | 2.72 | 82% | 82% | 0.19 | 15,433 |
+| [`cec-arithmetic-miters/`](cec-arithmetic-miters/README.md) | 5 | 5.20 | 3.69 | **1.36x** [1.36x–1.64x] | 0 / 0 / 5 | 0.91 | 3.30 | 12% | 56% | 0.35 | 831 |
+| [`coupled-linear-nonlinear/`](coupled-linear-nonlinear/README.md) | 4 | 4.08 | 3.48 | **1.18x** [1.14x–1.22x] | 0 / 0 / 4 | 0.99 | 3.11 | 3% | 49% | 0.86 | 1,987 |
+| [`dense-solver-benchmarks/`](dense-solver-benchmarks/README.md) | 50 | 3.97 | 1.16 | **2.17x** [0.48x–32.0x] | 4 / 12 / 34 | 1.01 | 2.28 | 84% | 85% | 0.20 | 323 |
+| [`f2-frobenius-circulants/`](f2-frobenius-circulants/README.md) | 6 | 4.50 | 4.98 | **0.90x** [0.90x–0.91x] | 0 / 6 / 0 | 0.87 | 3.67 | 0% | 56% | 0.45 | 8,000 |
+| [`hamd-hamiltonian-cycle/`](hamd-hamiltonian-cycle/README.md) | 22 | 2.64 | 2.60 | **0.99x** [0.75x–1.31x] | 6 / 7 / 9 | 0.54 | 3.19 | 28% | 73% | 0.71 | 0 |
+| [`hard-spn/`](hard-spn/README.md) | 4 | 5.67 | 5.31 | **1.07x** [1.06x–1.11x] | 0 / 3 / 1 | 0.92 | 3.60 | 2% | 51% | 1.27 | 1,328 |
+| [`heule-matrix-challenges/`](heule-matrix-challenges/README.md) | 43 | 4.48 | 2.43 | **1.83x** [1.82x–2.68x] | 0 / 0 / 43 | 0.95 | 3.20 | 32% | 73% | 0.95 | 253,692 |
+| [`integer-factoring/`](integer-factoring/README.md) | 6 | 5.24 | 3.49 | **1.50x** [1.48x–1.51x] | 0 / 0 / 6 | 0.98 | 3.27 | 13% | 59% | 0.41 | 1,844 |
+| [`knights-tour-obstacles/`](knights-tour-obstacles/README.md) | 10 | 2.77 | 2.87 | **0.97x** [0.96x–1.04x] | 0 / 10 / 0 | 0.54 | 3.29 | 24% | 74% | 1.05 | 0 |
+| [`mod-circuit-sat/`](mod-circuit-sat/README.md) | 11 | 20.07 | 2.70 | **7.52x** [3.24x–14.2x] | 0 / 0 / 11 | 4.03 | 3.41 | 27% | 73% | 1.10 | 0 |
+| [`pretolani-pret/`](pretolani-pret/README.md) | 8 | 2.67 | 4.27 | **0.62x** [0.62x–0.62x] | 8 / 0 / 0 | 0.51 | 3.00 | 0% | 51% | 0.00 | 560 |
+| [`qdistsat-qldpc/`](qdistsat-qldpc/README.md) | 10 | 2.40 | 1.92 | **1.24x** [1.22x–1.25x] | 0 / 0 / 10 | 0.66 | 2.63 | 37% | 75% | 1.02 | 1,474 |
+| [`queen-armies/`](queen-armies/README.md) | 8 | 2.04 | 1.48 | **1.39x** [1.29x–1.48x] | 0 / 0 / 8 | 0.66 | 2.42 | 58% | 58% | 0.68 | 0 |
+| [`random-3sat-phase-transition/`](random-3sat-phase-transition/README.md) | 8 | 4.26 | 4.27 | **1.00x** [0.89x–1.17x] | 1 / 6 / 1 | 0.82 | 3.00 | 0% | 51% | 0.28 | 0 |
+| [`rb-bench-model-rb/`](rb-bench-model-rb/README.md) | 40 | 69.47 | 1.00 | **69.4x** [42.3x–86.2x] | 0 / 0 / 40 | 28.81 | 2.01 | 100% | 100% | 0.19 | 0 |
+| [`sat-competition-2023-2024-selected/`](sat-competition-2023-2024-selected/README.md) | 14 | 4.00 | 1.91 | **1.92x** [0.37x–62.9x] | 3 / 2 / 9 | 0.97 | 2.68 | 39% | 63% | 0.28 | 71,848 |
+| [`sat-shortcut-challenge/`](sat-shortcut-challenge/README.md) | 72 | 4.26 | 4.27 | **1.00x** [0.62x–72.0x] | 9 / 33 / 30 | 0.82 | 3.00 | 0% | 52% | 0.27 | 6,793 |
+| [`satlib-benchmarks/`](satlib-benchmarks/README.md) | 331 | 4.97 | 3.47 | **1.48x** [0.32x–62.7x] | 75 / 22 / 234 | 0.91 | 2.99 | 10% | 52% | 0.18 | 36,542 |
+| [`sha256-preimage/`](sha256-preimage/README.md) | 5 | 6.50 | 5.58 | **1.16x** [1.16x–1.23x] | 0 / 0 / 5 | 0.94 | 3.52 | 2% | 50% | 0.65 | 77,329 |
+| [`tseitin-expanders/`](tseitin-expanders/README.md) | 4 | 3.60 | 4.98 | **0.72x** [0.72x–0.72x] | 4 / 0 / 0 | 0.70 | 3.67 | 0% | 56% | 0.26 | 880 |
+| [`vlsat-2/`](vlsat-2/README.md) | 10 | 15.52 | 1.00 | **15.5x** [13.7x–22.2x] | 0 / 0 / 10 | 6.42 | 2.04 | 100% | 100% | 0.33 | 0 |
+| [`zed-adversarial-hub-php/`](zed-adversarial-hub-php/README.md) | 18 | 3.44 | 1.25 | **2.76x** [1.42x–3.08x] | 0 / 0 / 18 | 1.69 | 2.03 | 51% | 97% | 1.38 | 10,146 |
+<!-- END_STRUCTURAL_ANALYSIS -->
+
 ## Format Conventions
 
 - **Binary AIGER 1.9 (`.aig`):** Standard Armin Biere combinational AIGER format (`aig M I 0 1 A`) with `L = 0` latches and `O = 1` primary output `PO_0` that evaluates to `1` iff all circuit assertions / CNF clauses are satisfied. Readable directly by Berkeley [`abc`](https://github.com/berkeley-abc/abc), `aigtoaig`, `aigtocnf`, [Yosys](https://github.com/YosysHQ/yosys), and HWMCC toolchains.
