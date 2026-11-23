@@ -29,13 +29,13 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `sha256_16r_k32` | **8.94 ms** | 17.32 ms | 18.61 ms | 13.70 ms | 9.61 ms |
-| `sha256_17r_k16` | **19.35 ms** | 4,160.70 ms | 4,838.70 ms | 2,177.97 ms | 7,719.28 ms |
-| `sha256_64r_k16_sat` | **89.35 ms** | 275,382.20 ms | >5,000 s (T/O) | 461,449.91 ms | 2,267,295.44 ms |
-| `sha256_64r_k16_unsat` | **98.86 ms** | 2,594,248.08 ms | >5,000 s (T/O) | >5,000 s (T/O) | 2,396,511.93 ms |
-| `sha256_64r_k20_sat` | **92.57 ms** | 2,606,732.29 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|---:|---:|---:|
+| `sha256_16r_k32` | **8.94 ms** | 17.32 ms | 18.61 ms | 13.70 ms | 25.73 ms | 9.61 ms |
+| `sha256_17r_k16` | **19.35 ms** | 4,160.70 ms | 4,838.70 ms | 2,177.97 ms | 12.08 s | 7,719.28 ms |
+| `sha256_64r_k16_sat` | **89.35 ms** | 275,382.20 ms | >5,000 s (T/O) | 461,449.91 ms | >30 s | 2,267,295.44 ms |
+| `sha256_64r_k16_unsat` | **98.86 ms** | 2,594,248.08 ms | >5,000 s (T/O) | >5,000 s (T/O) | >30 s | 2,396,511.93 ms |
+| `sha256_64r_k20_sat` | **92.57 ms** | 2,606,732.29 ms | >5,000 s (T/O) | >5,000 s (T/O) | >30 s | >5,000 s (T/O) |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

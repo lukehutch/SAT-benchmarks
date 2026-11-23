@@ -35,16 +35,16 @@ Three restricted-coefficient / fractional variants (`f-d-3`, `f-d-4`, `f-d-6`) o
 
 - **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [`yalsat`](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
 
-## Comparative 1-Core Benchmark Results (All 3 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 3 Instances, Flat `.cnf` + `.xcnf`, $T_{\max} = 60\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 3 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 60\;\text{s}$, PAR-2 penalty $120,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 3 instances** were run with **0 verdict disagreements**.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `f-d-3` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `f-d-4` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `f-d-6` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| **Total (3 files, PAR-2)** | **0/3** | **0/3 — 60,000.0 ms** *(fastest)* | **0/3 — 60,000.0 ms** *(fastest)* | **0/3 — 60,000.0 ms** *(fastest)* | **0/3 — 60,000.0 ms** *(fastest)* | **0/3 — 60,000.0 ms** *(fastest)* | **0/3 — 60,000.0 ms** *(fastest)* |
+| `f-d-3` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
+| `f-d-4` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
+| `f-d-6` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
+| **Total (3 files, PAR-2)** | **0/3** | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -43,20 +43,20 @@ Twelve of these instances form the SAT Competition slice of the unified 50-bench
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; all solvers read the identical flat `.cnf` file):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `tseitingrid6x200` | **3.07 ms** | >600 s (T/O) | >600 s (T/O) | 1,093.37 ms | >600 s (T/O) |
-| `tseitin_d3_n10000` | **7.66 ms** | >600 s (T/O) | >600 s (T/O) | 731.97 ms | >600 s (T/O) |
-| `urq45` | **1.10 ms** | >600 s (T/O) | >600 s (T/O) | 50.83 ms | 222,854.68 ms |
-| `two_trees_1023v` | **5.15 ms** | >600 s (T/O) | >600 s (T/O) | 18,574.19 ms | >600 s (T/O) |
-| `intervals122` | **46.97 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) |
-| `clique_n2_k10` | **3.33 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 8,185.14 ms |
-| `gzipfile_close_11` | **1.83 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 294.83 ms |
-| `rand_net70_40_10` | **5.39 ms** | 417.88 ms | 9,516.11 ms | 8,579.44 ms | 12.31 ms |
-| `hwmcc20_iso_rast_p06` | **75.85 ms** | 1,764.89 ms | >600 s (T/O) | >600 s (T/O) | 347.68 ms |
-| `hwmcc17_iso_bobsmfpu` | **53.54 ms** | 2,755.84 ms | >600 s (T/O) | >600 s (T/O) | 321.55 ms |
-| `vmpc_24` | **1,596.46 ms** | 6,171.80 ms | 1,653.58 ms | 44,855.40 ms | 12,462.32 ms |
-| `si2_b03m_m800_03` | **1,944.36 ms** | 5,892.54 ms | 48,671.18 ms | 44,618.32 ms | 6,670.87 ms |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|---:|---:|---:|
+| `tseitingrid6x200` | **3.07 ms** | >600 s (T/O) | >600 s (T/O) | 1,093.37 ms | 4.89 ms | >600 s (T/O) |
+| `tseitin_d3_n10000` | **7.66 ms** | >600 s (T/O) | >600 s (T/O) | 731.97 ms | 84.03 ms | >600 s (T/O) |
+| `urq45` | **1.10 ms** | >600 s (T/O) | >600 s (T/O) | 50.83 ms | 1.41 ms | 222,854.68 ms |
+| `two_trees_1023v` | **5.15 ms** | >600 s (T/O) | >600 s (T/O) | 18,574.19 ms | >30 s | >600 s (T/O) |
+| `intervals122` | **46.97 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 19.26 ms | >600 s (T/O) |
+| `clique_n2_k10` | **3.33 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | 8,185.14 ms |
+| `gzipfile_close_11` | **1.83 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 1.51 ms | 294.83 ms |
+| `rand_net70_40_10` | **5.39 ms** | 417.88 ms | 9,516.11 ms | 8,579.44 ms | 17.43 s | 12.31 ms |
+| `hwmcc20_iso_rast_p06` | **75.85 ms** | 1,764.89 ms | >600 s (T/O) | >600 s (T/O) | >30 s | 347.68 ms |
+| `hwmcc17_iso_bobsmfpu` | **53.54 ms** | 2,755.84 ms | >600 s (T/O) | >600 s (T/O) | >30 s | 321.55 ms |
+| `vmpc_24` | **1,596.46 ms** | 6,171.80 ms | 1,653.58 ms | 44,855.40 ms | 1,795.47 ms | 12,462.32 ms |
+| `si2_b03m_m800_03` | **1,944.36 ms** | 5,892.54 ms | 48,671.18 ms | 44,618.32 ms | 651.13 ms | 6,670.87 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

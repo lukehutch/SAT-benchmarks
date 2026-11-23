@@ -111,6 +111,7 @@ Every collection lives at the repository root in its own flat, self-contained di
 | **Frobenius 1C** | **22 / 22** | **19 / 22** | **372.43 ms** *(fastest)* | 12/12 SAT cycles + 10/10 UNSAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK |
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 17 / 22 | 2 / 22 | 163,592.80 ms *(439x slower)* | 100% verdict agreement on solved instances |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 18 / 22 | 0 / 22 | 148,852.60 ms *(400x slower)* | 100% verdict agreement on solved instances |
+| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | 17 / 22 | 0 / 22 | 159,432.38 ms *(428x slower)* | 100% verdict agreement on solved instances |
 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 18 / 22 | 1 / 22 | 140,869.50 ms *(378x slower)* | 100% verdict agreement on solved instances |
 
 ### 3. Combinatorial Chessboard Suites (1-Core, Identical Flat `.cnf` Input)
@@ -137,7 +138,7 @@ Every collection lives at the repository root in its own flat, self-contained di
 | [**`dense-solver` Public**](dense-solver-public/README.md) (30, 5 s) | **29/30 — 10,251 ms** *(fastest)* | 24/30 — 64,035 ms *(6.25x)* | 20/30 — 100,928 ms *(9.85x)* | 28/30 — 20,460 ms *(2.00x)* | 25/30 — 53,137 ms *(5.18x)* |
 | [**`dense-solver` Synthetic**](dense-solver-synthetic/README.md) (20, 5 s) | 20/20 — 103.8 ms *(2.28x)* | 14/20 — 61,075 ms *(1,339x)* | 14/20 — 61,636 ms *(1,352x)* | **20/20 — 45.6 ms** *(fastest)* | 14/20 — 60,601 ms *(1,329x)* |
 | [**`@fede_intern` 12-CNF Challenge**](fede-intern-challenge/README.md) (12, 60 s / 300 s) | **9/12 — 362.3 s** *(300 s: **10/12 — 1,264 s**)* | 3/12 — 1,120.2 s *(300 s: 4/12 — 5,002 s)* | 0/12 — 1,440.0 s | 0/12 — 1,440.0 s | 3/12 — 1,117.7 s *(300 s: 4/12 — 4,926 s)* |
-| [**Heule Matrix Challenges**](heule-matrix-challenge1/README.md) (All 9, 43, 10 s) | 0/43 — 860,000 ms *(1.04x)* | **2/43 — 830,055 ms** *(fastest)* | 0/43 — 860,000 ms *(XCNF: 1/43)* | 0/43 — 860,000 ms *(1.04x)* | 1/43 — 841,817 ms *(1.01x)* |
+| [**Heule Matrix `xor6cut`**](heule-matrix-xor6cut/README.md) (6, 60 s; other 8 suites 37, 10 s: all 0/37) | 2/6 — 523,063 ms *(1.25x)* | 2/6 — 493,170 ms *(1.18x)* | 2/6 — 510,399 ms *(XCNF: 3/6 — 455,099 ms)* | 0/6 — 720,000 ms *(1.72x)* | **3/6 — 418,266 ms** *(fastest)* |
 | [**MATA Presburger NFAs**](mata-presburger-nfa-tptp/README.md) ([TPTP](mata-presburger-nfa-tptp/README.md) + [UAutomizer](mata-presburger-nfa-ultimate-automizer/README.md), 174, 5 s, `.mata.xz`) | **174/174 — 1,596 ms** *(antichain; emp 1,692 ms, exp 2,147 ms)* | — *(CNF only)* | — *(CNF/XCNF only)* | — *(CNF only)* | — *(CNF only)* |
 | [**`mod-circuit-sat`**](mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **9/9 — 17,346 ms** *(fastest)* | 9/9 — 29,702 ms *(1.71x)* | 8/9 — 67,344 ms *(3.88x)* | 8/9 — 67,769 ms *(3.91x)* | 9/9 — 25,994 ms *(1.50x)* |
 | [**Model RB Full Suite**](rb-bench-model-rb/README.md) (40, 5 s) | 9/40 — 320,344 ms *(1.09x)* | **12/40 — 293,728 ms** *(fastest)* | 10/40 — 308,697 ms *(1.05x)* | 10/40 — 307,528 ms *(1.05x)* | 11/40 — 306,309 ms *(1.04x)* |

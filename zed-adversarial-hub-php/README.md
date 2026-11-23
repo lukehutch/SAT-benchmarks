@@ -45,15 +45,15 @@ An 18-instance adversarial stress-audit and scaling suite combining two families
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on `php_9_8_unsat`, $T_{\max} = 600\;\text{s}$ on the 6 promoted Zed instances):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `php_9_8_unsat` | **1.81 ms** | 32.96 ms | 438.14 ms | 474.27 ms | 26.86 ms |
-| `hub_20_unsat` | **9.14 ms** | 11.17 ms | 276.33 ms | 168.34 ms | 41.27 ms |
-| `hub_60_unsat` | **23.41 ms** | 24.35 ms | 697.72 ms | 409.68 ms | 85.89 ms |
-| `hub_60_sat` | **26.87 ms** | 46.78 ms | 653.06 ms | 434.73 ms | 78.82 ms |
-| `php_16_15_unsat` | **4.54 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) |
-| `php_20_19_unsat` | **8.15 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) |
-| `php_50_49_unsat` | **119.04 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|---:|---:|---:|
+| `php_9_8_unsat` | **1.81 ms** | 32.96 ms | 438.14 ms | 474.27 ms | 15.06 ms | 26.86 ms |
+| `hub_20_unsat` | **9.14 ms** | 11.17 ms | 276.33 ms | 168.34 ms | 8.16 ms | 41.27 ms |
+| `hub_60_unsat` | **23.41 ms** | 24.35 ms | 697.72 ms | 409.68 ms | 23.93 ms | 85.89 ms |
+| `hub_60_sat` | **26.87 ms** | 46.78 ms | 653.06 ms | 434.73 ms | 29.82 ms | 78.82 ms |
+| `php_16_15_unsat` | **4.54 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | >600 s (T/O) |
+| `php_20_19_unsat` | **8.15 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | >600 s (T/O) |
+| `php_50_49_unsat` | **119.04 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | >600 s (T/O) |
 
 *(Both `php_9_8_unsat` and `php_13_12_unsat` LRAT proofs emitted by Frobenius additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 

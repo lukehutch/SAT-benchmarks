@@ -35,19 +35,19 @@ Six compact XOR-6 cut encodings (`xor6cut-22` through `xor6cut-27`) of the $3\ti
 
 - **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [`yalsat`](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
 
-## Comparative 1-Core Benchmark Results (All 6 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 6 Instances, Flat `.cnf` + `.xcnf`, $T_{\max} = 60\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 6 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 60\;\text{s}$, PAR-2 penalty $120,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 6 instances** were run with **0 verdict disagreements**.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `xor6cut-22` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `xor6cut-23` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `xor6cut-24` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `xor6cut-25` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `xor6cut-26` | SAT | >10 s | **9,233.57 ms** | >10 s | >10 s | >10 s | >10 s |
-| `xor6cut-27` | SAT | >10 s | **821.47 ms** | >10 s | 8,468.16 ms | >10 s | 1,816.83 ms |
-| **Total (6 files, PAR-2)** | **2/6** | 0/6 — 120,000.0 ms *(1.33x)* | **2/6 — 90,055.0 ms** *(fastest)* | 0/6 — 120,000.0 ms *(1.33x)* | 1/6 — 108,468.2 ms *(1.20x)* | 0/6 — 120,000.0 ms *(1.33x)* | 1/6 — 101,816.8 ms *(1.13x)* |
+| `xor6cut-22` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
+| `xor6cut-23` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
+| `xor6cut-24` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
+| `xor6cut-25` | SAT | >60 s | >60 s | >60 s | 40.49 s | >60 s | **39.85 s** |
+| `xor6cut-26` | SAT | 38.04 s | **12.08 s** | 16.20 s | 43.53 s | >60 s | 16.28 s |
+| `xor6cut-27` | SAT | 5,019.45 ms | **1,093.31 ms** | 14.20 s | 11.08 s | >60 s | 2,136.28 ms |
+| **Total (6 files, PAR-2)** | **3/6** | 2/6 — 523,063.0 ms *(1.25x)* | 2/6 — 493,170.2 ms *(1.18x)* | 2/6 — 510,398.6 ms *(1.22x)* | 3/6 — 455,098.9 ms *(1.09x)* | 0/6 — 720,000.0 ms *(1.72x)* | **3/6 — 418,266.1 ms** *(fastest)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
