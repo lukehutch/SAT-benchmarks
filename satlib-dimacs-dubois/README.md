@@ -33,13 +33,26 @@ All 13 classic Dubois parity-based 3-SAT formulas (`dubois20`–`dubois100`) fro
 | **DIMACS-ANF** | `anf-converted/` | 13 | Vars: 60–300; Eqs: 40–100 (deg ≤ 1) | 5.4 KB |
 | **Total (4 Formats, Status: Mixed (12 UNSAT / 1 SAT*))** | | **52** | | **38.0 KB** |
 
-## Comparative 1-Core Benchmark Results (13 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 13 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 13 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-dimacs-dubois` (13) | 13/13 — 22.8 ms | 13/13 — 26.9 ms | 13/13 — 219.7 ms | **13/13 — 12.9 ms** | 13/13 — 19.2 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `dubois100` | SAT | 2.02 ms | 2.60 ms | 5.22 ms | 1.60 ms | **1.53 ms** |
+| `dubois20` | UNSAT | 2.15 ms | 2.61 ms | 25.31 ms | **1.65 ms** | 1.69 ms |
+| `dubois21` | UNSAT | 1.79 ms | 2.46 ms | 18.18 ms | **1.46 ms** | 1.48 ms |
+| `dubois22` | UNSAT | 1.97 ms | 2.45 ms | 19.51 ms | **1.48 ms** | 1.63 ms |
+| `dubois23` | UNSAT | 2.25 ms | 2.94 ms | 18.23 ms | **1.39 ms** | 1.54 ms |
+| `dubois24` | UNSAT | 2.03 ms | 2.92 ms | 23.29 ms | **1.61 ms** | 1.68 ms |
+| `dubois25` | UNSAT | **1.65 ms** | 2.17 ms | 18.00 ms | 2.05 ms | 1.70 ms |
+| `dubois26` | UNSAT | 1.89 ms | 2.39 ms | 18.46 ms | 1.62 ms | **1.54 ms** |
+| `dubois27` | UNSAT | 1.81 ms | 2.34 ms | 18.48 ms | 1.57 ms | **1.55 ms** |
+| `dubois28` | UNSAT | 1.69 ms | 2.52 ms | 17.88 ms | 1.66 ms | **1.50 ms** |
+| `dubois29` | UNSAT | 2.02 ms | 2.67 ms | 24.04 ms | **1.83 ms** | 1.88 ms |
+| `dubois30` | UNSAT | 1.72 ms | 2.50 ms | 18.72 ms | **1.59 ms** | 1.71 ms |
+| `dubois50` | UNSAT | **1.84 ms** | 2.54 ms | 26.98 ms | 2.02 ms | 2.34 ms |
+| **Total (13 files, PAR-2)** | **13/13** | 13/13 — 24.8 ms *(1.15x)* | 13/13 — 33.1 ms *(1.54x)* | 13/13 — 252.3 ms *(11.72x)* | **13/13 — 21.5 ms** *(fastest)* | 13/13 — 21.8 ms *(1.01x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

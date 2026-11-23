@@ -38,19 +38,23 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 | `BB_360_12_24` | `[[360, 12, 24]]` | 23 / 24 | UNSAT / SAT | 9,731 / 10,090 | 22,027 / 22,744 | 57,093 / 58,884 | 49.7 KB / 52.7 KB |
 | `BB_756_16_34` | `[[756, 16, 34]]` | 33 / 34 | UNSAT / SAT | 29,581 / 30,336 | 67,705 / 69,214 | 176,671 / 180,442 | 133.2 KB / 132.9 KB |
 
-## Comparative 1-Core Benchmark Results (`BB_30`, `BB_72`, `BB_144`, $T_{\max} = 10\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 10\;\text{s}$, identical flat `.cnf` input for CNF solvers plus `xcnf-converted/*.xcnf` for [CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF, 0 disagreements).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CMS](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CMS](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|---:|
-| `BB_30_4_6_w5_unsat.cnf` | UNSAT | 585.09 ms | **12.67 ms** | 38.69 ms | 34.51 ms | 14.89 ms |
-| `BB_30_4_6_w6_sat.cnf` | SAT | 6.97 ms | **2.03 ms** | 30.53 ms | 25.60 ms | 6.34 ms |
-| `BB_72_12_6_w5_unsat.cnf` | UNSAT | 87.66 ms | **50.94 ms** | 104.06 ms | 90.29 ms | 56.43 ms |
-| `BB_72_12_6_w6_sat.cnf` | SAT | 1.83 ms | 2.35 ms | 67.94 ms | 35.26 ms | **1.22 ms** |
-| `BB_144_12_12_w11_unsat.cnf` | UNSAT | T/O | T/O | T/O | T/O | T/O |
-| `BB_144_12_12_w12_sat.cnf` | SAT | 3.38 ms | 3.93 ms | 253.40 ms | 100.13 ms | **1.97 ms** |
-| **Solved (6 files)** |  | **5 / 6** | **5 / 6** | **5 / 6** | **5 / 6** | **5 / 6** |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|---:|
+| `BB_144_12_12_w11_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `BB_144_12_12_w12_sat` | SAT | 3.43 ms | 4.49 ms | 262.67 ms | 100.53 ms | 73.87 ms | **2.72 ms** |
+| `BB_30_4_6_w5_unsat` | UNSAT | 619.19 ms | 13.72 ms | 44.34 ms | 35.48 ms | **8.41 ms** | 15.79 ms |
+| `BB_30_4_6_w6_sat` | SAT | 6.52 ms | **2.75 ms** | 31.24 ms | 27.31 ms | 2.79 ms | 7.36 ms |
+| `BB_360_12_24_w23_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `BB_360_12_24_w24_sat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `BB_72_12_6_w5_unsat` | UNSAT | 101.81 ms | 54.12 ms | 110.92 ms | 94.40 ms | **25.03 ms** | 62.34 ms |
+| `BB_72_12_6_w6_sat` | SAT | 2.45 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
+| `BB_756_16_34_w33_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `BB_756_16_34_w34_sat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| **Total (10 files, PAR-2)** | **5/10** | 5/10 — 100,733.4 ms *(1.01x)* | **5/10 — 100,078.2 ms** *(fastest)* | 5/10 — 100,515.2 ms *(1.00x)* | 5/10 — 100,296.7 ms *(1.00x)* | 5/10 — 100,118.5 ms *(1.00x)* | 5/10 — 100,090.1 ms *(1.00x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

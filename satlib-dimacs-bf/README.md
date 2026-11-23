@@ -31,13 +31,17 @@ All 4 combinational circuit bridge-fault test-pattern generation instances (`bf0
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 1,417–2,706; Eqs: 3,600–7,304 (deg ≤ 3) | 113.9 KB |
 | **Total (4 Formats, Status: Mixed)** | | **16** | | **309.5 KB** |
 
-## Comparative 1-Core Benchmark Results (4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-dimacs-bf` (4) | 4/4 — 65.7 ms | **4/4 — 18.8 ms** | 4/4 — 182.8 ms | 4/4 — 80.5 ms | 4/4 — 23.8 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `bf0432-007` | UNSAT | 17.24 ms | 7.76 ms | 77.02 ms | 12.76 ms | **6.53 ms** |
+| `bf1355-075` | UNSAT | 21.00 ms | 5.87 ms | 40.35 ms | 30.81 ms | **5.52 ms** |
+| `bf1355-638` | UNSAT | 28.12 ms | **6.63 ms** | 40.86 ms | 36.13 ms | 7.62 ms |
+| `bf2670-001` | UNSAT | 29.11 ms | **5.11 ms** | 49.87 ms | 12.29 ms | 7.69 ms |
+| **Total (4 files, PAR-2)** | **4/4** | 4/4 — 95.5 ms *(3.76x)* | **4/4 — 25.4 ms** *(fastest)* | 4/4 — 208.1 ms *(8.20x)* | 4/4 — 92.0 ms *(3.63x)* | 4/4 — 27.4 ms *(1.08x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

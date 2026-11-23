@@ -37,18 +37,53 @@ The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are
 | `frb59-26-1..5` | 5 | SAT | 1,534 | 132,295 | 1.16 MB | 20 |
 | **Total** | **40** | **40 SAT** | **450–1,534** | **19,084–132,295** | **4.98 MB** | **160** |
 
-## Comparative 1-Core Spot Check (`frb30-15-1..5`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 40 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, identical flat `.cnf` input, 100% SAT consensus).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 40 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|
-| `frb30-15-1.cnf` | SAT | 762.64 ms | 335.36 ms | **110.50 ms** |
-| `frb30-15-2.cnf` | SAT | 371.34 ms | **49.27 ms** | 320.92 ms |
-| `frb30-15-3.cnf` | SAT | 692.54 ms | 447.59 ms | **48.75 ms** |
-| `frb30-15-4.cnf` | SAT | 877.06 ms | 523.84 ms | **347.33 ms** |
-| `frb30-15-5.cnf` | SAT | 461.58 ms | **20.54 ms** | 96.01 ms |
-| **Total (5 files)** | **5 / 5** | **3,165.16 ms** *(3.43x slower)* | **1,376.60 ms** *(1.49x slower)* | **923.51 ms** *(fastest)* |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `frb30-15-1` | SAT | 603.47 ms | 360.71 ms | 499.53 ms | 387.16 ms | **117.22 ms** |
+| `frb30-15-2` | SAT | 74.31 ms | 55.16 ms | 753.11 ms | **53.33 ms** | 347.67 ms |
+| `frb30-15-3` | SAT | **47.73 ms** | 516.99 ms | 592.00 ms | 208.16 ms | 51.01 ms |
+| `frb30-15-4` | SAT | 528.56 ms | 577.01 ms | 640.88 ms | **45.47 ms** | 384.63 ms |
+| `frb30-15-5` | SAT | 76.69 ms | 24.31 ms | 554.68 ms | **11.22 ms** | 103.28 ms |
+| `frb35-17-1` | SAT | 2,528.89 ms | 1,929.43 ms | 2,622.37 ms | 988.37 ms | **554.92 ms** |
+| `frb35-17-2` | SAT | >5 s | **1,872.10 ms** | >5 s | >5 s | 2,390.83 ms |
+| `frb35-17-3` | SAT | 4,171.17 ms | **485.21 ms** | 666.91 ms | 791.30 ms | 1,703.06 ms |
+| `frb35-17-4` | SAT | 881.11 ms | 1,043.66 ms | 1,122.46 ms | 1,764.75 ms | **714.48 ms** |
+| `frb35-17-5` | SAT | >5 s | **505.99 ms** | 607.48 ms | 933.50 ms | >5 s |
+| `frb40-19-1` | SAT | 1,431.96 ms | 3,669.19 ms | **637.06 ms** | 2,344.61 ms | 4,985.73 ms |
+| `frb40-19-2` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb40-19-3` | SAT | >5 s | **2,688.17 ms** | >5 s | >5 s | 4,955.80 ms |
+| `frb40-19-4` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb40-19-5` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb45-21-1` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb45-21-2` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb45-21-3` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb45-21-4` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb45-21-5` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb50-23-1` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb50-23-2` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb50-23-3` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb50-23-4` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb50-23-5` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb53-24-1` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb53-24-2` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb53-24-3` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb53-24-4` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb53-24-5` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb56-25-1` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb56-25-2` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb56-25-3` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb56-25-4` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb56-25-5` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb59-26-1` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb59-26-2` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb59-26-3` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb59-26-4` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `frb59-26-5` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| **Total (40 files, PAR-2)** | **12/40** | 9/40 — 320,343.9 ms *(1.09x)* | **12/40 — 293,727.9 ms** *(fastest)* | 10/40 — 308,696.5 ms *(1.05x)* | 10/40 — 307,527.9 ms *(1.05x)* | 11/40 — 306,308.6 ms *(1.04x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

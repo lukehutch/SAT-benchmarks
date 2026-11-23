@@ -31,17 +31,33 @@ This collection holds the **20 structured synthetic cardinality & domino-tiling 
 | **DIMACS-ANF** | `anf-converted/` | 20 | Vars: 104–12,221; Eqs: 208–137,150 (deg ≤ 3) | 369.4 KB |
 | **Total (4 Formats, Status: 2 SAT / 18 UNSAT)** | | **80** | | **837.8 KB** |
 
-## Comparative 1-Core Benchmark Results (20 Committed + Generated `chessboard368.cnf`, 21 Instances, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 20 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 verdict disagreements).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 20 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Solver (1C) | Solved | `chessboard368.cnf` (270k vars, 944k cls) | Total PAR-2 (21 files) | Relative PAR-2 |
-|---|---:|---:|---:|---|
-| **Frobenius 1C** | **21 / 21** | **171.98 ms** *(fastest)* | **245.60 ms** | *(fastest)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,982.94 ms | *(289x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 14 / 21 | T/O ($>5\;\text{s}$) | 71,525.43 ms | *(291x slower)* |
-| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | **21 / 21** | 434.76 ms *(2.53x slower)* | 466.92 ms | *(1.90x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 14 / 21 | T/O ($>5\;\text{s}$) | 70,567.66 ms | *(287x slower)* |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `chessboard12` | UNSAT | 1.71 ms | 421.38 ms | 494.60 ms | **1.66 ms** | 399.35 ms |
+| `chessboard16` | UNSAT | 2.53 ms | >5 s | >5 s | **2.09 ms** | >5 s |
+| `chessboard32` | UNSAT | 3.80 ms | >5 s | >5 s | **3.62 ms** | >5 s |
+| `php31x30-pairwise` | UNSAT | 3.41 ms | >5 s | >5 s | **2.17 ms** | >5 s |
+| `php31x30-sequential` | UNSAT | 2.43 ms | >5 s | >5 s | **1.76 ms** | >5 s |
+| `php65x64-pairwise` | UNSAT | 18.37 ms | >5 s | >5 s | **10.16 ms** | >5 s |
+| `php65x64-sequential` | UNSAT | 6.40 ms | >5 s | >5 s | **3.12 ms** | >5 s |
+| `php8x8-pairwise` | SAT | 2.27 ms | 2.42 ms | 8.34 ms | **1.61 ms** | 1.62 ms |
+| `php8x8-sequential` | SAT | 1.88 ms | 2.29 ms | 8.76 ms | 1.88 ms | **1.51 ms** |
+| `php9x8-bitwise` | UNSAT | 2.67 ms | 41.80 ms | 124.08 ms | **1.35 ms** | 20.27 ms |
+| `php9x8-cardnetwrk` | UNSAT | 6.43 ms | 15.06 ms | 40.26 ms | **1.57 ms** | 8.07 ms |
+| `php9x8-kmtotalizer` | UNSAT | 6.88 ms | 7.10 ms | 42.50 ms | **1.57 ms** | 6.59 ms |
+| `php9x8-ladder` | UNSAT | 2.09 ms | 9.56 ms | 79.77 ms | **1.72 ms** | 8.94 ms |
+| `php9x8-mtotalizer` | UNSAT | 6.02 ms | 7.34 ms | 41.70 ms | **1.64 ms** | 6.22 ms |
+| `php9x8-pairwise` | UNSAT | 1.95 ms | 280.57 ms | 326.24 ms | **1.46 ms** | 65.15 ms |
+| `php9x8-pairwise-functional` | UNSAT | 1.83 ms | 239.77 ms | 291.92 ms | **1.62 ms** | 45.89 ms |
+| `php9x8-sequential` | UNSAT | 1.64 ms | 18.54 ms | 45.27 ms | **1.55 ms** | 17.62 ms |
+| `php9x8-sequential-renamed` | UNSAT | 1.91 ms | 10.38 ms | 48.68 ms | **1.64 ms** | 5.93 ms |
+| `php9x8-sortnetwrk` | UNSAT | 22.25 ms | 11.12 ms | 43.99 ms | **1.64 ms** | 7.47 ms |
+| `php9x8-totalizer` | UNSAT | 7.35 ms | 7.18 ms | 40.14 ms | **1.77 ms** | 6.63 ms |
+| **Total (20 files, PAR-2)** | **20/20** | 20/20 — 103.8 ms *(2.28x)* | 14/20 — 61,074.5 ms *(1339.35x)* | 14/20 — 61,636.2 ms *(1351.67x)* | **20/20 — 45.6 ms** *(fastest)* | 14/20 — 60,601.3 ms *(1328.97x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

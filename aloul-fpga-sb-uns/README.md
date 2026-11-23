@@ -28,16 +28,23 @@ Unsatisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga11_*`; SAT 2002
 | **DIMACS-ANF** | `anf-converted/` | 10 | Vars: 374–760; Eqs: 1,276–4,540 (deg ≤ 3) | 96.1 KB |
 | **Total (4 Formats, Status: UNSAT)** | | **40** | | **321.0 KB** |
 
-## Comparative 1-Core Benchmark Results (`aloul-fpga-sb-sat` + `aloul-fpga-sb-uns`, 21 Instances, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 disagreements).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Solver (1C) | Solved | SAT / UNSAT | Total PAR-2 (21 files) | Relative PAR-2 |
-|---|---:|:---:|---:|---|
-| **Frobenius 1C** | **21 / 21** | **11 / 10** | **70.76 ms** | *(2.58x slower)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 11 / 21 | 11 / 0 | 100,091.48 ms | *(3,646x slower)* |
-| **[`dense-solver 0.0.4`](https://github.com/libdense/dense-solver)** | **21 / 21** | **11 / 10** | **27.45 ms** | *(fastest)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 12 / 21 | 11 / 1 | 92,980.13 ms | *(3,387x slower)* |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `fpga10_11_uns_rcr` | UNSAT | 1.70 ms | >5 s | >5 s | **1.69 ms** | >5 s |
+| `fpga10_12_uns_rcr` | UNSAT | 1.91 ms | >5 s | >5 s | **1.38 ms** | >5 s |
+| `fpga10_13_uns_rcr` | UNSAT | 2.35 ms | >5 s | >5 s | **1.56 ms** | >5 s |
+| `fpga10_15_uns_rcr` | UNSAT | 2.13 ms | >5 s | >5 s | **2.05 ms** | >5 s |
+| `fpga10_20_uns_rcr` | UNSAT | 2.66 ms | >5 s | >5 s | **1.68 ms** | 3,073.81 ms |
+| `fpga11_12_uns_rcr` | UNSAT | 1.76 ms | >5 s | >5 s | **1.34 ms** | >5 s |
+| `fpga11_13_uns_rcr` | UNSAT | 2.44 ms | >5 s | >5 s | **1.55 ms** | >5 s |
+| `fpga11_14_uns_rcr` | UNSAT | 2.21 ms | >5 s | >5 s | **1.48 ms** | >5 s |
+| `fpga11_15_uns_rcr` | UNSAT | 2.44 ms | >5 s | >5 s | **1.77 ms** | >5 s |
+| `fpga11_20_uns_rcr` | UNSAT | 3.02 ms | >5 s | >5 s | **1.76 ms** | >5 s |
+| **Total (10 files, PAR-2)** | **10/10** | 10/10 — 22.6 ms *(1.39x)* | 0/10 — 100,000.0 ms *(6150.06x)* | 0/10 — 100,000.0 ms *(6150.06x)* | **10/10 — 16.3 ms** *(fastest)* | 1/10 — 93,073.8 ms *(5724.10x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

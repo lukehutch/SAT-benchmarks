@@ -30,13 +30,23 @@ Stratified sample of 10 critical-threshold uniform random 3-SAT instances (`uf`/
 | **DIMACS-ANF** | `anf-converted/` | 10 | Vars: 50–250; Eqs: 218–1,065 (deg ≤ 3) | 59.2 KB |
 | **Total (4 Formats, Status: 5 SAT / 5 UNSAT)** | | **40** | | **163.1 KB** |
 
-## Comparative 1-Core Benchmark Results (10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-rnd3sat` (10) | **10/10 — 2,220.4 ms** | 10/10 — 3,536.1 ms | 10/10 — 4,166.5 ms | 10/10 — 3,264.0 ms | 10/10 — 2,481.1 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `uf100-01` | SAT | 2.73 ms | 3.25 ms | 21.72 ms | **1.90 ms** | 15.96 ms |
+| `uf150-01` | SAT | **2.03 ms** | 23.91 ms | 27.54 ms | 9.71 ms | 21.49 ms |
+| `uf200-01` | SAT | **39.53 ms** | 136.69 ms | 143.37 ms | 42.63 ms | 88.51 ms |
+| `uf250-01` | SAT | **3.37 ms** | 358.23 ms | 42.62 ms | 82.65 ms | 35.79 ms |
+| `uf50-01` | SAT | 2.15 ms | 2.67 ms | 6.55 ms | **1.54 ms** | 2.88 ms |
+| `uuf100-01` | UNSAT | 5.05 ms | 5.99 ms | 51.67 ms | **2.44 ms** | 24.72 ms |
+| `uuf150-01` | UNSAT | 29.87 ms | 40.66 ms | 66.48 ms | **15.17 ms** | 44.73 ms |
+| `uuf200-01` | UNSAT | 157.27 ms | 175.47 ms | 213.71 ms | **113.90 ms** | 279.51 ms |
+| `uuf250-01` | UNSAT | **1,874.94 ms** | 2,793.47 ms | 3,560.43 ms | 2,986.46 ms | 1,919.79 ms |
+| `uuf50-01` | UNSAT | 3.03 ms | 2.45 ms | 13.42 ms | **1.35 ms** | 2.11 ms |
+| **Total (10 files, PAR-2)** | **10/10** | **10/10 — 2,120.0 ms** *(fastest)* | 10/10 — 3,542.8 ms *(1.67x)* | 10/10 — 4,147.5 ms *(1.96x)* | 10/10 — 3,257.8 ms *(1.54x)* | 10/10 — 2,435.5 ms *(1.15x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

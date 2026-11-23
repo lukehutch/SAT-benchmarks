@@ -30,13 +30,26 @@ All 13 hardware Bounded Model Checking (BMC) instances from Ofer Shtrichman's IB
 | **DIMACS-ANF** | `anf-converted/` | 13 | Vars: 6,449–263,727; Eqs: 15,306–576,285 (deg ≤ 3) | 12.83 MB |
 | **Total (4 Formats, Status: Mixed)** | | **52** | | **27.44 MB** |
 
-## Comparative 1-Core Benchmark Results (13 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 13 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 13 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-bmc` (13) | 13/13 — 4,669.5 ms | 13/13 — 4,974.2 ms | 13/13 — 17,643.5 ms | 13/13 — 11,642.4 ms | **13/13 — 2,690.7 ms** |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `bmc-galileo-8` | SAT | 703.62 ms | 417.32 ms | 1,939.86 ms | 1,192.37 ms | **207.71 ms** |
+| `bmc-galileo-9` | SAT | 833.50 ms | 711.71 ms | 2,073.07 ms | 1,551.13 ms | **324.09 ms** |
+| `bmc-ibm-1` | SAT | 162.23 ms | **53.88 ms** | 1,364.21 ms | 129.89 ms | 93.68 ms |
+| `bmc-ibm-10` | SAT | 652.81 ms | 649.90 ms | 2,192.34 ms | 2,430.23 ms | **265.20 ms** |
+| `bmc-ibm-11` | SAT | 441.07 ms | 415.71 ms | 1,589.34 ms | 792.31 ms | **177.32 ms** |
+| `bmc-ibm-12` | SAT | 1,142.25 ms | 1,230.99 ms | 2,740.33 ms | 3,165.09 ms | **958.33 ms** |
+| `bmc-ibm-13` | SAT | 572.11 ms | 468.75 ms | 1,284.27 ms | 601.98 ms | **236.02 ms** |
+| `bmc-ibm-2` | SAT | 24.70 ms | **7.43 ms** | 46.80 ms | 13.77 ms | 15.40 ms |
+| `bmc-ibm-3` | SAT | 176.46 ms | 209.83 ms | 1,152.26 ms | 226.45 ms | **88.69 ms** |
+| `bmc-ibm-4` | SAT | 271.31 ms | 134.65 ms | 1,331.23 ms | 572.45 ms | **104.02 ms** |
+| `bmc-ibm-5` | SAT | 82.24 ms | **21.65 ms** | 324.13 ms | 57.21 ms | 39.59 ms |
+| `bmc-ibm-6` | SAT | 623.89 ms | 585.29 ms | 2,850.13 ms | 1,337.44 ms | **191.28 ms** |
+| `bmc-ibm-7` | SAT | 14.22 ms | 16.64 ms | 241.85 ms | 52.73 ms | **8.39 ms** |
+| **Total (13 files, PAR-2)** | **13/13** | 13/13 — 5,700.4 ms *(2.10x)* | 13/13 — 4,923.8 ms *(1.82x)* | 13/13 — 19,129.8 ms *(7.06x)* | 13/13 — 12,123.0 ms *(4.47x)* | **13/13 — 2,709.7 ms** *(fastest)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

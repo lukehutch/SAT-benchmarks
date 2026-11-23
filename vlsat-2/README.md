@@ -36,23 +36,23 @@ Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/Tr
 | `vlsat2_1022_14955` | 1,022 | 14,955 | UNSAT | 16.1 KB | 30,694 | 34.7 KB |
 | `vlsat2_1125_15795` | 1,125 | 15,795 | UNSAT | 19.5 KB | 32,459 | 33.3 KB |
 
-## Comparative 1-Core Benchmark Results (First 10 Instances, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 disagreements).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|
-| `vlsat2_544_8738.cnf` | **2.96 ms** (UNSAT) | T/O | T/O |
-| `vlsat2_600_11440.cnf` | **3.58 ms** (UNSAT) | T/O | T/O |
-| `vlsat2_684_9417.cnf` | **8.66 ms** (UNSAT) | T/O | 695.62 ms (UNSAT) |
-| `vlsat2_684_13953.cnf` | **3.71 ms** (UNSAT) | T/O | 785.79 ms (UNSAT) |
-| `vlsat2_708_10259.cnf` | **8.51 ms** (UNSAT) | T/O | 589.62 ms (UNSAT) |
-| `vlsat2_736_11022.cnf` | **3.63 ms** (UNSAT) | T/O | T/O |
-| `vlsat2_798_17543.cnf` | **11.44 ms** (UNSAT) | T/O | T/O |
-| `vlsat2_1000_22250.cnf` | T/O | T/O | T/O |
-| `vlsat2_1022_14955.cnf` | T/O | T/O | **2,327.33 ms** (UNSAT) |
-| `vlsat2_1125_15795.cnf` | T/O | T/O | T/O |
-| **Summary (Solved / PAR-2)** | **7 / 10 — 30,042.49 ms** *(fastest)* | **0 / 10 — 100,000.00 ms** *(3.33x slower)* | **4 / 10 — 64,398.36 ms** *(2.14x slower)* |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `vlsat2_1000_22250` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `vlsat2_1022_14955` | UNSAT | >5 s | >5 s | >5 s | >5 s | **2,513.63 ms** |
+| `vlsat2_1125_15795` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `vlsat2_544_8738` | UNSAT | 3.19 ms | >5 s | >5 s | **2.84 ms** | >5 s |
+| `vlsat2_600_11440` | UNSAT | 3.78 ms | >5 s | >5 s | **3.03 ms** | >5 s |
+| `vlsat2_684_13953` | UNSAT | **4.02 ms** | >5 s | >5 s | 5.06 ms | 869.17 ms |
+| `vlsat2_684_9417` | UNSAT | **3.41 ms** | >5 s | >5 s | 4.07 ms | 807.75 ms |
+| `vlsat2_708_10259` | UNSAT | **3.82 ms** | >5 s | >5 s | 4.07 ms | 652.52 ms |
+| `vlsat2_736_11022` | UNSAT | 3.55 ms | >5 s | >5 s | **3.49 ms** | >5 s |
+| `vlsat2_798_17543` | UNSAT | **5.90 ms** | >5 s | >5 s | 8.85 ms | >5 s |
+| **Total (10 files, PAR-2)** | **8/10** | **7/10 — 30,027.7 ms** *(fastest)* | 0/10 — 100,000.0 ms *(3.33x)* | 0/10 — 100,000.0 ms *(3.33x)* | 7/10 — 30,031.4 ms *(1.00x)* | 4/10 — 64,843.1 ms *(2.16x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

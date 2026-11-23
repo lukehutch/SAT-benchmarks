@@ -30,13 +30,16 @@ All 3 large critical-threshold uniform random 3-SAT formulas (`f600`, `f1000`, `
 | **DIMACS-ANF** | `anf-converted/` | 3 | Vars: 600–2,000; Eqs: 2,550–8,500 (deg ≤ 3) | 165.2 KB |
 | **Total (4 Formats, Status: SAT)** | | **12** | | **433.2 KB** |
 
-## Comparative 1-Core Benchmark Results (3 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 3 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 3 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-dimacs-lran` (3) | **3/3 — 1,227.2 ms** | 2/3 — 13,354.1 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `f1000` | SAT | **99.82 ms** | 3,171.06 ms | >5 s | >5 s | >5 s |
+| `f2000` | SAT | **3,774.93 ms** | >5 s | >5 s | >5 s | >5 s |
+| `f600` | SAT | **69.65 ms** | 576.42 ms | >5 s | >5 s | >5 s |
+| **Total (3 files, PAR-2)** | **3/3** | **3/3 — 3,944.4 ms** *(fastest)* | 2/3 — 13,747.5 ms *(3.49x)* | 0/3 — 30,000.0 ms *(7.61x)* | 0/3 — 30,000.0 ms *(7.61x)* | 0/3 — 30,000.0 ms *(7.61x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

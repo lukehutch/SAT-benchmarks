@@ -30,13 +30,17 @@ Stratified sample of 4 instances from the 1,000-instance SATLIB Backbone-Minimal
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 100; Eqs: 272–429 (deg ≤ 3) | 12.8 KB |
 | **Total (4 Formats, Status: SAT)** | | **16** | | **35.5 KB** |
 
-## Comparative 1-Core Benchmark Results (4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-bms-rti` (4) | 4/4 — 17.9 ms | 4/4 — 19.2 ms | 4/4 — 85.4 ms | **4/4 — 8.2 ms** | 4/4 — 47.9 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `BMS_k3_n100_m429_0` | SAT | 4.06 ms | 7.91 ms | 13.73 ms | **2.60 ms** | 10.85 ms |
+| `BMS_k3_n100_m429_1` | SAT | **2.26 ms** | 3.37 ms | 23.52 ms | 4.16 ms | 7.89 ms |
+| `RTI_k3_n100_m429_0` | SAT | **2.71 ms** | 5.11 ms | 25.14 ms | 2.86 ms | 15.03 ms |
+| `RTI_k3_n100_m429_1` | SAT | 2.27 ms | 4.18 ms | 23.01 ms | **1.97 ms** | 15.26 ms |
+| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 11.3 ms** *(fastest)* | 4/4 — 20.6 ms *(1.82x)* | 4/4 — 85.4 ms *(7.56x)* | 4/4 — 11.6 ms *(1.03x)* | 4/4 — 49.0 ms *(4.34x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

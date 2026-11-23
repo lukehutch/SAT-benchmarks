@@ -28,6 +28,46 @@ Mixed symmetry-rich EDA/combinatorial suite from Aloul et al.'s DAC 2002 paper s
 | **DIMACS-ANF** | `anf-converted/` | 32 | Vars: 88–6,983; Eqs: 236–10,998 (deg ≤ 3) | 291.6 KB |
 | **Total (4 Formats, Status: Mixed)** | | **128** | | **674.7 KB** |
 
+## Comparative 1-Core Benchmark Results (All 32 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 32 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `Urq3_5` | UNSAT | 3.12 ms | >5 s | 21.89 ms | **1.36 ms** | >5 s |
+| `Urq4_5` | UNSAT | 3.14 ms | >5 s | 26.52 ms | **1.42 ms** | >5 s |
+| `Urq5_5` | UNSAT | 2.58 ms | >5 s | 37.84 ms | **1.42 ms** | >5 s |
+| `Urq6_5` | UNSAT | 2.36 ms | >5 s | 47.46 ms | **1.77 ms** | >5 s |
+| `Urq7_5` | UNSAT | 2.69 ms | >5 s | 54.96 ms | **1.86 ms** | >5 s |
+| `Urq8_5` | UNSAT | 2.63 ms | >5 s | 80.99 ms | **2.08 ms** | >5 s |
+| `chnl10_11` | UNSAT | 2.12 ms | >5 s | >5 s | **1.34 ms** | 199.97 ms |
+| `chnl10_12` | UNSAT | 2.15 ms | >5 s | >5 s | **1.49 ms** | 528.05 ms |
+| `chnl10_13` | UNSAT | 2.87 ms | >5 s | >5 s | **1.39 ms** | 1,122.17 ms |
+| `chnl11_12` | UNSAT | 1.87 ms | >5 s | >5 s | **1.26 ms** | 1,035.18 ms |
+| `chnl11_13` | UNSAT | 1.79 ms | >5 s | >5 s | **1.49 ms** | 1,528.22 ms |
+| `chnl11_20` | UNSAT | 2.31 ms | >5 s | >5 s | **1.46 ms** | 231.50 ms |
+| `fpga10_8_sat` | SAT | 2.04 ms | 4.31 ms | 15.53 ms | **1.67 ms** | 9.95 ms |
+| `fpga10_9_sat` | SAT | 2.02 ms | 6.02 ms | 19.22 ms | 1.81 ms | **1.30 ms** |
+| `fpga12_11_sat` | SAT | 1.64 ms | 4.73 ms | 39.46 ms | 2.00 ms | **1.33 ms** |
+| `fpga12_12_sat` | SAT | 1.76 ms | 18.74 ms | 47.61 ms | 1.99 ms | **1.35 ms** |
+| `fpga12_8_sat` | SAT | **1.64 ms** | 4.22 ms | 20.58 ms | 2.16 ms | 12.76 ms |
+| `fpga12_9_sat` | SAT | **1.76 ms** | 4.66 ms | 25.76 ms | 2.29 ms | 20.55 ms |
+| `fpga13_10_sat` | SAT | **1.70 ms** | 4.42 ms | 36.38 ms | 2.07 ms | 20.46 ms |
+| `fpga13_12_sat` | SAT | **1.82 ms** | 5.11 ms | 54.22 ms | 2.27 ms | 39.50 ms |
+| `fpga13_9_sat` | SAT | **2.03 ms** | 4.12 ms | 30.15 ms | 2.30 ms | 18.04 ms |
+| `hole10` | UNSAT | 1.66 ms | >5 s | >5 s | **1.54 ms** | 1,611.23 ms |
+| `hole11` | UNSAT | 1.73 ms | >5 s | >5 s | **1.50 ms** | >5 s |
+| `hole12` | UNSAT | **1.72 ms** | >5 s | >5 s | 1.86 ms | >5 s |
+| `hole7` | UNSAT | 1.76 ms | 27.57 ms | 52.36 ms | **1.32 ms** | 15.09 ms |
+| `hole8` | UNSAT | 1.65 ms | 273.31 ms | 333.41 ms | **1.38 ms** | 67.06 ms |
+| `hole9` | UNSAT | 1.94 ms | 3,254.17 ms | 4,878.71 ms | **1.59 ms** | 243.28 ms |
+| `s3-3-3-1` | SAT | **45.34 ms** | 56.17 ms | 171.48 ms | 70.88 ms | 77.45 ms |
+| `s3-3-3-10` | SAT | 81.50 ms | 137.34 ms | 254.11 ms | **53.69 ms** | 56.79 ms |
+| `s3-3-3-3` | SAT | **49.69 ms** | 65.23 ms | 203.24 ms | 67.14 ms | 78.92 ms |
+| `s3-3-3-4` | SAT | **68.08 ms** | 143.37 ms | 179.22 ms | 69.22 ms | 83.55 ms |
+| `s3-3-3-8` | SAT | 59.17 ms | 62.45 ms | 234.93 ms | 143.68 ms | **29.30 ms** |
+| **Total (32 files, PAR-2)** | **32/32** | **32/32 — 360.3 ms** *(fastest)* | 17/32 — 154,075.9 ms *(427.66x)* | 23/32 — 96,866.0 ms *(268.86x)* | 32/32 — 450.7 ms *(1.25x)* | 24/32 — 87,033.0 ms *(241.57x)* |
+
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
 

@@ -30,13 +30,35 @@ All 22 Quasigroup existence / Latin Square (`qg1`–`qg7`) SAT and UNSAT instanc
 | **DIMACS-ANF** | `anf-converted/` | 22 | Vars: 1,472–143,712; Eqs: 10,645–292,157 (deg ≤ 3) | 4.91 MB |
 | **Total (4 Formats, Status: Mixed)** | | **88** | | **12.42 MB** |
 
-## Comparative 1-Core Benchmark Results (22 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 22 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 22 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-qg` (22) | 22/22 — 5,361.4 ms | **22/22 — 3,938.2 ms** | 22/22 — 14,660.5 ms | 22/22 — 7,336.5 ms | 22/22 — 6,595.7 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `qg1-07` | SAT | 43.32 ms | **12.95 ms** | 204.83 ms | 23.69 ms | 83.39 ms |
+| `qg1-08` | SAT | 133.61 ms | **107.57 ms** | 480.07 ms | 124.75 ms | 731.76 ms |
+| `qg2-07` | SAT | 32.05 ms | 12.27 ms | 269.39 ms | 22.19 ms | **6.20 ms** |
+| `qg2-08` | SAT | 703.47 ms | **107.08 ms** | 1,563.06 ms | 980.43 ms | 348.94 ms |
+| `qg3-08` | SAT | 22.61 ms | **5.05 ms** | 150.56 ms | 7.33 ms | 28.09 ms |
+| `qg3-09` | UNSAT | 1,013.65 ms | **628.64 ms** | 779.37 ms | 3,137.39 ms | 835.51 ms |
+| `qg4-08` | UNSAT | 27.56 ms | 13.20 ms | 144.44 ms | **11.17 ms** | 33.10 ms |
+| `qg4-09` | SAT | 46.49 ms | 34.97 ms | 217.03 ms | **16.00 ms** | 35.40 ms |
+| `qg5-09` | UNSAT | 27.74 ms | **6.78 ms** | 433.91 ms | 17.76 ms | 16.12 ms |
+| `qg5-10` | UNSAT | 62.49 ms | **10.82 ms** | 626.57 ms | 20.11 ms | 42.56 ms |
+| `qg5-11` | SAT | 92.76 ms | **16.58 ms** | 687.54 ms | 28.86 ms | 58.56 ms |
+| `qg5-12` | UNSAT | 112.99 ms | **44.08 ms** | 763.59 ms | 52.42 ms | 105.06 ms |
+| `qg5-13` | UNSAT | **1,306.82 ms** | 1,734.15 ms | 2,125.51 ms | 1,946.58 ms | 2,060.38 ms |
+| `qg6-09` | SAT | 6.16 ms | 6.50 ms | 525.08 ms | 10.02 ms | **3.03 ms** |
+| `qg6-10` | UNSAT | 50.74 ms | **10.74 ms** | 624.56 ms | 17.52 ms | 37.10 ms |
+| `qg6-11` | UNSAT | 103.03 ms | 45.28 ms | 680.25 ms | **38.65 ms** | 79.13 ms |
+| `qg6-12` | UNSAT | 525.66 ms | 586.13 ms | 989.44 ms | **469.95 ms** | 1,223.98 ms |
+| `qg7-09` | SAT | 35.09 ms | 6.91 ms | 48.40 ms | 11.00 ms | **3.07 ms** |
+| `qg7-10` | UNSAT | 41.85 ms | **8.56 ms** | 632.10 ms | 14.80 ms | 34.90 ms |
+| `qg7-11` | UNSAT | 84.31 ms | 29.51 ms | 649.02 ms | **29.49 ms** | 53.11 ms |
+| `qg7-12` | UNSAT | 208.64 ms | 213.63 ms | 838.03 ms | **127.10 ms** | 263.38 ms |
+| `qg7-13` | SAT | 172.75 ms | **24.35 ms** | 1,134.27 ms | 71.80 ms | 104.73 ms |
+| **Total (22 files, PAR-2)** | **22/22** | 22/22 — 4,853.8 ms *(1.32x)* | **22/22 — 3,665.8 ms** *(fastest)* | 22/22 — 14,567.0 ms *(3.97x)* | 22/22 — 7,179.0 ms *(1.96x)* | 22/22 — 6,187.5 ms *(1.69x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

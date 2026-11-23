@@ -30,13 +30,15 @@ Both classic Towers of Hanoi planning-as-SAT benchmarks (`hanoi4` and `hanoi5`, 
 | **DIMACS-ANF** | `anf-converted/` | 2 | Vars: 853–2,303; Eqs: 5,069–14,840 (deg ≤ 3) | 64.1 KB |
 | **Total (4 Formats, Status: SAT)** | | **8** | | **170.3 KB** |
 
-## Comparative 1-Core Benchmark Results (2 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 2 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 2 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-dimacs-hanoi` (2) | 2/2 — 337.3 ms | **2/2 — 169.5 ms** | 2/2 — 675.0 ms | 2/2 — 195.1 ms | 2/2 — 513.1 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `hanoi4` | SAT | **18.12 ms** | 20.25 ms | 139.53 ms | 20.16 ms | 42.72 ms |
+| `hanoi5` | SAT | 332.69 ms | **153.68 ms** | 565.30 ms | 191.36 ms | 516.22 ms |
+| **Total (2 files, PAR-2)** | **2/2** | 2/2 — 350.8 ms *(2.02x)* | **2/2 — 173.9 ms** *(fastest)* | 2/2 — 704.8 ms *(4.05x)* | 2/2 — 211.5 ms *(1.22x)* | 2/2 — 558.9 ms *(3.21x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

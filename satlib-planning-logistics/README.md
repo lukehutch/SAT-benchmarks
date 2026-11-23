@@ -30,13 +30,17 @@ All 4 classic SATPLAN Logistics planning-as-SAT instances (`logistics.a` through
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 1,894–9,734; Eqs: 7,784–27,012 (deg ≤ 3) | 223.0 KB |
 | **Total (4 Formats, Status: SAT)** | | **16** | | **509.0 KB** |
 
-## Comparative 1-Core Benchmark Results (4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-planning-logistics` (4) | 4/4 — 185.7 ms | **4/4 — 34.1 ms** | 4/4 — 1,018.0 ms | 4/4 — 80.1 ms | 4/4 — 136.7 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `logistics.a` | SAT | 16.09 ms | 6.39 ms | 94.96 ms | **6.29 ms** | 26.94 ms |
+| `logistics.b` | SAT | 24.37 ms | **5.70 ms** | 66.15 ms | 6.95 ms | 27.56 ms |
+| `logistics.c` | SAT | 27.73 ms | **9.93 ms** | 145.19 ms | 10.21 ms | 29.87 ms |
+| `logistics.d` | SAT | 129.93 ms | **10.53 ms** | 648.55 ms | 49.95 ms | 35.12 ms |
+| **Total (4 files, PAR-2)** | **4/4** | 4/4 — 198.1 ms *(6.09x)* | **4/4 — 32.5 ms** *(fastest)* | 4/4 — 954.9 ms *(29.33x)* | 4/4 — 73.4 ms *(2.25x)* | 4/4 — 119.5 ms *(3.67x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -33,19 +33,43 @@ This collection holds the **30 third-party public CNFs** (`public-instances/`) s
 | **DIMACS-ANF** | `anf-converted/` | 30 | Vars: 50–1,084; Eqs: 86–4,762 (deg ≤ 3) | 113.4 KB |
 | **Total (4 Formats, Status: 16 SAT / 14 UNSAT)** | | **120** | | **340.9 KB** |
 
-## Comparative 1-Core Benchmark Results (30 Instances, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 30 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 verdict disagreements).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 30 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Solver (1C) | Solved | SAT / UNSAT | Total PAR-2 | Relative PAR-2 |
-|---|---:|:---:|---:|---|
-| **Frobenius 1C** | **29 / 30** | **16 / 13** | **10,712.87 ms** | *(fastest)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 24 / 30 | 16 / 8 | 63,765.07 ms | *(5.95x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0* | 20 / 30 | 12 / 8 | 100,870.73 ms | *(9.42x slower)* |
-| [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | 28 / 30 | 15 / 13 | 20,413.13 ms | *(1.91x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 25 / 30 | 16 / 9 | 53,065.48 ms | *(4.95x slower)* |
-
-*\* [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0's strict parser rejected 4 legacy SATLIB files (`hole9.cnf`, `par8-1-c..3-c.cnf`) that contain trailing tokens/EOF formatting from the original SATLIB archive; all other four solvers parsed and solved all 4.*
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `anomaly` | SAT | 2.58 ms | 2.76 ms | 5.56 ms | 1.87 ms | **1.51 ms** |
+| `bw_large.a` | SAT | 15.55 ms | **4.22 ms** | 121.62 ms | 4.63 ms | 23.90 ms |
+| `flat30-1` | SAT | 1.79 ms | 2.16 ms | 9.81 ms | **1.28 ms** | 1.43 ms |
+| `flat30-2` | SAT | 1.72 ms | 1.91 ms | 7.92 ms | 1.32 ms | **1.20 ms** |
+| `flat30-3` | SAT | 2.03 ms | 1.92 ms | 7.38 ms | **1.40 ms** | 1.41 ms |
+| `hole10` | UNSAT | 2.00 ms | >5 s | >5 s | **1.48 ms** | 1,268.85 ms |
+| `hole6` | UNSAT | 2.27 ms | 5.03 ms | 23.34 ms | **1.55 ms** | 4.28 ms |
+| `hole7` | UNSAT | 1.78 ms | 28.95 ms | 53.23 ms | **1.50 ms** | 10.26 ms |
+| `hole8` | UNSAT | 2.25 ms | 267.08 ms | 330.46 ms | **1.55 ms** | 46.59 ms |
+| `hole9` | UNSAT | 1.78 ms | 3,131.20 ms | >5 s | **1.20 ms** | 124.17 ms |
+| `medium` | SAT | 2.62 ms | 3.21 ms | 11.79 ms | 3.41 ms | **1.37 ms** |
+| `par8-1-c` | SAT | 1.94 ms | 2.20 ms | >5 s | **1.27 ms** | 2.31 ms |
+| `par8-2-c` | SAT | 2.47 ms | 2.16 ms | >5 s | **1.31 ms** | 2.47 ms |
+| `par8-3-c` | SAT | 2.26 ms | 1.91 ms | >5 s | **1.59 ms** | 2.84 ms |
+| `sc25-fpga-routing` | UNSAT | 2.69 ms | >5 s | >5 s | **1.96 ms** | >5 s |
+| `sc25-hamiltonian` | SAT | **119.19 ms** | 218.70 ms | 174.33 ms | 412.11 ms | 348.18 ms |
+| `sc25-hgen` | SAT | **50.95 ms** | 339.34 ms | >5 s | >5 s | 1,265.29 ms |
+| `sc25-mutilated-chessboard` | UNSAT | 2.91 ms | >5 s | >5 s | **2.22 ms** | >5 s |
+| `sc25-pigeon-hole` | UNSAT | **2.91 ms** | >5 s | >5 s | 2.92 ms | >5 s |
+| `sc25-scheduling` | SAT | 7.11 ms | 2.37 ms | 51.50 ms | **2.15 ms** | 9.71 ms |
+| `sc25-subset-cardinality` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `sc25-tseitin-formulas` | UNSAT | 2.16 ms | >5 s | 33.98 ms | **1.49 ms** | >5 s |
+| `uf50-01` | SAT | 2.21 ms | 2.49 ms | 6.17 ms | **1.39 ms** | 3.01 ms |
+| `uf50-02` | SAT | 1.93 ms | 2.65 ms | 17.84 ms | **1.50 ms** | 3.28 ms |
+| `uf50-03` | SAT | 1.81 ms | 2.94 ms | 7.97 ms | **1.72 ms** | 2.44 ms |
+| `uf50-04` | SAT | 1.84 ms | 2.34 ms | 6.28 ms | **1.30 ms** | 3.02 ms |
+| `uuf50-01` | UNSAT | 3.01 ms | 2.40 ms | 13.44 ms | **1.39 ms** | 2.18 ms |
+| `uuf50-02` | UNSAT | 3.01 ms | 2.40 ms | 16.36 ms | **1.32 ms** | 2.50 ms |
+| `uuf50-03` | UNSAT | 2.92 ms | 2.13 ms | 14.21 ms | **1.35 ms** | 2.76 ms |
+| `uuf50-04` | UNSAT | 3.01 ms | 2.29 ms | 14.95 ms | **1.30 ms** | 2.35 ms |
+| **Total (30 files, PAR-2)** | **29/30** | **29/30 — 10,250.7 ms** *(fastest)* | 24/30 — 64,034.8 ms *(6.25x)* | 20/30 — 100,928.1 ms *(9.85x)* | 28/30 — 20,459.5 ms *(2.00x)* | 25/30 — 53,137.3 ms *(5.18x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

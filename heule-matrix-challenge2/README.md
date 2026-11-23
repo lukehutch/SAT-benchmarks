@@ -35,6 +35,24 @@ Ten $R = 23$ $\mathbb{F}_2$ matrix-multiplication subproblems with hardcoded pai
 
 - **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [`yalsat`](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
 
+## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
+
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|---:|
+| `MM-23-2-2-3-A` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-2-2-3-B` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-2-4-A` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-2-4-B` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-3-3-A` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-3-3-B` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-3-3-M` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-3-3-N` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-5-A` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `MM-23-5-B` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| **Total (10 files, PAR-2)** | **0/10** | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* |
+
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
 

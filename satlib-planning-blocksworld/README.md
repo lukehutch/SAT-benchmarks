@@ -30,13 +30,20 @@ All 7 classic SATPLAN Blocks World planning-as-SAT instances (`anomaly`, `medium
 | **DIMACS-ANF** | `anf-converted/` | 7 | Vars: 51–7,104; Eqs: 264–132,752 (deg ≤ 3) | 492.0 KB |
 | **Total (4 Formats, Status: SAT)** | | **28** | | **1.37 MB** |
 
-## Comparative 1-Core Benchmark Results (7 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 7 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 7 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-planning-blocksworld` (7) | 7/7 — 604.7 ms | 7/7 — 403.4 ms | 7/7 — 1,934.1 ms | **7/7 — 218.5 ms** | 7/7 — 357.0 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `anomaly` | SAT | 2.11 ms | 2.14 ms | 3.63 ms | 1.47 ms | **1.23 ms** |
+| `bw_large.a` | SAT | 12.50 ms | **3.42 ms** | 124.65 ms | 4.53 ms | 24.05 ms |
+| `bw_large.b` | SAT | 34.91 ms | **7.35 ms** | 352.77 ms | 8.76 ms | 28.79 ms |
+| `bw_large.c` | SAT | 132.87 ms | 52.90 ms | 537.91 ms | **42.31 ms** | 67.06 ms |
+| `bw_large.d` | SAT | 351.25 ms | 314.33 ms | 679.20 ms | **144.95 ms** | 196.21 ms |
+| `huge` | SAT | 13.66 ms | **4.17 ms** | 126.18 ms | 5.47 ms | 24.15 ms |
+| `medium` | SAT | 2.21 ms | 2.25 ms | 10.27 ms | 2.00 ms | **1.37 ms** |
+| **Total (7 files, PAR-2)** | **7/7** | 7/7 — 549.5 ms *(2.62x)* | 7/7 — 386.6 ms *(1.85x)* | 7/7 — 1,834.6 ms *(8.76x)* | **7/7 — 209.5 ms** *(fastest)* | 7/7 — 342.9 ms *(1.64x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

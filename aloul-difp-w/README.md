@@ -28,6 +28,29 @@ Difficult Integer Factorization Problems (`difp_w`, 15 SAT instances) encoded vi
 | **DIMACS-ANF** | `anf-converted/` | 15 | Vars: 1,789–2,163; Eqs: 6,061–7,348 (deg ≤ 3) | 776.4 KB |
 | **Total (4 Formats, Status: SAT)** | | **60** | | **3.06 MB** |
 
+## Comparative 1-Core Benchmark Results (All 15 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 15 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `difp_19_0_wal_rcr` | SAT | 4,755.59 ms | **1,396.79 ms** | >5 s | >5 s | 2,483.73 ms |
+| `difp_19_1_wal_rcr` | SAT | >5 s | **214.15 ms** | >5 s | 807.66 ms | >5 s |
+| `difp_19_2_wal_rcr` | SAT | >5 s | >5 s | >5 s | >5 s | **3,533.64 ms** |
+| `difp_19_3_wal_rcr` | SAT | 3,873.62 ms | **1,620.51 ms** | 3,416.57 ms | >5 s | 2,128.49 ms |
+| `difp_19_99_wal_rcr` | SAT | >5 s | >5 s | **354.73 ms** | >5 s | >5 s |
+| `difp_20_0_wal_rcr` | SAT | >5 s | >5 s | >5 s | >5 s | **228.69 ms** |
+| `difp_20_1_wal_rcr` | SAT | >5 s | >5 s | >5 s | **1,463.82 ms** | >5 s |
+| `difp_20_2_wal_rcr` | SAT | >5 s | 4,176.57 ms | **1,675.33 ms** | 2,147.64 ms | >5 s |
+| `difp_20_3_wal_rcr` | SAT | 3,131.85 ms | 2,204.27 ms | **551.79 ms** | 1,252.93 ms | 3,651.59 ms |
+| `difp_20_99_wal_rcr` | SAT | 406.03 ms | 1,539.44 ms | **317.03 ms** | >5 s | 426.43 ms |
+| `difp_21_0_wal_rcr` | SAT | >5 s | >5 s | **540.73 ms** | >5 s | 4,647.90 ms |
+| `difp_21_1_wal_rcr` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_2_wal_rcr` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_3_wal_rcr` | SAT | >5 s | >5 s | **1,714.55 ms** | >5 s | >5 s |
+| `difp_21_99_wal_rcr` | SAT | **1,073.75 ms** | >5 s | >5 s | >5 s | >5 s |
+| **Total (15 files, PAR-2)** | **13/15** | 5/15 — 113,240.8 ms *(1.28x)* | 6/15 — 101,151.7 ms *(1.14x)* | **7/15 — 88,570.7 ms** *(fastest)* | 4/15 — 115,672.1 ms *(1.31x)* | 7/15 — 97,100.5 ms *(1.10x)* |
+
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
 

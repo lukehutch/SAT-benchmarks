@@ -30,13 +30,18 @@ All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole1
 | **DIMACS-ANF** | `anf-converted/` | 5 | Vars: 63–187; Eqs: 154–638 (deg ≤ 3) | 6.1 KB |
 | **Total (4 Formats, Status: UNSAT)** | | **20** | | **20.7 KB** |
 
-## Comparative 1-Core Benchmark Results (5 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 5 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 5 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-dimacs-phole` (5) | 5/5 — 7.1 ms | 4/5 — 13,510.0 ms | 4/5 — 15,254.6 ms | **5/5 — 3.9 ms** | 5/5 — 1,471.3 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `hole10` | UNSAT | 1.85 ms | >5 s | >5 s | **1.32 ms** | 1,280.27 ms |
+| `hole6` | UNSAT | 1.79 ms | 5.38 ms | 21.95 ms | **1.21 ms** | 3.84 ms |
+| `hole7` | UNSAT | 1.50 ms | 28.14 ms | 52.26 ms | **1.35 ms** | 10.36 ms |
+| `hole8` | UNSAT | 1.60 ms | 266.52 ms | 326.03 ms | **1.36 ms** | 46.83 ms |
+| `hole9` | UNSAT | 1.96 ms | 3,117.30 ms | 4,740.79 ms | **1.68 ms** | 126.11 ms |
+| **Total (5 files, PAR-2)** | **5/5** | 5/5 — 8.7 ms *(1.26x)* | 4/5 — 13,417.3 ms *(1938.92x)* | 4/5 — 15,141.0 ms *(2188.01x)* | **5/5 — 6.9 ms** *(fastest)* | 5/5 — 1,467.4 ms *(212.05x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

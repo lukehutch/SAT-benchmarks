@@ -30,13 +30,17 @@ All-Interval Series (`ais6`, `ais8`, `ais10`, `ais12`) combinatorial permutation
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 89–461; Eqs: 609–5,862 (deg ≤ 3) | 21.6 KB |
 | **Total (4 Formats, Status: Mixed)** | | **16** | | **67.5 KB** |
 
-## Comparative 1-Core Benchmark Results (4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical sanitized flat `.cnf` input, 0 verdict disagreements / 0 errors).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
-| Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|
-| `satlib-ais` (4) | **4/4 — 8.5 ms** | 4/4 — 26.3 ms | 4/4 — 425.8 ms | 4/4 — 39.1 ms | 4/4 — 24.2 ms |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [`dense-solver 0.0.4`](https://github.com/libdense/dense-solver) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `ais10` | SAT | **3.10 ms** | 3.59 ms | 142.57 ms | 7.06 ms | 3.26 ms |
+| `ais12` | SAT | 4.45 ms | 6.15 ms | 256.18 ms | 8.16 ms | **2.21 ms** |
+| `ais6` | SAT | 2.16 ms | 2.72 ms | 15.32 ms | 3.56 ms | **1.76 ms** |
+| `ais8` | SAT | 2.56 ms | 3.42 ms | 44.85 ms | 2.08 ms | **1.56 ms** |
+| **Total (4 files, PAR-2)** | **4/4** | 4/4 — 12.3 ms *(1.40x)* | 4/4 — 15.9 ms *(1.81x)* | 4/4 — 458.9 ms *(52.21x)* | 4/4 — 20.9 ms *(2.37x)* | **4/4 — 8.8 ms** *(fastest)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
