@@ -1,17 +1,17 @@
 # SAT Benchmarks
 
-A curated, **three-format** (**Binary AIGER 1.9 `.aig`**, **DIMACS `.cnf`**, and **CryptoMiniSat `.xcnf`**) collection of **22 benchmark suites** spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, matrix multiplication, graph theory, symmetry breaking, exact circuit synthesis, hardware verification, finite-automata complementation, and SAT Competition corpora.
+A curated, **three-format** (**Binary AIGER 1.9 `.aig`**, **DIMACS `.cnf`**, and **CryptoMiniSat `.xcnf`**) collection of **24 benchmark suites** spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, matrix multiplication, graph theory, combinatorial chessboard puzzles, symmetry breaking, exact circuit synthesis, hardware verification, finite-automata complementation, and SAT Competition corpora.
 
 Every benchmark suite lives in its own top-level directory containing:
 - Native-format benchmark instances at the suite root (`.aig` for circuit-native suites; `.cnf` / `.cnf.xz` for clausal suites; `.mata.xz` for the MATA automata suite).
 - Exact conversions for the two remaining formats in subdirectories:
   - Originally-`.aig` suites provide `cnf-version/` (`.cnf`) and `xcnf-version/` (`.xcnf`).
   - Originally-`.cnf` suites provide `aig-version/` (`.aig`) and `xcnf-version/` (`.xcnf` / `.xcnf.xz`, with all complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
-  - Every single `.aig` file across all suites (**369 / 369**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with Berkeley **ABC** (`read_aiger`, `0` errors).
+  - Every single `.aig` file across all suites (**387 / 387**) conforms to **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT) and has been independently verified with Berkeley **ABC** (`read_aiger`, `0` errors).
 - Standalone generator, exporter, fetcher, or converter source code in `src/` (including `cnf2aig.py` and `cnf2xcnf.py`).
 - A detailed `README.md` documenting provenance, contributor credits, upstream links and licenses, mathematical/circuit parameters, exact data sizes, comparative 1-core solver timings (Frobenius 1C, `dense-solver 0.0.4`, Kissat 4.0.4, CaDiCaL 3.1.0, CryptoMiniSat 5.18.0 CNF & XCNF), proof verification status (`cake_lpr` / `lrat-check`), and literature citations.
 
-## Benchmark Suites (22 Suites)
+## Benchmark Suites (24 Suites)
 
 | Suite | Origin Format | Provenance & Credit | Instances | SAT / UNSAT | Domain & Structural Focus | Generator / Scripts |
 |---|---|---|---:|:---:|---|---|
@@ -37,8 +37,10 @@ Every benchmark suite lives in its own top-level directory containing:
 | [`dense-solver-benchmarks/`](dense-solver-benchmarks/README.md) | CNF (`.cnf`) | **Sourced** — Merlin Numa (`@merlin_numa`, [`dense-solver`](https://github.com/libdense/dense-solver), [Zenodo](https://zenodo.org/records/24443907), MIT) | 50 | 18 / 32 | Multi-encoding PHP ($\mathrm{PHP}^{65}_{64}$), mutilated chessboards, 22 SATLIB + 8 SC25 CNFs | Python (`src/`) |
 | [`pretolani-pret/`](pretolani-pret/README.md) | CNF (`.cnf`) | **Sourced** — Daniele Pretolani ([SATLIB PRET](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html), via `@MMarchidann`) | 8 | 0 / 8 | Parity-charged graph 2-coloring UNSAT formulas ($n=60, 150$; 25%–75% Horn) | Python (`src/`) |
 | [`mod-circuit-sat/`](mod-circuit-sat/README.md) | CNF (`.cnf`) | **Sourced** — `@vzhilin_me` ([`vzhn/mod-circuit-sat`](https://github.com/vzhn/mod-circuit-sat), arXiv:2102.12579) | 11 | 5 / 4 / 2 Open | Exact optimal $B_2$ circuit synthesis for $\mathrm{MOD}_n^{3,r}$ ($n=3\text{--}6$) | Python (`src/`) |
+| [`queen-armies/`](queen-armies/README.md) | CNF (`.cnf`) | **Original** *(inspired by [Christopher Wolfram](https://christopherwolfram.com/projects/queen-armies/))* | 8 | 4 / 4 | Peaceable Queen Armies ($A \in \{2, 3, 4\}$, OEIS A250000/A277433/A277434, Sinz counter) | Python (`src/`) |
+| [`knights-tour-obstacles/`](knights-tour-obstacles/README.md) | CNF (`.cnf`) | **Original** | 10 | 5 / 5 | Obstacle Knight's Tour Hamiltonian cycles on punched $12\times 12\text{--}16\times 16$ boards ($d=0.15\text{--}0.26$) | Python (`src/`) |
 
-\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`, 1,166 unique CNFs) and `vlsat-2/vlsat2_100.uri` stores all 100 INRIA URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **369 SAT benchmark instances** are committed in **all three formats** (**369** verified Binary AIGER 1.9 `.aig`, **369** DIMACS `.cnf`/`.cnf.xz`, and **369** CryptoMiniSat `.xcnf`/`.xcnf.xz` = **1,107** benchmark files), alongside **174 `.mata.xz` NFA benchmarks** and full generator/converter scripts.
+\* `sat-competition-2024-2026-main-track/` stores immutable GBD URI lists (`main_2024.uri`, `main_2025.uri`, `main_2026.uri`, 1,166 unique CNFs) and `vlsat-2/vlsat2_100.uri` stores all 100 INRIA URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **387 SAT benchmark instances** are committed in **all three formats** (**387** verified Binary AIGER 1.9 `.aig`, **387** DIMACS `.cnf`/`.cnf.xz`, and **387** CryptoMiniSat `.xcnf`/`.xcnf.xz` = **1,161** benchmark files), alongside **174 `.mata.xz` NFA benchmarks** and full generator/converter scripts.
 
 ## Highlighted Solver Summary
 
@@ -67,9 +69,9 @@ Every benchmark suite lives in its own top-level directory containing:
 | CryptoMiniSat 5.18.0 (CNF) | 18 / 22 | 0 / 22 | 148,852.60 ms *(400x slower)* | 100% verdict agreement on solved instances |
 | CaDiCaL 3.1.0 | 17 / 22 | 2 / 22 | 163,592.80 ms *(439x slower)* | 100% verdict agreement on solved instances |
 
-### 3. Newly Imported External Suites (1-Core, Identical Flat `.cnf` Input)
+### 3. Newly Imported & Combinatorial Suites (1-Core, Identical Flat `.cnf` Input)
 
-- **Timeout:** $T_{\max} = 5\;\text{s}$ per instance (PAR-2 penalty $10\;\text{s}$), except `mod-circuit-sat` ($T_{\max} = 10\;\text{s}$).
+- **Timeout:** $T_{\max} = 5\;\text{s}$ per instance (PAR-2 penalty $10\;\text{s}$), except `mod-circuit-sat` ($T_{\max} = 10\;\text{s}$) and `queen-armies` / `knights-tour-obstacles` ($T_{\max} = 15\;\text{s}$, PAR-2 penalty $30\;\text{s}$).
 - **Same machine?** **Yes** — all solvers run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
 
 | Suite (Instances, $T_{\max}$) | Frobenius 1C | `dense-solver 0.0.4` | Kissat 4.0.4 | CaDiCaL 3.1.0 | CryptoMiniSat 5.18.0 |
@@ -81,6 +83,8 @@ Every benchmark suite lives in its own top-level directory containing:
 | **Aloul FPGA Switch-Box (21, 5 s)** | 21/21 — 219.53 ms *(8.00x)* | **21/21 — 27.45 ms** *(fastest)* | 12/21 — 92,980 ms *(3,387x)* | 11/21 — 100,091 ms *(3,646x)* | — |
 | **Model RB `frb30-15` (5, 5 s)** | 5/5 — 3,165 ms *(3.43x)* | — | **5/5 — 923.51 ms** *(fastest)* | 5/5 — 1,377 ms *(1.49x)* | — |
 | **`mod-circuit-sat` $n=3\text{--}5$ (9, 10 s)** | 8/9 — 30,054 ms *(1.20x)* | — | **8/9 — 25,054 ms** *(fastest)* | 8/9 — 27,363 ms *(1.09x)* | — |
+| **Peaceable Queen Armies (8, 15 s)** | **8/8 — 56,672 ms** *(fastest)* | 2/8 — 204,847 ms *(3.61x)* | 4/8 — 160,604 ms *(2.83x)* | 1/8 — 214,106 ms *(3.78x)* | 1/8 — 211,830 ms *(3.74x)* |
+| **Obstacle Knight's Tour (10, 15 s)** | 10/10 — 54,045 ms *(6.23x)* | 2/10 — 250,274 ms *(28.8x)* | **10/10 — 8,678 ms** *(fastest)* | 10/10 — 11,302 ms *(1.30x)* | 10/10 — 9,121 ms *(1.05x)* |
 
 ### 4. SAT Competition 2024–2026 Main Track (1,166 Unique CNFs, 1-Core)
 
