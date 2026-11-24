@@ -7,12 +7,17 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 - **Origin:** **Original** benchmark suite (MIT [`../LICENSE`](../LICENSE)), modeled on algebraic LowMC-style ciphers (Albrecht et al., [EUROCRYPT 2015](https://eprint.iacr.org/2016/687)).
 - **Why they are hard:** Feeding 3-input linear forms into nonlinear gates couples the affine diffusion layer with nonlinear S-box constraints, making flat clausal propagation challenging: at $n = 128$, [Kissat](https://github.com/arminbiere/kissat) 4.0.4 takes `4,330 ms`, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 takes `2,137 ms`, and [CryptoMiniSat](https://github.com/msoos/cryptominisat) CNF takes `10,805 ms`.
 
+![Hard SPN LowMC-style linear diffusion and nonlinear S-box circuit](diagram.svg)
+
+*Figure: LowMC/SPN-style circuit coupling a sparse 5-input $\mathbb{F}_2$ affine diffusion matrix $L x = b$ ($r = n/2$) with nonlinear $\mathrm{And}/\mathrm{Maj}_3/\mathrm{Mux}$ S-box gates fed by 3-input linear forms $\ell = x_i \oplus x_j \oplus x_k$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`12.3 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`29.6 KB`).
 - `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`12.8 KB`).
 - `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`12.1 KB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 4 instances (**3 SAT / 1 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -26,9 +31,9 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `spn_unsat_n48_d24` | **2.35 ms** | 22.35 ms | 58.31 ms | 27.06 ms | 6.97 ms | 32.47 ms |
 | `spn_sat_n64_d32` | **2.18 ms** | 30.83 ms | 77.31 ms | 27.36 ms | 9.47 ms | 84.09 ms |

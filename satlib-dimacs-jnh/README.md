@@ -14,12 +14,17 @@
 
 All 50 variable-clause-length random SAT benchmarks (`jnh1`–`jnh310`, $n = 100$) contributed by John Hooker to the Second DIMACS Challenge.
 
+![Hooker JNH empirical variable clause-length histogram and heterogeneous factor graph](diagram.svg)
+
+*Figure: Empirical variable clause-length histogram $P(k)$ ($k \in [2,14]$, mean $\bar{k} = 4.91$) parsed across all 42,000 clauses of the 50 Hooker JNH benchmarks paired with a heterogeneous multi-arity factor graph. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 50 original native **DIMACS `.cnf.xz`** files (285.7 KB).
 - **`aig-converted/`** — 50 exact **Binary AIGER 1.9 `.aig.xz`** conversions (373.9 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 50 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (288.0 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 50 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (970.1 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 50 instances (**16 SAT / 34 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -28,11 +33,11 @@ All 50 variable-clause-length random SAT benchmarks (`jnh1`–`jnh310`, $n = 100
 | **Binary AIGER 1.9** | `aig-converted/` | 50 | Inputs: 100; ANDs: 3,742–4,452 | 373.9 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 50 | Native XOR clauses total: 0 | 288.0 KB |
 | **DIMACS-ANF** | `anf-converted/` | 50 | Vars: 1,662–2,119; Eqs: 2,362–2,919 (deg ≤ 3) | 970.1 KB |
-| **Total (4 Formats, Status: Mixed)** | | **200** | | **1.87 MB** |
+| **Total (4 Formats, Status: 16 SAT / 34 UNSAT)** | | **200** | | **1.87 MB** |
 
 ## Comparative 1-Core Benchmark Results (All 50 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 50 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 50 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

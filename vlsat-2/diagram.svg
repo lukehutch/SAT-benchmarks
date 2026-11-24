@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 480" width="940" height="480">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+    <marker id="arr-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .title { font: 700 18px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .sub { font: 400 12.5px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #475569; }
+      .h3 { font: 700 13px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .body { font: 400 11.5px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #334155; }
+      .mono { font: 600 10.8px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fill: #1e293b; }
+      .pl { font: 700 10.5px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fill: #0f172a; }
+      .tr { font: 700 9.5px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fill: #ffffff; }
+      .unit { font: 700 11px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect x="2" y="2" width="936" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="26" y="34" class="title">VLSAT-2 — Nested-Unit Petri Net (NUPN) Decomposition to SAT</text>
+  <text x="26" y="54" class="sub">INRIA / CADP benchmarks: partition concurrent Petri-net places into nested 1-safe sequential units via graph coloring / clique SAT</text>
+  <line x1="24" y1="66" x2="916" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="24" y="80" width="340" height="314" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="40" y="103" class="h3">1. Nested-Unit Petri Net (NUPN)</text>
+  <rect x="38" y="114" width="312" height="240" rx="10" fill="#ffffff" stroke="#64748b" stroke-width="1.4" stroke-dasharray="5,3"/>
+  <text x="48" y="131" class="unit" fill="#475569">Root Unit U₀ (concurrent composition U₁ ∥ U₂)</text>
+  <rect x="50" y="142" width="128" height="196" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="60" y="159" class="unit" fill="#1d4ed8">Unit U₁ (≤1 token)</text>
+  <rect x="208" y="142" width="130" height="196" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="218" y="159" class="unit" fill="#047857">Unit U₂ (≤1 token)</text>
+  <line x1="114" y1="206" x2="114" y2="218" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="106" y1="238" x2="88" y2="251" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="122" y1="238" x2="140" y2="251" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="273" y1="206" x2="273" y2="218" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="265" y1="238" x2="247" y2="251" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="281" y1="238" x2="299" y2="251" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="157" y1="278" x2="182" y2="292" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="230" y1="278" x2="204" y2="292" stroke="#475569" stroke-width="1.6" marker-end="url(#arr)"/>
+  <circle cx="114" cy="190" r="15" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="114" cy="190" r="5" fill="#2563eb"/>
+  <text x="132" y="194" class="pl">p1</text>
+  <circle cx="82" cy="266" r="15" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <text x="82" y="270" text-anchor="middle" class="pl">p2</text>
+  <circle cx="146" cy="266" r="15" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <text x="146" y="270" text-anchor="middle" class="pl">p3</text>
+  <circle cx="273" cy="190" r="15" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <circle cx="273" cy="190" r="5" fill="#059669"/>
+  <text x="291" y="194" class="pl">p4</text>
+  <circle cx="241" cy="266" r="15" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="241" y="270" text-anchor="middle" class="pl">p5</text>
+  <circle cx="305" cy="266" r="15" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="305" y="270" text-anchor="middle" class="pl">p6</text>
+  <rect x="101" y="220" width="26" height="16" rx="3" fill="#334155"/>
+  <text x="114" y="231.5" text-anchor="middle" class="tr">t1</text>
+  <rect x="180" y="290" width="26" height="16" rx="3" fill="#7c3aed"/>
+  <text x="193" y="301.5" text-anchor="middle" class="tr">t2</text>
+  <rect x="260" y="220" width="26" height="16" rx="3" fill="#334155"/>
+  <text x="273" y="231.5" text-anchor="middle" class="tr">t3</text>
+  <text x="40" y="378" class="body">Unit invariant: ∑_{p∈Uᵢ} m(p) ≤ 1 (places in same unit</text>
+  <text x="40" y="391" class="body">can NEVER hold tokens concurrently).</text>
+  <line x1="366" y1="237" x2="394" y2="237" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arr-b)"/>
+  <rect x="398" y="80" width="246" height="314" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="414" y="103" class="h3">2. Place Concurrency Graph</text>
+  <text x="414" y="121" class="body">Edge (pᵢ, pⱼ) iff pᵢ ∥ pⱼ reachable</text>
+  <text x="414" y="136" class="body">together ⇒ must get distinct units!</text>
+  <line x1="456" y1="185" x2="586" y2="185" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="185" x2="586" y2="248" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="185" x2="586" y2="311" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="248" x2="586" y2="185" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="248" x2="586" y2="248" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="248" x2="586" y2="311" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="311" x2="586" y2="185" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="311" x2="586" y2="248" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="456" y1="311" x2="586" y2="311" stroke="#94a3b8" stroke-width="1.4"/>
+  <circle cx="456" cy="185" r="14" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+  <text x="456" y="189" text-anchor="middle" style="font:700 11px monospace;fill:#ffffff;">p1</text>
+  <circle cx="456" cy="248" r="14" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+  <text x="456" y="252" text-anchor="middle" style="font:700 11px monospace;fill:#ffffff;">p2</text>
+  <circle cx="456" cy="311" r="14" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+  <text x="456" y="315" text-anchor="middle" style="font:700 11px monospace;fill:#ffffff;">p3</text>
+  <circle cx="586" cy="185" r="14" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+  <text x="586" y="189" text-anchor="middle" style="font:700 11px monospace;fill:#ffffff;">p4</text>
+  <circle cx="586" cy="248" r="14" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+  <text x="586" y="252" text-anchor="middle" style="font:700 11px monospace;fill:#ffffff;">p5</text>
+  <circle cx="586" cy="311" r="14" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+  <text x="586" y="315" text-anchor="middle" style="font:700 11px monospace;fill:#ffffff;">p6</text>
+  <text x="414" y="358" class="mono">Min # units = χ(G_conc)</text>
+  <text x="414" y="376" class="body">Independent sets ↔ safe units;</text>
+  <text x="414" y="390" class="body">cliques ↔ lower bound on units.</text>
+  <line x1="646" y1="237" x2="674" y2="237" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arr-b)"/>
+  <rect x="678" y="80" width="238" height="314" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+  <text x="694" y="103" class="h3">3. VLSAT-2 CNF Formula</text>
+  <text x="694" y="125" class="mono">x(p, u): place p in unit u</text>
+  <rect x="692" y="138" width="210" height="86" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="702" y="158" class="mono">ALO:  ∨_{u=1..K} x(p, u)</text>
+  <text x="702" y="177" class="mono">AMO:  (¬x(p,u) ∨ ¬x(p,v))</text>
+  <text x="702" y="196" class="mono">Conc: (¬x(pᵢ,u) ∨ ¬x(pⱼ,u))</text>
+  <text x="702" y="214" class="body">for all concurrent pᵢ ∥ pⱼ</text>
+  <rect x="692" y="238" width="210" height="140" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="702" y="259" class="h3">Structural Signature</text>
+  <text x="702" y="280" class="mono">• 99–100% binary clauses</text>
+  <text x="702" y="298" class="mono">• 99–100% Horn clauses</text>
+  <text x="702" y="316" class="mono">• High α = m/n (14–22)</text>
+  <text x="702" y="334" class="mono">• Deep hidden clique</text>
+  <text x="702" y="352" class="mono">  UNSAT cores defeat CDCL</text>
+  <text x="702" y="370" class="mono">  (10×–1000× cardinality win)</text>
+  <rect x="24" y="408" width="892" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="40" y="430" class="body"><tspan style="font-weight:700;fill:#0f172a;">Committed Suite (10 smallest of 100 official INRIA formulas):</tspan> 544–1,125 vars, 8,738–22,250 clauses (1 SAT / 9 UNSAT in expected.tsv).</text>
+  <text x="40" y="449" class="body">Full 100-instance manifest in vlsat2_100.uri (50 SAT / 50 UNSAT selected from 132,000 CADP NUPN decomposition problems).</text>
+</svg>

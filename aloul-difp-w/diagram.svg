@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Aloul Wallace-Tree Multiplier Integer Factoring SAT Architecture">
+  <defs>
+    <marker id="arr-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+    <marker id="arr-purp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arr-amb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="28" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Aloul Wallace-Tree Multiplier Integer Factoring (aloul-difp-w)</text>
+    <text x="28" y="53" font-size="11.8" fill="#475569">Parallel 3:2 Carry-Save Adder (CSA) tree reduction in O(log₃/₂ n) depth · 15 SAT semiprimes (n ∈ {19, 20, 21}-bit primes, randomly reordered)</text>
+    <rect x="772" y="18" width="122" height="24" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+    <text x="833" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">15 SAT · Wallace</text>
+    <line x1="24" y1="65" x2="896" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="24" y="78" width="540" height="380" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="40" y="100" font-size="13" font-weight="700" fill="#0f172a">Wallace 3:2 Carry-Save Reduction Tree (6×6 Bit-Column Schematic of n×n)</text>
+    <text x="40" y="116" font-size="10.4" fill="#475569">Groups of 3 bits per column compress in parallel (FA: 3→2, HA: 2→2) until height ≤ 2 for final CPA</text>
+    <text x="535" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">0</tspan></text>
+    <text x="500" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">1</tspan></text>
+    <text x="465" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">2</tspan></text>
+    <text x="430" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">3</tspan></text>
+    <text x="395" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">4</tspan></text>
+    <text x="360" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">5</tspan></text>
+    <text x="325" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">6</tspan></text>
+    <text x="290" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">7</tspan></text>
+    <text x="255" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">8</tspan></text>
+    <text x="220" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">9</tspan></text>
+    <text x="185" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">10</tspan></text>
+    <text x="150" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">2<tspan baseline-shift="super" font-size="72%">11</tspan></text>
+    <rect x="38" y="140" width="512" height="84" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="46" y="156" font-size="10.2" font-weight="700" fill="#2563eb">Stage 0</text>
+    <text x="46" y="169" font-size="9" fill="#475569">Partial Prod</text>
+    <text x="46" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">h<tspan baseline-shift="sub" font-size="72%">max</tspan> = 6</text>
+    <circle cx="535" cy="182.0" r="3.2" fill="#2563eb"/>
+    <circle cx="500" cy="176.7" r="3.2" fill="#2563eb"/>
+    <circle cx="500" cy="187.3" r="3.2" fill="#2563eb"/>
+    <rect x="457.5" y="166.6" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="465" cy="171.4" r="3.2" fill="#2563eb"/>
+    <circle cx="465" cy="182.0" r="3.2" fill="#2563eb"/>
+    <circle cx="465" cy="192.6" r="3.2" fill="#2563eb"/>
+    <rect x="422.5" y="161.3" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="430" cy="166.1" r="3.2" fill="#2563eb"/>
+    <circle cx="430" cy="176.7" r="3.2" fill="#2563eb"/>
+    <circle cx="430" cy="187.3" r="3.2" fill="#2563eb"/>
+    <circle cx="430" cy="197.9" r="3.2" fill="#2563eb"/>
+    <rect x="387.5" y="156.0" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <rect x="387.5" y="187.8" width="15" height="20.2" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+    <circle cx="395" cy="160.8" r="3.2" fill="#2563eb"/>
+    <circle cx="395" cy="171.4" r="3.2" fill="#2563eb"/>
+    <circle cx="395" cy="182.0" r="3.2" fill="#2563eb"/>
+    <circle cx="395" cy="192.6" r="3.2" fill="#2563eb"/>
+    <circle cx="395" cy="203.2" r="3.2" fill="#2563eb"/>
+    <rect x="352.5" y="150.7" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <rect x="352.5" y="182.5" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="360" cy="155.5" r="3.2" fill="#2563eb"/>
+    <circle cx="360" cy="166.1" r="3.2" fill="#2563eb"/>
+    <circle cx="360" cy="176.7" r="3.2" fill="#2563eb"/>
+    <circle cx="360" cy="187.3" r="3.2" fill="#2563eb"/>
+    <circle cx="360" cy="197.9" r="3.2" fill="#2563eb"/>
+    <circle cx="360" cy="208.5" r="3.2" fill="#2563eb"/>
+    <rect x="317.5" y="156.0" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <rect x="317.5" y="187.8" width="15" height="20.2" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+    <circle cx="325" cy="160.8" r="3.2" fill="#2563eb"/>
+    <circle cx="325" cy="171.4" r="3.2" fill="#2563eb"/>
+    <circle cx="325" cy="182.0" r="3.2" fill="#2563eb"/>
+    <circle cx="325" cy="192.6" r="3.2" fill="#2563eb"/>
+    <circle cx="325" cy="203.2" r="3.2" fill="#2563eb"/>
+    <rect x="282.5" y="161.3" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="290" cy="166.1" r="3.2" fill="#2563eb"/>
+    <circle cx="290" cy="176.7" r="3.2" fill="#2563eb"/>
+    <circle cx="290" cy="187.3" r="3.2" fill="#2563eb"/>
+    <circle cx="290" cy="197.9" r="3.2" fill="#2563eb"/>
+    <rect x="247.5" y="166.6" width="15" height="30.8" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="255" cy="171.4" r="3.2" fill="#2563eb"/>
+    <circle cx="255" cy="182.0" r="3.2" fill="#2563eb"/>
+    <circle cx="255" cy="192.6" r="3.2" fill="#2563eb"/>
+    <circle cx="220" cy="176.7" r="3.2" fill="#2563eb"/>
+    <circle cx="220" cy="187.3" r="3.2" fill="#2563eb"/>
+    <circle cx="185" cy="182.0" r="3.2" fill="#2563eb"/>
+    <line x1="120" y1="223" x2="120" y2="230" stroke="#475569" stroke-width="1.3" marker-end="url(#arr-slate)"/>
+    <rect x="38" y="231" width="512" height="56" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="46" y="247" font-size="10.2" font-weight="700" fill="#7c3aed">Stage 1</text>
+    <text x="46" y="260" font-size="9" fill="#475569">3:2 CSA L1</text>
+    <text x="46" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">h<tspan baseline-shift="sub" font-size="72%">max</tspan> = 4</text>
+    <circle cx="535" cy="259.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="500" cy="253.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="500" cy="264.4" r="3.2" fill="#7c3aed"/>
+    <circle cx="465" cy="259.0" r="3.2" fill="#7c3aed"/>
+    <rect x="422.5" y="243.4" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="430" cy="248.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="430" cy="259.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="430" cy="269.8" r="3.2" fill="#7c3aed"/>
+    <rect x="387.5" y="243.4" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="395" cy="248.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="395" cy="259.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="395" cy="269.8" r="3.2" fill="#7c3aed"/>
+    <rect x="352.5" y="238.0" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="360" cy="242.8" r="3.2" fill="#7c3aed"/>
+    <circle cx="360" cy="253.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="360" cy="264.4" r="3.2" fill="#7c3aed"/>
+    <circle cx="360" cy="275.2" r="3.2" fill="#7c3aed"/>
+    <rect x="317.5" y="238.0" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="325" cy="242.8" r="3.2" fill="#7c3aed"/>
+    <circle cx="325" cy="253.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="325" cy="264.4" r="3.2" fill="#7c3aed"/>
+    <circle cx="325" cy="275.2" r="3.2" fill="#7c3aed"/>
+    <rect x="282.5" y="238.0" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="290" cy="242.8" r="3.2" fill="#7c3aed"/>
+    <circle cx="290" cy="253.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="290" cy="264.4" r="3.2" fill="#7c3aed"/>
+    <circle cx="290" cy="275.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="255" cy="253.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="255" cy="264.4" r="3.2" fill="#7c3aed"/>
+    <rect x="212.5" y="243.4" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="220" cy="248.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="220" cy="259.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="220" cy="269.8" r="3.2" fill="#7c3aed"/>
+    <circle cx="185" cy="259.0" r="3.2" fill="#7c3aed"/>
+    <line x1="120" y1="286" x2="120" y2="293" stroke="#475569" stroke-width="1.3" marker-end="url(#arr-slate)"/>
+    <rect x="38" y="294" width="512" height="44" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="46" y="310" font-size="10.2" font-weight="700" fill="#7c3aed">Stage 2</text>
+    <text x="46" y="323" font-size="9" fill="#475569">3:2 CSA L2</text>
+    <text x="46" y="334" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="600" fill="#64748b">h<tspan baseline-shift="sub" font-size="72%">max</tspan> = 3</text>
+    <circle cx="535" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="500" cy="310.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="500" cy="321.4" r="3.2" fill="#7c3aed"/>
+    <circle cx="465" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="430" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="395" cy="310.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="395" cy="321.4" r="3.2" fill="#7c3aed"/>
+    <rect x="352.5" y="300.4" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="360" cy="305.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="360" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="360" cy="326.8" r="3.2" fill="#7c3aed"/>
+    <rect x="317.5" y="300.4" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="325" cy="305.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="325" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="325" cy="326.8" r="3.2" fill="#7c3aed"/>
+    <rect x="282.5" y="300.4" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="290" cy="305.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="290" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="290" cy="326.8" r="3.2" fill="#7c3aed"/>
+    <rect x="247.5" y="300.4" width="15" height="31.2" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+    <circle cx="255" cy="305.2" r="3.2" fill="#7c3aed"/>
+    <circle cx="255" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="255" cy="326.8" r="3.2" fill="#7c3aed"/>
+    <circle cx="220" cy="316.0" r="3.2" fill="#7c3aed"/>
+    <circle cx="185" cy="310.6" r="3.2" fill="#7c3aed"/>
+    <circle cx="185" cy="321.4" r="3.2" fill="#7c3aed"/>
+    <line x1="120" y1="337" x2="120" y2="344" stroke="#475569" stroke-width="1.3" marker-end="url(#arr-slate)"/>
+    <rect x="38" y="345" width="512" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="46" y="361" font-size="10.2" font-weight="700" fill="#059669">Stage 3</text>
+    <text x="46" y="374" font-size="9" fill="#475569">2-Row Sum</text>
+    <circle cx="535" cy="363.0" r="3.2" fill="#059669"/>
+    <circle cx="500" cy="357.4" r="3.2" fill="#059669"/>
+    <circle cx="500" cy="368.6" r="3.2" fill="#059669"/>
+    <circle cx="465" cy="363.0" r="3.2" fill="#059669"/>
+    <circle cx="430" cy="363.0" r="3.2" fill="#059669"/>
+    <circle cx="395" cy="357.4" r="3.2" fill="#059669"/>
+    <circle cx="395" cy="368.6" r="3.2" fill="#059669"/>
+    <circle cx="360" cy="363.0" r="3.2" fill="#059669"/>
+    <circle cx="325" cy="357.4" r="3.2" fill="#059669"/>
+    <circle cx="325" cy="368.6" r="3.2" fill="#059669"/>
+    <circle cx="290" cy="357.4" r="3.2" fill="#059669"/>
+    <circle cx="290" cy="368.6" r="3.2" fill="#059669"/>
+    <circle cx="255" cy="357.4" r="3.2" fill="#059669"/>
+    <circle cx="255" cy="368.6" r="3.2" fill="#059669"/>
+    <circle cx="220" cy="357.4" r="3.2" fill="#059669"/>
+    <circle cx="220" cy="368.6" r="3.2" fill="#059669"/>
+    <circle cx="185" cy="357.4" r="3.2" fill="#059669"/>
+    <circle cx="185" cy="368.6" r="3.2" fill="#059669"/>
+    <rect x="38" y="391" width="512" height="24" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+    <text x="294.0" y="406.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#047857">Final Carry-Propagate Adder (CPA: 2 rows → 2n-bit product P = p × q)</text>
+    <rect x="38" y="425" width="512" height="22" rx="6" fill="#059669"/>
+    <text x="48" y="439.5" font-size="9.5" font-weight="700" fill="#ffffff">Clamped N:</text>
+    <text x="535" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N0</text>
+    <text x="500" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N1</text>
+    <text x="465" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N2</text>
+    <text x="430" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N3</text>
+    <text x="395" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N4</text>
+    <text x="360" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N5</text>
+    <text x="325" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N6</text>
+    <text x="290" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N7</text>
+    <text x="255" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N8</text>
+    <text x="220" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N9</text>
+    <text x="185" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N10</text>
+    <text x="150" y="439.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#ffffff">N11</text>
+    <rect x="580" y="78" width="316" height="112" rx="9" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+    <text x="594" y="98" font-size="12" font-weight="700" fill="#6d28d9">3:2 Carry-Save Adder (CSA) Cell</text>
+    <rect x="662" y="110" width="102" height="50" rx="7" fill="#ffffff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="713" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Full Adder</text>
+    <text x="713" y="148" text-anchor="middle" font-size="9" fill="#6d28d9">3 bits → 2 bits</text>
+    <line x1="628" y1="120" x2="660" y2="120" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+    <text x="622" y="123.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">a<tspan baseline-shift="sub" font-size="72%">k</tspan></text>
+    <line x1="628" y1="135" x2="660" y2="135" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+    <text x="622" y="138.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">b<tspan baseline-shift="sub" font-size="72%">k</tspan></text>
+    <line x1="628" y1="150" x2="660" y2="150" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+    <text x="622" y="153.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">c<tspan baseline-shift="sub" font-size="72%">k</tspan></text>
+    <line x1="764" y1="126" x2="794" y2="126" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <text x="800" y="129.5" font-size="9.4" font-weight="700" fill="#6d28d9">s<tspan baseline-shift="sub" font-size="72%">k</tspan> = a⊕b⊕c</text>
+    <line x1="764" y1="146" x2="794" y2="146" stroke="#d97706" stroke-width="1.6" marker-end="url(#arr-amb)"/>
+    <text x="800" y="149.5" font-size="9.4" font-weight="700" fill="#b45309">c<tspan baseline-shift="sub" font-size="72%">k+1</tspan> = Maj₃</text>
+    <text x="594" y="179" font-size="9.4" fill="#475569">Depth recurrence: h<tspan baseline-shift="sub" font-size="72%">t+1</tspan> ≤ ⌈2·h<tspan baseline-shift="sub" font-size="72%">t</tspan> / 3⌉ ⇒ O(log₃/₂ n) layers</text>
+    <rect x="580" y="200" width="316" height="124" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="594" y="220" font-size="12" font-weight="700" fill="#0f172a">Wallace vs Array (Same Semiprime)</text>
+    <text x="594" y="234" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.1" fill="#047857">0x1451990C0F = 283,097 × 308,263 (19b)</text>
+    <text x="594" y="250" font-size="9.2" font-weight="700" fill="#64748b">Metric</text>
+    <text x="726" y="250" text-anchor="end" font-size="9.2" font-weight="700" fill="#6d28d9">Wallace</text>
+    <text x="792" y="250" text-anchor="end" font-size="9.2" font-weight="700" fill="#2563eb">Array</text>
+    <text x="882" y="250" text-anchor="end" font-size="9.2" font-weight="700" fill="#475569">Delta</text>
+    <line x1="592" y1="254" x2="884" y2="254" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="594" y="266.0" font-size="9.3" fill="#334155">CNF Vars</text>
+    <text x="726" y="266.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#6d28d9">1,755</text>
+    <text x="792" y="266.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#2563eb">1,201</text>
+    <text x="882" y="266.0" text-anchor="end" font-size="9.1" font-weight="600" fill="#0f172a">+46%</text>
+    <text x="594" y="279.5" font-size="9.3" fill="#334155">CNF Clauses</text>
+    <text x="726" y="279.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#6d28d9">10,446</text>
+    <text x="792" y="279.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#2563eb">6,563</text>
+    <text x="882" y="279.5" text-anchor="end" font-size="9.1" font-weight="600" fill="#0f172a">+59%</text>
+    <text x="594" y="293.0" font-size="9.3" fill="#334155">Native XORs</text>
+    <text x="726" y="293.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#6d28d9">567</text>
+    <text x="792" y="293.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#2563eb">380</text>
+    <text x="882" y="293.0" text-anchor="end" font-size="9.1" font-weight="600" fill="#0f172a">+49%</text>
+    <text x="594" y="306.5" font-size="9.3" fill="#334155">Deg CV (skew)</text>
+    <text x="726" y="306.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#6d28d9">4.23</text>
+    <text x="792" y="306.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#2563eb">0.45</text>
+    <text x="882" y="306.5" text-anchor="end" font-size="9.1" font-weight="600" fill="#0f172a">9.4× hub!</text>
+    <text x="594" y="320.0" font-size="9.3" fill="#334155">Logic Depth</text>
+    <text x="726" y="320.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#6d28d9">O(log n)</text>
+    <text x="792" y="320.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#2563eb">O(n)</text>
+    <text x="882" y="320.0" text-anchor="end" font-size="9.1" font-weight="600" fill="#0f172a">Shallow</text>
+    <rect x="580" y="334" width="316" height="124" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="594" y="354" font-size="12" font-weight="700" fill="#0f172a">Corpus Dimensions (15 SAT Instances)</text>
+    <text x="594" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">difp_19 / 20 (wal)</text>
+    <text x="882" y="374" text-anchor="end" font-size="9.4" font-weight="600" fill="#7c3aed">10 files</text>
+    <rect x="594" y="378" width="288" height="7.5" rx="3" fill="#e2e8f0"/>
+    <rect x="594" y="378" width="236.2" height="7.5" rx="3" fill="#7c3aed" fill-opacity="0.85"/>
+    <text x="594" y="396" font-size="9" fill="#475569">1,755 v · 10,446 c · 567 XOR</text>
+    <text x="594" y="411" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">difp_21 (wal)</text>
+    <text x="882" y="411" text-anchor="end" font-size="9.4" font-weight="600" fill="#2563eb">5 files</text>
+    <rect x="594" y="415" width="288" height="7.5" rx="3" fill="#e2e8f0"/>
+    <rect x="594" y="415" width="288.0" height="7.5" rx="3" fill="#2563eb" fill-opacity="0.85"/>
+    <text x="594" y="433" font-size="9" fill="#475569">2,125 v · 12,677 c · 683 XOR</text>
+    <text x="594" y="450" font-size="9.3" fill="#475569">Total native XORs: 9,085 · ρ<tspan baseline-shift="sub" font-size="72%">crit</tspan> = 1.36× · κ = 0.97 · 8% Bin</text>
+  </g>
+</svg>

@@ -1,5 +1,9 @@
 # UBC SATLIB Complete 97-Archive URI Manifest (`satlib-archive-uris`)
 
+![UBC SATLIB 97-archive URI taxonomy tree into 22 committed collections](diagram.svg)
+
+*Figure: Complete taxonomy tree mapping all 97 official UBC SATLIB `.tar.gz` archive URIs (79 synthetic ensemble + 12 DIMACS + 6 verification/planning) into the 22 committed 4-format `satlib-*` collections (331 CNFs) plus `pretolani-pret`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) (Twitter/X)
@@ -14,6 +18,7 @@ Rather than duplicating multi-gigabyte synthetic ensemble archives (50,000+ raw 
 
 - [`satlib_all_97_archives.uri`](satlib_all_97_archives.uri) — Complete list of all 97 official UBC SATLIB `.tar.gz` URLs.
 - [`src/fetch_satlib.py`](src/fetch_satlib.py) — Parallel archive downloader (`python3 src/fetch_satlib.py --all-archives <out_dir>`).
+- **Ground-Truth Verdicts:** Because this catalog indexes multi-instance `.tar.gz` archives rather than individual formulas, per-instance `expected.tsv` manifests live directly inside each of the 22 standalone `../satlib-*/` collections below (331 committed instances total: **235 SAT / 96 UNSAT / 0 UNKNOWN**).
 
 ## Committed Standalone SATLIB Collections (331 Instances Across 22 Collections, All 4 Formats)
 
@@ -46,7 +51,7 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 
 ## Comparative 1-Core Benchmark Results (All 331 Committed Instances Across 22 SATLIB Collections, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 thread per run across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 verdict disagreements, 100% SAT model verification).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, 1 thread per run across 8 dedicated physical cores, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 verdict disagreements, 100% SAT model verification).
 
 | Collection (Instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|

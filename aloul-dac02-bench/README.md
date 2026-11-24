@@ -12,12 +12,17 @@
 
 Mixed symmetry-rich EDA/combinatorial suite from Aloul et al.'s DAC 2002 paper spanning FPGA switch-boxes, global routing (SAT), pigeonhole (`hole`, `chnl`), and randomized Urquhart parity instances (`Urq3_5`–`Urq8_5`).
 
+![Aloul DAC 2002 symmetry-rich families and automorphism orbit lex-leader SBP pruning](diagram.svg)
+
+*Figure: Five symmetry-rich Aloul DAC 2002 benchmark families (`Urq`, `hole`, `chnl`, `fpga`, `s3-3`; 14 SAT / 18 UNSAT) paired with an automorphism orbit tree illustrating lex-leader symmetry-breaking predicate ($\mathrm{SBP}$) pruning. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 32 original native **DIMACS `.cnf.xz`** files (120.6 KB).
 - **`aig-converted/`** — 32 exact **Binary AIGER 1.9 `.aig.xz`** conversions (156.1 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 32 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (106.4 KB, `618` extracted native XOR parity clauses).
 - **`anf-converted/`** — 32 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (291.6 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 32 instances (**14 SAT / 18 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -26,11 +31,11 @@ Mixed symmetry-rich EDA/combinatorial suite from Aloul et al.'s DAC 2002 paper s
 | **Binary AIGER 1.9** | `aig-converted/` | 32 | Inputs: 46–1,056; ANDs: 447–22,693 | 156.1 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 32 | Native XOR clauses total: 618 | 106.4 KB |
 | **DIMACS-ANF** | `anf-converted/` | 32 | Vars: 88–6,983; Eqs: 236–10,998 (deg ≤ 3) | 291.6 KB |
-| **Total (4 Formats, Status: Mixed)** | | **128** | | **674.7 KB** |
+| **Total (4 Formats, Status: 14 SAT / 18 UNSAT)** | | **128** | | **674.7 KB** |
 
 ## Comparative 1-Core Benchmark Results (All 32 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 32 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 32 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

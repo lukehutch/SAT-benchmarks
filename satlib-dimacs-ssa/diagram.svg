@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 488" width="920" height="488" role="img" aria-label="Single-Stuck-At Circuit Fault ATPG and D-Calculus Propagation Miter">
+  <defs>
+    <marker id="arr-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="484" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="28" y="34" font-size="17.5" font-weight="700" fill="#0f172a">SATLIB Single-Stuck-At Circuit Fault ATPG (satlib-dimacs-ssa)</text>
+    <text x="28" y="53" font-size="11.8" fill="#475569">Larrabee / Nemesis D-calculus fault-activation &amp; propagation miters on ISCAS'85 (c432, c2670, c6288, c7552)</text>
+    <rect x="752" y="18" width="142" height="24" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="823" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">4 SAT · 4 UNSAT</text>
+    <line x1="24" y1="65" x2="896" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="24" y="78" width="562" height="388" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="40" y="100" font-size="13" font-weight="700" fill="#0f172a">ATPG Fault Activation &amp; D-Calculus Propagation (Wire w Stuck-At-0)</text>
+    <text x="40" y="116" font-size="10.4" fill="#475569">Composite Roth signal D = (good=1 / faulty=0), D̄ = (0/1) propagates via non-controlling side inputs</text>
+    <rect x="38" y="128" width="534" height="214" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2"/>
+    <rect x="48" y="136" width="154" height="20" rx="4" fill="#eff6ff"/>
+    <text x="125" y="149.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1d4ed8">1. Fault Activation (Justify)</text>
+    <rect x="214" y="136" width="214" height="20" rx="4" fill="#fef2f2"/>
+    <text x="321" y="149.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">2. Path Sensitization (D-Chain)</text>
+    <rect x="440" y="136" width="118" height="20" rx="4" fill="#ecfdf5"/>
+    <text x="499" y="149.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#047857">3. Observe (Miter)</text>
+    <rect x="46" y="179" width="48" height="22" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="70" y="193.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">x₁ = 1</text>
+    <rect x="46" y="215" width="48" height="22" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="70" y="229.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">x₂ = 1</text>
+    <rect x="46" y="261" width="48" height="22" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <text x="70" y="275.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#047857">x₃ = 1</text>
+    <rect x="46" y="303" width="48" height="22" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <text x="70" y="317.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#047857">x₄ = 0</text>
+    <line x1="94" y1="190" x2="124" y2="200" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+    <line x1="94" y1="226" x2="124" y2="216" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+    <rect x="126" y="188" width="52" height="40" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="152" y="212" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1d4ed8">AND</text>
+    <line x1="178" y1="208" x2="216" y2="208" stroke="#2563eb" stroke-width="2"/>
+    <text x="197.0" y="201" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#1d4ed8">w=1</text>
+    <rect x="216" y="193" width="44" height="30" rx="6" fill="#dc2626" stroke="#991b1b" stroke-width="1.4"/>
+    <text x="238" y="207" text-anchor="middle" font-size="8.5" font-weight="800" fill="#ffffff">s-a-0</text>
+    <text x="238" y="218" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="700" fill="#fef2f2">D=1/0</text>
+    <path d="M 260 208 C 280 208, 278 223, 290 223" fill="none" stroke="#dc2626" stroke-width="2.6" marker-end="url(#arr-red)"/>
+    <path d="M 94 272 L 266 272 L 290 242" fill="none" stroke="#059669" stroke-width="1.8" stroke-dasharray="4,2" marker-end="url(#arr-grn)"/>
+    <text x="202" y="266" text-anchor="middle" font-size="8.6" font-weight="600" fill="#047857">non-ctrl side input (1)</text>
+    <rect x="292" y="212" width="56" height="40" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="320" y="236" text-anchor="middle" font-size="10.2" font-weight="700" fill="#b91c1c">NAND</text>
+    <circle cx="352" cy="232" r="4" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+    <path d="M 356 232 C 372 232, 374 251, 390 251" fill="none" stroke="#dc2626" stroke-width="2.6" marker-end="url(#arr-red)"/>
+    <rect x="351.0" y="211" width="44" height="16" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+    <text x="373.0" y="222" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#b45309">D̄=0/1</text>
+    <path d="M 94 314 L 360 314 L 390 270" fill="none" stroke="#059669" stroke-width="1.8" stroke-dasharray="4,2" marker-end="url(#arr-grn)"/>
+    <text x="250" y="308" text-anchor="middle" font-size="8.6" font-weight="600" fill="#047857">non-ctrl side input (0)</text>
+    <rect x="392" y="240" width="52" height="40" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="418" y="264" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">OR</text>
+    <line x1="444" y1="260" x2="464" y2="260" stroke="#dc2626" stroke-width="2.6" marker-end="url(#arr-red)"/>
+    <rect x="466" y="232" width="82" height="56" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+    <text x="507" y="252" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#047857">y ⊕ y<tspan baseline-shift="super" font-size="72%">f</tspan> = 1</text>
+    <text x="507" y="267" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">Output D̄!</text>
+    <text x="507" y="281" text-anchor="middle" font-size="8.4" fill="#334155">Detected</text>
+    <rect x="38" y="354" width="260" height="96" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+    <text x="50" y="373" font-size="11.2" font-weight="700" fill="#047857">SAT ⇒ Detectable Fault (Test Pattern)</text>
+    <text x="50" y="391" font-size="9.6" fill="#334155">• Satisfying model x* activates s-a-0/1</text>
+    <text x="50" y="407" font-size="9.6" fill="#334155">  and propagates D/D̄ to a primary output</text>
+    <text x="50" y="423" font-size="9.6" fill="#334155">• Used in chip silicon manufacturing test</text>
+    <text x="50" y="440" font-size="9.4" font-weight="700" fill="#047857">4 SAT instances: ssa7552-{038,158,159,160}</text>
+    <rect x="310" y="354" width="262" height="96" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.3"/>
+    <text x="322" y="373" font-size="11.2" font-weight="700" fill="#b91c1c">UNSAT ⇒ Redundant / Untestable Fault</text>
+    <text x="322" y="391" font-size="9.6" fill="#334155">• No vector x can simultaneously justify</text>
+    <text x="322" y="407" font-size="9.6" fill="#334155">  and sensitize wire w to any output y<tspan baseline-shift="sub" font-size="72%">j</tspan></text>
+    <text x="322" y="423" font-size="9.6" fill="#334155">• Enables redundancy removal in synthesis</text>
+    <text x="322" y="440" font-size="9.4" font-weight="700" fill="#b91c1c">4 UNSAT: c432, c2670 (×2), c6288 (16×16)</text>
+    <rect x="602" y="78" width="294" height="258" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="616" y="99" font-size="12" font-weight="700" fill="#0f172a">All 8 ISCAS'85 SSA Benchmarks</text>
+    <text x="616" y="113" font-size="9.4" fill="#64748b">Vars: 435–10,410 · Clauses: 1,027–34,238 · 92 XORs</text>
+    <rect x="612" y="126.0" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="140.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa0432-003</text>
+    <text x="702" y="140.0" font-size="8.5" fill="#475569">435 v · 1,027 c</text>
+    <rect x="842" y="129.5" width="38" height="14.5" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="861" y="139.5" text-anchor="middle" font-size="8.1" font-weight="700" fill="#dc2626">UNSAT</text>
+    <rect x="612" y="151.5" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="165.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa2670-130</text>
+    <text x="702" y="165.5" font-size="8.5" fill="#475569">1,359 v · 3,321 c</text>
+    <rect x="842" y="155.0" width="38" height="14.5" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="861" y="165.0" text-anchor="middle" font-size="8.1" font-weight="700" fill="#dc2626">UNSAT</text>
+    <rect x="612" y="177.0" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="191.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa2670-141</text>
+    <text x="702" y="191.0" font-size="8.5" fill="#475569">986 v · 2,315 c</text>
+    <rect x="842" y="180.5" width="38" height="14.5" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="861" y="190.5" text-anchor="middle" font-size="8.1" font-weight="700" fill="#dc2626">UNSAT</text>
+    <rect x="612" y="202.5" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="216.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa6288-047</text>
+    <text x="702" y="216.5" font-size="8.5" fill="#475569">10,410 v · 34.2k c</text>
+    <rect x="842" y="206.0" width="38" height="14.5" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="861" y="216.0" text-anchor="middle" font-size="8.1" font-weight="700" fill="#dc2626">UNSAT</text>
+    <rect x="612" y="228.0" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="242.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa7552-038</text>
+    <text x="702" y="242.0" font-size="8.5" fill="#475569">1,501 v · 3,575 c</text>
+    <rect x="842" y="231.5" width="38" height="14.5" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="861" y="241.5" text-anchor="middle" font-size="8.1" font-weight="700" fill="#059669">SAT</text>
+    <rect x="612" y="253.5" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="267.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa7552-158</text>
+    <text x="702" y="267.5" font-size="8.5" fill="#475569">1,363 v · 3,034 c</text>
+    <rect x="842" y="257.0" width="38" height="14.5" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="861" y="267.0" text-anchor="middle" font-size="8.1" font-weight="700" fill="#059669">SAT</text>
+    <rect x="612" y="279.0" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="293.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa7552-159</text>
+    <text x="702" y="293.0" font-size="8.5" fill="#475569">1,363 v · 3,032 c</text>
+    <rect x="842" y="282.5" width="38" height="14.5" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="861" y="292.5" text-anchor="middle" font-size="8.1" font-weight="700" fill="#059669">SAT</text>
+    <rect x="612" y="304.5" width="274" height="21.5" rx="4.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <text x="619" y="318.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">ssa7552-160</text>
+    <text x="702" y="318.5" font-size="8.5" fill="#475569">1,391 v · 3,126 c</text>
+    <rect x="842" y="308.0" width="38" height="14.5" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="861" y="318.0" text-anchor="middle" font-size="8.1" font-weight="700" fill="#059669">SAT</text>
+    <rect x="602" y="348" width="294" height="118" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="616" y="368" font-size="12" font-weight="700" fill="#0f172a">Larrabee / Nemesis CNF Encoding</text>
+    <text x="616" y="387.0" font-size="9.4" font-weight="700" fill="#1d4ed8">Fault Cone:</text>
+    <text x="686" y="387.0" font-size="9.2" fill="#334155">Duplicates only gates reachable from wire w</text>
+    <text x="616" y="402.8" font-size="9.4" font-weight="700" fill="#1d4ed8">Active Flag:</text>
+    <text x="686" y="402.8" font-size="9.2" fill="#334155">a<tspan baseline-shift="sub" font-size="72%">g</tspan> ⇒ (g ≠ g<tspan baseline-shift="super" font-size="72%">f</tspan>) ∧ ⋁<tspan baseline-shift="sub" font-size="72%">h∈out(g)</tspan> a<tspan baseline-shift="sub" font-size="72%">h</tspan></text>
+    <text x="616" y="418.6" font-size="9.4" font-weight="700" fill="#1d4ed8">Clause Mix:</text>
+    <text x="686" y="418.6" font-size="9.2" fill="#334155">52–80% binary · 72–80% Horn · k̄ ≈ 2.3</text>
+    <text x="616" y="434.4" font-size="9.4" font-weight="700" fill="#1d4ed8">Regime:</text>
+    <text x="686" y="434.4" font-size="9.2" fill="#334155">Over (ρ<tspan baseline-shift="sub" font-size="72%">crit</tspan> = 1.84×–2.04×, κ = 0.84)</text>
+    <text x="616" y="450.2" font-size="9.4" font-weight="700" fill="#1d4ed8">Benchmarks:</text>
+    <text x="686" y="450.2" font-size="9.2" fill="#334155">c6288 is a 16×16 array multiplier (34k cls)</text>
+  </g>
+</svg>

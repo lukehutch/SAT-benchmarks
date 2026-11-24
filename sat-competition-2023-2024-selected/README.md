@@ -10,12 +10,17 @@ A curated 14-instance cross-domain suite **sourced from the International SAT Co
 
 Twelve of these instances form the SAT Competition slice of the unified 50-benchmark flat-CNF gauntlet; `two_trees_511v` and `mp1_nb7t42` are companion SC 2023/2024 instances from the same selection.
 
+![Log-scale clause footprint and archetypes of curated SC 2023-2024 CNFs](diagram.svg)
+
+*Figure: Log-scale clause footprint and SAT/UNSAT breakdown parsed live from `sc23_24_manifest.json` across all 14 curated SC 2023–2024 CNFs grouped into 4 structural archetypes (71,848 native XORs). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Reproducibility
 
 - `cnf-orig/` — Original native **DIMACS CNF** formulas (14 `.cnf.xz` files, `3.11 MB`, xz-compressed directly from official GBD `.cnf.xz` archives).
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`3.79 MB`, all 14/14 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc), including 1.09M-AND-gate `si2_b03m_m800_03.aig.xz` at `1.06 MB`).
 - `xcnf-converted/` — Lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`2.60 MB`, `71,848` extracted native XOR clauses).
 - `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`27.89 MB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 14 instances (**5 SAT / 9 UNSAT**).
 - `src/sc23_24_manifest.json` & `src/fetch_and_convert.py` — Exact GBD MD5 hashes and script to re-fetch from `benchmark-database.de` and regenerate `aig-converted/*.aig.xz`, plus `src/cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
@@ -41,9 +46,9 @@ Twelve of these instances form the SAT Competition slice of the unified 50-bench
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 600\;\text{s}$)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; all solvers read the identical flat `.cnf` file):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; all solvers read the identical flat `.cnf` file):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `tseitingrid6x200` | **3.07 ms** | >600 s (T/O) | >600 s (T/O) | 1,093.37 ms | 4.89 ms | >600 s (T/O) |
 | `tseitin_d3_n10000` | **7.66 ms** | >600 s (T/O) | >600 s (T/O) | 731.97 ms | 84.03 ms | >600 s (T/O) |

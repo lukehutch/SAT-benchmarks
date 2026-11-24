@@ -1,5 +1,9 @@
 # `@fede_intern` 12-Instance Hard SAT Challenge Pack
 
+![Forensic structural taxonomy of the 12 @fede_intern hard SAT challenge CNFs](diagram.svg)
+
+*Figure: Forensic structural taxonomy of all 12 `@fede_intern` challenge CNFs (`c01`–`c12`) spanning 5 barrier families: critical random 3-SAT, quiet-planted 3-SAT, scrambled schoolbook array factoring, SC 2025 unsolved Ramsey $R(4,4)=18$, and Clique-Coloring $(15,7,6)$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Contributed by:** [`@fede_intern`](https://twitter.com/fede_intern) (Twitter/X), offered in response to the public invitation to submit challenging plain-DIMACS CNF instances.
@@ -12,6 +16,7 @@
 - **`aig-converted/` (`c01.aig.xz`–`c12.aig.xz`):** Verified Binary AIGER 1.9 combinational miter conversions (`3.14 MB` total).
 - **`xcnf-converted/` (`c01.xcnf.xz`–`c12.xcnf.xz`):** Lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) XOR-CNF conversions (`2.84 MB` total; collapses the exact $k(k-1)$ Tseitin XOR gates inside `c08`, `c09`, and `c10` to native `x ... 0` parity lines).
 - **`anf-converted/` (`c01.anf.xz`–`c12.anf.xz`):** Lossless linear-size DIMACS-ANF conversions (`5.15 MB` total, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 12 instances (**6 SAT / 4 UNSAT / 2 UNKNOWN**).
 - **`src/`:** Conversion scripts (`cnf2aig.py`, `cnf2xcnf.py`).
 - *(Large verified solver proof/model artifacts from `outputs/` are archived out-of-tree and excluded from Git via `.gitignore`.)*
 
@@ -92,7 +97,7 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 
 ## Comparative 1-Core Benchmark Results
 
-- **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run** (`taskset -c 0` sequential; CaDiCaL/Kissat 300 s reference runs pinned to dedicated cores 2 & 3), full wall-clock time from process start to answer (including parsing). Every SAT model is independently verified against 100% of clauses in the exact `.cnf.xz`; every UNSAT proof is independently verified with [`lrat-check`](https://github.com/marijnheule/drat-trim), [`drat-trim`](https://github.com/marijnheule/drat-trim), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr).
+- **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run** (`taskset -c 0` sequential; CaDiCaL/Kissat 300 s reference runs pinned to dedicated cores 2 & 3; default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius), full wall-clock time from process start to answer (including parsing). Every SAT model is independently verified against 100% of clauses in the exact `.cnf.xz`; every UNSAT proof is independently verified with [`lrat-check`](https://github.com/marijnheule/drat-trim), [`drat-trim`](https://github.com/marijnheule/drat-trim), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr).
 - **Zero Verdict Disagreements:** All solvers agree 100% on every mutually solved instance.
 - **Cutoffs Reported:** All 5 solvers were evaluated sequentially at **$T_{\max} = 60\;\text{s}$** on identical uncompressed flat `.cnf` files (since [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 and [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 do not read `.xz` natively); **Frobenius 1C**, **[CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0**, and **[Kissat](https://github.com/arminbiere/kissat) 4.0.4** were additionally evaluated up to **$T_{\max} = 300\;\text{s}$** directly on the original `.cnf.xz` archives.
 

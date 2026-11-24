@@ -14,12 +14,17 @@
 
 All 4 large graph coloring benchmarks (`g125.17`, `g125.18`, `g250.15`, `g250.29`) from the Second DIMACS Challenge.
 
+![Large dense DIMACS graph coloring adjacency matrix and degree distribution for g125](diagram.svg)
+
+*Figure: Real 125-vertex adjacency density heatmap ($5\times 5$ blocks, $\rho=0.502$) and binomial degree distribution parsed from `cnf-orig/g125.17.cnf.xz` alongside the parsed `g125`/`g250` suite dimensions. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 4 original native **DIMACS `.cnf.xz`** files (586.2 KB).
 - **`aig-converted/`** — 4 exact **Binary AIGER 1.9 `.aig.xz`** conversions (294.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 4 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (476.6 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 4 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (994.4 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 4 instances (**4 SAT / 0 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -28,11 +33,11 @@ All 4 large graph coloring benchmarks (`g125.17`, `g125.18`, `g250.15`, `g250.29
 | **Binary AIGER 1.9** | `aig-converted/` | 4 | Inputs: 2,125–7,250; ANDs: 134,418–915,993 | 294.7 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 4 | Native XOR clauses total: 0 | 476.6 KB |
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 3,875–13,750; Eqs: 68,022–461,122 (deg ≤ 3) | 994.4 KB |
-| **Total (4 Formats, Status: SAT)** | | **16** | | **2.30 MB** |
+| **Total (4 Formats, Status: 4 SAT / 0 UNSAT)** | | **16** | | **2.30 MB** |
 
 ## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

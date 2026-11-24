@@ -10,12 +10,17 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 - **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), modeled on industrial EDA multiplier equivalence benchmarks ([HWMCC](https://hwmcc.github.io/); Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
 - **Why they are hard:** Multiplier miters between structurally divergent topologies (Array vs. Wallace vs. Karatsuba) have few internal equivalent wires, causing pure CDCL solvers to scale exponentially ($3.6\text{--}8.1\;\text{s}$ at $8\times 8$, exploding rapidly at $10\times 10$ and $12\times 12$).
 
+![EDA arithmetic combinational equivalence checking miter comparing adders and multipliers](diagram.svg)
+
+*Figure: Combinational Equivalence Checking (CEC) miter architecture comparing structurally divergent circuits (serial Ripple-Carry vs. logarithmic Kogge–Stone prefix adder; Array vs. Wallace vs. Karatsuba multipliers) through bitwise $\oplus$ and $\bigvee = 1$ UNSAT verification. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`9.4 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`28.6 KB`).
 - `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`20.7 KB`).
 - `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`23.8 KB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 5 instances (**0 SAT / 5 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -30,9 +35,9 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `cec_adder_32b_rc_vs_ks` | **8.56 ms** | 36.21 ms | 146.85 ms | 78.33 ms | 19.59 ms | 46.70 ms |
 | `cec_mult_6x6_arr_vs_wal` | **1.47 ms** | 146.33 ms | 494.59 ms | 285.64 ms | 67.47 ms | 213.67 ms |

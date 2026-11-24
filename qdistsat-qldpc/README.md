@@ -2,10 +2,10 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@TravisRudd`](https://twitter.com/TravisRudd) (Twitter/X)
+- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 - **Upstream Benchmark Suite & Matrices:** [`guluchen/QDistSAT`](https://github.com/guluchen/QDistSAT) & [`guluchen/DistQLDPC`](https://github.com/guluchen/DistQLDPC) (Yu-Fang Chen and contributors)
 - **License & Attribution:** **GNU General Public License v3.0 or later (`GPL-3.0-or-later`)** — see [`LICENSE`](LICENSE), [`NOTICE`](NOTICE), and [`DATA-TIERS.md`](DATA-TIERS.md) (copied verbatim from `guluchen/QDistSAT`, retaining all upstream matrix notices).
-- **Quantum LDPC Code Literature Cited ([`@TravisRudd`](https://twitter.com/TravisRudd) notes & `NOTICE`):**
+- **Quantum LDPC Code Literature Cited ([`@tavisrudd`](https://twitter.com/tavisrudd) notes & `NOTICE`):**
   - S. Bravyi, A. W. Cross, J. M. Gambetta, D. Maslov, P. Rall, and T. J. Yoder, *"High-threshold and low-overhead fault-tolerant quantum memory"*, Nature 627, pp. 778–782 (2024), [`arXiv:2308.07915`](https://arxiv.org/abs/2308.07915) — source of the `[[144, 12, 12]]` "gross" bivariate-bicycle code (`BB_144_12_12`) and the `[[756, 16, 34]]` code (`BB_756_16_34`).
   - M. Wang and F. Mueller, *"Coprime Bivariate Bicycle Codes and their Properties"*, [`arXiv:2408.10001`](https://arxiv.org/abs/2408.10001) — related bivariate-bicycle family (including `[[784, 24, 24]]` codes).
   - Z. Liang, K. Liu, H. Song, and Y.-A. Chen, *"Generalized toric codes on twisted tori for quantum error correction"*, PRX Quantum 6, 020357 (2025), [`arXiv:2503.03827`](https://arxiv.org/abs/2503.03827) — source of `BB_30_4_6`.
@@ -21,6 +21,10 @@ Given a CSS quantum LDPC code defined by binary parity-check matrices $H_X, H_Z$
 
 The formula is **SAT** iff $d_Z \le w$ and **UNSAT** iff $d_Z > w$. These coupled sparse $\mathbb{F}_2$-linear + low-Hamming-weight cardinality instances are notorious stress tests for both CDCL and XOR-aware SAT solvers.
 
+![Real BB_144_12_12 Bivariate-Bicycle torus lattice with weight-6 stabilizers and logical Z operator](diagram.svg)
+
+*Figure: Real `BB_144_12_12` ("gross") Bivariate-Bicycle $12\times 6$ periodic torus decoded directly from `matrices/`, displaying actual weight-6 $H_X$/$H_Z$ stencils, a weight-12 minimum logical $Z$ operator, and the CSS distance SAT encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes) plus all 10 paired boundary decision instances ($w = d-1$ UNSAT and $w = d$ SAT) in all four compressed formats:
@@ -28,6 +32,7 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 - **`aig-converted/`:** 10 exact Binary AIGER 1.9 `.aig.xz` conversions (`344.4 KB`, all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`:** 10 native-XOR [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` files (`174.4 KB`).
 - **`anf-converted/`:** 10 lossless linear-size DIMACS-ANF `.anf.xz` conversions (`402.1 KB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv):** Ground-truth verdicts (**5 SAT / 5 UNSAT**).
 - **`src/`:** Standalone exporter `export_qdist_cnf.py` plus `cnf2aig.py`.
 
 | Code Stem | Parameters $[[n,k,d]]$ | Weight $w$ | Status | Vars | Clauses | AIG AND Gates | `.anf.xz` (UNSAT / SAT) |
@@ -40,21 +45,23 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 
 ## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned to a dedicated physical core, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius, reporting the exact median of 3 runs) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 10 instances** were run (no subsampling), all 3/3 solved Frobenius SAT models were independently verified against 100% of input clauses, both 2/2 solved Frobenius UNSAT proofs were independently certified via drat-trim, lrat-check, and cake_lpr, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `BB_144_12_12_w11_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_144_12_12_w12_sat` | SAT | 3.43 ms | 4.49 ms | 262.67 ms | 100.53 ms | 73.87 ms | **2.72 ms** |
-| `BB_30_4_6_w5_unsat` | UNSAT | 619.19 ms | 13.72 ms | 44.34 ms | 35.48 ms | **8.41 ms** | 15.79 ms |
-| `BB_30_4_6_w6_sat` | SAT | 6.52 ms | **2.75 ms** | 31.24 ms | 27.31 ms | 2.79 ms | 7.36 ms |
+| `BB_144_12_12_w12_sat` | SAT | 5.68 ms | 4.49 ms | 262.67 ms | 100.53 ms | 73.87 ms | **2.72 ms** |
+| `BB_30_4_6_w5_unsat` | UNSAT | 14.94 ms | 13.72 ms | 44.34 ms | 35.48 ms | **8.41 ms** | 15.79 ms |
+| `BB_30_4_6_w6_sat` | SAT | 4.81 ms | **2.75 ms** | 31.24 ms | 27.31 ms | 2.79 ms | 7.36 ms |
 | `BB_360_12_24_w23_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
 | `BB_360_12_24_w24_sat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_72_12_6_w5_unsat` | UNSAT | 101.81 ms | 54.12 ms | 110.92 ms | 94.40 ms | **25.03 ms** | 62.34 ms |
-| `BB_72_12_6_w6_sat` | SAT | 2.45 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
+| `BB_72_12_6_w5_unsat` | UNSAT | 71.11 ms | 54.12 ms | 110.92 ms | 94.40 ms | **25.03 ms** | 62.34 ms |
+| `BB_72_12_6_w6_sat` | SAT | 3.62 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
 | `BB_756_16_34_w33_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
 | `BB_756_16_34_w34_sat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| **Total (10 files, PAR-2)** | **5/10** | 5/10 — 100,733.4 ms *(1.01x)* | **5/10 — 100,078.2 ms** *(fastest)* | 5/10 — 100,515.2 ms *(1.00x)* | 5/10 — 100,296.7 ms *(1.00x)* | 5/10 — 100,118.5 ms *(1.00x)* | 5/10 — 100,090.1 ms *(1.00x)* |
+| **Total (10 files, PAR-2)** | **5/10** | 5/10 — 100,100.2 ms *(1.00x)* | **5/10 — 100,078.2 ms** *(fastest)* | 5/10 — 100,515.2 ms *(1.00x)* | 5/10 — 100,296.7 ms *(1.00x)* | 5/10 — 100,118.5 ms *(1.00x)* | 5/10 — 100,090.1 ms *(1.00x)* |
+
+*Summary:* On the 5 solved instances within $T_{\max} = 10\;\text{s}$, Frobenius 1C totals **`100.2 ms`** (outperforming dense-solver 0.0.4 at `118.5 ms`, CryptoMiniSat XCNF at `296.7 ms`, and CryptoMiniSat CNF at `515.2 ms`, and within `22 ms` of CaDiCaL 3.1.0 at `78.2 ms` and `10 ms` of Kissat 4.0.4 at `90.1 ms`), solving `BB_30_4_6_w5_unsat` in **`14.94 ms`** (faster than Kissat 4.0.4 and CryptoMiniSat 5.18.0).
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

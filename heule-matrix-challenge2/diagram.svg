@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Heule 3x3 Matrix Multiplication Challenge 2: R=23 conjectured UNSAT skewed type-3 partitions">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#b91c1c"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Heule 3×3 Matrix Multiplication — Challenge 2 (Conjectured-UNSAT Skewed Partitions)</text>
+    <text x="26" y="53" font-size="11.5" fill="#475569">10 R = 23 Brent-equation refutation targets forcing the 27 type-3 monomials into over-packed skewed clusters (2-2-3, 2-4, 3-3, 5)</text>
+    <rect x="742" y="18" width="154" height="26" rx="13" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+    <text x="819" y="35" text-anchor="middle" font-size="10.8" font-weight="700" fill="#b91c1c">EXPECTED UNSAT (OPEN)</text>
+    <line x1="22" y1="64" x2="898" y2="64" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="22" y="76" width="424" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="22" y="76" width="424" height="28" rx="9" fill="#dc2626"/>
+    <rect x="22" y="92" width="424" height="12" fill="#dc2626"/>
+    <text x="234.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1. Pigeonhole Excess (27 Type-3 Terms in 23 Products)</text>
+    <rect x="36" y="116" width="396" height="74" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="46" y="134" font-size="11" font-weight="700" fill="#0f172a">Tensor T₃,₃,₃ over 𝔽₂:  27 nonzero triples aᵢⱼbⱼₖcₖᵢ (δ = 1)</text>
+    <text x="46" y="151" font-size="10.1" fill="#334155">Each of 27 triples must appear an odd number of times across R = 23</text>
+    <text x="46" y="166" font-size="10.1" fill="#334155">rank-1 layers u⁽ℓ⁾ ⊗ v⁽ℓ⁾ ⊗ w⁽ℓ⁾ ⇒ excess of <tspan font-weight="700" fill="#b91c1c">27 − 23 = 4</tspan> shared slots.</text>
+    <text x="46" y="181" font-size="9.6" fill="#64748b">702 remaining δ = 0 Brent sums must all cancel to 0 mod 2.</text>
+    <rect x="36" y="200" width="396" height="122" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="46" y="218" font-size="10.8" font-weight="700" fill="#0f172a">Balanced Packing (Challenge 1 SAT) vs Skewed Packing (Challenge 2):</text>
+    <rect x="46" y="227" width="376" height="38" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+    <text x="56" y="243" font-size="10.3" font-weight="700" fill="#047857">Challenge 1 (SAT): 2-2-2-2  →  4 pairs + 19 singletons</text>
+    <text x="56" y="258" font-size="9.4" fill="#334155">Excess +4 spread over 4 products (low cross-term load; 17,000+ SAT schemes)</text>
+    <rect x="46" y="273" width="376" height="40" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.1"/>
+    <text x="56" y="289" font-size="10.3" font-weight="700" fill="#b91c1c">Challenge 2 (Target UNSAT): 2-2-3 · 2-4 · 3-3 · 5</text>
+    <text x="56" y="305" font-size="9.4" fill="#334155">Excess +4 crammed into only 1–3 products ⇒ 20–22 rigid singletons!</text>
+    <rect x="36" y="332" width="396" height="122" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="1.1"/>
+    <text x="46" y="350" font-size="10.6" font-weight="700" fill="#b45309">Cross-Term Explosion in MM-23-5-A (Pinned Product M₁₀):</text>
+    <text x="46" y="367" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#1e293b">A⁽¹⁰⁾ ⊇ {a₁₂,a₂₁,a₂₃,a₃₂,a₃₃}  (5 bits forced = 1)</text>
+    <text x="46" y="381" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#1e293b">B⁽¹⁰⁾ ⊇ {b₁₃,b₂₁,b₂₂,b₃₁,b₃₂}  (5 bits forced = 1)</text>
+    <text x="46" y="395" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#1e293b">C⁽¹⁰⁾ ⊇ {c₁₂,c₁₃,c₂₁,c₂₃,c₃₂}  (5 bits forced = 1)</text>
+    <line x1="46" y1="404" x2="422" y2="404" stroke="#fcd34d" stroke-width="1"/>
+    <text x="46" y="420" font-size="9.8" font-weight="700" fill="#b91c1c">5 × 5 × 5 = 125 forced outer-product monomials in M₁₀ alone!</text>
+    <text x="46" y="436" font-size="9.5" fill="#475569">Induces 7 type-3 triples + 118 δ = 0 terms that remaining 22 singletons</text>
+    <text x="46" y="448" font-size="9.5" fill="#475569">must cancel mod 2 — believed impossible, yet hard for CDCL to refute.</text>
+    <rect x="460" y="76" width="438" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="460" y="76" width="438" height="28" rx="9" fill="#b91c1c"/>
+    <rect x="460" y="92" width="438" height="12" fill="#b91c1c"/>
+    <text x="679.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">2. Decoded 23-Slot Packing Profiles (All 10 Targets)</text>
+    <text x="474" y="117" font-size="10.2" font-weight="700" fill="#0f172a">MM-23-2-2-3-A</text>
+    <text x="884" y="117" text-anchor="end" font-size="9.3" fill="#475569">20 single + 2-2-3 (3 clusters)</text>
+    <rect x="474.0" y="122" width="15.8" height="17" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="0.9"/>
+    <text x="481.9" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#6d28d9">3</text>
+    <rect x="491.8" y="122" width="15.8" height="17" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="499.7" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#1d4ed8">2</text>
+    <rect x="509.6" y="122" width="15.8" height="17" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="517.5" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#1d4ed8">2</text>
+    <rect x="527.4" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="535.3" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="545.2" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="553.1" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="563.0" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="570.9" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="580.8" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="588.7" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="598.6" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="606.5" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="616.4" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="624.3" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="634.2" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="642.1" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="652.0" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="659.9" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="669.8" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="677.7" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="687.6" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="695.5" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="705.4" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="713.3" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="723.2" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="731.1" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="741.0" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="748.9" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="758.8" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="766.7" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="776.6" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="784.5" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="794.4" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="802.3" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="812.2" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="820.1" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="830.0" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="837.9" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="847.8" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="855.7" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="865.6" y="122" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="873.5" y="133.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <text x="474" y="153" font-size="10.2" font-weight="700" fill="#0f172a">MM-23-2-4-A</text>
+    <text x="884" y="153" text-anchor="end" font-size="9.3" fill="#475569">21 single + 2-4 (2 clusters)</text>
+    <rect x="474.0" y="158" width="15.8" height="17" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="0.9"/>
+    <text x="481.9" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#b45309">5</text>
+    <rect x="491.8" y="158" width="15.8" height="17" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="499.7" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#1d4ed8">2</text>
+    <rect x="509.6" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="517.5" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="527.4" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="535.3" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="545.2" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="553.1" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="563.0" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="570.9" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="580.8" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="588.7" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="598.6" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="606.5" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="616.4" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="624.3" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="634.2" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="642.1" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="652.0" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="659.9" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="669.8" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="677.7" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="687.6" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="695.5" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="705.4" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="713.3" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="723.2" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="731.1" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="741.0" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="748.9" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="758.8" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="766.7" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="776.6" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="784.5" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="794.4" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="802.3" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="812.2" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="820.1" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="830.0" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="837.9" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="847.8" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="855.7" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="865.6" y="158" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="873.5" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <text x="474" y="189" font-size="10.2" font-weight="700" fill="#0f172a">MM-23-3-3-A</text>
+    <text x="884" y="189" text-anchor="end" font-size="9.3" fill="#475569">21 single + 3-3 (2 clusters)</text>
+    <rect x="474.0" y="194" width="15.8" height="17" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="0.9"/>
+    <text x="481.9" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#b45309">4</text>
+    <rect x="491.8" y="194" width="15.8" height="17" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="0.9"/>
+    <text x="499.7" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#b45309">4</text>
+    <rect x="509.6" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="517.5" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="527.4" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="535.3" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="545.2" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="553.1" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="563.0" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="570.9" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="580.8" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="588.7" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="598.6" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="606.5" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="616.4" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="624.3" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="634.2" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="642.1" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="652.0" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="659.9" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="669.8" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="677.7" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="687.6" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="695.5" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="705.4" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="713.3" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="723.2" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="731.1" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="741.0" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="748.9" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="758.8" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="766.7" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="776.6" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="784.5" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="794.4" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="802.3" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="812.2" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="820.1" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="830.0" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="837.9" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="847.8" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="855.7" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="865.6" y="194" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="873.5" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <text x="474" y="225" font-size="10.2" font-weight="700" fill="#0f172a">MM-23-5-A</text>
+    <text x="884" y="225" text-anchor="end" font-size="9.3" fill="#475569">22 single + 5 (1 dense cluster)</text>
+    <rect x="474.0" y="230" width="15.8" height="17" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="481.9" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#b91c1c">7</text>
+    <rect x="491.8" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="499.7" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="509.6" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="517.5" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="527.4" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="535.3" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="545.2" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="553.1" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="563.0" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="570.9" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="580.8" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="588.7" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="598.6" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="606.5" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="616.4" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="624.3" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="634.2" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="642.1" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="652.0" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="659.9" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="669.8" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="677.7" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="687.6" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="695.5" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="705.4" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="713.3" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="723.2" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="731.1" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="741.0" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="748.9" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="758.8" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="766.7" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="776.6" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="784.5" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="794.4" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="802.3" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="812.2" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="820.1" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="830.0" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="837.9" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="847.8" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="855.7" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="865.6" y="230" width="15.8" height="17" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+    <text x="873.5" y="241.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">1</text>
+    <rect x="474" y="267" width="410" height="122" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="484" y="284" font-size="10.3" font-weight="700" fill="#0f172a">All 10 Challenge-2 Instances (Sorted Induced Type-3 Multiplicity):</text>
+    <text x="484" y="301" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-3-A</text>
+    <text x="678" y="301" text-anchor="end" font-size="9.1" fill="#b91c1c">20×1 | [3+2+2] (81u)</text>
+    <text x="484" y="318" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-3-B</text>
+    <text x="678" y="318" text-anchor="end" font-size="9.1" fill="#b91c1c">20×1 | [4+2+2] (81u)</text>
+    <text x="484" y="335" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-4-A</text>
+    <text x="678" y="335" text-anchor="end" font-size="9.1" fill="#b91c1c">21×1 | [5+2] (81u)</text>
+    <text x="484" y="352" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-4-B</text>
+    <text x="678" y="352" text-anchor="end" font-size="9.1" fill="#b91c1c">21×1 | [5+2] (81u)</text>
+    <text x="484" y="369" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-3-3-A</text>
+    <text x="678" y="369" text-anchor="end" font-size="9.1" fill="#b91c1c">21×1 | [4+4] (81u)</text>
+    <text x="688" y="301" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-3-3-B</text>
+    <text x="882" y="301" text-anchor="end" font-size="9.1" fill="#b91c1c">21×1 | [4+3] (81u)</text>
+    <text x="688" y="318" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-3-3-M</text>
+    <text x="882" y="318" text-anchor="end" font-size="9.1" fill="#b91c1c">21×1 | [3+2] (77u)</text>
+    <text x="688" y="335" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-3-3-N</text>
+    <text x="882" y="335" text-anchor="end" font-size="9.1" fill="#b91c1c">21×1 | [3+3] (80u)</text>
+    <text x="688" y="352" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-5-A</text>
+    <text x="882" y="352" text-anchor="end" font-size="9.1" fill="#b91c1c">22×1 | [7] (81u)</text>
+    <text x="688" y="369" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-5-B</text>
+    <text x="882" y="369" text-anchor="end" font-size="9.1" fill="#b91c1c">22×1 | [8] (81u)</text>
+    <rect x="474" y="397" width="410" height="52" rx="7" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+    <text x="484" y="415" font-size="10.4" font-weight="700" fill="#b91c1c">Identical Plain Base CNF (26,541 vars · 117,203–117,207 clauses · 8,019 XORs)</text>
+    <text x="484" y="431" font-size="9.4" fill="#334155">Differs from Challenge 1 ONLY in the 77–81 unit pins!  α = 4.42 · ρ_crit = 1.82× · κ = 0.95</text>
+    <text x="484" y="443" font-size="9.3" fill="#64748b">All 6 benchmarked solvers (CaDiCaL, Kissat, CMS CNF/XCNF, Frobenius, dense) &gt;10 s</text>
+  </g>
+</svg>

@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 500" width="940" height="500">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+    <marker id="arr-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <style>
+      .title { font: 700 18px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .sub { font: 400 12.5px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #475569; }
+      .h3 { font: 700 13px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .body { font: 400 11.4px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #334155; }
+      .mono { font: 600 10.6px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fill: #1e293b; }
+      .st { font: 700 10.5px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fill: #0f172a; }
+      .badge { font: 700 10.5px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #047857; }
+    </style>
+  </defs>
+  <rect x="2" y="2" width="936" height="496" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="26" y="34" class="title">MATA Presburger NFAs — Ultimate Automizer Verification Traces</text>
+  <text x="26" y="54" class="sub">Real 16-state, 984-transition NFA parsed from recHanoi03_…_73.0.mata.xz (153 total automata; 153/153 SAT non-universal)</text>
+  <line x1="24" y1="66" x2="916" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="24" y="80" width="566" height="396" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="40" y="104" class="h3">Parsed Real NFA: recHanoi03_…_73.0.mata.xz</text>
+  <rect x="440" y="90" width="136" height="21" rx="10.5" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="508" y="104" text-anchor="middle" class="badge">16 states · 984 trans</text>
+  <text x="40" y="122" class="body">Parallel bit-vector symbols merged into 60 directed edges (thickness ∝ 8 / 16 / 32 symbols)</text>
+  <line x1="52.0" y1="287.0" x2="69.5" y2="287.0" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arr-b)"/>
+  <line x1="101.4" y1="279.2" x2="300.0" y2="163.3" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="102.9" y1="282.7" x2="298.2" y2="225.7" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="103.5" y1="287.0" x2="297.5" y2="287.0" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="102.9" y1="291.3" x2="298.2" y2="348.3" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="97.4" y1="274.7" x2="178.7" y2="168.7" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="102.2" y1="280.8" x2="173.0" y2="250.0" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="102.2" y1="293.2" x2="173.0" y2="324.0" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="97.4" y1="299.3" x2="178.7" y2="405.3" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <path d="M 309.0 139.5 C 300.0 116.5, 332.0 116.5, 323.0 139.5" fill="none" stroke="#7c3aed" stroke-width="1.35" opacity="0.65"/>
+  <path d="M 316.0 169.5 Q 308.0 185.8 316.0 202.0" fill="none" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <path d="M 316.0 169.5 Q 308.0 219.0 316.0 268.5" fill="none" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <path d="M 316.0 169.5 Q 308.0 252.2 316.0 335.0" fill="none" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="331.5" y1="154.0" x2="427.5" y2="154.0" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="329.8" y1="161.1" x2="429.5" y2="212.1" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="324.5" y1="167.0" x2="435.9" y2="338.0" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="322.8" y1="167.9" x2="437.9" y2="403.4" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <path d="M 309.0 206.0 C 300.0 183.0, 332.0 183.0, 323.0 206.0" fill="none" stroke="#7c3aed" stroke-width="1.60" opacity="0.65"/>
+  <path d="M 316.0 236.0 Q 308.0 285.5 316.0 335.0" fill="none" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="329.8" y1="213.4" x2="429.5" y2="162.4" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="331.5" y1="220.5" x2="427.5" y2="220.5" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <path d="M 309.0 272.5 C 300.0 249.5, 332.0 249.5, 323.0 272.5" fill="none" stroke="#7c3aed" stroke-width="1.60" opacity="0.65"/>
+  <path d="M 316.0 302.5 Q 308.0 318.8 316.0 335.0" fill="none" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="326.8" y1="275.9" x2="433.1" y2="167.2" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="329.8" y1="294.1" x2="429.5" y2="345.1" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <path d="M 316.0 338.0 Q 330.0 288.5 316.0 239.0" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 309.0 339.0 C 300.0 316.0, 332.0 316.0, 323.0 339.0" fill="none" stroke="#7c3aed" stroke-width="1.60" opacity="0.65"/>
+  <path d="M 316.0 369.0 Q 308.0 385.2 316.0 401.5" fill="none" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="324.5" y1="340.5" x2="435.9" y2="169.5" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="326.8" y1="342.4" x2="433.1" y2="233.7" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <line x1="329.8" y1="346.4" x2="429.5" y2="295.4" stroke="#64748b" stroke-width="1.19" opacity="0.35" marker-end="url(#arr)"/>
+  <path d="M 316.0 404.5 Q 330.0 388.2 316.0 372.0" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 309.0 405.5 C 300.0 382.5, 332.0 382.5, 323.0 405.5" fill="none" stroke="#7c3aed" stroke-width="1.60" opacity="0.65"/>
+  <line x1="322.8" y1="406.1" x2="437.9" y2="170.6" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="326.8" y1="408.9" x2="433.1" y2="300.2" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <path d="M 329.4 412.2 Q 410.7 321.4 530.0 296.3" fill="none" stroke="#059669" stroke-width="2.2" opacity="0.95" marker-end="url(#arr-g)"/>
+  <path d="M 439.0 139.5 C 430.0 116.5, 462.0 116.5, 453.0 139.5" fill="none" stroke="#7c3aed" stroke-width="2.10" opacity="0.65"/>
+  <path d="M 446.0 169.5 Q 438.0 185.8 446.0 202.0" fill="none" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <path d="M 446.0 169.5 Q 438.0 219.0 446.0 268.5" fill="none" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <path d="M 446.0 205.0 Q 460.0 188.8 446.0 172.5" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 439.0 206.0 C 430.0 183.0, 462.0 183.0, 453.0 206.0" fill="none" stroke="#7c3aed" stroke-width="2.10" opacity="0.65"/>
+  <path d="M 446.0 271.5 Q 460.0 222.0 446.0 172.5" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 439.0 272.5 C 430.0 249.5, 462.0 249.5, 453.0 272.5" fill="none" stroke="#7c3aed" stroke-width="2.10" opacity="0.65"/>
+  <line x1="461.5" y1="287.0" x2="527.5" y2="287.0" stroke="#059669" stroke-width="2.2" opacity="0.95" marker-end="url(#arr-g)"/>
+  <line x1="205.5" y1="154.0" x2="297.5" y2="154.0" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="203.7" y1="161.2" x2="299.6" y2="211.9" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="200.7" y1="165.3" x2="303.3" y2="273.6" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="198.3" y1="167.1" x2="306.1" y2="337.9" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <path d="M 446.0 338.0 Q 460.0 255.2 446.0 172.5" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 439.0 339.0 C 430.0 316.0, 462.0 316.0, 453.0 339.0" fill="none" stroke="#7c3aed" stroke-width="2.10" opacity="0.65"/>
+  <path d="M 446.0 404.5 Q 460.0 288.5 446.0 172.5" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 446.0 404.5 Q 460.0 321.8 446.0 239.0" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 446.0 404.5 Q 460.0 388.2 446.0 372.0" fill="none" stroke="#d97706" stroke-width="1.15" opacity="0.42" marker-end="url(#arr)"/>
+  <path d="M 439.0 405.5 C 430.0 382.5, 462.0 382.5, 453.0 405.5" fill="none" stroke="#7c3aed" stroke-width="1.60" opacity="0.65"/>
+  <line x1="205.3" y1="240.0" x2="297.8" y2="223.7" stroke="#2563eb" stroke-width="2.04" opacity="0.55" marker-end="url(#arr-b)"/>
+  <line x1="201.6" y1="252.9" x2="302.1" y2="341.3" stroke="#2563eb" stroke-width="2.04" opacity="0.55" marker-end="url(#arr-b)"/>
+  <line x1="204.6" y1="326.2" x2="298.5" y2="293.1" stroke="#2563eb" stroke-width="2.04" opacity="0.55" marker-end="url(#arr-b)"/>
+  <line x1="205.3" y1="334.0" x2="297.8" y2="350.3" stroke="#2563eb" stroke-width="2.04" opacity="0.55" marker-end="url(#arr-b)"/>
+  <line x1="198.3" y1="406.9" x2="306.1" y2="236.1" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <line x1="203.7" y1="412.8" x2="299.6" y2="362.1" stroke="#2563eb" stroke-width="2.04" opacity="0.55" marker-end="url(#arr-b)"/>
+  <line x1="205.5" y1="420.0" x2="297.5" y2="420.0" stroke="#64748b" stroke-width="1.47" opacity="0.55" marker-end="url(#arr)"/>
+  <circle cx="88.0" cy="287.0" r="15.5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="88.0" y="290.8" text-anchor="middle" class="st">q0</text>
+  <circle cx="190.0" cy="154.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="190.0" y="157.8" text-anchor="middle" class="st">q2</text>
+  <circle cx="190.0" cy="242.7" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="190.0" y="246.5" text-anchor="middle" class="st">q4</text>
+  <circle cx="190.0" cy="331.3" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="190.0" y="335.1" text-anchor="middle" class="st">q6</text>
+  <circle cx="190.0" cy="420.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="190.0" y="423.8" text-anchor="middle" class="st">q8</text>
+  <circle cx="316.0" cy="154.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="316.0" y="157.8" text-anchor="middle" class="st">q10</text>
+  <circle cx="316.0" cy="220.5" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="316.0" y="224.3" text-anchor="middle" class="st">q11</text>
+  <circle cx="316.0" cy="287.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="316.0" y="290.8" text-anchor="middle" class="st">q12</text>
+  <circle cx="316.0" cy="353.5" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="316.0" y="357.3" text-anchor="middle" class="st">q13</text>
+  <circle cx="316.0" cy="420.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="316.0" y="423.8" text-anchor="middle" class="st">q14</text>
+  <circle cx="446.0" cy="154.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="446.0" y="157.8" text-anchor="middle" class="st">q16</text>
+  <circle cx="446.0" cy="220.5" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="446.0" y="224.3" text-anchor="middle" class="st">q17</text>
+  <circle cx="446.0" cy="287.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="446.0" y="290.8" text-anchor="middle" class="st">q18</text>
+  <circle cx="446.0" cy="353.5" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="446.0" y="357.3" text-anchor="middle" class="st">q22</text>
+  <circle cx="446.0" cy="420.0" r="15.5" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="446.0" y="423.8" text-anchor="middle" class="st">q23</text>
+  <circle cx="546.0" cy="287.0" r="15.5" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <circle cx="546.0" cy="287.0" r="11.3" fill="none" stroke="#059669" stroke-width="1.4"/>
+  <text x="546.0" y="290.8" text-anchor="middle" class="st">q20</text>
+  <line x1="42" y1="454" x2="62" y2="454" stroke="#2563eb" stroke-width="2.2"/>
+  <text x="68" y="458" class="body">Forward (32-sym)</text>
+  <line x1="190" y1="454" x2="210" y2="454" stroke="#7c3aed" stroke-width="2"/>
+  <text x="216" y="458" class="body">Self-loop</text>
+  <line x1="288" y1="454" x2="308" y2="454" stroke="#d97706" stroke-width="1.8"/>
+  <text x="314" y="458" class="body">Back-edge</text>
+  <line x1="392" y1="454" x2="412" y2="454" stroke="#059669" stroke-width="2.2"/>
+  <text x="418" y="458" class="body">To final q20</text>
+  <rect x="606" y="80" width="310" height="246" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+  <text x="622" y="104" class="h3">Ultimate Automizer CEGAR Loop</text>
+  <text x="622" y="122" class="body">Verifies C programs by subtracting proved</text>
+  <text x="622" y="137" class="body">infeasible trace automata L(Aᵢ) from CFG:</text>
+  <rect x="624" y="152" width="274" height="38" rx="7" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="636" y="168" style="font:700 11.5px sans-serif;fill:#2563eb;">1. Program CFG Automaton P</text>
+  <text x="636" y="183" class="mono">error traces ∈ L(P)</text>
+  <rect x="624" y="204" width="274" height="38" rx="7" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="636" y="220" style="font:700 11.5px sans-serif;fill:#7c3aed;">2. Interpolant NFA Aᵢ</text>
+  <text x="636" y="235" class="mono">generalized infeasible traces</text>
+  <rect x="624" y="256" width="274" height="38" rx="7" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="636" y="272" style="font:700 11.5px sans-serif;fill:#059669;">3. Complement &amp; Subtract</text>
+  <text x="636" y="287" class="mono">P ← P ∩ L(Aᵢ)ᶜ  (MATA core!)</text>
+  <line x1="761.0" y1="190" x2="761.0" y2="202" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="761.0" y1="242" x2="761.0" y2="254" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="622" y="314" class="body">Repeats until L(P) = ∅ (SAFE) or real bug.</text>
+  <rect x="606" y="340" width="310" height="136" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="622" y="364" class="h3">Suite Highlights (153 NFAs)</text>
+  <text x="622" y="385" class="mono">• Benchmarks: MADWiFi, Primes,</text>
+  <text x="622" y="402" class="mono">  recHanoi03, nested6, boustrophedon</text>
+  <text x="622" y="423" class="body">• High nondeterminism (up to 60+ trans/state)</text>
+  <text x="622" y="441" class="body">  triggers massive DFA subset blowup.</text>
+  <text x="622" y="459" class="body">• All 153/153 have non-empty complement.</text>
+</svg>

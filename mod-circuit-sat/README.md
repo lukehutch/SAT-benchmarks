@@ -14,6 +14,10 @@ $$\mathrm{MOD}_n^{m,r}(x_1, \dots, x_n) \;=\; \bigl[\, (x_1 + \dots + x_n) \bmod
 
 For a fixed input width $n$, modulus $m = 3$, target residue $r \in \{0, 1, 2\}$, and gate budget $s$, `src/modsat.py` generates a DIMACS CNF (plus a JSON variable map in `maps/` so any satisfying assignment decodes directly into a verified $B_2$ circuit over all $2^n$ inputs). The problem exhibits sharp optimality thresholds ($s = s^* - 1$ UNSAT vs. $s = s^*$ SAT), and the $n = 6$, $s \le 12$ cases remain challenging open synthesis targets.
 
+![Exact minimum B2 gate DAGs for MOD_3^3,0 and MOD_3^3,1 and optimality staircase](diagram.svg)
+
+*Figure: Mathematically verified exact minimum $B_2$ gate DAGs for $\mathrm{MOD}_3^{3,0}$ ($s^*=3$) and $\mathrm{MOD}_3^{3,1}$ ($s=3$ UNSAT, $s^*=4$ SAT) alongside the sharp optimality-boundary staircase through the open $n=6, s \le 12$ frontier. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 Generated via `src/modsat.py` and `src/gen_open_cases.py`:
@@ -21,6 +25,7 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 - **`aig-converted/`:** 11 exact Binary AIGER 1.9 `.aig.xz` conversions (`1.42 MB`, all 11/11 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`:** 11 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` conversions (`653.5 KB`).
 - **`anf-converted/`:** 11 lossless linear-size DIMACS-ANF `.anf.xz` conversions (`4.03 MB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 11 instances (**5 SAT / 4 UNSAT / 2 UNKNOWN**).
 - **`maps/`:** 11 decoder variable maps.
 
 | Instance | $(n, m, r, s)$ | Status | Vars | Clauses | `.cnf.xz` | AIG ANDs | `.anf.xz` |
@@ -39,7 +44,7 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 
 ## Comparative 1-Core Benchmark Results ($n \in \{3, 4, 5\}$, 9 Decidable Instances, $T_{\max} = 10\;\text{s}$ & $30\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, sequential execution, identical flat `.cnf` input, 0 verdict disagreements; all 5/5 SAT models verified via `src/modsat.py decode`).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0, `--max-cores 1` for Frobenius), sequential execution, identical flat `.cnf` input, 0 verdict disagreements; all 5/5 SAT models verified via `src/modsat.py decode`).
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|

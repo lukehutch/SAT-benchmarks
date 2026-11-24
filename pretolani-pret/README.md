@@ -14,12 +14,17 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 *(Historical note: the SATLIB summary webpage table historically contained a typo listing `pret60_*` and `pret150_*` as satisfiable, whereas the DIMACS file headers and mathematical construction explicitly specify `Charge = 1` / UNSAT.)*
 
+![Pretolani TRISAT parity-charged 2-coloring DAG and polarity Horn sweep](diagram.svg)
+
+*Figure: Pretolani `TRISAT` 3-regular parity-charged DAG with single odd root charge ($\sum \sigma(v) \equiv 1 \pmod 2$) and variable-polarity Horn-clause sweep across `{25%, 40%, 60%, 75%}`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`:** All 8 UNSAT `.cnf.xz` files (`10.1 KB`).
 - **`aig-converted/`:** 8 exact Binary AIGER 1.9 `.aig.xz` conversions (`10.2 KB`, all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`:** 8 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` conversions (`6.3 KB`, `560` extracted native XOR clauses).
 - **`anf-converted/`:** 8 lossless degree-1 linear DIMACS-ANF `.anf.xz` conversions (`4.3 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 8 instances (**0 SAT / 8 UNSAT**).
 
 | Instance | Vars | Clauses | Target Horn % | `.cnf.xz` | AIG ANDs | `.xcnf.xz` | `.anf.xz` | Status |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
@@ -34,7 +39,7 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 ## Comparative 1-Core Benchmark Results
 
-- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, Linux, 1 core per run, $T_{\max} = 5\;\text{s}$, identical flat `.cnf` input, 100% verdict consensus).
+- **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, 16C/32T Linux, 1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, $T_{\max} = 5\;\text{s}$, identical flat `.cnf` input, 100% verdict consensus).
 
 | Solver (1C) | Solved | Total Wall Time (8 instances) | Per-Instance Range | Relative Speed |
 |---|---:|---:|---:|---|

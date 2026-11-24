@@ -1,0 +1,10 @@
+knights_12x12_d15_obs16_s12150144_sat.cnf	SAT
+knights_14x14_d20_obs34_s14203078_sat.cnf	SAT
+knights_14x14_d26_obs52_s34280941_sat.cnf	SAT
+knights_15x15_d21_obs51_s556324743_unsat.cnf	UNSAT
+knights_15x15_d21_obs55_s956405106_unsat.cnf	UNSAT
+knights_15x15_d22_obs41_s956712163_unsat.cnf	UNSAT
+knights_15x15_d22_obs51_s756748105_unsat.cnf	UNSAT
+knights_15x15_d22_obs53_s756776522_unsat.cnf	UNSAT
+knights_15x15_d24_obs55_s35244162_sat.cnf	SAT
+knights_16x16_d25_obs66_s365029087_sat.cnf	SAT

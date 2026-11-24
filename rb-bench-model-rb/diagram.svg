@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Model RB forced-satisfiable CSP to SAT benchmark diagram">
+<rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="18" font-weight="700" fill="#0f172a">Model RB Forced-Satisfiable CSP → SAT Benchmarks (frb30-15 .. frb59-26)</text>
+<text x="26" y="54" font-size="12" fill="#475569">Growing domain d = n^α (α = 0.8), hidden planted assignment &amp; exact phase transition p_c = 1 − e^(−α/r) = 0.25 · 40 SAT instances</text>
+<line x1="24" y1="66" x2="896" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="24" y="78" width="314" height="380" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="38" y="101" font-size="12.5" font-weight="700" fill="#0f172a">1. Random Binary CSP Graph (k = 2)</text>
+<text x="38" y="116" font-size="10" fill="#475569">n CSP vars, domain d = n^0.8, m = r·n·ln n edges</text>
+<line x1="181.0" y1="140.0" x2="234.7" y2="171.0" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="234.7" y1="171.0" x2="234.7" y2="233.0" stroke="#dc2626" stroke-width="2.4"/>
+<line x1="234.7" y1="233.0" x2="181.0" y2="264.0" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="181.0" y1="264.0" x2="127.3" y2="233.0" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="127.3" y1="233.0" x2="127.3" y2="171.0" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="127.3" y1="171.0" x2="181.0" y2="140.0" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="181.0" y1="140.0" x2="181.0" y2="264.0" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="234.7" y1="171.0" x2="127.3" y2="233.0" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="234.7" y1="233.0" x2="127.3" y2="171.0" stroke="#94a3b8" stroke-width="1.3"/>
+<rect x="240.7" y="195.0" width="44" height="16" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.8"/>
+<text x="262.7" y="206.0" text-anchor="middle" font-size="8.5" font-weight="700" fill="#b91c1c">p·d² ✗</text>
+<circle cx="181.0" cy="140.0" r="16" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+<text x="181.0" y="144.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">X₁</text>
+<circle cx="234.7" cy="171.0" r="16" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="234.7" y="175.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">X₂</text>
+<circle cx="234.7" cy="233.0" r="16" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="234.7" y="237.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">X₃</text>
+<circle cx="181.0" cy="264.0" r="16" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+<text x="181.0" y="268.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">X₄</text>
+<circle cx="127.3" cy="233.0" r="16" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+<text x="127.3" y="237.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">X₅</text>
+<circle cx="127.3" cy="171.0" r="16" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+<text x="127.3" y="175.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">X₆</text>
+<rect x="36" y="284" width="290" height="162" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="46" y="303" font-size="11" font-weight="700" fill="#0f172a">Direct CNF Encoding (n·d Boolean vars)</text>
+<text x="46" y="322" font-size="9.5" font-weight="700" fill="#059669">ALO (n cls, k=d):</text>
+<text x="52" y="335" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#334155">(x_{i,1} ∨ x_{i,2} ∨ … ∨ x_{i,d})</text>
+<text x="46" y="352" font-size="9.5" font-weight="700" fill="#2563eb">AMO (binary):</text>
+<text x="52" y="365" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#334155">(¬x_{i,a} ∨ ¬x_{i,b})  ∀ a &lt; b</text>
+<text x="46" y="382" font-size="9.5" font-weight="700" fill="#dc2626">Nogoods (binary):</text>
+<text x="52" y="395" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#334155">(¬x_{i,a} ∨ ¬x_{j,b})  forbidden</text>
+<line x1="44" y1="411" x2="318" y2="411" stroke="#e2e8f0" stroke-width="1"/>
+<text x="46" y="426" font-size="9.2" font-weight="700" fill="#475569">Parsed frb30-15-1 (30 vars, d=15, 208 edges):</text>
+<text x="46" y="439" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#0f172a">30 ALO + 3,150 AMO + 15,904 nogoods</text>
+<rect x="352" y="78" width="302" height="380" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="366" y="101" font-size="12.5" font-weight="700" fill="#0f172a">2. d × d Nogood Table (X₂, X₃)</text>
+<text x="366" y="116" font-size="10" fill="#475569">p = 0.25 pairs forbidden; planted (a*, b*) kept free</text>
+<text x="504.0" y="132" text-anchor="middle" font-size="9.8" font-weight="700" fill="#2563eb">Domain values b ∈ {1..d} of X₃</text>
+<text x="402" y="220.0" text-anchor="middle" font-size="9.8" font-weight="700" fill="#2563eb" transform="rotate(-90 402 220.0)">Domain a ∈ {1..d} of X₂</text>
+<rect x="424" y="140" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="444" y="140" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="453.2" y="153" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="464" y="140" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="484" y="140" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="504" y="140" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="524" y="140" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="544" y="140" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="553.2" y="153" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="564" y="140" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="424" y="160" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="444" y="160" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="464" y="160" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="484" y="160" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="493.2" y="173" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="504" y="160" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="524" y="160" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="544" y="160" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="564" y="160" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="573.2" y="173" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="424" y="180" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="433.2" y="193" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="444" y="180" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="464" y="180" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="484" y="180" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="504" y="180" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="513.2" y="193" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="524" y="180" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="544" y="180" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="564" y="180" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="424" y="200" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="444" y="200" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="464" y="200" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="473.2" y="213" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="484" y="200" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="504" y="200" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="524" y="200" width="18.5" height="18.5" rx="3" fill="#059669" stroke="#047857" stroke-width="1.2"/>
+<text x="533.2" y="213" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">★</text>
+<rect x="544" y="200" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="564" y="200" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="573.2" y="213" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="424" y="220" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="444" y="220" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="453.2" y="233" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="464" y="220" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="484" y="220" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="504" y="220" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="524" y="220" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="533.2" y="233" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="544" y="220" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="564" y="220" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="424" y="240" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="433.2" y="253" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="444" y="240" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="464" y="240" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="484" y="240" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="493.2" y="253" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="504" y="240" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="524" y="240" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="544" y="240" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="564" y="240" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="424" y="260" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="444" y="260" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="464" y="260" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="473.2" y="273" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="484" y="260" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="504" y="260" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="524" y="260" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="544" y="260" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="553.2" y="273" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="564" y="260" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="424" y="280" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="444" y="280" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="464" y="280" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="484" y="280" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="504" y="280" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="513.2" y="293" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="524" y="280" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="544" y="280" width="18.5" height="18.5" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="564" y="280" width="18.5" height="18.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="573.2" y="293" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">×</text>
+<rect x="374" y="306" width="12" height="12" rx="2" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="380" y="315.5" text-anchor="middle" font-size="9" font-weight="700" fill="#dc2626">×</text>
+<text x="391" y="315.5" font-size="9.5" fill="#334155">Nogood (¬x ∨ ¬y)</text>
+<rect x="504" y="306" width="12" height="12" rx="2" fill="#059669"/>
+<text x="510" y="315.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#ffffff">★</text>
+<text x="521" y="315.5" font-size="9.5" fill="#047857" font-weight="700">Planted (a*, b*)</text>
+<rect x="364" y="330" width="278" height="116" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="374" y="348" font-size="10.8" font-weight="700" fill="#0f172a">Exact Phase Transition (Xu &amp; Li 2000)</text>
+<text x="374" y="363" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="700" fill="#b45309">p_c = 1 − e^(−α/r) = 1 − 3/4 = 0.25</text>
+<rect x="390" y="374" width="236" height="50" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8"/>
+<path d="M 390.0,377.0 L 393.9,377.0 L 397.9,377.0 L 401.8,377.0 L 405.7,377.0 L 409.7,377.0 L 413.6,377.0 L 417.5,377.0 L 421.5,377.0 L 425.4,377.0 L 429.3,377.0 L 433.3,377.0 L 437.2,377.0 L 441.1,377.0 L 445.1,377.0 L 449.0,377.0 L 452.9,377.1 L 456.9,377.1 L 460.8,377.1 L 464.7,377.2 L 468.7,377.4 L 472.6,377.6 L 476.5,378.0 L 480.5,378.5 L 484.4,379.4 L 488.3,380.7 L 492.3,382.7 L 496.2,385.5 L 500.1,389.2 L 504.1,393.9 L 508.0,399.0 L 511.9,404.1 L 515.9,408.8 L 519.8,412.5 L 523.7,415.3 L 527.7,417.3 L 531.6,418.6 L 535.5,419.5 L 539.5,420.0 L 543.4,420.4 L 547.3,420.6 L 551.3,420.8 L 555.2,420.9 L 559.1,420.9 L 563.1,420.9 L 567.0,421.0 L 570.9,421.0 L 574.9,421.0 L 578.8,421.0 L 582.7,421.0 L 586.7,421.0 L 590.6,421.0 L 594.5,421.0 L 598.5,421.0 L 602.4,421.0 L 606.3,421.0 L 610.3,421.0 L 614.2,421.0 L 618.1,421.0 L 622.1,421.0 L 626.0,421.0" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+<line x1="508.0" y1="374" x2="508.0" y2="424" stroke="#d97706" stroke-width="1.4" stroke-dasharray="4,2"/>
+<circle cx="508.0" cy="399.0" r="4" fill="#059669" stroke="#ffffff" stroke-width="1.2"/>
+<text x="390" y="436" font-size="8.5" fill="#64748b">p=0.05</text>
+<text x="508.0" y="436" text-anchor="middle" font-size="8.8" font-weight="700" fill="#b45309">p_c=0.25</text>
+<text x="626" y="436" text-anchor="end" font-size="8.5" fill="#64748b">0.45</text>
+<rect x="668" y="78" width="228" height="380" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="680" y="101" font-size="12.5" font-weight="700" fill="#0f172a">3. Corpus Scaling (40 SAT)</text>
+<text x="680" y="116" font-size="9.8" fill="#475569">8 classes × 5 seeds (cnf-orig/)</text>
+<text x="680" y="145" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb30-15</text>
+<text x="884" y="145" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">450v / 19k cls</text>
+<rect x="680" y="150" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="150" width="16.7" height="9" rx="3" fill="#059669"/>
+<text x="826" y="158" font-size="8.6" font-weight="700" fill="#059669">solved</text>
+<text x="680" y="179" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb35-17</text>
+<text x="884" y="179" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">595v / 29k cls</text>
+<rect x="680" y="184" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="184" width="26.0" height="9" rx="3" fill="#059669"/>
+<text x="826" y="192" font-size="8.6" font-weight="700" fill="#059669">solved</text>
+<text x="680" y="213" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb40-19</text>
+<text x="884" y="213" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">760v / 43k cls</text>
+<rect x="680" y="218" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="218" width="38.4" height="9" rx="3" fill="#d97706"/>
+<text x="826" y="226" font-size="8.6" font-weight="700" fill="#d97706">mixed</text>
+<text x="680" y="247" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb45-21</text>
+<text x="884" y="247" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">945v / 61k cls</text>
+<rect x="680" y="252" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="252" width="54.2" height="9" rx="3" fill="#dc2626"/>
+<text x="826" y="260" font-size="8.6" font-weight="700" fill="#dc2626">&gt;5s wall</text>
+<text x="680" y="281" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb50-23</text>
+<text x="884" y="281" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">1,150v / 84k cls</text>
+<rect x="680" y="286" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="286" width="74.1" height="9" rx="3" fill="#dc2626"/>
+<text x="826" y="294" font-size="8.6" font-weight="700" fill="#dc2626">&gt;5s wall</text>
+<text x="680" y="315" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb53-24</text>
+<text x="884" y="315" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">1,272v / 98k cls</text>
+<rect x="680" y="320" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="320" width="86.7" height="9" rx="3" fill="#dc2626"/>
+<text x="826" y="328" font-size="8.6" font-weight="700" fill="#dc2626">&gt;5s wall</text>
+<text x="680" y="349" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb56-25</text>
+<text x="884" y="349" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">1,400v / 114k cls</text>
+<rect x="680" y="354" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="354" width="100.5" height="9" rx="3" fill="#dc2626"/>
+<text x="826" y="362" font-size="8.6" font-weight="700" fill="#dc2626">&gt;5s wall</text>
+<text x="680" y="383" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">frb59-26</text>
+<text x="884" y="383" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#475569">1,534v / 132k cls</text>
+<rect x="680" y="388" width="140" height="9" rx="3" fill="#e2e8f0"/>
+<rect x="680" y="388" width="116.0" height="9" rx="3" fill="#dc2626"/>
+<text x="826" y="396" font-size="8.6" font-weight="700" fill="#dc2626">&gt;5s wall</text>
+<rect x="678" y="410" width="208" height="38" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="782.0" y="425" text-anchor="middle" font-size="9.4" font-weight="700" fill="#991b1b">CDCL Hardness Wall (frb45–59)</text>
+<text x="782.0" y="439" text-anchor="middle" font-size="8.8" fill="#7f1d1d">0/25 solved in 5 s across all 5 solvers</text>
+</g></svg>

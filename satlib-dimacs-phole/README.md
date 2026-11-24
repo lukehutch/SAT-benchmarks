@@ -14,12 +14,17 @@
 
 All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole10`, encoding $\mathrm{PHP}^{7}_{6}$ through $\mathrm{PHP}^{11}_{10}$).
 
+![Pigeonhole principle complete bipartite graph K_{7,6} and Hall deficiency](diagram.svg)
+
+*Figure: Complete bipartite pigeonhole graph $K_{7,6}$ (`hole6`) illustrating forced hole collision, Hall deficiency $\lvert P \rvert > \lvert N(P) \rvert$, direct ALO/AMO Horn encoding, and Haken's $2^{\Omega(n)}$ CDCL scaling across `hole6..hole10`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 5 original native **DIMACS `.cnf.xz`** files (4.6 KB).
 - **`aig-converted/`** — 5 exact **Binary AIGER 1.9 `.aig.xz`** conversions (5.2 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 5 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (4.8 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 5 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (6.1 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 5 instances (**0 SAT / 5 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -28,11 +33,11 @@ All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole1
 | **Binary AIGER 1.9** | `aig-converted/` | 5 | Inputs: 42–110; ANDs: 293–1,209 | 5.2 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 5 | Native XOR clauses total: 0 | 4.8 KB |
 | **DIMACS-ANF** | `anf-converted/` | 5 | Vars: 63–187; Eqs: 154–638 (deg ≤ 3) | 6.1 KB |
-| **Total (4 Formats, Status: UNSAT)** | | **20** | | **20.7 KB** |
+| **Total (4 Formats, Status: 0 SAT / 5 UNSAT)** | | **20** | | **20.7 KB** |
 
 ## Comparative 1-Core Benchmark Results (All 5 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 5 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 5 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

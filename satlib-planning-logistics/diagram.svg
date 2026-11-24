@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 470" width="940" height="470">
+  <defs>
+    <marker id="arr-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arr-p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+    <style>
+      .title { font: 700 18px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .sub { font: 400 12.5px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #475569; }
+      .h3 { font: 700 13.5px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .body { font: 400 11.6px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #334155; }
+      .mono { font: 600 11px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fill: #1e293b; }
+      .loc { font: 700 12px system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .tag { font: 700 10.5px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fill: #ffffff; }
+      .edge { font: 700 11px ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+    </style>
+  </defs>
+  <rect x="2" y="2" width="936" height="466" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="26" y="34" class="title">SATPLAN Multi-City Logistics Planning (logistics.a – logistics.d)</text>
+  <text x="26" y="54" class="sub">Parallel Graphplan-to-SAT encoding: coordinate intra-city trucks &amp; inter-city airplanes to deliver packages by horizon T</text>
+  <line x1="24" y1="66" x2="916" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="28" y="84" width="330" height="218" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.4" stroke-dasharray="6,3"/>
+  <text x="44" y="106" class="h3" fill="#1d4ed8">City 1 (Origin Hub)</text>
+  <rect x="48" y="124" width="122" height="72" rx="9" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="109" y="148" text-anchor="middle" class="loc">Post Office 1</text>
+  <rect x="66" y="160" width="86" height="22" rx="5" fill="#d97706"/>
+  <text x="109" y="175" text-anchor="middle" class="tag">Pkg p1 (t=0)</text>
+  <rect x="218" y="124" width="122" height="72" rx="9" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="279" y="148" text-anchor="middle" class="loc">Airport 1</text>
+  <rect x="236" y="160" width="86" height="22" rx="5" fill="#7c3aed"/>
+  <text x="279" y="175" text-anchor="middle" class="tag">Plane A1</text>
+  <line x1="170" y1="160" x2="215" y2="160" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arr-b)"/>
+  <rect x="64" y="218" width="258" height="66" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="78" y="238" class="edge" fill="#1d4ed8">Truck T1 (City 1 only):</text>
+  <text x="78" y="256" class="mono">t=0: Load(p1, T1, PO1)</text>
+  <text x="78" y="272" class="mono">t=1: Drive(T1, PO1 → Air1) + Unload</text>
+  <path d="M 342 152 Q 470 96 594 152" fill="none" stroke="#7c3aed" stroke-width="2.8" marker-end="url(#arr-p)"/>
+  <rect x="382" y="102" width="176" height="44" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  <text x="470" y="121" text-anchor="middle" class="edge" fill="#6d28d9">Air Corridor (t = 2..3)</text>
+  <text x="470" y="137" text-anchor="middle" class="mono">Load → Fly(A1, Air1→Air2)</text>
+  <rect x="382" y="192" width="176" height="92" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="470" y="213" text-anchor="middle" class="h3">Parallel Actions</text>
+  <text x="394" y="233" class="body">Non-interfering trucks,</text>
+  <text x="394" y="249" class="body">planes &amp; packages move</text>
+  <text x="394" y="265" class="body">simultaneously per step</text>
+  <text x="394" y="279" class="mono">¬(aᵢ(t) ∧ aⱼ(t)) mutex</text>
+  <rect x="582" y="84" width="330" height="218" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.4" stroke-dasharray="6,3"/>
+  <text x="598" y="106" class="h3" fill="#047857">City 2 (Destination Hub)</text>
+  <rect x="600" y="124" width="122" height="72" rx="9" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="661" y="148" text-anchor="middle" class="loc">Airport 2</text>
+  <rect x="618" y="160" width="86" height="22" rx="5" fill="#059669"/>
+  <text x="661" y="175" text-anchor="middle" class="tag">Truck T2</text>
+  <rect x="770" y="124" width="122" height="72" rx="9" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="831" y="148" text-anchor="middle" class="loc">Post Office 2</text>
+  <rect x="788" y="160" width="86" height="22" rx="5" fill="#047857"/>
+  <text x="831" y="175" text-anchor="middle" class="tag">Pkg p1 (Goal)</text>
+  <line x1="722" y1="160" x2="767" y2="160" stroke="#059669" stroke-width="2.4" marker-end="url(#arr-g)"/>
+  <rect x="616" y="218" width="258" height="66" rx="8" fill="#ffffff" stroke="#a7f3d0" stroke-width="1"/>
+  <text x="630" y="238" class="edge" fill="#047857">Truck T2 (City 2 only):</text>
+  <text x="630" y="256" class="mono">t=4: Unload(p1,A1) + Load(p1,T2)</text>
+  <text x="630" y="272" class="mono">t=5: Drive(T2, Air2→PO2) + Unload</text>
+  <rect x="28" y="318" width="538" height="132" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="44" y="342" class="h3">Graphplan-Based SAT Encoding (Kautz &amp; Selman, 1996)</text>
+  <text x="44" y="363" class="mono">• Fact layers:   at(obj, loc, t),  in(pkg, vehicle, t)</text>
+  <text x="44" y="382" class="mono">• Action layers: load / unload / drive / fly at step t</text>
+  <text x="44" y="401" class="mono">• Backward support: fact(t+1) ⇒ ∨ { act(t) adding fact } ∨ noop(t)</text>
+  <text x="44" y="420" class="mono">• Mutex clauses: ¬(act₁(t) ∧ act₂(t)) for conflicting preconditions</text>
+  <text x="44" y="438" class="body">Allows compact parallel plans (e.g., 11–14 time steps for 8–10 packages across 3–4 cities).</text>
+  <rect x="582" y="318" width="330" height="132" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+  <text x="598" y="342" class="h3">Parsed Benchmark Suite (4 SAT)</text>
+  <text x="598" y="368" class="mono">logistics.a :   828 vars ·  6,718 cls</text>
+  <text x="598" y="388" class="mono">logistics.b :   843 vars ·  7,301 cls</text>
+  <text x="598" y="408" class="mono">logistics.c : 1,141 vars · 10,719 cls</text>
+  <text x="598" y="428" class="mono">logistics.d : 4,713 vars · 21,991 cls</text>
+</svg>

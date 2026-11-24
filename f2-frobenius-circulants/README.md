@@ -14,12 +14,17 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
 - **Origin:** **Original** suite of algebraic circulant parity benchmark circuits (MIT [`../LICENSE`](../LICENSE)).
 - **Why they are hard:** Every merge-tree DNF/ANF circuit solver incurs $\ge 2^{\sqrt{n}/(3\sqrt{2})}$ blowup, and pure CDCL solvers without $\mathbb{F}_2$ parity reasoning scale super-polynomially ($364\;\text{s}$ for [Kissat](https://github.com/arminbiere/kissat) and $211\;\text{s}$ for [CaDiCaL](https://github.com/arminbiere/cadical) at $n = 4{,}096$ SAT; [CaDiCaL](https://github.com/arminbiere/cadical) times out past $30\;\text{s}$ on `n1024_unsat`).
 
+![F2 Frobenius circulant matrices comparing invertible SAT vs singular UNSAT](diagram.svg)
+
+*Figure: Cyclic-shift $\mathbb{F}_2$ circulant matrices comparing invertible full-rank 3-XOR $p(t) = 1 + t + t^s$ (unique SAT) against rank-deficient 4-XOR $q(t) = (1+t)(1+t^s)$ with flipped $b_0$ left-kernel contradiction (UNSAT). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`33.7 KB`, `L = 0`, `O = 1` miter where `PO_0 = 1` iff all $n$ parity assertions hold; verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`114.3 KB`).
 - `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`23.7 KB`).
 - `anf-converted/` — Lossless degree-1 linear **DIMACS-ANF `.anf.xz`** conversions (`29.6 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 6 instances (**4 SAT / 2 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -35,9 +40,9 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-converted/*.xcnf`):
+Evaluated sequentially on the same AMD Ryzen 9 5950X machine (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `f2_frobenius_n64` | **1.22 ms** *(fastest)* | 2.91 ms *(2.4x)* | 23.08 ms *(18.9x)* | 22.23 ms *(18.2x)* | 1.59 ms | 2.68 ms *(2.2x)* |
 | `f2_frobenius_n256` | **1.52 ms** *(fastest)* | 388.02 ms *(255x)* | 34.73 ms *(22.8x)* | 27.54 ms *(18.1x)* | 1.96 ms | 156.50 ms *(103x)* |

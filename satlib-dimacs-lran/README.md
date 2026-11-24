@@ -14,12 +14,17 @@
 
 All 3 large critical-threshold uniform random 3-SAT formulas (`f600`, `f1000`, `f2000`; $\alpha = 4.25$, $\rho_{\mathrm{crit}} = 1.00\times$) from the Second DIMACS Challenge.
 
+![Large critical random 3-SAT energy landscape comparing WalkSAT vs CDCL](diagram.svg)
+
+*Figure: Rugged critical 3-SAT energy landscape $E(\sigma)$ contrasting WalkSAT/SLS noisy local-minima escape against exponential pure-CDCL branching across `f600`, `f1000`, and `f2000` ($\alpha = 4.25$). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 3 original native **DIMACS `.cnf.xz`** files (90.1 KB).
 - **`aig-converted/`** — 3 exact **Binary AIGER 1.9 `.aig.xz`** conversions (87.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 3 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (90.2 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 3 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (165.2 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 3 instances (**3 SAT / 0 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -28,11 +33,11 @@ All 3 large critical-threshold uniform random 3-SAT formulas (`f600`, `f1000`, `
 | **Binary AIGER 1.9** | `aig-converted/` | 3 | Inputs: 600–2,000; ANDs: 7,643–25,494 | 87.7 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 3 | Native XOR clauses total: 0 | 90.2 KB |
 | **DIMACS-ANF** | `anf-converted/` | 3 | Vars: 600–2,000; Eqs: 2,550–8,500 (deg ≤ 3) | 165.2 KB |
-| **Total (4 Formats, Status: SAT)** | | **12** | | **433.2 KB** |
+| **Total (4 Formats, Status: 3 SAT / 0 UNSAT)** | | **12** | | **433.2 KB** |
 
 ## Comparative 1-Core Benchmark Results (All 3 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 3 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 3 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

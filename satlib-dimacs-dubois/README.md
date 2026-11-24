@@ -9,7 +9,7 @@
 - **License:** Classic public scientific benchmark collection redistributed by UBC SATLIB for academic SAT research; no separate upstream `LICENSE` file is bundled in the archives.
 - **Format Hygiene:** Legacy SATLIB trailing `%` / `0` EOF sentinels were stripped and wrapped multi-line clauses normalized to canonical 1-clause-per-line DIMACS CNF so every modern SAT solver parses all files cleanly.
 - **Format Hygiene Notes:**
-  1. Leading `c p ...` comment lines were prefixed as `c - p ...` (zero clause/variable changes) for [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 compatibility.
+  1. Leading `c p ...` comment lines were prefixed as `c - p ...` (zero clause/variable changes) for [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 compatibility.
   2. *Historical upstream quirk preserved:* Upstream SATLIB's `dubois100.cnf` omits the trailing `0` terminator on 202 of its 800 lines in the original 1993 file, fusing adjacent clauses into tautologies (`598` `0`-terminated clauses); all five modern DIMACS solvers agree verbatim `dubois100.cnf` is SAT while `dubois20..50` are UNSAT.
 - **Full SATLIB Archive Manifest:** [`../satlib-archive-uris/`](../satlib-archive-uris/README.md) (all 97 official UBC SATLIB `.tar.gz` archive URLs; Pretolani's `PRET` formulas live in [`../pretolani-pret/`](../pretolani-pret/README.md)).
 
@@ -17,12 +17,17 @@
 
 All 13 classic Dubois parity-based 3-SAT formulas (`dubois20`–`dubois100`) from the Second DIMACS Implementation Challenge.
 
+![Dubois cyclic 3-XOR parity ladder with odd twist block](diagram.svg)
+
+*Figure: Exact Dubois mirror-rung cyclic 3-XOR parity ladder on $n = 3d$ degree-2 variables closing with one negated odd-twist block, 4-clause CNF XOR anatomy (74% Horn), and the preserved `dubois100` quirk. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 13 original native **DIMACS `.cnf.xz`** files (11.6 KB).
 - **`aig-converted/`** — 13 exact **Binary AIGER 1.9 `.aig.xz`** conversions (13.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 13 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (7.3 KB, `749` extracted native XOR parity clauses).
 - **`anf-converted/`** — 13 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (5.4 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 13 instances (**1 SAT / 12 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -35,7 +40,7 @@ All 13 classic Dubois parity-based 3-SAT formulas (`dubois20`–`dubois100`) fro
 
 ## Comparative 1-Core Benchmark Results (All 13 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 13 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 13 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

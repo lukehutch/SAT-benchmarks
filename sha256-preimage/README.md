@@ -7,12 +7,17 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 - **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), implementing [NIST FIPS PUB 180-4](https://csrc.nist.gov/publications/detail/fips/180/4/final) following the round-reduced and partial-preimage SHA-256 SAT cryptanalysis literature (Mironov & Zhang, SAT 2006; Nossum, 2012; Nejati et al., SAT 2017).
 - **Sharp Phase Transition ($R = 16 \to 17$):** For $R \le 16$, $W_0$ enters only round 0 so backward propagation resolves all 32 bits in $O(R)$ time. At $R = 17$, the message schedule $W_{16} = W_0 + \sigma_0(W_1) + W_9 + \sigma_1(W_{14})$ re-injects $W_0$ into deep ARX mixing, creating a classic $2^k$ preimage cliff where standard CDCL solvers spend $275\text{--}2{,}607\;\text{s}$ (or time out past $5{,}000\;\text{s}$) at $R = 64, k \in \{16, 20\}$.
 
+![FIPS 180-4 SHA-256 CSA compression round datapath and R=16 to 17 preimage cliff](diagram.svg)
+
+*Figure: Bit-accurate FIPS 180-4 SHA-256 Carry-Save-Adder (CSA) compression round datapath, message schedule $W_t$, and the sharp $R = 16 \to 17$ preimage cliff triggered by $W_{16}$ re-injecting the $k$ free bits of $W_0$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`648.7 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`2.13 MB`).
 - `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`1.24 MB`).
 - `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`2.00 MB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 5 instances (**4 SAT / 1 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -27,9 +32,9 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `sha256_16r_k32` | **8.94 ms** | 17.32 ms | 18.61 ms | 13.70 ms | 25.73 ms | 9.61 ms |
 | `sha256_17r_k16` | **19.35 ms** | 4,160.70 ms | 4,838.70 ms | 2,177.97 ms | 12.08 s | 7,719.28 ms |

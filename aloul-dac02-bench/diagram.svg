@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 488" width="920" height="488" role="img" aria-label="Aloul DAC 2002 Symmetry-Rich SAT Benchmark Suite and Orbit Pruning">
+  <defs>
+    <marker id="arr-purp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="484" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="28" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Aloul DAC 2002 Symmetry-Rich SAT Suite (aloul-dac02-bench)</text>
+    <text x="28" y="53" font-size="11.8" fill="#475569">5 classic EDA &amp; combinatorial families (32 instances: 14 SAT / 18 UNSAT) · Automorphism groups Aut(F) &amp; Lex-Leader Symmetry Breaking</text>
+    <rect x="752" y="18" width="142" height="24" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+    <text x="823" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">14 SAT · 18 UNSAT</text>
+    <line x1="24" y1="65" x2="896" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="24" y="78" width="536" height="388" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="40" y="100" font-size="13" font-weight="700" fill="#0f172a">Five Benchmark Families in aloul-dac02-bench (32 Instances)</text>
+    <rect x="38" y="112" width="508" height="62" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+    <rect x="46" y="120" width="56" height="46" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="0.9"/>
+    <line x1="60" y1="131" x2="88" y2="131" stroke="#a78bfa" stroke-width="1.2"/>
+    <line x1="60" y1="131" x2="88" y2="143" stroke="#a78bfa" stroke-width="1.2"/>
+    <line x1="60" y1="143" x2="88" y2="131" stroke="#a78bfa" stroke-width="1.2"/>
+    <line x1="60" y1="143" x2="88" y2="155" stroke="#a78bfa" stroke-width="1.2"/>
+    <line x1="60" y1="155" x2="88" y2="143" stroke="#a78bfa" stroke-width="1.2"/>
+    <line x1="60" y1="155" x2="88" y2="155" stroke="#a78bfa" stroke-width="1.2"/>
+    <circle cx="60" cy="131" r="3.8" fill="#7c3aed" stroke="#6d28d9" stroke-width="1.1"/>
+    <circle cx="60" cy="143" r="3.8" fill="#ffffff" stroke="#6d28d9" stroke-width="1.1"/>
+    <circle cx="60" cy="155" r="3.8" fill="#7c3aed" stroke="#6d28d9" stroke-width="1.1"/>
+    <circle cx="88" cy="131" r="3.8" fill="#ffffff" stroke="#6d28d9" stroke-width="1.1"/>
+    <circle cx="88" cy="143" r="3.8" fill="#7c3aed" stroke="#6d28d9" stroke-width="1.1"/>
+    <circle cx="88" cy="155" r="3.8" fill="#ffffff" stroke="#6d28d9" stroke-width="1.1"/>
+    <text x="112" y="130" font-size="11.5" font-weight="700" fill="#0f172a">Urquhart Bipartite Expander Parity (𝔽₂)</text>
+    <text x="112" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="600" fill="#7c3aed">Urq3_5 .. Urq8_5</text>
+    <text x="112" y="162" font-size="9.6" fill="#475569">m² × m² bipartite graph, odd total charge ∑ c<tspan baseline-shift="sub" font-size="72%">v</tspan> ≡ 1 (mod 2) · 312 native XORs</text>
+    <rect x="474" y="120" width="64" height="19" rx="9.5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="0.9"/>
+    <text x="506" y="133" text-anchor="middle" font-size="9.5" font-weight="700" fill="#7c3aed">6 UNSAT</text>
+    <rect x="38" y="181" width="508" height="62" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.2"/>
+    <rect x="46" y="189" width="56" height="46" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <circle cx="58" cy="197" r="3" fill="#dc2626"/>
+    <circle cx="58" cy="207" r="3" fill="#dc2626"/>
+    <circle cx="58" cy="217" r="3" fill="#dc2626"/>
+    <circle cx="58" cy="227" r="3" fill="#dc2626"/>
+    <rect x="84" y="198" width="9" height="8" rx="1.5" fill="#ffffff" stroke="#b91c1c" stroke-width="1.1"/>
+    <rect x="84" y="210" width="9" height="8" rx="1.5" fill="#ffffff" stroke="#b91c1c" stroke-width="1.1"/>
+    <rect x="84" y="222" width="9" height="8" rx="1.5" fill="#ffffff" stroke="#b91c1c" stroke-width="1.1"/>
+    <line x1="61" y1="197" x2="84" y2="202" stroke="#dc2626" stroke-width="1.2"/>
+    <line x1="61" y1="207" x2="84" y2="214" stroke="#dc2626" stroke-width="1.2"/>
+    <line x1="61" y1="217" x2="84" y2="226" stroke="#dc2626" stroke-width="1.2"/>
+    <line x1="61" y1="227" x2="82" y2="226" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="2,2"/>
+    <text x="112" y="199" font-size="11.5" font-weight="700" fill="#0f172a">Pigeonhole Principle PHP<tspan baseline-shift="sub" font-size="72%">n</tspan><tspan baseline-shift="super" font-size="72%">n+1</tspan></text>
+    <text x="112" y="215" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="600" fill="#dc2626">hole7 .. hole12</text>
+    <text x="112" y="231" font-size="9.6" fill="#475569">n+1 pigeons into n holes (56–156 vars) · Full S<tspan baseline-shift="sub" font-size="72%">n+1</tspan> × S<tspan baseline-shift="sub" font-size="72%">n</tspan> symmetry</text>
+    <rect x="474" y="189" width="64" height="19" rx="9.5" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="506" y="202" text-anchor="middle" font-size="9.5" font-weight="700" fill="#dc2626">6 UNSAT</text>
+    <rect x="38" y="250" width="508" height="62" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.2"/>
+    <rect x="46" y="258" width="56" height="46" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="0.9"/>
+    <line x1="52" y1="270" x2="96" y2="270" stroke="#d97706" stroke-width="1.8"/>
+    <line x1="52" y1="280" x2="96" y2="280" stroke="#d97706" stroke-width="1.8"/>
+    <line x1="52" y1="290" x2="96" y2="290" stroke="#d97706" stroke-width="1.8"/>
+    <line x1="52" y1="297" x2="71" y2="297" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="3,2"/>
+    <text x="80" y="300" font-size="9.5" font-weight="800" fill="#dc2626">×</text>
+    <text x="112" y="268" font-size="11.5" font-weight="700" fill="#0f172a">Over-Subscribed FPGA Channel Routing</text>
+    <text x="112" y="284" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="600" fill="#d97706">chnl10_11 .. chnl11_20</text>
+    <text x="112" y="300" font-size="9.6" fill="#475569">N &gt; W nets through W tracks on 2 sides (220–440 vars) · 2 × PHP<tspan baseline-shift="sub" font-size="72%">W</tspan><tspan baseline-shift="super" font-size="72%">N</tspan> core</text>
+    <rect x="474" y="258" width="64" height="19" rx="9.5" fill="#fffbeb" stroke="#d97706" stroke-width="0.9"/>
+    <text x="506" y="271" text-anchor="middle" font-size="9.5" font-weight="700" fill="#d97706">6 UNSAT</text>
+    <rect x="38" y="319" width="508" height="62" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.2"/>
+    <rect x="46" y="327" width="56" height="46" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <rect x="62" y="338" width="24" height="24" rx="3" fill="#ffffff" stroke="#059669" stroke-width="1.2"/>
+    <path d="M 52 345 L 96 345" stroke="#059669" stroke-width="1.8" fill="none"/>
+    <path d="M 52 355 L 74 355 L 74 333" stroke="#2563eb" stroke-width="1.8" fill="none"/>
+    <text x="112" y="337" font-size="11.5" font-weight="700" fill="#0f172a">Routable FPGA Switch-Box Channels</text>
+    <text x="112" y="353" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="600" fill="#059669">fpga10_8 .. fpga13_12</text>
+    <text x="112" y="369" font-size="9.6" fill="#475569">N ≤ W disjoint net-to-track routing (120–234 vars) · Rich track symmetry</text>
+    <rect x="474" y="327" width="64" height="19" rx="9.5" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="506" y="340" text-anchor="middle" font-size="9.5" font-weight="700" fill="#059669">9 SAT</text>
+    <rect x="38" y="388" width="508" height="62" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+    <rect x="46" y="396" width="56" height="46" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="56" y="405" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="70" y="405" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="84" y="405" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="56" y="417" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="70" y="417" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="84" y="417" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="56" y="429" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="70" y="429" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <rect x="84" y="429" width="8" height="7" rx="1.2" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <path d="M 60 408 L 88 408 L 88 432" fill="none" stroke="#1d4ed8" stroke-width="1.6"/>
+    <text x="112" y="406" font-size="11.5" font-weight="700" fill="#0f172a">3×3 FPGA Global Routing Grids (18 Nets)</text>
+    <text x="112" y="422" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="600" fill="#2563eb">s3-3-3-1 .. s3-3-3-10</text>
+    <text x="112" y="438" font-size="9.6" fill="#475569">Multi-channel grid routing (864–1,056 vars, 7.6k–10.9k cls) · 306 native XORs</text>
+    <rect x="474" y="396" width="64" height="19" rx="9.5" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="506" y="409" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563eb">5 SAT</text>
+    <rect x="576" y="78" width="320" height="248" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="590" y="100" font-size="12.5" font-weight="700" fill="#0f172a">Symmetry Orbits &amp; Tree Pruning</text>
+    <text x="590" y="116" font-size="10" fill="#475569">Automorphism σ ∈ Aut(F) maps F(σ(x)) = F(x)</text>
+    <circle cx="736.0" cy="142" r="13" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+    <text x="736.0" y="146" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">root</text>
+    <line x1="736.0" y1="155" x2="632" y2="178" stroke="#059669" stroke-width="1.8"/>
+    <polygon points="632,178 590,244 674,244" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+    <text x="632" y="221" text-anchor="middle" font-size="10.2" font-weight="700" fill="#047857">T₁ (keep)</text>
+    <text x="632" y="236" text-anchor="middle" font-size="9.2" font-weight="700" fill="#059669">Canonical</text>
+    <line x1="736.0" y1="155" x2="736" y2="178" stroke="#cbd5e1" stroke-width="1.8" stroke-dasharray="4,3"/>
+    <polygon points="736,178 694,244 778,244" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="728" y1="193" x2="744" y2="207" stroke="#dc2626" stroke-width="2"/>
+    <line x1="744" y1="193" x2="728" y2="207" stroke="#dc2626" stroke-width="2"/>
+    <text x="736" y="223" text-anchor="middle" font-size="10" font-weight="700" fill="#64748b">σ<tspan baseline-shift="super" font-size="72%">1</tspan>(T₁)</text>
+    <text x="736" y="237" text-anchor="middle" font-size="9.1" font-weight="700" fill="#dc2626">PRUNED</text>
+    <line x1="736.0" y1="155" x2="840" y2="178" stroke="#cbd5e1" stroke-width="1.8" stroke-dasharray="4,3"/>
+    <polygon points="840,178 798,244 882,244" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="832" y1="193" x2="848" y2="207" stroke="#dc2626" stroke-width="2"/>
+    <line x1="848" y1="193" x2="832" y2="207" stroke="#dc2626" stroke-width="2"/>
+    <text x="840" y="223" text-anchor="middle" font-size="10" font-weight="700" fill="#64748b">σ<tspan baseline-shift="super" font-size="72%">2</tspan>(T₁)</text>
+    <text x="840" y="237" text-anchor="middle" font-size="9.1" font-weight="700" fill="#dc2626">PRUNED</text>
+    <path d="M 652 186 Q 684.0 166 716 186" fill="none" stroke="#7c3aed" stroke-width="1.4" marker-end="url(#arr-purp)"/>
+    <text x="684.0" y="173" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6d28d9">σ₁</text>
+    <path d="M 756 186 Q 788.0 166 820 186" fill="none" stroke="#7c3aed" stroke-width="1.4" marker-end="url(#arr-purp)"/>
+    <text x="788.0" y="173" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6d28d9">σ₂</text>
+    <rect x="590" y="258" width="292" height="56" rx="7" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.1"/>
+    <text x="600" y="276" font-size="10.2" font-weight="700" fill="#6d28d9">Lex-Leader Symmetry-Breaking Predicate (SBP):</text>
+    <text x="600" y="292" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#0f172a">SBP(F) = ⋀<tspan baseline-shift="sub" font-size="72%">σ∈G</tspan> [ x ≤<tspan baseline-shift="sub" font-size="72%">lex</tspan> σ(x) ]</text>
+    <text x="600" y="306" font-size="9.4" fill="#475569">Retains ≥ 1 model per orbit; preserves SAT/UNSAT</text>
+    <rect x="576" y="338" width="320" height="128" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="590" y="359" font-size="12" font-weight="700" fill="#0f172a">Suite Impact &amp; Format Metrics</text>
+    <text x="590" y="379.0" font-size="9.8" font-weight="700" fill="#1d4ed8">Dimensions:</text>
+    <text x="668" y="379.0" font-size="9.7" fill="#334155">46–1,056 vars · 204–10,862 clauses</text>
+    <text x="590" y="396.5" font-size="9.8" font-weight="700" fill="#1d4ed8">Regime:</text>
+    <text x="668" y="396.5" font-size="9.7" fill="#334155">6 Under (Urq) / 26 Over · Med ρ<tspan baseline-shift="sub" font-size="72%">crit</tspan> = 4.50×</text>
+    <text x="590" y="414.0" font-size="9.8" font-weight="700" fill="#1d4ed8">Native XORs:</text>
+    <text x="668" y="414.0" font-size="9.7" fill="#334155">618 total (312 Urq + 306 s3-3 grids)</text>
+    <text x="590" y="431.5" font-size="9.8" font-weight="700" fill="#1d4ed8">Pure CDCL:</text>
+    <text x="668" y="431.5" font-size="9.7" fill="#334155">17–24 / 32 solved in 5 s (chokes on PHP/Urq)</text>
+    <text x="590" y="449.0" font-size="9.8" font-weight="700" fill="#1d4ed8">Sym/Alg SAT:</text>
+    <text x="668" y="449.0" font-size="9.7" fill="#334155">32 / 32 solved in 0.36–0.45 s combined</text>
+  </g>
+</svg>

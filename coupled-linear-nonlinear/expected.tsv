@@ -1,0 +1,4 @@
+coupled_n128_d32_unsat.aig	UNSAT
+coupled_n128_d64.aig	SAT
+coupled_n256_d128.aig	SAT
+coupled_n512_d128.aig	SAT

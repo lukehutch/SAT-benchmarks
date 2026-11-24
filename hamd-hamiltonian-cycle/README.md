@@ -13,12 +13,17 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 - **Origin:** **Original** parameterized generator (MIT [`../LICENSE`](../LICENSE)), instantiating classic graph-theoretic families (Watkins 1969; Chvátal 1973; Meredith 1973; Isaacs 1975; [Haythorpe FHCP / Broken Crowns](https://arxiv.org/abs/1902.10351); Vandegriend & Culberson 1998) in compact binary-order MTZ CNF ([StructHCP](https://arxiv.org/abs/2610.14780)).
 
+![HAMD Hamiltonian cycle benchmark graphs GP(15,2), GP(11,2), and Flower Snark J5](diagram.svg)
+
+*Figure: Representative 3-regular, 3-connected HAMD benchmark families comparing Hamiltonian $GP(15,2)$ (SAT, verified 30-vertex cycle) against hypohamiltonian $GP(11,2)$ and Isaacs Flower Snark $J_5$ (UNSAT). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Regeneration
 
 - `cnf-orig/` — Original native **DIMACS CNF** encodings (22 `.cnf.xz` files, `478.7 KB`, compact binary-order MTZ).
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (22 files, `699.0 KB`, all 22/22 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `xcnf-converted/` — Lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (22 files, `481.0 KB`).
 - `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (22 files, `1.70 MB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 22 instances (**12 SAT / 10 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`) plus `cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
@@ -50,9 +55,9 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; **10/10 UNSAT LRAT proofs** emitted by Frobenius verified `s VERIFIED UNSAT` in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and `c VERIFIED` in [`lrat-check`](https://github.com/marijnheule/drat-trim); **12/12 SAT cycles** independently verified):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; **10/10 UNSAT LRAT proofs** emitted by Frobenius verified `s VERIFIED UNSAT` in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and `c VERIFIED` in [`lrat-check`](https://github.com/marijnheule/drat-trim); **12/12 SAT cycles** independently verified):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | Formal Verification |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | Formal Verification |
 |---|---:|---:|---:|---:|---:|---|
 | `hamd_snark_j5_unsat` | **4.81 ms** | 15.8 ms | 63.9 ms | 8.57 ms | 32.2 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`1,205` lines) |
 | `hamd_gp_11_2_unsat` | **4.14 ms** | 64.7 ms | 167.2 ms | 14.05 ms | 114.2 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`1,926` lines) |

@@ -15,12 +15,17 @@ Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a ten
 
 Three restricted-coefficient / fractional variants (`f-d-3`, `f-d-4`, `f-d-6`) of the $3\times 3$ matrix-multiplication Brent equations.
 
+![Heule matrix multiplication fraction cardinality-restricted Brent encoding](diagram.svg)
+
+*Figure: XOR-free cardinality-restricted $R = 23$ Brent encoding replacing mod-2 parity with `EXACTLY-1` ($\delta=1$) and `ZERO-OR-2` ($\delta=0$, `0` XORs, `89%` Horn) plus `noRank3` and live-decoded 4-pair pins for `f-d-3`, `f-d-4`, `f-d-6`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 3 original native **DIMACS `.cnf.xz`** files (947.7 KB).
 - **`aig-converted/`** — 3 exact **Binary AIGER 1.9 `.aig.xz`** conversions (1.31 MB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 3 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (944.6 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 3 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (4.76 MB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 3 instances (**0 SAT / 0 UNSAT / 3 UNKNOWN**).
 - **`src/`** — Upstream C utilities preserved from `marijnheule/matrix-challenges` (`encode.c`, `decode.c`, `exp2cnf.c`, `pair.c`, `palin.c`, `stats.c`, `type3.c`) plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -37,7 +42,7 @@ Three restricted-coefficient / fractional variants (`f-d-3`, `f-d-4`, `f-d-6`) o
 
 ## Comparative 1-Core Benchmark Results (All 3 Instances, Flat `.cnf` + `.xcnf`, $T_{\max} = 60\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 60\;\text{s}$, PAR-2 penalty $120,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 3 instances** were run with **0 verdict disagreements**.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 60\;\text{s}$, PAR-2 penalty $120,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 3 instances** were run with **0 verdict disagreements**.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|

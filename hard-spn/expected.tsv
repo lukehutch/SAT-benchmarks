@@ -1,0 +1,4 @@
+spn_sat_n128_d64.aig	SAT
+spn_sat_n64_d32.aig	SAT
+spn_sat_n96_d48.aig	SAT
+spn_unsat_n48_d24.aig	UNSAT

@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 468" width="920" height="468" role="img" aria-label="Hard SPN / LowMC-style linear-form and nonlinear S-box circuit architecture">
+<defs>
+  <marker id="arr-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/></marker>
+  <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/></marker>
+  <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/></marker>
+</defs>
+<rect x="2" y="2" width="916" height="464" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Hard SPN / LowMC-Style Linear-Form + Nonlinear Circuits (hard-spn)</text>
+<text x="26" y="53" font-size="11.8" fill="#475569">Affine 𝔽₂ diffusion layer (r = n/2 sparse 5-XOR rows) coupled with 3-bit S-box gates (And, Maj₃, Mux) evaluated on 3-input linear forms ℓ = xᵢ ⊕ xⱼ ⊕ xₖ</text>
+<line x1="24" y1="64" x2="896" y2="64" stroke="#e2e8f0" stroke-width="1.2"/>
+<rect x="24" y="76" width="602" height="320" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="38" y="96" font-size="12.5" font-weight="700" fill="#0f172a">Circuit Topology (src/main.rs — LowMC / SPN Algebraic Round Coupling)</text>
+<rect x="38" y="112" width="84" height="266" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="80.0" y="130" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Inputs x</text>
+<text x="80.0" y="144" text-anchor="middle" font-size="9.5" fill="#475569">x ∈ 𝔽₂ⁿ (k⊕x★)</text>
+<rect x="50" y="154.0" width="60" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="80.0" y="168.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="600" fill="#1d4ed8">x₀</text>
+<rect x="50" y="181.0" width="60" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="80.0" y="195.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="600" fill="#1d4ed8">x₁</text>
+<rect x="50" y="208.0" width="60" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="80.0" y="222.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="600" fill="#1d4ed8">x₂</text>
+<rect x="50" y="235.0" width="60" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="80.0" y="249.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="600" fill="#1d4ed8">x₃</text>
+<rect x="50" y="262.0" width="60" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="80.0" y="276.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="600" fill="#1d4ed8">x₄</text>
+<text x="80.0" y="303.0" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b">⋮</text>
+<rect x="50" y="316.0" width="60" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="80.0" y="330.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="600" fill="#1d4ed8">xₙ₋₂</text>
+<rect x="50" y="343.0" width="60" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="80.0" y="357.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="600" fill="#1d4ed8">xₙ₋₁</text>
+<rect x="158" y="112" width="452" height="108" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3"/>
+<text x="170" y="130" font-size="11.2" font-weight="700" fill="#1d4ed8">1. Affine 𝔽₂ Linear Diffusion Layer:  L · x = b (mod 2)</text>
+<text x="598" y="130" text-anchor="end" font-size="9.8" font-weight="600" fill="#2563eb">r = n/2 eqs · d = n/2</text>
+<rect x="171" y="138" width="136" height="64" rx="4" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+<rect x="175.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="188.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="201.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="214.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="227.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="240.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="253.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="266.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="279.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="292.2" y="141.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="175.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="188.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="201.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="214.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="227.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="240.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="253.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="266.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="279.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="292.2" y="153.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="175.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="188.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="201.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="214.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="227.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="240.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="253.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="266.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="279.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="292.2" y="165.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="175.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="188.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="201.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="214.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="227.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="240.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="253.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="266.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="279.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="292.2" y="177.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="175.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="188.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="201.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="214.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="227.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="240.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="253.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="266.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#e2e8f0"/>
+<rect x="279.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<rect x="292.2" y="189.2" width="10.6" height="9.6" rx="2" fill="#2563eb"/>
+<text x="320" y="174" font-size="13" font-weight="700" fill="#1d4ed8">· x =</text>
+<rect x="356" y="138" width="18" height="64" rx="4" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+<text x="365" y="149.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">1</text>
+<text x="365" y="161.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#64748b">0</text>
+<text x="365" y="173.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">1</text>
+<text x="365" y="185.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">1</text>
+<text x="365" y="197.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#64748b">0</text>
+<text x="386" y="152" font-size="10.2" font-weight="600" fill="#0f172a">Row j:  xᵢ₁ ⊕ xᵢ₂ ⊕ xᵢ₃ ⊕ xᵢ₄ ⊕ xᵢ₅ = bⱼ</text>
+<text x="386" y="168" font-size="9.6" fill="#475569">Planted secret x★ sets b = L·x★ (mod 2).</text>
+<text x="386" y="183" font-size="9.6" fill="#475569">Leaves 2ᵈ affine candidates (d = n/2 ∈ {24..64}).</text>
+<text x="386" y="198" font-size="9.4" font-weight="600" fill="#1d4ed8">Native XOR region: 161–578 extracted XORs</text>
+<path d="M 122 164.0 C 140 164.0, 140 160.0, 156 160.0" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-opacity="0.75" marker-end="url(#arr-blue)"/>
+<path d="M 122 191.0 C 140 191.0, 140 160.0, 156 160.0" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-opacity="0.75" marker-end="url(#arr-blue)"/>
+<path d="M 122 218.0 C 140 218.0, 140 160.0, 156 160.0" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-opacity="0.75" marker-end="url(#arr-blue)"/>
+<rect x="158" y="232" width="452" height="146" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="170" y="250" font-size="11.2" font-weight="700" fill="#0f172a">2. Linear-Form Substitution Layer (mₙₗ ∈ {38, 55, 85, 150} S-Box Gates)</text>
+<rect x="172" y="262" width="132" height="30" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="238.0" y="275" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">ℓ₁ = xₐ ⊕ xᵦ ⊕ xᵧ</text>
+<text x="238.0" y="287" text-anchor="middle" font-size="8.7" fill="#475569">3-input 𝔽₂ form</text>
+<rect x="172" y="299" width="132" height="30" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="238.0" y="312" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">ℓ₂ = xᵢ ⊕ xⱼ ⊕ xₖ</text>
+<text x="238.0" y="324" text-anchor="middle" font-size="8.7" fill="#475569">3-input 𝔽₂ form</text>
+<rect x="172" y="336" width="132" height="30" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="238.0" y="349" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">ℓ₃ = xₚ ⊕ xᵣ ⊕ xₛ</text>
+<text x="238.0" y="361" text-anchor="middle" font-size="8.7" fill="#475569">3-input 𝔽₂ form</text>
+<path d="M 122 245.0 C 146 245.0, 146 277.0, 170 277.0" fill="none" stroke="#7c3aed" stroke-width="1.25" stroke-opacity="0.75" marker-end="url(#arr-purple)"/>
+<path d="M 122 272.0 C 146 272.0, 146 314.0, 170 314.0" fill="none" stroke="#7c3aed" stroke-width="1.25" stroke-opacity="0.75" marker-end="url(#arr-purple)"/>
+<path d="M 122 326.0 C 146 326.0, 146 351.0, 170 351.0" fill="none" stroke="#7c3aed" stroke-width="1.25" stroke-opacity="0.75" marker-end="url(#arr-purple)"/>
+<path d="M 122 353.0 C 146 353.0, 146 351.0, 170 351.0" fill="none" stroke="#7c3aed" stroke-width="1.25" stroke-opacity="0.75" marker-end="url(#arr-purple)"/>
+<rect x="338" y="262" width="152" height="30" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.25"/>
+<text x="414.0" y="275" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">g ≡ 0:  And(ℓ₁, ℓ₂)</text>
+<text x="414.0" y="287" text-anchor="middle" font-size="8.7" fill="#475569">deg-2 quadratic</text>
+<rect x="338" y="299" width="152" height="30" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.25"/>
+<text x="414.0" y="312" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">g ≡ 1:  Maj₃(ℓ₁, ℓ₂, ℓ₃)</text>
+<text x="414.0" y="324" text-anchor="middle" font-size="8.7" fill="#475569">3-bit majority S-box</text>
+<rect x="338" y="336" width="152" height="30" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.25"/>
+<text x="414.0" y="349" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">g ≡ 2:  Mux(ℓ₁, ℓ₂, ℓ₃)</text>
+<text x="414.0" y="361" text-anchor="middle" font-size="8.7" fill="#475569">ite(ℓ₁, ℓ₂, ℓ₃)</text>
+<line x1="304" y1="277" x2="336" y2="277" stroke="#7c3aed" stroke-width="1.05" stroke-opacity="0.65" marker-end="url(#arr-purple)"/>
+<line x1="304" y1="277" x2="336" y2="314" stroke="#7c3aed" stroke-width="1.05" stroke-opacity="0.65" marker-end="url(#arr-purple)"/>
+<line x1="304" y1="314" x2="336" y2="277" stroke="#7c3aed" stroke-width="1.05" stroke-opacity="0.65" marker-end="url(#arr-purple)"/>
+<line x1="304" y1="314" x2="336" y2="314" stroke="#7c3aed" stroke-width="1.05" stroke-opacity="0.65" marker-end="url(#arr-purple)"/>
+<line x1="304" y1="314" x2="336" y2="351" stroke="#7c3aed" stroke-width="1.05" stroke-opacity="0.65" marker-end="url(#arr-purple)"/>
+<line x1="304" y1="351" x2="336" y2="314" stroke="#7c3aed" stroke-width="1.05" stroke-opacity="0.65" marker-end="url(#arr-purple)"/>
+<line x1="304" y1="351" x2="336" y2="351" stroke="#7c3aed" stroke-width="1.05" stroke-opacity="0.65" marker-end="url(#arr-purple)"/>
+<line x1="490" y1="277" x2="514" y2="277" stroke="#d97706" stroke-width="1.3" marker-end="url(#arr-amber)"/>
+<rect x="516" y="264" width="82" height="26" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.15"/>
+<text x="557.0" y="280.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#047857">= v₀ (SAT)</text>
+<line x1="490" y1="314" x2="514" y2="314" stroke="#d97706" stroke-width="1.3" marker-end="url(#arr-amber)"/>
+<rect x="516" y="301" width="82" height="26" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.15"/>
+<text x="557.0" y="317.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#047857">= v₁ (SAT)</text>
+<line x1="490" y1="351" x2="514" y2="351" stroke="#d97706" stroke-width="1.3" marker-end="url(#arr-amber)"/>
+<rect x="516" y="338" width="82" height="26" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.15"/>
+<text x="557.0" y="354.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#b91c1c">= ¬vₘ (UNSAT)</text>
+<rect x="640" y="76" width="256" height="146" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="652" y="96" font-size="12" font-weight="700" fill="#0f172a">Why Linear Forms Defeat Flat CDCL</text>
+<text x="652" y="115" font-size="9.8" font-weight="700" fill="#1e293b">● Direct inputs masked:</text>
+<text x="662" y="128" font-size="9.3" fill="#475569">S-boxes read ℓ = xᵢ ⊕ xⱼ ⊕ xₖ,</text>
+<text x="662" y="140" font-size="9.3" fill="#475569">not raw bits xᵢ — blocking BCP.</text>
+<text x="652" y="151" font-size="9.8" font-weight="700" fill="#1e293b">● Pure Gauss fails:</text>
+<text x="662" y="164" font-size="9.3" fill="#475569">And / Maj₃ / Mux introduce</text>
+<text x="662" y="176" font-size="9.3" fill="#475569">degree-2 terms over 𝔽₂.</text>
+<text x="652" y="187" font-size="9.8" font-weight="700" fill="#1e293b">● Solver gap (n = 128):</text>
+<text x="662" y="200" font-size="9.3" fill="#475569">Kissat 4.33 s · CMS CNF 10.8 s</text>
+<text x="662" y="212" font-size="9.3" fill="#475569">vs. 𝔽₂-aware solving 38 ms.</text>
+<rect x="640" y="232" width="256" height="164" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="652" y="252" font-size="12" font-weight="700" fill="#0f172a">Suite Instances (3 SAT / 1 UNSAT)</text>
+<rect x="650" y="259" width="236" height="18" rx="4" fill="#e2e8f0"/>
+<text x="655" y="271" text-anchor="start" font-size="9.2" font-weight="700" fill="#334155">Instance</text>
+<text x="752" y="271" text-anchor="middle" font-size="9.2" font-weight="700" fill="#334155">n / d</text>
+<text x="796" y="271" text-anchor="middle" font-size="9.2" font-weight="700" fill="#334155">S-box</text>
+<text x="856" y="271" text-anchor="middle" font-size="9.2" font-weight="700" fill="#334155">Ans</text>
+<text x="655" y="292" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" fill="#0f172a">n48_d24</text>
+<text x="752" y="292" text-anchor="middle" font-size="9.5" fill="#334155">48 / 24</text>
+<text x="796" y="292" text-anchor="middle" font-size="9.5" fill="#334155">38*</text>
+<rect x="830" y="280" width="50" height="16" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+<text x="855" y="291.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#dc2626">UNSAT</text>
+<rect x="650" y="302" width="236" height="21" rx="3" fill="#ffffff"/>
+<text x="655" y="316" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" fill="#0f172a">n64_d32</text>
+<text x="752" y="316" text-anchor="middle" font-size="9.5" fill="#334155">64 / 32</text>
+<text x="796" y="316" text-anchor="middle" font-size="9.5" fill="#334155">55</text>
+<rect x="830" y="304" width="50" height="16" rx="4" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+<text x="855" y="315.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#059669">SAT</text>
+<text x="655" y="340" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" fill="#0f172a">n96_d48</text>
+<text x="752" y="340" text-anchor="middle" font-size="9.5" fill="#334155">96 / 48</text>
+<text x="796" y="340" text-anchor="middle" font-size="9.5" fill="#334155">85</text>
+<rect x="830" y="328" width="50" height="16" rx="4" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+<text x="855" y="339.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#059669">SAT</text>
+<rect x="650" y="350" width="236" height="21" rx="3" fill="#ffffff"/>
+<text x="655" y="364" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" fill="#0f172a">n128_d64</text>
+<text x="752" y="364" text-anchor="middle" font-size="9.5" fill="#334155">128 / 64</text>
+<text x="796" y="364" text-anchor="middle" font-size="9.5" fill="#334155">150</text>
+<rect x="830" y="352" width="50" height="16" rx="4" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+<text x="855" y="363.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#059669">SAT</text>
+<text x="652" y="388" font-size="8.8" fill="#64748b">*n48_d24 flips last S-box target bit v₃₇ → UNSAT</text>
+<rect x="24" y="408" width="210" height="34" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="129.0" y="429" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">AIG Origin: 969–3,643 ANDs</text>
+<rect x="244" y="408" width="214" height="34" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+<text x="351.0" y="429" text-anchor="middle" font-size="10.2" font-weight="700" fill="#6d28d9">Native XORs: 161–578 (1,328 total)</text>
+<rect x="468" y="408" width="206" height="34" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="571.0" y="429" text-anchor="middle" font-size="10.2" font-weight="700" fill="#b45309">ρ_c = 1.06×–1.11× (Near-crit)</text>
+<rect x="684" y="408" width="212" height="34" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="790.0" y="429" text-anchor="middle" font-size="10.2" font-weight="700" fill="#047857">4 Formats: AIG · CNF · XCNF · ANF</text>
+</g>
+</svg>

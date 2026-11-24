@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="920" height="460" role="img" aria-label="SATLIB 1996 Beijing SAT Competition multi-family showcase">
+<defs>
+  <marker id="arr-s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/></marker>
+  <marker id="arr-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/></marker>
+</defs>
+<rect x="2" y="2" width="916" height="456" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="18" font-weight="700" fill="#0f172a">SATLIB 1996 Beijing SAT Competition Showcase (satlib-beijing)</text>
+<text x="26" y="54" font-size="12" fill="#475569">Three classic problem domains: Boolean circuit synthesis (7), Blocks World planning (3), and 10×5 scheduling (6) · 15 SAT / 1 UNSAT</text>
+<line x1="24" y1="66" x2="896" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="24" y="78" width="288" height="304" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="24" y="78" width="288" height="30" rx="10" fill="#2563eb"/>
+<rect x="24" y="96" width="288" height="12" fill="#2563eb"/>
+<text x="168.0" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1. Minimum-Gate Circuit Synthesis (7)</text>
+<rect x="38" y="122" width="260" height="132" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="139" font-size="10.2" font-weight="700" fill="#1e3a8a">2-Bit Adder / Comparator Gate Bound k</text>
+<rect x="48" y="150" width="26" height="16" rx="3" fill="#eff6ff" stroke="#93c5fd" stroke-width="0.9"/>
+<text x="61" y="161.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#1d4ed8">A₁</text>
+<line x1="74" y1="158" x2="106" y2="158" stroke="#64748b" stroke-width="1.2"/>
+<rect x="48" y="172" width="26" height="16" rx="3" fill="#eff6ff" stroke="#93c5fd" stroke-width="0.9"/>
+<text x="61" y="183.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#1d4ed8">A₀</text>
+<line x1="74" y1="180" x2="106" y2="180" stroke="#64748b" stroke-width="1.2"/>
+<rect x="48" y="194" width="26" height="16" rx="3" fill="#eff6ff" stroke="#93c5fd" stroke-width="0.9"/>
+<text x="61" y="205.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#1d4ed8">B₁</text>
+<line x1="74" y1="202" x2="106" y2="202" stroke="#64748b" stroke-width="1.2"/>
+<rect x="48" y="216" width="26" height="16" rx="3" fill="#eff6ff" stroke="#93c5fd" stroke-width="0.9"/>
+<text x="61" y="227.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#1d4ed8">B₀</text>
+<line x1="74" y1="224" x2="106" y2="224" stroke="#64748b" stroke-width="1.2"/>
+<rect x="106" y="150" width="112" height="84" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3" stroke-dasharray="4,2"/>
+<text x="162" y="168" text-anchor="middle" font-size="10" font-weight="700" fill="#5b21b6">k Binary Gates</text>
+<circle cx="132" cy="188" r="11" fill="#ffffff" stroke="#7c3aed" stroke-width="1.1"/>
+<text x="132" y="192" text-anchor="middle" font-size="11" font-weight="700" fill="#5b21b6">⊕</text>
+<circle cx="188" cy="188" r="11" fill="#ffffff" stroke="#7c3aed" stroke-width="1.1"/>
+<text x="188" y="192" text-anchor="middle" font-size="11" font-weight="700" fill="#5b21b6">∧</text>
+<circle cx="132" cy="216" r="11" fill="#ffffff" stroke="#7c3aed" stroke-width="1.1"/>
+<text x="132" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#5b21b6">∨</text>
+<circle cx="188" cy="216" r="11" fill="#ffffff" stroke="#7c3aed" stroke-width="1.1"/>
+<text x="188" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#5b21b6">⊕</text>
+<line x1="143" y1="188" x2="177" y2="188" stroke="#a78bfa" stroke-width="1.1"/>
+<line x1="143" y1="216" x2="177" y2="216" stroke="#a78bfa" stroke-width="1.1"/>
+<line x1="218" y1="166" x2="252" y2="166" stroke="#64748b" stroke-width="1.2"/>
+<rect x="252" y="157" width="32" height="18" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+<text x="268" y="169.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#047857">S₂</text>
+<line x1="218" y1="192" x2="252" y2="192" stroke="#64748b" stroke-width="1.2"/>
+<rect x="252" y="183" width="32" height="18" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+<text x="268" y="195.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#047857">S₁</text>
+<line x1="218" y1="218" x2="252" y2="218" stroke="#64748b" stroke-width="1.2"/>
+<rect x="252" y="209" width="32" height="18" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+<text x="268" y="221.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#047857">S₀</text>
+<text x="38" y="268" font-size="10" font-weight="700" fill="#334155">Exact Gate-Bound Thresholds:</text>
+<text x="38" y="287" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">2bitadd_10</text>
+<text x="162" y="287" font-size="9" fill="#64748b">k=10 gates</text>
+<rect x="254" y="277" width="44" height="14" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="0.7"/>
+<text x="276" y="287" text-anchor="middle" font-size="8.5" font-weight="700" fill="#dc2626">UNSAT</text>
+<text x="38" y="309" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">2bitadd_11, 12</text>
+<text x="162" y="309" font-size="9" fill="#64748b">k=11, 12 gates</text>
+<rect x="254" y="299" width="44" height="14" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="276" y="309" text-anchor="middle" font-size="8.5" font-weight="700" fill="#059669">SAT</text>
+<text x="38" y="331" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">2bitcomp_5 / max_6</text>
+<text x="162" y="331" font-size="9" fill="#64748b">4→1 / 4→2 bit</text>
+<rect x="254" y="321" width="44" height="14" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="276" y="331" text-anchor="middle" font-size="8.5" font-weight="700" fill="#059669">SAT</text>
+<text x="38" y="353" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">3bitadd_31, 32</text>
+<text x="162" y="353" font-size="9" fill="#64748b">k=31, 32 (32k cls)</text>
+<rect x="254" y="343" width="44" height="14" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="276" y="353" text-anchor="middle" font-size="8.5" font-weight="700" fill="#059669">SAT</text>
+<rect x="326" y="78" width="258" height="304" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="326" y="78" width="258" height="30" rx="10" fill="#7c3aed"/>
+<rect x="326" y="96" width="258" height="12" fill="#7c3aed"/>
+<text x="455.0" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">2. Blocks World Planning (3)</text>
+<rect x="338" y="122" width="234" height="132" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<text x="348" y="139" font-size="10.2" font-weight="700" fill="#5b21b6">STRIPS Action Horizon t = 0 → T</text>
+<line x1="352" y1="234" x2="432" y2="234" stroke="#334155" stroke-width="2"/>
+<line x1="478" y1="234" x2="558" y2="234" stroke="#334155" stroke-width="2"/>
+<text x="392" y="247" text-anchor="middle" font-size="9" font-weight="600" fill="#64748b">Init (t = 0)</text>
+<text x="518" y="247" text-anchor="middle" font-size="9" font-weight="600" fill="#047857">Goal (t = T)</text>
+<rect x="360" y="212" width="26" height="20" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3"/>
+<text x="373" y="225.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#2563eb">A</text>
+<rect x="360" y="190" width="26" height="20" rx="3" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+<text x="373" y="203.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#d97706">B</text>
+<rect x="396" y="212" width="26" height="20" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+<text x="409" y="225.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#059669">C</text>
+<rect x="396" y="190" width="26" height="20" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="409" y="203.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#7c3aed">D</text>
+<line x1="436" y1="194" x2="474" y2="194" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-s)"/>
+<text x="455" y="186" text-anchor="middle" font-size="8.5" font-weight="700" fill="#475569">move</text>
+<rect x="505" y="212" width="26" height="19" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3"/>
+<text x="518" y="225" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#2563eb">A</text>
+<rect x="505" y="191" width="26" height="19" rx="3" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+<text x="518" y="204" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#d97706">B</text>
+<rect x="505" y="170" width="26" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+<text x="518" y="183" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#059669">C</text>
+<rect x="505" y="149" width="26" height="19" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="518" y="162" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#7c3aed">D</text>
+<text x="340" y="268" font-size="10" font-weight="700" fill="#334155">Parsed Instances (100% Horn):</text>
+<text x="340" y="289" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">3blocks</text>
+<text x="418" y="289" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#475569">283v / 9,690c</text>
+<rect x="536" y="279" width="36" height="14" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="554" y="289" text-anchor="middle" font-size="8.5" font-weight="700" fill="#047857">SAT</text>
+<text x="340" y="313" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">4blocks</text>
+<text x="418" y="313" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#475569">758v / 47,820c</text>
+<rect x="536" y="303" width="36" height="14" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="554" y="313" text-anchor="middle" font-size="8.5" font-weight="700" fill="#047857">SAT</text>
+<text x="340" y="337" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">4blocksb</text>
+<text x="418" y="337" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#475569">410v / 24,758c</text>
+<rect x="536" y="327" width="36" height="14" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="554" y="337" text-anchor="middle" font-size="8.5" font-weight="700" fill="#047857">SAT</text>
+<text x="340" y="368" font-size="9.2" fill="#64748b">High clause density α = 34–63 (ρ_crit ≤ 24.8×)</text>
+<rect x="598" y="78" width="298" height="304" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="598" y="78" width="298" height="30" rx="10" fill="#059669"/>
+<rect x="598" y="96" width="298" height="12" fill="#059669"/>
+<text x="747.0" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">3. 10×5 Job-Shop Scheduling (6)</text>
+<rect x="610" y="122" width="274" height="132" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<text x="620" y="139" font-size="10.2" font-weight="700" fill="#065f46">5-Machine Gantt Schedule &amp; Deadlines</text>
+<line x1="838.6" y1="146" x2="838.6" y2="240" stroke="#dc2626" stroke-width="1.3" stroke-dasharray="4,2"/>
+<text x="838.6" y="249" text-anchor="middle" font-size="8.2" font-weight="700" fill="#dc2626">Deadline D</text>
+<text x="620" y="161.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">M₁</text>
+<line x1="646" y1="163.0" x2="870" y2="163.0" stroke="#f1f5f9" stroke-width="1"/>
+<rect x="650.5" y="151.0" width="53.8" height="12" rx="2.5" fill="#2563eb" fill-opacity="0.86"/>
+<text x="677.4" y="159.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J1</text>
+<rect x="708.7" y="151.0" width="58.2" height="12" rx="2.5" fill="#7c3aed" fill-opacity="0.86"/>
+<text x="737.8" y="159.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J4</text>
+<rect x="775.9" y="151.0" width="53.8" height="12" rx="2.5" fill="#059669" fill-opacity="0.86"/>
+<text x="802.8" y="159.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J7</text>
+<text x="620" y="178.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">M₂</text>
+<line x1="646" y1="180.5" x2="870" y2="180.5" stroke="#f1f5f9" stroke-width="1"/>
+<rect x="663.9" y="168.5" width="62.7" height="12" rx="2.5" fill="#d97706" fill-opacity="0.86"/>
+<text x="695.3" y="177.3" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J2</text>
+<rect x="735.6" y="168.5" width="49.3" height="12" rx="2.5" fill="#2563eb" fill-opacity="0.86"/>
+<text x="760.2" y="177.3" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J1</text>
+<rect x="791.6" y="168.5" width="42.6" height="12" rx="2.5" fill="#0891b2" fill-opacity="0.86"/>
+<text x="812.9" y="177.3" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J9</text>
+<text x="620" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">M₃</text>
+<line x1="646" y1="198.0" x2="870" y2="198.0" stroke="#f1f5f9" stroke-width="1"/>
+<rect x="650.5" y="186.0" width="44.8" height="12" rx="2.5" fill="#059669" fill-opacity="0.86"/>
+<text x="672.9" y="194.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J5</text>
+<rect x="704.2" y="186.0" width="67.2" height="12" rx="2.5" fill="#d97706" fill-opacity="0.86"/>
+<text x="737.8" y="194.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J2</text>
+<rect x="780.4" y="186.0" width="49.3" height="12" rx="2.5" fill="#7c3aed" fill-opacity="0.86"/>
+<text x="805.0" y="194.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J6</text>
+<text x="620" y="213.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">M₄</text>
+<line x1="646" y1="215.5" x2="870" y2="215.5" stroke="#f1f5f9" stroke-width="1"/>
+<rect x="677.4" y="203.5" width="53.8" height="12" rx="2.5" fill="#0891b2" fill-opacity="0.86"/>
+<text x="704.2" y="212.3" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J8</text>
+<rect x="740.1" y="203.5" width="58.2" height="12" rx="2.5" fill="#059669" fill-opacity="0.86"/>
+<text x="769.2" y="212.3" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J5</text>
+<rect x="802.8" y="203.5" width="31.4" height="12" rx="2.5" fill="#2563eb" fill-opacity="0.86"/>
+<text x="818.5" y="212.3" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J3</text>
+<text x="620" y="231.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" fill="#475569">M₅</text>
+<line x1="646" y1="233.0" x2="870" y2="233.0" stroke="#f1f5f9" stroke-width="1"/>
+<rect x="657.2" y="221.0" width="49.3" height="12" rx="2.5" fill="#2563eb" fill-opacity="0.86"/>
+<text x="681.8" y="229.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J3</text>
+<rect x="717.7" y="221.0" width="53.8" height="12" rx="2.5" fill="#0891b2" fill-opacity="0.86"/>
+<text x="744.6" y="229.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J8</text>
+<rect x="778.2" y="221.0" width="56.0" height="12" rx="2.5" fill="#7c3aed" fill-opacity="0.86"/>
+<text x="806.2" y="229.8" text-anchor="middle" font-size="7.8" font-weight="700" fill="#ffffff">J4</text>
+<text x="612" y="268" font-size="10" font-weight="700" fill="#334155">3 Deadline Variants (10 jobs × 5 mach.):</text>
+<text x="612" y="289" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">e0ddr2-10-by-5-{1,4}</text>
+<text x="882" y="289" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#475569">19.5k v / 104k c</text>
+<text x="612" y="313" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">enddr2-10-by-5-{1,8}</text>
+<text x="882" y="313" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#475569">20.7k v / 112k c</text>
+<text x="612" y="337" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">ewddr2-10-by-5-{1,8}</text>
+<text x="882" y="337" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#475569">21.8k v / 121k c</text>
+<text x="612" y="368" font-size="9.2" fill="#047857" font-weight="600">All 6 SAT · 100% Horn · k_max = 3 (α ≈ 6.0)</text>
+<rect x="24" y="394" width="872" height="46" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+<text x="40" y="413" font-size="11" font-weight="700" fill="#1e40af">1996 Beijing Suite Footprint (16 Instances, 4 Formats):</text>
+<text x="366" y="413" font-size="11" fill="#1e3a8a">Vars 125–22,500 · Clauses 310–123,329 · 15 SAT / 1 UNSAT (sole UNSAT: 2bitadd_10)</text>
+<text x="40" y="430" font-size="10" fill="#475569">All 16 formulas lie in the Over-constrained structured regime (ρ_crit = 2.50×–24.8×, 0 native XORs, 90–100% Horn clauses).</text>
+</g></svg>

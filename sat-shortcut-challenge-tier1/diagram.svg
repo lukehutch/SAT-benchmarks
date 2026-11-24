@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="SAT Shortcut Challenge Tier 1 4-pillar structured map">
+<rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="18" font-weight="700" fill="#0f172a">SAT Shortcut Challenge — Tier 1 Structured Suite (47 Instances, 9 Families)</text>
+<text x="26" y="54" font-size="12" fill="#475569">Separating polynomial-time structural shortcuts from unstructured search (Keith Adler) · 13 SAT / 34 UNSAT across 4 pillars</text>
+<line x1="24" y1="66" x2="896" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="24" y="78" width="430" height="162" rx="10" fill="#f8fafc" stroke="#c4b5fd" stroke-width="1.4"/>
+<rect x="24" y="78" width="430" height="28" rx="10" fill="#7c3aed"/>
+<rect x="24" y="94" width="430" height="12" fill="#7c3aed"/>
+<text x="38" y="97" font-size="12" font-weight="700" fill="#ffffff">1. 𝔽₂ Parity &amp; Linear Systems (13: 3 SAT / 10 UNSAT)</text>
+<rect x="40" y="118" width="112" height="108" rx="7" fill="#ffffff" stroke="#ddd6fe" stroke-width="1"/>
+<line x1="96" y1="138" x2="132" y2="164" stroke="#7c3aed" stroke-width="1.3"/>
+<line x1="132" y1="164" x2="118" y2="200" stroke="#7c3aed" stroke-width="1.3"/>
+<line x1="118" y1="200" x2="74" y2="200" stroke="#7c3aed" stroke-width="1.3"/>
+<line x1="74" y1="200" x2="60" y2="164" stroke="#7c3aed" stroke-width="1.3"/>
+<line x1="60" y1="164" x2="96" y2="138" stroke="#7c3aed" stroke-width="1.3"/>
+<line x1="96" y1="138" x2="118" y2="200" stroke="#7c3aed" stroke-width="1.3"/>
+<line x1="132" y1="164" x2="60" y2="164" stroke="#7c3aed" stroke-width="1.3"/>
+<circle cx="96" cy="138" r="11" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="96" y="141.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#5b21b6">⊕1</text>
+<circle cx="132" cy="164" r="11" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="132" y="167.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#5b21b6">⊕0</text>
+<circle cx="118" cy="200" r="11" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="118" y="203.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#5b21b6">⊕0</text>
+<circle cx="74" cy="200" r="11" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="74" y="203.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#5b21b6">⊕1</text>
+<circle cx="60" cy="164" r="11" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="60" y="167.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#5b21b6">⊕1</text>
+<text x="96" y="219" text-anchor="middle" font-size="8.5" font-weight="700" fill="#dc2626">Σ charges ≡ 1 (UNSAT)</text>
+<text x="164" y="130" font-size="11" font-weight="700" fill="#0f172a">• Tseitin Parity (n = 20..200)</text>
+<text x="174" y="144" font-size="9.5" fill="#475569">9 instances (3 SAT / 6 UNSAT) · pure XOR cycles</text>
+<text x="164" y="166" font-size="11" font-weight="700" fill="#0f172a">• XOR System + Random 3-Clauses</text>
+<text x="174" y="180" font-size="9.5" fill="#475569">4 instances (0 SAT / 4 UNSAT) · n = 100–240</text>
+<rect x="164" y="194" width="276" height="32" rx="6" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="0.9"/>
+<text x="174" y="208" font-size="9.5" font-weight="700" fill="#5b21b6">Shortcut: Gaussian Elimination over 𝔽₂ (O(n³))</text>
+<text x="174" y="220" font-size="9" fill="#6d28d9">6,793 native XORs extracted; CDCL times out &gt;300 s</text>
+<rect x="466" y="78" width="430" height="162" rx="10" fill="#f8fafc" stroke="#93c5fd" stroke-width="1.4"/>
+<rect x="466" y="78" width="430" height="28" rx="10" fill="#2563eb"/>
+<rect x="466" y="94" width="430" height="12" fill="#2563eb"/>
+<text x="480" y="97" font-size="12" font-weight="700" fill="#ffffff">2. Arithmetic Circuits &amp; Miters (12: 3 SAT / 9 UNSAT)</text>
+<rect x="482" y="118" width="112" height="108" rx="7" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+<rect x="492" y="134" width="54" height="24" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+<text x="519" y="149" text-anchor="middle" font-size="9" font-weight="700" fill="#1e40af">Ripple/Arr</text>
+<rect x="492" y="172" width="54" height="24" rx="4" fill="#ecfeff" stroke="#0891b2" stroke-width="1.1"/>
+<text x="519" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#0e7490">KS / Wal</text>
+<line x1="546" y1="146" x2="566" y2="164" stroke="#475569" stroke-width="1.3"/>
+<line x1="546" y1="184" x2="566" y2="168" stroke="#475569" stroke-width="1.3"/>
+<circle cx="574" cy="166" r="11" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="574" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">⊕</text>
+<text x="538" y="216" text-anchor="middle" font-size="8.6" font-weight="700" fill="#1e3a8a">Miter: C₁(x) ⊕ C₂(x)</text>
+<text x="606" y="128" font-size="10.8" font-weight="700" fill="#0f172a">• Adder CEC: Ripple vs. Kogge–Stone (8–64b)</text>
+<text x="616" y="141" font-size="9.3" fill="#475569">4 UNSAT equivalence miters</text>
+<text x="606" y="157" font-size="10.8" font-weight="700" fill="#0f172a">• Mult CEC: Array vs. Wallace (5×5–10×10)</text>
+<text x="616" y="170" font-size="9.3" fill="#475569">4 UNSAT miters (up to 10×10 hard wall)</text>
+<text x="606" y="186" font-size="10.8" font-weight="700" fill="#0f172a">• Mult Target Inversion (28b–36b)</text>
+<text x="616" y="199" font-size="9.3" fill="#475569">4 instances (3 SAT / 1 UNSAT)</text>
+<rect x="606" y="206" width="276" height="22" rx="5" fill="#eff6ff" stroke="#93c5fd" stroke-width="0.9"/>
+<text x="616" y="220.5" font-size="9.2" font-weight="700" fill="#1e40af">Shortcut: AIG structural hashing &amp; FA/HA lifting</text>
+<rect x="24" y="252" width="430" height="162" rx="10" fill="#f8fafc" stroke="#fca5a5" stroke-width="1.4"/>
+<rect x="24" y="252" width="430" height="28" rx="10" fill="#dc2626"/>
+<rect x="24" y="268" width="430" height="12" fill="#dc2626"/>
+<text x="38" y="271" font-size="12" font-weight="700" fill="#ffffff">3. Counting &amp; Coloring Invariants (10: 1 SAT / 9 UNSAT)</text>
+<rect x="40" y="292" width="112" height="108" rx="7" fill="#ffffff" stroke="#fecaca" stroke-width="1"/>
+<rect x="58" y="302" width="18" height="18" rx="2" fill="#fef2f2" stroke="#dc2626" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="67.0" y="314.5" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">×</text>
+<rect x="77" y="302" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="96" y="302" width="18" height="18" rx="1.5" fill="#e2e8f0"/>
+<rect x="115" y="302" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="58" y="321" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="77" y="321" width="18" height="18" rx="1.5" fill="#e2e8f0"/>
+<rect x="96" y="321" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="115" y="321" width="18" height="18" rx="1.5" fill="#e2e8f0"/>
+<rect x="58" y="340" width="18" height="18" rx="1.5" fill="#e2e8f0"/>
+<rect x="77" y="340" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="96" y="340" width="18" height="18" rx="1.5" fill="#e2e8f0"/>
+<rect x="115" y="340" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="58" y="359" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="77" y="359" width="18" height="18" rx="1.5" fill="#e2e8f0"/>
+<rect x="96" y="359" width="18" height="18" rx="1.5" fill="#334155"/>
+<rect x="115" y="359" width="18" height="18" rx="2" fill="#fef2f2" stroke="#dc2626" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="124.0" y="371.5" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">×</text>
+<text x="96" y="391" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">8 Dark ≠ 6 Light</text>
+<text x="164" y="304" font-size="11" font-weight="700" fill="#0f172a">• Pigeonhole Principle (PHP 8_7 .. 13_12)</text>
+<text x="174" y="318" font-size="9.5" fill="#475569">5 UNSAT instances · n+1 pigeons into n holes</text>
+<text x="164" y="340" font-size="11" font-weight="700" fill="#0f172a">• Mutilated Chessboard (6×6 .. 14×14)</text>
+<text x="174" y="354" font-size="9.5" fill="#475569">5 instances (1 SAT / 4 UNSAT) · domino tiling</text>
+<rect x="164" y="368" width="276" height="32" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="174" y="382" font-size="9.5" font-weight="700" fill="#b91c1c">Shortcut: Cardinality / Bipartite Counting (2–5 ms)</text>
+<text x="174" y="394" font-size="9" fill="#991b1b">Resolution requires 2^Ω(n) steps on php_13_12</text>
+<rect x="466" y="252" width="430" height="162" rx="10" fill="#f8fafc" stroke="#6ee7b7" stroke-width="1.4"/>
+<rect x="466" y="252" width="430" height="28" rx="10" fill="#059669"/>
+<rect x="466" y="268" width="430" height="12" fill="#059669"/>
+<text x="480" y="271" font-size="12" font-weight="700" fill="#ffffff">4. Graph Obstructions &amp; 3-SAT Control (12: 6 SAT / 6 UNSAT)</text>
+<rect x="482" y="292" width="112" height="108" rx="7" fill="#ffffff" stroke="#a7f3d0" stroke-width="1"/>
+<line x1="502" y1="320" x2="502" y2="360" stroke="#059669" stroke-width="1.5"/>
+<line x1="502" y1="320" x2="538" y2="340" stroke="#059669" stroke-width="1.5"/>
+<line x1="502" y1="360" x2="538" y2="340" stroke="#059669" stroke-width="1.5"/>
+<line x1="538" y1="340" x2="574" y2="320" stroke="#059669" stroke-width="1.5"/>
+<line x1="538" y1="340" x2="574" y2="360" stroke="#059669" stroke-width="1.5"/>
+<line x1="574" y1="320" x2="574" y2="360" stroke="#059669" stroke-width="1.5"/>
+<circle cx="502" cy="320" r="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<circle cx="502" cy="360" r="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<circle cx="538" cy="340" r="9" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="538" y="343.5" text-anchor="middle" font-size="9" font-weight="700" fill="#dc2626">v*</text>
+<circle cx="574" cy="320" r="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<circle cx="574" cy="360" r="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+<text x="538" y="390" text-anchor="middle" font-size="8.6" font-weight="700" fill="#047857">Cut-vertex → No Ham.</text>
+<text x="606" y="304" font-size="11" font-weight="700" fill="#0f172a">• Hamiltonian Cycle (Planted, Bipartite, Cut-v)</text>
+<text x="616" y="318" font-size="9.5" fill="#475569">8 instances (3 SAT / 5 UNSAT) · graph invariants</text>
+<text x="606" y="340" font-size="11" font-weight="700" fill="#0f172a">• Uniform Random 3-SAT Control (n = 150–250)</text>
+<text x="616" y="354" font-size="9.5" fill="#475569">4 instances (3 SAT / 1 UNSAT) · zero shortcuts</text>
+<rect x="606" y="368" width="276" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="0.9"/>
+<text x="616" y="382" font-size="9.5" font-weight="700" fill="#047857">Shortcut: Biconnectivity / Bipartite Balance Check</text>
+<text x="616" y="394" font-size="9" fill="#065f46">Random 3-SAT calibrates raw CDCL vs. shortcut gains</text>
+<rect x="24" y="424" width="872" height="40" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="40" y="441" font-size="10.8" font-weight="700" fill="#0f172a">Tier 1 Corpus Totals (SHA-256 Verified, 4 Formats):</text>
+<text x="336" y="441" font-size="10.5" fill="#334155">47 CNFs (13 SAT / 34 UNSAT) · Vars 30–3,370 · Clauses 80–115,281 · 6,793 native XORs</text>
+<text x="40" y="456" font-size="9.6" fill="#475569">Companion Challenge Tiers: Tier 2 Neutral Corpus (SC 2024–2026 Main Track, 1,166 CNFs) · Tier 3 Unstructured Random 3-SAT (n = 300–500, α = 4.26)</text>
+</g></svg>

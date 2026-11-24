@@ -14,12 +14,17 @@
 
 Both classic Towers of Hanoi planning-as-SAT benchmarks (`hanoi4` and `hanoi5`, 2 SAT instances).
 
+![Towers of Hanoi 4-disk optimal 15-move SATPLAN trajectory](diagram.svg)
+
+*Figure: Exact optimal $2^4 - 1 = 15$-move trajectory for `hanoi4` highlighting the $t=7$ subgoal and $t=8$ largest-disk pivot, paired with Selman and Kautz's time-indexed SATPLAN action/frame encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 2 original native **DIMACS `.cnf.xz`** files (33.4 KB).
 - **`aig-converted/`** — 2 exact **Binary AIGER 1.9 `.aig.xz`** conversions (39.4 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 2 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (33.3 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 2 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (64.1 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 2 instances (**2 SAT / 0 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -28,11 +33,11 @@ Both classic Towers of Hanoi planning-as-SAT benchmarks (`hanoi4` and `hanoi5`, 
 | **Binary AIGER 1.9** | `aig-converted/` | 2 | Inputs: 718–1,931; ANDs: 11,190–32,846 | 39.4 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 2 | Native XOR clauses total: 0 | 33.3 KB |
 | **DIMACS-ANF** | `anf-converted/` | 2 | Vars: 853–2,303; Eqs: 5,069–14,840 (deg ≤ 3) | 64.1 KB |
-| **Total (4 Formats, Status: SAT)** | | **8** | | **170.3 KB** |
+| **Total (4 Formats, Status: 2 SAT / 0 UNSAT)** | | **8** | | **170.3 KB** |
 
 ## Comparative 1-Core Benchmark Results (All 2 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 2 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 2 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

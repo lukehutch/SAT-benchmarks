@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500" width="920" height="500" role="img" aria-label="UBC SATLIB 97-archive taxonomy mapping into 22 collections">
+<rect x="2" y="2" width="916" height="496" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="18" font-weight="700" fill="#0f172a">UBC SATLIB Complete 97-Archive Taxonomy → 22 Committed Collections</text>
+<text x="26" y="54" font-size="12" fill="#475569">All 97 official .tar.gz archives (50,000+ raw CNFs) mapped into 22 standalone 4-format satlib-* collections (331 CNFs) + pretolani-pret</text>
+<line x1="24" y1="66" x2="896" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="24" y="198" width="168" height="128" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+<text x="108.0" y="226" text-anchor="middle" font-size="13.5" font-weight="700" fill="#ffffff">UBC SATLIB</text>
+<text x="108.0" y="245" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#93c5fd">97 .tar.gz URIs</text>
+<line x1="42" y1="256" x2="174" y2="256" stroke="#334155" stroke-width="1"/>
+<text x="108.0" y="273" text-anchor="middle" font-size="9.5" fill="#cbd5e1">satlib_all_97_archives.uri</text>
+<text x="108.0" y="289" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#a7f3d0">src/fetch_satlib.py</text>
+<text x="108.0" y="310" text-anchor="middle" font-size="9" fill="#94a3b8">Hoos &amp; Stützle (SAT 2000)</text>
+<path d="M 192,262.0 C 220,262.0 220,132.0 248,132.0" fill="none" stroke="#d97706" stroke-width="2.2"/>
+<circle cx="248" cy="132.0" r="4" fill="#d97706"/>
+<path d="M 192,262.0 C 220,262.0 220,268.0 248,268.0" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+<circle cx="248" cy="268.0" r="4" fill="#2563eb"/>
+<path d="M 192,262.0 C 220,262.0 220,397.0 248,397.0" fill="none" stroke="#059669" stroke-width="2.2"/>
+<circle cx="248" cy="397.0" r="4" fill="#059669"/>
+<rect x="248" y="78" width="648" height="108" rx="10" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.3"/>
+<text x="262" y="99" font-size="12" font-weight="700" fill="#92400e">A. Synthetic Ensembles — 79 Archives → 5 Stratified Collections (33 Sampled / 50,000+ Raw)</text>
+<rect x="262" y="110" width="118" height="64" rx="7" fill="#ffffff" stroke="#f59e0b" stroke-width="1"/>
+<text x="321.0" y="127" text-anchor="middle" font-size="10.8" font-weight="700" fill="#92400e">CBS</text>
+<text x="321.0" y="143" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#b45309">40 arch → 6 CNFs</text>
+<text x="321.0" y="161" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#64748b">satlib-cbs</text>
+<rect x="388" y="110" width="118" height="64" rx="7" fill="#ffffff" stroke="#f59e0b" stroke-width="1"/>
+<text x="447.0" y="127" text-anchor="middle" font-size="10.8" font-weight="700" fill="#92400e">RND3SAT</text>
+<text x="447.0" y="143" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#b45309">19 arch → 10 CNFs</text>
+<text x="447.0" y="161" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#64748b">satlib-rnd3sat</text>
+<rect x="514" y="110" width="118" height="64" rx="7" fill="#ffffff" stroke="#f59e0b" stroke-width="1"/>
+<text x="573.0" y="127" text-anchor="middle" font-size="10.8" font-weight="700" fill="#92400e">SW-GCP</text>
+<text x="573.0" y="143" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#b45309">10 arch → 5 CNFs</text>
+<text x="573.0" y="161" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#64748b">satlib-sw-gcp</text>
+<rect x="640" y="110" width="118" height="64" rx="7" fill="#ffffff" stroke="#f59e0b" stroke-width="1"/>
+<text x="699.0" y="127" text-anchor="middle" font-size="10.8" font-weight="700" fill="#92400e">GCP (Flat)</text>
+<text x="699.0" y="143" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#b45309">8 arch → 8 CNFs</text>
+<text x="699.0" y="161" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#64748b">satlib-flat-gcp</text>
+<rect x="766" y="110" width="118" height="64" rx="7" fill="#ffffff" stroke="#f59e0b" stroke-width="1"/>
+<text x="825.0" y="127" text-anchor="middle" font-size="10.8" font-weight="700" fill="#92400e">BMS / RTI</text>
+<text x="825.0" y="143" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#b45309">2 arch → 4 CNFs</text>
+<text x="825.0" y="161" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#64748b">satlib-bms-rti</text>
+<rect x="248" y="198" width="648" height="140" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.3"/>
+<text x="262" y="219" font-size="12" font-weight="700" fill="#1e40af">B. Second DIMACS Challenge Classics — 12 Archives → 11 Full Collections (232 CNFs) + PRET</text>
+<rect x="262.0" y="230" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="311.0" y="246" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">AIM</text>
+<text x="311.0" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">72 CNFs</text>
+<rect x="366.5" y="230" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="415.5" y="246" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">JNH</text>
+<text x="415.5" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">50 CNFs</text>
+<rect x="471.0" y="230" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="520.0" y="246" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">II</text>
+<text x="520.0" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">41 CNFs</text>
+<rect x="575.5" y="230" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="624.5" y="246" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">PARITY</text>
+<text x="624.5" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">30 CNFs</text>
+<rect x="680.0" y="230" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="729.0" y="246" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">DUBOIS</text>
+<text x="729.0" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">13 CNFs</text>
+<rect x="784.5" y="230" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="833.5" y="246" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">SSA</text>
+<text x="833.5" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">8 CNFs</text>
+<rect x="262.0" y="280" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="311.0" y="296" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">PHOLE</text>
+<text x="311.0" y="312" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">5 CNFs</text>
+<rect x="366.5" y="280" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="415.5" y="296" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">BF</text>
+<text x="415.5" y="312" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">4 CNFs</text>
+<rect x="471.0" y="280" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="520.0" y="296" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">GCP-Lg</text>
+<text x="520.0" y="312" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">4 CNFs</text>
+<rect x="575.5" y="280" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="624.5" y="296" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">LRAN</text>
+<text x="624.5" y="312" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">3 CNFs</text>
+<rect x="680.0" y="280" width="98" height="43" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+<text x="729.0" y="296" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">HANOI</text>
+<text x="729.0" y="312" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">2 CNFs</text>
+<rect x="784.5" y="280" width="98" height="43" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="833.5" y="296" text-anchor="middle" font-size="10.2" font-weight="700" fill="#5b21b6">PRET</text>
+<text x="833.5" y="312" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">8 CNFs*</text>
+<rect x="248" y="350" width="648" height="94" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.3"/>
+<text x="262" y="371" font-size="12" font-weight="700" fill="#065f46">C. Verification, Planning &amp; Combinatorics — 6 Archives → 6 Full Collections (66 CNFs)</text>
+<rect x="262.0" y="382" width="98" height="50" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1"/>
+<text x="311.0" y="400" text-anchor="middle" font-size="9.8" font-weight="700" fill="#047857">QG (Latin Sq.)</text>
+<text x="311.0" y="418" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">22 CNFs</text>
+<rect x="366.5" y="382" width="98" height="50" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1"/>
+<text x="415.5" y="400" text-anchor="middle" font-size="9.8" font-weight="700" fill="#047857">Beijing '96</text>
+<text x="415.5" y="418" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">16 CNFs</text>
+<rect x="471.0" y="382" width="98" height="50" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1"/>
+<text x="520.0" y="400" text-anchor="middle" font-size="9.8" font-weight="700" fill="#047857">BMC (Model Chk)</text>
+<text x="520.0" y="418" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">13 CNFs</text>
+<rect x="575.5" y="382" width="98" height="50" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1"/>
+<text x="624.5" y="400" text-anchor="middle" font-size="9.8" font-weight="700" fill="#047857">Blocks World</text>
+<text x="624.5" y="418" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">7 CNFs</text>
+<rect x="680.0" y="382" width="98" height="50" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1"/>
+<text x="729.0" y="400" text-anchor="middle" font-size="9.8" font-weight="700" fill="#047857">AIS (All-Int)</text>
+<text x="729.0" y="418" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">4 CNFs</text>
+<rect x="784.5" y="382" width="98" height="50" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1"/>
+<text x="833.5" y="400" text-anchor="middle" font-size="9.8" font-weight="700" fill="#047857">Logistics</text>
+<text x="833.5" y="418" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">4 CNFs</text>
+<rect x="24" y="456" width="872" height="32" rx="7" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="460" y="476" text-anchor="middle" font-size="10.4" fill="#1e293b"><tspan font-weight="700">Reconciliation:</tspan> 79 ensemble + 12 DIMACS + 6 verif/plan = <tspan font-weight="700">97 archives</tspan>  ·  <tspan font-weight="700">22 satlib-* collections</tspan> = 331 CNFs (235 SAT / 96 UNSAT) × 4 formats  ·  *PRET in ../pretolani-pret/</text>
+</g></svg>

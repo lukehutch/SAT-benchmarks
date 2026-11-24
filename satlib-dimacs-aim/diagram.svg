@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="920" height="460" role="img" aria-label="SATLIB AIM artificial random 3-SAT diagram">
+<rect x="2" y="2" width="916" height="456" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="18" font-weight="700" fill="#0f172a">SATLIB Artificial Random 3-SAT — Iwama–Miyano–Asahiro (AIM)</text>
+<text x="26" y="54" font-size="12" fill="#475569">Planted unique-model SAT ("yes1") &amp; minimal-UNSAT ("no") far below &amp; above α_c ≈ 4.267 · 72 instances (48 SAT / 24 UNSAT)</text>
+<line x1="24" y1="66" x2="896" y2="66" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="24" y="78" width="524" height="360" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="40" y="102" font-size="13" font-weight="700" fill="#0f172a">The AIM Paradox: Defying the Uniform 3-SAT Phase Transition</text>
+<text x="40" y="118" font-size="10.5" fill="#475569">Artificial constructions place UNSATs at α = 1.6, 2.0 and unique SATs up to α = 6.0</text>
+<rect x="76" y="134" width="267.3" height="160" fill="#eff6ff" fill-opacity="0.55"/>
+<rect x="343.3" y="134" width="182.7" height="160" fill="#fef2f2" fill-opacity="0.45"/>
+<line x1="76" y1="294.0" x2="526" y2="294.0" stroke="#cbd5e1" stroke-width="0.7" stroke-dasharray="3,3"/>
+<text x="68" y="297.5" text-anchor="end" font-size="9.5" fill="#475569">0.0</text>
+<line x1="76" y1="214.0" x2="526" y2="214.0" stroke="#cbd5e1" stroke-width="0.7" stroke-dasharray="3,3"/>
+<text x="68" y="217.5" text-anchor="end" font-size="9.5" fill="#475569">0.5</text>
+<line x1="76" y1="134.0" x2="526" y2="134.0" stroke="#cbd5e1" stroke-width="0.7" stroke-dasharray="3,3"/>
+<text x="68" y="137.5" text-anchor="end" font-size="9.5" fill="#475569">1.0</text>
+<line x1="76.0" y1="294" x2="76.0" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="76.0" y="311" text-anchor="middle" font-size="9.2" font-weight="400" fill="#64748b">1.0</text>
+<line x1="125.1" y1="294" x2="125.1" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="125.1" y="311" text-anchor="middle" font-size="9.2" font-weight="700" fill="#0f172a">1.6</text>
+<line x1="157.8" y1="294" x2="157.8" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="157.8" y="311" text-anchor="middle" font-size="9.2" font-weight="700" fill="#0f172a">2.0</text>
+<line x1="239.6" y1="294" x2="239.6" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="239.6" y="311" text-anchor="middle" font-size="9.2" font-weight="400" fill="#64748b">3.0</text>
+<line x1="272.4" y1="294" x2="272.4" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="272.4" y="311" text-anchor="middle" font-size="9.2" font-weight="700" fill="#0f172a">3.4</text>
+<line x1="343.5" y1="294" x2="343.5" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="343.5" y="311" text-anchor="middle" font-size="9.2" font-weight="400" fill="#64748b">4.27</text>
+<line x1="403.3" y1="294" x2="403.3" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="403.3" y="311" text-anchor="middle" font-size="9.2" font-weight="400" fill="#64748b">5.0</text>
+<line x1="485.1" y1="294" x2="485.1" y2="299" stroke="#64748b" stroke-width="1"/>
+<text x="485.1" y="311" text-anchor="middle" font-size="9.2" font-weight="700" fill="#0f172a">6.0</text>
+<rect x="76" y="134" width="450" height="160" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="343.3" y1="156" x2="343.3" y2="294" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,3"/>
+<rect x="291.3" y="139" width="104" height="17" rx="4" fill="#fffbeb" stroke="#f59e0b" stroke-width="0.9"/>
+<text x="343.3" y="150.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#b45309">Uniform α_c ≈ 4.27</text>
+<path d="M 76.0,134.0 L 81.6,134.0 L 87.2,134.0 L 92.9,134.0 L 98.5,134.0 L 104.1,134.0 L 109.8,134.0 L 115.4,134.0 L 121.0,134.0 L 126.6,134.0 L 132.2,134.0 L 137.9,134.0 L 143.5,134.0 L 149.1,134.0 L 154.8,134.0 L 160.4,134.0 L 166.0,134.0 L 171.6,134.0 L 177.2,134.0 L 182.9,134.0 L 188.5,134.0 L 194.1,134.0 L 199.8,134.0 L 205.4,134.0 L 211.0,134.0 L 216.6,134.0 L 222.2,134.0 L 227.9,134.0 L 233.5,134.0 L 239.1,134.0 L 244.8,134.0 L 250.4,134.0 L 256.0,134.0 L 261.6,134.0 L 267.2,134.1 L 272.9,134.1 L 278.5,134.2 L 284.1,134.4 L 289.8,134.7 L 295.4,135.2 L 301.0,136.1 L 306.6,137.7 L 312.2,140.5 L 317.9,145.2 L 323.5,152.8 L 329.1,164.6 L 334.8,181.2 L 340.4,202.2 L 346.0,224.9 L 351.6,246.0 L 357.2,262.9 L 362.9,274.8 L 368.5,282.6 L 374.1,287.4 L 379.8,290.2 L 385.4,291.8 L 391.0,292.8 L 396.6,293.3 L 402.2,293.6 L 407.9,293.8 L 413.5,293.9 L 419.1,293.9 L 424.8,294.0 L 430.4,294.0 L 436.0,294.0 L 441.6,294.0 L 447.2,294.0 L 452.9,294.0 L 458.5,294.0 L 464.1,294.0 L 469.8,294.0 L 475.4,294.0 L 481.0,294.0 L 486.6,294.0 L 492.2,294.0 L 497.9,294.0 L 503.5,294.0 L 509.1,294.0 L 514.8,294.0 L 520.4,294.0 L 526.0,294.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="213.5" y="150.0" text-anchor="middle" font-size="9.5" fill="#64748b">Uniform 3-SAT P(SAT) ≈ 1</text>
+<text x="431.9" y="276.4" text-anchor="middle" font-size="9.5" fill="#64748b">Uniform ≈ 0</text>
+<line x1="125.1" y1="134" x2="125.1" y2="294" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="2,2"/>
+<circle cx="125.1" cy="178.8" r="6.5" fill="#059669" stroke="#ffffff" stroke-width="1.6"/>
+<text x="115.1" y="167.8" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">yes1 (12)</text>
+<line x1="125.1" y1="134" x2="125.1" y2="294" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="2,2"/>
+<polygon points="125.1,242.4 131.9,249.2 125.1,256.0 118.3,249.2" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<text x="115.1" y="266.2" text-anchor="middle" font-size="8.8" font-weight="700" fill="#b91c1c">no (12)</text>
+<line x1="157.8" y1="134" x2="157.8" y2="294" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="2,2"/>
+<circle cx="157.8" cy="178.8" r="6.5" fill="#059669" stroke="#ffffff" stroke-width="1.6"/>
+<text x="167.8" y="167.8" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">yes1 (12)</text>
+<line x1="157.8" y1="134" x2="157.8" y2="294" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="2,2"/>
+<polygon points="157.8,242.4 164.6,249.2 157.8,256.0 151.0,249.2" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<text x="167.8" y="266.2" text-anchor="middle" font-size="8.8" font-weight="700" fill="#b91c1c">no (12)</text>
+<line x1="272.4" y1="134" x2="272.4" y2="294" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="2,2"/>
+<circle cx="272.4" cy="178.8" r="6.5" fill="#059669" stroke="#ffffff" stroke-width="1.6"/>
+<text x="272.4" y="167.8" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">yes1 (12)</text>
+<line x1="485.1" y1="134" x2="485.1" y2="294" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="2,2"/>
+<circle cx="485.1" cy="178.8" r="6.5" fill="#059669" stroke="#ffffff" stroke-width="1.6"/>
+<text x="485.1" y="167.8" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">yes1 (12)</text>
+<rect x="94.0" y="206.0" width="112" height="24" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+<text x="150.0" y="221.0" text-anchor="middle" font-size="8.8" font-weight="700" fill="#b91c1c">Low-α UNSAT (0.37×)</text>
+<rect x="374.6" y="206.0" width="124" height="24" rx="4" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="0.9"/>
+<text x="436.6" y="221.0" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">High-α Unique SAT (1.4×)</text>
+<text x="42" y="214.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#475569" transform="rotate(-90 42 214.0)">Uniform P(SAT)</text>
+<text x="301.0" y="326" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1e293b">Clause-to-Variable Ratio α = m / n</text>
+<rect x="38" y="336" width="496" height="90" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<text x="50" y="355" font-size="11.5" font-weight="700" fill="#0f172a">How Iwama–Miyano–Asahiro Plant Unique SAT &amp; Low-α UNSAT</text>
+<text x="50" y="372" font-size="10" fill="#334155">• <tspan font-weight="700" fill="#059669">yes1 (48 SAT):</tspan> Pick a unique target assignment σ*, iteratively add 3-clauses eliminating</text>
+<text x="60" y="386" font-size="10" fill="#334155">all other models until |Sol(F)| = 1 with ultra-uniform variable degrees (Deg CV ≈ 0.03!).</text>
+<text x="50" y="403" font-size="10" fill="#334155">• <tspan font-weight="700" fill="#dc2626">no (24 UNSAT):</tspan> Plant a hidden contradictory core at α = 1.6–2.0 (ρ_crit = 0.37–0.47×)</text>
+<text x="60" y="417" font-size="10" fill="#334155">so local search stalls while CDCL learns the sparse contradiction in 1–5 ms.</text>
+<rect x="562" y="78" width="334" height="360" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="576" y="102" font-size="13" font-weight="700" fill="#0f172a">Parsed 3 × 4 Corpus Matrix (72 CNFs)</text>
+<text x="576" y="118" font-size="10.5" fill="#475569">Exact counts from expected.tsv by (n, α)</text>
+<text x="672" y="142" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#0f172a">n = 50</text>
+<text x="758" y="142" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#0f172a">n = 100</text>
+<text x="844" y="142" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#0f172a">n = 200</text>
+<text x="576" y="176" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1e293b">α=1.6</text>
+<text x="576" y="190" font-size="9" fill="#64748b">0.37× α_c</text>
+<rect x="636" y="156" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="673" y="169" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈80</text>
+<rect x="641" y="174" width="30" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="656" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 S</text>
+<rect x="675" y="174" width="30" height="19" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="0.7"/>
+<text x="690" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">4 U</text>
+<rect x="722" y="156" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="759" y="169" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈160</text>
+<rect x="727" y="174" width="30" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="742" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 S</text>
+<rect x="761" y="174" width="30" height="19" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="0.7"/>
+<text x="776" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">4 U</text>
+<rect x="808" y="156" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="845" y="169" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈320</text>
+<rect x="813" y="174" width="30" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="828" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 S</text>
+<rect x="847" y="174" width="30" height="19" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="0.7"/>
+<text x="862" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">4 U</text>
+<text x="576" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1e293b">α=2.0</text>
+<text x="576" y="246" font-size="9" fill="#64748b">0.47× α_c</text>
+<rect x="636" y="212" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="673" y="225" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈100</text>
+<rect x="641" y="230" width="30" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="656" y="243" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 S</text>
+<rect x="675" y="230" width="30" height="19" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="0.7"/>
+<text x="690" y="243" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">4 U</text>
+<rect x="722" y="212" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="759" y="225" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈200</text>
+<rect x="727" y="230" width="30" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="742" y="243" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 S</text>
+<rect x="761" y="230" width="30" height="19" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="0.7"/>
+<text x="776" y="243" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">4 U</text>
+<rect x="808" y="212" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="845" y="225" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈400</text>
+<rect x="813" y="230" width="30" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="828" y="243" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 S</text>
+<rect x="847" y="230" width="30" height="19" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="0.7"/>
+<text x="862" y="243" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">4 U</text>
+<text x="576" y="288" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1e293b">α=3.4</text>
+<text x="576" y="302" font-size="9" fill="#64748b">0.80× α_c</text>
+<rect x="636" y="268" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="673" y="281" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈170</text>
+<rect x="647" y="286" width="52" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="673" y="299" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 SAT</text>
+<rect x="722" y="268" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="759" y="281" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈340</text>
+<rect x="733" y="286" width="52" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="759" y="299" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 SAT</text>
+<rect x="808" y="268" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="845" y="281" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈680</text>
+<rect x="819" y="286" width="52" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="845" y="299" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 SAT</text>
+<text x="576" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1e293b">α=6.0</text>
+<text x="576" y="358" font-size="9" fill="#64748b">1.41× α_c</text>
+<rect x="636" y="324" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="673" y="337" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈300</text>
+<rect x="647" y="342" width="52" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="673" y="355" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 SAT</text>
+<rect x="722" y="324" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="759" y="337" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈600</text>
+<rect x="733" y="342" width="52" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="759" y="355" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 SAT</text>
+<rect x="808" y="324" width="74" height="44" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="845" y="337" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">m≈1200</text>
+<rect x="819" y="342" width="52" height="19" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="0.7"/>
+<text x="845" y="355" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">4 SAT</text>
+<rect x="576" y="386" width="306" height="40" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+<text x="729.0" y="402" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1e40af">Structural Fingerprint: Near-Regular 3-SAT</text>
+<text x="729.0" y="417" text-anchor="middle" font-size="9.4" fill="#1e3a8a">Deg CV = 0.03–0.04 (vs. 0.28 uniform) · 48 SAT / 24 UNSAT</text>
+</g></svg>

@@ -12,12 +12,17 @@
 
 Unsatisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga11_*`; SAT 2002 *"Homer"* family, 10 instances) with rich permutation symmetry and cardinality bottlenecks, with variables/clauses randomly reordered.
 
+![Congested FPGA switch-box bottleneck UNSAT Homer and 2x PHP core](diagram.svg)
+
+*Figure: Congested FPGA switch-box channel bottleneck ($N > W$ nets colliding on saturated tracks) and exact symmetric two-side bipartite pigeonhole core ($2 \times \mathrm{PHP}_W^N$, $\text{Deg CV} = 0.00$) across all 10 UNSAT "Homer" instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 10 original native **DIMACS `.cnf.xz`** files (72.5 KB).
 - **`aig-converted/`** — 10 exact **Binary AIGER 1.9 `.aig.xz`** conversions (79.3 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 10 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (73.1 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 10 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (96.1 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 10 instances (**0 SAT / 10 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -26,11 +31,11 @@ Unsatisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga11_*`; SAT 2002
 | **Binary AIGER 1.9** | `aig-converted/` | 10 | Inputs: 220–440; ANDs: 2,419–8,799 | 79.3 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 10 | Native XOR clauses total: 0 | 73.1 KB |
 | **DIMACS-ANF** | `anf-converted/` | 10 | Vars: 374–760; Eqs: 1,276–4,540 (deg ≤ 3) | 96.1 KB |
-| **Total (4 Formats, Status: UNSAT)** | | **40** | | **321.0 KB** |
+| **Total (4 Formats, Status: 0 SAT / 10 UNSAT)** | | **40** | | **321.0 KB** |
 
 ## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

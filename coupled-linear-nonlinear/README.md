@@ -7,12 +7,17 @@ Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an unde
 - **Origin:** **Original** benchmark suite (MIT [`../LICENSE`](../LICENSE)) coupling $\mathbb{F}_2$-linear parity constraints with nonlinear Boolean gates ($\mathrm{Maj}_3$, $\mathrm{And}$, $\mathrm{Mux}$).
 - **Why they are interesting:** Pure linear algebra cannot handle the nonlinear $\mathrm{Maj}_3/\mathrm{And}/\mathrm{Mux}$ layer, while standard CDCL solvers must jointly satisfy both the $r$-equation parity layer and the nonlinear gate constraints.
 
+![Coupled linear F2 parity subspace and nonlinear gate miter](diagram.svg)
+
+*Figure: Dual-branch coupled miter intersecting an under-determined $\mathbb{F}_2$ parity subspace ($\dim d = n-r$) with direct nonlinear $\mathrm{Maj}_3/\mathrm{And}/\mathrm{Mux}$ gates, contrasting planted SAT vs. flipped-gate UNSAT. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`19.0 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`43.4 KB`).
 - `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`25.7 KB`).
 - `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`16.7 KB`, degree $\le 2$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 4 instances (**3 SAT / 1 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -26,9 +31,9 @@ Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an unde
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on the same AMD Ryzen 9 5950X machine (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on `coupled_n128_d32_unsat`):
+Evaluated sequentially on the same AMD Ryzen 9 5950X machine (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on `coupled_n128_d32_unsat`):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `coupled_n128_d64` | **1.82 ms** *(fastest)* | 2.83 ms *(1.6x)* | 22.02 ms *(12.1x)* | 21.39 ms *(11.8x)* | 3.18 ms | 1.99 ms *(1.1x)* |
 | `coupled_n128_d32_unsat` | **2.02 ms** *(fastest)* | 2.63 ms *(1.3x)* | 71.15 ms *(35.2x)* | 24.73 ms *(12.2x)* | 2.83 ms | 14.75 ms *(7.3x)* |

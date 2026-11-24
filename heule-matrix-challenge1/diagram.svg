@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Heule 3x3 Matrix Multiplication Challenge 1: R=23 SAT schemes with type-3 pairings">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Heule 3×3 Matrix Multiplication — Challenge 1 (R = 23 SAT Type-3 Pairings)</text>
+    <text x="26" y="53" font-size="11.5" fill="#475569">10 satisfiable 𝔽₂ Brent-equation instances with hardcoded type-3 monomial pairings and zero streamlining constraints (hard for complete CDCL)</text>
+    <rect x="752" y="18" width="144" height="26" rx="13" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <text x="824" y="35" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">10 / 10 KNOWN SAT</text>
+    <line x1="22" y1="64" x2="898" y2="64" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="22" y="76" width="424" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="22" y="76" width="424" height="28" rx="9" fill="#2563eb"/>
+    <rect x="22" y="92" width="424" height="12" fill="#2563eb"/>
+    <text x="234.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1. 3×3 Tensor T₃,₃,₃ &amp; 729 Brent Equations over 𝔽₂</text>
+  <text x="87.5" y="122.0" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">Factor A⁽ℓ⁾</text>
+  <rect x="44.0" y="128.0" width="87.0" height="87.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1"/>
+  <rect x="45.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.2"/>
+  <text x="58.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">a11</text>
+  <rect x="74.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="87.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">a12</text>
+  <rect x="103.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="116.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">a13</text>
+  <rect x="45.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="58.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">a21</text>
+  <rect x="74.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="87.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">a22</text>
+  <rect x="103.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="116.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">a23</text>
+  <rect x="45.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="58.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">a31</text>
+  <rect x="74.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="87.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">a32</text>
+  <rect x="103.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#ecfdf5" stroke="#047857" stroke-width="1.2"/>
+  <text x="116.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#047857">a33</text>
+    <text x="149.0" y="176.5" text-anchor="middle" font-size="16" font-weight="700" fill="#475569">⊗</text>
+  <text x="210.5" y="122.0" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">Factor B⁽ℓ⁾</text>
+  <rect x="167.0" y="128.0" width="87.0" height="87.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1"/>
+  <rect x="168.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.2"/>
+  <text x="181.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">b11</text>
+  <rect x="197.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="210.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">b12</text>
+  <rect x="226.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="239.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">b13</text>
+  <rect x="168.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="181.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">b21</text>
+  <rect x="197.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="210.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">b22</text>
+  <rect x="226.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="239.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">b23</text>
+  <rect x="168.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="181.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">b31</text>
+  <rect x="197.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="210.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">b32</text>
+  <rect x="226.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#ecfdf5" stroke="#047857" stroke-width="1.2"/>
+  <text x="239.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#047857">b33</text>
+    <text x="272.0" y="176.5" text-anchor="middle" font-size="16" font-weight="700" fill="#475569">⊗</text>
+  <text x="333.5" y="122.0" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">Factor C⁽ℓ⁾</text>
+  <rect x="290.0" y="128.0" width="87.0" height="87.0" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1"/>
+  <rect x="291.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.2"/>
+  <text x="304.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">c11</text>
+  <rect x="320.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="333.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">c12</text>
+  <rect x="349.5" y="129.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="362.5" y="146.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">c13</text>
+  <rect x="291.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="304.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">c21</text>
+  <rect x="320.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="333.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">c22</text>
+  <rect x="349.5" y="158.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="362.5" y="175.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">c23</text>
+  <rect x="291.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="304.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">c31</text>
+  <rect x="320.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.6"/>
+  <text x="333.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="500" fill="#64748b">c32</text>
+  <rect x="349.5" y="187.5" width="26.0" height="26.0" rx="3" fill="#ecfdf5" stroke="#047857" stroke-width="1.2"/>
+  <text x="362.5" y="204.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#047857">c33</text>
+    <text x="234.0" y="233.0" text-anchor="middle" font-size="10.2" fill="#334155">Example paired product M₂₁ (MM-23-2-2-2-2-3): pins <tspan font-weight="700" fill="#1d4ed8">a₁₁b₁₁c₁₁</tspan> &amp; <tspan font-weight="700" fill="#047857">a₃₃b₃₃c₃₃</tspan></text>
+    <rect x="36" y="245.0" width="396" height="82" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="234.0" y="262.0" text-anchor="middle" font-size="10.8" font-weight="700" fill="#0f172a">Rank-23 Tensor Decomposition:  T₃,₃,₃ = ∑ u⁽ℓ⁾ ⊗ v⁽ℓ⁾ ⊗ w⁽ℓ⁾  (ℓ = 1…23)</text>
+    <rect x="48" y="271.0" width="54" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+    <text x="75" y="289.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">M₁</text>
+    <text x="75" y="305.0" text-anchor="middle" font-size="9.2" font-weight="600" fill="#2563eb">1 t3</text>
+    <rect x="110" y="271.0" width="54" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+    <text x="137" y="289.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">M₂</text>
+    <text x="137" y="305.0" text-anchor="middle" font-size="9.2" font-weight="600" fill="#2563eb">1 t3</text>
+    <rect x="172" y="271.0" width="54" height="44" rx="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.1"/>
+    <text x="199" y="289.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">…</text>
+    <text x="199" y="305.0" text-anchor="middle" font-size="9.2" font-weight="600" fill="#94a3b8">18×</text>
+    <rect x="234" y="271.0" width="54" height="44" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.1"/>
+    <text x="261" y="289.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">M₆</text>
+    <text x="261" y="305.0" text-anchor="middle" font-size="9.2" font-weight="600" fill="#059669">2 t3</text>
+    <rect x="296" y="271.0" width="54" height="44" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.1"/>
+    <text x="323" y="289.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">M₁₇</text>
+    <text x="323" y="305.0" text-anchor="middle" font-size="9.2" font-weight="600" fill="#7c3aed">3 t3</text>
+    <rect x="358" y="271.0" width="54" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+    <text x="385" y="289.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">M₂₃</text>
+    <text x="385" y="305.0" text-anchor="middle" font-size="9.2" font-weight="600" fill="#2563eb">1 t3</text>
+    <rect x="36" y="339.0" width="396" height="108" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="48" y="358.0" font-size="11" font-weight="700" fill="#0f172a">729 Brent Parity Equations (9 × 9 × 9 over 𝔽₂):</text>
+    <text x="234.0" y="379.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="700" fill="#1d4ed8">⨁ (a⁽ℓ⁾ᵢⱼ ∧ b⁽ℓ⁾ₖₘ ∧ c⁽ℓ⁾ₚₙ)  ≡  δ(j=k, m=p, n=i)  [ℓ=1..23]</text>
+    <rect x="46" y="390.0" width="182" height="46" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+    <text x="137" y="407.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#047857">27 Type-3 Terms (δ = 1)</text>
+    <text x="137" y="423.0" text-anchor="middle" font-size="9.4" fill="#334155">aᵢⱼbⱼₖcₖᵢ — odd parity (≥1 hit)</text>
+    <rect x="238" y="390.0" width="182" height="46" rx="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+    <text x="329" y="407.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155">702 Cross Terms (δ = 0)</text>
+    <text x="329" y="423.0" text-anchor="middle" font-size="9.4" fill="#475569">Non-trace triples cancel mod 2</text>
+    <rect x="460" y="76" width="438" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="460" y="76" width="438" height="28" rx="9" fill="#059669"/>
+    <rect x="460" y="92" width="438" height="12" fill="#059669"/>
+    <text x="679.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">2. Hardcoded Type-3 Pairings Across 10 SAT Instances</text>
+    <text x="474" y="118" font-size="10.5" font-weight="700" fill="#0f172a">MM-23-2-2-2-2-3</text>
+    <text x="884" y="118" text-anchor="end" font-size="9.6" fill="#475569">4 pairs + 1 triple + 18 singletons  (85 unit pins)</text>
+    <rect x="474.0" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="481.9" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="491.8" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="499.7" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="509.6" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="517.5" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="527.4" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="535.3" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="545.2" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="553.1" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="563.0" y="124" width="15.8" height="20" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="570.9" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">2</text>
+    <rect x="580.8" y="124" width="15.8" height="20" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="588.7" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">2</text>
+    <rect x="598.6" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="606.5" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="616.4" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="624.3" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="634.2" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="642.1" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="652.0" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="659.9" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="669.8" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="677.7" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="687.6" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="695.5" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="705.4" y="124" width="15.8" height="20" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="713.3" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">2</text>
+    <rect x="723.2" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="731.1" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="741.0" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="748.9" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="758.8" y="124" width="15.8" height="20" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="0.9"/>
+    <text x="766.7" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#6d28d9">3</text>
+    <rect x="776.6" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="784.5" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="794.4" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="802.3" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="812.2" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="820.1" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="830.0" y="124" width="15.8" height="20" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="837.9" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1d4ed8">2</text>
+    <rect x="847.8" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="855.7" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="865.6" y="124" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="873.5" y="137.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <text x="474" y="160" font-size="10.5" font-weight="700" fill="#0f172a">MM-23-4-4-4-4-1</text>
+    <text x="884" y="160" text-anchor="end" font-size="9.6" fill="#475569">4 quadruples + 19 singletons  (93 unit pins)</text>
+    <rect x="474.0" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="481.9" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="491.8" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="499.7" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="509.6" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="517.5" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="527.4" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="535.3" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="545.2" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="553.1" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="563.0" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="570.9" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="580.8" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="588.7" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="598.6" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="606.5" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="616.4" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="624.3" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="634.2" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="642.1" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="652.0" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="659.9" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="669.8" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="677.7" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="687.6" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="695.5" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="705.4" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="713.3" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="723.2" y="166" width="15.8" height="20" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="0.9"/>
+    <text x="731.1" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#b45309">4</text>
+    <rect x="741.0" y="166" width="15.8" height="20" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="0.9"/>
+    <text x="748.9" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#b45309">4</text>
+    <rect x="758.8" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="766.7" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="776.6" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="784.5" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="794.4" y="166" width="15.8" height="20" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="0.9"/>
+    <text x="802.3" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#b45309">4</text>
+    <rect x="812.2" y="166" width="15.8" height="20" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="0.9"/>
+    <text x="820.1" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#b45309">4</text>
+    <rect x="830.0" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="837.9" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="847.8" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="855.7" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <rect x="865.6" y="166" width="15.8" height="20" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="0.9"/>
+    <text x="873.5" y="179.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#334155">1</text>
+    <text x="474" y="204" font-size="9.4" fill="#64748b">23 rank-1 slots M₁…M₂₃ colored by pinned type-3 multiplicity:  <tspan font-weight="700" fill="#475569">1</tspan> single  ·  <tspan font-weight="700" fill="#1d4ed8">2</tspan> pair  ·  <tspan font-weight="700" fill="#6d28d9">3</tspan> triple  ·  <tspan font-weight="700" fill="#b45309">4</tspan> quad</text>
+    <rect x="474" y="216" width="410" height="128" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="484" y="233" font-size="10.5" font-weight="700" fill="#0f172a">All 10 Challenge-1 Instances (Decoded from cnf-orig/*.cnf.xz):</text>
+    <text x="484" y="251" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-2-3</text>
+    <text x="678" y="251" text-anchor="end" font-size="9.2" fill="#047857">85 pins · 29 t3</text>
+    <text x="484" y="269" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-2-A</text>
+    <text x="678" y="269" text-anchor="end" font-size="9.2" fill="#047857">81 pins · 27 t3</text>
+    <text x="484" y="287" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-2-B</text>
+    <text x="678" y="287" text-anchor="end" font-size="9.2" fill="#047857">81 pins · 27 t3</text>
+    <text x="484" y="305" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-2-C</text>
+    <text x="678" y="305" text-anchor="end" font-size="9.2" fill="#047857">81 pins · 27 t3</text>
+    <text x="484" y="323" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-2-D</text>
+    <text x="678" y="323" text-anchor="end" font-size="9.2" fill="#047857">81 pins · 27 t3</text>
+    <text x="688" y="251" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-2-M</text>
+    <text x="882" y="251" text-anchor="end" font-size="9.2" fill="#047857">80 pins · 27 t3</text>
+    <text x="688" y="269" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-3-4</text>
+    <text x="882" y="269" text-anchor="end" font-size="9.2" fill="#047857">88 pins · 31 t3</text>
+    <text x="688" y="287" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-4-A</text>
+    <text x="882" y="287" text-anchor="end" font-size="9.2" fill="#047857">84 pins · 29 t3</text>
+    <text x="688" y="305" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-2-2-2-4-B</text>
+    <text x="882" y="305" text-anchor="end" font-size="9.2" fill="#047857">84 pins · 29 t3</text>
+    <text x="688" y="323" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#1e293b">MM-23-4-4-4-4-1</text>
+    <text x="882" y="323" text-anchor="end" font-size="9.2" fill="#047857">93 pins · 35 t3</text>
+    <rect x="474" y="354" width="410" height="82" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+    <text x="484" y="372" font-size="10.8" font-weight="700" fill="#1d4ed8">Plain 2-AND + 4-XOR Encoding (26,541 vars · 117,206–117,219 clauses)</text>
+    <rect x="484.0" y="380" width="9.1" height="18" fill="#2563eb" stroke="#ffffff" stroke-width="0.8"/>
+    <rect x="493.1" y="380" width="27.4" height="18" fill="#7c3aed" stroke="#ffffff" stroke-width="0.8"/>
+    <rect x="520.5" y="380" width="246.4" height="18" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="643.7" y="392.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#ffffff">16,767 cube vars (23×729)</text>
+    <rect x="766.9" y="380" width="107.1" height="18" fill="#d97706" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="820.4" y="392.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#ffffff">7,290 XOR aux</text>
+    <text x="484" y="413" font-size="9.5" fill="#334155">621 A/B/C bits + 1,863 pair (a∧b) + 16,767 cube (p∧c) + 7,290 4-XOR chain aux</text>
+    <text x="484" y="427" font-size="9.5" fill="#475569">8,019 native XORs/file · α = 4.42 · ρ_crit = 1.82× · YalSAT solves 5 in mins; 1C CDCL &gt;10 s</text>
+  </g>
+</svg>

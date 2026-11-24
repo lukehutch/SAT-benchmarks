@@ -1,0 +1,14 @@
+clique_n2_k10.cnf	UNSAT
+gzipfile_close_11.cnf	UNSAT
+hwmcc17_iso_bobsmfpu.cnf	UNSAT
+hwmcc20_iso_rast_p06.cnf	UNSAT
+intervals122.cnf	UNSAT
+mp1_nb7t42.cnf	SAT
+rand_net70_40_10.cnf	UNSAT
+si2_b03m_m800_03.cnf	SAT
+tseitin_d3_n10000.cnf	UNSAT
+tseitingrid6x200.cnf	UNSAT
+two_trees_1023v.cnf	SAT
+two_trees_511v.cnf	SAT
+urq45.cnf	UNSAT
+vmpc_24.cnf	SAT

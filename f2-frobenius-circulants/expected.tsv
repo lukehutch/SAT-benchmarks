@@ -1,0 +1,6 @@
+f2_frobenius_n1024.aig	SAT
+f2_frobenius_n1024_unsat.aig	UNSAT
+f2_frobenius_n256.aig	SAT
+f2_frobenius_n256_unsat.aig	UNSAT
+f2_frobenius_n4096.aig	SAT
+f2_frobenius_n64.aig	SAT

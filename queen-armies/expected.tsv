@@ -1,0 +1,8 @@
+queen_armies_a2_15x16_k33_sat.cnf	SAT
+queen_armies_a2_7x10_k12_unsat.cnf	UNSAT
+queen_armies_a3_13x16_k14_sat.cnf	SAT
+queen_armies_a3_15x16_k16_sat.cnf	SAT
+queen_armies_a3_6x10_k5_unsat.cnf	UNSAT
+queen_armies_a3_6x11_k6_unsat.cnf	UNSAT
+queen_armies_a3_7x8_k5_unsat.cnf	UNSAT
+queen_armies_a4_14x16_k9_sat.cnf	SAT

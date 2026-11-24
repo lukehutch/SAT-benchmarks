@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 496" width="920" height="496" role="img" aria-label="Adversarial high-fanout 10-bit bit-vector hub disjunctions and scaled AIG pigeonhole circuits">
+<defs>
+  <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/></marker>
+  <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="2" y="2" width="916" height="492" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Adversarial Bit-Vector Hub &amp; Scaled Pigeonhole Circuits (zed-adversarial-hub-php)</text>
+<text x="26" y="53" font-size="11.6" fill="#475569">Two bit-level AIGER 1.9 stress families (18 instances): high-fanout 10-bit shared-hub arithmetic disjunctions + scaled Tseitin PHPᵐₙ circuits</text>
+<line x1="24" y1="64" x2="896" y2="64" stroke="#e2e8f0" stroke-width="1.2"/>
+<rect x="24" y="76" width="434" height="352" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="24" y="76" width="434" height="28" rx="10" fill="#2563eb"/>
+<rect x="24" y="92" width="434" height="12" fill="#2563eb"/>
+<text x="241.0" y="95" text-anchor="middle" font-size="11.6" font-weight="700" fill="#ffffff">1. High-Fanout Bit-Vector Hub (hub_20..80 · 5 UNSAT / 1 SAT)</text>
+<rect x="40" y="178" width="118" height="84" rx="9" fill="#fffbeb" stroke="#d97706" stroke-width="1.7"/>
+<text x="99.0" y="198" text-anchor="middle" font-size="10.8" font-weight="700" fill="#b45309">Shared Hub h</text>
+<text x="99.0" y="214" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">10-bit signed</text>
+<text x="99.0" y="230" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" fill="#92400e">h ∈ [low, 63]</text>
+<text x="99.0" y="249" text-anchor="middle" font-size="8.6" font-weight="700" fill="#d97706">Deg CV: 1.16→2.31</text>
+<rect x="202" y="118" width="240" height="112" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.3"/>
+<text x="212" y="134" font-size="9.8" font-weight="700" fill="#1d4ed8">Satellite Gadget i = 0 (critical witness)</text>
+<text x="212" y="148" font-size="8.7" fill="#475569">Local 10-bit vars:  xᵢ ∈ [20, 63],  yᵢ ∈ [0, 40]</text>
+<rect x="212" y="156" width="220" height="22" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-width="0.9"/>
+<text x="322.0" y="170.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="600" fill="#1e3a8a">pᵢ = −xᵢ − 2h + 40 + (i mod 7) ≥ 0</text>
+<rect x="212" y="182" width="220" height="22" rx="4" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="0.9"/>
+<text x="322.0" y="196.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="600" fill="#5b21b6">rᵢ = yᵢ − h − 10 + (i mod 5) ≥ 0</text>
+<text x="322.0" y="220" text-anchor="middle" font-size="9" font-weight="700" fill="#0f172a">Assert OR( ¬sign(pᵢ), ¬sign(rᵢ) ) = 1</text>
+<rect x="202" y="240" width="240" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="322.0" y="255.5" text-anchor="middle" font-size="9" font-weight="600" fill="#334155">Satellite Gadget i = 1  (mod 7, mod 5)</text>
+<rect x="202" y="272" width="240" height="24" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="322.0" y="287.5" text-anchor="middle" font-size="9" font-weight="700" fill="#334155">⋯  n ∈ {20, 24, 30, 60, 80} copies  ⋯</text>
+<rect x="202" y="304" width="240" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="322.0" y="319.5" text-anchor="middle" font-size="9" font-weight="600" fill="#334155">Satellite Gadget i = n−1  (10-bit adders)</text>
+<path d="M 158 220.0 C 180 220.0, 180 174.0, 200 174.0" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+<path d="M 158 220.0 C 180 220.0, 180 252.0, 200 252.0" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+<path d="M 158 220.0 C 180 220.0, 180 284.0, 200 284.0" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+<path d="M 158 220.0 C 180 220.0, 180 316.0, 200 316.0" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+<text x="99.0" y="280" text-anchor="middle" font-size="8.7" fill="#475569">Bit-blasted 2′s-comp.</text>
+<text x="99.0" y="292" text-anchor="middle" font-size="8.7" fill="#475569">full-adder ripple chains</text>
+<rect x="38" y="340" width="406" height="76" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="48" y="357" font-size="9.8" font-weight="700" fill="#0f172a">Exact Threshold Proof (at i ≡ 0 mod 5, e.g. i = 0):</text>
+<rect x="46" y="364" width="190" height="42" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="0.95"/>
+<text x="141" y="378" text-anchor="middle" font-size="9" font-weight="700" fill="#b91c1c">low = 31 ⇒ UNSAT (5 inst.)</text>
+<text x="141" y="391" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#7f1d1d">p₀ ≤ −42 &lt; 0, r₀ ≤ −1 &lt; 0</text>
+<text x="141" y="402" text-anchor="middle" font-size="8" fill="#475569">both branches fail for h ≥ 31</text>
+<rect x="246" y="364" width="190" height="42" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="0.95"/>
+<text x="341" y="378" text-anchor="middle" font-size="9" font-weight="700" fill="#047857">low = 25 ⇒ SAT (hub_60_sat)</text>
+<text x="341" y="391" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#065f46">h = 25, yᵢ = 40 ⇒ rᵢ ≥ 5</text>
+<text x="341" y="402" text-anchor="middle" font-size="8" fill="#475569">satisfies all n = 60 gadgets</text>
+<rect x="474" y="76" width="422" height="352" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="474" y="76" width="422" height="28" rx="10" fill="#7c3aed"/>
+<rect x="474" y="92" width="422" height="12" fill="#7c3aed"/>
+<text x="685.0" y="95" text-anchor="middle" font-size="11.6" font-weight="700" fill="#ffffff">2. Scaled Tseitin AIG PHPᵐₙ (10 UNSAT + 2 SAT Controls)</text>
+<rect x="488" y="116" width="394" height="106" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="498" y="133" font-size="10.2" font-weight="700" fill="#0f172a">Bit-Level AIG Miter Construction (build_zed_php)</text>
+<rect x="498" y="144" width="88" height="62" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+<text x="542" y="162" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1d4ed8">m × n Inputs</text>
+<text x="542" y="178" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#334155">x[p·n + h]</text>
+<text x="542" y="194" text-anchor="middle" font-size="8.2" fill="#475569">up to 50×49</text>
+<rect x="606" y="144" width="152" height="28" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="682" y="156" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">m ALO OR-chains</text>
+<text x="682" y="167" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#334155">∨ₕ x[p, h] = 1</text>
+<rect x="606" y="178" width="152" height="28" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+<text x="682" y="190" text-anchor="middle" font-size="8.8" font-weight="700" fill="#b91c1c">n·C(m,2) AMO gates</text>
+<text x="682" y="201" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#334155">¬x[p,h] ∨ ¬x[q,h]</text>
+<rect x="778" y="152" width="92" height="46" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="824" y="170" text-anchor="middle" font-size="9.4" font-weight="700" fill="#6d28d9">AND Miter</text>
+<text x="824" y="185" text-anchor="middle" font-size="8.4" fill="#475569">PO₀ = ALO∧AMO</text>
+<line x1="586" y1="162" x2="604" y2="158" stroke="#2563eb" stroke-width="1.3" marker-end="url(#arr-blue)"/>
+<line x1="586" y1="188" x2="604" y2="192" stroke="#2563eb" stroke-width="1.3" marker-end="url(#arr-blue)"/>
+<line x1="758" y1="158" x2="776" y2="168" stroke="#7c3aed" stroke-width="1.3" marker-end="url(#arr-purple)"/>
+<line x1="758" y1="192" x2="776" y2="182" stroke="#7c3aed" stroke-width="1.3" marker-end="url(#arr-purple)"/>
+<rect x="488" y="234" width="394" height="182" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="498" y="252" font-size="10.4" font-weight="700" fill="#0f172a">PHPᵐₙ Scaling &amp; CDCL &gt;600 s Cliff (Haken 1985)</text>
+<rect x="496" y="258" width="378" height="16" rx="4" fill="#e2e8f0"/>
+<text x="502" y="269" text-anchor="start" font-size="8.6" font-weight="700" fill="#334155">Instance</text>
+<text x="616" y="269" text-anchor="middle" font-size="8.6" font-weight="700" fill="#334155">AIG ANDs</text>
+<text x="692" y="269" text-anchor="middle" font-size="8.6" font-weight="700" fill="#334155">CNF Cls</text>
+<text x="770" y="269" text-anchor="middle" font-size="8.6" font-weight="700" fill="#334155">CDCL</text>
+<text x="842" y="269" text-anchor="middle" font-size="8.6" font-weight="700" fill="#334155">Frob.</text>
+<text x="502" y="286.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="600" fill="#0f172a">php_9_8_unsat</text>
+<text x="616" y="286.5" text-anchor="middle" font-size="8.4" fill="#475569">647</text>
+<text x="692" y="286.5" text-anchor="middle" font-size="8.4" fill="#475569">1,350</text>
+<text x="770" y="286.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#334155">27–438 ms</text>
+<text x="842" y="286.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">1.8 ms</text>
+<text x="502" y="307.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="600" fill="#0f172a">php_16_15_unsat</text>
+<text x="616" y="307.5" text-anchor="middle" font-size="8.4" fill="#475569">3,839</text>
+<text x="692" y="307.5" text-anchor="middle" font-size="8.4" fill="#475569">7,888</text>
+<text x="770" y="307.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#b91c1c">>600 s T/O</text>
+<text x="842" y="307.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">4.5 ms</text>
+<text x="502" y="328.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="600" fill="#0f172a">php_20_19_unsat</text>
+<text x="616" y="328.5" text-anchor="middle" font-size="8.4" fill="#475569">7,599</text>
+<text x="692" y="328.5" text-anchor="middle" font-size="8.4" fill="#475569">15,540</text>
+<text x="770" y="328.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#b91c1c">>600 s T/O</text>
+<text x="842" y="328.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">8.2 ms</text>
+<text x="502" y="349.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="600" fill="#0f172a">php_31_30_unsat</text>
+<text x="616" y="349.5" text-anchor="middle" font-size="8.4" fill="#475569">28,829</text>
+<text x="692" y="349.5" text-anchor="middle" font-size="8.4" fill="#475569">58,528</text>
+<text x="770" y="349.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#b91c1c">>600 s T/O</text>
+<text x="842" y="349.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">—</text>
+<rect x="496" y="358" width="378" height="19" rx="3" fill="#fef2f2"/>
+<text x="502" y="370.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="600" fill="#0f172a">php_50_49_unsat</text>
+<text x="616" y="370.5" text-anchor="middle" font-size="8.4" fill="#475569">122,499</text>
+<text x="692" y="370.5" text-anchor="middle" font-size="8.4" fill="#475569">247,350</text>
+<text x="770" y="370.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#b91c1c">>600 s T/O</text>
+<text x="842" y="370.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">119 ms</text>
+<rect x="496" y="379" width="378" height="19" rx="3" fill="#ecfdf5"/>
+<text x="502" y="391.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="600" fill="#0f172a">php_20_20 / 30_30</text>
+<text x="616" y="391.5" text-anchor="middle" font-size="8.4" fill="#475569">8k / 27k</text>
+<text x="692" y="391.5" text-anchor="middle" font-size="8.4" fill="#475569">16k / 55k</text>
+<text x="770" y="391.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">SAT controls</text>
+<text x="842" y="391.5" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">bijection</text>
+<text x="498" y="407" font-size="8.4" fill="#475569">php_9_8 &amp; php_13_12 LRAT proofs formally verified in HOL4 / cake_lpr.</text>
+<rect x="24" y="440" width="210" height="34" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="129.0" y="461" text-anchor="middle" font-size="10.1" font-weight="700" fill="#1d4ed8">18 Inst.: 3 SAT / 15 UNSAT</text>
+<rect x="244" y="440" width="212" height="34" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="350.0" y="461" text-anchor="middle" font-size="10.1" font-weight="700" fill="#b45309">hub: 10,146 XORs · Deg CV ≤ 2.31</text>
+<rect x="466" y="440" width="206" height="34" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+<text x="569.0" y="461" text-anchor="middle" font-size="10.1" font-weight="700" fill="#6d28d9">php: 95–99% Horn · ρ_c ≤ 3.08×</text>
+<rect x="682" y="440" width="214" height="34" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="789.0" y="461" text-anchor="middle" font-size="10.1" font-weight="700" fill="#047857">4 Formats: AIG · CNF · XCNF · ANF</text>
+</g>
+</svg>

@@ -14,6 +14,10 @@ These 8 instances (**4 SAT / 4 UNSAT**) provide a pure unstructured baseline wit
 - **Origin:** **Original** generator (MIT [`../LICENSE`](../LICENSE)), sampling the canonical uniform random 3-SAT phase-transition ensemble (Mitchell, Selman, & Levesque, AAAI 1992; Crawford & Auton, [AIJ 1996](https://doi.org/10.1016/0004-3702(95)00046-1)).
 - **Why they are important:** They trace raw solver search and local-search behavior across the under-constrained SAT shoulder, the critical threshold peak, and the over-constrained UNSAT slope where structural preprocessing yields no simplification.
 
+![Random 3-SAT phase-transition curve and factor graph around alpha_c = 4.267](diagram.svg)
+
+*Figure: Empirical $P(\mathrm{SAT})$ cliff and CDCL hardness peak around $\alpha_c \approx 4.267$ with all 8 committed $n=200$ sweep instances ($\alpha \in [3.80, 5.00]$, 4 SAT / 4 UNSAT) overlaid alongside a uniform 3-SAT factor graph. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Related Critical Phase-Transition Random 3-SAT Benchmarks in This Repo
 
 Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommendation to evaluate sampled SATLIB random UNSAT/SAT 3-SAT instances around the critical threshold (such as `uuf250-1065`), companion critical-threshold random 3-SAT corpora are also committed directly in this repository (in all four formats: `.cnf.xz`, `.aig.xz`, `.xcnf.xz`, and `.anf.xz`):
@@ -31,6 +35,7 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`42.5 KB`, all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `xcnf-converted/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`35.7 KB`).
 - `anf-converted/` — Lossless degree-3 **DIMACS-ANF `.anf.xz`** conversions (`63.4 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 8 instances (**4 SAT / 4 UNSAT**).
 - `src/gen_rand3sat.py` — Standalone zero-dependency Python 3 generator (`python3 src/gen_rand3sat.py`), alongside `src/cnf2aig.py` and `src/cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
@@ -49,9 +54,9 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
 - **Timeout:** $T_{\max} = 60\;\text{s}$ per instance.
-- **Same machine?** **Yes** — all six solver configurations were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT assignments independently verified clause-by-clause).
+- **Same machine?** **Yes** — all six solver configurations were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT assignments independently verified clause-by-clause).
 
-| Instance ($m/n$) | Ans | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance ($m/n$) | Ans | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `rand3sat_n200_r380_sat` (3.80) | SAT | **3.18 ms** | 4.01 ms | 30.82 ms | 28.57 ms | 10.66 ms | 22.15 ms |
 | `rand3sat_n200_r400_sat` (4.00) | SAT | **3.11 ms** | 21.35 ms | 30.81 ms | 32.51 ms | 4.67 ms | 25.32 ms |
@@ -63,7 +68,7 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 | `rand3sat_n200_r500_unsat` (5.00) | UNSAT | 173.65 ms | 45.88 ms | 81.35 ms | 81.24 ms | **18.71 ms** | 67.91 ms |
 | **TOTAL (8 instances, 8/8 solved)** | **4 / 4** | 1,066.32 ms *(2.21x slower)* | 1,166.94 ms *(2.42x slower)* | 1,258.22 ms *(2.61x slower)* | 1,269.88 ms *(2.63x slower)* | **482.86 ms** *(fastest)* | 1,112.90 ms *(2.30x slower)* |
 
-*(Across a broader 10-seed $n = 200, m = 852$ cohort [7 SAT / 3 UNSAT], Frobenius achieved median `115.68 ms` / mean `274.43 ms` vs. [Kissat](https://github.com/arminbiere/kissat) `98.41 / 305.15 ms`, [CaDiCaL](https://github.com/arminbiere/cadical) `318.43 / 402.75 ms`, and [CMS](https://github.com/msoos/cryptominisat) `303.07 / 534.09 ms`; across 10 seeds at $n = 250, m = 1{,}065$ [3 SAT / 7 UNSAT], Frobenius achieved `8.01 s` median / `7.80 s` mean vs. [Kissat](https://github.com/arminbiere/kissat) `4.50 / 4.46 s`, [CaDiCaL](https://github.com/arminbiere/cadical) `6.69 / 6.50 s`, [CMS](https://github.com/msoos/cryptominisat) `7.88 / 10.58 s`.)*
+*(Across a broader 10-seed $n = 200, m = 852$ cohort [7 SAT / 3 UNSAT], Frobenius achieved median `115.68 ms` / mean `274.43 ms` vs. [Kissat](https://github.com/arminbiere/kissat) `98.41 / 305.15 ms`, [CaDiCaL](https://github.com/arminbiere/cadical) `318.43 / 402.75 ms`, and [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 `303.07 / 534.09 ms`; across 10 seeds at $n = 250, m = 1{,}065$ [3 SAT / 7 UNSAT], Frobenius achieved `8.01 s` median / `7.80 s` mean vs. [Kissat](https://github.com/arminbiere/kissat) `4.50 / 4.46 s`, [CaDiCaL](https://github.com/arminbiere/cadical) `6.69 / 6.50 s`, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 `7.88 / 10.58 s`.)*
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

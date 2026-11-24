@@ -1,0 +1,5 @@
+sha256_16r_k32.aig	SAT
+sha256_17r_k16.aig	SAT
+sha256_64r_k16_sat.aig	SAT
+sha256_64r_k16_unsat.aig	UNSAT
+sha256_64r_k20_sat.aig	SAT

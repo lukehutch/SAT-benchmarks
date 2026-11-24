@@ -8,12 +8,16 @@
 - **Family Contributors:** Joseph Culberson
 - **License:** Classic public scientific benchmark collection redistributed by UBC SATLIB for academic SAT research; no separate upstream `LICENSE` file is bundled in the archives.
 - **Format Hygiene:** Legacy SATLIB trailing `%` / `0` EOF sentinels were stripped and wrapped multi-line clauses normalized to canonical 1-clause-per-line DIMACS CNF so every modern SAT solver parses all files cleanly.
-- **Format Hygiene Note:** Leading `c p ...` comment lines were prefixed as `c - p ...` (zero clause/variable changes) for [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 compatibility.
+- **Format Hygiene Note:** Leading `c p ...` comment lines were prefixed as `c - p ...` (zero clause/variable changes) for [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 compatibility.
 - **Full SATLIB Archive Manifest:** [`../satlib-archive-uris/`](../satlib-archive-uris/README.md) (all 97 official UBC SATLIB `.tar.gz` archive URLs; Pretolani's `PRET` formulas live in [`../pretolani-pret/`](../pretolani-pret/README.md)).
 
 ## Problem Description
 
 Stratified sample of 8 instances (`flat30` through `flat200`) from the 1,700-instance SATLIB flat 3-colourable graph coloring ensemble (full archive URLs in [`../satlib-archive-uris/`](../satlib-archive-uris/README.md)).
+
+![Real 3-colored 30-vertex flat graph flat30-1](diagram.svg)
+
+*Figure: Real 30-vertex, 60-edge graph parsed directly from `cnf-orig/flat30-1.cnf.xz` with a verified conflict-free 3-coloring illustrating Culberson's degree-flattened independent-set construction and `edge2cnf` encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Corpus & Data Sizes (Four Formats)
 
@@ -21,6 +25,7 @@ Stratified sample of 8 instances (`flat30` through `flat200`) from the 1,700-ins
 - **`aig-converted/`** — 8 exact **Binary AIGER 1.9 `.aig.xz`** conversions (21.0 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 8 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (20.0 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 8 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (29.6 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 8 instances (**8 SAT / 0 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -29,11 +34,11 @@ Stratified sample of 8 instances (`flat30` through `flat200`) from the 1,700-ins
 | **Binary AIGER 1.9** | `aig-converted/` | 8 | Inputs: 90–600; ANDs: 629–4,673 | 21.0 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 8 | Native XOR clauses total: 0 | 20.0 KB |
 | **DIMACS-ANF** | `anf-converted/` | 8 | Vars: 90–600; Eqs: 300–2,237 (deg ≤ 3) | 29.6 KB |
-| **Total (4 Formats, Status: SAT)** | | **32** | | **90.0 KB** |
+| **Total (4 Formats, Status: 8 SAT / 0 UNSAT)** | | **32** | | **90.0 KB** |
 
 ## Comparative 1-Core Benchmark Results (All 8 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 8 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 8 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

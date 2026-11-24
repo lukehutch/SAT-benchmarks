@@ -1,0 +1,8 @@
+rand3sat_n200_r380_sat.cnf	SAT
+rand3sat_n200_r400_sat.cnf	SAT
+rand3sat_n200_r410_sat.cnf	SAT
+rand3sat_n200_r445_unsat.cnf	UNSAT
+rand3sat_n200_r465_unsat.cnf	UNSAT
+rand3sat_n200_r500_unsat.cnf	UNSAT
+rand3sat_n200_sat.cnf	SAT
+rand3sat_n200_unsat.cnf	UNSAT

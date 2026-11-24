@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Heule 3x3 Matrix Multiplication 6pooled3and Challenge 1 encoding transformation">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 1 (R = 23 SAT)</text>
+    <text x="26" y="53" font-size="11.5" fill="#475569">Compact direct 3-AND + 6-variable pooled XOR tree re-encoding of all 10 Challenge-1 𝔽₂ Brent instances (−20.8% vars, +59.3% clauses)</text>
+    <rect x="752" y="18" width="144" height="26" rx="13" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <text x="824" y="35" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">10 / 10 KNOWN SAT</text>
+    <line x1="22" y1="64" x2="898" y2="64" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="22" y="76" width="444" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="22" y="76" width="444" height="28" rx="9" fill="#2563eb"/>
+    <rect x="22" y="92" width="444" height="12" fill="#2563eb"/>
+    <text x="244.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1. Two-Part Encoding Rewrite: 3-AND + 6-Pooled XOR</text>
+    <rect x="36" y="114" width="416" height="124" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="46" y="132" font-size="10.6" font-weight="700" fill="#0f172a">A. Direct 3-AND Cube Gate (Eliminates all 1,863 pair variables):</text>
+    <rect x="46" y="141" width="176" height="86" rx="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+    <text x="134" y="157" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">Plain (2-AND Cascade)</text>
+    <text x="134" y="174" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#334155">p = a ∧ b  (extra var)</text>
+    <text x="134" y="189" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#334155">s = p ∧ c</text>
+    <text x="134" y="207" text-anchor="middle" font-size="9.1" fill="#64748b">23×81 = 1,863 pair vars</text>
+    <text x="134" y="220" text-anchor="middle" font-size="9.1" fill="#64748b">37,260 bin + 18,630 3-cl</text>
+    <line x1="224" y1="184" x2="248" y2="184" stroke="#2563eb" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="252" y="141" width="188" height="86" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="346" y="157" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">6pooled3and (Direct 3-AND)</text>
+    <text x="346" y="174" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#1e293b">s ↔ a ∧ b ∧ c</text>
+    <text x="346" y="189" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#334155">(s∨¬a∨¬b∨¬c), (¬s∨a/b/c)</text>
+    <text x="346" y="207" text-anchor="middle" font-size="9.1" font-weight="700" fill="#047857">0 pair vars (−1,863 vars!)</text>
+    <text x="346" y="220" text-anchor="middle" font-size="9.1" fill="#475569">50,301 bin + 16,767 4-cl</text>
+    <rect x="36" y="248" width="416" height="200" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="46" y="266" font-size="10.6" font-weight="700" fill="#0f172a">B. 6-Variable Pooled XOR Tree per Brent Eq (23 Cubes → 5 Aux Vars):</text>
+    <rect x="44" y="278" width="94" height="40" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+    <text x="91" y="293" text-anchor="middle" font-size="9.0" font-weight="700" fill="#047857">Pool 1 (6-XOR)</text>
+    <text x="91" y="308" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.7" fill="#1e293b">s₁…s₅ ⊕ t₁ = δ</text>
+    <rect x="144" y="278" width="94" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+    <text x="191" y="293" text-anchor="middle" font-size="9.0" font-weight="700" fill="#1d4ed8">Pool 2 (6-XOR)</text>
+    <text x="191" y="308" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.7" fill="#1e293b">s₆…s₁₀ ⊕ t₂ = 0</text>
+    <rect x="244" y="278" width="94" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+    <text x="291" y="293" text-anchor="middle" font-size="9.0" font-weight="700" fill="#1d4ed8">Pool 3 (6-XOR)</text>
+    <text x="291" y="308" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.7" fill="#1e293b">s₁₁…s₁₅ ⊕ t₃ = 0</text>
+    <rect x="344" y="278" width="94" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+    <text x="391" y="293" text-anchor="middle" font-size="9.0" font-weight="700" fill="#1d4ed8">Pool 4 (6-XOR)</text>
+    <text x="391" y="308" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.7" fill="#1e293b">s₁₆…s₂₀ ⊕ t₄ = 0</text>
+    <rect x="60" y="336" width="170" height="36" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.1"/>
+    <text x="145" y="350" text-anchor="middle" font-size="9.2" font-weight="700" fill="#6d28d9">Pool 5 (6-XOR, 32 cls)</text>
+    <text x="145" y="364" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#1e293b">s₂₁⊕s₂₂⊕s₂₃⊕t₁⊕t₂⊕t₅ = 0</text>
+    <rect x="262" y="336" width="166" height="36" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+    <text x="345" y="350" text-anchor="middle" font-size="9.2" font-weight="700" fill="#b45309">Root (3-XOR, 4 cls)</text>
+    <text x="345" y="364" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" font-weight="700" fill="#1e293b">t₃ ⊕ t₄ ⊕ t₅ = 0</text>
+    <line x1="91" y1="318" x2="117" y2="334" stroke="#059669" stroke-width="1.2" marker-end="url(#arrg)"/>
+    <line x1="191" y1="318" x2="170" y2="334" stroke="#2563eb" stroke-width="1.2" marker-end="url(#arr)"/>
+    <line x1="230" y1="354" x2="260" y2="354" stroke="#2563eb" stroke-width="1.4" marker-end="url(#arr)"/>
+    <line x1="291" y1="318" x2="317" y2="334" stroke="#2563eb" stroke-width="1.2" marker-end="url(#arr)"/>
+    <line x1="391" y1="318" x2="370" y2="334" stroke="#2563eb" stroke-width="1.2" marker-end="url(#arr)"/>
+    <text x="46" y="394" font-size="9.5" fill="#334155">• Each 6-XOR expands to 2⁵ = 32 6-clauses ⇒ 729 × 5 × 32 = 116,640 6-clauses.</text>
+    <text x="46" y="410" font-size="9.5" fill="#334155">• Cuts XOR aux vars in half (7,290 → 3,645) and XOR blocks (8,019 → 4,374).</text>
+    <text x="46" y="426" font-size="9.5" fill="#334155">• Flattens parity depth from 10-step chain to depth-2 balanced pooling tree.</text>
+    <text x="46" y="441" font-size="9.2" font-weight="600" fill="#1d4ed8">• Preserves exact satisfiability and all 80–93 Challenge-1 type-3 unit pins!</text>
+    <rect x="480" y="76" width="418" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="480" y="76" width="418" height="28" rx="9" fill="#059669"/>
+    <rect x="480" y="92" width="418" height="12" fill="#059669"/>
+    <text x="689.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">2. Structural Tradeoff &amp; 10 Re-Encoded SAT Instances</text>
+    <rect x="494" y="116" width="390" height="138" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="504" y="134" font-size="10.5" font-weight="700" fill="#0f172a">Plain Challenge 1  vs  6pooled3and-c1 (Per Instance):</text>
+    <text x="504" y="157" font-size="9.5" font-weight="600" fill="#334155">Variables n</text>
+    <rect x="594" y="147" width="192.0" height="7" rx="2" fill="#cbd5e1"/>
+    <rect x="594" y="156" width="152.2" height="8" rx="2" fill="#059669"/>
+    <text x="876" y="159" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" font-weight="700" fill="#059669">−20.8%</text>
+    <text x="504" y="183" font-size="9.5" font-weight="600" fill="#334155">Clauses m</text>
+    <rect x="594" y="173" width="118.4" height="7" rx="2" fill="#cbd5e1"/>
+    <rect x="594" y="182" width="188.7" height="8" rx="2" fill="#d97706"/>
+    <text x="876" y="185" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" font-weight="700" fill="#d97706">+59.3%</text>
+    <text x="504" y="209" font-size="9.5" font-weight="600" fill="#334155">Native XORs</text>
+    <rect x="594" y="199" width="192.0" height="7" rx="2" fill="#cbd5e1"/>
+    <rect x="594" y="208" width="104.7" height="8" rx="2" fill="#2563eb"/>
+    <text x="876" y="211" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" font-weight="700" fill="#2563eb">−45.5%</text>
+    <text x="504" y="235" font-size="9.5" font-weight="600" fill="#334155">Deg CV (skew)</text>
+    <rect x="594" y="225" width="184.3" height="7" rx="2" fill="#cbd5e1"/>
+    <rect x="594" y="234" width="101.8" height="8" rx="2" fill="#7c3aed"/>
+    <text x="876" y="237" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" font-weight="700" fill="#7c3aed">0.96 → 0.53</text>
+    <rect x="494" y="264" width="390" height="54" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="504" y="280" font-size="10" font-weight="700" fill="#0f172a">Clause Profile (186,704–186,717 cls · k̄ = 4.69 · ρ_crit = 2.64×):</text>
+    <rect x="504.0" y="287" width="99.7" height="19" fill="#2563eb" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="553.8" y="300" text-anchor="middle" font-size="8.4" font-weight="700" fill="#ffffff">2-cl: 50.3k</text>
+    <rect x="603.7" y="287" width="5.8" height="19" fill="#7c3aed" stroke="#ffffff" stroke-width="0.8"/>
+    <rect x="609.5" y="287" width="33.2" height="19" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="626.1" y="300" text-anchor="middle" font-size="8.4" font-weight="700" fill="#ffffff">4-cl</text>
+    <rect x="642.7" y="287" width="231.1" height="19" fill="#d97706" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="758.3" y="300" text-anchor="middle" font-size="8.4" font-weight="700" fill="#ffffff">6-cl (6-XORs): 116,640 (62.5%)</text>
+    <rect x="494" y="328" width="390" height="122" rx="7" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1"/>
+    <text x="504" y="345" font-size="10.3" font-weight="700" fill="#047857">All 10 Re-Encoded SAT Instances (21,033 vars · 4,374 XORs each):</text>
+    <text x="502" y="362" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-2-3</text>
+    <text x="680" y="362" text-anchor="end" font-size="8.5" fill="#047857">85u</text>
+    <text x="502" y="379" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-2-A</text>
+    <text x="680" y="379" text-anchor="end" font-size="8.5" fill="#047857">81u</text>
+    <text x="502" y="396" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-2-B</text>
+    <text x="680" y="396" text-anchor="end" font-size="8.5" fill="#047857">81u</text>
+    <text x="502" y="413" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-2-C</text>
+    <text x="680" y="413" text-anchor="end" font-size="8.5" fill="#047857">81u</text>
+    <text x="502" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-2-D</text>
+    <text x="680" y="430" text-anchor="end" font-size="8.5" fill="#047857">81u</text>
+    <text x="692" y="362" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-2-M</text>
+    <text x="870" y="362" text-anchor="end" font-size="8.5" fill="#047857">80u</text>
+    <text x="692" y="379" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-3-4</text>
+    <text x="870" y="379" text-anchor="end" font-size="8.5" fill="#047857">88u</text>
+    <text x="692" y="396" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-4-A</text>
+    <text x="870" y="396" text-anchor="end" font-size="8.5" fill="#047857">84u</text>
+    <text x="692" y="413" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-2-2-2-4-B</text>
+    <text x="870" y="413" text-anchor="end" font-size="8.5" fill="#047857">84u</text>
+    <text x="692" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="600" fill="#1e293b">MM-23-63-4-4-4-4-1</text>
+    <text x="870" y="430" text-anchor="end" font-size="8.5" fill="#047857">93u</text>
+  </g>
+</svg>

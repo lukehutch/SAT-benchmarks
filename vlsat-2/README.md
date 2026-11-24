@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@TravisRudd`](https://twitter.com/TravisRudd) (Twitter/X)
+- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 - **Authors & Maintainers:** Hubert Garavel, Pierre Bouvier, and the CADP team at INRIA Grenoble – Rhône-Alpes
 - **Upstream Homepage:** [VLSAT-2 Benchmark Suite — CADP Resources (INRIA)](https://cadp.inria.fr/resources/vlsat/2.html)
 - **License:** Public scientific benchmark collection published by INRIA / CADP for academic research and SAT competitions; no separate `LICENSE` file is bundled with the `.cnf.bz2` downloads.
@@ -13,13 +13,18 @@ VLSAT-2 ("Very Large SAT", version 2) is a curated collection of **100 SAT formu
 
 During curation (2020), the CADP authors filtered out every formula solved in under 60 s by at least one of [CaDiCaL](https://github.com/arminbiere/cadical) 1.3.0, [Kissat](https://github.com/arminbiere/kissat) 1.0.3, [MathSAT](https://mathsat.fbk.eu/) 5.6.5, [MiniSat](https://github.com/niklasso/minisat) 2.2.0, or [Z3](https://github.com/Z3Prover/z3) 4.8.9, and retained formulas spanning increasing hardness up to 2 hours on a Xeon E5-2630 v4. Twenty-five percent of VLSAT-2 was later adopted by official SAT Competitions.
 
+![VLSAT-2 Nested-Unit Petri Net decomposition into concurrency graph and binary Horn SAT](diagram.svg)
+
+*Figure: End-to-end INRIA/CADP VLSAT-2 pipeline mapping a Nested-Unit Petri Net (1-safe hierarchical units) to its place concurrency graph and dense binary/Horn unit-coloring CNF formula. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
-Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/TravisRudd) (first 10 smallest instances committed directly + full 100-instance manifest):
+Following the benchmark protocol noted by [`@tavisrudd`](https://twitter.com/tavisrudd) (first 10 smallest instances committed directly + full 100-instance manifest):
 - **`cnf-orig/`:** First 10 VLSAT-2 `.cnf.xz` files (`139.2 KB` xz-compressed).
 - **`aig-converted/`:** 10 exact Binary AIGER 1.9 `.aig.xz` conversions (`87.1 KB`, all 10/10 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`:** 10 lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz` conversions (`139.5 KB`).
 - **`anf-converted/`:** 10 lossless linear-size DIMACS-ANF `.anf.xz` conversions (`266.5 KB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv):** Ground-truth verdicts for all 10 committed `cnf-orig/` instances (**1 SAT / 9 UNSAT**).
 - **[`vlsat2_100.uri`](vlsat2_100.uri):** Complete list of all 100 official INRIA HTTPS URLs (`vlsat2_*.cnf.bz2`).
 - **`src/`:** Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
@@ -38,7 +43,7 @@ Following the benchmark protocol noted by [`@TravisRudd`](https://twitter.com/Tr
 
 ## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

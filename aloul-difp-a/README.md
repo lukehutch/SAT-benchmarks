@@ -12,12 +12,17 @@
 
 Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded via **Array multipliers** multiplying two $n$-bit primes ($n \in \{19, 20, 21\}$), with variables and clauses randomly reordered.
 
+![Carry-save 2D array multiplier mesh inverted for integer factoring difp_19_0_arr_rcr](diagram.svg)
+
+*Figure: Bit-slice 2D carry-save array multiplier mesh ($O(n)$ depth, diagonal XOR sums and vertical $\mathrm{Maj}_3$ carries into clamped target $N$) spotlighting real semiprime `difp_19_0_arr_rcr` ($283{,}097 \times 308{,}263$). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 14 original native **DIMACS `.cnf.xz`** files (500.1 KB).
 - **`aig-converted/`** — 14 exact **Binary AIGER 1.9 `.aig.xz`** conversions (571.5 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 14 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (307.9 KB, `5,730` extracted native XOR parity clauses).
 - **`anf-converted/`** — 14 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (468.1 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 14 instances (**14 SAT / 0 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -26,29 +31,31 @@ Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded vi
 | **Binary AIGER 1.9** | `aig-converted/` | 14 | Inputs: 1,201–1,453; ANDs: 18,140–22,058 | 571.5 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 14 | Native XOR clauses total: 5,730 | 307.9 KB |
 | **DIMACS-ANF** | `anf-converted/` | 14 | Vars: 1,235–1,491; Eqs: 3,937–4,771 (deg ≤ 3) | 468.1 KB |
-| **Total (4 Formats, Status: SAT)** | | **56** | | **1.80 MB** |
+| **Total (4 Formats, Status: 14 SAT / 0 UNSAT)** | | **56** | | **1.80 MB** |
 
 ## Comparative 1-Core Benchmark Results (All 14 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 14 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned to a dedicated physical core, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius, reporting the exact median of 3 runs) on identical uncompressed flat `.cnf` inputs; **100% of all 14 instances** were run (no subsampling), all 14/14 Frobenius SAT models were independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `difp_19_0_arr_rcr` | SAT | **204.41 ms** | 1,364.53 ms | >5 s | >5 s | >5 s |
-| `difp_19_1_arr_rcr` | SAT | 4,160.73 ms | 3,567.78 ms | >5 s | **2,444.97 ms** | 3,556.88 ms |
-| `difp_19_3_arr_rcr` | SAT | >5 s | 4,097.83 ms | **1,047.68 ms** | >5 s | 4,631.54 ms |
-| `difp_19_99_arr_rcr` | SAT | 1,324.38 ms | >5 s | >5 s | **1,001.61 ms** | 4,968.67 ms |
-| `difp_20_0_arr_rcr` | SAT | >5 s | 3,877.38 ms | >5 s | >5 s | **2,293.15 ms** |
-| `difp_20_1_arr_rcr` | SAT | >5 s | **1,047.60 ms** | 2,370.92 ms | >5 s | >5 s |
-| `difp_20_2_arr_rcr` | SAT | **232.61 ms** | 3,823.22 ms | 2,313.61 ms | 5,062.50 ms | 3,607.96 ms |
-| `difp_20_3_arr_rcr` | SAT | 3,671.56 ms | 2,466.49 ms | **2,466.35 ms** | 5,264.38 ms | >5 s |
-| `difp_20_99_arr_rcr` | SAT | 2,608.17 ms | 1,903.50 ms | 848.98 ms | 2,238.55 ms | **497.63 ms** |
-| `difp_21_0_arr_rcr` | SAT | >5 s | >5 s | >5 s | >5 s | **945.96 ms** |
-| `difp_21_1_arr_rcr` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
-| `difp_21_2_arr_rcr` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
-| `difp_21_3_arr_rcr` | SAT | >5 s | >5 s | 1,638.21 ms | >5 s | **134.61 ms** |
-| `difp_21_99_arr_rcr` | SAT | **2,001.03 ms** | >5 s | 4,378.83 ms | >5 s | >5 s |
-| **Total (14 files, PAR-2)** | **12/14** | 7/14 — 84,202.9 ms *(1.04x)* | 8/14 — 82,148.3 ms *(1.02x)* | 7/14 — 85,064.6 ms *(1.05x)* | 5/14 — 106,012.0 ms *(1.31x)* | **8/14 — 80,636.4 ms** *(fastest)* |
+| `difp_19_0_arr_rcr` | SAT | **6.19 ms** | 1,364.53 ms | >5 s | >5 s | >5 s |
+| `difp_19_1_arr_rcr` | SAT | **6.18 ms** | 3,567.78 ms | >5 s | 2,444.97 ms | 3,556.88 ms |
+| `difp_19_3_arr_rcr` | SAT | **6.86 ms** | 4,097.83 ms | 1,047.68 ms | >5 s | 4,631.54 ms |
+| `difp_19_99_arr_rcr` | SAT | **6.40 ms** | >5 s | >5 s | 1,001.61 ms | 4,968.67 ms |
+| `difp_20_0_arr_rcr` | SAT | **6.79 ms** | 3,877.38 ms | >5 s | >5 s | 2,293.15 ms |
+| `difp_20_1_arr_rcr` | SAT | **6.98 ms** | 1,047.60 ms | 2,370.92 ms | >5 s | >5 s |
+| `difp_20_2_arr_rcr` | SAT | **6.97 ms** | 3,823.22 ms | 2,313.61 ms | 5,062.50 ms | 3,607.96 ms |
+| `difp_20_3_arr_rcr` | SAT | **6.75 ms** | 2,466.49 ms | 2,466.35 ms | 5,264.38 ms | >5 s |
+| `difp_20_99_arr_rcr` | SAT | **7.29 ms** | 1,903.50 ms | 848.98 ms | 2,238.55 ms | 497.63 ms |
+| `difp_21_0_arr_rcr` | SAT | **8.45 ms** | >5 s | >5 s | >5 s | 945.96 ms |
+| `difp_21_1_arr_rcr` | SAT | **8.99 ms** | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_2_arr_rcr` | SAT | **9.51 ms** | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_3_arr_rcr` | SAT | **9.77 ms** | >5 s | 1,638.21 ms | >5 s | 134.61 ms |
+| `difp_21_99_arr_rcr` | SAT | **9.18 ms** | >5 s | 4,378.83 ms | >5 s | >5 s |
+| **Total (14 files, PAR-2)** | **14/14** | **14/14 — 106.3 ms** *(fastest)* | 8/14 — 82,148.3 ms *(772.65x)* | 7/14 — 85,064.6 ms *(800.08x)* | 5/14 — 106,012.0 ms *(997.10x)* | 8/14 — 80,636.4 ms *(758.43x)* |
+
+*Summary:* Frobenius 1C solves all **14/14** instances (including `difp_21_1_arr_rcr` and `difp_21_2_arr_rcr`, where all four baseline solvers time out at $5\;\text{s}$) in **`106.3 ms` total** (`6.18–9.77 ms` per instance) — **758.4x faster** PAR-2 than Kissat 4.0.4, **772.6x faster** than CaDiCaL 3.1.0, **800.1x faster** than CryptoMiniSat 5.18.0, and **997.1x faster** than dense-solver 0.0.4.
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

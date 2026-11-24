@@ -17,12 +17,17 @@ This collection holds the **30 third-party public CNFs** (`public-instances/`) s
 - **22 SATLIB classics:** `hole6..10` (John Hooker), `uf50-01..04` & `uuf50-01..04` (uniform random 3-SAT), `flat30-1..3` (Joseph Culberson graph coloring), `anomaly`, `medium`, `bw_large.a` (SATPLAN Blocks World), and `par8-1-c..par8-3-c` (James Crawford parity learning).
 - **8 compact SAT Competition 2025 Main Track representatives** (sourced via GBD / RocSAT selection): `sc25-subset-cardinality`, `sc25-fpga-routing`, `sc25-scheduling`, `sc25-hgen`, `sc25-tseitin-formulas`, `sc25-mutilated-chessboard`, `sc25-hamiltonian`, and `sc25-pigeon-hole`.
 
+![Multi-domain breakdown and log-log footprint of the 30 dense-solver-public benchmarks](diagram.svg)
+
+*Figure: Multi-domain breakdown and log–log `(vars, clauses)` footprint parsed from `public-inputs.csv` covering all 30 public instances (22 SATLIB + 8 SC 2025, 16 SAT / 14 UNSAT). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 30 original native **DIMACS `.cnf.xz`** files (70.4 KB).
 - **`aig-converted/`** — 30 exact **Binary AIGER 1.9 `.aig.xz`** conversions (88.1 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 30 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (69.1 KB, `323` extracted native XOR parity clauses).
 - **`anf-converted/`** — 30 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (113.4 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 30 instances (**16 SAT / 14 UNSAT**).
 - **`src/`** — Upstream fetcher and manifest (`fetch_public.py`, `public-inputs.csv`) plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -35,7 +40,7 @@ This collection holds the **30 third-party public CNFs** (`public-instances/`) s
 
 ## Comparative 1-Core Benchmark Results (All 30 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 30 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 30 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

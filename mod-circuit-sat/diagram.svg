@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 495" width="920" height="495" role="img" aria-label="Exact Synthesis of Optimal MOD3 Boolean Circuits over B2">
+  <defs>
+    <marker id="arr-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+    <marker id="arr-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="491" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="28" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Exact Synthesis of Optimal MOD<tspan baseline-shift="sub" font-size="72%">n</tspan><tspan baseline-shift="super" font-size="72%">3,r</tspan> Circuits (mod-circuit-sat)</text>
+    <text x="28" y="53" font-size="11.8" fill="#475569">Minimum 2-input B₂ gate DAGs computing [(x₁ + … + x<tspan baseline-shift="sub" font-size="72%">n</tspan>) mod 3 = r] · Sharp s* − 1 (UNSAT) vs s* (SAT) thresholds</text>
+    <rect x="734" y="18" width="160" height="24" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="814" y="34" text-anchor="middle" font-size="10.8" font-weight="700" fill="#1d4ed8">5 SAT · 4 UNSAT · 2 Open</text>
+    <line x1="24" y1="65" x2="896" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="24" y="78" width="526" height="396" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="40" y="100" font-size="13" font-weight="700" fill="#0f172a">Verified Exact Minimum B₂ Circuits (Decoded from SAT Models)</text>
+    <text x="40" y="116" font-size="10.4" fill="#475569">Normal 2-input basis B₂ = {AND, OR, XOR, GT (a∧¬b), LT (¬a∧b)} with g(0,0) = 0</text>
+    <rect x="38" y="128" width="498" height="134" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.3"/>
+    <text x="50" y="147" font-size="11.5" font-weight="700" fill="#047857">A. MOD₃<tspan baseline-shift="super" font-size="72%">3,0</tspan>(x₁, x₂, x₃) — Optimal s* = 3 Gates (mod3_n3_r0_s3_sat)</text>
+    <circle cx="72" cy="172" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="72" y="176" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#1d4ed8">x₁</text>
+    <circle cx="72" cy="202" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="72" y="206" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#1d4ed8">x₂</text>
+    <circle cx="72" cy="232" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="72" y="236" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#1d4ed8">x₃</text>
+    <path d="M 84 172 L 160 175" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arr-slate)"/>
+    <path d="M 84 202 L 160 189" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arr-slate)"/>
+    <path d="M 84 176 C 128 196, 140 218, 160 221" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-slate)"/>
+    <path d="M 84 232 L 160 235" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arr-slate)"/>
+    <path d="M 242 182 C 270 182, 276 197, 300 197" fill="none" stroke="#7c3aed" stroke-width="1.7" marker-end="url(#arr-slate)"/>
+    <path d="M 242 228 C 270 228, 276 213, 300 213" fill="none" stroke="#7c3aed" stroke-width="1.7" marker-end="url(#arr-slate)"/>
+    <line x1="390" y1="205" x2="426" y2="205" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+    <rect x="162" y="165" width="80" height="34" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="202" y="180" text-anchor="middle" font-size="10.2" font-weight="700" fill="#6d28d9">g₁: XOR</text>
+    <text x="202" y="193" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">x₁ ⊕ x₂</text>
+    <rect x="162" y="211" width="80" height="34" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="202" y="226" text-anchor="middle" font-size="10.2" font-weight="700" fill="#6d28d9">g₂: XOR</text>
+    <text x="202" y="239" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">x₁ ⊕ x₃</text>
+    <rect x="302" y="188" width="80" height="34" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="1.4"/>
+    <text x="342" y="203" text-anchor="middle" font-size="10.2" font-weight="700" fill="#b45309">g₃: OR</text>
+    <text x="342" y="216" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#334155">g₁ ∨ g₂</text>
+    <circle cx="386" cy="205" r="4.2" fill="#ffffff" stroke="#dc2626" stroke-width="1.6"/>
+    <text x="404" y="195" text-anchor="middle" font-size="8.6" font-weight="700" fill="#dc2626">¬out</text>
+    <rect x="428" y="186" width="84" height="38" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>
+    <text x="470" y="203" text-anchor="middle" font-size="10.2" font-weight="700" fill="#047857">out = ¬g₃</text>
+    <text x="470" y="217" text-anchor="middle" font-size="8.8" fill="#334155">wt ∈ {0, 3}</text>
+    <rect x="38" y="274" width="498" height="146" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.3"/>
+    <text x="50" y="293" font-size="11.5" font-weight="700" fill="#1d4ed8">B. MOD₃<tspan baseline-shift="super" font-size="72%">3,1</tspan>(x₁, x₂, x₃) — s = 3 UNSAT, Optimal s* = 4 Gates (SAT)</text>
+    <circle cx="72" cy="322" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="72" y="326" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#1d4ed8">x₁</text>
+    <circle cx="72" cy="356" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="72" y="360" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#1d4ed8">x₂</text>
+    <circle cx="72" cy="390" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="72" y="394" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#1d4ed8">x₃</text>
+    <path d="M 84 322 L 144 324" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-slate)"/>
+    <path d="M 84 354 L 144 336" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-slate)"/>
+    <path d="M 84 326 C 118 346, 128 366, 144 372" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+    <path d="M 84 360 L 144 384" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-slate)"/>
+    <path d="M 218 330 L 264 336" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-slate)"/>
+    <path d="M 84 390 C 164 408, 226 400, 264 350" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-slate)"/>
+    <path d="M 338 342 L 374 359" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-slate)"/>
+    <path d="M 218 378 L 374 373" fill="none" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arr-slate)"/>
+    <rect x="146.0" y="313" width="72" height="34" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="182" y="328" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">g₁: XOR</text>
+    <text x="182" y="341" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#334155">x₁ ⊕ x₂</text>
+    <rect x="146.0" y="361" width="72" height="34" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="182" y="376" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">g₂: AND</text>
+    <text x="182" y="389" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#334155">x₁ ∧ x₂</text>
+    <rect x="266.0" y="325" width="72" height="34" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="302" y="340" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">g₃: XOR</text>
+    <text x="302" y="353" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#334155">g₁ ⊕ x₃</text>
+    <rect x="376.0" y="349" width="80" height="34" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>
+    <text x="416" y="364" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">g₄: LT</text>
+    <text x="416" y="377" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#334155">¬g₂ ∧ g₃</text>
+    <line x1="456" y1="366" x2="508" y2="366" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+    <text x="516" y="362" text-anchor="middle" font-size="9.2" font-weight="700" fill="#047857">out</text>
+    <text x="516" y="376" text-anchor="middle" font-size="8.2" fill="#475569">wt=1</text>
+    <rect x="38" y="430" width="498" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="50" y="445" font-size="9.5" font-weight="700" fill="#0f172a">Symmetric Hamming-Weight Verification (n = 3, m = 3):</text>
+    <text x="50" y="459" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.1" fill="#334155">wt(x) ∈ {0,1,2,3}  →  MOD₃<tspan baseline-shift="super" font-size="72%">3,0</tspan>: [1, 0, 0, 1] (s*=3)   ·   MOD₃<tspan baseline-shift="super" font-size="72%">3,1</tspan>: [0, 1, 0, 0] (s*=4)</text>
+    <rect x="566" y="78" width="330" height="244" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="580" y="99" font-size="12" font-weight="700" fill="#0f172a">Exact Gate-Budget Thresholds (11 Instances)</text>
+    <text x="580" y="114" font-size="9.5" fill="#64748b">Red = UNSAT lower bound (s*−1) · Green = Optimal SAT (s*)</text>
+    <rect x="578" y="126" width="306" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="586" y="142.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">n=3, r=0</text>
+    <text x="658" y="142.5" font-size="9.4" font-weight="700" fill="#059669">s = 3</text>
+    <text x="722" y="142.5" font-size="8.7" fill="#475569">65 v · 435 c</text>
+    <rect x="842" y="131" width="38" height="16" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="861" y="142" text-anchor="middle" font-size="8.2" font-weight="700" fill="#059669">SAT</text>
+    <rect x="578" y="157" width="306" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="586" y="173.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">n=3, r=1</text>
+    <text x="658" y="173.5" font-size="9.4" font-weight="700" fill="#2563eb">s = 3 → 4</text>
+    <text x="722" y="173.5" font-size="8.7" fill="#475569">65→107 v · 426→903 c</text>
+    <rect x="842" y="162" width="38" height="16" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="861" y="173" text-anchor="middle" font-size="8.2" font-weight="700" fill="#2563eb">U → S</text>
+    <rect x="578" y="188" width="306" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="586" y="204.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">n=4, r=2</text>
+    <text x="658" y="204.5" font-size="9.4" font-weight="700" fill="#2563eb">s = 5 → 6</text>
+    <text x="722" y="204.5" font-size="8.7" fill="#475569">250→343 v · 4.1k→6.8k c</text>
+    <rect x="842" y="193" width="38" height="16" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="861" y="204" text-anchor="middle" font-size="8.2" font-weight="700" fill="#2563eb">U → S</text>
+    <rect x="578" y="219" width="306" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="586" y="235.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">n=4, r=0</text>
+    <text x="658" y="235.5" font-size="9.4" font-weight="700" fill="#2563eb">s = 6 → 7</text>
+    <text x="722" y="235.5" font-size="8.7" fill="#475569">343→454 v · 6.9k→10.6k c</text>
+    <rect x="842" y="224" width="38" height="16" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="861" y="235" text-anchor="middle" font-size="8.2" font-weight="700" fill="#2563eb">U → S</text>
+    <rect x="578" y="250" width="306" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="586" y="266.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">n=5, r=1</text>
+    <text x="658" y="266.5" font-size="9.4" font-weight="700" fill="#7c3aed">s = 8 → 9</text>
+    <text x="722" y="266.5" font-size="8.7" fill="#475569">825→1,019 v · 33.5k→46.4k c</text>
+    <rect x="842" y="255" width="38" height="16" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="0.9"/>
+    <text x="861" y="266" text-anchor="middle" font-size="8.2" font-weight="700" fill="#7c3aed">U → S</text>
+    <rect x="578" y="281" width="306" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="586" y="297.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.4" font-weight="700" fill="#0f172a">n=6, r=1,2</text>
+    <text x="658" y="297.5" font-size="9.4" font-weight="700" fill="#d97706">s ≤ 12</text>
+    <text x="722" y="297.5" font-size="8.7" fill="#475569">2,309 v · 185.7k c (×2)</text>
+    <rect x="842" y="286" width="38" height="16" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="0.9"/>
+    <text x="861" y="297" text-anchor="middle" font-size="8.2" font-weight="700" fill="#d97706">OPEN</text>
+    <rect x="566" y="334" width="330" height="140" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="580" y="355" font-size="12" font-weight="700" fill="#0f172a">SAT Encoding &amp; Symmetry Breaking (modsat.py)</text>
+    <text x="580" y="374.0" font-size="9.6" font-weight="700" fill="#6d28d9">sel(i,j,k):</text>
+    <text x="650" y="374.0" font-size="9.5" fill="#334155">Exactly-one fan-in pair (j &lt; k &lt; i) per gate i</text>
+    <text x="580" y="390.5" font-size="9.6" font-weight="700" fill="#6d28d9">f<tspan baseline-shift="sub" font-size="72%">i</tspan> (3 bits):</text>
+    <text x="650" y="390.5" font-size="9.5" fill="#334155">Normal B₂ truth table (f₀₁, f₁₀, f₁₁); no const</text>
+    <text x="580" y="407.0" font-size="9.6" font-weight="700" fill="#6d28d9">x<tspan baseline-shift="sub" font-size="72%">i,t</tspan>:</text>
+    <text x="650" y="407.0" font-size="9.5" fill="#334155">Gate i value on all 2<tspan baseline-shift="super" font-size="72%">n</tspan> − 1 non-zero rows t</text>
+    <text x="580" y="423.5" font-size="9.6" font-weight="700" fill="#6d28d9">Symmetry:</text>
+    <text x="650" y="423.5" font-size="9.5" fill="#334155">lex gate order + noreuse + symmetric inputs</text>
+    <text x="580" y="440.0" font-size="9.6" font-weight="700" fill="#6d28d9">Regime:</text>
+    <text x="650" y="440.0" font-size="9.5" fill="#334155">Deep Over (ρ<tspan baseline-shift="sub" font-size="72%">crit</tspan> = 3.24×–14.2×, α up to 80)</text>
+    <text x="580" y="456.5" font-size="9.6" font-weight="700" fill="#6d28d9">Decoder:</text>
+    <text x="650" y="456.5" font-size="9.5" fill="#334155">maps/*.map.json decodes SAT → verified B₂</text>
+  </g>
+</svg>

@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="920" height="560" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/></marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="556" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="28" y="36" font-size="18" font-weight="700" fill="#0f172a">Rectangle-Free 5-Coloring of the 27&#215;27 Grid (Jason Davies / Zarankiewicz Frontier)</text>
+  <text x="28" y="56" font-size="12" fill="#475569">No axis-aligned 2&#215;2 rectangle may have 4 same-colored corners  &#183;  Conjectured threshold b&#8325;(2) = 28 (26 &#8804; b&#8325;(2) &#8804; 28; a 27&#215;27 5-coloring settles the conjecture)</text>
+  <line x1="24" y1="68" x2="896" y2="68" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="56" y="90" font-size="13" font-weight="700" fill="#1e293b">Actual Fixed Color-1 Template T&#8321; (147 cells, PG(2,5) &#8726; 4&#215;4)</text>
+  <text x="56" y="103" font-size="10.5" fill="#64748b">Decoded from cnf-orig/02-open.cnf.xz: 0 monochromatic rectangles, row/col sums &#8712; {5, 6}</text>
+  <rect x="54" y="107" width="355" height="41" fill="#fef9c3" fill-opacity="0.7" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="56" y="108" width="351" height="351" fill="#ffffff" fill-opacity="0.35" stroke="#94a3b8" stroke-width="1.2"/>
+  <path d="M69,108v351 M56,121h351 M82,108v351 M56,134h351 M95,108v351 M56,147h351 M108,108v351 M56,160h351 M121,108v351 M56,173h351 M134,108v351 M56,186h351 M147,108v351 M56,199h351 M160,108v351 M56,212h351 M173,108v351 M56,225h351 M186,108v351 M56,238h351 M199,108v351 M56,251h351 M212,108v351 M56,264h351 M225,108v351 M56,277h351 M238,108v351 M56,290h351 M251,108v351 M56,303h351 M264,108v351 M56,316h351 M277,108v351 M56,329h351 M290,108v351 M56,342h351 M303,108v351 M56,355h351 M316,108v351 M56,368h351 M329,108v351 M56,381h351 M342,108v351 M56,394h351 M355,108v351 M56,407h351 M368,108v351 M56,420h351 M381,108v351 M56,433h351 M394,108v351 M56,446h351" stroke="#e2e8f0" stroke-width="0.6" fill="none"/>
+  <rect x="82.9" y="108.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="147.9" y="108.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="212.9" y="108.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="277.9" y="108.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="329.9" y="108.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="95.9" y="121.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="160.9" y="121.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="225.9" y="121.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="290.9" y="121.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="329.9" y="121.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="56.9" y="134.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="108.9" y="134.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="173.9" y="134.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="238.9" y="134.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="303.9" y="134.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="329.9" y="134.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="69.9" y="147.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="121.9" y="147.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="186.9" y="147.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="251.9" y="147.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="316.9" y="147.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="329.9" y="147.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="121.9" y="160.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="173.9" y="160.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="225.9" y="160.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="277.9" y="160.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="342.9" y="160.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="82.9" y="173.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="134.9" y="173.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="251.9" y="173.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="303.9" y="173.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="342.9" y="173.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="56.9" y="186.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="95.9" y="186.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="147.9" y="186.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="199.9" y="186.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="316.9" y="186.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="342.9" y="186.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="69.9" y="199.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="108.9" y="199.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="160.9" y="199.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="212.9" y="199.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="264.9" y="199.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="342.9" y="199.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="108.9" y="212.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="147.9" y="212.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="251.9" y="212.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="290.9" y="212.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="355.9" y="212.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="121.9" y="225.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="160.9" y="225.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="199.9" y="225.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="303.9" y="225.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="355.9" y="225.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="56.9" y="238.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="82.9" y="238.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="186.9" y="238.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="225.9" y="238.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="264.9" y="238.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="355.9" y="238.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="69.9" y="251.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="95.9" y="251.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="134.9" y="251.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="238.9" y="251.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="277.9" y="251.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="355.9" y="251.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="95.9" y="264.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="186.9" y="264.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="212.9" y="264.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="303.9" y="264.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="368.9" y="264.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="108.9" y="277.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="134.9" y="277.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="225.9" y="277.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="316.9" y="277.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="368.9" y="277.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="121.9" y="290.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="147.9" y="290.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="238.9" y="290.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="264.9" y="290.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="368.9" y="290.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="56.9" y="303.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="160.9" y="303.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="251.9" y="303.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="277.9" y="303.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="368.9" y="303.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="69.9" y="316.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="82.9" y="316.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="173.9" y="316.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="199.9" y="316.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="290.9" y="316.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="368.9" y="316.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="82.9" y="329.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="160.9" y="329.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="238.9" y="329.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="316.9" y="329.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="381.9" y="329.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="95.9" y="342.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="173.9" y="342.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="251.9" y="342.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="264.9" y="342.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="381.9" y="342.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="108.9" y="355.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="186.9" y="355.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="199.9" y="355.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="277.9" y="355.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="381.9" y="355.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="56.9" y="368.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="121.9" y="368.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="134.9" y="368.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="212.9" y="368.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="290.9" y="368.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="381.9" y="368.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="69.9" y="381.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="147.9" y="381.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="225.9" y="381.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="303.9" y="381.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="381.9" y="381.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="82.9" y="394.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="95.9" y="394.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="108.9" y="394.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="121.9" y="394.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="394.9" y="394.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="134.9" y="407.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="147.9" y="407.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="160.9" y="407.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="173.9" y="407.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="186.9" y="407.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="394.9" y="407.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="199.9" y="420.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="212.9" y="420.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="225.9" y="420.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="238.9" y="420.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="251.9" y="420.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="394.9" y="420.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="264.9" y="433.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="277.9" y="433.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="290.9" y="433.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="303.9" y="433.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="316.9" y="433.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="394.9" y="433.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="329.9" y="446.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="342.9" y="446.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="355.9" y="446.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="368.9" y="446.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="381.9" y="446.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <rect x="394.9" y="446.9" width="11.2" height="11.2" rx="2" fill="#2563eb"/>
+  <text x="50" y="117.9" text-anchor="end" font-size="8.5" fill="#a16207" font-weight="700">0</text>
+  <text x="414" y="117.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="50" y="130.9" text-anchor="end" font-size="8.5" fill="#a16207" font-weight="700">1</text>
+  <text x="414" y="130.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="50" y="143.9" text-anchor="end" font-size="8.5" fill="#a16207" font-weight="700">2</text>
+  <text x="414" y="143.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="156.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="169.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="182.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="195.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="208.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="221.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="50" y="234.9" text-anchor="end" font-size="8.5" fill="#64748b" font-weight="400">9</text>
+  <text x="414" y="234.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="247.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="260.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="273.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="286.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="299.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="312.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="325.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="338.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="50" y="351.9" text-anchor="end" font-size="8.5" fill="#64748b" font-weight="400">18</text>
+  <text x="414" y="351.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="364.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="377.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="390.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="403.9" font-size="8.5" fill="#94a3b8" font-weight="400">5</text>
+  <text x="414" y="416.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="429.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="442.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="50" y="455.9" text-anchor="end" font-size="8.5" fill="#64748b" font-weight="400">26</text>
+  <text x="414" y="455.9" font-size="8.5" fill="#1d4ed8" font-weight="700">6</text>
+  <text x="414" y="105" font-size="8.5" font-weight="600" fill="#475569">wt</text>
+  <text x="50" y="105" text-anchor="end" font-size="8.5" font-weight="600" fill="#475569">row</text>
+  <rect x="166.5" y="179.5" width="117.0" height="117.0" fill="#dc2626" fill-opacity="0.08" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <circle cx="166.5" cy="179.5" r="4.5" fill="#dc2626" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="283.5" cy="179.5" r="4.5" fill="#dc2626" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="166.5" cy="296.5" r="4.5" fill="#dc2626" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="283.5" cy="296.5" r="4.5" fill="#dc2626" stroke="#ffffff" stroke-width="1.2"/>
+  <rect x="151.0" y="227.0" width="148" height="22" rx="4" fill="#ffffff" fill-opacity="0.93" stroke="#fca5a5" stroke-width="1"/>
+  <text x="225.0" y="241.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">Forbidden 2&#215;2 Rectangle</text>
+  <rect x="56" y="472" width="11" height="11" rx="2" fill="#2563eb"/>
+  <text x="72" y="481" font-size="10.5" fill="#334155">Fixed T&#8321; (147 cells: 12 rows&#215;6 + 15 rows&#215;5)</text>
+  <rect x="56" y="491" width="11" height="11" rx="1" fill="#fef9c3" stroke="#eab308" stroke-width="1" stroke-dasharray="2,1"/>
+  <text x="72" y="500" font-size="10.5" fill="#334155">02-open.cnf pinned host rows 0, 1, 2 &#8594; T&#8322; src rows 15, 0, 2</text>
+  <circle cx="61.5" cy="515" r="4.5" fill="#dc2626"/>
+  <text x="72" y="519" font-size="10.5" fill="#334155">Monochromatic 4-corner clause (48,108 per free color 4 &amp; 5)</text>
+  <text x="458" y="90" font-size="13" font-weight="700" fill="#1e293b">5-Color Decomposition &amp; SAT Encoding (5,244 Vars)</text>
+  <text x="458" y="103" font-size="10.5" fill="#64748b">Partitioning 27&#178; = 729 cells via 3 PG(2,5) templates + 2 free colors</text>
+  <rect x="458" y="114" width="434" height="62" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="470" y="134" font-size="11.5" font-weight="700" fill="#1d4ed8">Color 1 — Fixed Template T&#8321;</text>
+  <text x="880" y="134" text-anchor="end" font-size="10.5" font-weight="600" fill="#334155">147 cells (fixed)</text>
+  <text x="470" y="153" font-size="10" fill="#334155">PG(2,5) &#8726; 4&#215;4 (z(27) = 147), |Aut(T&#8321;)| = 24. Removes 147 cells from grid.</text>
+  <rect x="458" y="184" width="434" height="62" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.2"/>
+  <text x="470" y="204" font-size="11.5" font-weight="700" fill="#047857">Color 2 — Movable T&#8322; = R&#8322; T&#8321; C&#8322;&#7488;</text>
+  <text x="880" y="204" text-anchor="end" font-size="10.5" font-weight="600" fill="#334155">147 cells (vars 1..1458)</text>
+  <text x="470" y="223" font-size="10" fill="#334155">27&#215;27 row &amp; col bijections R&#8322;, C&#8322;; disjoint from T&#8321; (21,609 bin cls).</text>
+  <rect x="458" y="254" width="434" height="62" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="470" y="274" font-size="11.5" font-weight="700" fill="#6d28d9">Color 3 — Movable T&#8323; = R&#8323; T&#8323; C&#8323;&#7488;</text>
+  <text x="880" y="274" text-anchor="end" font-size="10.5" font-weight="600" fill="#334155">145 cells (vars 1459..2916)</text>
+  <text x="470" y="293" font-size="10" fill="#334155">PG(2,5) &#8726; 4&#215;4 (10&#215;6 + 17&#215;5), |Aut(T&#8323;)| = 20 &#8773; D&#8321;&#8320; (unbroken in 02-open).</text>
+  <rect x="458" y="324" width="434" height="62" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="1.2"/>
+  <text x="470" y="344" font-size="11.5" font-weight="700" fill="#c2410c">Colors 4 &amp; 5 — Free Remainder (G&#8322;, G&#8323;)</text>
+  <text x="880" y="344" text-anchor="end" font-size="10.5" font-weight="600" fill="#334155">290 cells (vars 2917..5244)</text>
+  <text x="470" y="363" font-size="10" fill="#334155">582 non-T&#8321; cells &#215; 4 color vars; 2 &#215; 48,108 4-clauses + 22 row-0 SBP cls.</text>
+  <text x="458" y="394" font-size="10.5" font-weight="700" fill="#334155">Exact 729-Cell Color Partition Budget (147 + 147 + 145 + 290 = 729)</text>
+  <rect x="458.0" y="400" width="87.5" height="22" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+  <text x="501.8" y="414.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#ffffff">C1: 147</text>
+  <rect x="545.5" y="400" width="87.5" height="22" fill="#10b981" stroke="#ffffff" stroke-width="1"/>
+  <text x="589.3" y="414.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#ffffff">C2: 147</text>
+  <rect x="633.0" y="400" width="86.3" height="22" fill="#8b5cf6" stroke="#ffffff" stroke-width="1"/>
+  <text x="676.2" y="414.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#ffffff">C3: 145</text>
+  <rect x="719.4" y="400" width="86.3" height="22" fill="#f97316" stroke="#ffffff" stroke-width="1"/>
+  <text x="762.5" y="414.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#ffffff">C4: ~145</text>
+  <rect x="805.7" y="400" width="86.3" height="22" fill="#e11d48" stroke="#ffffff" stroke-width="1"/>
+  <text x="848.8" y="414.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#ffffff">C5: ~145</text>
+  <rect x="458" y="434" width="434" height="108" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="470" y="451" font-size="11" font-weight="700" fill="#0f172a">Shared Base CNF (1,067,824 clauses; 99.92% Horn, &#945; = 203.6)</text>
+  <text x="470" y="469" font-size="9.6" fill="#334155">&#8226; 848,556 ternary (79.5%): bilinear template links (&#8722;R, &#8722;C, &#177;G)</text>
+  <text x="470" y="484" font-size="9.6" fill="#334155">&#8226; 122,233 binary (11.4%): 75,816 perm AMO + 42,924 T&#8321;-disjoint + 3,492 cell</text>
+  <text x="470" y="499" font-size="9.6" fill="#334155">&#8226; 96,799 4-clauses (9.1%): 96,216 C4/C5 rectangles + 582 cell ALO</text>
+  <text x="470" y="514" font-size="9.6" fill="#334155">&#8226; 01-known-unsat: +52 pins (BCP &#8594; 2,238 active vars, 83,252 cls)</text>
+  <text x="470" y="529" font-size="9.6" fill="#334155">&#8226; 02-open: +3 pins on R&#8322; rows 0&#8211;2 (BCP &#8594; 5,007 active vars, 924,915 cls)</text>
+</svg>

@@ -1,0 +1,11 @@
+mod3_n3_r0_s3_sat.cnf	SAT
+mod3_n3_r1_s3_unsat.cnf	UNSAT
+mod3_n3_r1_s4_sat.cnf	SAT
+mod3_n4_r0_s6_unsat.cnf	UNSAT
+mod3_n4_r0_s7_sat.cnf	SAT
+mod3_n4_r2_s5_unsat.cnf	UNSAT
+mod3_n4_r2_s6_sat.cnf	SAT
+mod3_n5_r1_s8_unsat.cnf	UNSAT
+mod3_n5_r1_s9_sat.cnf	SAT
+mod3_n6_r1_le12_open.cnf	UNKNOWN
+mod3_n6_r2_le12_open.cnf	UNKNOWN

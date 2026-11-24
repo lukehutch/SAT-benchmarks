@@ -10,6 +10,10 @@ The **Peaceable Queen Armies** problem asks whether $A \ge 2$ opposing armies of
   - $A = 3$ armies ([OEIS A277433](https://oeis.org/A277433)): $0, 0, 0, 1, 1, 2, 3, 4, 5, 7, 8, 10, 11, 14, 15, 17, \dots$ for $n = 1\text{--}16$.
   - $A = 4$ armies ([OEIS A277434](https://oeis.org/A277434)): $0, 0, 0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, \dots$ for $n = 1\text{--}13$.
 
+![Peaceable Queen Armies 2-army and 3-army chessboard placements](diagram.svg)
+
+*Figure: Verified OEIS-optimal peaceable queen-army placements for $A=2$ ($8\times 8, k=9$, A250000) and $A=3$ ($9\times 9, k=5$, A277433) showing non-crossing opposing-army attack lines and the Sinz cardinality CNF encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ### Encoding
 
 Each instance is encoded in standard flat DIMACS CNF:
@@ -29,6 +33,7 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`197.8 KB`, 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `xcnf-converted/` — Exact **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`142.4 KB`).
 - `anf-converted/` — Lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (`456.7 KB`, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 8 instances (**4 SAT / 4 UNSAT**).
 - `src/gen_queen_armies.py` — Standalone zero-dependency Python 3 generator and witness verifier (`python3 src/gen_queen_armies.py --generate-suite .`), plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 ## Problem Parameters & Data Sizes
@@ -47,7 +52,7 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
 
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30{,}000\;\text{ms}$).
-- **Same machine?** **Yes** — all five solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run; Frobenius 1C reports the exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT placements independently verified for non-attacking armies of size $\ge k$).
+- **Same machine?** **Yes** — all five solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; Frobenius 1C reports the exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT placements independently verified for non-attacking armies of size $\ge k$).
 
 | Instance | Status | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

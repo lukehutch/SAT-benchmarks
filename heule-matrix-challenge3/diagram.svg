@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Heule 3x3 Matrix Multiplication Challenge 3: MM-23-no-type3 structural boundary">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#6d28d9"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Heule 3×3 Matrix Multiplication — Challenge 3 (MM-23-no-type3)</text>
+    <text x="26" y="53" font-size="11.5" fill="#475569">Can an R = 23 scheme over 𝔽₂ exist if one rank-1 summand contains zero type-3 terms? (Unstreamlined bridge toward R = 22)</text>
+    <rect x="760" y="18" width="136" height="26" rx="13" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+    <text x="828" y="35" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">OPEN / HARD (1 CNF)</text>
+    <line x1="22" y1="64" x2="898" y2="64" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="22" y="76" width="434" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="22" y="76" width="434" height="28" rx="9" fill="#7c3aed"/>
+    <rect x="22" y="92" width="434" height="12" fill="#7c3aed"/>
+    <text x="239.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1. Asymmetric Split: 1 Type-3-Free Layer + 22 Cover Layers</text>
+    <rect x="36" y="116" width="406" height="122" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="5,3"/>
+    <text x="46" y="135" font-size="11.2" font-weight="700" fill="#b91c1c">Restricted Summand M₁ = u⁽¹⁾ ⊗ v⁽¹⁾ ⊗ w⁽¹⁾  (Vars 1..27)</text>
+    <text x="46" y="152" font-size="10" fill="#334155">27 ternary clauses forbid EVERY trace triple (aᵢₖ, bₖⱼ, cⱼᵢ) simultaneously:</text>
+    <rect x="46" y="160" width="386" height="34" rx="5" fill="#ffffff" stroke="#fca5a5" stroke-width="1"/>
+    <text x="239.0" y="181" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#b91c1c">∀ i,j,k:  (¬a⁽¹⁾ᵢₖ ∨ ¬b⁽¹⁾ₖⱼ ∨ ¬c⁽¹⁾ⱼᵢ)  ⇒  s⁽¹⁾ = 0  (on δ = 1)</text>
+    <text x="46" y="211" font-size="9.8" fill="#475569">Role of M₁: Pure cancellation helper! Can ONLY flip parity in the 702</text>
+    <text x="46" y="226" font-size="9.8" fill="#475569">off-tensor (δ = 0) Brent equations; contributes 0 to all 27 target δ = 1 terms.</text>
+    <circle cx="239.0" cy="251" r="11" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+    <text x="239.0" y="255" text-anchor="middle" font-size="14" font-weight="700" fill="#6d28d9">+</text>
+    <rect x="36" y="264" width="406" height="92" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="46" y="283" font-size="11.2" font-weight="700" fill="#1d4ed8">Remaining 22 Summands M₂ … M₂₃  (Vars 28..621)</text>
+    <text x="46" y="301" font-size="10.1" fill="#334155">Must cover ALL 27 type-3 triples aᵢₖbₖⱼcⱼᵢ with odd parity using only 22 slots:</text>
+    <rect x="46.0" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="53.6" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">2</text>
+    <rect x="63.6" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="71.2" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">3</text>
+    <rect x="81.2" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="88.8" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">4</text>
+    <rect x="98.8" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="106.4" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">5</text>
+    <rect x="116.4" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="124.0" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">6</text>
+    <rect x="134.0" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="141.6" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">7</text>
+    <rect x="151.6" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="159.2" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">8</text>
+    <rect x="169.2" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="176.8" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">9</text>
+    <rect x="186.8" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="194.4" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">10</text>
+    <rect x="204.4" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="212.0" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">11</text>
+    <rect x="222.0" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="229.6" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">12</text>
+    <rect x="239.6" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="247.2" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">13</text>
+    <rect x="257.2" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="264.8" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">14</text>
+    <rect x="274.8" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="282.4" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">15</text>
+    <rect x="292.4" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="300.0" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">16</text>
+    <rect x="310.0" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="317.6" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">17</text>
+    <rect x="327.6" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="335.2" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">18</text>
+    <rect x="345.2" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="352.8" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">19</text>
+    <rect x="362.8" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="370.4" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">20</text>
+    <rect x="380.4" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="388.0" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">21</text>
+    <rect x="398.0" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="405.6" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">22</text>
+    <rect x="415.6" y="309" width="15.2" height="17" rx="2.5" fill="#2563eb" fill-opacity="0.88"/>
+    <text x="423.2" y="320.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="#ffffff">23</text>
+    <text x="46" y="344" font-size="9.7" font-weight="600" fill="#1e40af">Pigeonhole excess increases from 27−23 = 4  →  27−22 = 5 (same cover load as R = 22!)</text>
+    <rect x="36" y="366" width="406" height="78" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="46" y="384" font-size="10.5" font-weight="700" fill="#0f172a">Why This Question Matters for Algebraic Complexity:</text>
+    <text x="46" y="401" font-size="9.6" fill="#334155">• Every known R = 23 scheme in the SAT 2019 corpus had ≥1 type-3 term per layer.</text>
+    <text x="46" y="416" font-size="9.6" fill="#334155">• Zero hardcoded pairings &amp; zero streamlining: preserves full S₂₂ × GL₃ symmetry.</text>
+    <text x="46" y="431" font-size="9.6" fill="#334155">• A SAT model reveals a 22-layer type-3 cover aided by 1 pure-cancellation layer.</text>
+    <rect x="470" y="76" width="428" height="384" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="470" y="76" width="428" height="28" rx="9" fill="#4f46e5"/>
+    <rect x="470" y="92" width="428" height="12" fill="#4f46e5"/>
+    <text x="684.0" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">2. Exact 27 Forbidden Triples &amp; Brent Parity Impact</text>
+    <text x="484" y="118" font-size="10.4" font-weight="700" fill="#0f172a">All 27 Ternary Forbidding Clauses on M₁ (Grouped by Output cⱼᵢ):</text>
+    <rect x="484" y="128" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="491" y="141" font-size="9.2" font-weight="700" fill="#6d28d9">c11 forbidden (k=1..3):</text>
+    <text x="491" y="153" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a11 ∨ ¬b11 ∨ ¬c11</text>
+    <text x="491" y="164" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a12 ∨ ¬b21 ∨ ¬c11</text>
+    <text x="491" y="175" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a13 ∨ ¬b31 ∨ ¬c11</text>
+    <rect x="620" y="128" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="627" y="141" font-size="9.2" font-weight="700" fill="#6d28d9">c12 forbidden (k=1..3):</text>
+    <text x="627" y="153" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a21 ∨ ¬b11 ∨ ¬c12</text>
+    <text x="627" y="164" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a22 ∨ ¬b21 ∨ ¬c12</text>
+    <text x="627" y="175" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a23 ∨ ¬b31 ∨ ¬c12</text>
+    <rect x="756" y="128" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="763" y="141" font-size="9.2" font-weight="700" fill="#6d28d9">c13 forbidden (k=1..3):</text>
+    <text x="763" y="153" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a31 ∨ ¬b11 ∨ ¬c13</text>
+    <text x="763" y="164" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a32 ∨ ¬b21 ∨ ¬c13</text>
+    <text x="763" y="175" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a33 ∨ ¬b31 ∨ ¬c13</text>
+    <rect x="484" y="187" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="491" y="200" font-size="9.2" font-weight="700" fill="#6d28d9">c21 forbidden (k=1..3):</text>
+    <text x="491" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a11 ∨ ¬b12 ∨ ¬c21</text>
+    <text x="491" y="223" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a12 ∨ ¬b22 ∨ ¬c21</text>
+    <text x="491" y="234" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a13 ∨ ¬b32 ∨ ¬c21</text>
+    <rect x="620" y="187" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="627" y="200" font-size="9.2" font-weight="700" fill="#6d28d9">c22 forbidden (k=1..3):</text>
+    <text x="627" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a21 ∨ ¬b12 ∨ ¬c22</text>
+    <text x="627" y="223" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a22 ∨ ¬b22 ∨ ¬c22</text>
+    <text x="627" y="234" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a23 ∨ ¬b32 ∨ ¬c22</text>
+    <rect x="756" y="187" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="763" y="200" font-size="9.2" font-weight="700" fill="#6d28d9">c23 forbidden (k=1..3):</text>
+    <text x="763" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a31 ∨ ¬b12 ∨ ¬c23</text>
+    <text x="763" y="223" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a32 ∨ ¬b22 ∨ ¬c23</text>
+    <text x="763" y="234" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a33 ∨ ¬b32 ∨ ¬c23</text>
+    <rect x="484" y="246" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="491" y="259" font-size="9.2" font-weight="700" fill="#6d28d9">c31 forbidden (k=1..3):</text>
+    <text x="491" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a11 ∨ ¬b13 ∨ ¬c31</text>
+    <text x="491" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a12 ∨ ¬b23 ∨ ¬c31</text>
+    <text x="491" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a13 ∨ ¬b33 ∨ ¬c31</text>
+    <rect x="620" y="246" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="627" y="259" font-size="9.2" font-weight="700" fill="#6d28d9">c32 forbidden (k=1..3):</text>
+    <text x="627" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a21 ∨ ¬b13 ∨ ¬c32</text>
+    <text x="627" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a22 ∨ ¬b23 ∨ ¬c32</text>
+    <text x="627" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a23 ∨ ¬b33 ∨ ¬c32</text>
+    <rect x="756" y="246" width="128" height="52" rx="5" fill="#ffffff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="763" y="259" font-size="9.2" font-weight="700" fill="#6d28d9">c33 forbidden (k=1..3):</text>
+    <text x="763" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a31 ∨ ¬b13 ∨ ¬c33</text>
+    <text x="763" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a32 ∨ ¬b23 ∨ ¬c33</text>
+    <text x="763" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#b91c1c">¬a33 ∨ ¬b33 ∨ ¬c33</text>
+    <text x="484" y="309" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#475569">Verified DIMACS: (-1, -10, -19) … (-9, -18, -27)  [27 / 27 exact]</text>
+    <rect x="484" y="321" width="400" height="122" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="494" y="339" font-size="10.8" font-weight="700" fill="#0f172a">Plain CNF Dimensions (26,541 vars · 117,153 clauses · 0 units)</text>
+    <rect x="494.0" y="347" width="120.9" height="20" fill="#2563eb" stroke="#ffffff" stroke-width="0.9"/>
+    <text x="554.4" y="360.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#ffffff">2-cl: 37,260</text>
+    <rect x="614.9" y="347" width="70.0" height="20" fill="#7c3aed" stroke="#ffffff" stroke-width="0.9"/>
+    <text x="649.8" y="360.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#ffffff">3-cl: 21,573</text>
+    <rect x="684.8" y="347" width="189.2" height="20" fill="#059669" stroke="#ffffff" stroke-width="0.9"/>
+    <text x="779.4" y="360.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#ffffff">4-cl (XORs): 58,320</text>
+    <text x="494" y="383" font-size="9.4" fill="#334155">• 21,573 ternary clauses = 18,630 pair/cube ANDs + 2,916 root 3-XOR + 27 no-type3</text>
+    <text x="494" y="398" font-size="9.4" fill="#334155">• 58,320 4-clauses + 2,916 3-clauses = 8,019 native XOR parity blocks (XCNF)</text>
+    <text x="494" y="413" font-size="9.4" fill="#334155">• Structural metrics: α = 4.41 · ρ_crit = 1.82× (Over) · κ = 0.94 · 73% Horn</text>
+    <text x="494" y="428" font-size="9.4" fill="#334155">• Benchmark (T_max = 10 s): 0 / 6 solvers finished (see also 6pooled3and-c3)</text>
+  </g>
+</svg>

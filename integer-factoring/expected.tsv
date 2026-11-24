@@ -1,0 +1,6 @@
+factor_karatsuba_36b.aig	SAT
+factor_prime_28b_unsat.aig	UNSAT
+factor_wallace_32b.aig	SAT
+factor_wallace_36b.aig	SAT
+factor_wallace_40b.aig	SAT
+masked_mult_32b_xor16.aig	SAT

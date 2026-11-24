@@ -22,12 +22,17 @@ Designed by Keith Adler to separate detecting known polynomial-time structure fr
 8. Hamiltonian cycle (`ham_*`: planted, unbalanced bipartite, cut-vertex, 8 instances)
 9. XOR system + random 3-clauses (`xor_plus_*`, 4 instances)
 
+![Four-pillar architectural map of SAT Shortcut Challenge Tier 1 structured instances](diagram.svg)
+
+*Figure: Four-pillar architectural map of Keith Adler's 47 structured Tier-1 instances across 9 families ($\mathbb{F}_2$ parity, arithmetic miters, counting/coloring invariants, and graph obstructions + random 3-SAT control). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 47 original native **DIMACS `.cnf.xz`** files (322.9 KB).
 - **`aig-converted/`** — 47 exact **Binary AIGER 1.9 `.aig.xz`** conversions (414.8 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 47 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (277.2 KB, `6,793` extracted native XOR parity clauses).
 - **`anf-converted/`** — 47 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (588.3 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 47 instances (**13 SAT / 34 UNSAT**).
 - **`results/`** — Upstream Tier-1 manifest and baseline summary ([`MANIFEST-tier1.sha256`](results/MANIFEST-tier1.sha256), [`RESULTS.md`](results/RESULTS.md), [`shortcut_chart.png`](results/shortcut_chart.png)).
 - **`src/`** — Upstream Tier-1 generator and reference scripts (`bench.py`, `chart.py`, `gen.py`, `more.py`, `run_cadical.py`, `structsat.py`, `cnf2aig.py`, `cnf2xcnf.py`).
 
@@ -37,11 +42,11 @@ Designed by Keith Adler to separate detecting known polynomial-time structure fr
 | **Binary AIGER 1.9** | `aig-converted/` | 47 | Inputs: 30–3,370; ANDs: 239–233,600 | 414.8 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 47 | Native XOR clauses total: 6,793 | 277.2 KB |
 | **DIMACS-ANF** | `anf-converted/` | 47 | Vars: 30–4,560; Eqs: 20–118,241 (deg ≤ 3) | 588.3 KB |
-| **Total (4 Formats, Status: Mixed)** | | **188** | | **1.57 MB** |
+| **Total (4 Formats, Status: 13 SAT / 34 UNSAT)** | | **188** | | **1.57 MB** |
 
 ## Comparative 1-Core Benchmark Results (All 47 Instances, Flat `.cnf`, $T_{\max} = 300\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 14 dedicated physical cores `0..13` with zero SMT sharing, $T_{\max} = 300\;\text{s}$, PAR-2 penalty $600\;\text{s}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 47 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 14 dedicated physical cores `0..13` with zero SMT sharing, $T_{\max} = 300\;\text{s}$, PAR-2 penalty $600\;\text{s}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 47 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 - **Note on 14-core load vs. solo core:** Under simultaneous 14-core load, `ham_bipartite_14_15` took 38.65 s for Frobenius (vs. 74 ms on an uncontended solo core); the uniform 14-core sweep measurement is reported below for strict same-protocol consistency across all 5 solvers. At $T_{\max} = 300\;\text{s}$, [Kissat](https://github.com/arminbiere/kissat) (`79.18 s`), [CaDiCaL](https://github.com/arminbiere/cadical) (`157.98 s`), and [CryptoMiniSat](https://github.com/msoos/cryptominisat) (`214.92 s`) solve `cec_mult_10x10_arr_vs_wal` (UNSAT), while Frobenius and [dense-solver](https://github.com/libdense/dense-solver) solve `php_13_12` and `tseitin_n200_unsat` in `2–3 ms` where standard CDCL solvers time out (`>300 s`).
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |

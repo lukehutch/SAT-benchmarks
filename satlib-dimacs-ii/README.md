@@ -14,12 +14,17 @@
 
 All 41 Inductive Inference (`ii8`, `ii16`, `ii32`) Boolean function synthesis benchmarks from the Second DIMACS Challenge.
 
+![Inductive inference Boolean k-DNF classifier synthesis pipeline](diagram.svg)
+
+*Figure: Inductive inference pipeline synthesizing labeled positive ($+$) and negative ($-$) bit-vectors via binary-dominated SAT encoding into a 2-level $k$-term DNF classifier across all 41 `ii8`/`ii16`/`ii32` instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 41 original native **DIMACS `.cnf.xz`** files (382.0 KB).
 - **`aig-converted/`** — 41 exact **Binary AIGER 1.9 `.aig.xz`** conversions (770.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 41 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (383.9 KB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 41 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (2.40 MB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 41 instances (**41 SAT / 0 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -28,11 +33,11 @@ All 41 Inductive Inference (`ii8`, `ii16`, `ii32`) Boolean function synthesis be
 | **Binary AIGER 1.9** | `aig-converted/` | 41 | Inputs: 66–1,728; ANDs: 437–52,752 | 770.7 KB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 41 | Native XOR clauses total: 0 | 383.9 KB |
 | **DIMACS-ANF** | `anf-converted/` | 41 | Vars: 126–71,316; Eqs: 246–91,419 (deg ≤ 3) | 2.40 MB |
-| **Total (4 Formats, Status: SAT)** | | **164** | | **3.90 MB** |
+| **Total (4 Formats, Status: 41 SAT / 0 UNSAT)** | | **164** | | **3.90 MB** |
 
 ## Comparative 1-Core Benchmark Results (All 41 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 41 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 41 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

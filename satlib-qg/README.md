@@ -14,12 +14,17 @@
 
 All 22 Quasigroup existence / Latin Square (`qg1`–`qg7`) SAT and UNSAT instances contributed by Hantao Zhang.
 
+![Decoded order-7 idempotent QG1 quasigroup Latin square from qg1-07](diagram.svg)
+
+*Figure: Verified order-7 idempotent Latin square ($a * a = a$) satisfying QG1 orthogonality, decoded directly from `cnf-orig/qg1-07.cnf.xz`, together with the $n^3$-variable CNF encoding and Zhang's `QG1`–`QG7` algebraic laws. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes (Four Formats)
 
 - **`cnf-orig/`** — 22 original native **DIMACS `.cnf.xz`** files (1.64 MB).
 - **`aig-converted/`** — 22 exact **Binary AIGER 1.9 `.aig.xz`** conversions (4.23 MB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 22 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (1.64 MB, `0` extracted native XOR parity clauses).
 - **`anf-converted/`** — 22 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (4.91 MB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 22 instances (**10 SAT / 12 UNSAT**).
 - **`src/`** — Standalone converters (`cnf2aig.py`, `cnf2xcnf.py`).
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -28,11 +33,11 @@ All 22 Quasigroup existence / Latin Square (`qg1`–`qg7`) SAT and UNSAT instanc
 | **Binary AIGER 1.9** | `aig-converted/` | 22 | Inputs: 343–2,197; ANDs: 23,908–337,034 | 4.23 MB |
 | **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 22 | Native XOR clauses total: 0 | 1.64 MB |
 | **DIMACS-ANF** | `anf-converted/` | 22 | Vars: 1,472–143,712; Eqs: 10,645–292,157 (deg ≤ 3) | 4.91 MB |
-| **Total (4 Formats, Status: Mixed)** | | **88** | | **12.42 MB** |
+| **Total (4 Formats, Status: 10 SAT / 12 UNSAT)** | | **88** | | **12.42 MB** |
 
 ## Comparative 1-Core Benchmark Results (All 22 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers received identical uncompressed flat `.cnf` inputs; **100% of all 22 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 22 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

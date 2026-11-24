@@ -1,5 +1,9 @@
 # Full 14-Round AES-256 Known-Plaintext Key-Recovery XCNFs (`sigal-aes256-xcnf`)
 
+![Dual 14-round AES-256 known-plaintext key-recovery XCNF miter](diagram.svg)
+
+*Figure: Dual 14-round NIST FIPS 197 AES-256 known-plaintext key-recovery miter sharing a 256-bit key schedule, Boyar–Peralta S-box CNF/XCNF/Gröbner split, and `w5` vs. `w126` key Hamming-weight contrast. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author & Contributor:** Victor Sigal ([`@uniexpertise`](https://twitter.com/uniexpertise))
@@ -29,6 +33,8 @@ $$\mathrm{AES\text{-}256}(K, P_1) = C_1 \quad \land \quad \mathrm{AES\text{-}256
 
 Native unmodified `.xcnf.xz` files live in `xcnf-orig/` (`978.4 KB`); exact Tseitin DIMACS `.cnf.xz` conversions (`cnf-converted/`, `3.83 MB`) and [Berkeley ABC](https://github.com/berkeley-abc/abc)-verified Binary AIGER 1.9 `.aig.xz` miters (`aig-converted/`, `914.6 KB`, `0` errors via `read_aiger`) are generated reproducibly by [`src/xcnf2cnf_aig.py`](src/xcnf2cnf_aig.py), and lossless degree-$\le 2$ **DIMACS-ANF `.anf.xz`** conversions (`anf-converted/`, `1.26 MB`, `59,324` vars / `165,824` eqs each) are generated via [`../src/to_anf.py`](../src/to_anf.py):
 
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 2 instances (**1 SAT / 0 UNSAT / 1 UNKNOWN**).
+
 | Instance | Status | `.xcnf.xz` (`xcnf-orig/`) | Tseitin CNF Vars / Clauses | `.cnf.xz` (`cnf-converted/`) | AIG PIs / AND Gates | `.aig.xz` (`aig-converted/`) | `.anf.xz` (`anf-converted/`) |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `w5.solved` | SAT *(known unique)* | 489.2 KB | 119,644 / 811,268 | 1.93 MB | 256 / 460,695 | 457.1 KB | 643.4 KB |
@@ -36,7 +42,7 @@ Native unmodified `.xcnf.xz` files live in `xcnf-orig/` (`978.4 KB`); exact Tsei
 
 ## Comparative 1-Core Benchmark Results ($T_{\max} = 30\;\text{s}$)
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, sequential execution, $T_{\max} = 30\;\text{s}$).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0, `--max-cores 1` for Frobenius), sequential execution, $T_{\max} = 30\;\text{s}$).
 - **Result:** All five solvers time out (`T/O`) on both instances — as expected for full 14-round AES-256 without key-weight side information. Because every solver remains inside the exponential search tree at 30 s, we report exact single-core search throughput (`conflicts/sec` and `propagations/sec`):
 
 | Solver & Format (1C, $T_{\max} = 30\;\text{s}$) | `w5.solved` Verdict | `w5.solved` Conflicts (Rate) | `w5.solved` Propagations (Rate) | `w126.unsolved` Verdict | `w126.unsolved` Conflicts (Rate) | `w126.unsolved` Propagations (Rate) |

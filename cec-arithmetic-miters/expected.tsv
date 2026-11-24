@@ -1,0 +1,5 @@
+cec_adder_32b_rc_vs_ks.aig	UNSAT
+cec_array_vs_wallace_10x10.aig	UNSAT
+cec_mult_6x6_arr_vs_wal.aig	UNSAT
+cec_mult_8x8_arr_vs_wal.aig	UNSAT
+cec_wallace_vs_karat_12x12.aig	UNSAT

@@ -1,0 +1,10 @@
+uf100-01.cnf	SAT
+uf150-01.cnf	SAT
+uf200-01.cnf	SAT
+uf250-01.cnf	SAT
+uf50-01.cnf	SAT
+uuf100-01.cnf	UNSAT
+uuf150-01.cnf	UNSAT
+uuf200-01.cnf	UNSAT
+uuf250-01.cnf	UNSAT
+uuf50-01.cnf	UNSAT

@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="F2-Frobenius circulant matrices: invertible 3-XOR SAT vs rank-deficient 4-XOR UNSAT kernel">
+<rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">𝔽₂-Frobenius Circulant Parity Systems (f2-frobenius-circulants)</text>
+<text x="26" y="53" font-size="11.6" fill="#475569">Strictly balanced n×n cyclic-shift matrices over 𝔽₂ (n = 2ᵏ, stride s = 2^⌊k/2⌋): invertible 3-XOR SAT vs. rank-deficient 4-XOR UNSAT</text>
+<line x1="24" y1="64" x2="896" y2="64" stroke="#e2e8f0" stroke-width="1.2"/>
+<rect x="24" y="76" width="428" height="336" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="24" y="76" width="428" height="28" rx="10" fill="#059669"/>
+<rect x="24" y="92" width="428" height="12" fill="#059669"/>
+<text x="238.0" y="95" text-anchor="middle" font-size="11.8" font-weight="700" fill="#ffffff">1. Invertible 3-XOR Circulant Ψₖ,b — Unique SAT (4 inst.)</text>
+<rect x="40" y="122" width="180.0" height="180.0" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="86.0" y1="124" x2="86.0" y2="300.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="42" y1="168.0" x2="218.0" y2="168.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="130.0" y1="124" x2="130.0" y2="300.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="42" y1="212.0" x2="218.0" y2="212.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="174.0" y1="124" x2="174.0" y2="300.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="42" y1="256.0" x2="218.0" y2="256.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<rect x="43.0" y="125.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="54.0" y="125.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="87.0" y="125.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="54.0" y="136.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="65.0" y="136.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="98.0" y="136.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="65.0" y="147.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="76.0" y="147.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="109.0" y="147.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="76.0" y="158.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="87.0" y="158.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="120.0" y="158.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="87.0" y="169.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="98.0" y="169.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="131.0" y="169.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="98.0" y="180.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="109.0" y="180.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="142.0" y="180.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="109.0" y="191.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="120.0" y="191.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="153.0" y="191.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="120.0" y="202.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="131.0" y="202.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="164.0" y="202.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="131.0" y="213.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="142.0" y="213.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="175.0" y="213.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="142.0" y="224.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="153.0" y="224.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="186.0" y="224.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="153.0" y="235.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="164.0" y="235.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="197.0" y="235.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="164.0" y="246.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="175.0" y="246.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="208.0" y="246.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="175.0" y="257.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="186.0" y="257.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="43.0" y="257.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="186.0" y="268.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="197.0" y="268.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="54.0" y="268.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="197.0" y="279.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="208.0" y="279.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="65.0" y="279.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="208.0" y="290.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="43.0" y="290.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="76.0" y="290.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<text x="130.0" y="118" text-anchor="middle" font-size="10" font-weight="700" fill="#1e293b">C₃ (n = 16, s = 4 shown)</text>
+<rect x="56" y="306.0" width="10" height="10" rx="2" fill="#2563eb"/>
+<text x="70" y="314.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#334155">+0</text>
+<rect x="110" y="306.0" width="10" height="10" rx="2" fill="#059669"/>
+<text x="124" y="314.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#334155">+1</text>
+<rect x="164" y="306.0" width="10" height="10" rx="2" fill="#7c3aed"/>
+<text x="178" y="314.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.3" font-weight="600" fill="#334155">+s</text>
+<rect x="236.0" y="122" width="202.0" height="82" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="246.0" y="139" font-size="10.2" font-weight="700" fill="#047857">Tap Polynomial (𝔽₂[t]/(tⁿ−1))</text>
+<text x="246.0" y="156" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.4" font-weight="700" fill="#0f172a">p(t) = 1 + t + tˢ</text>
+<text x="246.0" y="173" font-size="9.4" fill="#334155">Frobenius (char 2, n = 2ᵏ):</text>
+<text x="246.0" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="700" fill="#2563eb">p(t)ⁿ = 1 + tⁿ + tˢⁿ ≡ 1</text>
+<rect x="236.0" y="214" width="202.0" height="88" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.1"/>
+<text x="246.0" y="231" font-size="10.2" font-weight="700" fill="#047857">Full Rank &amp; Unique Witness</text>
+<text x="246.0" y="247" font-size="9.4" fill="#1e293b">• det(C₃) = 1,  rank(C₃) = n</text>
+<text x="246.0" y="262" font-size="9.4" fill="#1e293b">• ker(C₃) = {0}</text>
+<text x="246.0" y="277" font-size="9.4" fill="#1e293b">• Unique x★ = C₃⁻¹·b (SAT)</text>
+<text x="246.0" y="292" font-size="9" font-weight="600" fill="#047857">n ∈ {64, 256, 1024, 4096}</text>
+<rect x="38" y="338" width="400" height="60" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="238.0" y="358" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#0f172a">Row i:  xᵢ ⊕ x₍ᵢ₊₁₎ mod n ⊕ x₍ᵢ₊ₛ₎ mod n = bᵢ</text>
+<text x="238.0" y="376" text-anchor="middle" font-size="9.3" fill="#475569">2D torus-like stride s = √n forces ≥ 2^(√n / 3√2) merge-tree blowup;</text>
+<text x="238.0" y="390" text-anchor="middle" font-size="9.3" font-weight="600" fill="#1d4ed8">at n = 4,096: Kissat 364 s · CaDiCaL 211 s vs. 𝔽₂-Gauss 16.1 ms!</text>
+<rect x="468" y="76" width="428" height="336" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="468" y="76" width="428" height="28" rx="10" fill="#dc2626"/>
+<rect x="468" y="92" width="428" height="12" fill="#dc2626"/>
+<text x="682.0" y="95" text-anchor="middle" font-size="11.8" font-weight="700" fill="#ffffff">2. Rank-Deficient 4-XOR Circulant — Min. UNSAT (2 inst.)</text>
+<rect x="484" y="122" width="180.0" height="180.0" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="486" y="124" width="176.0" height="11.0" fill="#fee2e2" stroke="#dc2626" stroke-width="0.9"/>
+<line x1="530.0" y1="124" x2="530.0" y2="300.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="486" y1="168.0" x2="662.0" y2="168.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="574.0" y1="124" x2="574.0" y2="300.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="486" y1="212.0" x2="662.0" y2="212.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="618.0" y1="124" x2="618.0" y2="300.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="486" y1="256.0" x2="662.0" y2="256.0" stroke="#e2e8f0" stroke-width="0.8"/>
+<rect x="487.0" y="125.0" width="9.0" height="9.0" rx="1.8" fill="#dc2626"/>
+<rect x="498.0" y="125.0" width="9.0" height="9.0" rx="1.8" fill="#dc2626"/>
+<rect x="531.0" y="125.0" width="9.0" height="9.0" rx="1.8" fill="#dc2626"/>
+<rect x="542.0" y="125.0" width="9.0" height="9.0" rx="1.8" fill="#dc2626"/>
+<rect x="498.0" y="136.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="509.0" y="136.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="542.0" y="136.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="553.0" y="136.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="509.0" y="147.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="520.0" y="147.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="553.0" y="147.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="564.0" y="147.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="520.0" y="158.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="531.0" y="158.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="564.0" y="158.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="575.0" y="158.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="531.0" y="169.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="542.0" y="169.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="575.0" y="169.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="586.0" y="169.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="542.0" y="180.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="553.0" y="180.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="586.0" y="180.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="597.0" y="180.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="553.0" y="191.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="564.0" y="191.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="597.0" y="191.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="608.0" y="191.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="564.0" y="202.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="575.0" y="202.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="608.0" y="202.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="619.0" y="202.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="575.0" y="213.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="586.0" y="213.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="619.0" y="213.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="630.0" y="213.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="586.0" y="224.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="597.0" y="224.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="630.0" y="224.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="641.0" y="224.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="597.0" y="235.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="608.0" y="235.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="641.0" y="235.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="652.0" y="235.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="608.0" y="246.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="619.0" y="246.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="652.0" y="246.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="487.0" y="246.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="619.0" y="257.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="630.0" y="257.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="487.0" y="257.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="498.0" y="257.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="630.0" y="268.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="641.0" y="268.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="498.0" y="268.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="509.0" y="268.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="641.0" y="279.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="652.0" y="279.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="509.0" y="279.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="520.0" y="279.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<rect x="652.0" y="290.0" width="9.0" height="9.0" rx="1.8" fill="#2563eb"/>
+<rect x="487.0" y="290.0" width="9.0" height="9.0" rx="1.8" fill="#059669"/>
+<rect x="520.0" y="290.0" width="9.0" height="9.0" rx="1.8" fill="#7c3aed"/>
+<rect x="531.0" y="290.0" width="9.0" height="9.0" rx="1.8" fill="#d97706"/>
+<text x="574.0" y="118" text-anchor="middle" font-size="10" font-weight="700" fill="#1e293b">C₄ (row 0 flipped b₀ in red)</text>
+<rect x="488" y="306.0" width="9" height="9" rx="2" fill="#2563eb"/>
+<text x="500" y="314.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="600" fill="#334155">+0</text>
+<rect x="532" y="306.0" width="9" height="9" rx="2" fill="#059669"/>
+<text x="544" y="314.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="600" fill="#334155">+1</text>
+<rect x="576" y="306.0" width="9" height="9" rx="2" fill="#7c3aed"/>
+<text x="588" y="314.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="600" fill="#334155">+s</text>
+<rect x="620" y="306.0" width="9" height="9" rx="2" fill="#d97706"/>
+<text x="632" y="314.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="600" fill="#334155">+s+1</text>
+<rect x="680.0" y="122" width="202.0" height="82" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="690.0" y="139" font-size="10.2" font-weight="700" fill="#b91c1c">Singular Tap Polynomial</text>
+<text x="690.0" y="156" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0f172a">q(t) = (1+t)(1+tˢ)</text>
+<text x="690.0" y="173" font-size="9.4" fill="#334155">Zero root at t = 1:</text>
+<text x="690.0" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="700" fill="#dc2626">q(1) = 0 ⇒ 𝟏ᵀ·C₄ = 𝟎</text>
+<rect x="680.0" y="214" width="202.0" height="88" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.1"/>
+<text x="690.0" y="231" font-size="10.2" font-weight="700" fill="#b91c1c">Left-Kernel Obstruction</text>
+<text x="690.0" y="247" font-size="9.3" fill="#1e293b">• Every col has even wt 4</text>
+<text x="690.0" y="262" font-size="9.3" fill="#1e293b">• ∑ᵢ (C₄x)ᵢ = 4∑ xⱼ ≡ 0</text>
+<text x="690.0" y="277" font-size="9.3" fill="#1e293b">• Flip b₀ ⇒ ∑ᵢ bᵢ ≡ 1</text>
+<text x="690.0" y="292" font-size="9.2" font-weight="700" fill="#b91c1c">0 ≡ 1 (mod 2) ⇒ UNSAT!</text>
+<rect x="482" y="338" width="400" height="60" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="682.0" y="358" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="700" fill="#0f172a">Row i:  xᵢ ⊕ xᵢ₊₁ ⊕ xᵢ₊ₛ ⊕ xᵢ₊ₛ₊₁ = bᵢ  (b₀ flipped)</text>
+<text x="682.0" y="376" text-anchor="middle" font-size="9.3" fill="#475569">Minimally unsatisfiable: dropping ANY single row makes the system SAT;</text>
+<text x="682.0" y="390" text-anchor="middle" font-size="9.3" font-weight="600" fill="#b91c1c">n ∈ {256, 1,024}: CaDiCaL &gt;30 s T/O at n=1,024 vs. 𝔽₂-Gauss 3.5 ms.</text>
+<rect x="24" y="424" width="210" height="34" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="129.0" y="445" text-anchor="middle" font-size="10.1" font-weight="700" fill="#047857">6 Instances: 4 SAT / 2 UNSAT</text>
+<rect x="244" y="424" width="212" height="34" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<text x="350.0" y="445" text-anchor="middle" font-size="10.1" font-weight="700" fill="#1d4ed8">8,000 Native XORs (deg-1 ANF)</text>
+<rect x="466" y="424" width="206" height="34" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="569.0" y="445" text-anchor="middle" font-size="10.1" font-weight="700" fill="#b45309">ρ_c = 0.90×–0.91× (Near-crit)</text>
+<rect x="682" y="424" width="214" height="34" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+<text x="789.0" y="445" text-anchor="middle" font-size="10.1" font-weight="700" fill="#6d28d9">4 Formats: AIG · CNF · XCNF · ANF</text>
+</g>
+</svg>

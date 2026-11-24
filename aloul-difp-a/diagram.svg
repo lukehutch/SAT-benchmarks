@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Aloul Carry-Save Array Multiplier Integer Factoring SAT Architecture">
+  <defs>
+    <marker id="arr-purp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arr-amb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/>
+    </marker>
+    <marker id="arr-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="916" height="476" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="28" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Aloul Array-Multiplier Integer Factoring (aloul-difp-a)</text>
+    <text x="28" y="53" font-size="11.8" fill="#475569">Bit-level inversion of a 2D Carry-Save Array Multiplier (p × q = N) · 14 SAT semiprimes (n ∈ {19, 20, 21}-bit primes, randomly reordered)</text>
+    <rect x="782" y="18" width="112" height="24" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <text x="838" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">14 SAT · Array</text>
+    <line x1="24" y1="65" x2="896" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="24" y="78" width="540" height="380" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="40" y="100" font-size="13" font-weight="700" fill="#0f172a">2D Carry-Save Array Multiplier Mesh (4×4 Bit-Slice Schematic of n×n)</text>
+    <text x="40" y="116" font-size="10.4" fill="#475569">Unknown prime bits p<tspan baseline-shift="sub" font-size="72%">i</tspan>, q<tspan baseline-shift="sub" font-size="72%">j</tspan> form AND partial products reduced row-by-row in O(n) depth</text>
+    <rect x="484" y="125" width="36" height="19" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="502" y="138" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">p₀?</text>
+    <rect x="424" y="125" width="36" height="19" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="442" y="138" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">p₁?</text>
+    <rect x="364" y="125" width="36" height="19" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="382" y="138" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">p₂?</text>
+    <rect x="304" y="125" width="36" height="19" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="322" y="138" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">p₃?</text>
+    <rect x="526" y="158" width="30" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="541" y="171.5" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">q₀?</text>
+    <line x1="304" y1="168" x2="526" y2="168" stroke="#bfdbfe" stroke-width="1.2" stroke-dasharray="3,2"/>
+    <rect x="526" y="210" width="30" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="541" y="223.5" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">q₁?</text>
+    <line x1="244" y1="220" x2="526" y2="220" stroke="#bfdbfe" stroke-width="1.2" stroke-dasharray="3,2"/>
+    <rect x="526" y="262" width="30" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="541" y="275.5" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">q₂?</text>
+    <line x1="184" y1="272" x2="526" y2="272" stroke="#bfdbfe" stroke-width="1.2" stroke-dasharray="3,2"/>
+    <rect x="526" y="314" width="30" height="20" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="541" y="327.5" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">q₃?</text>
+    <line x1="124" y1="324" x2="526" y2="324" stroke="#bfdbfe" stroke-width="1.2" stroke-dasharray="3,2"/>
+    <line x1="502" y1="182" x2="502" y2="418" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+    <line x1="442" y1="182" x2="442" y2="204" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="382" y1="182" x2="382" y2="204" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="322" y1="182" x2="322" y2="204" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="442" y1="234" x2="442" y2="418" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+    <line x1="430" y1="233" x2="392" y2="256" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="382" y1="234" x2="382" y2="256" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="370" y1="233" x2="332" y2="256" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="322" y1="234" x2="322" y2="256" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="310" y1="233" x2="272" y2="256" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="262" y1="234" x2="262" y2="256" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="250" y1="233" x2="212" y2="256" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="382" y1="286" x2="382" y2="418" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+    <line x1="370" y1="285" x2="332" y2="308" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="322" y1="286" x2="322" y2="308" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="310" y1="285" x2="272" y2="308" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="262" y1="286" x2="262" y2="308" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="250" y1="285" x2="212" y2="308" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="202" y1="286" x2="202" y2="308" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="190" y1="285" x2="152" y2="308" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="322" y1="338" x2="322" y2="362" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="310" y1="337" x2="272" y2="362" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="262" y1="338" x2="262" y2="362" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="250" y1="337" x2="212" y2="362" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="202" y1="338" x2="202" y2="362" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="190" y1="337" x2="152" y2="362" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="142" y1="338" x2="142" y2="362" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <line x1="130" y1="337" x2="92" y2="362" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amb)"/>
+    <line x1="300" y1="378" x2="286" y2="378" stroke="#d97706" stroke-width="1.8" marker-end="url(#arr-amb)"/>
+    <line x1="240" y1="378" x2="226" y2="378" stroke="#d97706" stroke-width="1.8" marker-end="url(#arr-amb)"/>
+    <line x1="180" y1="378" x2="166" y2="378" stroke="#d97706" stroke-width="1.8" marker-end="url(#arr-amb)"/>
+    <line x1="120" y1="378" x2="106" y2="378" stroke="#d97706" stroke-width="1.8" marker-end="url(#arr-amb)"/>
+    <rect x="482" y="155" width="40" height="26" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.3"/>
+    <text x="502" y="171.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1d4ed8">p0∧q0</text>
+    <rect x="422" y="155" width="40" height="26" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.3"/>
+    <text x="442" y="171.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1d4ed8">p1∧q0</text>
+    <rect x="362" y="155" width="40" height="26" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.3"/>
+    <text x="382" y="171.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1d4ed8">p2∧q0</text>
+    <rect x="302" y="155" width="40" height="26" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.3"/>
+    <text x="322" y="171.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1d4ed8">p3∧q0</text>
+    <rect x="420" y="206" width="44" height="28" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+    <text x="442" y="219" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">HA</text>
+    <text x="442" y="230" text-anchor="middle" font-size="8.2" fill="#475569">p0∧q1</text>
+    <rect x="360" y="206" width="44" height="28" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+    <text x="382" y="219" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">HA</text>
+    <text x="382" y="230" text-anchor="middle" font-size="8.2" fill="#475569">p1∧q1</text>
+    <rect x="300" y="206" width="44" height="28" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+    <text x="322" y="219" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">HA</text>
+    <text x="322" y="230" text-anchor="middle" font-size="8.2" fill="#475569">p2∧q1</text>
+    <rect x="240" y="206" width="44" height="28" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+    <text x="262" y="219" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">HA</text>
+    <text x="262" y="230" text-anchor="middle" font-size="8.2" fill="#475569">p3∧q1</text>
+    <rect x="360" y="258" width="44" height="28" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+    <text x="382" y="271" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">FA</text>
+    <text x="382" y="282" text-anchor="middle" font-size="8.2" fill="#475569">p0∧q2</text>
+    <rect x="300" y="258" width="44" height="28" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+    <text x="322" y="271" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">FA</text>
+    <text x="322" y="282" text-anchor="middle" font-size="8.2" fill="#475569">p1∧q2</text>
+    <rect x="240" y="258" width="44" height="28" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+    <text x="262" y="271" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">FA</text>
+    <text x="262" y="282" text-anchor="middle" font-size="8.2" fill="#475569">p2∧q2</text>
+    <rect x="180" y="258" width="44" height="28" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+    <text x="202" y="271" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">HA</text>
+    <text x="202" y="282" text-anchor="middle" font-size="8.2" fill="#475569">p3∧q2</text>
+    <rect x="300" y="310" width="44" height="28" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+    <text x="322" y="323" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">FA</text>
+    <text x="322" y="334" text-anchor="middle" font-size="8.2" fill="#475569">p0∧q3</text>
+    <rect x="240" y="310" width="44" height="28" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+    <text x="262" y="323" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">FA</text>
+    <text x="262" y="334" text-anchor="middle" font-size="8.2" fill="#475569">p1∧q3</text>
+    <rect x="180" y="310" width="44" height="28" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+    <text x="202" y="323" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">FA</text>
+    <text x="202" y="334" text-anchor="middle" font-size="8.2" fill="#475569">p2∧q3</text>
+    <rect x="120" y="310" width="44" height="28" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.3"/>
+    <text x="142" y="323" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f172a">HA</text>
+    <text x="142" y="334" text-anchor="middle" font-size="8.2" fill="#475569">p3∧q3</text>
+    <rect x="300" y="365" width="44" height="26" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>
+    <text x="322" y="381.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#047857">CPA</text>
+    <rect x="240" y="365" width="44" height="26" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>
+    <text x="262" y="381.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#047857">CPA</text>
+    <rect x="180" y="365" width="44" height="26" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>
+    <text x="202" y="381.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#047857">CPA</text>
+    <rect x="120" y="365" width="44" height="26" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>
+    <text x="142" y="381.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#047857">CPA</text>
+    <rect x="60" y="365" width="44" height="26" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.4"/>
+    <text x="82" y="381.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#047857">MSB</text>
+    <text x="60" y="415" font-size="9.4" font-weight="700" fill="#047857">Clamped Target Bits (unit literals fixing p × q = N):</text>
+    <rect x="48" y="422" width="492" height="23" rx="6" fill="#059669"/>
+    <text x="502" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₀</text>
+    <text x="442" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₁</text>
+    <text x="382" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₂</text>
+    <text x="322" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₃</text>
+    <text x="262" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₄</text>
+    <text x="202" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₅</text>
+    <text x="142" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₆</text>
+    <text x="82" y="437" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#ffffff">N₇</text>
+    <rect x="42" y="160" width="176" height="86" rx="7" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="52" y="176" font-size="10" font-weight="700" fill="#0f172a">Array Signal Flow</text>
+    <line x1="52" y1="192" x2="74" y2="192" stroke="#7c3aed" stroke-width="2"/>
+    <text x="80" y="195" font-size="9.3" fill="#334155">Sum s = a ⊕ b ⊕ c (XOR)</text>
+    <line x1="52" y1="210" x2="74" y2="210" stroke="#d97706" stroke-width="2"/>
+    <text x="80" y="213" font-size="9.3" fill="#334155">Carry c = Maj₃(a,b,c)</text>
+    <line x1="52" y1="228" x2="74" y2="228" stroke="#059669" stroke-width="2"/>
+    <text x="80" y="231" font-size="9.3" fill="#334155">Clamped product bit N<tspan baseline-shift="sub" font-size="72%">k</tspan></text>
+    <rect x="580" y="78" width="316" height="120" rx="9" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+    <text x="594" y="99" font-size="12" font-weight="700" fill="#1d4ed8">Real Instance: difp_19_0_arr_rcr</text>
+    <text x="594" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#0f172a">N = 0x1451990C0F</text>
+    <text x="594" y="134" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#334155">  = 87,268,330,511 (37-bit)</text>
+    <text x="594" y="152" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#047857">p = 283,097 (19-bit prime)</text>
+    <text x="594" y="168" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" font-weight="700" fill="#047857">q = 308,263 (19-bit prime)</text>
+    <text x="594" y="186" font-size="9.6" fill="#475569">Vars &amp; clauses randomly shuffled (_rcr)</text>
+    <rect x="580" y="208" width="316" height="114" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="594" y="228" font-size="12" font-weight="700" fill="#0f172a">Array Multiplier Structural Signature</text>
+    <text x="594" y="247.0" font-size="9.8" font-weight="700" fill="#7c3aed">Adder Depth:</text>
+    <text x="672" y="247.0" font-size="9.6" fill="#334155">Linear O(n) sequential carry-save rows</text>
+    <text x="594" y="263.2" font-size="9.8" font-weight="700" fill="#7c3aed">Regularity:</text>
+    <text x="672" y="263.2" font-size="9.6" fill="#334155">Uniform 2D mesh → low Deg CV = 0.45</text>
+    <text x="594" y="279.4" font-size="9.8" font-weight="700" fill="#7c3aed">CNF Clauses:</text>
+    <text x="672" y="279.4" font-size="9.6" fill="#334155">Tseitin AND (3 cls), XOR3 (8), Maj₃ (6)</text>
+    <text x="594" y="295.6" font-size="9.8" font-weight="700" fill="#7c3aed">XOR Chains:</text>
+    <text x="672" y="295.6" font-size="9.6" fill="#334155">380–462 native XORs per file (5,730 total)</text>
+    <text x="594" y="311.8" font-size="9.8" font-weight="700" fill="#7c3aed">vs Wallace:</text>
+    <text x="672" y="311.8" font-size="9.6" fill="#334155">31% fewer vars &amp; 37% fewer clauses</text>
+    <rect x="580" y="332" width="316" height="126" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="594" y="352" font-size="12" font-weight="700" fill="#0f172a">Corpus Dimensions (14 SAT Instances)</text>
+    <text x="594" y="372" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">difp_19 / 20 (arr)</text>
+    <text x="882" y="372" text-anchor="end" font-size="9.4" font-weight="600" fill="#2563eb">9 files</text>
+    <rect x="594" y="376" width="288" height="7.5" rx="3" fill="#f1f5f9"/>
+    <rect x="594" y="376" width="236.2" height="7.5" rx="3" fill="#2563eb" fill-opacity="0.82"/>
+    <text x="594" y="394.5" font-size="9.1" fill="#475569">1,201 v · 6,563 c · 380 XOR</text>
+    <text x="594" y="410" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#0f172a">difp_21 (arr)</text>
+    <text x="882" y="410" text-anchor="end" font-size="9.4" font-weight="600" fill="#7c3aed">5 files</text>
+    <rect x="594" y="414" width="288" height="7.5" rx="3" fill="#f1f5f9"/>
+    <rect x="594" y="414" width="288.0" height="7.5" rx="3" fill="#7c3aed" fill-opacity="0.82"/>
+    <text x="594" y="432.5" font-size="9.1" fill="#475569">1,453 v · 7,967 c · 462 XOR</text>
+    <text x="594" y="450" font-size="9.4" fill="#475569">Regime: Over (ρ<tspan baseline-shift="sub" font-size="72%">crit</tspan> = 1.48×) · κ = 0.98 · 59% Horn · k̄ = 3.33</text>
+  </g>
+</svg>

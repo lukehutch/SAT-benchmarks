@@ -2,7 +2,7 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@TravisRudd`](https://twitter.com/TravisRudd) (Twitter/X)
+- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 - **Upstream Benchmark Repository:** [`VeriFIT/nfa-bench`](https://github.com/VeriFIT/nfa-bench) (`bench-single-presburger-explicit-complement.input` / Presburger explicit-complement set)
 - **Upstream Automata Library:** [`VeriFIT/mata`](https://github.com/VeriFIT/mata) (Brno University of Technology, VeriFIT group)
 - **License:** MIT License — see [`LICENSE`](LICENSE) (copied from `VeriFIT/mata`).
@@ -15,29 +15,34 @@ This collection contains non-deterministic finite automata (NFAs) in the `.mata`
 
 Note: Unlike the propositional SAT collections in this repository, MATA instances represent **finite automata** (`.mata` transition relations over symbolic/explicit alphabets) rather than propositional SAT formulas, so no `.cnf`/`.aig`/`.xcnf`/`.anf` conversion is applied.
 
+![Parsed 16-state Ultimate Automizer NFA recHanoi03_73 and CEGAR loop](diagram.svg)
+
+*Figure: Real 16-state, 984-transition NFA parsed from `mata-orig/recHanoi03_true-unreach-call_true-termination.c_73.0.mata.xz` (aggregated into 60 weighted directed edges) alongside the Ultimate Automizer CEGAR trace-abstraction loop. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Corpus & Data Sizes
 
 - **`mata-orig/`** — **153 `.mata.xz` automata** (2.61 MB compressed total).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth complementation verdicts (**153 SAT / 0 UNSAT**; `SAT` iff $\overline{L(A)} \neq \emptyset$, `UNSAT` iff $L(A) = \Sigma^*$; non-emptiness $L(A) \neq \emptyset$ is `SAT` for all 153/153 NFAs).
 - **`src/fetch_mata_presburger.py`** — Standalone fetcher script to refresh `mata-orig/` directly from [`VeriFIT/nfa-bench`](https://github.com/VeriFIT/nfa-bench).
 
 ## Published Benchmarks & References
 
 - **Chocholatý et al. (TACAS 2024):** Benchmarked [Mata](https://github.com/VeriFIT/mata) against [Awali](https://gitlab.in2p3.fr/vaucanson/awali), [Automata.net](https://github.com/AutomataDotNet/Automata), [Brics](https://www.brics.dk/automaton/), [DK.Brics](https://www.brics.dk/automaton/), [FAdo](https://fado.dcc.fc.up.pt/), [OpenFST](https://www.openfst.org/), and [VATA](https://github.com/ondrik/libvata) across string-constraint, regex, and Presburger complementation workloads, establishing Mata as a state-of-the-art C++ NFA engine.
-- **Ergodis Notes ([`@TravisRudd`](https://twitter.com/TravisRudd)):** Evaluated all 169 entries of `bench-single-presburger-explicit-complement.input` as an automata complementation stress test alongside SAT workloads.
+- **Ergodis Notes ([`@tavisrudd`](https://twitter.com/tavisrudd)):** Evaluated all 169 entries of `bench-single-presburger-explicit-complement.input` as an automata complementation stress test alongside SAT workloads.
 
 ## Comparative 1-Core Benchmark Results (All 153 NFAs, Native `.mata.xz`, $T_{\max} = 5\;\text{s}$)
 
-- **Hardware & Protocol:** **AMD Ryzen 9 5950X** (16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$ per mode, full wall-clock time including in-process `.xz` decompression and `.mata` parsing). **100% of all 153 automata** were run across three Frobenius NFA decision modes: non-emptiness ($L(A) \neq \emptyset$), antichain complement/universality (`--mata-complement`, $L(A) = \Sigma^*$ iff UNSAT), and explicit subset-construction complementation (`--mata-explicit-complement`). All SAT/UNSAT complement verdicts agreed **100%** between antichain and explicit modes (0 errors, 0 timeouts).
+- **Hardware & Protocol:** **AMD Ryzen 9 5950X** (16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$ per mode, full wall-clock time including in-process `.xz` decompression and `.mata` parsing). **100% of all 153 automata** were run across three Frobenius NFA decision modes: non-emptiness ($L(A) \neq \emptyset$, default), complement/universality (`--mata-complement`, $L(A) = \Sigma^*$ iff UNSAT), and explicit complementation (`--mata-explicit-complement`). All SAT/UNSAT complement verdicts agreed **100%** between both complement modes and match [`expected.tsv`](expected.tsv) (0 errors, 0 timeouts).
 
 | Frobenius Mode | Solved | SAT / UNSAT | Total Time | Min | Median | Mean | Max |
 |---|---:|:---:|---:|---:|---:|---:|---:|
 | **Frobenius 1C — Emptiness** (default) | **153 / 153** | 153 / 0 | **1,642.03 ms** | 2.05 ms | 4.27 ms | 10.73 ms | 219.97 ms |
-| **Frobenius 1C — Antichain Complement** (`--mata-complement`) | **153 / 153** | 153 / 0 | **1,552.88 ms** | 2.13 ms | 4.11 ms | 10.15 ms | 221.48 ms |
+| **Frobenius 1C — Complement** (`--mata-complement`) | **153 / 153** | 153 / 0 | **1,552.88 ms** | 2.13 ms | 4.11 ms | 10.15 ms | 221.48 ms |
 | **Frobenius 1C — Explicit Complement** (`--mata-explicit-complement`) | **153 / 153** | 153 / 0 | **2,105.41 ms** | 2.08 ms | 5.96 ms | 13.76 ms | 292.33 ms |
 
 ### Per-Automaton Timings (All 153 NFAs)
 
-| Automaton | Emptiness Verdict | Frobenius Emptiness | Complement Verdict | Frobenius Antichain (`--mata-complement`) | Frobenius Explicit (`--mata-explicit-complement`) |
+| Automaton | Emptiness Verdict | Frobenius Emptiness | Complement Verdict | Frobenius Complement (`--mata-complement`) | Frobenius Explicit (`--mata-explicit-complement`) |
 |---|:---:|---:|:---:|---:|---:|
 | `MADWiFi-encode_ie_ok_true-unreach-call.i_17.0` | SAT | 5.23 ms | SAT | 5.34 ms | 8.16 ms |
 | `MADWiFi-encode_ie_ok_true-unreach-call.i_7.0` | SAT | 3.71 ms | SAT | 5.77 ms | 3.65 ms |
@@ -198,7 +203,7 @@ Note: Unlike the propositional SAT collections in this repository, MATA instance
 
 *Auto-generated by [`../src/analyze_benchmarks.py`](../src/analyze_benchmarks.py). Because MATA benchmarks encode non-deterministic finite automata rather than clausal CNF formulas, clause-to-variable phase-transition ratios ($\alpha / \alpha_c$) do not apply; instead we report NFA state, transition, and alphabet densities (transition-to-state ratio $\delta = |\Delta|/|Q|$).*
 
-| Directory | NFAs | States $|Q|$ (Med / Max) | Transitions $|\Delta|$ (Med / Max) | Symbols $|\Sigma|$ (Med / Max) | Transition Density $|\Delta|/|Q|$ (Med) |
+| Directory | NFAs | States $\lvert Q \rvert$ (Med / Max) | Transitions $\lvert \Delta \rvert$ (Med / Max) | Symbols $\lvert \Sigma \rvert$ (Med / Max) | Transition Density $\lvert \Delta \rvert / \lvert Q \rvert$ (Med) |
 |---|---:|---:|---:|---:|---:|
 | `mata-orig/` | 153 | 145 / 277 | 10,588 / 1,094,080 | 32 / 1,024 | 66.17 |
 <!-- END_STRUCTURAL_ANALYSIS -->

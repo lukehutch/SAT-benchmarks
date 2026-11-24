@@ -7,12 +7,17 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 - **Origin:** **Original** circuit-native AIG generator (MIT [`../LICENSE`](../LICENSE)), instantiating the classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart ([JACM 1987](https://doi.org/10.1145/7531.8928)).
 - **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both [Kissat](https://github.com/arminbiere/kissat) 4.0.4 and [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 time out past $5{,}000\;\text{s}$ starting at $n = 120$.
 
+![MOD2 Tseitin 3-regular expander vs prism control with odd vertex parity charge](diagram.svg)
+
+*Figure: $\mathrm{MOD}_2$-Tseitin 3-regular expander (high expansion, $2^{\Omega(n)}$ Resolution barrier) vs. bounded-treewidth prism $C_{200} \times K_2$ control under odd global vertex parity charge $\sum \sigma(v) \equiv 1 \pmod 2$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`6.0 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`15.1 KB`).
 - `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`4.4 KB`).
 - `anf-converted/` — Lossless degree-1 linear **DIMACS-ANF `.anf.xz`** conversions (`4.0 KB`, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 4 instances (**0 SAT / 4 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
 ## Problem Parameters & Data Sizes
@@ -26,9 +31,9 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CMS-X](https://github.com/msoos/cryptominisat) which receives `xcnf-converted/*.xcnf`):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `tseitin_exp_n60` | **1.19 ms** | 546.39 ms | 22.59 ms | 22.91 ms | 1.38 ms | 58.59 ms |
 | `tseitin_exp_n120` | **1.25 ms** | >5,000 s (T/O) | 27.62 ms | 23.45 ms | 1.63 ms | >5,000 s (T/O) |
