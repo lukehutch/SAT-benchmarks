@@ -1,0 +1,10 @@
+rpack_n10_15x27.cnf	SAT
+rpack_n10_20x20.cnf	UNSAT
+rpack_n12_23x29.cnf	SAT
+rpack_n12_25x26.cnf	UNSAT
+rpack_n14_23x45.cnf	SAT
+rpack_n14_31x33.cnf	UNSAT
+rpack_n17_40x45.cnf	UNSAT
+rpack_n17_41x44.cnf	SAT
+rpack_n8_13x16.cnf	UNSAT
+rpack_n8_14x15.cnf	SAT

@@ -1,0 +1,10 @@
+vmtl_n10_k257.cnf	UNSAT
+vmtl_n10_k280.cnf	SAT
+vmtl_n4_k19.cnf	UNSAT
+vmtl_n5_k34.cnf	UNSAT
+vmtl_n5_k35.cnf	SAT
+vmtl_n6_k58.cnf	UNSAT
+vmtl_n6_k59.cnf	SAT
+vmtl_n7_k111.cnf	SAT
+vmtl_n8_k148.cnf	SAT
+vmtl_n9_k207.cnf	SAT

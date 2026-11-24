@@ -1,0 +1,9 @@
+numberlink_10x10_p8.cnf	SAT
+numberlink_10x10_p8_swap.cnf	UNSAT
+numberlink_12x12_p10.cnf	SAT
+numberlink_12x12_p10_swap.cnf	UNSAT
+numberlink_15x15_p12.cnf	SAT
+numberlink_15x15_p12_swap.cnf	UNSAT
+numberlink_42x25_p62.cnf	SAT
+numberlink_5x5_p4.cnf	SAT
+numberlink_7x7_p5.cnf	SAT

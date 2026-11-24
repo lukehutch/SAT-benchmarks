@@ -1,0 +1,8 @@
+mapf_32x32_k30_m43.cnf	SAT
+mapf_bn11x11_k18_m24.cnf	UNSAT
+mapf_bn11x11_k18_m25.cnf	SAT
+mapf_bn9x9_k12_m18.cnf	UNSAT
+mapf_bn9x9_k12_m19.cnf	SAT
+mapf_g16_p10_a10_m19.cnf	SAT
+mapf_g16_p20_a20_m23.cnf	SAT
+mapf_g16_p20_a40_m22.cnf	SAT
