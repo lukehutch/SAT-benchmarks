@@ -179,24 +179,24 @@ Fourteen representative cross-domain SAT Competition 2023 & 2024 Main Track form
 | `si2_b03m_m800_03` | 2024 | SC24-SubIso | [`af750c18578d52e60472315692ad83c0`](https://benchmark-database.de/file/af750c18578d52e60472315692ad83c0) | SAT | 10,862 | 472,588 |
 | `mp1_nb7t42` | 2024 | SC24-PolyMul | [`c0293283432a9b15cd743702163f5184`](https://benchmark-database.de/file/c0293283432a9b15cd743702163f5184) | SAT | 52,731 | 208,936 |
 
-### Flat-CNF Gauntlet Timings (1-Core, $T_{\max} = 600\;\text{s}$)
+### Flat-CNF Gauntlet Timings (1-Core, $T_{\max} = 600\;\text{s}$; dense-solver 0.0.4 Verified to $T_{\max} = 5{,}000\;\text{s}$)
 
-Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; all solvers read the identical flat `.cnf` file except the explicit CryptoMiniSat 5.18.0 (XCNF) column):
+Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs for sub-minute solves; all solvers read the identical flat `.cnf` file except the explicit CryptoMiniSat 5.18.0 (XCNF) column; dense-solver 0.0.4 timeouts were extended to competition-standard $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=5{,}000\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `tseitingrid6x200` | **3.07 ms** | >600 s (T/O) | >600 s (T/O) | 1,093.37 ms | 4.89 ms | >600 s (T/O) |
 | `tseitin_d3_n10000` | **7.66 ms** | >600 s (T/O) | >600 s (T/O) | 731.97 ms | 84.03 ms | >600 s (T/O) |
 | `urq45` | **1.10 ms** | >600 s (T/O) | >600 s (T/O) | 50.83 ms | 1.41 ms | 222,854.68 ms |
-| `two_trees_1023v` | **5.15 ms** | >600 s (T/O) | >600 s (T/O) | 18,574.19 ms | >30 s | >600 s (T/O) |
-| `intervals122` | **46.97 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 19.26 ms | >600 s (T/O) |
-| `clique_n2_k10` | **3.33 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | 8,185.14 ms |
-| `gzipfile_close_11` | **1.83 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 1.51 ms | 294.83 ms |
-| `rand_net70_40_10` | **5.39 ms** | 417.88 ms | 9,516.11 ms | 8,579.44 ms | 17.43 s | 12.31 ms |
-| `hwmcc20_iso_rast_p06` | **75.85 ms** | 1,764.89 ms | >600 s (T/O) | >600 s (T/O) | >30 s | 347.68 ms |
-| `hwmcc17_iso_bobsmfpu` | **53.54 ms** | 2,755.84 ms | >600 s (T/O) | >600 s (T/O) | >30 s | 321.55 ms |
+| `two_trees_1023v` | **5.15 ms** | >600 s (T/O) | >600 s (T/O) | 18,574.19 ms | >5,000 s (T/O) | >600 s (T/O) |
+| `intervals122` | 46.97 ms | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | **19.26 ms** | >600 s (T/O) |
+| `clique_n2_k10` | **3.33 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 485,598.35 ms | 8,185.14 ms |
+| `gzipfile_close_11` | 1.83 ms | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | **1.51 ms** | 294.83 ms |
+| `rand_net70_40_10` | **5.39 ms** | 417.88 ms | 9,516.11 ms | 8,579.44 ms | 17,432.27 ms | 12.31 ms |
+| `hwmcc20_iso_rast_p06` | **75.85 ms** | 1,764.89 ms | >600 s (T/O) | >600 s (T/O) | >5,000 s (T/O) | 347.68 ms |
+| `hwmcc17_iso_bobsmfpu` | **53.54 ms** | 2,755.84 ms | >600 s (T/O) | >600 s (T/O) | >5,000 s (T/O) | 321.55 ms |
 | `vmpc_24` | **1,596.46 ms** | 6,171.80 ms | 1,653.58 ms | 44,855.40 ms | 1,795.47 ms | 12,462.32 ms |
-| `si2_b03m_m800_03` | **1,944.36 ms** | 5,892.54 ms | 48,671.18 ms | 44,618.32 ms | 651.13 ms | 6,670.87 ms |
+| `si2_b03m_m800_03` | 1,944.36 ms | 5,892.54 ms | 48,671.18 ms | 44,618.32 ms | **651.13 ms** | 6,670.87 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

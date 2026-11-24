@@ -56,15 +56,15 @@ A 12-instance bit-level AIG Pigeonhole Principle scaling suite (**2 SAT / 10 UNS
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thread per run**, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on `php_9_8_unsat`, $T_{\max} = 600\;\text{s}$ on the 3 promoted scaling rungs, $T = 30\;\text{s}$ for dense-solver 0.0.4; **0 verdict disagreements**, cross-checked against [`expected.tsv`](expected.tsv)):
+Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thread per run**, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs for sub-minute solves; $T_{\max} = 5{,}000\;\text{s}$ on `php_9_8_unsat` and dense-solver 0.0.4 across all 4 promoted rungs, $T_{\max} = 600\;\text{s}$ on the other 4 baselines for the 3 scaling rungs; **0 verdict disagreements**, cross-checked against [`expected.tsv`](expected.tsv)):
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=5{,}000\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `php_9_8_unsat` | UNSAT | **1.81 ms** | 32.96 ms | 438.14 ms | 474.27 ms | 15.06 ms | 26.86 ms |
-| `php_16_15_unsat` | UNSAT | **4.54 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | >600 s (T/O) |
-| `php_20_19_unsat` | UNSAT | **8.15 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | >600 s (T/O) |
-| `php_50_49_unsat` | UNSAT | **119.04 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >30 s | >600 s (T/O) |
-| **Solved (4 promoted)** | **4/4** | **4/4 — 133.5 ms** *(fastest)* | 1/4 *(3 T/O >600 s)* | 1/4 *(3 T/O >600 s)* | 1/4 *(3 T/O >600 s)* | 1/4 *(3 T/O >30 s)* | 1/4 *(3 T/O >600 s)* |
+| `php_16_15_unsat` | UNSAT | **4.54 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 499,657.63 ms | >600 s (T/O) |
+| `php_20_19_unsat` | UNSAT | **8.15 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >5,000 s (T/O) | >600 s (T/O) |
+| `php_50_49_unsat` | UNSAT | **119.04 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | >5,000 s (T/O) | >600 s (T/O) |
+| **Solved (4 promoted)** | **4/4** | **4/4 — 133.5 ms** *(fastest)* | 1/4 *(3 T/O >600 s)* | 1/4 *(3 T/O >600 s)* | 1/4 *(3 T/O >600 s)* | 2/4 *(2 T/O >5,000 s)* | 1/4 *(3 T/O >600 s)* |
 
 *(Both `php_9_8_unsat` and `php_13_12_unsat` LRAT proofs emitted by Frobenius additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 

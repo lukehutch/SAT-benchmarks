@@ -50,9 +50,9 @@ A 6-instance adversarial bit-level AIG soundness-audit suite (**1 SAT / 5 UNSAT*
 
 ## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
 
-Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thread per run**, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 600\;\text{s}$ across the 3 promoted hub stress instances, $T = 30\;\text{s}$ for dense-solver 0.0.4; **0 verdict disagreements**, cross-checked against [`expected.tsv`](expected.tsv)):
+Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thread per run**, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 600\;\text{s}$ across the 3 promoted hub stress instances; **0 verdict disagreements**, cross-checked against [`expected.tsv`](expected.tsv)):
 
-| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `hub_20_unsat` | UNSAT | 9.14 ms | 11.17 ms | 276.33 ms | 168.34 ms | **8.16 ms** | 41.27 ms |
 | `hub_60_sat` | SAT | **26.87 ms** | 46.78 ms | 653.06 ms | 434.73 ms | 29.82 ms | 78.82 ms |

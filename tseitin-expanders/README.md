@@ -38,7 +38,7 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `tseitin_exp_n60` | **1.19 ms** | 546.39 ms | 22.59 ms | 22.91 ms | 1.38 ms | 58.59 ms |
 | `tseitin_exp_n120` | **1.25 ms** | >5,000 s (T/O) | 27.62 ms | 23.45 ms | 1.63 ms | >5,000 s (T/O) |

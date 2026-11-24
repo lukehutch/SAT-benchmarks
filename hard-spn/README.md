@@ -38,12 +38,12 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=30\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `spn_unsat_n48_d24` | **2.35 ms** | 22.35 ms | 58.31 ms | 27.06 ms | 6.97 ms | 32.47 ms |
 | `spn_sat_n64_d32` | **2.18 ms** | 30.83 ms | 77.31 ms | 27.36 ms | 9.47 ms | 84.09 ms |
 | `spn_sat_n96_d48` | **6.68 ms** | 176.70 ms | 247.54 ms | 105.45 ms | 267.05 ms | 326.02 ms |
-| `spn_sat_n128_d64` | **38.08 ms** | 2,136.73 ms | 10,804.67 ms | 1,850.59 ms | >30 s | 4,329.94 ms |
+| `spn_sat_n128_d64` | **38.08 ms** | 2,136.73 ms | 10,804.67 ms | 1,850.59 ms | 59,819.29 ms | 4,329.94 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
