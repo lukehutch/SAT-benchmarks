@@ -6,7 +6,7 @@
 - **Upstream Repository:** [`keithadler/sat-shortcut-challenge`](https://github.com/keithadler/sat-shortcut-challenge)
 - **License:** Apache License 2.0 — see [`LICENSE`](LICENSE) (copied verbatim from upstream).
 - **Challenge Rules:** Full rules preserved verbatim in [`CHALLENGE.md`](CHALLENGE.md).
-- **Companion Collections:** Tier 1 structured suite ([`../sat-shortcut-challenge-tier1/`](../sat-shortcut-challenge-tier1/README.md)) and Tier 2 neutral corpus ([`../sat-competition-2024-2026-main-track/`](../sat-competition-2024-2026-main-track/README.md)).
+- **Companion Collections:** Tier 1 structured suite ([`../sat-shortcut-challenge-tier1/`](../sat-shortcut-challenge-tier1/README.md)) and Tier 2 neutral corpus ([`../sat-competition-2002-2026-uris/`](../sat-competition-2002-2026-uris/README.md)).
 
 ## Problem Description
 

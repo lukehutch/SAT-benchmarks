@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520">
+  <defs>
+    <style>
+      .title { font: 700 17.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 11.8px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #475569; }
+      .ptitle { font: 700 13px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .psub { font: 400 11px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #475569; }
+      .mono { font: 600 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334155; }
+      .mono-sm { font: 600 9.2px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #475569; }
+      .badge { font: 700 10.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #ffffff; }
+      .cap { font: 400 10.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #334155; }
+      .cap-b { font: 700 10.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #0f172a; }
+    </style>
+  </defs>
+  <rect x="1" y="1" width="958" height="518" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="24" y="33" class="title">OEIS A067782 — Optimal-Depth Sorting Networks (n = 11–18)</text>
+  <text x="24" y="52" class="subtitle">Verified Frobenius SAT certificate for sortnet_n12_d8 (n = 12, depth 8, 46 comparators; bit-parallel verified on all 4,096 0/1 inputs)</text>
+  <rect x="786" y="14" width="150" height="24" rx="12" fill="#dc2626"/>
+  <text x="861" y="30" text-anchor="middle" class="badge">OPEN: a(18) in {10, 11}</text>
+  <rect x="20" y="68" width="920" height="314" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="36" y="90" class="ptitle">Decoded 12-Input Depth-8 Sorting Network (solutions/sortnet_n12_d8.model.xz)</text>
+  <text x="924" y="90" text-anchor="end" class="psub">46 comparators across 8 parallel layers | 0/1-principle check: PASS</text>
+  <line x1="68" y1="114.0" x2="892" y2="114.0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="117.5" text-anchor="end" class="mono">x0</text>
+  <text x="900" y="117.5" class="mono">y0</text>
+  <line x1="68" y1="133.5" x2="892" y2="133.5" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="137.0" text-anchor="end" class="mono">x1</text>
+  <text x="900" y="137.0" class="mono">y1</text>
+  <line x1="68" y1="153.0" x2="892" y2="153.0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="156.5" text-anchor="end" class="mono">x2</text>
+  <text x="900" y="156.5" class="mono">y2</text>
+  <line x1="68" y1="172.5" x2="892" y2="172.5" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="176.0" text-anchor="end" class="mono">x3</text>
+  <text x="900" y="176.0" class="mono">y3</text>
+  <line x1="68" y1="192.0" x2="892" y2="192.0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="195.5" text-anchor="end" class="mono">x4</text>
+  <text x="900" y="195.5" class="mono">y4</text>
+  <line x1="68" y1="211.5" x2="892" y2="211.5" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="215.0" text-anchor="end" class="mono">x5</text>
+  <text x="900" y="215.0" class="mono">y5</text>
+  <line x1="68" y1="231.0" x2="892" y2="231.0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="234.5" text-anchor="end" class="mono">x6</text>
+  <text x="900" y="234.5" class="mono">y6</text>
+  <line x1="68" y1="250.5" x2="892" y2="250.5" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="254.0" text-anchor="end" class="mono">x7</text>
+  <text x="900" y="254.0" class="mono">y7</text>
+  <line x1="68" y1="270.0" x2="892" y2="270.0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="273.5" text-anchor="end" class="mono">x8</text>
+  <text x="900" y="273.5" class="mono">y8</text>
+  <line x1="68" y1="289.5" x2="892" y2="289.5" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="293.0" text-anchor="end" class="mono">x9</text>
+  <text x="900" y="293.0" class="mono">y9</text>
+  <line x1="68" y1="309.0" x2="892" y2="309.0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="312.5" text-anchor="end" class="mono">x10</text>
+  <text x="900" y="312.5" class="mono">y10</text>
+  <line x1="68" y1="328.5" x2="892" y2="328.5" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="58" y="332.0" text-anchor="end" class="mono">x11</text>
+  <text x="900" y="332.0" class="mono">y11</text>
+  <rect x="84" y="103.0" width="90" height="236.5" rx="6" fill="#2563eb" fill-opacity="0.065" stroke="#2563eb" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="129.0" y1="114.0" x2="129.0" y2="133.5" stroke="#2563eb" stroke-width="2.1"/>
+  <circle cx="129.0" cy="114.0" r="3.4" fill="#2563eb"/>
+  <circle cx="129.0" cy="133.5" r="3.4" fill="#2563eb"/>
+  <line x1="129.0" y1="153.0" x2="129.0" y2="172.5" stroke="#2563eb" stroke-width="2.1"/>
+  <circle cx="129.0" cy="153.0" r="3.4" fill="#2563eb"/>
+  <circle cx="129.0" cy="172.5" r="3.4" fill="#2563eb"/>
+  <line x1="129.0" y1="192.0" x2="129.0" y2="211.5" stroke="#2563eb" stroke-width="2.1"/>
+  <circle cx="129.0" cy="192.0" r="3.4" fill="#2563eb"/>
+  <circle cx="129.0" cy="211.5" r="3.4" fill="#2563eb"/>
+  <line x1="129.0" y1="231.0" x2="129.0" y2="250.5" stroke="#2563eb" stroke-width="2.1"/>
+  <circle cx="129.0" cy="231.0" r="3.4" fill="#2563eb"/>
+  <circle cx="129.0" cy="250.5" r="3.4" fill="#2563eb"/>
+  <line x1="129.0" y1="270.0" x2="129.0" y2="289.5" stroke="#2563eb" stroke-width="2.1"/>
+  <circle cx="129.0" cy="270.0" r="3.4" fill="#2563eb"/>
+  <circle cx="129.0" cy="289.5" r="3.4" fill="#2563eb"/>
+  <line x1="129.0" y1="309.0" x2="129.0" y2="328.5" stroke="#2563eb" stroke-width="2.1"/>
+  <circle cx="129.0" cy="309.0" r="3.4" fill="#2563eb"/>
+  <circle cx="129.0" cy="328.5" r="3.4" fill="#2563eb"/>
+  <text x="129.0" y="354.5" text-anchor="middle" class="mono" fill="#2563eb">L1 (6)</text>
+  <text x="129.0" y="367.5" text-anchor="middle" class="mono-sm">fixed</text>
+  <rect x="186" y="103.0" width="90" height="236.5" rx="6" fill="#0d9488" fill-opacity="0.065" stroke="#0d9488" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="198.0" y1="114.0" x2="198.0" y2="328.5" stroke="#0d9488" stroke-width="2.1"/>
+  <circle cx="198.0" cy="114.0" r="3.4" fill="#0d9488"/>
+  <circle cx="198.0" cy="328.5" r="3.4" fill="#0d9488"/>
+  <line x1="214.5" y1="133.5" x2="214.5" y2="153.0" stroke="#0d9488" stroke-width="2.1"/>
+  <circle cx="214.5" cy="133.5" r="3.4" fill="#0d9488"/>
+  <circle cx="214.5" cy="153.0" r="3.4" fill="#0d9488"/>
+  <line x1="214.5" y1="172.5" x2="214.5" y2="309.0" stroke="#0d9488" stroke-width="2.1"/>
+  <circle cx="214.5" cy="172.5" r="3.4" fill="#0d9488"/>
+  <circle cx="214.5" cy="309.0" r="3.4" fill="#0d9488"/>
+  <line x1="231.0" y1="192.0" x2="231.0" y2="250.5" stroke="#0d9488" stroke-width="2.1"/>
+  <circle cx="231.0" cy="192.0" r="3.4" fill="#0d9488"/>
+  <circle cx="231.0" cy="250.5" r="3.4" fill="#0d9488"/>
+  <line x1="247.5" y1="211.5" x2="247.5" y2="270.0" stroke="#0d9488" stroke-width="2.1"/>
+  <circle cx="247.5" cy="211.5" r="3.4" fill="#0d9488"/>
+  <circle cx="247.5" cy="270.0" r="3.4" fill="#0d9488"/>
+  <line x1="264.0" y1="231.0" x2="264.0" y2="289.5" stroke="#0d9488" stroke-width="2.1"/>
+  <circle cx="264.0" cy="231.0" r="3.4" fill="#0d9488"/>
+  <circle cx="264.0" cy="289.5" r="3.4" fill="#0d9488"/>
+  <text x="231.0" y="354.5" text-anchor="middle" class="mono" fill="#0d9488">L2 (6)</text>
+  <text x="231.0" y="367.5" text-anchor="middle" class="mono-sm">free</text>
+  <rect x="288" y="103.0" width="90" height="236.5" rx="6" fill="#7c3aed" fill-opacity="0.065" stroke="#7c3aed" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="300.0" y1="114.0" x2="300.0" y2="211.5" stroke="#7c3aed" stroke-width="2.1"/>
+  <circle cx="300.0" cy="114.0" r="3.4" fill="#7c3aed"/>
+  <circle cx="300.0" cy="211.5" r="3.4" fill="#7c3aed"/>
+  <line x1="322.0" y1="133.5" x2="322.0" y2="192.0" stroke="#7c3aed" stroke-width="2.1"/>
+  <circle cx="322.0" cy="133.5" r="3.4" fill="#7c3aed"/>
+  <circle cx="322.0" cy="192.0" r="3.4" fill="#7c3aed"/>
+  <line x1="344.0" y1="153.0" x2="344.0" y2="231.0" stroke="#7c3aed" stroke-width="2.1"/>
+  <circle cx="344.0" cy="153.0" r="3.4" fill="#7c3aed"/>
+  <circle cx="344.0" cy="231.0" r="3.4" fill="#7c3aed"/>
+  <line x1="366.0" y1="172.5" x2="366.0" y2="250.5" stroke="#7c3aed" stroke-width="2.1"/>
+  <circle cx="366.0" cy="172.5" r="3.4" fill="#7c3aed"/>
+  <circle cx="366.0" cy="250.5" r="3.4" fill="#7c3aed"/>
+  <line x1="300.0" y1="270.0" x2="300.0" y2="289.5" stroke="#7c3aed" stroke-width="2.1"/>
+  <circle cx="300.0" cy="270.0" r="3.4" fill="#7c3aed"/>
+  <circle cx="300.0" cy="289.5" r="3.4" fill="#7c3aed"/>
+  <line x1="300.0" y1="309.0" x2="300.0" y2="328.5" stroke="#7c3aed" stroke-width="2.1"/>
+  <circle cx="300.0" cy="309.0" r="3.4" fill="#7c3aed"/>
+  <circle cx="300.0" cy="328.5" r="3.4" fill="#7c3aed"/>
+  <text x="333.0" y="354.5" text-anchor="middle" class="mono" fill="#7c3aed">L3 (6)</text>
+  <text x="333.0" y="367.5" text-anchor="middle" class="mono-sm">free</text>
+  <rect x="390" y="103.0" width="90" height="236.5" rx="6" fill="#d97706" fill-opacity="0.065" stroke="#d97706" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="402.0" y1="114.0" x2="402.0" y2="133.5" stroke="#d97706" stroke-width="2.1"/>
+  <circle cx="402.0" cy="114.0" r="3.4" fill="#d97706"/>
+  <circle cx="402.0" cy="133.5" r="3.4" fill="#d97706"/>
+  <line x1="402.0" y1="153.0" x2="402.0" y2="172.5" stroke="#d97706" stroke-width="2.1"/>
+  <circle cx="402.0" cy="153.0" r="3.4" fill="#d97706"/>
+  <circle cx="402.0" cy="172.5" r="3.4" fill="#d97706"/>
+  <line x1="402.0" y1="192.0" x2="402.0" y2="211.5" stroke="#d97706" stroke-width="2.1"/>
+  <circle cx="402.0" cy="192.0" r="3.4" fill="#d97706"/>
+  <circle cx="402.0" cy="211.5" r="3.4" fill="#d97706"/>
+  <line x1="402.0" y1="231.0" x2="402.0" y2="250.5" stroke="#d97706" stroke-width="2.1"/>
+  <circle cx="402.0" cy="231.0" r="3.4" fill="#d97706"/>
+  <circle cx="402.0" cy="250.5" r="3.4" fill="#d97706"/>
+  <line x1="402.0" y1="270.0" x2="402.0" y2="309.0" stroke="#d97706" stroke-width="2.1"/>
+  <circle cx="402.0" cy="270.0" r="3.4" fill="#d97706"/>
+  <circle cx="402.0" cy="309.0" r="3.4" fill="#d97706"/>
+  <line x1="468.0" y1="289.5" x2="468.0" y2="328.5" stroke="#d97706" stroke-width="2.1"/>
+  <circle cx="468.0" cy="289.5" r="3.4" fill="#d97706"/>
+  <circle cx="468.0" cy="328.5" r="3.4" fill="#d97706"/>
+  <text x="435.0" y="354.5" text-anchor="middle" class="mono" fill="#d97706">L4 (6)</text>
+  <text x="435.0" y="367.5" text-anchor="middle" class="mono-sm">free</text>
+  <rect x="492" y="103.0" width="90" height="236.5" rx="6" fill="#db2777" fill-opacity="0.065" stroke="#db2777" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="504.0" y1="114.0" x2="504.0" y2="328.5" stroke="#db2777" stroke-width="2.1"/>
+  <circle cx="504.0" cy="114.0" r="3.4" fill="#db2777"/>
+  <circle cx="504.0" cy="328.5" r="3.4" fill="#db2777"/>
+  <line x1="526.0" y1="133.5" x2="526.0" y2="153.0" stroke="#db2777" stroke-width="2.1"/>
+  <circle cx="526.0" cy="133.5" r="3.4" fill="#db2777"/>
+  <circle cx="526.0" cy="153.0" r="3.4" fill="#db2777"/>
+  <line x1="526.0" y1="172.5" x2="526.0" y2="211.5" stroke="#db2777" stroke-width="2.1"/>
+  <circle cx="526.0" cy="172.5" r="3.4" fill="#db2777"/>
+  <circle cx="526.0" cy="211.5" r="3.4" fill="#db2777"/>
+  <line x1="548.0" y1="192.0" x2="548.0" y2="289.5" stroke="#db2777" stroke-width="2.1"/>
+  <circle cx="548.0" cy="192.0" r="3.4" fill="#db2777"/>
+  <circle cx="548.0" cy="289.5" r="3.4" fill="#db2777"/>
+  <line x1="526.0" y1="231.0" x2="526.0" y2="270.0" stroke="#db2777" stroke-width="2.1"/>
+  <circle cx="526.0" cy="231.0" r="3.4" fill="#db2777"/>
+  <circle cx="526.0" cy="270.0" r="3.4" fill="#db2777"/>
+  <line x1="570.0" y1="250.5" x2="570.0" y2="309.0" stroke="#db2777" stroke-width="2.1"/>
+  <circle cx="570.0" cy="250.5" r="3.4" fill="#db2777"/>
+  <circle cx="570.0" cy="309.0" r="3.4" fill="#db2777"/>
+  <text x="537.0" y="354.5" text-anchor="middle" class="mono" fill="#db2777">L5 (6)</text>
+  <text x="537.0" y="367.5" text-anchor="middle" class="mono-sm">free</text>
+  <rect x="594" y="103.0" width="90" height="236.5" rx="6" fill="#0284c7" fill-opacity="0.065" stroke="#0284c7" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="606.0" y1="114.0" x2="606.0" y2="133.5" stroke="#0284c7" stroke-width="2.1"/>
+  <circle cx="606.0" cy="114.0" r="3.4" fill="#0284c7"/>
+  <circle cx="606.0" cy="133.5" r="3.4" fill="#0284c7"/>
+  <line x1="606.0" y1="153.0" x2="606.0" y2="231.0" stroke="#0284c7" stroke-width="2.1"/>
+  <circle cx="606.0" cy="153.0" r="3.4" fill="#0284c7"/>
+  <circle cx="606.0" cy="231.0" r="3.4" fill="#0284c7"/>
+  <line x1="672.0" y1="172.5" x2="672.0" y2="192.0" stroke="#0284c7" stroke-width="2.1"/>
+  <circle cx="672.0" cy="172.5" r="3.4" fill="#0284c7"/>
+  <circle cx="672.0" cy="192.0" r="3.4" fill="#0284c7"/>
+  <line x1="672.0" y1="211.5" x2="672.0" y2="289.5" stroke="#0284c7" stroke-width="2.1"/>
+  <circle cx="672.0" cy="211.5" r="3.4" fill="#0284c7"/>
+  <circle cx="672.0" cy="289.5" r="3.4" fill="#0284c7"/>
+  <line x1="606.0" y1="250.5" x2="606.0" y2="270.0" stroke="#0284c7" stroke-width="2.1"/>
+  <circle cx="606.0" cy="250.5" r="3.4" fill="#0284c7"/>
+  <circle cx="606.0" cy="270.0" r="3.4" fill="#0284c7"/>
+  <text x="639.0" y="354.5" text-anchor="middle" class="mono" fill="#0284c7">L6 (5)</text>
+  <text x="639.0" y="367.5" text-anchor="middle" class="mono-sm">free</text>
+  <rect x="696" y="103.0" width="90" height="236.5" rx="6" fill="#4f46e5" fill-opacity="0.065" stroke="#4f46e5" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="708.0" y1="114.0" x2="708.0" y2="133.5" stroke="#4f46e5" stroke-width="2.1"/>
+  <circle cx="708.0" cy="114.0" r="3.4" fill="#4f46e5"/>
+  <circle cx="708.0" cy="133.5" r="3.4" fill="#4f46e5"/>
+  <line x1="708.0" y1="153.0" x2="708.0" y2="172.5" stroke="#4f46e5" stroke-width="2.1"/>
+  <circle cx="708.0" cy="153.0" r="3.4" fill="#4f46e5"/>
+  <circle cx="708.0" cy="172.5" r="3.4" fill="#4f46e5"/>
+  <line x1="708.0" y1="192.0" x2="708.0" y2="231.0" stroke="#4f46e5" stroke-width="2.1"/>
+  <circle cx="708.0" cy="192.0" r="3.4" fill="#4f46e5"/>
+  <circle cx="708.0" cy="231.0" r="3.4" fill="#4f46e5"/>
+  <line x1="774.0" y1="211.5" x2="774.0" y2="250.5" stroke="#4f46e5" stroke-width="2.1"/>
+  <circle cx="774.0" cy="211.5" r="3.4" fill="#4f46e5"/>
+  <circle cx="774.0" cy="250.5" r="3.4" fill="#4f46e5"/>
+  <line x1="708.0" y1="270.0" x2="708.0" y2="289.5" stroke="#4f46e5" stroke-width="2.1"/>
+  <circle cx="708.0" cy="270.0" r="3.4" fill="#4f46e5"/>
+  <circle cx="708.0" cy="289.5" r="3.4" fill="#4f46e5"/>
+  <line x1="708.0" y1="309.0" x2="708.0" y2="328.5" stroke="#4f46e5" stroke-width="2.1"/>
+  <circle cx="708.0" cy="309.0" r="3.4" fill="#4f46e5"/>
+  <circle cx="708.0" cy="328.5" r="3.4" fill="#4f46e5"/>
+  <text x="741.0" y="354.5" text-anchor="middle" class="mono" fill="#4f46e5">L7 (6)</text>
+  <text x="741.0" y="367.5" text-anchor="middle" class="mono-sm">free</text>
+  <rect x="798" y="103.0" width="90" height="236.5" rx="6" fill="#059669" fill-opacity="0.065" stroke="#059669" stroke-opacity="0.22" stroke-width="1"/>
+  <line x1="843.0" y1="133.5" x2="843.0" y2="153.0" stroke="#059669" stroke-width="2.1"/>
+  <circle cx="843.0" cy="133.5" r="3.4" fill="#059669"/>
+  <circle cx="843.0" cy="153.0" r="3.4" fill="#059669"/>
+  <line x1="843.0" y1="172.5" x2="843.0" y2="192.0" stroke="#059669" stroke-width="2.1"/>
+  <circle cx="843.0" cy="172.5" r="3.4" fill="#059669"/>
+  <circle cx="843.0" cy="192.0" r="3.4" fill="#059669"/>
+  <line x1="843.0" y1="211.5" x2="843.0" y2="231.0" stroke="#059669" stroke-width="2.1"/>
+  <circle cx="843.0" cy="211.5" r="3.4" fill="#059669"/>
+  <circle cx="843.0" cy="231.0" r="3.4" fill="#059669"/>
+  <line x1="843.0" y1="250.5" x2="843.0" y2="270.0" stroke="#059669" stroke-width="2.1"/>
+  <circle cx="843.0" cy="250.5" r="3.4" fill="#059669"/>
+  <circle cx="843.0" cy="270.0" r="3.4" fill="#059669"/>
+  <line x1="843.0" y1="289.5" x2="843.0" y2="309.0" stroke="#059669" stroke-width="2.1"/>
+  <circle cx="843.0" cy="289.5" r="3.4" fill="#059669"/>
+  <circle cx="843.0" cy="309.0" r="3.4" fill="#059669"/>
+  <text x="843.0" y="354.5" text-anchor="middle" class="mono" fill="#059669">L8 (5)</text>
+  <text x="843.0" y="367.5" text-anchor="middle" class="mono-sm">adj.</text>
+  <rect x="20" y="394" width="452" height="106" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="36" y="415" class="ptitle">Bundala-Zavodny One-Sided 0/1 Encoding</text>
+  <line x1="36" y1="438" x2="108" y2="438" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="36" y1="464" x2="108" y2="464" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="72" y1="438" x2="72" y2="464" stroke="#2563eb" stroke-width="2.2"/>
+  <circle cx="72" cy="438" r="3.6" fill="#2563eb"/>
+  <circle cx="72" cy="464" r="3.6" fill="#2563eb"/>
+  <text x="36" y="432" class="mono-sm">a</text>
+  <text x="36" y="477" class="mono-sm">b</text>
+  <text x="112" y="441" class="mono-sm">min(a,b)</text>
+  <text x="112" y="467" class="mono-sm">max(a,b)</text>
+  <text x="180" y="436" class="cap">- <tspan class="cap-b">L1 fixed</tspan> to (0,1),(2,3),... (Parberry 1991).</text>
+  <text x="180" y="454" class="cap">- <tspan class="cap-b">Last layer adjacent-only</tspan> (i, i+1) (Codish et al. 2015).</text>
+  <text x="180" y="472" class="cap">- Encodes only unsorted L1 0/1 outputs (19,664 at n=18).</text>
+  <text x="180" y="490" class="cap">- No reflection symmetry breaking; SAT model self-checks.</text>
+  <rect x="488" y="394" width="452" height="106" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="504" y="415" class="ptitle">OEIS A067782 Calibration Ladder &amp; Open Frontier (10 CNFs)</text>
+  <rect x="504" y="426" width="66" height="52" rx="6" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.2"/>
+  <text x="537.0" y="441" text-anchor="middle" class="mono" fill="#0f766e">n=11</text>
+  <text x="537.0" y="456" text-anchor="middle" class="cap-b" fill="#0f766e">d=8</text>
+  <text x="537.0" y="471" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8.2" fill="#475569">d=7 UNSAT</text>
+  <rect x="575" y="426" width="66" height="52" rx="6" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.2"/>
+  <text x="608.0" y="441" text-anchor="middle" class="mono" fill="#0f766e">n=12</text>
+  <text x="608.0" y="456" text-anchor="middle" class="cap-b" fill="#0f766e">d=8</text>
+  <text x="608.0" y="471" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8.2" fill="#475569">d=7/8</text>
+  <rect x="646" y="426" width="66" height="52" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="679.0" y="441" text-anchor="middle" class="mono" fill="#0284c7">n=14</text>
+  <text x="679.0" y="456" text-anchor="middle" class="cap-b" fill="#0284c7">d=9</text>
+  <text x="679.0" y="471" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8.2" fill="#475569">d=8 UNSAT</text>
+  <rect x="717" y="426" width="66" height="52" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="750.0" y="441" text-anchor="middle" class="mono" fill="#0284c7">n=16</text>
+  <text x="750.0" y="456" text-anchor="middle" class="cap-b" fill="#0284c7">d=9</text>
+  <text x="750.0" y="471" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8.2" fill="#475569">d=8/9</text>
+  <rect x="788" y="426" width="66" height="52" rx="6" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.2"/>
+  <text x="821.0" y="441" text-anchor="middle" class="mono" fill="#4f46e5">n=17</text>
+  <text x="821.0" y="456" text-anchor="middle" class="cap-b" fill="#4f46e5">d=10</text>
+  <text x="821.0" y="471" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8.2" fill="#475569">d=9/10</text>
+  <rect x="859" y="426" width="66" height="52" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="892.0" y="441" text-anchor="middle" class="mono" fill="#dc2626">n=18</text>
+  <text x="892.0" y="456" text-anchor="middle" class="cap-b" fill="#dc2626">10 or 11</text>
+  <text x="892.0" y="471" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8.2" fill="#475569">OPEN d=10</text>
+  <text x="504" y="492" class="cap">Open sortnet_n18_d10.cnf: 2,598,203 vars, 63,274,184 clauses (75.8 MB .xz).</text>
+</svg>

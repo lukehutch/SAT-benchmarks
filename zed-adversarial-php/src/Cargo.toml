@@ -1,0 +1,8 @@
+[package]
+name = "gen-zed-adversarial-php"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-zed-adversarial-php"
+path = "main.rs"

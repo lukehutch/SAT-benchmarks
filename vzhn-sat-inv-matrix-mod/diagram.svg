@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 496" width="940" height="496" role="img" aria-label="Modular Ring Matrix Inversion over Z/mZ SAT Encodings (vzhn-sat-inv-matrix-mod)">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#6d28d9"/>
+  </marker>
+  <marker id="arr-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1d4ed8"/>
+  </marker>
+</defs>
+<rect x="2" y="2" width="936" height="492" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Modular Ring Matrix Inversion over &#x2124;/m&#x2124; (vzhn-sat-inv-matrix-mod)</text>
+  <text x="26" y="53" font-size="11.8" fill="#475569">One-hot running-sum &amp; binary quotient adder-tree SAT encodings of A &#x00B7; B &#x2261; I&#x2099; (mod m) (Vladimir Zhilin, modinv.py)</text>
+  <rect x="738" y="18" width="178" height="24" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="827" y="34" text-anchor="middle" font-size="10.8" font-weight="700" fill="#6d28d9">15 Instances &#x00B7; 10 SAT / 5 UNSAT</text>
+  <line x1="24" y1="65" x2="916" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="24" y="78" width="892" height="148" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="24" y="78" width="892" height="28" rx="10" fill="#7c3aed"/>
+  <rect x="24" y="94" width="892" height="12" fill="#7c3aed"/>
+  <text x="38" y="97" font-size="12" font-weight="700" fill="#ffffff">1. Modular Ring Equation (Upstream src/samples/matrix3x3_mod_26.txt &#x2014; det(A) = 441, gcd(441, 26) = 1)</text>
+  <rect x="46.0" y="130.0" width="118.0" height="84.0" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <path d="M 56.0 134.5 L 50.5 134.5 L 50.5 209.5 L 56.0 209.5" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M 154.0 134.5 L 159.5 134.5 L 159.5 209.5 L 154.0 209.5" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="105.0" y="122.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6d28d9">Constant A (det = 441)</text>
+  <text x="71.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">6</text>
+  <text x="105.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">24</text>
+  <text x="139.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">1</text>
+  <text x="71.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">13</text>
+  <text x="105.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">16</text>
+  <text x="139.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">10</text>
+  <text x="71.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">20</text>
+  <text x="105.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">17</text>
+  <text x="139.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">15</text>
+  <text x="180.0" y="177.0" text-anchor="middle" font-size="18" font-weight="700" fill="#475569">&#x00D7;</text>
+  <rect x="196.0" y="130.0" width="118.0" height="84.0" rx="6" fill="#f0fdf4" stroke="#cbd5e1" stroke-width="1"/>
+  <path d="M 206.0 134.5 L 200.5 134.5 L 200.5 209.5 L 206.0 209.5" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M 304.0 134.5 L 309.5 134.5 L 309.5 209.5 L 304.0 209.5" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="255.0" y="122.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#15803d">Unique B ∈ (ℤ/26ℤ)³×³</text>
+  <text x="221.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">8</text>
+  <text x="255.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">5</text>
+  <text x="289.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">10</text>
+  <text x="221.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">21</text>
+  <text x="255.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">8</text>
+  <text x="289.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">21</text>
+  <text x="221.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">21</text>
+  <text x="255.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">12</text>
+  <text x="289.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">8</text>
+  <text x="332.0" y="177.0" text-anchor="middle" font-size="18" font-weight="700" fill="#475569">&#x2261;</text>
+  <rect x="350.0" y="130.0" width="100.0" height="84.0" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <path d="M 360.0 134.5 L 354.5 134.5 L 354.5 209.5 L 360.0 209.5" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M 440.0 134.5 L 445.5 134.5 L 445.5 209.5 L 440.0 209.5" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="400.0" y="122.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#15803d">I₃ (mod 26)</text>
+  <rect x="360.0" y="138.0" width="24.0" height="20.0" rx="3.5" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/>
+  <text x="372.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#166534">1</text>
+  <text x="400.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">0</text>
+  <text x="428.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">0</text>
+  <text x="372.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">0</text>
+  <rect x="388.0" y="162.0" width="24.0" height="20.0" rx="3.5" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/>
+  <text x="400.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#166534">1</text>
+  <text x="428.0" y="176.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">0</text>
+  <text x="372.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">0</text>
+  <text x="400.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="500" fill="#0f172a">0</text>
+  <rect x="416.0" y="186.0" width="24.0" height="20.0" rx="3.5" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/>
+  <text x="428.0" y="200.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#166534">1</text>
+  <rect x="478.0" y="115" width="424.0" height="101" rx="8" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.1"/>
+  <text x="492.0" y="133" font-size="11" font-weight="700" fill="#5b21b6">CRT Factorization &amp; Column Independence</text>
+  <text x="492.0" y="151" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#1e293b">&#x2124;/26&#x2124; &#x2245; &#x2124;/2&#x2124; &#x00D7; &#x2124;/13&#x2124;</text>
+  <text x="492.0" y="168" font-size="9.6" fill="#475569">Each column solves A&#x00B7;b&#x2C7C; &#x2261; e&#x2C7C; (mod p^e) independently</text>
+  <rect x="490.0" y="178" width="197.0" height="28" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="0.9"/>
+  <text x="588.5" y="190.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#15803d">SAT &#x21D4; gcd(det A, m) = 1</text>
+  <text x="588.5" y="202" text-anchor="middle" font-size="8.4" fill="#334155">Unique unit in GL&#x2099;(&#x2124;/m&#x2124;)</text>
+  <rect x="693.0" y="178" width="197.0" height="28" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.9"/>
+  <text x="791.5" y="190.5" text-anchor="middle" font-size="9.2" font-weight="700" fill="#b91c1c">UNSAT &#x21D4; gcd(det A, m) &gt; 1</text>
+  <text x="791.5" y="202" text-anchor="middle" font-size="8.4" fill="#334155">Singular / zero-divisor det</text>
+  <rect x="24" y="238" width="438" height="166" rx="10" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.3"/>
+  <text x="38" y="260" font-size="12" font-weight="700" fill="#6d28d9">2A. One-Hot Running-Sum Encoding (onehot)</text>
+  <text x="38" y="276" font-size="9.6" fill="#475569">Domain: m Boolean vars per entry with EO(m) exactly-one constraints</text>
+  <rect x="38" y="288" width="410" height="58" rx="7" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
+  <rect x="50" y="298" width="62" height="38" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.1"/>
+  <text x="81.0" y="314" text-anchor="middle" font-size="9.6" font-weight="700" fill="#5b21b6">s&#x2080; = 0</text>
+  <text x="81.0" y="328" text-anchor="middle" font-size="8.4" fill="#475569">init</text>
+  <rect x="140" y="298" width="86" height="38" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.1"/>
+  <text x="183.0" y="314" text-anchor="middle" font-size="9.6" font-weight="700" fill="#5b21b6">s&#x2081; (mod m)</text>
+  <text x="183.0" y="328" text-anchor="middle" font-size="8.4" fill="#475569">+A[i,0]&#x00B7;B[0,j]</text>
+  <rect x="254" y="298" width="86" height="38" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.1"/>
+  <text x="297.0" y="314" text-anchor="middle" font-size="9.6" font-weight="700" fill="#5b21b6">s&#x2096; (mod m)</text>
+  <text x="297.0" y="328" text-anchor="middle" font-size="8.4" fill="#475569">+A[i,k]&#x00B7;B[k,j]</text>
+  <rect x="368" y="298" width="68" height="38" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.1"/>
+  <text x="402.0" y="314" text-anchor="middle" font-size="9.6" font-weight="700" fill="#15803d">s&#x2099; = &#x03B4;&#x1D62;&#x2C7C;</text>
+  <text x="402.0" y="328" text-anchor="middle" font-size="8.4" fill="#475569">clamped</text>
+  <line x1="113" y1="317" x2="137" y2="317" stroke="#6d28d9" stroke-width="1.4" marker-end="url(#arr)"/>
+  <line x1="227" y1="317" x2="251" y2="317" stroke="#6d28d9" stroke-width="1.4" marker-end="url(#arr)"/>
+  <line x1="341" y1="317" x2="365" y2="317" stroke="#6d28d9" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="40" y="364" font-size="9.5" fill="#1e293b">&#x2022; Transition implications: &#x00AC;s[k&#x2212;1,u] &#x2228; &#x00AC;B[k,j,v] &#x2228; s[k, (u+A&#x00B7;v) mod m]</text>
+  <text x="40" y="379" font-size="9.5" fill="#1e293b">&#x2022; Clause size O(n&#x00B3;m&#x00B2;): direct table transitions for m &#x2208; &#x007B;2, 3, 13, 26, 27&#x007D;</text>
+  <text x="40" y="394" font-size="9.4" font-weight="700" fill="#6d28d9">&#x2022; Over &#x1D53D;&#x2082; (m = 2): EO(2) bit pairs (b&#x2080;, b&#x2081;) disguise parity from syntactic XOR scanners</text>
+  <rect x="478" y="238" width="438" height="166" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.3"/>
+  <text x="492" y="260" font-size="12" font-weight="700" fill="#1d4ed8">2B. Binary + Explicit Quotient Encoding (binary)</text>
+  <text x="492" y="276" font-size="9.6" fill="#475569">Domain: unsigned &#x2308;log&#x2082; m&#x2309;-bit B[k,j] &#x2264; m&#x2212;1 + unsigned quotient Q[i,j]</text>
+  <rect x="492" y="288" width="410" height="58" rx="7" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+  <rect x="502" y="298" width="110" height="38" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+  <text x="557.0" y="314" text-anchor="middle" font-size="9.6" font-weight="700" fill="#1e40af">&#x03A3; A[i,k]&#x00B7;B[k,j]</text>
+  <text x="557.0" y="328" text-anchor="middle" font-size="8.4" fill="#475569">unsigned bits</text>
+  <rect x="640" y="298" width="110" height="38" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+  <text x="695.0" y="314" text-anchor="middle" font-size="9.6" font-weight="700" fill="#1e40af">&#x2212; m &#x00B7; Q[i,j]</text>
+  <text x="695.0" y="328" text-anchor="middle" font-size="8.4" fill="#475569">exact quotient</text>
+  <rect x="778" y="298" width="112" height="38" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.1"/>
+  <text x="834.0" y="314" text-anchor="middle" font-size="9.6" font-weight="700" fill="#15803d">Adder Tree = &#x03B4;&#x1D62;&#x2C7C;</text>
+  <text x="834.0" y="328" text-anchor="middle" font-size="8.4" fill="#475569">FA/HA XOR sum</text>
+  <text x="626" y="321" text-anchor="middle" font-size="14" font-weight="700" fill="#1d4ed8">+</text>
+  <line x1="751" y1="317" x2="775" y2="317" stroke="#1d4ed8" stroke-width="1.4" marker-end="url(#arr-b)"/>
+  <text x="494" y="364" font-size="9.5" fill="#1e293b">&#x2022; Exact integer identity: &#x03A3;&#x2096; A[i,k]&#x00B7;B[k,j] &#x2212; m&#x00B7;Q[i,j] = &#x03B4;&#x1D62;&#x2C7C; (0 &#x2264; B &lt; m)</text>
+  <text x="494" y="379" font-size="9.5" fill="#1e293b">&#x2022; Compact for large m (e.g. mod 26: 5,079 binary vs 20,970 one-hot clauses)</text>
+  <text x="494" y="394" font-size="9.4" font-weight="700" fill="#1d4ed8">&#x2022; Over &#x1D53D;&#x2082; (m = 2): exposes 43,911 explicit Tseitin XORs in xcnf-converted/</text>
+  <rect x="24" y="416" width="892" height="64" rx="9" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.1"/>
+  <text x="38" y="433" font-size="11.2" font-weight="700" fill="#0f172a">Three Algebraic Scaling Regimes (15 Instances &#x00B7; 702 to 113,664 Vars &#x00B7; 43,911 Native XORs)</text>
+  <rect x="38" y="440" width="282" height="33" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+  <text x="179.0" y="453.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1d4ed8">GF(2) Parity Wall (8 inst: 24&#x00D7;24&#x2013;48&#x00D7;48)</text>
+  <text x="179.0" y="466.5" text-anchor="middle" font-size="8.6" fill="#334155">m = 2 (binary &amp; one-hot) &#x00B7; 2^&#x03A9;(n) CDCL barrier</text>
+  <rect x="332" y="440" width="282" height="33" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="473.0" y="453.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6d28d9">Odd Prime / Prime-Power (5 inst)</text>
+  <text x="473.0" y="466.5" text-anchor="middle" font-size="8.6" fill="#334155">m &#x2208; &#x007B;3, 27&#x007D;: 12&#x00D7;12 mod 3 &amp; 5&#x00D7;5 mod 27 (SAT/UNSAT)</text>
+  <rect x="626" y="440" width="276" height="33" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+  <text x="764.0" y="453.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b45309">Composite &amp; CRT Frontier (2 + 1 inst)</text>
+  <text x="764.0" y="466.5" text-anchor="middle" font-size="8.6" fill="#334155">3&#x00D7;3 mod 26 (bin/oh) &#x00B7; 10&#x00D7;10 mod 13 col 0 (hard!)</text>
+</g>
+</svg>

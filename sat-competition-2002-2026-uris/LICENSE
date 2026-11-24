@@ -1,0 +1,30 @@
+Upstream Benchmark License & Attribution Notice
+===============================================
+
+1. International SAT Competition & SAT-Race Archive Benchmark Manifests
+   (`uris/*.uri`, 62 track-year manifests spanning 2002–2026):
+
+   The benchmark URI manifests index all 62 official DIMACS CNF tracks across
+   25 consecutive years of the International SAT Competitions (2002–2005, 2007,
+   2009, 2011, 2013–2014, 2016–2018, 2020–2026), SAT-Races (2006, 2008, 2010,
+   2015, 2019), and SAT Challenge 2012 hosted by the Global Benchmark Database
+   (GBD):
+     - International SAT Competitions (2002–2026): https://satcompetition.github.io/
+     - Global Benchmark Database (GBD): https://benchmark-database.de/
+     - GBD metadata database (`meta.db`): https://benchmark-database.de/getdatabase/meta_db
+     - GBD tooling (MIT License): https://github.com/Udopia/gbd
+
+   International SAT Competition benchmark packages are distributed under the
+   Creative Commons Attribution 4.0 International License (CC-BY-4.0):
+     https://creativecommons.org/licenses/by/4.0/
+
+   All downloaded `.cnf.xz` instances remain subject to CC-BY-4.0 and the
+   attribution terms of their original competition submitters. Exact
+   32-character GBD MD5 identifiers for the 14 curated SC 2023–2024 Gauntlet
+   benchmarks are preserved in `src/sc23_24_manifest.json`.
+
+2. Download, Evaluation, Analysis, Diagram, and Conversion Scripts (`src/*.py`,
+   `src/sc23_24_manifest.json`):
+
+   Licensed under the MIT License (see repository root `../LICENSE`),
+   Copyright (c) 2026 Luke Hutchison.

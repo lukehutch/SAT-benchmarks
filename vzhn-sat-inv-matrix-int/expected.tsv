@@ -1,0 +1,11 @@
+int_10x10_w16_sat.cnf	SAT
+int_10x10_w47_sat.cnf	SAT
+int_10x10_w4_unsat.cnf	UNSAT
+int_16x16_sing_w16_unsat.cnf	UNSAT
+int_16x16_w16_sat.cnf	SAT
+int_16x16_w5_unsat.cnf	UNSAT
+int_3x3_det2_w3_unsat.cnf	UNSAT
+int_4x4_w5_unsat.cnf	UNSAT
+int_4x4_w7_sat.cnf	SAT
+int_8x8_w16_sat.cnf	SAT
+int_8x8_w36_sat.cnf	SAT

@@ -1,0 +1,12 @@
+php_13_12_unsat.aig	UNSAT
+php_14_13_unsat.aig	UNSAT
+php_15_14_unsat.aig	UNSAT
+php_16_15_unsat.aig	UNSAT
+php_17_16_unsat.aig	UNSAT
+php_19_18_unsat.aig	UNSAT
+php_20_19_unsat.aig	UNSAT
+php_20_20_sat.aig	SAT
+php_30_30_sat.aig	SAT
+php_31_30_unsat.aig	UNSAT
+php_50_49_unsat.aig	UNSAT
+php_9_8_unsat.aig	UNSAT

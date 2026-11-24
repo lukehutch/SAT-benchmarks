@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 496" width="940" height="496" role="img" aria-label="Scaled Bit-Level AIGER Pigeonhole Principle Circuits and CDCL Timeout Wall">
+  <defs>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/></marker>
+    <marker id="arr-purp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/></marker>
+  </defs>
+  <rect x="2" y="2" width="936" height="492" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Scaled AIGER Pigeonhole Principle Circuits (zed-adversarial-php)</text>
+    <text x="26" y="53" font-size="11.8" fill="#475569">12 native AIGER 1.9 PHP<tspan baseline-shift="super" font-size="72%">m</tspan><tspan baseline-shift="sub" font-size="72%">n</tspan> circuits: 10 UNSAT scaling PHP<tspan baseline-shift="super" font-size="72%">9</tspan><tspan baseline-shift="sub" font-size="72%">8</tspan> → PHP<tspan baseline-shift="super" font-size="72%">50</tspan><tspan baseline-shift="sub" font-size="72%">49</tspan> + 2 SAT bijection controls (PHP<tspan baseline-shift="super" font-size="72%">20</tspan><tspan baseline-shift="sub" font-size="72%">20</tspan>, PHP<tspan baseline-shift="super" font-size="72%">30</tspan><tspan baseline-shift="sub" font-size="72%">30</tspan>)</text>
+    <rect x="774" y="18" width="142" height="24" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+    <text x="845" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">2 SAT · 10 UNSAT</text>
+    <line x1="24" y1="65" x2="916" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="24" y="78" width="434" height="396" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="40" y="100" font-size="13" font-weight="700" fill="#0f172a">1. Bit-Level AIGER 1.9 Miter Circuit (src/main.rs)</text>
+    <text x="40" y="116" font-size="10.4" fill="#475569">Pure AND-Inverter graph exported to Tseitin CNF, XCNF &amp; degree-≤2 ANF</text>
+    <rect x="38" y="126" width="406" height="174" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="50" y="150" width="88" height="126" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3"/>
+    <text x="94.0" y="170" text-anchor="middle" font-size="9.8" font-weight="700" fill="#1d4ed8">m×n Inputs</text>
+    <text x="94.0" y="186" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="600" fill="#0f172a">x[p·n + h]</text>
+    <circle cx="72" cy="202" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="94" cy="202" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="116" cy="202" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="72" cy="217" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="94" cy="217" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="116" cy="217" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="72" cy="232" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="94" cy="232" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="116" cy="232" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="72" cy="247" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="94" cy="247" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <circle cx="116" cy="247" r="3.2" fill="#2563eb" fill-opacity="0.75"/>
+    <text x="94.0" y="266" text-anchor="middle" font-size="8.4" fill="#475569">72 .. 2,450 PIs</text>
+    <rect x="164" y="144" width="152" height="62" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <text x="240.0" y="161" text-anchor="middle" font-size="9.8" font-weight="700" fill="#047857">m ALO OR-Chains</text>
+    <text x="240.0" y="176" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#0f172a">¬(¬x[p,0] ∧ … ∧ ¬x[p,n−1])</text>
+    <text x="240.0" y="194" text-anchor="middle" font-size="8.5" fill="#475569">m(n−1) ANDs · each pigeon ≥1</text>
+    <rect x="164" y="220" width="152" height="62" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+    <text x="240.0" y="237" text-anchor="middle" font-size="9.8" font-weight="700" fill="#b91c1c">n·C(m,2) AMO Gates</text>
+    <text x="240.0" y="252" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#0f172a">¬(x[p,h] ∧ x[q,h])</text>
+    <text x="240.0" y="270" text-anchor="middle" font-size="8.5" fill="#475569">O(m²n) ANDs · ≤1 per hole</text>
+    <rect x="340" y="174" width="92" height="78" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="386.0" y="197" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">AND Miter</text>
+    <text x="386.0" y="214" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#0f172a">PO₀ = 1</text>
+    <text x="386.0" y="230" text-anchor="middle" font-size="8.3" fill="#475569">Tseitin CNF</text>
+    <text x="386.0" y="243" text-anchor="middle" font-size="8.3" fill="#475569">95–99% Horn</text>
+    <path d="M 138 186 L 162 175" fill="none" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arr-blue)"/>
+    <path d="M 138 240 L 162 251" fill="none" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arr-blue)"/>
+    <path d="M 316 175 L 338 200" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <path d="M 316 251 L 338 226" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <rect x="38" y="312" width="198" height="84" rx="8" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.1"/>
+    <text x="48" y="331" font-size="10.4" font-weight="700" fill="#b91c1c">10 UNSAT Instances (m = n+1)</text>
+    <text x="48" y="348" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#7f1d1d">php_9_8 .. php_50_49</text>
+    <text x="48" y="364" font-size="8.8" fill="#475569">Haken (1985): every pure</text>
+    <text x="48" y="377" font-size="8.8" fill="#475569">Resolution proof needs 2<tspan baseline-shift="super" font-size="72%">Ω(n)</tspan></text>
+    <text x="48" y="390" font-size="8.8" fill="#475569">steps (up to 247,350 clauses).</text>
+    <rect x="246" y="312" width="198" height="84" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.1"/>
+    <text x="256" y="331" font-size="10.4" font-weight="700" fill="#047857">2 SAT Controls (m = n)</text>
+    <text x="256" y="348" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#065f46">php_20_20_sat, php_30_30_sat</text>
+    <text x="256" y="364" font-size="8.8" fill="#475569">Exact bijection controls (n!</text>
+    <text x="256" y="377" font-size="8.8" fill="#475569">valid permutations) guarding</text>
+    <text x="256" y="390" font-size="8.8" fill="#475569">against false-UNSAT bugs.</text>
+    <rect x="38" y="406" width="406" height="56" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="50" y="425" font-size="10.2" font-weight="700" fill="#0f172a">Formal LRAT Certification &amp; 4-Format Footprint</text>
+    <text x="50" y="440" font-size="8.9" fill="#334155">• php_9_8 &amp; php_13_12 LRAT proofs verified in HOL4/cake_lpr &amp; lrat-check</text>
+    <text x="50" y="454" font-size="8.9" fill="#475569">• AIG (193.7 KB) · CNF (477.0 KB) · XCNF (477.0 KB, 0 XORs) · ANF (203.5 KB, deg≤2)</text>
+    <rect x="474" y="78" width="442" height="214" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="488" y="99" font-size="12.2" font-weight="700" fill="#0f172a">2. Cubic O(n³) Gate/Clause Scaling &amp; CDCL &gt;600 s Cliff</text>
+    <rect x="528" y="112" width="370" height="134" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="600.4" y="113" width="296.6" height="132" fill="#fef2f2" fill-opacity="0.78"/>
+    <line x1="600.4" y1="112" x2="600.4" y2="246" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="4,2"/>
+    <text x="606.4" y="127" font-size="8.8" font-weight="700" fill="#b91c1c">CDCL &gt;600 s timeout zone (n ≥ 15)</text>
+    <line x1="528" y1="228.2" x2="898" y2="228.2" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="3,2"/>
+    <text x="522" y="231.2" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#64748b">1k</text>
+    <line x1="528" y1="183.6" x2="898" y2="183.6" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="3,2"/>
+    <text x="522" y="186.6" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#64748b">10k</text>
+    <line x1="528" y1="138.9" x2="898" y2="138.9" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="3,2"/>
+    <text x="522" y="141.9" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#64748b">100k</text>
+    <line x1="544.1" y1="246" x2="544.1" y2="250" stroke="#475569" stroke-width="1"/>
+    <text x="544.1" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">8</text>
+    <line x1="600.4" y1="246" x2="600.4" y2="250" stroke="#475569" stroke-width="1"/>
+    <text x="600.4" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">15</text>
+    <line x1="640.6" y1="246" x2="640.6" y2="250" stroke="#475569" stroke-width="1"/>
+    <text x="640.6" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">20</text>
+    <line x1="721.0" y1="246" x2="721.0" y2="250" stroke="#475569" stroke-width="1"/>
+    <text x="721.0" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">30</text>
+    <line x1="801.5" y1="246" x2="801.5" y2="250" stroke="#475569" stroke-width="1"/>
+    <text x="801.5" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">40</text>
+    <line x1="873.9" y1="246" x2="873.9" y2="250" stroke="#475569" stroke-width="1"/>
+    <text x="873.9" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">49</text>
+    <text x="713.0" y="274" text-anchor="middle" font-size="9" font-weight="600" fill="#334155">Number of holes n  (m = n + 1 pigeons)</text>
+    <polyline points="544.1,222.4 576.3,200.5 584.3,196.1 592.3,192.0 600.4,188.2 608.4,184.6 624.5,178.0 632.6,175.0 721.0,149.3 873.9,121.3" fill="none" stroke="#7c3aed" stroke-width="2.2"/>
+    <polyline points="544.1,236.7 576.3,214.5 584.3,210.1 592.3,206.0 600.4,202.1 608.4,198.5 624.5,191.9 632.6,188.9 721.0,163.0 873.9,135.0" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+    <circle cx="544.1" cy="222.4" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="544.1" cy="236.7" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="576.3" cy="200.5" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="576.3" cy="214.5" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="584.3" cy="196.1" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="584.3" cy="210.1" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="592.3" cy="192.0" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="592.3" cy="206.0" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="600.4" cy="188.2" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="600.4" cy="202.1" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="608.4" cy="184.6" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="608.4" cy="198.5" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="624.5" cy="178.0" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="624.5" cy="191.9" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="632.6" cy="175.0" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="632.6" cy="188.9" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="721.0" cy="149.3" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="721.0" cy="163.0" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="873.9" cy="121.3" r="3.2" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="873.9" cy="135.0" r="3.2" fill="#2563eb" stroke="#ffffff" stroke-width="1"/>
+    <rect x="748" y="206" width="142" height="34" rx="5" fill="#ffffff" fill-opacity="0.92" stroke="#cbd5e1" stroke-width="0.9"/>
+    <line x1="756" y1="218" x2="774" y2="218" stroke="#7c3aed" stroke-width="2.2"/>
+    <text x="780" y="221" font-size="8.6" font-weight="600" fill="#5b21b6">CNF Clauses (≤247k)</text>
+    <line x1="756" y1="232" x2="774" y2="232" stroke="#2563eb" stroke-width="2.2"/>
+    <text x="780" y="235" font-size="8.6" font-weight="600" fill="#1d4ed8">AIG ANDs (≤122k)</text>
+    <rect x="474" y="304" width="442" height="170" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="488" y="324" font-size="12" font-weight="700" fill="#0f172a">3. 1-Core Benchmark Ladder (Flat CNF, T<tspan baseline-shift="sub" font-size="72%">max</tspan> = 600 s)</text>
+    <rect x="486" y="331" width="418" height="16" rx="4" fill="#e2e8f0"/>
+    <text x="492" y="342" text-anchor="start" font-size="8.5" font-weight="700" fill="#334155">Instance</text>
+    <text x="624" y="342" text-anchor="end" font-size="8.5" font-weight="700" fill="#334155">CNF Vars</text>
+    <text x="690" y="342" text-anchor="end" font-size="8.5" font-weight="700" fill="#334155">Clauses</text>
+    <text x="766" y="342" text-anchor="middle" font-size="8.5" font-weight="700" fill="#334155">CDCL / dense</text>
+    <text x="862" y="342" text-anchor="middle" font-size="8.5" font-weight="700" fill="#334155">Frob. 1C</text>
+    <text x="492" y="360.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_9_8_unsat</text>
+    <text x="624" y="360.5" text-anchor="end" font-size="8.7" fill="#475569">423</text>
+    <text x="690" y="360.5" text-anchor="end" font-size="8.7" fill="#475569">1,350</text>
+    <text x="766" y="360.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#334155">15–438 ms</text>
+    <text x="862" y="360.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">1.81 ms</text>
+    <rect x="486" y="371.5" width="418" height="21" rx="3" fill="#fef2f2"/>
+    <text x="492" y="384.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_16_15_unsat</text>
+    <text x="624" y="384.5" text-anchor="end" font-size="8.7" fill="#475569">2,264</text>
+    <text x="690" y="384.5" text-anchor="end" font-size="8.7" fill="#475569">7,888</text>
+    <text x="766" y="384.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">&gt;600 s / &gt;30 s</text>
+    <text x="862" y="384.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">4.54 ms</text>
+    <rect x="486" y="395.5" width="418" height="21" rx="3" fill="#fef2f2"/>
+    <text x="492" y="408.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_20_19_unsat</text>
+    <text x="624" y="408.5" text-anchor="end" font-size="8.7" fill="#475569">4,350</text>
+    <text x="690" y="408.5" text-anchor="end" font-size="8.7" fill="#475569">15,540</text>
+    <text x="766" y="408.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">&gt;600 s / &gt;30 s</text>
+    <text x="862" y="408.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">8.15 ms</text>
+    <rect x="486" y="419.5" width="418" height="21" rx="3" fill="#fef2f2"/>
+    <text x="492" y="432.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_50_49_unsat</text>
+    <text x="624" y="432.5" text-anchor="end" font-size="8.7" fill="#475569">64,875</text>
+    <text x="690" y="432.5" text-anchor="end" font-size="8.7" fill="#475569">247,350</text>
+    <text x="766" y="432.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">&gt;600 s / &gt;30 s</text>
+    <text x="862" y="432.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">119.04 ms</text>
+    <text x="488" y="462" font-size="9" fill="#475569">Structural regime: all 12 Over-constrained (ρ<tspan baseline-shift="sub" font-size="72%">crit</tspan> = 2.56×–3.08× · 95–99% Horn · 0 XORs)</text>
+  </g>
+</svg>

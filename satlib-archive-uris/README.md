@@ -14,7 +14,7 @@
 
 ## Directory Layout & Usage
 
-Rather than duplicating multi-gigabyte synthetic ensemble archives (50,000+ raw formulas) in Git, this collection stores the complete official manifest of all **97 UBC SATLIB `.tar.gz` archive URLs** alongside a parallel downloader script (parallel to [`../sat-competition-2024-2026-main-track/`](../sat-competition-2024-2026-main-track/README.md)):
+Rather than duplicating multi-gigabyte synthetic ensemble archives (50,000+ raw formulas) in Git, this collection stores the complete official manifest of all **97 UBC SATLIB `.tar.gz` archive URLs** alongside a parallel downloader script (parallel to [`../sat-competition-2002-2026-uris/`](../sat-competition-2002-2026-uris/README.md)):
 
 - [`satlib_all_97_archives.uri`](satlib_all_97_archives.uri) — Complete list of all 97 official UBC SATLIB `.tar.gz` URLs.
 - [`src/fetch_satlib.py`](src/fetch_satlib.py) — Parallel archive downloader (`python3 src/fetch_satlib.py --all-archives <out_dir>`).

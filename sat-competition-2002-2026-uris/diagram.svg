@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 580" width="980" height="580" role="img" aria-label="SAT Competition and SAT-Race 2002-2026 Archive URI Corpus">
+<defs>
+  <marker id="arr-p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/></marker>
+</defs>
+<rect x="2" y="2" width="976" height="576" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="24" y="33" font-size="18" font-weight="700" fill="#0f172a">SAT Competition &amp; SAT-Race Archive (2002–2026 · 20,225 Unique CNFs)</text>
+<text x="24" y="53" font-size="11.8" fill="#475569">62 track-year GBD URI manifests across 25 years &amp; 14 track types (32,194 slots → 20,225 unique) · 7,818 SAT / 5,792 UNSAT / 6,615 UNKNOWN</text>
+<line x1="24" y1="65" x2="956" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="24" y="76" width="932" height="224" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="38" y="98" font-size="12.5" font-weight="700" fill="#0f172a">25-Year Track-Slot Timeline (2002–2026, Parsed Live from uris/*.uri)</text>
+<text x="942" y="98" text-anchor="end" font-size="9.8" fill="#64748b">Bar height proportional to √(track-slots) so 100-instance SAT-Races &amp; 6,414-slot 2022 are both legible</text>
+<rect x="38" y="107" width="10" height="10" rx="2" fill="#2563eb"/>
+<text x="52" y="115.5" font-size="9.6" font-weight="600" fill="#334155">Main / App / Ind</text>
+<rect x="184" y="107" width="10" height="10" rx="2" fill="#7c3aed"/>
+<text x="198" y="115.5" font-size="9.6" font-weight="600" fill="#334155">Crafted / Handmade</text>
+<rect x="332" y="107" width="10" height="10" rx="2" fill="#d97706"/>
+<text x="346" y="115.5" font-size="9.6" font-weight="600" fill="#334155">Random</text>
+<rect x="422" y="107" width="10" height="10" rx="2" fill="#0891b2"/>
+<text x="436" y="115.5" font-size="9.6" font-weight="600" fill="#334155">Agile &amp; Special</text>
+<rect x="552" y="107" width="10" height="10" rx="2" fill="#059669"/>
+<text x="566" y="115.5" font-size="9.6" font-weight="600" fill="#334155">Anni 2022 / Subm. 22–26</text>
+<line x1="76" y1="249.5" x2="940" y2="249.5" stroke="#e2e8f0" stroke-width="0.9" stroke-dasharray="3,3"/>
+<text x="70" y="252.7" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">100</text>
+<line x1="76" y1="233.0" x2="940" y2="233.0" stroke="#e2e8f0" stroke-width="0.9" stroke-dasharray="3,3"/>
+<text x="70" y="236.2" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">400</text>
+<line x1="76" y1="213.9" x2="940" y2="213.9" stroke="#e2e8f0" stroke-width="0.9" stroke-dasharray="3,3"/>
+<text x="70" y="217.1" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">1,000</text>
+<line x1="76" y1="183.6" x2="940" y2="183.6" stroke="#e2e8f0" stroke-width="0.9" stroke-dasharray="3,3"/>
+<text x="70" y="186.8" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">2,500</text>
+<line x1="76" y1="149.5" x2="940" y2="149.5" stroke="#e2e8f0" stroke-width="0.9" stroke-dasharray="3,3"/>
+<text x="70" y="152.7" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">5,000</text>
+<line x1="76" y1="266" x2="940" y2="266" stroke="#94a3b8" stroke-width="1.1"/>
+<rect x="81.5" y="259.0" width="23.5" height="7.0" fill="#2563eb"/>
+<rect x="81.5" y="238.8" width="23.5" height="20.1" fill="#7c3aed"/>
+<rect x="81.5" y="193.0" width="23.5" height="45.8" fill="#d97706"/>
+<text x="93.3" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#334155">'02</text>
+<text x="93.3" y="189.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">1,962</text>
+<rect x="116.1" y="260.1" width="23.5" height="5.9" fill="#2563eb"/>
+<rect x="116.1" y="239.1" width="23.5" height="21.0" fill="#7c3aed"/>
+<rect x="116.1" y="220.3" width="23.5" height="18.8" fill="#d97706"/>
+<text x="127.8" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'03</text>
+<rect x="150.6" y="247.8" width="23.5" height="18.2" fill="#2563eb"/>
+<rect x="150.6" y="234.9" width="23.5" height="12.9" fill="#7c3aed"/>
+<rect x="150.6" y="217.9" width="23.5" height="16.9" fill="#d97706"/>
+<text x="162.4" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'04</text>
+<rect x="185.2" y="255.3" width="23.5" height="10.7" fill="#2563eb"/>
+<rect x="185.2" y="221.2" width="23.5" height="34.1" fill="#7c3aed"/>
+<rect x="185.2" y="212.2" width="23.5" height="9.1" fill="#d97706"/>
+<text x="197.0" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'05</text>
+<text x="197.0" y="208.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">1,067</text>
+<rect x="219.8" y="249.5" width="23.5" height="16.5" fill="#2563eb"/>
+<text x="231.5" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#334155">'06</text>
+<text x="231.5" y="245.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">100</text>
+<rect x="254.3" y="255.4" width="23.5" height="10.6" fill="#2563eb"/>
+<rect x="254.3" y="244.4" width="23.5" height="11.0" fill="#7c3aed"/>
+<rect x="254.3" y="216.4" width="23.5" height="28.0" fill="#d97706"/>
+<text x="266.1" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'07</text>
+<rect x="288.9" y="249.5" width="23.5" height="16.5" fill="#2563eb"/>
+<text x="300.6" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'08</text>
+<rect x="323.4" y="251.8" width="23.5" height="14.2" fill="#2563eb"/>
+<rect x="323.4" y="238.1" width="23.5" height="13.7" fill="#7c3aed"/>
+<rect x="323.4" y="210.3" width="23.5" height="27.8" fill="#d97706"/>
+<text x="335.2" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'09</text>
+<rect x="358.0" y="249.5" width="23.5" height="16.5" fill="#2563eb"/>
+<text x="369.8" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'10</text>
+<rect x="392.6" y="253.2" width="23.5" height="12.8" fill="#2563eb"/>
+<rect x="392.6" y="240.5" width="23.5" height="12.8" fill="#7c3aed"/>
+<rect x="392.6" y="214.9" width="23.5" height="25.5" fill="#d97706"/>
+<rect x="392.6" y="202.2" width="23.5" height="12.7" fill="#0891b2"/>
+<text x="404.3" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'11</text>
+<rect x="427.1" y="245.9" width="23.5" height="20.1" fill="#2563eb"/>
+<rect x="427.1" y="225.7" width="23.5" height="20.2" fill="#7c3aed"/>
+<rect x="427.1" y="205.5" width="23.5" height="20.2" fill="#d97706"/>
+<rect x="427.1" y="185.3" width="23.5" height="20.2" fill="#0891b2"/>
+<text x="438.9" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#334155">'12</text>
+<text x="438.9" y="181.3" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">2,395</text>
+<rect x="461.7" y="250.6" width="23.5" height="15.4" fill="#2563eb"/>
+<rect x="461.7" y="235.2" width="23.5" height="15.4" fill="#7c3aed"/>
+<rect x="461.7" y="213.1" width="23.5" height="22.1" fill="#d97706"/>
+<text x="473.4" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'13</text>
+<rect x="496.2" y="248.8" width="23.5" height="17.2" fill="#2563eb"/>
+<rect x="496.2" y="231.6" width="23.5" height="17.2" fill="#7c3aed"/>
+<rect x="496.2" y="218.7" width="23.5" height="12.9" fill="#d97706"/>
+<text x="508.0" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'14</text>
+<rect x="530.8" y="241.6" width="23.5" height="24.4" fill="#2563eb"/>
+<rect x="530.8" y="233.6" width="23.5" height="8.0" fill="#0891b2"/>
+<text x="542.6" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'15</text>
+<rect x="565.4" y="255.8" width="23.5" height="10.2" fill="#2563eb"/>
+<rect x="565.4" y="248.9" width="23.5" height="6.8" fill="#7c3aed"/>
+<rect x="565.4" y="240.7" width="23.5" height="8.2" fill="#d97706"/>
+<rect x="565.4" y="186.6" width="23.5" height="54.1" fill="#0891b2"/>
+<text x="577.1" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'16</text>
+<text x="577.1" y="182.6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">2,319</text>
+<rect x="599.9" y="255.5" width="23.5" height="10.5" fill="#2563eb"/>
+<rect x="599.9" y="246.7" width="23.5" height="8.8" fill="#d97706"/>
+<rect x="599.9" y="175.4" width="23.5" height="71.3" fill="#0891b2"/>
+<text x="611.7" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#334155">'17</text>
+<text x="611.7" y="171.4" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">3,022</text>
+<rect x="634.5" y="240.2" width="23.5" height="25.8" fill="#2563eb"/>
+<rect x="634.5" y="223.8" width="23.5" height="16.4" fill="#d97706"/>
+<text x="646.2" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'18</text>
+<rect x="669.0" y="233.1" width="23.5" height="32.9" fill="#2563eb"/>
+<text x="680.8" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'19</text>
+<rect x="703.6" y="239.1" width="23.5" height="26.9" fill="#2563eb"/>
+<rect x="703.6" y="225.6" width="23.5" height="13.5" fill="#0891b2"/>
+<text x="715.4" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'20</text>
+<rect x="738.2" y="239.1" width="23.5" height="26.9" fill="#2563eb"/>
+<rect x="738.2" y="225.6" width="23.5" height="13.5" fill="#0891b2"/>
+<text x="749.9" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'21</text>
+<rect x="772.7" y="257.8" width="23.5" height="8.2" fill="#2563eb"/>
+<rect x="772.7" y="134.0" width="23.5" height="123.8" fill="#059669"/>
+<text x="784.5" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#334155">'22</text>
+<text x="784.5" y="130.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">6,414</text>
+<rect x="807.3" y="245.5" width="23.5" height="20.5" fill="#2563eb"/>
+<rect x="807.3" y="212.9" width="23.5" height="32.6" fill="#059669"/>
+<text x="819.0" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'23</text>
+<rect x="841.8" y="250.3" width="23.5" height="15.7" fill="#2563eb"/>
+<rect x="841.8" y="196.7" width="23.5" height="53.6" fill="#059669"/>
+<text x="853.6" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'24</text>
+<text x="853.6" y="192.7" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">1,769</text>
+<rect x="876.4" y="241.9" width="23.5" height="24.1" fill="#2563eb"/>
+<rect x="876.4" y="220.9" width="23.5" height="21.1" fill="#059669"/>
+<text x="888.2" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="500" fill="#334155">'25</text>
+<rect x="911.0" y="249.0" width="23.5" height="17.0" fill="#2563eb"/>
+<rect x="911.0" y="202.3" width="23.5" height="46.7" fill="#059669"/>
+<text x="922.7" y="279" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#334155">'26</text>
+<text x="922.7" y="198.3" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">1,496</text>
+<text x="197.0" y="292" text-anchor="middle" font-size="8.6" fill="#64748b">Early Ind / Hand / Rand &amp; SAT-Races</text>
+<text x="456.2" y="292" text-anchor="middle" font-size="8.6" fill="#64748b">App / Crafted / MUS / Portfolio / Agile</text>
+<text x="680.8" y="292" text-anchor="middle" font-size="8.6" fill="#64748b">Unified Main + Agile / Plan / Crypto</text>
+<text x="853.6" y="292" text-anchor="middle" font-size="8.6" fill="#64748b">20th Anni + Main + Subm. + AI Sub-Tracks</text>
+<rect x="24" y="312" width="540" height="168" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="38" y="333" font-size="12" font-weight="700" fill="#0f172a">Verdict Breakdown by Track Family (Deduplicated Unique CNFs)</text>
+<text x="38" y="356" font-size="9.6" font-weight="600" fill="#0f172a">Main / App / Ind</text>
+<text x="186" y="356" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">5,758</text>
+<rect x="192" y="345" width="112.4" height="14" rx="2" fill="#059669"/>
+<rect x="304.4" y="345" width="116.6" height="14" fill="#dc2626"/>
+<rect x="421.0" y="345" width="41.0" height="14" rx="2" fill="#94a3b8"/>
+<text x="248.2" y="355" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">2,397</text>
+<text x="362.7" y="355" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">2,487</text>
+<text x="441.5" y="355" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">874</text>
+<text x="470" y="355.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#475569">42%S/43%U</text>
+<text x="38" y="375" font-size="9.6" font-weight="600" fill="#0f172a">Crafted / Handmade</text>
+<text x="186" y="375" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">3,166</text>
+<rect x="192" y="364" width="99.1" height="14" rx="2" fill="#059669"/>
+<rect x="291.1" y="364" width="102.2" height="14" fill="#dc2626"/>
+<rect x="393.3" y="364" width="68.7" height="14" rx="2" fill="#94a3b8"/>
+<text x="241.5" y="374" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">1,162</text>
+<text x="342.2" y="374" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">1,198</text>
+<text x="427.6" y="374" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">806</text>
+<text x="470" y="374.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#475569">37%S/38%U</text>
+<text x="38" y="394" font-size="9.6" font-weight="600" fill="#0f172a">Random (2002–18)</text>
+<text x="186" y="394" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">5,753</text>
+<rect x="192" y="383" width="93.5" height="14" rx="2" fill="#059669"/>
+<rect x="285.5" y="383" width="24.1" height="14" fill="#dc2626"/>
+<rect x="309.6" y="383" width="152.4" height="14" rx="2" fill="#94a3b8"/>
+<text x="238.8" y="393" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">1,993</text>
+<text x="385.8" y="393" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">3,247</text>
+<text x="470" y="393.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#475569">35%S/ 9%U</text>
+<text x="38" y="413" font-size="9.6" font-weight="600" fill="#0f172a">Agile &amp; Special</text>
+<text x="186" y="413" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">3,979</text>
+<rect x="192" y="402" width="128.7" height="14" rx="2" fill="#059669"/>
+<rect x="320.7" y="402" width="117.3" height="14" fill="#dc2626"/>
+<rect x="437.9" y="402" width="24.1" height="14" rx="2" fill="#94a3b8"/>
+<text x="256.3" y="412" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">1,896</text>
+<text x="379.3" y="412" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">1,728</text>
+<text x="470" y="412.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#475569">48%S/43%U</text>
+<text x="38" y="432" font-size="9.6" font-weight="600" fill="#0f172a">Anni 22 / Subm. 22–26</text>
+<text x="186" y="432" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">9,465</text>
+<rect x="192" y="421" width="104.9" height="14" rx="2" fill="#059669"/>
+<rect x="296.9" y="421" width="99.4" height="14" fill="#dc2626"/>
+<rect x="396.3" y="421" width="65.7" height="14" rx="2" fill="#94a3b8"/>
+<text x="244.5" y="431" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">3,678</text>
+<text x="346.6" y="431" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">3,485</text>
+<text x="429.2" y="431" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">2,302</text>
+<text x="470" y="431.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#475569">39%S/37%U</text>
+<line x1="36" y1="440" x2="552" y2="440" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="38" y="455" font-size="9.6" font-weight="700" fill="#0f172a">All Unique (2002–26)</text>
+<text x="186" y="455" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" fill="#64748b">20,225</text>
+<rect x="192" y="444" width="104.4" height="14" rx="2" fill="#059669"/>
+<rect x="296.4" y="444" width="77.3" height="14" fill="#dc2626"/>
+<rect x="373.7" y="444" width="88.3" height="14" rx="2" fill="#94a3b8"/>
+<text x="244.2" y="454" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">7,818</text>
+<text x="335.0" y="454" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">5,792</text>
+<text x="417.8" y="454" text-anchor="middle" font-size="8.0" font-weight="700" fill="#ffffff">6,615</text>
+<text x="470" y="454.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#475569">39%S/29%U</text>
+<rect x="38" y="462" width="10" height="10" rx="2" fill="#059669"/>
+<text x="52" y="470" font-size="9.0" fill="#334155">SAT (7,818)</text>
+<rect x="142" y="462" width="10" height="10" rx="2" fill="#dc2626"/>
+<text x="156" y="470" font-size="9.0" fill="#334155">UNSAT (5,792)</text>
+<rect x="260" y="462" width="10" height="10" rx="2" fill="#94a3b8"/>
+<text x="274" y="470" font-size="9.0" fill="#334155">UNKNOWN (6,615) · 0 conflicts across 9 sources</text>
+<rect x="578" y="312" width="378" height="168" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="592" y="333" font-size="12" font-weight="700" fill="#0f172a">Non-Main Tracks &amp; Formal Certification</text>
+<rect x="590" y="342" width="354" height="64" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="598" y="357" font-size="9.6" font-weight="700" fill="#1d4ed8">Dedicated Non-Main + Shared Sub-Tracks</text>
+<text x="598" y="371" font-size="8.7" fill="#334155">• Dedicated CNFs: Agile (3,959), Anni 22 (5,355), MUS (299),</text>
+<text x="598" y="384" font-size="8.7" fill="#334155">  Portfolio (599), Parallel 15 (96), Plan 20 (200), Crypto 21 (200)</text>
+<text x="598" y="397" font-size="8.7" fill="#334155">• Shared Main CNFs: SC 26 AI-Gen/AI-Tuned, Cloud, Parallel, Hack</text>
+<rect x="590" y="413" width="354" height="57" rx="6" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
+<text x="598" y="428" font-size="9.6" font-weight="700" fill="#065f46">SC 2024–2026 Formal Certification (cake_lpr, T=300 s)</text>
+<text x="598" y="443" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#064e3b">SC24: 146 (88S/58U, 408.46s) · SC25: 173 (93S/80U, 363.03s)</text>
+<text x="598" y="458" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" font-weight="700" fill="#064e3b">SC26: 135 (62S/73U, 417.49s) · Uniq: 441/1,166 (0 err)</text>
+<rect x="24" y="492" width="932" height="74" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="38" y="503" width="208" height="52" rx="7" fill="#ffffff" stroke="#2563eb" stroke-width="1.3"/>
+<rect x="38" y="503" width="208" height="18" rx="7" fill="#2563eb"/>
+<rect x="38" y="513" width="208" height="8" fill="#2563eb"/>
+<text x="142.0" y="515.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#ffffff">1. 62 GBD URI Lists</text>
+<text x="142.0" y="534" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="700" fill="#2563eb">uris/&lt;track&gt;_&lt;yr&gt;.uri</text>
+<text x="142.0" y="547" text-anchor="middle" font-size="8.4" fill="#475569">32,194 slots → 20,225 unique</text>
+<line x1="249" y1="529.0" x2="267" y2="529.0" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arr-p)"/>
+<rect x="270" y="503" width="208" height="52" rx="7" fill="#ffffff" stroke="#0891b2" stroke-width="1.3"/>
+<rect x="270" y="503" width="208" height="18" rx="7" fill="#0891b2"/>
+<rect x="270" y="513" width="208" height="8" fill="#0891b2"/>
+<text x="374.0" y="515.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#ffffff">2. On-Demand Fetch</text>
+<text x="374.0" y="534" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="700" fill="#0891b2">src/download_sc_main.py</text>
+<text x="374.0" y="547" text-anchor="middle" font-size="8.4" fill="#475569">Direct HTTPS .cnf.xz cache</text>
+<line x1="481" y1="529.0" x2="499" y2="529.0" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arr-p)"/>
+<rect x="502" y="503" width="208" height="52" rx="7" fill="#ffffff" stroke="#7c3aed" stroke-width="1.3"/>
+<rect x="502" y="503" width="208" height="18" rx="7" fill="#7c3aed"/>
+<rect x="502" y="513" width="208" height="8" fill="#7c3aed"/>
+<text x="606.0" y="515.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#ffffff">3. Multi-Format Convert</text>
+<text x="606.0" y="534" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="700" fill="#7c3aed">cnf2aig.py / to_anf.py</text>
+<text x="606.0" y="547" text-anchor="middle" font-size="8.4" fill="#475569">.cnf · .aig · .xcnf · .anf</text>
+<line x1="713" y1="529.0" x2="731" y2="529.0" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arr-p)"/>
+<rect x="734" y="503" width="208" height="52" rx="7" fill="#ffffff" stroke="#059669" stroke-width="1.3"/>
+<rect x="734" y="503" width="208" height="18" rx="7" fill="#059669"/>
+<rect x="734" y="513" width="208" height="8" fill="#059669"/>
+<text x="838.0" y="515.5" text-anchor="middle" font-size="9.4" font-weight="700" fill="#ffffff">4. Ground-Truth Audit</text>
+<text x="838.0" y="534" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="700" fill="#059669">expected.tsv + cake_lpr</text>
+<text x="838.0" y="547" text-anchor="middle" font-size="8.4" fill="#475569">13,610 known · 0 conflicts</text>
+</g></svg>

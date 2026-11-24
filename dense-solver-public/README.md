@@ -8,7 +8,7 @@
 - **License & Attribution:**
   - [dense-solver](https://github.com/libdense/dense-solver) scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
   - Third-party public formulas retain their full upstream provenance, SHA-256 digests, and credits in [`SOURCES.md`](SOURCES.md), [`CITATION.cff`](CITATION.cff), and [`src/public-inputs.csv`](src/public-inputs.csv) (22 SATLIB formulas + 8 SAT Competition 2025 Main Track GBD formulas).
-- **Companion Collection:** [`dense-solver-synthetic/`](../dense-solver-synthetic/README.md) (20 multi-encoding PHP & mutilated chessboard CNFs).
+- **Companion Collections:** [`dense-solver-synthetic-chessboard/`](../dense-solver-synthetic-chessboard/README.md) (3 mutilated chessboard domino-tiling CNFs) and [`dense-solver-synthetic-php/`](../dense-solver-synthetic-php/README.md) (17 multi-encoding Pigeonhole Principle CNFs).
 
 ## Problem Description
 

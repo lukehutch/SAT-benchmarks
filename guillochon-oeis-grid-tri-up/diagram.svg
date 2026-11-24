@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520">
+  <defs>
+    <style>
+      .title { font: 700 17.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 11.8px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #475569; }
+      .ptitle { font: 700 13px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #0f172a; }
+      .psub { font: 400 11px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #475569; }
+      .mono { font: 700 9.8px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334155; }
+      .mono-sm { font: 600 8.8px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #64748b; }
+      .badge { font: 700 10.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #ffffff; }
+      .cap { font: 400 10.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #334155; }
+      .cap-b { font: 700 10.5px "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; fill: #0f172a; }
+    </style>
+  </defs>
+  <rect x="1" y="1" width="958" height="518" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="24" y="33" class="title">OEIS A157795 / A319158 — Triangular Grid Avoiding Upward Triangles (tri-up)</text>
+  <text x="24" y="52" class="subtitle">Maximum painted points on a side-N triangular lattice avoiding upward grid-aligned triangles (downward &amp; tilted allowed)</text>
+  <rect x="764" y="14" width="172" height="24" rx="12" fill="#059669"/>
+  <text x="850" y="30" text-anchor="middle" class="badge">OPEN: N=14, m=47?</text>
+  <rect x="20" y="68" width="496" height="432" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="36" y="90" class="ptitle">Verified Frobenius Side-14 Frontier LB: 46 Painted Points (57.10 s)</text>
+  <text x="36" y="106" class="psub">solutions/tri-up_n14_m46.model.xz | 0 upward tris (5 legal downward tris)</text>
+  <polygon points="71.7,460.0 464.3,460.0 268.0,120.0" fill="#ecfdf5" fill-opacity="0.55" stroke="#6ee7b7" stroke-width="1.1"/>
+  <line x1="71.7" y1="460.0" x2="464.3" y2="460.0" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="71.7" y1="460.0" x2="268.0" y2="120.0" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="71.7" y1="460.0" x2="71.7" y2="460.0" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="86.8" y1="433.8" x2="449.2" y2="433.8" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="101.9" y1="460.0" x2="283.1" y2="146.2" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="101.9" y1="460.0" x2="86.8" y2="433.8" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="101.9" y1="407.7" x2="434.1" y2="407.7" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="132.1" y1="460.0" x2="298.2" y2="172.3" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="132.1" y1="460.0" x2="101.9" y2="407.7" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="117.0" y1="381.5" x2="419.0" y2="381.5" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="162.3" y1="460.0" x2="313.3" y2="198.5" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="162.3" y1="460.0" x2="117.0" y2="381.5" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="132.1" y1="355.4" x2="403.9" y2="355.4" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="192.5" y1="460.0" x2="328.4" y2="224.6" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="192.5" y1="460.0" x2="132.1" y2="355.4" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="147.2" y1="329.2" x2="388.8" y2="329.2" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="222.7" y1="460.0" x2="343.5" y2="250.8" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="222.7" y1="460.0" x2="147.2" y2="329.2" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="162.3" y1="303.1" x2="373.7" y2="303.1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="252.9" y1="460.0" x2="358.6" y2="276.9" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="252.9" y1="460.0" x2="162.3" y2="303.1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="177.4" y1="276.9" x2="358.6" y2="276.9" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="283.1" y1="460.0" x2="373.7" y2="303.1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="283.1" y1="460.0" x2="177.4" y2="276.9" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="192.5" y1="250.8" x2="343.5" y2="250.8" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="313.3" y1="460.0" x2="388.8" y2="329.2" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="313.3" y1="460.0" x2="192.5" y2="250.8" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="207.6" y1="224.6" x2="328.4" y2="224.6" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="343.5" y1="460.0" x2="403.9" y2="355.4" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="343.5" y1="460.0" x2="207.6" y2="224.6" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="222.7" y1="198.5" x2="313.3" y2="198.5" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="373.7" y1="460.0" x2="419.0" y2="381.5" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="373.7" y1="460.0" x2="222.7" y2="198.5" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="237.8" y1="172.3" x2="298.2" y2="172.3" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="403.9" y1="460.0" x2="434.1" y2="407.7" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="403.9" y1="460.0" x2="237.8" y2="172.3" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="252.9" y1="146.2" x2="283.1" y2="146.2" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="434.1" y1="460.0" x2="449.2" y2="433.8" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="434.1" y1="460.0" x2="252.9" y2="146.2" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="268.0" y1="120.0" x2="268.0" y2="120.0" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="464.3" y1="460.0" x2="464.3" y2="460.0" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="464.3" y1="460.0" x2="268.0" y2="120.0" stroke="#e2e8f0" stroke-width="0.9"/>
+  <polygon points="252.9,355.4 207.6,276.9 298.2,276.9" fill="#0ea5e9" fill-opacity="0.18" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="5,3"/>
+  <circle cx="71.7" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="101.9" cy="460.0" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="132.1" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="162.3" cy="460.0" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="192.5" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="222.7" cy="460.0" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="252.9" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="283.1" cy="460.0" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="313.3" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="343.5" cy="460.0" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="373.7" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="403.9" cy="460.0" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="434.1" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="464.3" cy="460.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="86.8" cy="433.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="117.0" cy="433.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="147.2" cy="433.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="177.4" cy="433.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="207.6" cy="433.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="237.8" cy="433.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="268.0" cy="433.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="298.2" cy="433.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="328.4" cy="433.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="358.6" cy="433.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="388.8" cy="433.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="419.0" cy="433.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="449.2" cy="433.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="101.9" cy="407.7" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="132.1" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="162.3" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="192.5" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="222.7" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="252.9" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="283.1" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="313.3" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="343.5" cy="407.7" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="373.7" cy="407.7" r="3.0" fill="#cbd5e1"/>
+  <circle cx="403.9" cy="407.7" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="434.1" cy="407.7" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="117.0" cy="381.5" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="147.2" cy="381.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="177.4" cy="381.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="207.6" cy="381.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="237.8" cy="381.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="268.0" cy="381.5" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="298.2" cy="381.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="328.4" cy="381.5" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="358.6" cy="381.5" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="388.8" cy="381.5" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="419.0" cy="381.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="132.1" cy="355.4" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="162.3" cy="355.4" r="3.0" fill="#cbd5e1"/>
+  <circle cx="192.5" cy="355.4" r="3.0" fill="#cbd5e1"/>
+  <circle cx="222.7" cy="355.4" r="3.0" fill="#cbd5e1"/>
+  <circle cx="252.9" cy="355.4" r="7.4" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
+  <circle cx="283.1" cy="355.4" r="3.0" fill="#cbd5e1"/>
+  <circle cx="313.3" cy="355.4" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="343.5" cy="355.4" r="3.0" fill="#cbd5e1"/>
+  <circle cx="373.7" cy="355.4" r="3.0" fill="#cbd5e1"/>
+  <circle cx="403.9" cy="355.4" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="147.2" cy="329.2" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="177.4" cy="329.2" r="3.0" fill="#cbd5e1"/>
+  <circle cx="207.6" cy="329.2" r="3.0" fill="#cbd5e1"/>
+  <circle cx="237.8" cy="329.2" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="268.0" cy="329.2" r="3.0" fill="#cbd5e1"/>
+  <circle cx="298.2" cy="329.2" r="3.0" fill="#cbd5e1"/>
+  <circle cx="328.4" cy="329.2" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="358.6" cy="329.2" r="3.0" fill="#cbd5e1"/>
+  <circle cx="388.8" cy="329.2" r="3.0" fill="#cbd5e1"/>
+  <circle cx="162.3" cy="303.1" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="192.5" cy="303.1" r="3.0" fill="#cbd5e1"/>
+  <circle cx="222.7" cy="303.1" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="252.9" cy="303.1" r="3.0" fill="#cbd5e1"/>
+  <circle cx="283.1" cy="303.1" r="3.0" fill="#cbd5e1"/>
+  <circle cx="313.3" cy="303.1" r="3.0" fill="#cbd5e1"/>
+  <circle cx="343.5" cy="303.1" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="373.7" cy="303.1" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="177.4" cy="276.9" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="207.6" cy="276.9" r="7.4" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
+  <circle cx="237.8" cy="276.9" r="3.0" fill="#cbd5e1"/>
+  <circle cx="268.0" cy="276.9" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="298.2" cy="276.9" r="7.4" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
+  <circle cx="328.4" cy="276.9" r="3.0" fill="#cbd5e1"/>
+  <circle cx="358.6" cy="276.9" r="3.0" fill="#cbd5e1"/>
+  <circle cx="192.5" cy="250.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="222.7" cy="250.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="252.9" cy="250.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="283.1" cy="250.8" r="3.0" fill="#cbd5e1"/>
+  <circle cx="313.3" cy="250.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="343.5" cy="250.8" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="207.6" cy="224.6" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="237.8" cy="224.6" r="3.0" fill="#cbd5e1"/>
+  <circle cx="268.0" cy="224.6" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="298.2" cy="224.6" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="328.4" cy="224.6" r="3.0" fill="#cbd5e1"/>
+  <circle cx="222.7" cy="198.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="252.9" cy="198.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="283.1" cy="198.5" r="3.0" fill="#cbd5e1"/>
+  <circle cx="313.3" cy="198.5" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="237.8" cy="172.3" r="3.0" fill="#cbd5e1"/>
+  <circle cx="268.0" cy="172.3" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="298.2" cy="172.3" r="3.0" fill="#cbd5e1"/>
+  <circle cx="252.9" cy="146.2" r="3.0" fill="#cbd5e1"/>
+  <circle cx="283.1" cy="146.2" r="6.8" fill="#059669" stroke="#064e3b" stroke-width="1.3"/>
+  <circle cx="268.0" cy="120.0" r="3.0" fill="#cbd5e1"/>
+  <circle cx="52" cy="485" r="5.5" fill="#059669" stroke="#064e3b" stroke-width="1.1"/>
+  <text x="63" y="489" class="cap"><tspan class="cap-b">46 painted</tspan> (43.8% of 105)</text>
+  <circle cx="222" cy="485" r="5.5" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.1"/>
+  <text x="233" y="489" class="cap"><tspan class="cap-b">Legal downward triangle</tspan> (allowed)</text>
+  <rect x="532" y="68" width="408" height="214" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="548" y="90" class="ptitle">Forbidden vs. Allowed Triangle Orientations</text>
+  <text x="548" y="106" class="psub">ONLY upward grid-aligned triangles forbidden; downward &amp; tilted OK</text>
+  <polygon points="554.0,250.0 603.0,250.0 578.5,207.6" fill="#fee2e2" fill-opacity="0.65" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2"/>
+  <polygon points="615.2,186.3 603.0,165.1 627.5,165.1" fill="#d1fae5" fill-opacity="0.58" stroke="#059669" stroke-width="2"/>
+  <polygon points="627.5,250.0 664.2,228.8 627.5,207.6" fill="#d1fae5" fill-opacity="0.58" stroke="#059669" stroke-width="2"/>
+  <circle cx="554.0" cy="250.0" r="4.2" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/>
+  <circle cx="578.5" cy="250.0" r="2.2" fill="#94a3b8"/>
+  <circle cx="603.0" cy="250.0" r="4.2" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/>
+  <circle cx="627.5" cy="250.0" r="4.2" fill="#059669" stroke="#064e3b" stroke-width="1"/>
+  <circle cx="652.0" cy="250.0" r="2.2" fill="#94a3b8"/>
+  <circle cx="676.5" cy="250.0" r="2.2" fill="#94a3b8"/>
+  <circle cx="566.2" cy="228.8" r="2.2" fill="#94a3b8"/>
+  <circle cx="590.8" cy="228.8" r="2.2" fill="#94a3b8"/>
+  <circle cx="615.2" cy="228.8" r="2.2" fill="#94a3b8"/>
+  <circle cx="639.8" cy="228.8" r="2.2" fill="#94a3b8"/>
+  <circle cx="664.2" cy="228.8" r="4.2" fill="#059669" stroke="#064e3b" stroke-width="1"/>
+  <circle cx="578.5" cy="207.6" r="4.2" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/>
+  <circle cx="603.0" cy="207.6" r="2.2" fill="#94a3b8"/>
+  <circle cx="627.5" cy="207.6" r="4.2" fill="#059669" stroke="#064e3b" stroke-width="1"/>
+  <circle cx="652.0" cy="207.6" r="2.2" fill="#94a3b8"/>
+  <circle cx="590.8" cy="186.3" r="2.2" fill="#94a3b8"/>
+  <circle cx="615.2" cy="186.3" r="4.2" fill="#059669" stroke="#064e3b" stroke-width="1"/>
+  <circle cx="639.8" cy="186.3" r="2.2" fill="#94a3b8"/>
+  <circle cx="603.0" cy="165.1" r="4.2" fill="#059669" stroke="#064e3b" stroke-width="1"/>
+  <circle cx="627.5" cy="165.1" r="4.2" fill="#059669" stroke="#064e3b" stroke-width="1"/>
+  <circle cx="615.2" cy="143.9" r="2.2" fill="#94a3b8"/>
+  <text x="706" y="138" class="cap-b" fill="#dc2626">FORBIDDEN (red dashed):</text>
+  <text x="706" y="156" class="cap">- Upward grid-aligned triangles</text>
+  <text x="706" y="178" class="cap-b" fill="#059669">ALLOWED (green solid):</text>
+  <text x="706" y="196" class="cap">- Downward grid-aligned</text>
+  <text x="706" y="213" class="cap">- All tilted equilateral triangles</text>
+  <text x="706" y="236" class="cap-b">Forbidden 3-Clause Count:</text>
+  <text x="706" y="253" class="cap">C(N+1, 3) = 455 upward triangles</text>
+  <text x="706" y="268" class="cap">on side N = 14 (105 points).</text>
+  <rect x="532" y="294" width="408" height="206" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="548" y="316" class="ptitle">OEIS A157795(N-1) / A319158(N) Ladder &amp; Frontier (8 CNFs)</text>
+  <text x="548" y="332" class="psub">Known optimal N &lt;= 13; N = 14 LB 46 (+6 jump!) verified via SA &amp; Frobenius</text>
+  <rect x="548" y="348" width="90" height="74" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+  <text x="593.0" y="368" text-anchor="middle" class="mono" fill="#059669">N=11</text>
+  <text x="593.0" y="393" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#059669">31</text>
+  <text x="593.0" y="413" text-anchor="middle" font-family="ui-monospace,monospace" font-size="7.6" fill="#475569">31 SAT / 32 UNSAT*</text>
+  <rect x="644" y="348" width="90" height="74" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+  <text x="689.0" y="368" text-anchor="middle" class="mono" fill="#059669">N=12</text>
+  <text x="689.0" y="393" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#059669">35</text>
+  <text x="689.0" y="413" text-anchor="middle" font-family="ui-monospace,monospace" font-size="7.6" fill="#475569">35 SAT / 36 UNSAT</text>
+  <rect x="740" y="348" width="90" height="74" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+  <text x="785.0" y="368" text-anchor="middle" class="mono" fill="#059669">N=13</text>
+  <text x="785.0" y="393" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#059669">40</text>
+  <text x="785.0" y="413" text-anchor="middle" font-family="ui-monospace,monospace" font-size="7.6" fill="#475569">40 SAT / 41 UNSAT</text>
+  <rect x="836" y="348" width="90" height="74" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.3"/>
+  <text x="881.0" y="368" text-anchor="middle" class="mono" fill="#dc2626">N=14</text>
+  <text x="881.0" y="393" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#dc2626">46+</text>
+  <text x="881.0" y="413" text-anchor="middle" font-family="ui-monospace,monospace" font-size="7.6" fill="#475569">46 SAT / 47 OPEN</text>
+  <text x="548" y="446" class="cap">- <tspan class="cap-b">*Certified proof:</tspan> tri-up_n11_m32.lrat.xz (cake_lpr s VERIFIED UNSAT).</text>
+  <text x="548" y="464" class="cap">- <tspan class="cap-b">Calibration #1:</tspan> Frobenius solves 4/4 in 15.34 s total (fastest of 5).</text>
+  <text x="548" y="482" class="cap">- <tspan class="cap-b">Open target:</tspan> tri-up_n14_m47.cnf (6,137 vars, 12,565 clauses).</text>
+</svg>

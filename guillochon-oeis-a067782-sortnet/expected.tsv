@@ -1,0 +1,10 @@
+sortnet_n11_d7.cnf	UNSAT
+sortnet_n12_d7.cnf	UNSAT
+sortnet_n12_d8.cnf	SAT
+sortnet_n14_d8.cnf	UNSAT
+sortnet_n16_d8.cnf	UNSAT
+sortnet_n16_d9.cnf	SAT
+sortnet_n17_d10.cnf	SAT
+sortnet_n17_d9.cnf	UNSAT
+sortnet_n18_d10.cnf	UNKNOWN
+sortnet_n18_d11.cnf	SAT

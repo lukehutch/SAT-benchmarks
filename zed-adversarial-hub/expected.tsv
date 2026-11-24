@@ -1,0 +1,6 @@
+hub_20_unsat.aig	UNSAT
+hub_24_unsat.aig	UNSAT
+hub_30_unsat.aig	UNSAT
+hub_60_sat.aig	SAT
+hub_60_unsat.aig	UNSAT
+hub_80_unsat.aig	UNSAT

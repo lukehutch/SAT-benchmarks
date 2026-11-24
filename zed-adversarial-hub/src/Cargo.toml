@@ -1,0 +1,8 @@
+[package]
+name = "gen-zed-adversarial-hub"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-zed-adversarial-hub"
+path = "main.rs"

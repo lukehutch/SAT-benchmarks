@@ -14,8 +14,8 @@ Convention for ``expected.tsv`` (uniform across every collection):
         trailing ``.xz`` stripped (flat: ``foo.cnf``, ``bar.aig``, ``w5.solved.xcnf``,
         ``ARI056_1.mata``; nested: ``A067782/sortnet_n11_d7.cnf``), uniquely identifying
         the original instance regardless of format.
-      * URI-manifest instance collections (e.g. ``sat-competition-2024-2026-main-track/``):
-        ``<hash>.cnf`` matching every unique instance URI entry in ``*.uri``.
+      * URI-manifest instance collections (e.g. ``sat-competition-2002-2026-uris/``):
+        ``<hash>.cnf`` matching every unique instance URI entry in ``*.uri`` (recursively).
       * Archive-level ``.tar.gz`` URI catalogs (``satlib-archive-uris/``): no
         per-instance ``expected.tsv`` (its 331 committed instances live across the
         22 standalone ``satlib-*/`` collections, each with its own ``expected.tsv``).
@@ -216,8 +216,8 @@ def get_collection_orig_entries(col_dir: Path) -> tuple[str | None, list[str], l
     if col_dir.name in ARCHIVE_ONLY_URI_COLLECTIONS:
         return "archive-uri", [], errors
 
-    # Instance-level URI manifest collection (e.g. sat-competition-2024-2026-main-track)
-    uri_files = sorted(col_dir.glob("*.uri"))
+    # Instance-level URI manifest collection (e.g. sat-competition-2002-2026-uris/uris/*.uri)
+    uri_files = sorted(col_dir.rglob("*.uri"))
     if uri_files:
         hashes: set[str] = set()
         for uf in uri_files:
@@ -518,38 +518,85 @@ def cross_check_readmes(
     return checked, mismatches
 
 
+# Legacy collection names from pre-reorganization cache JSONs mapped to their current split/merged targets.
+LEGACY_COLLECTION_MAP: dict[str, tuple[str, ...]] = {
+    "dense-solver-synthetic": ("dense-solver-synthetic-chessboard", "dense-solver-synthetic-php"),
+    "zed-adversarial-hub-php": ("zed-adversarial-hub", "zed-adversarial-php"),
+    "vzhn-sat-inv-matrix": ("vzhn-sat-inv-matrix-int", "vzhn-sat-inv-matrix-mod"),
+    "sat-competition-2023-2024-selected": ("sat-competition-2002-2026-uris",),
+    "sat-competition-2024-2026-main-track": ("sat-competition-2002-2026-uris",),
+    "guillochon-oeis-sat-instances": (
+        "guillochon-oeis-a067782-sortnet",
+        "guillochon-oeis-a171081-vdw",
+        "guillochon-oeis-a250000-queens",
+        "guillochon-oeis-a350304-zarankiewicz",
+        "guillochon-oeis-grid-sq-any",
+        "guillochon-oeis-grid-sq-axis",
+        "guillochon-oeis-grid-tri-any",
+        "guillochon-oeis-grid-tri-axis",
+        "guillochon-oeis-grid-tri-up",
+    ),
+}
+
+
 def cross_check_cache_jsons(
     cache_dir: Path,
     by_col: dict[str, dict[str, tuple[str, str]]],
     strict_legacy_cache: bool = False,
+    repo_root: Path = REPO_ROOT,
 ) -> tuple[int, list[str], list[str]]:
     """Cross-check cached solver JSONs in ~/.cache/frobenius against expected.tsv."""
     checked = 0
     mismatches: list[str] = []
     notes: list[str] = []
 
+    sc23_24_alias: dict[str, str] = {}
+    sc_manifest = repo_root / "sat-competition-2002-2026-uris" / "src" / "sc23_24_manifest.json"
+    if sc_manifest.exists():
+        try:
+            mdata = json.loads(sc_manifest.read_text(encoding="utf-8"))
+            for entry in mdata.get("sat_competition_flat_cnfs", []):
+                nm = entry.get("name")
+                gh = entry.get("gbd_hash")
+                if isinstance(nm, str) and isinstance(gh, str):
+                    sc23_24_alias[nm] = f"{gh}.cnf"
+        except Exception:
+            pass
+
     def check_one(src_file: str, section: str, col: str, stem_or_name: str, solver: str, raw_v: object) -> None:
         nonlocal checked
         rv = norm_verdict(raw_v)
         if rv not in ("SAT", "UNSAT"):
             return
-        if col not in by_col:
+        candidate_cols = (col,) if col in by_col else LEGACY_COLLECTION_MAP.get(col, ())
+        if not candidate_cols:
             return
         st = strip_all_exts(stem_or_name)
-        hit = by_col[col].get(st) or by_col[col].get(stem_or_name)
-        if not hit:
+        mapped_name = sc23_24_alias.get(st)
+        resolved_col: str | None = None
+        hit: tuple[str, str] | None = None
+        for cand in candidate_cols:
+            cm = by_col.get(cand)
+            if not cm:
+                continue
+            h = cm.get(st) or cm.get(stem_or_name) or (cm.get(mapped_name) if mapped_name else None)
+            if h:
+                resolved_col = cand
+                hit = h
+                break
+        if not hit or resolved_col is None:
             return
         inst_key, exp_v = hit
         checked += 1
         if exp_v != rv:
-            if not strict_legacy_cache and (src_file, section, col, st) in KNOWN_PRECOMMIT_CACHE_ARTIFACTS:
+            if not strict_legacy_cache and (src_file, section, resolved_col, st) in KNOWN_PRECOMMIT_CACHE_ARTIFACTS:
                 notes.append(
-                    f"[legacy pre-commit cache note] {src_file}:{section} {col}/{inst_key} ({solver}): "
+                    f"[legacy pre-commit cache note] {src_file}:{section} {resolved_col}/{inst_key} ({solver}): "
                     f"recorded {rv} before commit 513ab8aa fixed export_qdist_cnf.py (expected.tsv={exp_v})"
                 )
                 return
             mismatches.append(
-                f"Cache mismatch in {src_file}:{section} {col}/{inst_key} ({solver}): "
+                f"Cache mismatch in {src_file}:{section} {resolved_col}/{inst_key} ({solver}): "
                 f"solver={rv}, expected.tsv={exp_v}"
             )
 
@@ -625,7 +672,7 @@ def cross_check_cache_jsons(
         d = json.loads(p.read_text(encoding="utf-8"))
         map_col = {
             "dense_public_30": ["dense-solver-public"],
-            "dense_instances_20": ["dense-solver-synthetic"],
+            "dense_instances_20": ["dense-solver-synthetic-chessboard", "dense-solver-synthetic-php"],
             "pretolani_8": ["pretolani-pret"],
             "qdistsat_6": ["qdistsat-qldpc"],
             "qdistsat_xcnf_6": ["qdistsat-qldpc"],
@@ -654,7 +701,7 @@ def cross_check_cache_jsons(
                     check_one(p.name, section, target_col, fn, solver, rv)
 
     # 6. Certified SC 2024-2026 JSONs (optional if present)
-    sc_col = "sat-competition-2024-2026-main-track"
+    sc_col = "sat-competition-2002-2026-uris"
     if sc_col in by_col:
         for fn in ("sc25_26_cake_lpr_300s.json", "sc24_cake_lpr_300s.json"):
             p = cache_dir / fn
@@ -995,7 +1042,14 @@ def check_hygiene(repo_root: Path, cols: list[str]) -> list[str]:
                     or "_" in tok
                     or tok.startswith(("--", "./"))
                     or tok.endswith((".py", ".c", ".rs", ".xz", ".cnf", ".aig", ".xcnf", ".anf", ".mata", ".json", ".tsv", ".csv", ".uri", ".gz", ".md"))
-                    or tok in ("dense-solver-public", "dense-solver-synthetic", "f2-frobenius-circulants", "frobenius-challenge-v2")
+                    or tok in (
+                        "dense-solver-public",
+                        "dense-solver-synthetic",
+                        "dense-solver-synthetic-chessboard",
+                        "dense-solver-synthetic-php",
+                        "f2-frobenius-circulants",
+                        "frobenius-challenge-v2",
+                    )
                 ):
                     continue
                 errors.append(f"Backticked solver name `{tok}` in {rel}:{lineno}")
@@ -1077,7 +1131,7 @@ def main() -> int:
     cache_notes: list[str] = []
     if not args.skip_cache and args.cache_dir.is_dir():
         cache_checked, cache_mismatches, cache_notes = cross_check_cache_jsons(
-            args.cache_dir, by_col, strict_legacy_cache=args.strict_legacy_cache
+            args.cache_dir, by_col, strict_legacy_cache=args.strict_legacy_cache, repo_root=repo_root
         )
 
     hygiene_errors = check_hygiene(repo_root, cols) if args.check_hygiene else []
