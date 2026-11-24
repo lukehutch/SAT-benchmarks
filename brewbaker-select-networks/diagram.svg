@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520" role="img" aria-label="Fixed and Adaptive Selection Network Synthesis (brewbaker-select-networks)">
+<defs>
+  <marker id="arr-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0f766e"/>
+  </marker>
+  <marker id="arr-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#b45309"/>
+  </marker>
+</defs>
+<rect x="2" y="2" width="956" height="516" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Fixed &amp; Adaptive Selection Network Synthesis (brewbaker-select-networks)</text>
+  <text x="26" y="53" font-size="11.6" fill="#475569">Data-oblivious comparator selectors vs. adaptive comparison decision trees — exact adaptivity gap V&#x2083;(5) = 6 &lt; 7 (Chad Brewbaker, sat_challenges.py select)</text>
+  <rect x="748" y="16" width="186" height="24" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.2"/>
+  <text x="841" y="32" text-anchor="middle" font-size="10.8" font-weight="700" fill="#0f766e">12 Instances &#x00B7; 6 SAT / 6 UNSAT</text>
+  <line x1="24" y1="65" x2="936" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="24" y="78" width="440" height="278" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="24" y="78" width="440" height="28" rx="10" fill="#1d4ed8"/>
+  <rect x="24" y="94" width="440" height="12" fill="#1d4ed8"/>
+  <text x="38" y="97" font-size="11.6" font-weight="700" fill="#ffffff">1A. Fixed Median-of-5 Network: K = 7 SAT (K = 6 UNSAT)</text>
+  <text x="38" y="124" font-size="9.5" fill="#475569">Oblivious sequence (select 5 3 7); boundary layers: C(5,2)+C(5,3) = 20 vectors</text>
+  <line x1="68" y1="152" x2="412" y2="152" stroke="#cbd5e1" stroke-width="1.7"/>
+  <text x="60" y="155.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#334155">x0</text>
+  <text x="420" y="155.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#94a3b8">w0</text>
+  <line x1="68" y1="186" x2="412" y2="186" stroke="#cbd5e1" stroke-width="1.7"/>
+  <text x="60" y="189.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#334155">x1</text>
+  <text x="420" y="189.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#94a3b8">w1</text>
+  <line x1="68" y1="220" x2="412" y2="220" stroke="#16a34a" stroke-width="2.6"/>
+  <text x="60" y="223.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#334155">x2</text>
+  <text x="420" y="223.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#15803d">med</text>
+  <line x1="68" y1="254" x2="412" y2="254" stroke="#cbd5e1" stroke-width="1.7"/>
+  <text x="60" y="257.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#334155">x3</text>
+  <text x="420" y="257.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#94a3b8">w3</text>
+  <line x1="68" y1="288" x2="412" y2="288" stroke="#cbd5e1" stroke-width="1.7"/>
+  <text x="60" y="291.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#334155">x4</text>
+  <text x="420" y="291.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#94a3b8">w4</text>
+  <line x1="94" y1="152" x2="94" y2="186" stroke="#2563eb" stroke-width="2.4"/>
+  <circle cx="94" cy="152" r="4.2" fill="#2563eb"/>
+  <circle cx="94" cy="186" r="4.2" fill="#2563eb"/>
+  <text x="94" y="310" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#2563eb">c0</text>
+  <line x1="142" y1="220" x2="142" y2="254" stroke="#2563eb" stroke-width="2.4"/>
+  <circle cx="142" cy="220" r="4.2" fill="#2563eb"/>
+  <circle cx="142" cy="254" r="4.2" fill="#2563eb"/>
+  <text x="142" y="310" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#2563eb">c1</text>
+  <line x1="190" y1="152" x2="190" y2="220" stroke="#7c3aed" stroke-width="2.4"/>
+  <circle cx="190" cy="152" r="4.2" fill="#7c3aed"/>
+  <circle cx="190" cy="220" r="4.2" fill="#7c3aed"/>
+  <text x="190" y="310" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#7c3aed">c2</text>
+  <line x1="238" y1="186" x2="238" y2="254" stroke="#7c3aed" stroke-width="2.4"/>
+  <circle cx="238" cy="186" r="4.2" fill="#7c3aed"/>
+  <circle cx="238" cy="254" r="4.2" fill="#7c3aed"/>
+  <text x="238" y="310" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#7c3aed">c3</text>
+  <line x1="286" y1="186" x2="286" y2="220" stroke="#0d9488" stroke-width="2.4"/>
+  <circle cx="286" cy="186" r="4.2" fill="#0d9488"/>
+  <circle cx="286" cy="220" r="4.2" fill="#0d9488"/>
+  <text x="286" y="310" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0d9488">c4</text>
+  <line x1="334" y1="220" x2="334" y2="288" stroke="#d97706" stroke-width="2.4"/>
+  <circle cx="334" cy="220" r="4.2" fill="#d97706"/>
+  <circle cx="334" cy="288" r="4.2" fill="#d97706"/>
+  <text x="334" y="310" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#d97706">c5</text>
+  <line x1="382" y1="186" x2="382" y2="220" stroke="#16a34a" stroke-width="2.4"/>
+  <circle cx="382" cy="186" r="4.2" fill="#16a34a"/>
+  <circle cx="382" cy="220" r="4.2" fill="#16a34a"/>
+  <text x="382" y="310" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#16a34a">c6</text>
+  <rect x="38" y="318" width="412" height="27" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.9"/>
+  <text x="244" y="335" text-anchor="middle" font-size="9.2" fill="#1e40af">c0..c3 eliminate min(x0..x3) &amp; max(x0..x3); c4..c6 take median(w1, w2, x4) &#x2192; wire 2.</text>
+  <rect x="478" y="78" width="458" height="278" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="478" y="78" width="458" height="28" rx="10" fill="#0f766e"/>
+  <rect x="478" y="94" width="458" height="12" fill="#0f766e"/>
+  <text x="492" y="97" font-size="11.6" font-weight="700" fill="#ffffff">1B. Adaptive Median-of-5 Decision Tree: K = 6 SAT (K = 5 UNSAT)</text>
+  <text x="492" y="124" font-size="9.5" fill="#475569">Branching binary tree (select 5 3 6 --adaptive): 5! = 120 perms routed across 2^6 = 64 leaves</text>
+  <rect x="543.0" y="140.0" width="126.0" height="28.0" rx="6" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.1"/>
+  <text x="606.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#0f766e">1. cmp(x0, x1)</text>
+  <text x="606.0" y="164.0" text-anchor="middle" font-size="7.8" fill="#475569">a &lt; b</text>
+  <rect x="735.0" y="140.0" width="126.0" height="28.0" rx="6" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.1"/>
+  <text x="798.0" y="152.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#0f766e">2. cmp(x2, x3)</text>
+  <text x="798.0" y="164.0" text-anchor="middle" font-size="7.8" fill="#475569">c &lt; d</text>
+  <line x1="669" y1="154" x2="730" y2="154" stroke="#0f766e" stroke-width="1.3" marker-end="url(#arr-t)"/>
+  <rect x="623.0" y="186.0" width="166.0" height="28.0" rx="6" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.1"/>
+  <text x="706.0" y="198.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#3730a3">3. cmp(a, c)  [root split]</text>
+  <text x="706.0" y="210.0" text-anchor="middle" font-size="7.8" fill="#475569">drops smaller (cannot be med)</text>
+  <line x1="798" y1="168" x2="743" y2="183" stroke="#0f766e" stroke-width="1.3" marker-end="url(#arr-t)"/>
+  <rect x="534.0" y="232.0" width="152.0" height="28.0" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.1"/>
+  <text x="610.0" y="244.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#b45309">4. cmp(b, x4) -&gt; u &lt; v</text>
+  <text x="610.0" y="256.0" text-anchor="middle" font-size="7.8" fill="#475569">a &lt; c: adapts to winner!</text>
+  <rect x="748.0" y="232.0" width="148.0" height="28.0" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.1"/>
+  <text x="822.0" y="244.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#475569">4'. cmp(d, x4) -&gt; u' &lt; v'</text>
+  <text x="822.0" y="256.0" text-anchor="middle" font-size="7.8" fill="#475569">c &lt; a: symmetric branch</text>
+  <line x1="664" y1="214" x2="626" y2="229" stroke="#0f766e" stroke-width="1.3" marker-end="url(#arr-t)"/>
+  <line x1="748" y1="214" x2="802" y2="229" stroke="#b45309" stroke-width="1.3" marker-end="url(#arr-f)"/>
+  <text x="618" y="222" font-size="8.2" font-weight="700" fill="#0f766e">a&lt;c</text>
+  <text x="794" y="222" font-size="8.2" font-weight="700" fill="#b45309">c&lt;a</text>
+  <rect x="543.0" y="278.0" width="134.0" height="24.0" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.1"/>
+  <text x="610.0" y="293.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#6d28d9">5. cmp(c, u)</text>
+  <line x1="610" y1="260" x2="610" y2="275" stroke="#0f766e" stroke-width="1.3" marker-end="url(#arr-t)"/>
+  <rect x="506.0" y="318.0" width="108.0" height="24.0" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.1"/>
+  <text x="560.0" y="333.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#166534">6. min(d, u)</text>
+  <rect x="636.0" y="318.0" width="108.0" height="24.0" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.1"/>
+  <text x="690.0" y="333.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#166534">6. min(c, v)</text>
+  <line x1="586" y1="302" x2="566" y2="315" stroke="#0f766e" stroke-width="1.3" marker-end="url(#arr-t)"/>
+  <line x1="634" y1="302" x2="674" y2="315" stroke="#b45309" stroke-width="1.3" marker-end="url(#arr-f)"/>
+  <text x="548" y="311" font-size="8" font-weight="700" fill="#0f766e">c&lt;u</text>
+  <text x="670" y="309" font-size="8" font-weight="700" fill="#b45309">u&lt;c</text>
+  <rect x="762" y="278" width="160" height="66" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="842" y="295" text-anchor="middle" font-size="9.4" font-weight="700" fill="#0f766e">Adaptivity Advantage</text>
+  <text x="842" y="310" text-anchor="middle" font-size="8.6" fill="#334155">N=4, R=2: 4 vs 5 fixed (-1)</text>
+  <text x="842" y="324" text-anchor="middle" font-size="8.6" fill="#334155">N=5, R=3: 6 vs 7 fixed (-1)</text>
+  <text x="842" y="338" text-anchor="middle" font-size="8.6" fill="#334155">N=6, R=3: 8 vs 10 fixed (-2)</text>
+  <rect x="24" y="370" width="912" height="132" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="38" y="391" font-size="11.8" font-weight="700" fill="#0f172a">2. Twelve-Instance Fixed &amp; Adaptive Selection Benchmark Ladder (6 SAT / 6 UNSAT)</text>
+  <rect x="38.0" y="404" width="140" height="82" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.1"/>
+  <text x="108.0" y="421" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#2563eb">Fixed (4, 2)</text>
+  <text x="108.0" y="437" text-anchor="middle" font-size="8.7" font-weight="700" fill="#0f172a">k=4 UNSAT / k=5 SAT</text>
+  <text x="108.0" y="454" text-anchor="middle" font-size="7.9" fill="#334155">173-216 vars | 1.3K-1.6K cls</text>
+  <text x="108.0" y="472" text-anchor="middle" font-size="8.0" fill="#475569">U2(4) = 5</text>
+  <rect x="186.8" y="404" width="140" height="82" rx="7" fill="#eef2ff" stroke="#1d4ed8" stroke-width="1.1"/>
+  <text x="256.8" y="421" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#1d4ed8">Fixed (5, 3)</text>
+  <text x="256.8" y="437" text-anchor="middle" font-size="8.7" font-weight="700" fill="#0f172a">k=6 UNSAT / k=7 SAT</text>
+  <text x="256.8" y="454" text-anchor="middle" font-size="7.9" fill="#334155">655-764 vars | 7.0K-8.3K cls</text>
+  <text x="256.8" y="472" text-anchor="middle" font-size="8.0" fill="#475569">Chad's fixed median-5</text>
+  <rect x="335.6" y="404" width="140" height="82" rx="7" fill="#faf5ff" stroke="#6d28d9" stroke-width="1.1"/>
+  <text x="405.6" y="421" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#6d28d9">Fixed (6, 3) &amp; (7, 4)</text>
+  <text x="405.6" y="437" text-anchor="middle" font-size="8.7" font-weight="700" fill="#0f172a">k=8 UNSAT; k=10,13 SAT</text>
+  <text x="405.6" y="454" text-anchor="middle" font-size="7.9" fill="#334155">1.8K-6.7K vars | 25K-119K cls</text>
+  <text x="405.6" y="472" text-anchor="middle" font-size="8.0" fill="#475569">3rd-of-6 &amp; median-7</text>
+  <rect x="484.4" y="404" width="140" height="82" rx="7" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.1"/>
+  <text x="554.4" y="421" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#0f766e">Adaptive (4, 2)</text>
+  <text x="554.4" y="437" text-anchor="middle" font-size="8.7" font-weight="700" fill="#0f172a">k=3 UNSAT / k=4 SAT</text>
+  <text x="554.4" y="454" text-anchor="middle" font-size="7.9" fill="#334155">446-950 vars | 4!=24 perms</text>
+  <text x="554.4" y="472" text-anchor="middle" font-size="8.0" fill="#475569">V2(4) = 4 (&lt; 5 fixed)</text>
+  <rect x="633.2" y="404" width="140" height="82" rx="7" fill="#ecfdf5" stroke="#047857" stroke-width="1.1"/>
+  <text x="703.2" y="421" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#047857">Adaptive (5, 3)</text>
+  <text x="703.2" y="437" text-anchor="middle" font-size="8.7" font-weight="700" fill="#0f172a">k=5 UNSAT / k=6 SAT</text>
+  <text x="703.2" y="454" text-anchor="middle" font-size="7.9" fill="#334155">8.3K-16.9K vars | 5!=120</text>
+  <text x="703.2" y="472" text-anchor="middle" font-size="8.0" fill="#475569">Chad's adaptive med-5</text>
+  <rect x="782.0" y="404" width="140" height="82" rx="7" fill="#fff1f2" stroke="#be123c" stroke-width="1.1"/>
+  <text x="852.0" y="421" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="700" fill="#be123c">Adaptive (6, 3)</text>
+  <text x="852.0" y="437" text-anchor="middle" font-size="8.7" font-weight="700" fill="#0f172a">k=7 UNSAT frontier</text>
+  <text x="852.0" y="454" text-anchor="middle" font-size="7.9" fill="#334155">188K vars | 282K cls | 6!=720</text>
+  <text x="852.0" y="472" text-anchor="middle" font-size="8.0" fill="#475569">V3(6) = 8 lower bound</text>
+</g>
+</svg>

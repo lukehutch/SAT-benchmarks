@@ -1,0 +1,8 @@
+sort_n4_k4.cnf	UNSAT
+sort_n4_k5.cnf	SAT
+sort_n5_k8.cnf	UNSAT
+sort_n5_k9.cnf	SAT
+sort_n6_k11.cnf	UNSAT
+sort_n6_k12.cnf	SAT
+sort_n7_k15.cnf	UNSAT
+sort_n7_k16.cnf	SAT

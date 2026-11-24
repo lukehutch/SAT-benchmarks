@@ -1,0 +1,10 @@
+dot_n3_k2_m4.cnf	UNSAT
+dot_n3_k3_m4.cnf	SAT
+dot_n5_k4_m2.cnf	UNSAT
+dot_n5_k4_m3.cnf	UNSAT
+dot_n5_k4_m4.cnf	UNSAT
+dot_n5_k5_m2.cnf	SAT
+dot_n5_k5_m3.cnf	SAT
+dot_n5_k5_m4.cnf	SAT
+dot_n6_k5_m2.cnf	UNSAT
+dot_n6_k6_m2.cnf	SAT

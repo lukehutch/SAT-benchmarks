@@ -1,0 +1,10 @@
+matmul_2x2x1_k3_m2.cnf	UNSAT
+matmul_2x2x1_k4_m2.cnf	SAT
+matmul_2x2x2_k6_m2.cnf	UNSAT
+matmul_2x2x2_k6_m3.cnf	UNSAT
+matmul_2x2x2_k7_m2.cnf	SAT
+matmul_2x2x2_k7_m3.cnf	SAT
+matmul_2x2x2_k7_m4.cnf	SAT
+matmul_2x2x3_k10_m2.cnf	UNSAT
+matmul_2x2x3_k11_m2.cnf	SAT
+matmul_2x3x2_k11_m2.cnf	SAT

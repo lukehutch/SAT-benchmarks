@@ -1,0 +1,8 @@
+cross_k4_m2.cnf	UNSAT
+cross_k4_m3.cnf	UNSAT
+cross_k4_m4.cnf	UNSAT
+cross_k4_m5.cnf	UNSAT
+cross_k5_m2.cnf	SAT
+cross_k5_m3.cnf	SAT
+cross_k5_m4.cnf	SAT
+cross_k5_m5.cnf	SAT

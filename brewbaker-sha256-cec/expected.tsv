@@ -1,0 +1,13 @@
+sha256_cec_r16_b4.cnf	UNSAT
+sha256_cec_r1_b4.cnf	UNSAT
+sha256_cec_r2_b2.cnf	UNSAT
+sha256_cec_r2_b4.cnf	UNSAT
+sha256_cec_r32_b4.cnf	UNSAT
+sha256_cec_r4_b1.cnf	UNSAT
+sha256_cec_r4_b4.cnf	UNSAT
+sha256_cec_r64_b4.cnf	UNSAT
+sha256_cec_r8_b1.cnf	UNSAT
+sha256_cec_r8_b4.cnf	UNSAT
+sha256_trace_r64_abc.cnf	SAT
+sha256_trace_r64_abc_expect_flip.cnf	UNSAT
+sha256_trace_r64_abc_expect_ok.cnf	SAT

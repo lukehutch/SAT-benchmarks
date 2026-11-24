@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520" role="img" aria-label="Bilinear Rank-K Matrix Multiplication Tensor Synthesis (brewbaker-tensor-matmul)">
+<rect x="2" y="2" width="956" height="516" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <text x="26" y="34" font-size="17.5" font-weight="700" fill="#0f172a">Bilinear Rank-K Matrix Multiplication Tensor Synthesis (brewbaker-tensor-matmul)</text>
+  <text x="26" y="53" font-size="11.6" fill="#475569">Brent coefficient tensor equations &#x03A3; U[t,i]&#x00B7;V[t,j]&#x00B7;W[t,o] &#x2261; T[i,j,o] (mod m) (Chad Brewbaker, sat_challenges.py matmul)</text>
+  <rect x="748" y="16" width="186" height="24" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="841" y="32" text-anchor="middle" font-size="10.8" font-weight="700" fill="#1d4ed8">10 Instances &#x00B7; 6 SAT / 4 UNSAT</text>
+  <line x1="24" y1="65" x2="936" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="24" y="78" width="576" height="278" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="24" y="78" width="576" height="28" rx="10" fill="#1d4ed8"/>
+  <rect x="24" y="94" width="576" height="12" fill="#1d4ed8"/>
+  <text x="38" y="97" font-size="11.8" font-weight="700" fill="#ffffff">1. Verified Strassen Rank-7 Decomposition of &lt;2, 2, 2&gt; (64/64 Brent Equations Exact)</text>
+  <text x="42" y="126" font-size="10.2" font-weight="700" fill="#334155">Term</text>
+  <text x="90" y="126" font-size="10.2" font-weight="700" fill="#1d4ed8">Left Form U[t]&#x00B7;A</text>
+  <text x="216" y="126" font-size="10.2" font-weight="700" fill="#0f766e">Right Form V[t]&#x00B7;B</text>
+  <text x="342" y="126" font-size="10.2" font-weight="700" fill="#6d28d9">U / V / W (&#x2208;&#x007B;&#x2212;1,0,1&#x007D;)</text>
+  <text x="498" y="126" font-size="10.2" font-weight="700" fill="#b45309">Output W[t]</text>
+  <line x1="36" y1="133" x2="588" y2="133" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="36" y="138" width="552" height="23" rx="4" fill="#ffffff"/>
+  <rect x="40" y="141" width="32" height="17" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="0.9"/>
+  <text x="56" y="153" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1e40af">M1</text>
+  <text x="90" y="153" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(a00 + a11)</text>
+  <text x="216" y="153" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(b00 + b11)</text>
+  <text x="342" y="153" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#5b21b6">+..+ | +..+ | +..+</text>
+  <text x="498" y="153" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="600" fill="#92400e">+C00, +C11</text>
+  <rect x="36" y="166" width="552" height="23" rx="4" fill="#f1f5f9"/>
+  <rect x="40" y="169" width="32" height="17" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="0.9"/>
+  <text x="56" y="181" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1e40af">M2</text>
+  <text x="90" y="181" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(a10 + a11)</text>
+  <text x="216" y="181" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">b00</text>
+  <text x="342" y="181" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#5b21b6">..++ | +... | ..+-</text>
+  <text x="498" y="181" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="600" fill="#92400e">+C10, -C11</text>
+  <rect x="36" y="194" width="552" height="23" rx="4" fill="#ffffff"/>
+  <rect x="40" y="197" width="32" height="17" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="0.9"/>
+  <text x="56" y="209" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1e40af">M3</text>
+  <text x="90" y="209" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">a00</text>
+  <text x="216" y="209" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(b01 - b11)</text>
+  <text x="342" y="209" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#5b21b6">+... | .+.- | .+.+</text>
+  <text x="498" y="209" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="600" fill="#92400e">+C01, +C11</text>
+  <rect x="36" y="222" width="552" height="23" rx="4" fill="#f1f5f9"/>
+  <rect x="40" y="225" width="32" height="17" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="0.9"/>
+  <text x="56" y="237" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1e40af">M4</text>
+  <text x="90" y="237" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">a11</text>
+  <text x="216" y="237" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(b10 - b00)</text>
+  <text x="342" y="237" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#5b21b6">...+ | -.+. | +.+.</text>
+  <text x="498" y="237" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="600" fill="#92400e">+C00, +C10</text>
+  <rect x="36" y="250" width="552" height="23" rx="4" fill="#ffffff"/>
+  <rect x="40" y="253" width="32" height="17" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="0.9"/>
+  <text x="56" y="265" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1e40af">M5</text>
+  <text x="90" y="265" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(a00 + a01)</text>
+  <text x="216" y="265" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">b11</text>
+  <text x="342" y="265" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#5b21b6">++.. | ...+ | -+..</text>
+  <text x="498" y="265" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="600" fill="#92400e">-C00, +C01</text>
+  <rect x="36" y="278" width="552" height="23" rx="4" fill="#f1f5f9"/>
+  <rect x="40" y="281" width="32" height="17" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="0.9"/>
+  <text x="56" y="293" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1e40af">M6</text>
+  <text x="90" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(a10 - a00)</text>
+  <text x="216" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(b00 + b01)</text>
+  <text x="342" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#5b21b6">-.+. | ++.. | ...+</text>
+  <text x="498" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="600" fill="#92400e">+C11</text>
+  <rect x="36" y="306" width="552" height="23" rx="4" fill="#ffffff"/>
+  <rect x="40" y="309" width="32" height="17" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="0.9"/>
+  <text x="56" y="321" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1e40af">M7</text>
+  <text x="90" y="321" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(a01 - a11)</text>
+  <text x="216" y="321" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0f172a">(b10 + b11)</text>
+  <text x="342" y="321" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#5b21b6">.+.- | ..++ | +...</text>
+  <text x="498" y="321" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" font-weight="600" fill="#92400e">+C00</text>
+  <text x="38" y="347" font-size="9.6" fill="#475569">Because all entries lie in &#x007B;&#x2212;1, 0, +1&#x007D;, this rank-7 witness reduces validly into EVERY ring &#x2124;/m&#x2124; (m &#x2265; 2).</text>
+  <rect x="614" y="78" width="322" height="134" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+  <text x="628" y="100" font-size="11.8" font-weight="700" fill="#166534">2. Linear Output Reconstruction</text>
+  <text x="632" y="123" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.4" font-weight="600" fill="#0f172a">C00 = M1 + M4 - M5 + M7</text>
+  <text x="632" y="141" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.4" font-weight="600" fill="#0f172a">C01 = M3 + M5</text>
+  <text x="632" y="159" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.4" font-weight="600" fill="#0f172a">C10 = M2 + M4</text>
+  <text x="632" y="177" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.4" font-weight="600" fill="#0f172a">C11 = M1 - M2 + M3 + M6</text>
+  <text x="628" y="201" font-size="9.5" fill="#15803d">Winograd (1971) / Hopcroft-Kerr (1971): R(2,2,2) = 7.</text>
+  <rect x="614" y="222" width="322" height="134" rx="10" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  <text x="628" y="244" font-size="11.8" font-weight="700" fill="#6d28d9">3. Ring Encoding in sat_challenges.py</text>
+  <text x="628" y="266.0" font-size="9.6" font-weight="700" fill="#5b21b6">m = 2 (GF(2)):</text>
+  <text x="712" y="266.0" font-size="9.5" fill="#1e293b">1 bit per coeff; mul = and2 (3 cls),</text>
+  <text x="712" y="283.5" font-size="9.5" fill="#1e293b">add = xor2 (4 cls -> native XCNF XORs).</text>
+  <text x="628" y="301.0" font-size="9.6" font-weight="700" fill="#5b21b6">m >= 3 (Z/mZ):</text>
+  <text x="712" y="301.0" font-size="9.5" fill="#1e293b">m one-hot vars + EO(m) per coeff;</text>
+  <text x="712" y="318.5" font-size="9.5" fill="#1e293b">mul/add = m^2 direct table implications.</text>
+  <text x="628" y="336.0" font-size="9.6" font-weight="700" fill="#5b21b6">Symmetry:</text>
+  <text x="712" y="336.0" font-size="9.5" fill="#1e293b">K! term permutations x GL scaling.</text>
+  <rect x="24" y="370" width="912" height="132" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="38" y="391" font-size="12" font-weight="700" fill="#0f172a">4. Exact Bilinear Rank Optimality Brackets (10 Instances across &lt;A, B, C&gt; and Moduli m &#x2208; &#x007B;2, 3, 4&#x007D;)</text>
+  <rect x="38" y="404" width="169" height="82" rx="7" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.2"/>
+  <text x="122.5" y="422" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="700" fill="#0f766e">&lt;2, 2, 1&gt; mod 2</text>
+  <text x="122.5" y="439" text-anchor="middle" font-size="10.2" font-weight="700" fill="#0f172a">R* = 4</text>
+  <text x="122.5" y="456" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#334155">k=3 UNSAT / k=4 SAT</text>
+  <text x="122.5" y="473" text-anchor="middle" font-size="8.4" fill="#475569">129-177 vars | 32-48 XORs</text>
+  <rect x="217" y="404" width="169" height="82" rx="7" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.2"/>
+  <text x="301.5" y="422" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="700" fill="#1d4ed8">&lt;2, 2, 2&gt; mod 2</text>
+  <text x="301.5" y="439" text-anchor="middle" font-size="10.2" font-weight="700" fill="#0f172a">R* = 7 (Strassen)</text>
+  <text x="301.5" y="456" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#334155">k=6 UNSAT / k=7 SAT</text>
+  <text x="301.5" y="473" text-anchor="middle" font-size="8.4" fill="#475569">873-1,029 vars | 320-384 XORs</text>
+  <rect x="396" y="404" width="169" height="82" rx="7" fill="#faf5ff" stroke="#6d28d9" stroke-width="1.2"/>
+  <text x="480.5" y="422" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="700" fill="#6d28d9">&lt;2, 2, 2&gt; mod 3</text>
+  <text x="480.5" y="439" text-anchor="middle" font-size="10.2" font-weight="700" fill="#0f172a">R* = 7 (Strassen)</text>
+  <text x="480.5" y="456" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#334155">k=6 UNSAT / k=7 SAT</text>
+  <text x="480.5" y="473" text-anchor="middle" font-size="8.4" fill="#475569">2,617-3,085 vars | one-hot EO(3)</text>
+  <rect x="575" y="404" width="169" height="82" rx="7" fill="#fffbeb" stroke="#b45309" stroke-width="1.2"/>
+  <text x="659.5" y="422" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="700" fill="#b45309">&lt;2, 2, 2&gt; mod 4</text>
+  <text x="659.5" y="439" text-anchor="middle" font-size="10.2" font-weight="700" fill="#0f172a">R* = 7 (Z/4Z)</text>
+  <text x="659.5" y="456" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#334155">k=7 SAT</text>
+  <text x="659.5" y="473" text-anchor="middle" font-size="8.4" fill="#475569">4,113 vars | 22,365 clauses</text>
+  <rect x="754" y="404" width="169" height="82" rx="7" fill="#fff1f2" stroke="#be123c" stroke-width="1.2"/>
+  <text x="838.5" y="422" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" font-weight="700" fill="#be123c">&lt;2, 2, 3&gt; &amp; &lt;2, 3, 2&gt;</text>
+  <text x="838.5" y="439" text-anchor="middle" font-size="10.2" font-weight="700" fill="#0f172a">R* = 11 (Hopcroft-Kerr)</text>
+  <text x="838.5" y="456" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#334155">k=10 UNSAT / k=11 SAT</text>
+  <text x="838.5" y="473" text-anchor="middle" font-size="8.4" fill="#475569">3,137-3,597 vars | 1.3K-1.5K XORs</text>
+</g>
+</svg>

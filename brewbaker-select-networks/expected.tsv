@@ -1,0 +1,12 @@
+select_n4_r2_k3_adaptive.cnf	UNSAT
+select_n4_r2_k4_adaptive.cnf	SAT
+select_n4_r2_k4_fixed.cnf	UNSAT
+select_n4_r2_k5_fixed.cnf	SAT
+select_n5_r3_k5_adaptive.cnf	UNSAT
+select_n5_r3_k6_adaptive.cnf	SAT
+select_n5_r3_k6_fixed.cnf	UNSAT
+select_n5_r3_k7_fixed.cnf	SAT
+select_n6_r3_k10_fixed.cnf	SAT
+select_n6_r3_k7_adaptive.cnf	UNSAT
+select_n6_r3_k8_fixed.cnf	UNSAT
+select_n7_r4_k13_fixed.cnf	SAT
