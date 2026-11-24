@@ -35,7 +35,9 @@ Modes:
        python3 src/verify_expected.py --exclude 'guillochon-*' --exclude 'davies-*' --exclude 'vzhn-*'
      Validates:
        (a) Every collection's ``expected.tsv`` syntax, sorting, valid labels, and exact
-           1-to-1 coverage against ``*-orig/**/*.xz`` (plus 4-format ``*-converted/`` parity).
+           1-to-1 coverage against ``*-orig/**/*.xz`` (plus 4-format ``*-converted/`` parity,
+           respecting any strictly validated ``format_exclusions.tsv`` manifest for files
+           omitted due to GitHub's 95 MB per-file size limit).
        (b) Cross-checks ALL solver verdicts recorded in every collection's ``README.md``
            tables (and root ``README.md`` cross-product table) against ``expected.tsv``.
        (c) Cross-checks cached solver run JSONs in ``--cache-dir`` (default
@@ -43,9 +45,9 @@ Modes:
            ``shortcut_300s.json``, ``new_suites_bench.json``, ``shortcut_tier3_solo.json``)
            against ``expected.tsv``.
        (d) Optional ``--check-hygiene`` audits compression (0 ``.gz``/``.bz2``/uncompressed
-           benchmark files), strict GFM Markdown tables (unescaped ``|`` in math/code/links,
-           header/separator/body column counts, surrounding blank lines), solver name/version
-           formatting, and relative Markdown links.
+           benchmark files), GitHub ``<= 95 MB`` per-file size limit, strict GFM Markdown tables
+           (unescaped ``|`` in math/code/links, header/separator/body column counts, surrounding
+           blank lines), solver name/version formatting, and relative Markdown links.
 
   2. Live solver-run verification:
        python3 src/verify_expected.py --check-run path/to/results.json
@@ -72,6 +74,7 @@ VALID_LABELS = frozenset({"SAT", "UNSAT", "UNKNOWN"})
 ORIG_DIRS = ("cnf-orig", "aig-orig", "xcnf-orig", "mata-orig")
 CONV_DIRS = ("aig-converted", "cnf-converted", "xcnf-converted", "anf-converted")
 SAT_EXTS = (".cnf.xz", ".aig.xz", ".xcnf.xz", ".anf.xz", ".mata.xz", ".cnf", ".aig", ".xcnf", ".anf", ".mata", ".xz")
+MAX_GITHUB_FILE_BYTES = 95 * 1024 * 1024
 
 # Archive-only URI catalogs that list multi-instance .tar.gz archives rather than individual formulas.
 ARCHIVE_ONLY_URI_COLLECTIONS = frozenset({"satlib-archive-uris"})
@@ -231,14 +234,79 @@ def get_collection_orig_entries(col_dir: Path) -> tuple[str | None, list[str], l
     return None, [], errors
 
 
+def load_format_exclusions_tsv(
+    tsv_path: Path,
+    repo_root: Path = REPO_ROOT,
+) -> tuple[dict[str, dict[str, str]], list[str]]:
+    """Parse and strictly validate an optional ``format_exclusions.tsv`` manifest.
+
+    Format: strict 3-column TSV, no header, LF line endings, trailing newline,
+    sorted alphabetically by ``(converted_dir, rel_stem)``:
+
+        <converted_dir>\\t<rel_stem>\\t<reason>
+    """
+    errors: list[str] = []
+    exclusions: dict[str, dict[str, str]] = defaultdict(dict)
+    if not tsv_path.exists():
+        return exclusions, errors
+
+    try:
+        disp = str(tsv_path.relative_to(repo_root))
+    except ValueError:
+        disp = str(tsv_path)
+
+    raw = tsv_path.read_text(encoding="utf-8")
+    if not raw:
+        return exclusions, [f"Empty {disp}"]
+    if "\r" in raw:
+        errors.append(f"{disp}: contains CRLF line endings (must be LF)")
+    if not raw.endswith("\n"):
+        errors.append(f"{disp}: missing trailing newline")
+
+    keys_in_order: list[tuple[str, str]] = []
+    for lineno, line in enumerate(raw.splitlines(), 1):
+        if not line.strip():
+            errors.append(f"{disp}:{lineno}: blank line not allowed")
+            continue
+        parts = line.split("\t")
+        if len(parts) != 3:
+            errors.append(
+                f"{disp}:{lineno}: expected 3 tab-separated columns (<conv_dir>, <rel_stem>, <reason>), got {len(parts)}"
+            )
+            continue
+        conv_dir, rel_stem, reason = parts
+        if conv_dir != conv_dir.strip() or rel_stem != rel_stem.strip() or reason != reason.strip():
+            errors.append(f"{disp}:{lineno}: leading/trailing whitespace in {line!r}")
+        if conv_dir not in CONV_DIRS:
+            errors.append(f"{disp}:{lineno}: invalid converted dir {conv_dir!r} (expected one of {CONV_DIRS})")
+            continue
+        if not rel_stem or strip_rel_exts(rel_stem) != rel_stem:
+            errors.append(f"{disp}:{lineno}: stem must omit benchmark/compression extensions: {rel_stem!r}")
+            continue
+        if not reason:
+            errors.append(f"{disp}:{lineno}: missing exclusion reason for {conv_dir}/{rel_stem}")
+            continue
+        if rel_stem in exclusions[conv_dir]:
+            errors.append(f"{disp}:{lineno}: duplicate exclusion ({conv_dir}, {rel_stem})")
+            continue
+        exclusions[conv_dir][rel_stem] = reason
+        keys_in_order.append((conv_dir, rel_stem))
+
+    if keys_in_order != sorted(keys_in_order):
+        errors.append(f"{disp}: rows are not sorted alphabetically by (converted_dir, rel_stem)")
+
+    return exclusions, errors
+
+
 def validate_collections(
     repo_root: Path,
     cols: list[str],
-) -> tuple[dict[str, dict[str, str]], dict[str, str], list[str]]:
+) -> tuple[dict[str, dict[str, str]], dict[str, str], list[str], list[str]]:
     """Validate expected.tsv coverage and 4-format parity across collections."""
     all_expected: dict[str, dict[str, str]] = {}
     col_kinds: dict[str, str] = {}
     errors: list[str] = []
+    notes: list[str] = []
 
     for c in cols:
         col_dir = repo_root / c
@@ -265,9 +333,21 @@ def validate_collections(
         if extra:
             errors.append(f"{c}/expected.tsv: {len(extra)} extra instance(s) not in {kind}: {extra[:5]}")
 
-        # For SAT collections, also verify converted directories match orig relative stems 1-to-1
+        # For SAT collections, also verify converted directories match orig relative stems 1-to-1,
+        # honoring any strictly validated format_exclusions.tsv entries (e.g. >95 MB GitHub limit).
         if kind in ("cnf-orig", "aig-orig", "xcnf-orig"):
             orig_stems = {strip_rel_exts(k) for k in orig_keys}
+            excl_path = col_dir / "format_exclusions.tsv"
+            exclusions, ex_errs = load_format_exclusions_tsv(excl_path, repo_root=repo_root)
+            errors.extend(ex_errs)
+            for cd_name, stem_map in exclusions.items():
+                if not (col_dir / cd_name).is_dir():
+                    errors.append(f"{c}/format_exclusions.tsv: references missing directory {cd_name!r}")
+                for st in sorted(stem_map):
+                    if st not in orig_stems:
+                        errors.append(
+                            f"{c}/format_exclusions.tsv: stem {st!r} for {cd_name} does not exist in {kind}"
+                        )
             for cd_name in CONV_DIRS:
                 cd = col_dir / cd_name
                 if not cd.is_dir():
@@ -277,14 +357,25 @@ def validate_collections(
                     for f in cd.rglob("*")
                     if f.is_file() and f.name.endswith(".xz")
                 }
-                if conv_stems != orig_stems:
-                    m_c = sorted(orig_stems - conv_stems)
-                    e_c = sorted(conv_stems - orig_stems)
+                excl_stems = set(exclusions.get(cd_name, {}).keys())
+                stale_excl = sorted(excl_stems & conv_stems)
+                if stale_excl:
+                    errors.append(
+                        f"{c}/format_exclusions.tsv: {cd_name} stem(s) are present on disk and should not be excluded: {stale_excl[:5]}"
+                    )
+                expected_conv_stems = orig_stems - excl_stems
+                if conv_stems != expected_conv_stems:
+                    m_c = sorted(expected_conv_stems - conv_stems)
+                    e_c = sorted(conv_stems - expected_conv_stems)
                     errors.append(
                         f"{c}/{cd_name}: stem mismatch vs {kind} (missing={m_c[:3]}, extra={e_c[:3]})"
                     )
+                elif excl_stems:
+                    notes.append(
+                        f"[format exclusion] {c}/{cd_name}: {len(excl_stems)} documented omission(s) via format_exclusions.tsv"
+                    )
 
-    return all_expected, col_kinds, errors
+    return all_expected, col_kinds, errors, notes
 
 
 def build_stem_index(
@@ -912,7 +1003,14 @@ def check_hygiene(repo_root: Path, cols: list[str]) -> list[str]:
     for c in cols:
         col_dir = repo_root / c
         for f in col_dir.rglob("*"):
-            if not f.is_file() or ".git" in f.parts or "src" in f.relative_to(col_dir).parts:
+            if not f.is_file() or ".git" in f.parts:
+                continue
+            if f.stat().st_size > MAX_GITHUB_FILE_BYTES:
+                sz_mb = f.stat().st_size / (1024 * 1024)
+                errors.append(
+                    f"GitHub file-size violation (>95 MB): {f.relative_to(repo_root)} ({sz_mb:.2f} MB)"
+                )
+            if "src" in f.relative_to(col_dir).parts:
                 continue
             if f.name.endswith(bad_exts):
                 errors.append(f"Compression hygiene violation: {f.relative_to(repo_root)}")
@@ -947,7 +1045,7 @@ def main() -> int:
 
     repo_root = args.repo_root.resolve()
     cols = discover_collections(repo_root, only=args.collection, excludes=args.exclude)
-    all_expected, col_kinds, struct_errors = validate_collections(repo_root, cols)
+    all_expected, col_kinds, struct_errors, struct_notes = validate_collections(repo_root, cols)
     by_col, global_idx = build_stem_index(all_expected)
 
     # Mode 2: Live run verification
@@ -999,6 +1097,8 @@ def main() -> int:
     if args.check_hygiene:
         print(f"Hygiene errors          : {len(hygiene_errors)}")
 
+    for n in struct_notes:
+        print(f"  {n}")
     for n in cache_notes:
         print(f"  {n}")
 
