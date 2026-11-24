@@ -44,24 +44,24 @@ This collection holds the **17 structured Pigeonhole Principle CNFs** shipped wi
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `php31x30-pairwise` | UNSAT | **1.89 ms** | >5 s | >5 s | 2.17 ms | >5 s |
-| `php31x30-sequential` | UNSAT | **1.50 ms** | >5 s | >5 s | 1.76 ms | >5 s |
-| `php65x64-pairwise` | UNSAT | **5.12 ms** | >5 s | >5 s | 10.16 ms | >5 s |
-| `php65x64-sequential` | UNSAT | **2.35 ms** | >5 s | >5 s | 3.12 ms | >5 s |
-| `php8x8-pairwise` | SAT | **1.41 ms** | 2.42 ms | 8.34 ms | 1.61 ms | 1.62 ms |
-| `php8x8-sequential` | SAT | **1.49 ms** | 2.29 ms | 8.76 ms | 1.88 ms | 1.51 ms |
-| `php9x8-bitwise` | UNSAT | 1.42 ms | 41.80 ms | 124.08 ms | **1.35 ms** | 20.27 ms |
-| `php9x8-cardnetwrk` | UNSAT | **1.51 ms** | 15.06 ms | 40.26 ms | 1.57 ms | 8.07 ms |
-| `php9x8-kmtotalizer` | UNSAT | **1.44 ms** | 7.10 ms | 42.50 ms | 1.57 ms | 6.59 ms |
-| `php9x8-ladder` | UNSAT | **1.46 ms** | 9.56 ms | 79.77 ms | 1.72 ms | 8.94 ms |
-| `php9x8-mtotalizer` | UNSAT | 2.47 ms | 7.34 ms | 41.70 ms | **1.64 ms** | 6.22 ms |
-| `php9x8-pairwise` | UNSAT | **1.24 ms** | 280.57 ms | 326.24 ms | 1.46 ms | 65.15 ms |
-| `php9x8-pairwise-functional` | UNSAT | **1.42 ms** | 239.77 ms | 291.92 ms | 1.62 ms | 45.89 ms |
-| `php9x8-sequential` | UNSAT | **1.32 ms** | 18.54 ms | 45.27 ms | 1.55 ms | 17.62 ms |
-| `php9x8-sequential-renamed` | UNSAT | **1.62 ms** | 10.38 ms | 48.68 ms | 1.64 ms | 5.93 ms |
-| `php9x8-sortnetwrk` | UNSAT | 2.38 ms | 11.12 ms | 43.99 ms | **1.64 ms** | 7.47 ms |
-| `php9x8-totalizer` | UNSAT | **1.58 ms** | 7.18 ms | 40.14 ms | 1.77 ms | 6.63 ms |
-| **Total (17 files, PAR-2)** | **17/17** | **17/17 — 31.6 ms** *(fastest)* | 13/17 — 40,653.1 ms *(1,285.60x)* | 13/17 — 41,141.6 ms *(1,301.05x)* | 17/17 — 38.2 ms *(1.21x)* | 13/17 — 40,201.9 ms *(1,271.33x)* |
+| `php31x30-pairwise` | UNSAT | **0.97 ms** | >5 s | >5 s | 2.17 ms | >5 s |
+| `php31x30-sequential` | UNSAT | **0.77 ms** | >5 s | >5 s | 1.76 ms | >5 s |
+| `php65x64-pairwise` | UNSAT | **3.98 ms** | >5 s | >5 s | 10.16 ms | >5 s |
+| `php65x64-sequential` | UNSAT | **1.19 ms** | >5 s | >5 s | 3.12 ms | >5 s |
+| `php8x8-pairwise` | SAT | **0.69 ms** | 2.42 ms | 8.34 ms | 1.61 ms | 1.62 ms |
+| `php8x8-sequential` | SAT | **0.78 ms** | 2.29 ms | 8.76 ms | 1.88 ms | 1.51 ms |
+| `php9x8-bitwise` | UNSAT | **0.76 ms** | 41.80 ms | 124.08 ms | 1.35 ms | 20.27 ms |
+| `php9x8-cardnetwrk` | UNSAT | **0.80 ms** | 15.06 ms | 40.26 ms | 1.57 ms | 8.07 ms |
+| `php9x8-kmtotalizer` | UNSAT | **0.75 ms** | 7.10 ms | 42.50 ms | 1.57 ms | 6.59 ms |
+| `php9x8-ladder` | UNSAT | **0.79 ms** | 9.56 ms | 79.77 ms | 1.72 ms | 8.94 ms |
+| `php9x8-mtotalizer` | UNSAT | **0.79 ms** | 7.34 ms | 41.70 ms | 1.64 ms | 6.22 ms |
+| `php9x8-pairwise` | UNSAT | **0.62 ms** | 280.57 ms | 326.24 ms | 1.46 ms | 65.15 ms |
+| `php9x8-pairwise-functional` | UNSAT | **0.71 ms** | 239.77 ms | 291.92 ms | 1.62 ms | 45.89 ms |
+| `php9x8-sequential` | UNSAT | **0.64 ms** | 18.54 ms | 45.27 ms | 1.55 ms | 17.62 ms |
+| `php9x8-sequential-renamed` | UNSAT | **0.79 ms** | 10.38 ms | 48.68 ms | 1.64 ms | 5.93 ms |
+| `php9x8-sortnetwrk` | UNSAT | **1.17 ms** | 11.12 ms | 43.99 ms | 1.64 ms | 7.47 ms |
+| `php9x8-totalizer` | UNSAT | **0.86 ms** | 7.18 ms | 40.14 ms | 1.77 ms | 6.63 ms |
+| **Total (17 files, PAR-2)** | **17/17** | **17/17 — 17.1 ms** *(fastest)* | 13/17 — 40,653.1 ms *(2,382.53x)* | 13/17 — 41,141.6 ms *(2,411.16x)* | 17/17 — 38.2 ms *(2.24x)* | 13/17 — 40,201.9 ms *(2,356.09x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

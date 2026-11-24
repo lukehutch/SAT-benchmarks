@@ -60,11 +60,11 @@ Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thre
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `php_9_8_unsat` | UNSAT | **2.80 ms** | 32.96 ms | 438.14 ms | 474.27 ms | 15.06 ms | 26.86 ms |
-| `php_16_15_unsat` | UNSAT | **4.93 ms** | 109,447.65 ms | >5,000 s (T/O) | >5,000 s (T/O) | 499,657.63 ms | >5,000 s (T/O) |
-| `php_20_19_unsat` | UNSAT | **8.23 ms** | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
-| `php_50_49_unsat` | UNSAT | **109.92 ms** | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
-| **Solved (4 promoted)** | **4/4** | **4/4 — 125.9 ms** *(fastest)* | 2/4 *(2 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* | 2/4 *(2 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* |
+| `php_9_8_unsat` | UNSAT | **2.09 ms** | 32.96 ms | 438.14 ms | 474.27 ms | 15.06 ms | 26.86 ms |
+| `php_16_15_unsat` | UNSAT | **4.20 ms** | 109,447.65 ms | >5,000 s (T/O) | >5,000 s (T/O) | 499,657.63 ms | >5,000 s (T/O) |
+| `php_20_19_unsat` | UNSAT | **7.75 ms** | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
+| `php_50_49_unsat` | UNSAT | **107.39 ms** | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
+| **Solved (4 promoted)** | **4/4** | **4/4 — 121.4 ms** *(fastest)* | 2/4 *(2 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* | 2/4 *(2 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* |
 
 *(Both `php_9_8_unsat` and `php_13_12_unsat` LRAT proofs emitted by Frobenius additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 
@@ -74,15 +74,15 @@ Remaining 8 non-Gauntlet corpus instances evaluated on identical uncompressed fl
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `php_13_12_unsat` | UNSAT | **3.40 ms** | 1,342.94 ms | >60 s (T/O) | >60 s (T/O) | 4,591.39 ms | 11,594.33 ms |
-| `php_14_13_unsat` | UNSAT | **3.75 ms** | 8,694.00 ms | >60 s (T/O) | >60 s (T/O) | 16,424.95 ms | >60 s (T/O) |
-| `php_15_14_unsat` | UNSAT | **4.40 ms** | 34,035.10 ms | >60 s (T/O) | >60 s (T/O) | 57,980.28 ms | >60 s (T/O) |
-| `php_17_16_unsat` | UNSAT | **5.55 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
-| `php_19_18_unsat` | UNSAT | **7.36 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
-| `php_31_30_unsat` | UNSAT | **28.01 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
-| `php_20_20_sat` | SAT | 5.07 ms | 6.79 ms | 106.15 ms | 106.40 ms | 13.17 ms | **4.21 ms** |
-| `php_30_30_sat` | SAT | 13.75 ms | 14.72 ms | 430.51 ms | 434.89 ms | 110.94 ms | **8.70 ms** |
-| **Solved (8 supplementary)** | **8/8** | **8/8 — 71.3 ms** *(fastest)* | 5/8 *(3 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 5/8 *(3 T/O >60 s)* | 3/8 *(5 T/O >60 s)* |
+| `php_13_12_unsat` | UNSAT | **2.69 ms** | 1,342.94 ms | >60 s (T/O) | >60 s (T/O) | 4,591.39 ms | 11,594.33 ms |
+| `php_14_13_unsat` | UNSAT | **3.06 ms** | 8,694.00 ms | >60 s (T/O) | >60 s (T/O) | 16,424.95 ms | >60 s (T/O) |
+| `php_15_14_unsat` | UNSAT | **3.71 ms** | 34,035.10 ms | >60 s (T/O) | >60 s (T/O) | 57,980.28 ms | >60 s (T/O) |
+| `php_17_16_unsat` | UNSAT | **4.98 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `php_19_18_unsat` | UNSAT | **6.77 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `php_31_30_unsat` | UNSAT | **26.00 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `php_20_20_sat` | SAT | **3.98 ms** | 6.79 ms | 106.15 ms | 106.40 ms | 13.17 ms | 4.21 ms |
+| `php_30_30_sat` | SAT | 11.70 ms | 14.72 ms | 430.51 ms | 434.89 ms | 110.94 ms | **8.70 ms** |
+| **Solved (8 supplementary)** | **8/8** | **8/8 — 62.9 ms** *(fastest)* | 5/8 *(3 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 5/8 *(3 T/O >60 s)* | 3/8 *(5 T/O >60 s)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

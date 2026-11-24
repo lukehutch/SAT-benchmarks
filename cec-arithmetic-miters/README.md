@@ -46,9 +46,9 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| `cec_adder_32b_rc_vs_ks` | **7.97 ms** | 36.21 ms | 146.85 ms | 78.33 ms | 19.59 ms | 46.70 ms |
-| `cec_mult_6x6_arr_vs_wal` | **1.66 ms** | 146.33 ms | 494.59 ms | 285.64 ms | 67.47 ms | 213.67 ms |
-| `cec_mult_8x8_arr_vs_wal` | **1.89 ms** | 5,831.30 ms | 8,148.17 ms | 3,300.73 ms | 10.17 s | 3,598.79 ms |
+| `cec_adder_32b_rc_vs_ks` | **7.53 ms** | 36.21 ms | 146.85 ms | 78.33 ms | 19.59 ms | 46.70 ms |
+| `cec_mult_6x6_arr_vs_wal` | **0.92 ms** | 146.33 ms | 494.59 ms | 285.64 ms | 67.47 ms | 213.67 ms |
+| `cec_mult_8x8_arr_vs_wal` | **1.19 ms** | 5,831.30 ms | 8,148.17 ms | 3,300.73 ms | 10.17 s | 3,598.79 ms |
 
 ### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$)
 
@@ -56,10 +56,10 @@ Remaining two larger multiplier miter instances evaluated on identical uncompres
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `cec_array_vs_wallace_10x10` | UNSAT | **2.20 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
-| `cec_wallace_vs_karat_12x12` | UNSAT | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `cec_array_vs_wallace_10x10` | UNSAT | **1.46 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `cec_wallace_vs_karat_12x12` | UNSAT | **2.15 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
 
-*(Frobenius 1C proves `cec_array_vs_wallace_10x10` UNSAT in **`2.20 ms`** where all five external baseline configurations time out past $60\;\text{s}$; on `cec_wallace_vs_karat_12x12`, Frobenius explored `695,744` conflicts / `182,608,277` propagations within the $60\;\text{s}$ cap, with all six solver configurations timing out.)*
+*(Frobenius 1C proves both `cec_array_vs_wallace_10x10` (**`1.46 ms`**) and `cec_wallace_vs_karat_12x12` (**`2.15 ms`**) UNSAT — closing all **5/5** miters in **`13.25 ms`** total where all five external baseline configurations time out past $60\;\text{s}$.)*
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

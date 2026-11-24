@@ -107,38 +107,38 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | Independent Verification & Certified Artifact *(out-of-tree)* |
 |---|:---:|---:|---:|---:|---|
-| `c01.cnf.xz` | **UNSAT** | 62.05 s | 42.48 s | **28.67 s** | `c01.lrat.xz` (`134.9 MiB`) — **`lrat-check` + `cake_lpr` VERIFIED** |
+| `c01.cnf.xz` | **UNSAT** | 40.32 s | 42.48 s | **28.67 s** | `c01.lrat.xz` (`134.9 MiB`) — **`lrat-check` + `cake_lpr` VERIFIED** |
 | `c02.cnf.xz` | *TBD* | >300 s *(T/O)* | >300 s *(T/O)* | >300 s *(T/O)* | — |
 | `c03.cnf.xz` | *TBD* | >300 s *(T/O)* | >300 s *(T/O)* | >300 s *(T/O)* | — |
-| `c04.cnf.xz` | **SAT** | **0.054 s** | 0.51 s | 4.77 s | `c04.model.xz` (`784 B`) — `1,917/1,917` cls OK |
-| `c05.cnf.xz` | **SAT** | **0.067 s** | 0.55 s | 6.73 s | `c05.model.xz` (`848 B`) — `2,130/2,130` cls OK |
-| `c06.cnf.xz` | **SAT** | **0.567 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c06.model.xz` (`22.6 KiB`) — `85,000/85,000` cls OK |
-| `c07.cnf.xz` | **SAT** | **1.572 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c07.model.xz` (`54.8 KiB`) — `212,500/212,500` cls OK |
-| `c08.cnf.xz` | **SAT** | **0.021 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c08.model.xz` (`7.7 KiB`) — `36,662/36,662` cls OK (`13821637 × 15902581`) |
-| `c09.cnf.xz` | **SAT** | **0.036 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c09.model.xz` (`13.7 KiB`) — `66,278/66,278` cls OK (`3538334777 × 4071050729`) |
-| `c10.cnf.xz` | **UNSAT** | **0.017 s** *(proof: 38.11 s)* | 158.58 s | 85.85 s | `c10.bdrat.xz` (`4.67 MiB`, 40b prime `672003499631`) — **`drat-trim` VERIFIED** |
-| `c11.cnf.xz` | **UNSAT** | **0.054 s** *(proof: 0.54 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c11.lrat.xz` (`13.9 MiB`, SC25 unsolved `R(4,4)=18`) — **`lrat-check` + `cake_lpr` VERIFIED** |
-| `c12.cnf.xz` | **UNSAT** | **0.006 s** *(proof: 0.007 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c12.lrat.xz` (`66.3 KiB`, SC25 unsolved `CliqueCol(15,7,6)`) — **`lrat-check` + `cake_lpr` VERIFIED** |
+| `c04.cnf.xz` | **SAT** | **0.076 s** | 0.51 s | 4.77 s | `c04.model.xz` (`784 B`) — `1,917/1,917` cls OK |
+| `c05.cnf.xz` | **SAT** | **0.081 s** | 0.55 s | 6.73 s | `c05.model.xz` (`848 B`) — `2,130/2,130` cls OK |
+| `c06.cnf.xz` | **SAT** | **0.718 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c06.model.xz` (`22.6 KiB`) — `85,000/85,000` cls OK |
+| `c07.cnf.xz` | **SAT** | **1.914 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c07.model.xz` (`54.8 KiB`) — `212,500/212,500` cls OK |
+| `c08.cnf.xz` | **SAT** | **0.019 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c08.model.xz` (`7.7 KiB`) — `36,662/36,662` cls OK (`13821637 × 15902581`) |
+| `c09.cnf.xz` | **SAT** | **0.030 s** | >300 s *(T/O)* | >300 s *(T/O)* | `c09.model.xz` (`13.7 KiB`) — `66,278/66,278` cls OK (`3538334777 × 4071050729`) |
+| `c10.cnf.xz` | **UNSAT** | **0.014 s** *(proof: 38.11 s)* | 158.58 s | 85.85 s | `c10.bdrat.xz` (`4.67 MiB`, 40b prime `672003499631`) — **`drat-trim` VERIFIED** |
+| `c11.cnf.xz` | **UNSAT** | **0.067 s** *(proof: 0.54 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c11.lrat.xz` (`13.9 MiB`, SC25 unsolved `R(4,4)=18`) — **`lrat-check` + `cake_lpr` VERIFIED** |
+| `c12.cnf.xz` | **UNSAT** | **0.013 s** *(proof: 0.007 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c12.lrat.xz` (`66.3 KiB`, SC25 unsolved `CliqueCol(15,7,6)`) — **`lrat-check` + `cake_lpr` VERIFIED** |
 | **Solved ($T_{\max}=300\;\text{s}$)** | **10 / 12** | **10 / 12** | 4 / 12 | 4 / 12 | **6/6 SAT models + 4/4 UNSAT proofs verified** |
-| **Total PAR-2 ($T_{\max}=300\;\text{s}$)** | — | **1,264.45 s** *(fastest)* | 5,002.12 s *(3.96x)* | 4,926.02 s *(3.90x)* | `c04`–`c12` (9 instances) solved in **2.39 s** combined |
+| **Total PAR-2 ($T_{\max}=300\;\text{s}$)** | — | **1,243.25 s** *(fastest)* | 5,002.12 s *(4.02x)* | 4,926.02 s *(3.96x)* | `c04`–`c12` (9 instances) solved in **2.93 s** combined |
 
 ### 2. 60 s All-Five-Solver Comparison (Identical Uncompressed Flat `.cnf`, `taskset -c 0`)
 
 | Instance | Verdict ($\le 60\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `c01` | UNSAT | >60 s *(62.34 s)* | 39.20 s | >60 s | >60 s | **27.58 s** |
+| `c01` | UNSAT | 43.27 s | 39.20 s | >60 s | >60 s | **27.58 s** |
 | `c02` | *TBD* | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `c03` | *TBD* | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `c04` | SAT | **0.053 s** | 0.45 s | >60 s | >60 s | 4.53 s |
-| `c05` | SAT | **0.066 s** | 0.54 s | >60 s | >60 s | 5.55 s |
-| `c06` | SAT | **0.568 s** | >60 s | >60 s | >60 s | >60 s |
-| `c07` | SAT | **1.493 s** | >60 s | >60 s | >60 s | >60 s |
-| `c08` | SAT | **0.014 s** | >60 s | >60 s | >60 s | >60 s |
-| `c09` | SAT | **0.037 s** | >60 s | >60 s | >60 s | >60 s |
-| `c10` | UNSAT | **0.012 s** | >60 s | >60 s | >60 s | >60 s |
-| `c11` | UNSAT | **0.053 s** | >60 s | >60 s | >60 s | >60 s |
-| `c12` | UNSAT | **0.005 s** | >60 s | >60 s | >60 s | >60 s |
-| **Total (60 s PAR-2)** | **10 / 12** | **9/12 — 362.30 s** *(fastest)* | 3/12 — 1,120.20 s *(3.09x)* | 0/12 — 1,440.00 s *(3.97x)* | 0/12 — 1,440.00 s *(3.97x)* | 3/12 — 1,117.65 s *(3.08x)* |
+| `c04` | SAT | **0.075 s** | 0.45 s | >60 s | >60 s | 4.53 s |
+| `c05` | SAT | **0.080 s** | 0.54 s | >60 s | >60 s | 5.55 s |
+| `c06` | SAT | **0.868 s** | >60 s | >60 s | >60 s | >60 s |
+| `c07` | SAT | **2.229 s** | >60 s | >60 s | >60 s | >60 s |
+| `c08` | SAT | **0.018 s** | >60 s | >60 s | >60 s | >60 s |
+| `c09` | SAT | **0.030 s** | >60 s | >60 s | >60 s | >60 s |
+| `c10` | UNSAT | **0.014 s** | >60 s | >60 s | >60 s | >60 s |
+| `c11` | UNSAT | **0.075 s** | >60 s | >60 s | >60 s | >60 s |
+| `c12` | UNSAT | **0.013 s** | >60 s | >60 s | >60 s | >60 s |
+| **Total (60 s PAR-2)** | **10 / 12** | **10/12 — 286.67 s** *(fastest)* | 3/12 — 1,120.20 s *(3.91x)* | 0/12 — 1,440.00 s *(5.02x)* | 0/12 — 1,440.00 s *(5.02x)* | 3/12 — 1,117.65 s *(3.90x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

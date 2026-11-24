@@ -42,10 +42,10 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| `tseitin_exp_n60` | **1.19 ms** | 546.39 ms | 22.59 ms | 22.91 ms | 1.38 ms | 58.59 ms |
-| `tseitin_exp_n120` | **1.25 ms** | >5,000 s (T/O) | 27.62 ms | 23.45 ms | 1.63 ms | >5,000 s (T/O) |
-| `tseitin_exp_n300` | **1.36 ms** | >5,000 s (T/O) | 29.10 ms | 23.68 ms | 2.13 ms | >5,000 s (T/O) |
-| `tseitin_prism_n400` | **1.66 ms** | 9.56 ms | 27.82 ms | 23.21 ms | 2.05 ms | 13.60 ms |
+| `tseitin_exp_n60` | **0.68 ms** | 546.39 ms | 22.59 ms | 22.91 ms | 1.38 ms | 58.59 ms |
+| `tseitin_exp_n120` | **0.71 ms** | >5,000 s (T/O) | 27.62 ms | 23.45 ms | 1.63 ms | >5,000 s (T/O) |
+| `tseitin_exp_n300` | **0.81 ms** | >5,000 s (T/O) | 29.10 ms | 23.68 ms | 2.13 ms | >5,000 s (T/O) |
+| `tseitin_prism_n400` | **0.86 ms** | 9.56 ms | 27.82 ms | 23.21 ms | 2.05 ms | 13.60 ms |
 
 *(All three expander proofs emitted by Frobenius in LRAT format additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 

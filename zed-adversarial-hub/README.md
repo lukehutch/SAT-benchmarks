@@ -54,10 +54,10 @@ Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thre
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `hub_20_unsat` | UNSAT | 9.14 ms | 11.17 ms | 276.33 ms | 168.34 ms | **8.16 ms** | 41.27 ms |
-| `hub_60_sat` | SAT | **26.87 ms** | 46.78 ms | 653.06 ms | 434.73 ms | 29.82 ms | 78.82 ms |
-| `hub_60_unsat` | UNSAT | **23.41 ms** | 24.35 ms | 697.72 ms | 409.68 ms | 23.93 ms | 85.89 ms |
-| **Total (3 promoted, PAR-2)** | **3/3** | **3/3 — 59.4 ms** *(fastest)* | 3/3 — 82.3 ms *(1.39x)* | 3/3 — 1,627.1 ms *(27.38x)* | 3/3 — 1,012.8 ms *(17.04x)* | 3/3 — 61.9 ms *(1.04x)* | 3/3 — 206.0 ms *(3.47x)* |
+| `hub_20_unsat` | UNSAT | **5.10 ms** | 11.17 ms | 276.33 ms | 168.34 ms | 8.16 ms | 41.27 ms |
+| `hub_60_sat` | SAT | **14.17 ms** | 46.78 ms | 653.06 ms | 434.73 ms | 29.82 ms | 78.82 ms |
+| `hub_60_unsat` | UNSAT | **12.46 ms** | 24.35 ms | 697.72 ms | 409.68 ms | 23.93 ms | 85.89 ms |
+| **Total (3 promoted, PAR-2)** | **3/3** | **3/3 — 31.7 ms** *(fastest)* | 3/3 — 82.3 ms *(2.59x)* | 3/3 — 1,627.1 ms *(51.29x)* | 3/3 — 1,012.8 ms *(31.92x)* | 3/3 — 61.9 ms *(1.95x)* | 3/3 — 206.0 ms *(6.49x)* |
 
 ### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$)
 
@@ -65,10 +65,10 @@ Remaining 3 non-Gauntlet corpus instances evaluated on identical uncompressed fl
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `hub_24_unsat` | UNSAT | 13.35 ms | **5.84 ms** | 185.09 ms | 125.59 ms | 10.51 ms | 25.69 ms |
-| `hub_30_unsat` | UNSAT | 16.33 ms | **6.47 ms** | 216.66 ms | 149.57 ms | 12.51 ms | 27.28 ms |
-| `hub_80_unsat` | UNSAT | 48.75 ms | **13.30 ms** | 354.40 ms | 256.10 ms | 34.65 ms | 42.36 ms |
-| **Total (3 supplementary, PAR-2)** | **3/3** | 3/3 — 78.4 ms *(3.06x)* | **3/3 — 25.6 ms** *(fastest)* | 3/3 — 756.2 ms *(29.53x)* | 3/3 — 531.3 ms *(20.74x)* | 3/3 — 57.7 ms *(2.25x)* | 3/3 — 95.3 ms *(3.72x)* |
+| `hub_24_unsat` | UNSAT | **5.80 ms** | 5.84 ms | 185.09 ms | 125.59 ms | 10.51 ms | 25.69 ms |
+| `hub_30_unsat` | UNSAT | 6.83 ms | **6.47 ms** | 216.66 ms | 149.57 ms | 12.51 ms | 27.28 ms |
+| `hub_80_unsat` | UNSAT | 15.15 ms | **13.30 ms** | 354.40 ms | 256.10 ms | 34.65 ms | 42.36 ms |
+| **Total (3 supplementary, PAR-2)** | **3/3** | 3/3 — 27.8 ms *(1.09x)* | **3/3 — 25.6 ms** *(fastest)* | 3/3 — 756.2 ms *(29.54x)* | 3/3 — 531.3 ms *(20.75x)* | 3/3 — 57.7 ms *(2.25x)* | 3/3 — 95.3 ms *(3.72x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -41,11 +41,11 @@ Stratified sample of 4 instances from the 1,000-instance SATLIB Backbone-Minimal
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `BMS_k3_n100_m429_0` | SAT | 3.69 ms | 7.91 ms | 13.73 ms | **2.60 ms** | 10.85 ms |
-| `BMS_k3_n100_m429_1` | SAT | **1.52 ms** | 3.37 ms | 23.52 ms | 4.16 ms | 7.89 ms |
-| `RTI_k3_n100_m429_0` | SAT | **1.64 ms** | 5.11 ms | 25.14 ms | 2.86 ms | 15.03 ms |
-| `RTI_k3_n100_m429_1` | SAT | **1.55 ms** | 4.18 ms | 23.01 ms | 1.97 ms | 15.26 ms |
-| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 8.4 ms** *(fastest)* | 4/4 — 20.6 ms *(2.45x)* | 4/4 — 85.4 ms *(10.17x)* | 4/4 — 11.6 ms *(1.38x)* | 4/4 — 49.0 ms *(5.84x)* |
+| `BMS_k3_n100_m429_0` | SAT | 3.06 ms | 7.91 ms | 13.73 ms | **2.60 ms** | 10.85 ms |
+| `BMS_k3_n100_m429_1` | SAT | **0.80 ms** | 3.37 ms | 23.52 ms | 4.16 ms | 7.89 ms |
+| `RTI_k3_n100_m429_0` | SAT | **0.89 ms** | 5.11 ms | 25.14 ms | 2.86 ms | 15.03 ms |
+| `RTI_k3_n100_m429_1` | SAT | **0.89 ms** | 4.18 ms | 23.01 ms | 1.97 ms | 15.26 ms |
+| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 5.6 ms** *(fastest)* | 4/4 — 20.6 ms *(3.66x)* | 4/4 — 85.4 ms *(15.17x)* | 4/4 — 11.6 ms *(2.06x)* | 4/4 — 49.0 ms *(8.70x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

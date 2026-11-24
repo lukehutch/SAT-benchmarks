@@ -39,23 +39,23 @@ Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded vi
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `difp_19_0_arr_rcr` | SAT | **4.30 ms** | 1,364.53 ms | >5 s | >5 s | >5 s |
-| `difp_19_1_arr_rcr` | SAT | **4.23 ms** | 3,567.78 ms | >5 s | 2,444.97 ms | 3,556.88 ms |
-| `difp_19_3_arr_rcr` | SAT | **4.17 ms** | 4,097.83 ms | 1,047.68 ms | >5 s | 4,631.54 ms |
-| `difp_19_99_arr_rcr` | SAT | **4.18 ms** | >5 s | >5 s | 1,001.61 ms | 4,968.67 ms |
-| `difp_20_0_arr_rcr` | SAT | **4.64 ms** | 3,877.38 ms | >5 s | >5 s | 2,293.15 ms |
-| `difp_20_1_arr_rcr` | SAT | **4.67 ms** | 1,047.60 ms | 2,370.92 ms | >5 s | >5 s |
-| `difp_20_2_arr_rcr` | SAT | **4.67 ms** | 3,823.22 ms | 2,313.61 ms | 5,062.50 ms | 3,607.96 ms |
-| `difp_20_3_arr_rcr` | SAT | **4.46 ms** | 2,466.49 ms | 2,466.35 ms | 5,264.38 ms | >5 s |
-| `difp_20_99_arr_rcr` | SAT | **5.05 ms** | 1,903.50 ms | 848.98 ms | 2,238.55 ms | 497.63 ms |
-| `difp_21_0_arr_rcr` | SAT | **5.98 ms** | >5 s | >5 s | >5 s | 945.96 ms |
-| `difp_21_1_arr_rcr` | SAT | **6.36 ms** | >5 s | >5 s | >5 s | >5 s |
-| `difp_21_2_arr_rcr` | SAT | **6.89 ms** | >5 s | >5 s | >5 s | >5 s |
-| `difp_21_3_arr_rcr` | SAT | **6.79 ms** | >5 s | 1,638.21 ms | >5 s | 134.61 ms |
-| `difp_21_99_arr_rcr` | SAT | **6.45 ms** | >5 s | 4,378.83 ms | >5 s | >5 s |
-| **Total (14 files, PAR-2)** | **14/14** | **14/14 — 72.9 ms** *(fastest)* | 8/14 — 82,148.3 ms *(1,127.62x)* | 7/14 — 85,064.6 ms *(1,167.65x)* | 5/14 — 106,012.0 ms *(1,455.19x)* | 8/14 — 80,636.4 ms *(1,106.87x)* |
+| `difp_19_0_arr_rcr` | SAT | **3.37 ms** | 1,364.53 ms | >5 s | >5 s | >5 s |
+| `difp_19_1_arr_rcr` | SAT | **3.36 ms** | 3,567.78 ms | >5 s | 2,444.97 ms | 3,556.88 ms |
+| `difp_19_3_arr_rcr` | SAT | **3.32 ms** | 4,097.83 ms | 1,047.68 ms | >5 s | 4,631.54 ms |
+| `difp_19_99_arr_rcr` | SAT | **3.35 ms** | >5 s | >5 s | 1,001.61 ms | 4,968.67 ms |
+| `difp_20_0_arr_rcr` | SAT | **3.82 ms** | 3,877.38 ms | >5 s | >5 s | 2,293.15 ms |
+| `difp_20_1_arr_rcr` | SAT | **3.84 ms** | 1,047.60 ms | 2,370.92 ms | >5 s | >5 s |
+| `difp_20_2_arr_rcr` | SAT | **3.88 ms** | 3,823.22 ms | 2,313.61 ms | 5,062.50 ms | 3,607.96 ms |
+| `difp_20_3_arr_rcr` | SAT | **3.78 ms** | 2,466.49 ms | 2,466.35 ms | 5,264.38 ms | >5 s |
+| `difp_20_99_arr_rcr` | SAT | **4.30 ms** | 1,903.50 ms | 848.98 ms | 2,238.55 ms | 497.63 ms |
+| `difp_21_0_arr_rcr` | SAT | **5.26 ms** | >5 s | >5 s | >5 s | 945.96 ms |
+| `difp_21_1_arr_rcr` | SAT | **5.59 ms** | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_2_arr_rcr` | SAT | **6.17 ms** | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_3_arr_rcr` | SAT | **6.05 ms** | >5 s | 1,638.21 ms | >5 s | 134.61 ms |
+| `difp_21_99_arr_rcr` | SAT | **5.62 ms** | >5 s | 4,378.83 ms | >5 s | >5 s |
+| **Total (14 files, PAR-2)** | **14/14** | **14/14 — 61.7 ms** *(fastest)* | 8/14 — 82,148.3 ms *(1,331.11x)* | 7/14 — 85,064.6 ms *(1,378.37x)* | 5/14 — 106,012.0 ms *(1,717.79x)* | 8/14 — 80,636.4 ms *(1,306.61x)* |
 
-*Summary:* Frobenius 1C solves all **14/14** instances (including `difp_21_1_arr_rcr` and `difp_21_2_arr_rcr`, where all four baseline solvers time out at $5\;\text{s}$) in **`72.9 ms` total** (`4.17–6.89 ms` per instance) — **1,106.87x faster** PAR-2 than Kissat 4.0.4, **1,127.62x faster** than CaDiCaL 3.1.0, **1,167.65x faster** than CryptoMiniSat 5.18.0, and **1,455.19x faster** than dense-solver 0.0.4.
+*Summary:* Frobenius 1C solves all **14/14** instances (including `difp_21_1_arr_rcr` and `difp_21_2_arr_rcr`, where all four baseline solvers time out at $5\;\text{s}$) in **`61.7 ms` total** (`3.32–6.17 ms` per instance) — **1,306.61x faster** PAR-2 than Kissat 4.0.4, **1,331.11x faster** than CaDiCaL 3.1.0, **1,378.37x faster** than CryptoMiniSat 5.18.0, and **1,717.79x faster** than dense-solver 0.0.4.
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

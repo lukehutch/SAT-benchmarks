@@ -50,18 +50,18 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `BB_144_12_12_w11_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_144_12_12_w12_sat` | SAT | 4.03 ms | 4.49 ms | 262.67 ms | 100.53 ms | 73.87 ms | **2.72 ms** |
-| `BB_30_4_6_w5_unsat` | UNSAT | 12.02 ms | 13.72 ms | 44.34 ms | 35.48 ms | **8.41 ms** | 15.79 ms |
-| `BB_30_4_6_w6_sat` | SAT | 3.58 ms | **2.75 ms** | 31.24 ms | 27.31 ms | 2.79 ms | 7.36 ms |
+| `BB_144_12_12_w12_sat` | SAT | 2.77 ms | 4.49 ms | 262.67 ms | 100.53 ms | 73.87 ms | **2.72 ms** |
+| `BB_30_4_6_w5_unsat` | UNSAT | 9.84 ms | 13.72 ms | 44.34 ms | 35.48 ms | **8.41 ms** | 15.79 ms |
+| `BB_30_4_6_w6_sat` | SAT | 4.22 ms | **2.75 ms** | 31.24 ms | 27.31 ms | 2.79 ms | 7.36 ms |
 | `BB_360_12_24_w23_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
 | `BB_360_12_24_w24_sat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_72_12_6_w5_unsat` | UNSAT | 56.62 ms | 54.12 ms | 110.92 ms | 94.40 ms | **25.03 ms** | 62.34 ms |
-| `BB_72_12_6_w6_sat` | SAT | 5.41 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
+| `BB_72_12_6_w5_unsat` | UNSAT | 43.80 ms | 54.12 ms | 110.92 ms | 94.40 ms | **25.03 ms** | 62.34 ms |
+| `BB_72_12_6_w6_sat` | SAT | 2.92 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
 | `BB_756_16_34_w33_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
 | `BB_756_16_34_w34_sat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| **Total (10 files, PAR-2)** | **5/10** | 5/10 — 100,081.7 ms *(1.00x)* | **5/10 — 100,078.2 ms** *(fastest)* | 5/10 — 100,515.2 ms *(1.00x)* | 5/10 — 100,296.7 ms *(1.00x)* | 5/10 — 100,118.5 ms *(1.00x)* | 5/10 — 100,090.1 ms *(1.00x)* |
+| **Total (10 files, PAR-2)** | **5/10** | **5/10 — 100,063.5 ms** *(fastest)* | 5/10 — 100,078.2 ms *(1.00x)* | 5/10 — 100,515.2 ms *(1.00x)* | 5/10 — 100,296.7 ms *(1.00x)* | 5/10 — 100,118.5 ms *(1.00x)* | 5/10 — 100,090.1 ms *(1.00x)* |
 
-*Summary:* On the 5 solved instances within $T_{\max} = 10\;\text{s}$, Frobenius 1C totals **`81.7 ms`** (outperforming Kissat 4.0.4 at `90.1 ms`, dense-solver 0.0.4 at `118.5 ms`, CryptoMiniSat XCNF at `296.7 ms`, and CryptoMiniSat CNF at `515.2 ms`, and within `3.4 ms` of CaDiCaL 3.1.0 at `78.2 ms`), solving `BB_30_4_6_w5_unsat` in **`12.02 ms`** (faster than CaDiCaL 3.1.0, Kissat 4.0.4, and CryptoMiniSat 5.18.0).
+*Summary:* On the 5 solved instances within $T_{\max} = 10\;\text{s}$, Frobenius 1C totals **`63.5 ms`** — **#1 fastest overall** (`100,063.5 ms` PAR-2, outperforming CaDiCaL 3.1.0 at `78.2 ms`, Kissat 4.0.4 at `90.1 ms`, dense-solver 0.0.4 at `118.5 ms`, CryptoMiniSat XCNF at `296.7 ms`, and CryptoMiniSat CNF at `515.2 ms`), solving `BB_30_4_6_w5_unsat` in **`9.84 ms`** and triple-certifying `BB_72_12_6_w5_unsat` via direct LRAT (`54.3 ms` emit, `1.26 MB`, [`lrat-check`](https://github.com/marijnheule/drat-trim) `30.7 ms` + HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT` `36.2 ms`).
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

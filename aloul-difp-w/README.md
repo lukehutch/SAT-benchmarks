@@ -39,24 +39,24 @@ Difficult Integer Factorization Problems (`difp_w`, 15 SAT instances) encoded vi
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `difp_19_0_wal_rcr` | SAT | **11.62 ms** | 1,396.79 ms | >5 s | >5 s | 2,483.73 ms |
-| `difp_19_1_wal_rcr` | SAT | **14.56 ms** | 214.15 ms | >5 s | 807.66 ms | >5 s |
-| `difp_19_2_wal_rcr` | SAT | **10.94 ms** | >5 s | >5 s | >5 s | 3,533.64 ms |
-| `difp_19_3_wal_rcr` | SAT | **11.08 ms** | 1,620.51 ms | 3,416.57 ms | >5 s | 2,128.49 ms |
-| `difp_19_99_wal_rcr` | SAT | **11.02 ms** | >5 s | 354.73 ms | >5 s | >5 s |
-| `difp_20_0_wal_rcr` | SAT | **11.42 ms** | >5 s | >5 s | >5 s | 228.69 ms |
-| `difp_20_1_wal_rcr` | SAT | **11.26 ms** | >5 s | >5 s | 1,463.82 ms | >5 s |
-| `difp_20_2_wal_rcr` | SAT | **11.39 ms** | 4,176.57 ms | 1,675.33 ms | 2,147.64 ms | >5 s |
-| `difp_20_3_wal_rcr` | SAT | **11.37 ms** | 2,204.27 ms | 551.79 ms | 1,252.93 ms | 3,651.59 ms |
-| `difp_20_99_wal_rcr` | SAT | **12.63 ms** | 1,539.44 ms | 317.03 ms | >5 s | 426.43 ms |
-| `difp_21_0_wal_rcr` | SAT | **14.13 ms** | >5 s | 540.73 ms | >5 s | 4,647.90 ms |
-| `difp_21_1_wal_rcr` | SAT | **14.37 ms** | >5 s | >5 s | >5 s | >5 s |
-| `difp_21_2_wal_rcr` | SAT | **14.98 ms** | >5 s | >5 s | >5 s | >5 s |
-| `difp_21_3_wal_rcr` | SAT | **15.09 ms** | >5 s | 1,714.55 ms | >5 s | >5 s |
-| `difp_21_99_wal_rcr` | SAT | **14.56 ms** | >5 s | >5 s | >5 s | >5 s |
-| **Total (15 files, PAR-2)** | **15/15** | **15/15 — 190.4 ms** *(fastest)* | 6/15 — 101,151.7 ms *(531.18x)* | 7/15 — 88,570.7 ms *(465.11x)* | 4/15 — 115,672.1 ms *(607.43x)* | 7/15 — 97,100.5 ms *(509.90x)* |
+| `difp_19_0_wal_rcr` | SAT | **7.29 ms** | 1,396.79 ms | >5 s | >5 s | 2,483.73 ms |
+| `difp_19_1_wal_rcr` | SAT | **7.31 ms** | 214.15 ms | >5 s | 807.66 ms | >5 s |
+| `difp_19_2_wal_rcr` | SAT | **7.32 ms** | >5 s | >5 s | >5 s | 3,533.64 ms |
+| `difp_19_3_wal_rcr` | SAT | **7.27 ms** | 1,620.51 ms | 3,416.57 ms | >5 s | 2,128.49 ms |
+| `difp_19_99_wal_rcr` | SAT | **7.26 ms** | >5 s | 354.73 ms | >5 s | >5 s |
+| `difp_20_0_wal_rcr` | SAT | **7.74 ms** | >5 s | >5 s | >5 s | 228.69 ms |
+| `difp_20_1_wal_rcr` | SAT | **7.77 ms** | >5 s | >5 s | 1,463.82 ms | >5 s |
+| `difp_20_2_wal_rcr` | SAT | **7.78 ms** | 4,176.57 ms | 1,675.33 ms | 2,147.64 ms | >5 s |
+| `difp_20_3_wal_rcr` | SAT | **7.69 ms** | 2,204.27 ms | 551.79 ms | 1,252.93 ms | 3,651.59 ms |
+| `difp_20_99_wal_rcr` | SAT | **8.25 ms** | 1,539.44 ms | 317.03 ms | >5 s | 426.43 ms |
+| `difp_21_0_wal_rcr` | SAT | **9.88 ms** | >5 s | 540.73 ms | >5 s | 4,647.90 ms |
+| `difp_21_1_wal_rcr` | SAT | **10.43 ms** | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_2_wal_rcr` | SAT | **11.09 ms** | >5 s | >5 s | >5 s | >5 s |
+| `difp_21_3_wal_rcr` | SAT | **10.80 ms** | >5 s | 1,714.55 ms | >5 s | >5 s |
+| `difp_21_99_wal_rcr` | SAT | **10.37 ms** | >5 s | >5 s | >5 s | >5 s |
+| **Total (15 files, PAR-2)** | **15/15** | **15/15 — 128.2 ms** *(fastest)* | 6/15 — 101,151.7 ms *(788.76x)* | 7/15 — 88,570.7 ms *(690.66x)* | 4/15 — 115,672.1 ms *(901.99x)* | 7/15 — 97,100.5 ms *(757.17x)* |
 
-*Summary:* Frobenius 1C solves all **15/15** instances (including `difp_21_1_wal_rcr` and `difp_21_2_wal_rcr`, where all four baseline solvers time out at $5\;\text{s}$) in **`190.4 ms` total** (`10.94–15.09 ms` per instance) — **465.1x faster** PAR-2 than CryptoMiniSat 5.18.0, **509.9x faster** than Kissat 4.0.4, **531.2x faster** than CaDiCaL 3.1.0, and **607.4x faster** than dense-solver 0.0.4.
+*Summary:* Frobenius 1C solves all **15/15** instances (including `difp_21_1_wal_rcr` and `difp_21_2_wal_rcr`, where all four baseline solvers time out at $5\;\text{s}$) in **`128.2 ms` total** (`7.26–11.09 ms` per instance) — **690.66x faster** PAR-2 than CryptoMiniSat 5.18.0, **757.17x faster** than Kissat 4.0.4, **788.76x faster** than CaDiCaL 3.1.0, and **901.99x faster** than dense-solver 0.0.4.
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

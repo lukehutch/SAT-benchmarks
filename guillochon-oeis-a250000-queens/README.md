@@ -105,13 +105,13 @@ Five calibration rungs spanning $n = 12, 13, 15$ evaluated sequentially on ident
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `queens_n12_m21.cnf` | SAT | **0.62 s** | 3.79 s | >60 s | >60 s | 29.62 s |
+| `queens_n12_m21.cnf` | SAT | **601.4 ms** | 3.79 s | >60 s | >60 s | 29.62 s |
 | `queens_n12_m22.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `queens_n13_m24.cnf` | SAT | 11.83 s | **1.82 s** | 51.87 s | >60 s | 3.89 s |
+| `queens_n13_m24.cnf` | SAT | 8.42 s | **1.82 s** | 51.87 s | >60 s | 3.89 s |
 | `queens_n13_m25.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `queens_n15_m32.cnf` | SAT | >60 s *(3.84 s on `.cnf.xz`)* | **9.70 s** | >60 s | >60 s | >60 s |
+| `queens_n15_m32.cnf` | SAT | >60 s | **9.70 s** | >60 s | >60 s | >60 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **3 / 5** | 2 / 5 (2 SAT, 0 UNSAT) | **3 / 5** (3 SAT, 0 UNSAT) | 1 / 5 (1 SAT, 0 UNSAT) | 0 / 5 (0 SAT, 0 UNSAT) | 2 / 5 (2 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 372.45 s *(mean 74.49 s)* | **255.31 s** *(mean 51.06 s)* | 531.87 s *(mean 106.37 s)* | 600.00 s *(mean 120.00 s)* | 393.51 s *(mean 78.70 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 369.02 s *(mean 73.80 s)* | **255.31 s** *(mean 51.06 s)* | 531.87 s *(mean 106.37 s)* | 600.00 s *(mean 120.00 s)* | 393.51 s *(mean 78.70 s)* |
 
 - **Extended sweep milestones:** Frobenius also produced verified optimal SAT models for `queens_n14_m28.cnf` and `queens_n15_m32.cnf` (`3.84 s` native `.cnf.xz`), all archived in [`solutions/`](solutions/). Note: on `A250000`, CaDiCaL 3.1.0 requires `--modelalllits=true` so unassigned literals are emitted in printed witnesses; default `--modelalllits=false` omits unassigned variables and fails raw-clause checks.
 

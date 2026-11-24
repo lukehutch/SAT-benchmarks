@@ -44,12 +44,12 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| `factor_prime_28b_unsat` | **2.05 ms** | 5.99 ms | 75.60 ms | 38.82 ms | 6.19 ms | 25.29 ms |
-| `factor_wallace_32b` | **2.79 ms** | 5.60 ms | 121.22 ms | 82.24 ms | 9.12 ms | 25.43 ms |
-| `factor_wallace_36b` | **3.11 ms** | 8.05 ms | 151.32 ms | 51.40 ms | 9.22 ms | 27.58 ms |
-| `factor_karatsuba_36b` | **9.56 ms** | 39.46 ms | 146.49 ms | 81.61 ms | 10.11 ms | 39.72 ms |
-| `factor_wallace_40b` | **3.16 ms** | 695.57 ms | 774.73 ms | 61.26 ms | 1,516.31 ms | 383.26 ms |
-| `masked_mult_32b_xor16` | **2.91 ms** | 5.89 ms | 50.11 ms | 72.80 ms | 4.48 ms | 17.79 ms |
+| `factor_prime_28b_unsat` | **1.68 ms** | 5.99 ms | 75.60 ms | 38.82 ms | 6.19 ms | 25.29 ms |
+| `factor_wallace_32b` | **2.02 ms** | 5.60 ms | 121.22 ms | 82.24 ms | 9.12 ms | 25.43 ms |
+| `factor_wallace_36b` | **2.73 ms** | 8.05 ms | 151.32 ms | 51.40 ms | 9.22 ms | 27.58 ms |
+| `factor_karatsuba_36b` | **9.63 ms** | 39.46 ms | 146.49 ms | 81.61 ms | 10.11 ms | 39.72 ms |
+| `factor_wallace_40b` | **4.26 ms** | 695.57 ms | 774.73 ms | 61.26 ms | 1,516.31 ms | 383.26 ms |
+| `masked_mult_32b_xor16` | **1.92 ms** | 5.89 ms | 50.11 ms | 72.80 ms | 4.48 ms | 17.79 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

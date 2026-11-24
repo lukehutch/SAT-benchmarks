@@ -79,18 +79,18 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `rpack_n8_13x16.cnf` | UNSAT | 30.6 ms | **5.8 ms** | 283.4 ms | 8.6 ms | 32.7 ms |
-| `rpack_n8_14x15.cnf` | SAT | 35.3 ms | **8.7 ms** | 271.5 ms | **8.4 ms** | 30.3 ms |
-| `rpack_n10_15x27.cnf` | SAT | 49.2 ms | 12.5 ms | 386.3 ms | **11.3 ms** | 38.3 ms |
-| `rpack_n10_20x20.cnf` | UNSAT | 109.4 ms | 15.0 ms | 388.2 ms | **12.0 ms** | 41.5 ms |
-| `rpack_n12_23x29.cnf` | SAT | 94.2 ms | **36.9 ms** | 652.2 ms | 38.0 ms | 72.3 ms |
-| `rpack_n12_25x26.cnf` | UNSAT | 68.2 ms | **15.8 ms** | 649.6 ms | **16.2 ms** | 50.2 ms |
-| `rpack_n14_23x45.cnf` | SAT | 161.5 ms | **43.1 ms** | 977.5 ms | 122.7 ms | 214.0 ms |
-| `rpack_n14_31x33.cnf` | UNSAT | 95.5 ms | 36.2 ms | 546.0 ms | **26.4 ms** | 75.7 ms |
-| `rpack_n17_40x45.cnf` | UNSAT | **1.54 s** | 3.68 s | 2.42 s | 3.83 s | 4.12 s |
-| `rpack_n17_41x44.cnf` | SAT | **327.3 ms** | 857.0 ms | 2.21 s | 2.82 s | 546.9 ms |
+| `rpack_n8_13x16.cnf` | UNSAT | **5.5 ms** | 5.8 ms | 283.4 ms | 8.6 ms | 32.7 ms |
+| `rpack_n8_14x15.cnf` | SAT | **6.4 ms** | 8.7 ms | 271.5 ms | 8.4 ms | 30.3 ms |
+| `rpack_n10_15x27.cnf` | SAT | **10.7 ms** | 12.5 ms | 386.3 ms | 11.3 ms | 38.3 ms |
+| `rpack_n10_20x20.cnf` | UNSAT | **10.6 ms** | 15.0 ms | 388.2 ms | 12.0 ms | 41.5 ms |
+| `rpack_n12_23x29.cnf` | SAT | **32.2 ms** | 36.9 ms | 652.2 ms | 38.0 ms | 72.3 ms |
+| `rpack_n12_25x26.cnf` | UNSAT | 17.1 ms | **15.8 ms** | 649.6 ms | 16.2 ms | 50.2 ms |
+| `rpack_n14_23x45.cnf` | SAT | 231.8 ms | **43.1 ms** | 977.5 ms | 122.7 ms | 214.0 ms |
+| `rpack_n14_31x33.cnf` | UNSAT | 32.2 ms | 36.2 ms | 546.0 ms | **26.4 ms** | 75.7 ms |
+| `rpack_n17_40x45.cnf` | UNSAT | **1.46 s** | 3.68 s | 2.42 s | 3.83 s | 4.12 s |
+| `rpack_n17_41x44.cnf` | SAT | **377.9 ms** | 857.0 ms | 2.21 s | 2.82 s | 546.9 ms |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **10 total** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **2.51 s** *(mean 0.25 s)* | 4.71 s *(mean 0.47 s)* | 8.78 s *(mean 0.88 s)* | 6.90 s *(mean 0.69 s)* | 5.22 s *(mean 0.52 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **2.19 s** *(mean 0.22 s)* | 4.71 s *(mean 0.47 s)* | 8.78 s *(mean 0.88 s)* | 6.90 s *(mean 0.69 s)* | 5.22 s *(mean 0.52 s)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -97,7 +97,7 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 
 | Solver (1C, $T_{\max} = 600\;\text{s}$) | Verdict | Wall Time | CPU Time | Conflicts | Propagations | Peak RSS |
 |---|:---:|---:|---:|---:|---:|---:|
-| **Frobenius 1C** *(default)* | **UNSAT** | 100.59 s | 100.11 s | 7,023,793 | 528.4M | 122 MB |
+| **Frobenius 1C** *(default)* | **UNSAT** | 93.45 s | 93.41 s | 6,834,153 | 507.2M | 122 MB |
 | **Frobenius 1C** *(with `--proof` DRAT)*\* | **UNSAT** | **91.54 s** | **91.13 s** | 6,155,846 | 489.1M | 136 MB |
 | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | **UNSAT** | 339.43 s | 334.99 s | 10,609,175 | 807.0M | 116 MB |
 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | **UNSAT** | 414.78 s | 412.04 s | 6,888,425 | 550.0M | 95 MB |

@@ -21,9 +21,9 @@ Given a fixed constant integer matrix $A \in \mathbb{Z}^{n \times n}$ and modulu
 
 ### Algebraic Scaling Regimes
 
-- **Linear systems over $\mathbb{F}_2$ (`mod_24x24_m2`–`mod_48x48_m2`):** Exponential $2^{\Omega(n)}$ resolution lower bounds cause pure CDCL solvers (CaDiCaL 3.1.0, dense-solver 0.0.4, Kissat 4.0.4) to time out past 60 s at $n \ge 32$, whereas Frobenius solves all $n \in \{24, 32, 40, 48\}$ in `29.6–418.2 ms` (closing the largest $48\times 48$ one-hot instance `113,664` vars in **`175.2 ms`**, **21.3× faster** than CryptoMiniSat 5.18.0 at `3.73 s`).
-- **Moderate odd-prime / composite one-hot systems (`mod_3x3_m26`, `mod_5x5_m27`, `mod_12x12_m3`):** Dense one-hot running-sum clauses where Frobenius leads across every instance in `4.9–17.4 ms` (including `mod_5x5_m27_oh_sat` in **`17.4 ms`** vs. `4.84–22.56 s` for the external baselines).
-- **Hard odd-prime linear-algebra frontier (`mod_10x10_m13_c0_oh_sat`):** A single column of upstream `src/samples/matrix10x10_mod_26.txt` modulo 13 (`1,170` vars, `20,630` clauses) — provably SAT; Frobenius solves and verifies it in **`4.9 ms`**, while all four external baseline solvers time out past 60 s (consistent with the upstream report of >300 s timeout for CaDiCaL).
+- **Linear systems over $\mathbb{F}_2$ (`mod_24x24_m2`–`mod_48x48_m2`):** Exponential $2^{\Omega(n)}$ resolution lower bounds cause pure CDCL solvers (CaDiCaL 3.1.0, dense-solver 0.0.4, Kissat 4.0.4) to time out past 60 s at $n \ge 32$, whereas Frobenius solves all $n \in \{24, 32, 40, 48\}$ in `27.0–404.4 ms` (closing the largest $48\times 48$ one-hot instance `113,664` vars in **`169.7 ms`**, **22.0× faster** than CryptoMiniSat 5.18.0 at `3.73 s`).
+- **Moderate odd-prime / composite one-hot systems (`mod_3x3_m26`, `mod_5x5_m27`, `mod_12x12_m3`):** Dense one-hot running-sum clauses where Frobenius leads across every instance in `3.4–14.6 ms` (including `mod_5x5_m27_oh_sat` in **`14.6 ms`** vs. `4.84–22.56 s` for the external baselines).
+- **Hard odd-prime linear-algebra frontier (`mod_10x10_m13_c0_oh_sat`):** A single column of upstream `src/samples/matrix10x10_mod_26.txt` modulo 13 (`1,170` vars, `20,630` clauses) — provably SAT; Frobenius solves and verifies it in **`3.3 ms`**, while all four external baseline solvers time out past 60 s (consistent with the upstream report of >300 s timeout for CaDiCaL).
 
 ## Corpus & Data Sizes
 
@@ -78,23 +78,23 @@ All 3 upstream modular sample matrices (`src/samples/{matrix3x3_mod_26,matrix5x5
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `mod_3x3_m26_bin_sat` | SAT | **10.7 ms** | 36.7 ms | 168.3 ms | 13.5 ms | 51.2 ms |
-| `mod_3x3_m26_oh_sat` | SAT | **5.5 ms** | 22.8 ms | 689.7 ms | 14.6 ms | 32.0 ms |
-| `mod_5x5_m27_oh_sat` | SAT | **17.4 ms** | 11.66 s | 7.50 s | 22.56 s | 4.84 s |
-| `mod_5x5_m27_sing_oh_unsat` | UNSAT | **15.7 ms** | 61.5 ms | 1.20 s | 46.5 ms | 369.7 ms |
-| `mod_10x10_m13_c0_oh_sat` | SAT | **4.9 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `mod_12x12_m3_oh_sat` | SAT | **4.9 ms** | 259.3 ms | 431.1 ms | 72.6 ms | 260.1 ms |
-| `mod_12x12_m3_sing_oh_unsat` | UNSAT | **5.4 ms** | 133.6 ms | 386.4 ms | 24.0 ms | 135.3 ms |
-| `mod_24x24_m2_bin_sat` | SAT | **36.1 ms** | 2.58 s | 663.3 ms | 2.34 s | 2.81 s |
-| `mod_24x24_m2_bin_unsat` | UNSAT | **29.6 ms** | 441.8 ms | 640.5 ms | 74.1 ms | 767.9 ms |
-| `mod_24x24_m2_oh_sat` | SAT | **131.4 ms** | 2.48 s | 647.9 ms | 1.87 s | 1.72 s |
-| `mod_24x24_m2_oh_unsat` | UNSAT | **129.7 ms** | 241.2 ms | 557.1 ms | 274.2 ms | 486.1 ms |
-| `mod_32x32_m2_oh_sat` | SAT | **51.0 ms** | >60 s *(T/O)* | 1.23 s | >60 s *(T/O)* | >60 s *(T/O)* |
-| `mod_40x40_m2_oh_sat` | SAT | **94.6 ms** | >60 s *(T/O)* | 2.17 s | >60 s *(T/O)* | >60 s *(T/O)* |
-| `mod_40x40_m2_bin_unsat` | UNSAT | **418.2 ms** | 1.41 s | 2.64 s | 2.50 s | >60 s *(T/O)* |
-| `mod_48x48_m2_oh_sat` | SAT | **175.2 ms** | >60 s *(T/O)* | 3.73 s | >60 s *(T/O)* | >60 s *(T/O)* |
-| **Solved / PAR-2 Total ($T_{\max}=60\;\text{s}$)** | **10 / 5** | **15/15 — 1.13 s** *(mean 75.4 ms)* | 11/15 — 499.33 s *(mean 33.29 s)* | 14/15 — 142.65 s *(mean 9.51 s)* | 11/15 — 509.79 s *(mean 33.99 s)* | 10/15 — 611.47 s *(mean 40.76 s)* |
-| **Shared-14 Solved Sum** | **14 inst.** | **1.13 s** *(fastest)* | — | 22.65 s *(20.13x slower)* | — | — |
+| `mod_3x3_m26_bin_sat` | SAT | **10.4 ms** | 36.7 ms | 168.3 ms | 13.5 ms | 51.2 ms |
+| `mod_3x3_m26_oh_sat` | SAT | **4.7 ms** | 22.8 ms | 689.7 ms | 14.6 ms | 32.0 ms |
+| `mod_5x5_m27_oh_sat` | SAT | **14.6 ms** | 11.66 s | 7.50 s | 22.56 s | 4.84 s |
+| `mod_5x5_m27_sing_oh_unsat` | UNSAT | **14.3 ms** | 61.5 ms | 1.20 s | 46.5 ms | 369.7 ms |
+| `mod_10x10_m13_c0_oh_sat` | SAT | **3.3 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `mod_12x12_m3_oh_sat` | SAT | **3.5 ms** | 259.3 ms | 431.1 ms | 72.6 ms | 260.1 ms |
+| `mod_12x12_m3_sing_oh_unsat` | UNSAT | **3.4 ms** | 133.6 ms | 386.4 ms | 24.0 ms | 135.3 ms |
+| `mod_24x24_m2_bin_sat` | SAT | **31.6 ms** | 2.58 s | 663.3 ms | 2.34 s | 2.81 s |
+| `mod_24x24_m2_bin_unsat` | UNSAT | **27.0 ms** | 441.8 ms | 640.5 ms | 74.1 ms | 767.9 ms |
+| `mod_24x24_m2_oh_sat` | SAT | **127.9 ms** | 2.48 s | 647.9 ms | 1.87 s | 1.72 s |
+| `mod_24x24_m2_oh_unsat` | UNSAT | **127.5 ms** | 241.2 ms | 557.1 ms | 274.2 ms | 486.1 ms |
+| `mod_32x32_m2_oh_sat` | SAT | **45.2 ms** | >60 s *(T/O)* | 1.23 s | >60 s *(T/O)* | >60 s *(T/O)* |
+| `mod_40x40_m2_oh_sat` | SAT | **87.7 ms** | >60 s *(T/O)* | 2.17 s | >60 s *(T/O)* | >60 s *(T/O)* |
+| `mod_40x40_m2_bin_unsat` | UNSAT | **404.4 ms** | 1.41 s | 2.64 s | 2.50 s | >60 s *(T/O)* |
+| `mod_48x48_m2_oh_sat` | SAT | **169.7 ms** | >60 s *(T/O)* | 3.73 s | >60 s *(T/O)* | >60 s *(T/O)* |
+| **Solved / PAR-2 Total ($T_{\max}=60\;\text{s}$)** | **10 / 5** | **15/15 — 1.08 s** *(mean 71.7 ms)* | 11/15 — 499.33 s *(mean 33.29 s)* | 14/15 — 142.65 s *(mean 9.51 s)* | 11/15 — 509.79 s *(mean 33.99 s)* | 10/15 — 611.47 s *(mean 40.76 s)* |
+| **Shared-14 Solved Sum** | **14 inst.** | **1.07 s** *(fastest)* | — | 22.65 s *(21.13x slower)* | — | — |
 
 ### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\;\text{s}$)
 

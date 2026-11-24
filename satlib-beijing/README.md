@@ -41,23 +41,23 @@ All 16 instances from the 1996 Beijing SAT Competition benchmark collection (com
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `2bitadd_10` | UNSAT | **30.11 ms** | >5 s | >5 s | >5 s | 2,875.38 ms |
-| `2bitadd_11` | SAT | 9.97 ms | 3.80 ms | 65.97 ms | **3.18 ms** | 23.84 ms |
-| `2bitadd_12` | SAT | 9.52 ms | 3.60 ms | 51.11 ms | **3.07 ms** | 27.43 ms |
-| `2bitcomp_5` | SAT | 2.49 ms | 2.62 ms | 14.43 ms | 2.07 ms | **1.62 ms** |
-| `2bitmax_6` | SAT | 2.66 ms | 2.85 ms | 19.83 ms | 2.69 ms | **1.67 ms** |
-| `3bitadd_31` | SAT | 215.43 ms | **14.53 ms** | 952.34 ms | 37.85 ms | 269.06 ms |
-| `3bitadd_32` | SAT | 211.05 ms | **14.49 ms** | 977.23 ms | 42.29 ms | 177.81 ms |
-| `3blocks` | SAT | 10.46 ms | 10.10 ms | 297.71 ms | **5.78 ms** | 33.68 ms |
-| `4blocks` | SAT | **21.88 ms** | 31.01 ms | 883.51 ms | 35.58 ms | 123.84 ms |
-| `4blocksb` | SAT | 22.35 ms | 15.61 ms | 615.31 ms | **14.62 ms** | 51.71 ms |
-| `e0ddr2-10-by-5-1` | SAT | 91.85 ms | **42.54 ms** | 635.90 ms | 484.29 ms | 76.45 ms |
-| `e0ddr2-10-by-5-4` | SAT | 42.98 ms | 36.70 ms | 641.02 ms | 561.88 ms | **18.18 ms** |
-| `enddr2-10-by-5-1` | SAT | 47.70 ms | 37.44 ms | 690.14 ms | 499.42 ms | **19.60 ms** |
-| `enddr2-10-by-5-8` | SAT | 48.90 ms | 57.08 ms | 684.01 ms | 507.40 ms | **18.91 ms** |
-| `ewddr2-10-by-5-1` | SAT | 48.68 ms | 39.21 ms | 711.47 ms | 543.44 ms | **18.73 ms** |
-| `ewddr2-10-by-5-8` | SAT | 91.20 ms | **63.47 ms** | 912.98 ms | 591.33 ms | 75.06 ms |
-| **Total (16 files, PAR-2)** | **16/16** | **16/16 — 907.2 ms** *(fastest)* | 15/16 — 10,375.0 ms *(11.44x)* | 15/16 — 18,153.0 ms *(20.01x)* | 15/16 — 13,334.9 ms *(14.70x)* | 16/16 — 3,813.0 ms *(4.20x)* |
+| `2bitadd_10` | UNSAT | **21.45 ms** | >5 s | >5 s | >5 s | 2,875.38 ms |
+| `2bitadd_11` | SAT | 6.65 ms | 3.80 ms | 65.97 ms | **3.18 ms** | 23.84 ms |
+| `2bitadd_12` | SAT | 6.30 ms | 3.60 ms | 51.11 ms | **3.07 ms** | 27.43 ms |
+| `2bitcomp_5` | SAT | **0.89 ms** | 2.62 ms | 14.43 ms | 2.07 ms | 1.62 ms |
+| `2bitmax_6` | SAT | **1.11 ms** | 2.85 ms | 19.83 ms | 2.69 ms | 1.67 ms |
+| `3bitadd_31` | SAT | 190.84 ms | **14.53 ms** | 952.34 ms | 37.85 ms | 269.06 ms |
+| `3bitadd_32` | SAT | 151.56 ms | **14.49 ms** | 977.23 ms | 42.29 ms | 177.81 ms |
+| `3blocks` | SAT | 8.55 ms | 10.10 ms | 297.71 ms | **5.78 ms** | 33.68 ms |
+| `4blocks` | SAT | **15.77 ms** | 31.01 ms | 883.51 ms | 35.58 ms | 123.84 ms |
+| `4blocksb` | SAT | **10.70 ms** | 15.61 ms | 615.31 ms | 14.62 ms | 51.71 ms |
+| `e0ddr2-10-by-5-1` | SAT | 57.34 ms | **42.54 ms** | 635.90 ms | 484.29 ms | 76.45 ms |
+| `e0ddr2-10-by-5-4` | SAT | 36.32 ms | 36.70 ms | 641.02 ms | 561.88 ms | **18.18 ms** |
+| `enddr2-10-by-5-1` | SAT | 38.36 ms | 37.44 ms | 690.14 ms | 499.42 ms | **19.60 ms** |
+| `enddr2-10-by-5-8` | SAT | 41.39 ms | 57.08 ms | 684.01 ms | 507.40 ms | **18.91 ms** |
+| `ewddr2-10-by-5-1` | SAT | 41.88 ms | 39.21 ms | 711.47 ms | 543.44 ms | **18.73 ms** |
+| `ewddr2-10-by-5-8` | SAT | 63.88 ms | **63.47 ms** | 912.98 ms | 591.33 ms | 75.06 ms |
+| **Total (16 files, PAR-2)** | **16/16** | **16/16 — 693.0 ms** *(fastest)* | 15/16 — 10,375.0 ms *(14.97x)* | 15/16 — 18,153.0 ms *(26.19x)* | 15/16 — 13,334.9 ms *(19.24x)* | 16/16 — 3,813.0 ms *(5.50x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

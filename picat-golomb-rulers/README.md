@@ -80,18 +80,18 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `golomb_m6_l16.cnf` | UNSAT | 11.0 ms | **5.5 ms** | 77.2 ms | 6.7 ms | 27.2 ms |
-| `golomb_m6_l17.cnf` | SAT | 10.4 ms | **5.7 ms** | 93.4 ms | 7.0 ms | 26.7 ms |
-| `golomb_m7_l24.cnf` | UNSAT | 28.7 ms | 22.6 ms | 376.9 ms | **20.6 ms** | 45.0 ms |
-| `golomb_m7_l25.cnf` | SAT | 24.1 ms | **7.4 ms** | 327.3 ms | 12.5 ms | 28.4 ms |
-| `golomb_m8_l33.cnf` | UNSAT | 208.5 ms | 209.4 ms | 615.3 ms | **123.0 ms** | 235.3 ms |
-| `golomb_m8_l34.cnf` | SAT | 40.9 ms | **30.3 ms** | 552.9 ms | 94.8 ms | 214.7 ms |
-| `golomb_m9_l43.cnf` | UNSAT | **937.7 ms** | 1.17 s | 1.40 s | 1.76 s | 1.09 s |
-| `golomb_m9_l44.cnf` | SAT | **250.3 ms** | 924.7 ms | 1.41 s | 768.4 ms | 258.9 ms |
-| `golomb_m10_l54.cnf` | UNSAT | **5.62 s** | 6.00 s | 6.55 s | 12.49 s | 6.56 s |
-| `golomb_m10_l55.cnf` | SAT | **2.84 s** | 5.55 s | 7.13 s | 3.21 s | 6.32 s |
+| `golomb_m6_l16.cnf` | UNSAT | 10.1 ms | **5.5 ms** | 77.2 ms | 6.7 ms | 27.2 ms |
+| `golomb_m6_l17.cnf` | SAT | 9.6 ms | **5.7 ms** | 93.4 ms | 7.0 ms | 26.7 ms |
+| `golomb_m7_l24.cnf` | UNSAT | 28.2 ms | 22.6 ms | 376.9 ms | **20.6 ms** | 45.0 ms |
+| `golomb_m7_l25.cnf` | SAT | 25.0 ms | **7.4 ms** | 327.3 ms | 12.5 ms | 28.4 ms |
+| `golomb_m8_l33.cnf` | UNSAT | 157.4 ms | 209.4 ms | 615.3 ms | **123.0 ms** | 235.3 ms |
+| `golomb_m8_l34.cnf` | SAT | 149.4 ms | **30.3 ms** | 552.9 ms | 94.8 ms | 214.7 ms |
+| `golomb_m9_l43.cnf` | UNSAT | **954.0 ms** | 1.17 s | 1.40 s | 1.76 s | 1.09 s |
+| `golomb_m9_l44.cnf` | SAT | 688.7 ms | 924.7 ms | 1.41 s | 768.4 ms | **258.9 ms** |
+| `golomb_m10_l54.cnf` | UNSAT | **4.80 s** | 6.00 s | 6.55 s | 12.49 s | 6.56 s |
+| `golomb_m10_l55.cnf` | SAT | **374.1 ms** | 5.55 s | 7.13 s | 3.21 s | 6.32 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **10 total** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **9.97 s** *(mean 1.00 s)* | 13.92 s *(mean 1.39 s)* | 18.53 s *(mean 1.85 s)* | 18.49 s *(mean 1.85 s)* | 14.81 s *(mean 1.48 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **7.20 s** *(mean 0.72 s)* | 13.92 s *(mean 1.39 s)* | 18.53 s *(mean 1.85 s)* | 18.49 s *(mean 1.85 s)* | 14.81 s *(mean 1.48 s)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

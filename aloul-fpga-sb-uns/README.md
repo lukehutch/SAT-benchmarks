@@ -39,17 +39,17 @@ Unsatisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga11_*`; SAT 2002
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `fpga10_11_uns_rcr` | UNSAT | **1.54 ms** | >5 s | >5 s | 1.69 ms | >5 s |
-| `fpga10_12_uns_rcr` | UNSAT | **1.37 ms** | >5 s | >5 s | 1.38 ms | >5 s |
-| `fpga10_13_uns_rcr` | UNSAT | **1.53 ms** | >5 s | >5 s | 1.56 ms | >5 s |
-| `fpga10_15_uns_rcr` | UNSAT | **1.47 ms** | >5 s | >5 s | 2.05 ms | >5 s |
-| `fpga10_20_uns_rcr` | UNSAT | **1.57 ms** | >5 s | >5 s | 1.68 ms | 3,073.81 ms |
-| `fpga11_12_uns_rcr` | UNSAT | 1.36 ms | >5 s | >5 s | **1.34 ms** | >5 s |
-| `fpga11_13_uns_rcr` | UNSAT | **1.46 ms** | >5 s | >5 s | 1.55 ms | >5 s |
-| `fpga11_14_uns_rcr` | UNSAT | 1.50 ms | >5 s | >5 s | **1.48 ms** | >5 s |
-| `fpga11_15_uns_rcr` | UNSAT | **1.48 ms** | >5 s | >5 s | 1.77 ms | >5 s |
-| `fpga11_20_uns_rcr` | UNSAT | **1.56 ms** | >5 s | >5 s | 1.76 ms | >5 s |
-| **Total (10 files, PAR-2)** | **10/10** | **10/10 — 14.8 ms** *(fastest)* | 0/10 — 100,000.0 ms *(6,737.64x)* | 0/10 — 100,000.0 ms *(6,737.64x)* | 10/10 — 16.3 ms *(1.10x)* | 1/10 — 93,073.8 ms *(6,270.97x)* |
+| `fpga10_11_uns_rcr` | UNSAT | **0.67 ms** | >5 s | >5 s | 1.69 ms | >5 s |
+| `fpga10_12_uns_rcr` | UNSAT | **0.67 ms** | >5 s | >5 s | 1.38 ms | >5 s |
+| `fpga10_13_uns_rcr` | UNSAT | **0.67 ms** | >5 s | >5 s | 1.56 ms | >5 s |
+| `fpga10_15_uns_rcr` | UNSAT | **0.71 ms** | >5 s | >5 s | 2.05 ms | >5 s |
+| `fpga10_20_uns_rcr` | UNSAT | **0.76 ms** | >5 s | >5 s | 1.68 ms | 3,073.81 ms |
+| `fpga11_12_uns_rcr` | UNSAT | **0.67 ms** | >5 s | >5 s | 1.34 ms | >5 s |
+| `fpga11_13_uns_rcr` | UNSAT | **0.68 ms** | >5 s | >5 s | 1.55 ms | >5 s |
+| `fpga11_14_uns_rcr` | UNSAT | **0.69 ms** | >5 s | >5 s | 1.48 ms | >5 s |
+| `fpga11_15_uns_rcr` | UNSAT | **0.71 ms** | >5 s | >5 s | 1.77 ms | >5 s |
+| `fpga11_20_uns_rcr` | UNSAT | **0.76 ms** | >5 s | >5 s | 1.76 ms | >5 s |
+| **Total (10 files, PAR-2)** | **10/10** | **10/10 — 7.0 ms** *(fastest)* | 0/10 — 100,000.0 ms *(14,330.75x)* | 0/10 — 100,000.0 ms *(14,330.75x)* | 10/10 — 16.3 ms *(2.34x)* | 1/10 — 93,073.8 ms *(13,338.18x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

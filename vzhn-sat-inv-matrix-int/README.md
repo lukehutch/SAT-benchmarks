@@ -72,18 +72,18 @@ All 4 upstream integer matrices (`src/matrix/{4x4,8x8,10x10,16x16}.txt`) and the
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `int_3x3_det2_w3_unsat` | UNSAT | 2.2 ms | 3.6 ms | 8.7 ms | 2.1 ms | **2.0 ms** |
-| `int_4x4_w5_unsat` | UNSAT | **2.2 ms** | 4.4 ms | 9.2 ms | 2.9 ms | 2.5 ms |
-| `int_4x4_w7_sat` | SAT | **2.4 ms** | 5.4 ms | 11.3 ms | 3.5 ms | 2.9 ms |
-| `int_8x8_w16_sat` | SAT | 2.00 s | 229.4 ms | 2.63 s | 816.4 ms | **158.1 ms** |
-| `int_8x8_w36_sat` | SAT | **265.8 ms** | 1.02 s | 6.82 s | 4.33 s | 375.4 ms |
-| `int_10x10_w4_unsat` | UNSAT | 76.2 ms | **34.7 ms** | 1.37 s | 124.0 ms | 49.9 ms |
-| `int_10x10_w16_sat` | SAT | 587.7 ms | 874.0 ms | 4.41 s | 3.10 s | **291.9 ms** |
-| `int_10x10_w47_sat` | SAT | **766.2 ms** | 3.17 s | 49.81 s | 42.37 s | 1.11 s |
-| `int_16x16_w5_unsat` | UNSAT | 674.3 ms | **265.3 ms** | 4.00 s | 1.39 s | 1.90 s |
-| `int_16x16_sing_w16_unsat` | UNSAT | **1.04 s** | 1.24 s | 17.89 s | 17.57 s | 2.90 s |
-| `int_16x16_w16_sat` | SAT | 19.84 s | 24.98 s | 19.69 s | 22.39 s | **13.27 s** |
-| **Solved / PAR-2 Total ($T_{\max}=60\;\text{s}$)** | **6 / 5** | 11/11 — 25.26 s *(mean 2.30 s)* | 11/11 — 31.83 s *(mean 2.89 s)* | 11/11 — 106.65 s *(mean 9.70 s)* | 11/11 — 92.10 s *(mean 8.37 s)* | **11/11 — 20.06 s** *(mean 1.82 s)* |
+| `int_3x3_det2_w3_unsat` | UNSAT | **0.7 ms** | 3.6 ms | 8.7 ms | 2.1 ms | 2.0 ms |
+| `int_4x4_w5_unsat` | UNSAT | **1.0 ms** | 4.4 ms | 9.2 ms | 2.9 ms | 2.5 ms |
+| `int_4x4_w7_sat` | SAT | **1.1 ms** | 5.4 ms | 11.3 ms | 3.5 ms | 2.9 ms |
+| `int_8x8_w16_sat` | SAT | 1.87 s | 229.4 ms | 2.63 s | 816.4 ms | **158.1 ms** |
+| `int_8x8_w36_sat` | SAT | **228.9 ms** | 1.02 s | 6.82 s | 4.33 s | 375.4 ms |
+| `int_10x10_w4_unsat` | UNSAT | 63.6 ms | **34.7 ms** | 1.37 s | 124.0 ms | 49.9 ms |
+| `int_10x10_w16_sat` | SAT | 340.9 ms | 874.0 ms | 4.41 s | 3.10 s | **291.9 ms** |
+| `int_10x10_w47_sat` | SAT | **701.9 ms** | 3.17 s | 49.81 s | 42.37 s | 1.11 s |
+| `int_16x16_w5_unsat` | UNSAT | 600.3 ms | **265.3 ms** | 4.00 s | 1.39 s | 1.90 s |
+| `int_16x16_sing_w16_unsat` | UNSAT | 1.47 s | **1.24 s** | 17.89 s | 17.57 s | 2.90 s |
+| `int_16x16_w16_sat` | SAT | 16.49 s | 24.98 s | 19.69 s | 22.39 s | **13.27 s** |
+| **Solved / PAR-2 Total ($T_{\max}=60\;\text{s}$)** | **6 / 5** | 11/11 — 21.77 s *(mean 1.98 s)* | 11/11 — 31.83 s *(mean 2.89 s)* | 11/11 — 106.65 s *(mean 9.70 s)* | 11/11 — 92.10 s *(mean 8.37 s)* | **11/11 — 20.06 s** *(mean 1.82 s)* |
 
 ### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\;\text{s}$)
 

@@ -104,19 +104,19 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 ### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
 
-Seven calibration rungs spanning $t = 10 \dots 13$ evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** ranks **#1 overall** (`7 / 7` solved, Total PAR-2 = **`49.84 s`**, **2.38× faster** than #2 Kissat 4.0.4 at `118.59 s`) and **#1 on all three UNSAT rungs**:
+Seven calibration rungs spanning $t = 10 \dots 13$ evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** ranks **#1 overall** (`7 / 7` solved, Total PAR-2 = **`48.44 s`**, **2.45× faster** than #2 Kissat 4.0.4 at `118.59 s`) and **#1 on all three UNSAT rungs**:
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `vdw_3_10_N96.cnf` | SAT | 0.32 s | 0.17 s | 1.00 s | 0.17 s | **0.16 s** |
-| `vdw_3_10_N97.cnf` | UNSAT | **0.73 s** | 0.99 s | 1.30 s | 0.74 s | 0.92 s |
-| `vdw_3_11_N113.cnf` | SAT | 0.13 s | 0.33 s | 0.76 s | **0.01 s** | 0.35 s |
-| `vdw_3_11_N114.cnf` | UNSAT | **3.80 s** | 6.96 s | 7.44 s | 6.78 s | 7.22 s |
-| `vdw_3_12_N134.cnf` | SAT | 8.40 s | **1.18 s** | 38.88 s | 42.64 s | 49.18 s |
-| `vdw_3_12_N135.cnf` | UNSAT | **35.62 s** | >60 s | >60 s | >60 s | 51.28 s |
-| `vdw_3_13_N159.cnf` | SAT | **0.84 s** | 1.13 s | 10.74 s | 2.82 s | 9.48 s |
+| `vdw_3_10_N96.cnf` | SAT | **90.3 ms** | 0.17 s | 1.00 s | 0.17 s | 0.16 s |
+| `vdw_3_10_N97.cnf` | UNSAT | **675.8 ms** | 0.99 s | 1.30 s | 0.74 s | 0.92 s |
+| `vdw_3_11_N113.cnf` | SAT | 529.2 ms | 0.33 s | 0.76 s | **0.01 s** | 0.35 s |
+| `vdw_3_11_N114.cnf` | UNSAT | **4.03 s** | 6.96 s | 7.44 s | 6.78 s | 7.22 s |
+| `vdw_3_12_N134.cnf` | SAT | 5.93 s | **1.18 s** | 38.88 s | 42.64 s | 49.18 s |
+| `vdw_3_12_N135.cnf` | UNSAT | **35.43 s** | >60 s | >60 s | >60 s | 51.28 s |
+| `vdw_3_13_N159.cnf` | SAT | 1.75 s | **1.13 s** | 10.74 s | 2.82 s | 9.48 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **7 / 7** | **7 / 7** (4 SAT, 3 UNSAT) | 6 / 7 (4 SAT, 2 UNSAT) | 6 / 7 (4 SAT, 2 UNSAT) | 6 / 7 (4 SAT, 2 UNSAT) | **7 / 7** (4 SAT, 3 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **49.84 s** *(mean 7.12 s)* | 130.76 s *(mean 18.68 s)* | 180.12 s *(mean 25.73 s)* | 173.16 s *(mean 24.74 s)* | 118.59 s *(mean 16.94 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **48.44 s** *(mean 6.92 s)* | 130.76 s *(mean 18.68 s)* | 180.12 s *(mean 25.73 s)* | 173.16 s *(mean 24.74 s)* | 118.59 s *(mean 16.94 s)* |
 
 - **Extended sweep milestone:** Beyond the 60 s cutoff, Frobenius also solved `vdw_3_14_N185.cnf` (SAT) in **`78.14 s`**, archived in [`solutions/vdw_3_14_N185.model.xz`](solutions/vdw_3_14_N185.model.xz).
 
