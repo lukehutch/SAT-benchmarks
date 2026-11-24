@@ -115,7 +115,7 @@ All **5 tractable Frobenius UNSAT instances** ($< 30\;\text{s}$) in this collect
 | Instance | DRAT Size | `drat-trim` | LRAT Size | `lrat-check` | `cake_lpr` |
 |---|---:|---|---:|---|---|
 | `sha256_cec_r1_b4.cnf` | 4.37 MB | Verified (449.6 ms) | 10.72 MB | Verified (277.0 ms) | `s VERIFIED UNSAT` (649.9 ms) |
-| `sha256_cec_r2_b2.cnf` | — | *(LRAT-certified)* | 1096.15 MB | Verified (13878.2 ms) | `s VERIFIED UNSAT` (36304.5 ms) |
+| `sha256_cec_r2_b2.cnf` | 26.78 MB | Verified (34.10 s) | 1096.15 MB | Verified (13878.2 ms) | `s VERIFIED UNSAT` (36304.5 ms) |
 | `sha256_cec_r4_b1.cnf` | 16.90 MB | Verified (3045.0 ms) | 12.45 MB | Verified (160.0 ms) | `s VERIFIED UNSAT` (405.4 ms) |
 | `sha256_cec_r8_b1.cnf` | 40.13 MB | Verified (11551.3 ms) | 32.11 MB | Verified (384.6 ms) | `s VERIFIED UNSAT` (1516.8 ms) |
 | `sha256_trace_r64_abc_expect_flip.cnf` | 7.42 MB | Verified (398.1 ms) | 3.44 MB | Verified (128.6 ms) | `s VERIFIED UNSAT` (391.0 ms) |
