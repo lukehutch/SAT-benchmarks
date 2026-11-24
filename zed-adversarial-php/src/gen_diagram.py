@@ -8,8 +8,8 @@ Illustrates the single problem family constructed in `src/main.rs`:
      n*C(m,2) pairwise NAND exclusion gates into a single global AND output
      PO_0, plus UNSAT deficiency vs. SAT bijection controls (php_20_20, 30_30).
   2. Right: Log-scale cubic growth plot of AIG AND gates (647..122,499) and
-     Tseitin CNF clauses (1,350..247,350) across n=8..49 showing the exact
-     CDCL >600 s timeout cliff at PHP^{16}_{15} (Haken 1985) and LRAT proof
+     Tseitin CNF clauses (1,350..247,350) across n=8..49 showing the uniform
+     T_max = 5,000 s baseline timeout wall at PHP^{20}_{19} (Haken 1985) and LRAT proof
      certification in HOL4/cake_lpr.
 
 Zero external dependencies (Python 3 stdlib only). Writes `../diagram.svg`
@@ -149,7 +149,7 @@ def build_svg() -> str:
 
     # Card 1: Log-Scale Cubic Growth Plot (AIG ANDs & CNF Clauses vs hole count n)
     p.append(f'    <rect x="{rx}" y="{ry}" width="{rw}" height="214" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>')
-    p.append(f'    <text x="{rx + 14}" y="{ry + 21}" font-size="12.2" font-weight="700" fill="#0f172a">2. Cubic O(n³) Gate/Clause Scaling &amp; CDCL &gt;600 s Cliff</text>')
+    p.append(f'    <text x="{rx + 14}" y="{ry + 21}" font-size="12.2" font-weight="700" fill="#0f172a">2. Cubic O(n³) Gate/Clause Scaling &amp; &gt;5,000 s Wall</text>')
 
     # Plot area
     px0, py0, pw0, ph0 = rx + 54, ry + 34, rw - 72, 134
@@ -177,11 +177,11 @@ def build_svg() -> str:
     def y_v(val: float) -> float:
         return py0 + ph0 - (math.log10(val) - ly_min) / (ly_max - ly_min) * ph0
 
-    # Shaded CDCL timeout zone (n >= 15)
-    x_cliff = x_n(15.0)
+    # Shaded uniform all-5-baselines timeout zone (n >= 19)
+    x_cliff = x_n(19.0)
     p.append(f'    <rect x="{x_cliff:.1f}" y="{py0 + 1}" width="{px0 + pw0 - x_cliff - 1:.1f}" height="{ph0 - 2}" fill="#fef2f2" fill-opacity="0.78"/>')
     p.append(f'    <line x1="{x_cliff:.1f}" y1="{py0}" x2="{x_cliff:.1f}" y2="{py0 + ph0}" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="4,2"/>')
-    p.append(f'    <text x="{x_cliff + 6:.1f}" y="{py0 + 15}" font-size="8.8" font-weight="700" fill="#b91c1c">CDCL &gt;600 s timeout zone (n ≥ 15)</text>')
+    p.append(f'    <text x="{x_cliff + 6:.1f}" y="{py0 + 15}" font-size="8.8" font-weight="700" fill="#b91c1c">All 5 baselines &gt;5,000 s (n ≥ 19)</text>')
 
     # Horizontal log grid lines
     for ytick, ylbl in [(1000, "1k"), (10000, "10k"), (100000, "100k")]:
@@ -190,7 +190,7 @@ def build_svg() -> str:
         p.append(f'    <text x="{px0 - 6}" y="{yy + 3:.1f}" text-anchor="end" font-family="{FONT_MONO}" font-size="8.4" fill="#64748b">{ylbl}</text>')
 
     # X axis ticks
-    for nv in (8, 15, 20, 30, 40, 49):
+    for nv in (8, 15, 19, 30, 40, 49):
         xx = x_n(nv)
         p.append(f'    <line x1="{xx:.1f}" y1="{py0 + ph0}" x2="{xx:.1f}" y2="{py0 + ph0 + 4}" stroke="#475569" stroke-width="1"/>')
         p.append(f'    <text x="{xx:.1f}" y="{py0 + ph0 + 15}" text-anchor="middle" font-family="{FONT_MONO}" font-size="8.5" fill="#475569">{nv}</text>')
@@ -216,7 +216,7 @@ def build_svg() -> str:
     # Card 2: Exact 1-Core Benchmark Scaling Table (Promoted UNSAT Ladder)
     cy2 = ry + 226
     p.append(f'    <rect x="{rx}" y="{cy2}" width="{rw}" height="170" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>')
-    p.append(f'    <text x="{rx + 14}" y="{cy2 + 20}" font-size="12" font-weight="700" fill="#0f172a">3. 1-Core Benchmark Ladder (Flat CNF, T{sub("max")} = 600 s)</text>')
+    p.append(f'    <text x="{rx + 14}" y="{cy2 + 20}" font-size="12" font-weight="700" fill="#0f172a">3. 1-Core Benchmark Ladder (Flat CNF, T{sub("max")} = 5,000 s)</text>')
 
     th = cy2 + 37
     p.append(f'    <rect x="{rx + 12}" y="{th - 10}" width="{rw - 24}" height="16" rx="4" fill="#e2e8f0"/>')
@@ -224,16 +224,16 @@ def build_svg() -> str:
         (rx + 18, "Instance", "start"),
         (rx + 150, "CNF Vars", "end"),
         (rx + 216, "Clauses", "end"),
-        (rx + 292, "CDCL / dense", "middle"),
+        (rx + 292, "Baselines (5)", "middle"),
         (rx + 388, "Frob. 1C", "middle"),
     ]:
         p.append(f'    <text x="{hx_c}" y="{th + 1}" text-anchor="{anc}" font-size="8.5" font-weight="700" fill="#334155">{hlbl}</text>')
 
     b_rows = [
-        ("php_9_8_unsat", "423", "1,350", "15–438 ms", "1.81 ms", False),
-        ("php_16_15_unsat", "2,264", "7,888", ">600 s / >30 s", "4.54 ms", True),
-        ("php_20_19_unsat", "4,350", "15,540", ">600 s / >30 s", "8.15 ms", True),
-        ("php_50_49_unsat", "64,875", "247,350", ">600 s / >30 s", "119.04 ms", True),
+        ("php_9_8_unsat", "423", "1,350", "15–474 ms", "1.81 ms", False),
+        ("php_16_15_unsat", "2,264", "7,888", "109 s–>5,000 s", "4.54 ms", True),
+        ("php_20_19_unsat", "4,350", "15,540", "all 5 >5,000 s", "8.15 ms", True),
+        ("php_50_49_unsat", "64,875", "247,350", "all 5 >5,000 s", "119.04 ms", True),
     ]
     for i, (nm, vs, cs, oth, fr, is_to) in enumerate(b_rows):
         ry_r = th + 18 + i * 24

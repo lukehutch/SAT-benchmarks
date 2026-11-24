@@ -64,11 +64,11 @@
     <text x="50" y="440" font-size="8.9" fill="#334155">• php_9_8 &amp; php_13_12 LRAT proofs verified in HOL4/cake_lpr &amp; lrat-check</text>
     <text x="50" y="454" font-size="8.9" fill="#475569">• AIG (193.7 KB) · CNF (477.0 KB) · XCNF (477.0 KB, 0 XORs) · ANF (203.5 KB, deg≤2)</text>
     <rect x="474" y="78" width="442" height="214" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
-    <text x="488" y="99" font-size="12.2" font-weight="700" fill="#0f172a">2. Cubic O(n³) Gate/Clause Scaling &amp; CDCL &gt;600 s Cliff</text>
+    <text x="488" y="99" font-size="12.2" font-weight="700" fill="#0f172a">2. Cubic O(n³) Gate/Clause Scaling &amp; &gt;5,000 s Wall</text>
     <rect x="528" y="112" width="370" height="134" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <rect x="600.4" y="113" width="296.6" height="132" fill="#fef2f2" fill-opacity="0.78"/>
-    <line x1="600.4" y1="112" x2="600.4" y2="246" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="4,2"/>
-    <text x="606.4" y="127" font-size="8.8" font-weight="700" fill="#b91c1c">CDCL &gt;600 s timeout zone (n ≥ 15)</text>
+    <rect x="632.6" y="113" width="264.4" height="132" fill="#fef2f2" fill-opacity="0.78"/>
+    <line x1="632.6" y1="112" x2="632.6" y2="246" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="4,2"/>
+    <text x="638.6" y="127" font-size="8.8" font-weight="700" fill="#b91c1c">All 5 baselines &gt;5,000 s (n ≥ 19)</text>
     <line x1="528" y1="228.2" x2="898" y2="228.2" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="3,2"/>
     <text x="522" y="231.2" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#64748b">1k</text>
     <line x1="528" y1="183.6" x2="898" y2="183.6" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="3,2"/>
@@ -79,8 +79,8 @@
     <text x="544.1" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">8</text>
     <line x1="600.4" y1="246" x2="600.4" y2="250" stroke="#475569" stroke-width="1"/>
     <text x="600.4" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">15</text>
-    <line x1="640.6" y1="246" x2="640.6" y2="250" stroke="#475569" stroke-width="1"/>
-    <text x="640.6" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">20</text>
+    <line x1="632.6" y1="246" x2="632.6" y2="250" stroke="#475569" stroke-width="1"/>
+    <text x="632.6" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">19</text>
     <line x1="721.0" y1="246" x2="721.0" y2="250" stroke="#475569" stroke-width="1"/>
     <text x="721.0" y="261" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#475569">30</text>
     <line x1="801.5" y1="246" x2="801.5" y2="250" stroke="#475569" stroke-width="1"/>
@@ -116,35 +116,35 @@
     <line x1="756" y1="232" x2="774" y2="232" stroke="#2563eb" stroke-width="2.2"/>
     <text x="780" y="235" font-size="8.6" font-weight="600" fill="#1d4ed8">AIG ANDs (≤122k)</text>
     <rect x="474" y="304" width="442" height="170" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-    <text x="488" y="324" font-size="12" font-weight="700" fill="#0f172a">3. 1-Core Benchmark Ladder (Flat CNF, T<tspan baseline-shift="sub" font-size="72%">max</tspan> = 600 s)</text>
+    <text x="488" y="324" font-size="12" font-weight="700" fill="#0f172a">3. 1-Core Benchmark Ladder (Flat CNF, T<tspan baseline-shift="sub" font-size="72%">max</tspan> = 5,000 s)</text>
     <rect x="486" y="331" width="418" height="16" rx="4" fill="#e2e8f0"/>
     <text x="492" y="342" text-anchor="start" font-size="8.5" font-weight="700" fill="#334155">Instance</text>
     <text x="624" y="342" text-anchor="end" font-size="8.5" font-weight="700" fill="#334155">CNF Vars</text>
     <text x="690" y="342" text-anchor="end" font-size="8.5" font-weight="700" fill="#334155">Clauses</text>
-    <text x="766" y="342" text-anchor="middle" font-size="8.5" font-weight="700" fill="#334155">CDCL / dense</text>
+    <text x="766" y="342" text-anchor="middle" font-size="8.5" font-weight="700" fill="#334155">Baselines (5)</text>
     <text x="862" y="342" text-anchor="middle" font-size="8.5" font-weight="700" fill="#334155">Frob. 1C</text>
     <text x="492" y="360.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_9_8_unsat</text>
     <text x="624" y="360.5" text-anchor="end" font-size="8.7" fill="#475569">423</text>
     <text x="690" y="360.5" text-anchor="end" font-size="8.7" fill="#475569">1,350</text>
-    <text x="766" y="360.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#334155">15–438 ms</text>
+    <text x="766" y="360.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#334155">15–474 ms</text>
     <text x="862" y="360.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">1.81 ms</text>
     <rect x="486" y="371.5" width="418" height="21" rx="3" fill="#fef2f2"/>
     <text x="492" y="384.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_16_15_unsat</text>
     <text x="624" y="384.5" text-anchor="end" font-size="8.7" fill="#475569">2,264</text>
     <text x="690" y="384.5" text-anchor="end" font-size="8.7" fill="#475569">7,888</text>
-    <text x="766" y="384.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">&gt;600 s / &gt;30 s</text>
+    <text x="766" y="384.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">109 s–&gt;5,000 s</text>
     <text x="862" y="384.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">4.54 ms</text>
     <rect x="486" y="395.5" width="418" height="21" rx="3" fill="#fef2f2"/>
     <text x="492" y="408.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_20_19_unsat</text>
     <text x="624" y="408.5" text-anchor="end" font-size="8.7" fill="#475569">4,350</text>
     <text x="690" y="408.5" text-anchor="end" font-size="8.7" fill="#475569">15,540</text>
-    <text x="766" y="408.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">&gt;600 s / &gt;30 s</text>
+    <text x="766" y="408.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">all 5 &gt;5,000 s</text>
     <text x="862" y="408.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">8.15 ms</text>
     <rect x="486" y="419.5" width="418" height="21" rx="3" fill="#fef2f2"/>
     <text x="492" y="432.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0f172a">php_50_49_unsat</text>
     <text x="624" y="432.5" text-anchor="end" font-size="8.7" fill="#475569">64,875</text>
     <text x="690" y="432.5" text-anchor="end" font-size="8.7" fill="#475569">247,350</text>
-    <text x="766" y="432.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">&gt;600 s / &gt;30 s</text>
+    <text x="766" y="432.5" text-anchor="middle" font-size="8.6" font-weight="700" fill="#b91c1c">all 5 &gt;5,000 s</text>
     <text x="862" y="432.5" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">119.04 ms</text>
     <text x="488" y="462" font-size="9" fill="#475569">Structural regime: all 12 Over-constrained (ρ<tspan baseline-shift="sub" font-size="72%">crit</tspan> = 2.56×–3.08× · 95–99% Horn · 0 XORs)</text>
   </g>

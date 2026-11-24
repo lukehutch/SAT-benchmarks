@@ -166,7 +166,7 @@ Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated be
 † SC 2025 published aggregate 5,000 s slide standings without a per-instance runtime CSV.
 *Notable unique wins:* Frobenius solved **12** SC 2024 instances within 60 s where [kissat-sc2024](https://github.com/arminbiere/kissat) timed out past 5,000 s (**26** vs. [CaDiCaL](https://github.com/arminbiere/cadical)), and **18** SC 2026 instances within 60 s where [satsuma-iter-kissat](https://github.com/markusa4/satsuma) timed out past 5,000 s (**41** vs. [Lymphosat](https://c.mov/lymphosat/), **53** vs. [kissat-biere](https://github.com/arminbiere/kissat)).
 
-### Curated 14-Instance SC 2023–2024 Gauntlet Slice (1-Core Flat `.cnf`, $T_{\max} = 600\;\text{s}$)
+### Curated 14-Instance SC 2023–2024 Gauntlet Slice (1-Core Flat `.cnf`, $T_{\max} = 5{,}000\;\text{s}$)
 
 Fourteen representative cross-domain SAT Competition 2023 & 2024 Main Track formulas spanning 11 industrial, cryptographic, hardware-verification, algebraic, and combinatorial domains (previously maintained as a separate directory; **14/14 = 100%** are indexed in `uris/main_2023.uri`–`uris/main_2026.uri` and [`src/sc23_24_manifest.json`](src/sc23_24_manifest.json)). Twelve form the SAT Competition slice of the unified 50-benchmark flat-CNF gauntlet (`two_trees_511v` and `mp1_nb7t42` are companion instances from the same selection).
 
@@ -189,24 +189,27 @@ Fourteen representative cross-domain SAT Competition 2023 & 2024 Main Track form
 | `si2_b03m_m800_03` | 2024 | SC24-SubIso | [`af750c18578d52e60472315692ad83c0`](https://benchmark-database.de/file/af750c18578d52e60472315692ad83c0) | SAT | 10,862 | 472,588 |
 | `mp1_nb7t42` | 2024 | SC24-PolyMul | [`c0293283432a9b15cd743702163f5184`](https://benchmark-database.de/file/c0293283432a9b15cd743702163f5184) | SAT | 52,731 | 208,936 |
 
-#### Flat-CNF Gauntlet Timings (1-Core, $T_{\max} = 600\;\text{s}$; dense-solver 0.0.4 Verified to $T_{\max} = 5{,}000\;\text{s}$)
+#### Flat-CNF Gauntlet Timings (1-Core, Uniform Competition-Standard $T_{\max} = 5{,}000\;\text{s}$)
 
-Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs for sub-minute solves; all solvers read the identical flat `.cnf` file except the explicit CryptoMiniSat 5.18.0 (XCNF) column; dense-solver 0.0.4 timeouts were extended to competition-standard $T_{\max} = 5{,}000\;\text{s}$):
+Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs for solves under $120\;\text{s}$; uniform SAT Competition Main Track timeout $T_{\max} = 5{,}000\;\text{s}$ with $10{,}000\;\text{s}$ PAR-2 penalty across all 12 instances and all 6 solver configurations; all solvers read the identical flat `.cnf` file except the explicit CryptoMiniSat 5.18.0 (XCNF) column; **0 verdict disagreements**, 100% SAT models clause-verified):
 
-| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 *($T=5{,}000\;\text{s}$)* | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| `tseitingrid6x200` | **3.07 ms** | >600 s (T/O) | >600 s (T/O) | 1,093.37 ms | 4.89 ms | >600 s (T/O) |
-| `tseitin_d3_n10000` | **7.66 ms** | >600 s (T/O) | >600 s (T/O) | 731.97 ms | 84.03 ms | >600 s (T/O) |
-| `urq45` | **1.10 ms** | >600 s (T/O) | >600 s (T/O) | 50.83 ms | 1.41 ms | 222,854.68 ms |
-| `two_trees_1023v` | **5.15 ms** | >600 s (T/O) | >600 s (T/O) | 18,574.19 ms | >5,000 s (T/O) | >600 s (T/O) |
-| `intervals122` | 46.97 ms | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | **19.26 ms** | >600 s (T/O) |
-| `clique_n2_k10` | **3.33 ms** | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | 485,598.35 ms | 8,185.14 ms |
-| `gzipfile_close_11` | 1.83 ms | >600 s (T/O) | >600 s (T/O) | >600 s (T/O) | **1.51 ms** | 294.83 ms |
+| `tseitingrid6x200` | **3.07 ms** | >5,000 s (T/O) | 645.51 ms | 1,093.37 ms | 4.89 ms | >5,000 s (T/O) |
+| `tseitin_d3_n10000` | **7.66 ms** | >5,000 s (T/O) | 511.42 ms | 731.97 ms | 84.03 ms | >5,000 s (T/O) |
+| `urq45` | **1.10 ms** | 721,473.32 ms | 50.15 ms | 50.83 ms | 1.41 ms | 222,854.68 ms |
+| `two_trees_1023v` | **5.15 ms** | >5,000 s (T/O) | 11,044.46 ms | 18,574.19 ms | >5,000 s (T/O) | >5,000 s (T/O) |
+| `intervals122` | 46.97 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | **19.26 ms** | >5,000 s (T/O) |
+| `clique_n2_k10` | **3.33 ms** | 919,269.64 ms | 1,591,286.23 ms | 1,526,088.35 ms | 485,598.35 ms | 8,185.14 ms |
+| `gzipfile_close_11` | 1.83 ms | 1,822,822.02 ms | 4,578,003.23 ms | 4,673,159.14 ms | **1.51 ms** | 294.83 ms |
 | `rand_net70_40_10` | **5.39 ms** | 417.88 ms | 9,516.11 ms | 8,579.44 ms | 17,432.27 ms | 12.31 ms |
-| `hwmcc20_iso_rast_p06` | **75.85 ms** | 1,764.89 ms | >600 s (T/O) | >600 s (T/O) | >5,000 s (T/O) | 347.68 ms |
-| `hwmcc17_iso_bobsmfpu` | **53.54 ms** | 2,755.84 ms | >600 s (T/O) | >600 s (T/O) | >5,000 s (T/O) | 321.55 ms |
+| `hwmcc20_iso_rast_p06` | **75.85 ms** | 1,764.89 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | 347.68 ms |
+| `hwmcc17_iso_bobsmfpu` | **53.54 ms** | 2,755.84 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | 321.55 ms |
 | `vmpc_24` | **1,596.46 ms** | 6,171.80 ms | 1,653.58 ms | 44,855.40 ms | 1,795.47 ms | 12,462.32 ms |
 | `si2_b03m_m800_03` | 1,944.36 ms | 5,892.54 ms | 48,671.18 ms | 44,618.32 ms | **651.13 ms** | 6,670.87 ms |
+| **Total (12 inst., PAR-2)** | **12/12 — 3,744.71 ms** *(fastest)* | 8/12 — 43,480,567.93 ms *(11,611x)* | 9/12 — 36,241,381.87 ms *(9,678x)* | 9/12 — 36,317,751.01 ms *(9,698x)* | 9/12 — 30,505,588.32 ms *(8,146x)* | 8/12 — 40,251,149.38 ms *(10,749x)* |
+
+*(Uniform competition-standard $T_{\max} = 5{,}000\;\text{s}$ PAR-2 penalty $= 10{,}000\;\text{s} = 10{,}000{,}000\;\text{ms}$ per timeout. On flat CNF, CryptoMiniSat 5.18.0's built-in Gauss–Jordan XOR recovery solves `tseitingrid6x200`, `tseitin_d3_n10000`, `urq45`, and `two_trees_1023v`, while Frobenius 1C remains 45.6x–2,145x faster on those four formulas and sweeps 12/12 overall.)*
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -526,17 +526,17 @@ Every collection lives at the repository root in its own self-contained director
 
 ### 1. Unified 50-Benchmark Flat-CNF Gauntlet (1-Core, Identical Flat `.cnf` Input)
 
-- **Timeout:** Part I (30 circuit/algebraic instances): $T_{\max} = 5{,}000\;\text{s}$ per instance (PAR-2 penalty $10{,}000\;\text{s}$); Part II (20 adversarial Zed, SC 2023/2024, and Random 3-SAT instances): $T_{\max} = 600\;\text{s}$ per instance (PAR-2 penalty $1{,}200\;\text{s}$; all 5 remaining dense-solver 0.0.4 Part II timeouts were also verified past $5{,}000\;\text{s}$).
-- **Same machine?** **Yes** — all six solver configurations were run on the exact same machine (**AMD Ryzen 9 5950X**, 16-core/32-thread, Linux, 1 dedicated core per run, exact median of 3 runs for sub-minute solves).
+- **Timeout:** Uniform competition-standard $T_{\max} = 5{,}000\;\text{s}$ per instance (PAR-2 penalty $10{,}000\;\text{s} = 10{,}000{,}000\;\text{ms}$) across all **50 / 50** instances (Part I: 30 circuit/algebraic instances; Part II: 20 adversarial Zed, SC 2023/2024, and Random 3-SAT instances) and all six solver configurations.
+- **Same machine?** **Yes** — all six solver configurations were run on the exact same machine (**AMD Ryzen 9 5950X**, 16-core/32-thread, Linux, 1 dedicated core per run, exact median of 3 runs for solves under $120\;\text{s}$; 0 verdict disagreements, 100% SAT models clause-verified).
 
-| Solver (1C) | Solved | Fastest Wins | Part I PAR-2 (30, $T_{\max}=5{,}000\;\text{s}$) | Part II PAR-2 (20, $T_{\max}=600\;\text{s}$) | Unified 50 PAR-2 |
+| Solver (1C) | Solved | Fastest Wins | Part I PAR-2 (30, $T_{\max}=5{,}000\;\text{s}$) | Part II PAR-2 (20, $T_{\max}=5{,}000\;\text{s}$) | Unified 50 PAR-2 |
 |---|---:|---:|---:|---:|---:|
 | **Frobenius 1C** | **50 / 50** | **45 / 50** *(50/50 vs. 4 main)* | **430.02 ms** *(fastest)* | **4,309.00 ms** *(fastest)* | **4,739.02 ms** *(fastest)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 38 / 50 | 0 / 50 | 25,715,225.61 ms *(59,800x slower)* | 12,017,694.26 ms *(2,789x slower)* | 37,732,919.87 ms *(7,962x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 35 / 50 | 0 / 50 | 30,027,443.01 ms *(69,828x slower)* | 14,462,626.48 ms *(3,356x slower)* | 44,490,069.49 ms *(9,388x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | 40 / 50 | 0 / 50 | 20,471,425.77 ms *(47,606x slower)* | 9,720,466.50 ms *(2,256x slower)* | 30,191,892.27 ms *(6,371x slower)* |
-| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | 44 / 50 | 5 / 50 | 11,402,189.74 ms *(26,515x slower)* | 7,005,536.14 ms *(1,626x slower)* | 18,407,725.88 ms *(3,884x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 40 / 50 | 0 / 50 | 35,047,925.98 ms *(81,503x slower)* | 8,651,994.22 ms *(2,008x slower)* | 43,699,920.20 ms *(9,221x slower)* |
+| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 42 / 50 | 0 / 50 | 25,715,225.61 ms *(59,800x slower)* | 63,590,706.89 ms *(14,758x slower)* | 89,305,932.50 ms *(18,845x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 41 / 50 | 0 / 50 | 30,027,443.01 ms *(69,828x slower)* | 66,244,167.48 ms *(15,373x slower)* | 96,271,610.49 ms *(20,315x slower)* |
+| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | 42 / 50 | 0 / 50 | 20,471,425.77 ms *(47,606x slower)* | 66,319,713.99 ms *(15,391x slower)* | 86,791,139.76 ms *(18,314x slower)* |
+| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | 44 / 50 | 5 / 50 | 11,402,189.74 ms *(26,515x slower)* | 51,005,536.14 ms *(11,837x slower)* | 62,407,725.88 ms *(13,169x slower)* |
+| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 40 / 50 | 0 / 50 | 35,047,925.98 ms *(81,503x slower)* | 70,251,994.22 ms *(16,304x slower)* | 105,299,920.20 ms *(22,220x slower)* |
 
 ### 2. 22-Instance Provable HAMD Suite (1-Core, Identical Flat `.cnf` Input)
 
@@ -586,7 +586,7 @@ Every collection lives at the repository root in its own self-contained director
 | **Picat-SAT 6-Suite Pack** ([Costas](picat-costas-arrays/README.md), [Golomb](picat-golomb-rulers/README.md), [MAPF](picat-mapf/README.md), [Numberlink](picat-numberlink/README.md), [RectPack](picat-rectangle-packing/README.md), [VMTL](picat-vmtl/README.md); 56, 60 s) | **53/56 — 496.92 s** *(fastest)* | 52/56 — 554.22 s *(1.12x)* | 52/56 — 605.87 s *(1.22x)* | 52/56 — 594.24 s *(1.20x)* | 53/56 — 497.87 s *(1.002x)* |
 | [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | 8/8 — 9.86 ms *(1.53x)* | 8/8 — 41.53 ms *(6.46x)* | 8/8 — 161.74 ms *(25.2x)* | **8/8 — 6.43 ms** *(fastest)* | 8/8 — 58.45 ms *(9.09x)* |
 | [**QDistSAT Full Suite**](qdistsat-qldpc/README.md) `BB_30..756` (10, 10 s) | 5/10 — 100,100 ms *(1.00x; solved-5: 100.2 ms)* | **5/10 — 100,078 ms** *(fastest)* | 5/10 — 100,515 ms *(XCNF: 100,297 ms)* | 5/10 — 100,119 ms *(1.00x)* | 5/10 — 100,090 ms *(1.00x)* |
-| [**SAT Competition 2023/2024 Gauntlet**](sat-competition-2002-2026-uris/README.md)\* (12, 600 s) | **12/12 — 3,745 ms** *(fastest)* | 5/12 — 8,417,003 ms *(2,248x)* | 3/12 — 10,859,841 ms *(2,900x)* | 9/12 — 4,105,588 ms *(1,096x)* | 8/12 — 5,051,149 ms *(1,349x)* |
+| [**SAT Competition 2023/2024 Gauntlet**](sat-competition-2002-2026-uris/README.md)\* (12, 5,000 s) | **12/12 — 3,745 ms** *(fastest)* | 8/12 — 43,480,568 ms *(11,611x)* | 9/12 — 36,241,382 ms *(9,678x)* | 9/12 — 30,505,588 ms *(8,146x)* | 8/12 — 40,251,149 ms *(10,749x)* |
 | [**SAT Shortcut Challenge Tier-1**](sat-shortcut-challenge-tier1/README.md) (47, 300 s) | **46/47 — 646.0 s** *(fastest)* | 45/47 — 1,730.8 s *(2.68x)* | 46/47 — 1,004.2 s *(1.55x)* | 45/47 — 1,225.7 s *(1.90x)* | 45/47 — 1,323.2 s *(2.05x)* |
 | [**SAT Shortcut Challenge Tier-3**](sat-shortcut-challenge-tier3/README.md) (25, 300 s) | **17/25 — 4,920.5 s** *(fastest)* | 17/25 — 4,923.0 s *(1.001x)* | 12/25 — 8,583.6 s *(1.74x)* | 5/25 — 12,370.4 s *(2.51x)* | 17/25 — 5,055.9 s *(1.03x)* |
 | [**SATLIB All 22 Collections**](satlib-archive-uris/README.md) (331, 5 s) | **318/331 — 151,909 ms** *(fastest)* | 316/331 — 174,495 ms *(1.15x)* | 323/331 — 164,024 ms *(1.08x)* | 313/331 — 207,808 ms *(1.37x)* | 314/331 — 189,408 ms *(1.25x)* |
