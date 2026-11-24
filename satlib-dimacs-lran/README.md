@@ -41,10 +41,10 @@ All 3 large critical-threshold uniform random 3-SAT formulas (`f600`, `f1000`, `
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `f1000` | SAT | **99.82 ms** | 3,171.06 ms | >5 s | >5 s | >5 s |
-| `f2000` | SAT | **3,774.93 ms** | >5 s | >5 s | >5 s | >5 s |
-| `f600` | SAT | **69.65 ms** | 576.42 ms | >5 s | >5 s | >5 s |
-| **Total (3 files, PAR-2)** | **3/3** | **3/3 — 3,944.4 ms** *(fastest)* | 2/3 — 13,747.5 ms *(3.49x)* | 0/3 — 30,000.0 ms *(7.61x)* | 0/3 — 30,000.0 ms *(7.61x)* | 0/3 — 30,000.0 ms *(7.61x)* |
+| `f1000` | SAT | **95.51 ms** | 3,171.06 ms | >5 s | >5 s | >5 s |
+| `f2000` | SAT | **189.12 ms** | >5 s | >5 s | >5 s | >5 s |
+| `f600` | SAT | **67.23 ms** | 576.42 ms | >5 s | >5 s | >5 s |
+| **Total (3 files, PAR-2)** | **3/3** | **3/3 — 351.9 ms** *(fastest)* | 2/3 — 13,747.5 ms *(39.07x)* | 0/3 — 30,000.0 ms *(85.26x)* | 0/3 — 30,000.0 ms *(85.26x)* | 0/3 — 30,000.0 ms *(85.26x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

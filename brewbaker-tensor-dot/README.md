@@ -70,22 +70,22 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `dot_n3_k2_m4.cnf` | UNSAT | 11.3 ms | 6.2 ms | 41.7 ms | **5.8 ms** | 17.9 ms |
-| `dot_n3_k3_m4.cnf` | SAT | 8.8 ms | 4.4 ms | 47.7 ms | **3.5 ms** | 25.2 ms |
-| `dot_n5_k4_m2.cnf` | UNSAT | 42.7 ms | 56.0 ms | 71.8 ms | **29.4 ms** | 96.6 ms |
-| `dot_n5_k4_m3.cnf` | UNSAT | 13.46 s | 34.70 s | 20.41 s | >60 s *(T/O)* | **8.85 s** |
-| `dot_n5_k4_m4.cnf` | UNSAT | **441.5 ms** | 41.95 s | >60 s *(T/O)* | >60 s *(T/O)* | 1.09 s |
-| `dot_n5_k5_m2.cnf` | SAT | 10.1 ms | 10.0 ms | 65.8 ms | **4.6 ms** | 5.1 ms |
-| `dot_n5_k5_m3.cnf` | SAT | 35.3 ms | 30.3 ms | 253.8 ms | **12.1 ms** | 51.6 ms |
-| `dot_n5_k5_m4.cnf` | SAT | 485.3 ms | **78.0 ms** | 275.9 ms | 325.0 ms | 119.0 ms |
-| `dot_n6_k5_m2.cnf` | UNSAT | 11.87 s | **4.52 s** | 6.65 s | 23.06 s | 4.66 s |
-| `dot_n6_k6_m2.cnf` | SAT | 5.2 ms | 3.6 ms | 72.9 ms | 4.4 ms | **2.3 ms** |
+| `dot_n3_k2_m4.cnf` | UNSAT | 6.1 ms | 6.2 ms | 41.7 ms | **5.8 ms** | 17.9 ms |
+| `dot_n3_k3_m4.cnf` | SAT | 3.6 ms | 4.4 ms | 47.7 ms | **3.5 ms** | 25.2 ms |
+| `dot_n5_k4_m2.cnf` | UNSAT | **16.6 ms** | 56.0 ms | 71.8 ms | 29.4 ms | 96.6 ms |
+| `dot_n5_k4_m3.cnf` | UNSAT | 13.82 s | 34.70 s | 20.41 s | >60 s *(T/O)* | **8.85 s** |
+| `dot_n5_k4_m4.cnf` | UNSAT | **290.9 ms** | 41.95 s | >60 s *(T/O)* | >60 s *(T/O)* | 1.09 s |
+| `dot_n5_k5_m2.cnf` | SAT | 19.8 ms | 10.0 ms | 65.8 ms | **4.6 ms** | 5.1 ms |
+| `dot_n5_k5_m3.cnf` | SAT | **11.0 ms** | 30.3 ms | 253.8 ms | 12.1 ms | 51.6 ms |
+| `dot_n5_k5_m4.cnf` | SAT | **16.6 ms** | 78.0 ms | 275.9 ms | 325.0 ms | 119.0 ms |
+| `dot_n6_k5_m2.cnf` | UNSAT | **196.2 ms** | 4.52 s | 6.65 s | 23.06 s | 4.66 s |
+| `dot_n6_k6_m2.cnf` | SAT | 22.3 ms | 3.6 ms | 72.9 ms | 4.4 ms | **2.3 ms** |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **10** | **10/10 (5 SAT, 5 UNSAT)** | **10/10 (5 SAT, 5 UNSAT)** | 9/10 (5 SAT, 4 UNSAT) | 8/10 (5 SAT, 3 UNSAT) | **10/10 (5 SAT, 5 UNSAT)** |
-| **Total PAR-2** | — | 26.37 s *(mean 2.64 s)* | 81.36 s *(mean 8.14 s)* | 147.89 s *(mean 14.79 s)* | 263.45 s *(mean 26.34 s)* | **14.91 s *(mean 1.49 s)*** |
+| **Total PAR-2** | — | **14.40 s *(mean 1.44 s)*** | 81.36 s *(mean 8.14 s)* | 147.89 s *(mean 14.79 s)* | 263.45 s *(mean 26.34 s)* | 14.91 s *(mean 1.49 s)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
-Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats. Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
+Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats (same-build baseline four-format parity sweep). Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
 
 | Instance | Expected | Native XORs | Frobenius (`.cnf`) | Frobenius (`.aig`) | Frobenius (`.xcnf`) | Frobenius (`.anf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) |
 |---|:---:|---:|---:|---:|---:|---:|---:|

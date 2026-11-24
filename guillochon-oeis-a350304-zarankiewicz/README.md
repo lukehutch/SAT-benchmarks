@@ -102,14 +102,14 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 ### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
 
-Two $n = 10$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest on the UNSAT optimality proof `zaran3_n10_m61.cnf`** (`23.16 s`, cutting to `14.85 s` on the updated build):
+Two $n = 10$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest overall (`27.42 s` PAR-2 vs. `31.02 s` for Kissat 4.0.4 and `33.87 s` for CaDiCaL 3.1.0)** and **#1 fastest on the UNSAT optimality proof `zaran3_n10_m61.cnf`** (`20.63 s`):
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `zaran3_n10_m60.cnf` | SAT | 15.07 s | 7.35 s | 5.84 s | **2.03 s** | 4.69 s |
-| `zaran3_n10_m61.cnf` | UNSAT | **23.16 s** *(14.85 s updated build)* | 26.52 s | 40.54 s | >60 s | 26.33 s |
+| `zaran3_n10_m60.cnf` | SAT | 6.79 s | 7.35 s | 5.84 s | **2.03 s** | 4.69 s |
+| `zaran3_n10_m61.cnf` | UNSAT | **20.63 s** | 26.52 s | 40.54 s | >60 s | 26.33 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **2 / 2** | **2 / 2** (1 SAT, 1 UNSAT) | **2 / 2** (1 SAT, 1 UNSAT) | **2 / 2** (1 SAT, 1 UNSAT) | 1 / 2 (1 SAT, 0 UNSAT) | **2 / 2** (1 SAT, 1 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 38.23 s *(mean 19.12 s)* | 33.87 s *(mean 16.93 s)* | 46.38 s *(mean 23.19 s)* | 122.03 s *(mean 61.02 s)* | **31.02 s** *(mean 15.51 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **27.42 s** *(mean 13.71 s)* | 33.87 s *(mean 16.93 s)* | 46.38 s *(mean 23.19 s)* | 122.03 s *(mean 61.02 s)* | 31.02 s *(mean 15.51 s)* |
 
 - **Extended sweep milestone:** Frobenius also solved `zaran3_n11_m69.cnf` (SAT), verified and archived in [`solutions/zaran3_n11_m69.model.xz`](solutions/zaran3_n11_m69.model.xz).
 

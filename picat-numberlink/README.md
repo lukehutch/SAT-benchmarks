@@ -78,19 +78,19 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `numberlink_5x5_p4.cnf` | SAT | 2.5 ms | 2.9 ms | 7.0 ms | 3.7 ms | **1.8 ms** |
-| `numberlink_7x7_p5.cnf` | SAT | 4.3 ms | 3.1 ms | 17.1 ms | 8.0 ms | **1.7 ms** |
-| `numberlink_10x10_p8.cnf` | SAT | 20.3 ms | **7.7 ms** | 103.0 ms | **8.0 ms** | 9.0 ms |
-| `numberlink_10x10_p8_swap.cnf` | UNSAT | 21.5 ms | **4.5 ms** | 101.5 ms | 8.6 ms | 8.1 ms |
-| `numberlink_12x12_p10.cnf` | SAT | 58.6 ms | **36.1 ms** | 351.0 ms | 45.8 ms | 47.8 ms |
-| `numberlink_12x12_p10_swap.cnf` | UNSAT | 57.8 ms | 78.3 ms | 344.7 ms | **54.0 ms** | 63.9 ms |
-| `numberlink_15x15_p12.cnf` | SAT | 112.8 ms | 245.9 ms | 546.1 ms | **92.3 ms** | 188.9 ms |
-| `numberlink_15x15_p12_swap.cnf` | UNSAT | 26.5 ms | 16.5 ms | 32.7 ms | 13.6 ms | **8.2 ms** |
-| `numberlink_42x25_p62.cnf` | SAT | 34.86 s | >60 s | >60 s | 38.27 s | **11.46 s** |
+| `numberlink_5x5_p4.cnf` | SAT | 3.4 ms | 2.9 ms | 7.0 ms | 3.7 ms | **1.8 ms** |
+| `numberlink_7x7_p5.cnf` | SAT | 4.7 ms | 3.1 ms | 17.1 ms | 8.0 ms | **1.7 ms** |
+| `numberlink_10x10_p8.cnf` | SAT | 12.9 ms | **7.7 ms** | 103.0 ms | 8.0 ms | 9.0 ms |
+| `numberlink_10x10_p8_swap.cnf` | UNSAT | 11.9 ms | **4.5 ms** | 101.5 ms | 8.6 ms | 8.1 ms |
+| `numberlink_12x12_p10.cnf` | SAT | **19.4 ms** | 36.1 ms | 351.0 ms | 45.8 ms | 47.8 ms |
+| `numberlink_12x12_p10_swap.cnf` | UNSAT | 117.0 ms | 78.3 ms | 344.7 ms | **54.0 ms** | 63.9 ms |
+| `numberlink_15x15_p12.cnf` | SAT | 306.3 ms | 245.9 ms | 546.1 ms | **92.3 ms** | 188.9 ms |
+| `numberlink_15x15_p12_swap.cnf` | UNSAT | 14.7 ms | 16.5 ms | 32.7 ms | 13.6 ms | **8.2 ms** |
+| `numberlink_42x25_p62.cnf` | SAT | 22.43 s | >60 s | >60 s | 38.27 s | **11.46 s** |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **9 total** | **9 / 9 (6 SAT, 3 UNSAT)** | 8 / 9 (5 SAT, 3 UNSAT) | 8 / 9 (5 SAT, 3 UNSAT) | **9 / 9 (6 SAT, 3 UNSAT)** | **9 / 9 (6 SAT, 3 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 35.16 s *(mean 3.91 s)* | 120.39 s *(mean 13.38 s)* | 121.50 s *(mean 13.50 s)* | 38.51 s *(mean 4.28 s)* | **11.79 s** *(mean 1.31 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 22.92 s *(mean 2.55 s)* | 120.39 s *(mean 13.38 s)* | 121.50 s *(mean 13.50 s)* | 38.51 s *(mean 4.28 s)* | **11.79 s** *(mean 1.31 s)* |
 
-*Ground-truth SAT note on `numberlink_42x25_p62.cnf`:* Directly solved and 100%-clause model-verified by Kissat 4.0.4 (`11.46 s`), Frobenius (`34.86 s`), and dense-solver 0.0.4 (`38.27 s`), and independently cross-checked via Picat-SAT's integer-grid formulation (`hakank_numberlink.pi`, `INo=4`, `NP=62`, `1,050/1,050` cells degree-verified).
+*Ground-truth SAT note on `numberlink_42x25_p62.cnf`:* Directly solved and 100%-clause model-verified by Kissat 4.0.4 (`11.46 s`), Frobenius (`22.43 s`), and dense-solver 0.0.4 (`38.27 s`), and independently cross-checked via Picat-SAT's integer-grid formulation (`hakank_numberlink.pi`, `INo=4`, `NP=62`, `1,050/1,050` cells degree-verified).
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

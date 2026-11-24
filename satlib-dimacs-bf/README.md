@@ -42,11 +42,11 @@ All 4 combinational circuit bridge-fault test-pattern generation instances (`bf0
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `bf0432-007` | UNSAT | 17.24 ms | 7.76 ms | 77.02 ms | 12.76 ms | **6.53 ms** |
-| `bf1355-075` | UNSAT | 21.00 ms | 5.87 ms | 40.35 ms | 30.81 ms | **5.52 ms** |
-| `bf1355-638` | UNSAT | 28.12 ms | **6.63 ms** | 40.86 ms | 36.13 ms | 7.62 ms |
-| `bf2670-001` | UNSAT | 29.11 ms | **5.11 ms** | 49.87 ms | 12.29 ms | 7.69 ms |
-| **Total (4 files, PAR-2)** | **4/4** | 4/4 — 95.5 ms *(3.76x)* | **4/4 — 25.4 ms** *(fastest)* | 4/4 — 208.1 ms *(8.20x)* | 4/4 — 92.0 ms *(3.63x)* | 4/4 — 27.4 ms *(1.08x)* |
+| `bf0432-007` | UNSAT | 11.06 ms | 7.76 ms | 77.02 ms | 12.76 ms | **6.53 ms** |
+| `bf1355-075` | UNSAT | 6.22 ms | 5.87 ms | 40.35 ms | 30.81 ms | **5.52 ms** |
+| `bf1355-638` | UNSAT | **6.48 ms** | 6.63 ms | 40.86 ms | 36.13 ms | 7.62 ms |
+| `bf2670-001` | UNSAT | 6.28 ms | **5.11 ms** | 49.87 ms | 12.29 ms | 7.69 ms |
+| **Total (4 files, PAR-2)** | **4/4** | 4/4 — 30.0 ms *(1.18x)* | **4/4 — 25.4 ms** *(fastest)* | 4/4 — 208.1 ms *(8.20x)* | 4/4 — 92.0 ms *(3.63x)* | 4/4 — 27.4 ms *(1.08x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

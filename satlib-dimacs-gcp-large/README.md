@@ -41,11 +41,11 @@ All 4 large graph coloring benchmarks (`g125.17`, `g125.18`, `g250.15`, `g250.29
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `g125.17` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
-| `g125.18` | SAT | >5 s | **1,698.89 ms** | >5 s | >5 s | >5 s |
-| `g250.15` | SAT | **538.11 ms** | 1,162.31 ms | 1,575.45 ms | >5 s | >5 s |
-| `g250.29` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
-| **Total (4 files, PAR-2)** | **2/4** | 1/4 — 30,538.1 ms *(1.34x)* | **2/4 — 22,861.2 ms** *(fastest)* | 1/4 — 31,575.5 ms *(1.38x)* | 0/4 — 40,000.0 ms *(1.75x)* | 0/4 — 40,000.0 ms *(1.75x)* |
+| `g125.17` | SAT | **103.73 ms** | >5 s | >5 s | >5 s | >5 s |
+| `g125.18` | SAT | **37.63 ms** | 1,698.89 ms | >5 s | >5 s | >5 s |
+| `g250.15` | SAT | **64.32 ms** | 1,162.31 ms | 1,575.45 ms | >5 s | >5 s |
+| `g250.29` | SAT | **386.42 ms** | >5 s | >5 s | >5 s | >5 s |
+| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 592.1 ms** *(fastest)* | 2/4 — 22,861.2 ms *(38.61x)* | 1/4 — 31,575.5 ms *(53.33x)* | 0/4 — 40,000.0 ms *(67.56x)* | 0/4 — 40,000.0 ms *(67.56x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

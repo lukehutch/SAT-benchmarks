@@ -39,18 +39,18 @@ Satisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga12_*`, `fpga13_*`
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `fpga10_8_sat_rcr` | SAT | 1.99 ms | 3.10 ms | 16.05 ms | **1.81 ms** | 8.88 ms |
-| `fpga10_9_sat_rcr` | SAT | **1.73 ms** | 3.15 ms | 20.12 ms | 1.90 ms | 11.38 ms |
-| `fpga12_10_sat_rcr` | SAT | **2.02 ms** | 4.24 ms | 35.56 ms | 2.14 ms | 18.25 ms |
-| `fpga12_11_sat_rcr` | SAT | 2.22 ms | 24.02 ms | 40.51 ms | **2.12 ms** | 35.04 ms |
-| `fpga12_12_sat_rcr` | SAT | **1.92 ms** | 31.58 ms | 48.73 ms | 1.94 ms | 18.16 ms |
-| `fpga12_8_sat_rcr` | SAT | 1.82 ms | 5.57 ms | 22.23 ms | **1.67 ms** | 12.30 ms |
-| `fpga12_9_sat_rcr` | SAT | 1.74 ms | 4.39 ms | 26.29 ms | **1.59 ms** | 15.24 ms |
-| `fpga13_10_sat_rcr` | SAT | 1.76 ms | 2.74 ms | 37.01 ms | 1.84 ms | **1.37 ms** |
-| `fpga13_11_sat_rcr` | SAT | **2.39 ms** | 5.76 ms | 46.19 ms | 2.47 ms | 19.64 ms |
-| `fpga13_12_sat_rcr` | SAT | **1.84 ms** | 4.50 ms | 55.39 ms | 2.02 ms | 21.27 ms |
-| `fpga13_9_sat_rcr` | SAT | 1.61 ms | 3.71 ms | 32.31 ms | 1.68 ms | **1.29 ms** |
-| **Total (11 files, PAR-2)** | **11/11** | **11/11 — 21.0 ms** *(fastest)* | 11/11 — 92.8 ms *(4.41x)* | 11/11 — 380.4 ms *(18.08x)* | 11/11 — 21.2 ms *(1.01x)* | 11/11 — 162.8 ms *(7.74x)* |
+| `fpga10_8_sat_rcr` | SAT | **1.63 ms** | 3.10 ms | 16.05 ms | 1.81 ms | 8.88 ms |
+| `fpga10_9_sat_rcr` | SAT | **1.70 ms** | 3.15 ms | 20.12 ms | 1.90 ms | 11.38 ms |
+| `fpga12_10_sat_rcr` | SAT | **1.75 ms** | 4.24 ms | 35.56 ms | 2.14 ms | 18.25 ms |
+| `fpga12_11_sat_rcr` | SAT | **1.79 ms** | 24.02 ms | 40.51 ms | 2.12 ms | 35.04 ms |
+| `fpga12_12_sat_rcr` | SAT | **1.87 ms** | 31.58 ms | 48.73 ms | 1.94 ms | 18.16 ms |
+| `fpga12_8_sat_rcr` | SAT | 1.87 ms | 5.57 ms | 22.23 ms | **1.67 ms** | 12.30 ms |
+| `fpga12_9_sat_rcr` | SAT | 1.80 ms | 4.39 ms | 26.29 ms | **1.59 ms** | 15.24 ms |
+| `fpga13_10_sat_rcr` | SAT | 1.79 ms | 2.74 ms | 37.01 ms | 1.84 ms | **1.37 ms** |
+| `fpga13_11_sat_rcr` | SAT | **1.88 ms** | 5.76 ms | 46.19 ms | 2.47 ms | 19.64 ms |
+| `fpga13_12_sat_rcr` | SAT | **1.89 ms** | 4.50 ms | 55.39 ms | 2.02 ms | 21.27 ms |
+| `fpga13_9_sat_rcr` | SAT | 1.64 ms | 3.71 ms | 32.31 ms | 1.68 ms | **1.29 ms** |
+| **Total (11 files, PAR-2)** | **11/11** | **11/11 — 19.6 ms** *(fastest)* | 11/11 — 92.8 ms *(4.73x)* | 11/11 — 380.4 ms *(19.41x)* | 11/11 — 21.2 ms *(1.08x)* | 11/11 — 162.8 ms *(8.31x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

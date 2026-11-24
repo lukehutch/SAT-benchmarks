@@ -41,13 +41,13 @@ Stratified sample of 6 instances from the 40,000-instance SATLIB Controlled Back
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `CBS_k3_n100_m403_b10_0` | SAT | 2.58 ms | 7.93 ms | 17.12 ms | **2.52 ms** | 12.84 ms |
-| `CBS_k3_n100_m403_b90_0` | SAT | 3.71 ms | 3.18 ms | 30.17 ms | **2.49 ms** | 15.94 ms |
-| `CBS_k3_n100_m429_b10_0` | SAT | 2.21 ms | 2.65 ms | 19.54 ms | **2.00 ms** | 14.08 ms |
-| `CBS_k3_n100_m429_b50_0` | SAT | 2.62 ms | 3.45 ms | 20.74 ms | **2.01 ms** | 13.50 ms |
-| `CBS_k3_n100_m429_b90_0` | SAT | 2.81 ms | 3.74 ms | 32.74 ms | **2.61 ms** | 17.47 ms |
-| `CBS_k3_n100_m449_b90_0` | SAT | 2.44 ms | 5.75 ms | 52.03 ms | **1.74 ms** | 28.02 ms |
-| **Total (6 files, PAR-2)** | **6/6** | 6/6 — 16.4 ms *(1.22x)* | 6/6 — 26.7 ms *(2.00x)* | 6/6 — 172.3 ms *(12.89x)* | **6/6 — 13.4 ms** *(fastest)* | 6/6 — 101.8 ms *(7.62x)* |
+| `CBS_k3_n100_m403_b10_0` | SAT | **1.91 ms** | 7.93 ms | 17.12 ms | 2.52 ms | 12.84 ms |
+| `CBS_k3_n100_m403_b90_0` | SAT | 3.01 ms | 3.18 ms | 30.17 ms | **2.49 ms** | 15.94 ms |
+| `CBS_k3_n100_m429_b10_0` | SAT | **1.56 ms** | 2.65 ms | 19.54 ms | 2.00 ms | 14.08 ms |
+| `CBS_k3_n100_m429_b50_0` | SAT | **1.65 ms** | 3.45 ms | 20.74 ms | 2.01 ms | 13.50 ms |
+| `CBS_k3_n100_m429_b90_0` | SAT | **1.73 ms** | 3.74 ms | 32.74 ms | 2.61 ms | 17.47 ms |
+| `CBS_k3_n100_m449_b90_0` | SAT | **1.49 ms** | 5.75 ms | 52.03 ms | 1.74 ms | 28.02 ms |
+| **Total (6 files, PAR-2)** | **6/6** | **6/6 — 11.3 ms** *(fastest)* | 6/6 — 26.7 ms *(2.35x)* | 6/6 — 172.3 ms *(15.20x)* | 6/6 — 13.4 ms *(1.18x)* | 6/6 — 101.8 ms *(8.98x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

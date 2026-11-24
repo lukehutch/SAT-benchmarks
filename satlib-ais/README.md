@@ -41,11 +41,11 @@ All-Interval Series (`ais6`, `ais8`, `ais10`, `ais12`) combinatorial permutation
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `ais10` | SAT | **3.10 ms** | 3.59 ms | 142.57 ms | 7.06 ms | 3.26 ms |
-| `ais12` | SAT | 4.45 ms | 6.15 ms | 256.18 ms | 8.16 ms | **2.21 ms** |
-| `ais6` | SAT | 2.16 ms | 2.72 ms | 15.32 ms | 3.56 ms | **1.76 ms** |
-| `ais8` | SAT | 2.56 ms | 3.42 ms | 44.85 ms | 2.08 ms | **1.56 ms** |
-| **Total (4 files, PAR-2)** | **4/4** | 4/4 — 12.3 ms *(1.40x)* | 4/4 — 15.9 ms *(1.81x)* | 4/4 — 458.9 ms *(52.21x)* | 4/4 — 20.9 ms *(2.37x)* | **4/4 — 8.8 ms** *(fastest)* |
+| `ais10` | SAT | **2.06 ms** | 3.59 ms | 142.57 ms | 7.06 ms | 3.26 ms |
+| `ais12` | SAT | **1.72 ms** | 6.15 ms | 256.18 ms | 8.16 ms | 2.21 ms |
+| `ais6` | SAT | **1.71 ms** | 2.72 ms | 15.32 ms | 3.56 ms | 1.76 ms |
+| `ais8` | SAT | 2.03 ms | 3.42 ms | 44.85 ms | 2.08 ms | **1.56 ms** |
+| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 7.5 ms** *(fastest)* | 4/4 — 15.9 ms *(2.11x)* | 4/4 — 458.9 ms *(61.08x)* | 4/4 — 20.9 ms *(2.78x)* | 4/4 — 8.8 ms *(1.17x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

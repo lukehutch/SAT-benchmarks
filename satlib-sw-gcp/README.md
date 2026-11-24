@@ -41,12 +41,12 @@ Stratified sample of 5 instances (`sw100-8-*`) from the 901-instance SATLIB morp
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `sw100-8-lp0-c5_sw100-1` | SAT | **2.53 ms** | 2.81 ms | 64.67 ms | 2.94 ms | 21.88 ms |
-| `sw100-8-lp2-c5_sw100-1` | SAT | 2.93 ms | 3.37 ms | 56.14 ms | 2.84 ms | **1.67 ms** |
-| `sw100-8-lp4-c5_sw100-1` | SAT | 9.00 ms | 2.91 ms | 46.89 ms | 2.95 ms | **1.72 ms** |
-| `sw100-8-lp6-c5_sw100-1` | SAT | 8.79 ms | **5.32 ms** | 53.13 ms | 6.02 ms | 16.37 ms |
-| `sw100-8-p0-c5_sw100-1` | SAT | 2.21 ms | 2.76 ms | 49.12 ms | 2.09 ms | **1.48 ms** |
-| **Total (5 files, PAR-2)** | **5/5** | 5/5 — 25.5 ms *(1.51x)* | 5/5 — 17.2 ms *(1.02x)* | 5/5 — 269.9 ms *(16.03x)* | **5/5 — 16.8 ms** *(fastest)* | 5/5 — 43.1 ms *(2.56x)* |
+| `sw100-8-lp0-c5_sw100-1` | SAT | **1.94 ms** | 2.81 ms | 64.67 ms | 2.94 ms | 21.88 ms |
+| `sw100-8-lp2-c5_sw100-1` | SAT | 1.84 ms | 3.37 ms | 56.14 ms | 2.84 ms | **1.67 ms** |
+| `sw100-8-lp4-c5_sw100-1` | SAT | 2.08 ms | 2.91 ms | 46.89 ms | 2.95 ms | **1.72 ms** |
+| `sw100-8-lp6-c5_sw100-1` | SAT | **2.44 ms** | 5.32 ms | 53.13 ms | 6.02 ms | 16.37 ms |
+| `sw100-8-p0-c5_sw100-1` | SAT | 2.16 ms | 2.76 ms | 49.12 ms | 2.09 ms | **1.48 ms** |
+| **Total (5 files, PAR-2)** | **5/5** | **5/5 — 10.5 ms** *(fastest)* | 5/5 — 17.2 ms *(1.64x)* | 5/5 — 269.9 ms *(25.81x)* | 5/5 — 16.8 ms *(1.61x)* | 5/5 — 43.1 ms *(4.12x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

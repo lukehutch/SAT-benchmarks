@@ -44,10 +44,10 @@ This collection holds the **3 Mutilated Chessboard domino-tiling UNSAT CNFs** (`
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `chessboard12` | UNSAT | 1.71 ms | 421.38 ms | 494.60 ms | **1.66 ms** | 399.35 ms |
-| `chessboard16` | UNSAT | 2.53 ms | >5 s | >5 s | **2.09 ms** | >5 s |
-| `chessboard32` | UNSAT | 3.80 ms | >5 s | >5 s | **3.62 ms** | >5 s |
-| **Total (3 files, PAR-2)** | **3/3** | 3/3 — 8.0 ms *(1.09x)* | 1/3 — 20,421.4 ms *(2770.88x)* | 1/3 — 20,494.6 ms *(2780.81x)* | **3/3 — 7.4 ms** *(fastest)* | 1/3 — 20,399.3 ms *(2767.89x)* |
+| `chessboard12` | UNSAT | **1.58 ms** | 421.38 ms | 494.60 ms | 1.66 ms | 399.35 ms |
+| `chessboard16` | UNSAT | **1.83 ms** | >5 s | >5 s | 2.09 ms | >5 s |
+| `chessboard32` | UNSAT | **2.99 ms** | >5 s | >5 s | 3.62 ms | >5 s |
+| **Total (3 files, PAR-2)** | **3/3** | **3/3 — 6.4 ms** *(fastest)* | 1/3 — 20,421.4 ms *(3,190.84x)* | 1/3 — 20,494.6 ms *(3,202.28x)* | 3/3 — 7.4 ms *(1.15x)* | 1/3 — 20,399.3 ms *(3,187.40x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -42,15 +42,15 @@ Stratified sample of 8 instances (`flat30` through `flat200`) from the 1,700-ins
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `flat100-1` | SAT | 2.20 ms | 2.69 ms | 29.35 ms | 1.86 ms | **1.34 ms** |
-| `flat125-1` | SAT | 7.73 ms | 4.08 ms | 30.34 ms | **2.81 ms** | 7.12 ms |
-| `flat150-1` | SAT | 10.42 ms | **4.84 ms** | 39.39 ms | 5.97 ms | 8.30 ms |
-| `flat175-1` | SAT | 10.18 ms | 5.11 ms | 40.35 ms | **2.85 ms** | 11.42 ms |
-| `flat200-1` | SAT | 11.71 ms | 7.51 ms | 52.68 ms | **3.47 ms** | 12.86 ms |
-| `flat30-1` | SAT | 1.72 ms | 2.15 ms | 10.35 ms | 1.46 ms | **1.31 ms** |
-| `flat50-1` | SAT | 1.61 ms | 1.92 ms | 11.26 ms | 1.44 ms | **1.25 ms** |
-| `flat75-1` | SAT | 5.92 ms | 2.42 ms | 19.70 ms | **1.47 ms** | 4.67 ms |
-| **Total (8 files, PAR-2)** | **8/8** | 8/8 — 51.5 ms *(2.41x)* | 8/8 — 30.7 ms *(1.44x)* | 8/8 — 233.4 ms *(10.94x)* | **8/8 — 21.3 ms** *(fastest)* | 8/8 — 48.3 ms *(2.26x)* |
+| `flat100-1` | SAT | 1.75 ms | 2.69 ms | 29.35 ms | 1.86 ms | **1.34 ms** |
+| `flat125-1` | SAT | **2.54 ms** | 4.08 ms | 30.34 ms | 2.81 ms | 7.12 ms |
+| `flat150-1` | SAT | **3.83 ms** | 4.84 ms | 39.39 ms | 5.97 ms | 8.30 ms |
+| `flat175-1` | SAT | **1.86 ms** | 5.11 ms | 40.35 ms | 2.85 ms | 11.42 ms |
+| `flat200-1` | SAT | **2.03 ms** | 7.51 ms | 52.68 ms | 3.47 ms | 12.86 ms |
+| `flat30-1` | SAT | 1.55 ms | 2.15 ms | 10.35 ms | 1.46 ms | **1.31 ms** |
+| `flat50-1` | SAT | 1.59 ms | 1.92 ms | 11.26 ms | 1.44 ms | **1.25 ms** |
+| `flat75-1` | SAT | 1.77 ms | 2.42 ms | 19.70 ms | **1.47 ms** | 4.67 ms |
+| **Total (8 files, PAR-2)** | **8/8** | **8/8 — 16.9 ms** *(fastest)* | 8/8 — 30.7 ms *(1.82x)* | 8/8 — 233.4 ms *(13.80x)* | 8/8 — 21.3 ms *(1.26x)* | 8/8 — 48.3 ms *(2.85x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

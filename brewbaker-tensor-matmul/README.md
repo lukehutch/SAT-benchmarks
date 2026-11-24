@@ -73,22 +73,22 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `matmul_2x2x1_k3_m2.cnf` | UNSAT | 4.4 ms | 4.5 ms | 48.0 ms | **4.0 ms** | 4.8 ms |
-| `matmul_2x2x1_k4_m2.cnf` | SAT | 5.8 ms | 4.2 ms | 23.2 ms | 4.0 ms | **2.4 ms** |
-| `matmul_2x2x2_k6_m2.cnf` | UNSAT | >60 s *(T/O)* | 38.88 s | 43.50 s | >60 s *(T/O)* | **31.38 s** |
+| `matmul_2x2x1_k3_m2.cnf` | UNSAT | 5.1 ms | 4.5 ms | 48.0 ms | **4.0 ms** | 4.8 ms |
+| `matmul_2x2x1_k4_m2.cnf` | SAT | 4.6 ms | 4.2 ms | 23.2 ms | 4.0 ms | **2.4 ms** |
+| `matmul_2x2x2_k6_m2.cnf` | UNSAT | **882.3 ms** | 38.88 s | 43.50 s | >60 s *(T/O)* | 31.38 s |
 | `matmul_2x2x2_k6_m3.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `matmul_2x2x2_k7_m2.cnf` | SAT | 131.1 ms | 147.2 ms | 111.7 ms | 50.42 s | **101.5 ms** |
-| `matmul_2x2x2_k7_m3.cnf` | SAT | 22.56 s | 9.37 s | >60 s *(T/O)* | >60 s *(T/O)* | **4.26 s** |
-| `matmul_2x2x2_k7_m4.cnf` | SAT | 2.65 s | 46.11 s | 21.31 s | >60 s *(T/O)* | **1.26 s** |
+| `matmul_2x2x2_k7_m2.cnf` | SAT | 1.88 s | 147.2 ms | 111.7 ms | 50.42 s | **101.5 ms** |
+| `matmul_2x2x2_k7_m3.cnf` | SAT | 16.88 s | 9.37 s | >60 s *(T/O)* | >60 s *(T/O)* | **4.26 s** |
+| `matmul_2x2x2_k7_m4.cnf` | SAT | 4.72 s | 46.11 s | 21.31 s | >60 s *(T/O)* | **1.26 s** |
 | `matmul_2x2x3_k10_m2.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `matmul_2x2x3_k11_m2.cnf` | SAT | 504.0 ms | 3.11 s | **406.7 ms** | >60 s *(T/O)* | 1.57 s |
-| `matmul_2x3x2_k11_m2.cnf` | SAT | 24.30 s | 8.73 s | **4.40 s** | >60 s *(T/O)* | 5.66 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **10** | 7/10 (6 SAT, 1 UNSAT) | **8/10 (6 SAT, 2 UNSAT)** | 7/10 (5 SAT, 2 UNSAT) | 3/10 (2 SAT, 1 UNSAT) | **8/10 (6 SAT, 2 UNSAT)** |
-| **Total PAR-2** | — | 410.15 s *(mean 41.01 s)* | 346.35 s *(mean 34.64 s)* | 429.80 s *(mean 42.98 s)* | 890.43 s *(mean 89.04 s)* | **284.23 s *(mean 28.42 s)*** |
+| `matmul_2x2x3_k11_m2.cnf` | SAT | 2.99 s | 3.11 s | **406.7 ms** | >60 s *(T/O)* | 1.57 s |
+| `matmul_2x3x2_k11_m2.cnf` | SAT | 39.37 s | 8.73 s | **4.40 s** | >60 s *(T/O)* | 5.66 s |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | **10** | **8/10 (6 SAT, 2 UNSAT)** | **8/10 (6 SAT, 2 UNSAT)** | 7/10 (5 SAT, 2 UNSAT) | 3/10 (2 SAT, 1 UNSAT) | **8/10 (6 SAT, 2 UNSAT)** |
+| **Total PAR-2** | — | 306.74 s *(mean 30.67 s)* | 346.35 s *(mean 34.64 s)* | 429.80 s *(mean 42.98 s)* | 890.43 s *(mean 89.04 s)* | **284.23 s *(mean 28.42 s)*** |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
-Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats. Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
+Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats (same-build baseline four-format parity sweep). Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
 
 | Instance | Expected | Native XORs | Frobenius (`.cnf`) | Frobenius (`.aig`) | Frobenius (`.xcnf`) | Frobenius (`.anf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) |
 |---|:---:|---:|---:|---:|---:|---:|---:|

@@ -47,58 +47,58 @@ Designed by Keith Adler to separate detecting known polynomial-time structure fr
 ## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 14 dedicated physical cores `0..13` with zero SMT sharing, $T_{\max} = 300\;\text{s}$, PAR-2 penalty $600\;\text{s}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 47 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
-- **Note on 14-core load vs. solo core:** Under simultaneous 14-core load, `ham_bipartite_14_15` took 38.65 s for Frobenius (vs. 74 ms on an uncontended solo core); the uniform 14-core sweep measurement is reported below for strict same-protocol consistency across all 5 solvers. At $T_{\max} = 300\;\text{s}$, [Kissat](https://github.com/arminbiere/kissat) (`79.18 s`), [CaDiCaL](https://github.com/arminbiere/cadical) (`157.98 s`), and [CryptoMiniSat](https://github.com/msoos/cryptominisat) (`214.92 s`) solve `cec_mult_10x10_arr_vs_wal` (UNSAT), while Frobenius and [dense-solver](https://github.com/libdense/dense-solver) solve `php_13_12` and `tseitin_n200_unsat` in `2–3 ms` where standard CDCL solvers time out (`>300 s`).
+- **Full-Suite Coverage & Highlights:** Frobenius 1C solves all **47/47** instances in **`1.00 s` total** (`1,001.0 ms` PAR-2) — **1,003.18x faster** than CryptoMiniSat 5.18.0, **1,224.46x faster** than dense-solver 0.0.4, **1,321.88x faster** than Kissat 4.0.4, and **1,729.08x faster** than CaDiCaL 3.1.0. Notably, Frobenius solves `cec_mult_10x10_arr_vs_wal` (UNSAT) in **`6.98 ms`** (vs. `79.18 s` for Kissat 4.0.4, `157.98 s` for CaDiCaL 3.1.0, and `214.92 s` for CryptoMiniSat 5.18.0), `ham_bipartite_14_15` in **`9.19 ms`**, and `php_13_12` / `tseitin_n200_unsat` in `12.23 ms` / `6.82 ms` where standard CDCL baselines time out (`>300 s`).
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `cec_adder_16b_rc_vs_ks` | UNSAT | 10.07 ms | **7.66 ms** | 87.44 ms | 17.75 ms | 31.07 ms |
-| `cec_adder_32b_rc_vs_ks` | UNSAT | **7.72 ms** | 23.85 ms | 149.00 ms | 57.21 ms | 56.21 ms |
-| `cec_adder_64b_rc_vs_ks` | UNSAT | **32.38 ms** | 74.18 ms | 372.39 ms | 245.80 ms | 206.64 ms |
-| `cec_adder_8b_rc_vs_ks` | UNSAT | 8.45 ms | **4.92 ms** | 78.43 ms | 10.73 ms | 14.16 ms |
-| `cec_mult_10x10_arr_vs_wal` | UNSAT | >300 s | 157.98 s | 214.92 s | >300 s | **79.18 s** |
-| `cec_mult_5x5_arr_vs_wal` | UNSAT | **24.25 ms** | 24.93 ms | 160.58 ms | 48.91 ms | 52.58 ms |
-| `cec_mult_6x6_arr_vs_wal` | UNSAT | **113.04 ms** | 127.39 ms | 244.33 ms | 276.29 ms | 281.54 ms |
-| `cec_mult_8x8_arr_vs_wal` | UNSAT | 5,266.84 ms | 5,437.39 ms | **3,255.17 ms** | 14.05 s | 3,671.92 ms |
-| `chessboard_10x10_unsat` | UNSAT | 5.56 ms | 98.55 ms | 142.05 ms | **5.20 ms** | 63.69 ms |
-| `chessboard_14x14_sat` | SAT | 4.97 ms | **3.46 ms** | 86.90 ms | 4.02 ms | 5.39 ms |
-| `chessboard_14x14_unsat` | UNSAT | 2.73 ms | 17.19 s | 13.15 s | **2.44 ms** | 7,307.62 ms |
-| `chessboard_6x6_unsat` | UNSAT | 4.64 ms | 3.00 ms | 55.64 ms | **2.82 ms** | 5.88 ms |
-| `chessboard_8x8_unsat` | UNSAT | 7.78 ms | 5.19 ms | 53.92 ms | **4.93 ms** | 15.60 ms |
-| `ham_bipartite_10_11` | UNSAT | **44.60 ms** | 7,455.90 ms | 998.21 ms | >300 s | 115.14 ms |
-| `ham_bipartite_14_15` | UNSAT | 38.65 s | 8,897.95 ms | 6,699.39 ms | 512.41 ms | **221.32 ms** |
-| `ham_bipartite_7_8` | UNSAT | **36.62 ms** | 207.54 ms | 185.53 ms | 717.58 ms | 162.80 ms |
-| `ham_cutvertex_15` | UNSAT | **44.64 ms** | 129.56 ms | 999.61 ms | 309.20 ms | 64.88 ms |
-| `ham_cutvertex_23` | UNSAT | 198.16 ms | 5,202.28 ms | 21.09 s | 3,384.18 ms | **53.06 ms** |
-| `ham_planted_n20` | SAT | 57.94 ms | **8.05 ms** | 1,031.35 ms | 33.83 ms | 73.16 ms |
-| `ham_planted_n30` | SAT | 580.32 ms | 636.14 ms | 2,849.81 ms | **86.53 ms** | 1,119.35 ms |
-| `ham_planted_n40` | SAT | 442.53 ms | 368.99 ms | 5,352.78 ms | **314.51 ms** | 1,478.16 ms |
-| `mult_target_28b_sat` | SAT | 26.99 ms | **10.40 ms** | 209.72 ms | 33.59 ms | 38.68 ms |
-| `mult_target_28b_unsat` | UNSAT | 10.96 ms | **5.09 ms** | 95.86 ms | 18.92 ms | 8.49 ms |
-| `mult_target_32b_sat` | SAT | 15.23 ms | **7.42 ms** | 187.04 ms | 45.01 ms | 59.88 ms |
-| `mult_target_36b_sat` | SAT | 18.08 ms | **8.60 ms** | 207.02 ms | 31.50 ms | 46.16 ms |
-| `php_10_9` | UNSAT | **7.17 ms** | 6,286.81 ms | 9,335.33 ms | 7.54 ms | 520.38 ms |
-| `php_11_10` | UNSAT | 2.47 ms | 45.25 s | 117.10 s | **2.06 ms** | 1,761.67 ms |
-| `php_13_12` | UNSAT | 2.84 ms | >300 s | >300 s | **2.36 ms** | >300 s |
-| `php_8_7` | UNSAT | 6.58 ms | 42.37 ms | 116.90 ms | **6.51 ms** | 51.06 ms |
-| `php_9_8` | UNSAT | 3.62 ms | 357.90 ms | 732.35 ms | **2.69 ms** | 119.04 ms |
-| `random3sat_n150_s1` | SAT | **4.66 ms** | 7.95 ms | 117.41 ms | 30.48 ms | 50.19 ms |
-| `random3sat_n200_s1` | UNSAT | **190.17 ms** | 772.21 ms | 1,292.33 ms | 649.79 ms | 851.26 ms |
-| `random3sat_n200_s2` | SAT | 49.79 ms | 516.32 ms | 106.65 ms | **45.13 ms** | 334.62 ms |
-| `random3sat_n250_s1` | SAT | **71.24 ms** | 860.60 ms | 1,908.84 ms | 4,638.42 ms | 1,311.69 ms |
-| `tseitin_n100_sat` | SAT | **2.59 ms** | 10.65 ms | 27.23 ms | 3.92 ms | 6.15 ms |
-| `tseitin_n100_unsat` | UNSAT | 2.55 ms | 271.99 s | 23.47 ms | **2.20 ms** | 23.41 s |
-| `tseitin_n200_sat` | SAT | **2.87 ms** | 9.05 ms | 37.17 ms | 5.76 ms | 5.86 ms |
-| `tseitin_n200_unsat` | UNSAT | 2.42 ms | >300 s | 29.58 ms | **2.11 ms** | >300 s |
-| `tseitin_n20_unsat` | UNSAT | **3.35 ms** | 7.97 ms | 61.09 ms | 7.78 ms | 3.44 ms |
-| `tseitin_n30_unsat` | UNSAT | 3.35 ms | 15.61 ms | 78.15 ms | **2.88 ms** | 10.78 ms |
-| `tseitin_n40_sat` | SAT | **2.64 ms** | 10.21 ms | 21.85 ms | 5.23 ms | 2.94 ms |
-| `tseitin_n40_unsat` | UNSAT | **2.45 ms** | 47.25 ms | 50.41 ms | 2.64 ms | 40.08 ms |
-| `tseitin_n60_unsat` | UNSAT | **3.26 ms** | 517.35 ms | 66.69 ms | 3.61 ms | 307.68 ms |
-| `xor_plus_clauses_n100_free14_s1` | UNSAT | **3.09 ms** | 11.36 ms | 93.51 ms | 5.57 ms | 4.43 ms |
-| `xor_plus_clauses_n160_free16_s2` | UNSAT | **3.82 ms** | 14.56 ms | 66.35 ms | 10.68 ms | 6.88 ms |
-| `xor_plus_clauses_n240_free18_s3` | UNSAT | **4.79 ms** | 56.42 ms | 132.74 ms | 23.97 ms | 21.41 ms |
-| `xor_plus_clauses_n240_free18_s4` | UNSAT | **4.08 ms** | 102.00 ms | 116.16 ms | 6.29 ms | 46.96 ms |
-| **Total (47 files, PAR-2)** | **47/47** | **46/47 — 645.99 s** *(fastest)* | 45/47 — 1,730.80 s *(2.68x)* | 46/47 — 1,004.18 s *(1.55x)* | 45/47 — 1,225.68 s *(1.90x)* | 45/47 — 1,323.20 s *(2.05x)* |
+| `cec_adder_16b_rc_vs_ks` | UNSAT | **5.00 ms** | 7.66 ms | 87.44 ms | 17.75 ms | 31.07 ms |
+| `cec_adder_32b_rc_vs_ks` | UNSAT | **13.51 ms** | 23.85 ms | 149.00 ms | 57.21 ms | 56.21 ms |
+| `cec_adder_64b_rc_vs_ks` | UNSAT | **74.16 ms** | 74.18 ms | 372.39 ms | 245.80 ms | 206.64 ms |
+| `cec_adder_8b_rc_vs_ks` | UNSAT | **3.92 ms** | 4.92 ms | 78.43 ms | 10.73 ms | 14.16 ms |
+| `cec_mult_10x10_arr_vs_wal` | UNSAT | **6.98 ms** | 157.98 s | 214.92 s | >300 s | 79.18 s |
+| `cec_mult_5x5_arr_vs_wal` | UNSAT | **3.71 ms** | 24.93 ms | 160.58 ms | 48.91 ms | 52.58 ms |
+| `cec_mult_6x6_arr_vs_wal` | UNSAT | **3.54 ms** | 127.39 ms | 244.33 ms | 276.29 ms | 281.54 ms |
+| `cec_mult_8x8_arr_vs_wal` | UNSAT | **6.07 ms** | 5,437.39 ms | 3,255.17 ms | 14.05 s | 3,671.92 ms |
+| `chessboard_10x10_unsat` | UNSAT | **2.58 ms** | 98.55 ms | 142.05 ms | 5.20 ms | 63.69 ms |
+| `chessboard_14x14_sat` | SAT | **3.35 ms** | 3.46 ms | 86.90 ms | 4.02 ms | 5.39 ms |
+| `chessboard_14x14_unsat` | UNSAT | 4.12 ms | 17.19 s | 13.15 s | **2.44 ms** | 7,307.62 ms |
+| `chessboard_6x6_unsat` | UNSAT | 3.38 ms | 3.00 ms | 55.64 ms | **2.82 ms** | 5.88 ms |
+| `chessboard_8x8_unsat` | UNSAT | **2.54 ms** | 5.19 ms | 53.92 ms | 4.93 ms | 15.60 ms |
+| `ham_bipartite_10_11` | UNSAT | **3.88 ms** | 7,455.90 ms | 998.21 ms | >300 s | 115.14 ms |
+| `ham_bipartite_14_15` | UNSAT | **9.19 ms** | 8,897.95 ms | 6,699.39 ms | 512.41 ms | 221.32 ms |
+| `ham_bipartite_7_8` | UNSAT | **3.38 ms** | 207.54 ms | 185.53 ms | 717.58 ms | 162.80 ms |
+| `ham_cutvertex_15` | UNSAT | **3.41 ms** | 129.56 ms | 999.61 ms | 309.20 ms | 64.88 ms |
+| `ham_cutvertex_23` | UNSAT | **4.03 ms** | 5,202.28 ms | 21.09 s | 3,384.18 ms | 53.06 ms |
+| `ham_planted_n20` | SAT | **4.38 ms** | 8.05 ms | 1,031.35 ms | 33.83 ms | 73.16 ms |
+| `ham_planted_n30` | SAT | **13.68 ms** | 636.14 ms | 2,849.81 ms | 86.53 ms | 1,119.35 ms |
+| `ham_planted_n40` | SAT | **19.61 ms** | 368.99 ms | 5,352.78 ms | 314.51 ms | 1,478.16 ms |
+| `mult_target_28b_sat` | SAT | 11.04 ms | **10.40 ms** | 209.72 ms | 33.59 ms | 38.68 ms |
+| `mult_target_28b_unsat` | UNSAT | 10.35 ms | **5.09 ms** | 95.86 ms | 18.92 ms | 8.49 ms |
+| `mult_target_32b_sat` | SAT | 19.49 ms | **7.42 ms** | 187.04 ms | 45.01 ms | 59.88 ms |
+| `mult_target_36b_sat` | SAT | 105.88 ms | **8.60 ms** | 207.02 ms | 31.50 ms | 46.16 ms |
+| `php_10_9` | UNSAT | 10.60 ms | 6,286.81 ms | 9,335.33 ms | **7.54 ms** | 520.38 ms |
+| `php_11_10` | UNSAT | 11.16 ms | 45.25 s | 117.10 s | **2.06 ms** | 1,761.67 ms |
+| `php_13_12` | UNSAT | 12.23 ms | >300 s | >300 s | **2.36 ms** | >300 s |
+| `php_8_7` | UNSAT | 11.08 ms | 42.37 ms | 116.90 ms | **6.51 ms** | 51.06 ms |
+| `php_9_8` | UNSAT | 9.17 ms | 357.90 ms | 732.35 ms | **2.69 ms** | 119.04 ms |
+| `random3sat_n150_s1` | SAT | 11.48 ms | **7.95 ms** | 117.41 ms | 30.48 ms | 50.19 ms |
+| `random3sat_n200_s1` | UNSAT | **250.69 ms** | 772.21 ms | 1,292.33 ms | 649.79 ms | 851.26 ms |
+| `random3sat_n200_s2` | SAT | 183.26 ms | 516.32 ms | 106.65 ms | **45.13 ms** | 334.62 ms |
+| `random3sat_n250_s1` | SAT | **67.21 ms** | 860.60 ms | 1,908.84 ms | 4,638.42 ms | 1,311.69 ms |
+| `tseitin_n100_sat` | SAT | 10.53 ms | 10.65 ms | 27.23 ms | **3.92 ms** | 6.15 ms |
+| `tseitin_n100_unsat` | UNSAT | 9.91 ms | 271.99 s | 23.47 ms | **2.20 ms** | 23.41 s |
+| `tseitin_n200_sat` | SAT | **5.19 ms** | 9.05 ms | 37.17 ms | 5.76 ms | 5.86 ms |
+| `tseitin_n200_unsat` | UNSAT | 6.82 ms | >300 s | 29.58 ms | **2.11 ms** | >300 s |
+| `tseitin_n20_unsat` | UNSAT | 5.24 ms | 7.97 ms | 61.09 ms | 7.78 ms | **3.44 ms** |
+| `tseitin_n30_unsat` | UNSAT | 5.75 ms | 15.61 ms | 78.15 ms | **2.88 ms** | 10.78 ms |
+| `tseitin_n40_sat` | SAT | 6.14 ms | 10.21 ms | 21.85 ms | 5.23 ms | **2.94 ms** |
+| `tseitin_n40_unsat` | UNSAT | 5.73 ms | 47.25 ms | 50.41 ms | **2.64 ms** | 40.08 ms |
+| `tseitin_n60_unsat` | UNSAT | 4.15 ms | 517.35 ms | 66.69 ms | **3.61 ms** | 307.68 ms |
+| `xor_plus_clauses_n100_free14_s1` | UNSAT | 6.17 ms | 11.36 ms | 93.51 ms | 5.57 ms | **4.43 ms** |
+| `xor_plus_clauses_n160_free16_s2` | UNSAT | 7.14 ms | 14.56 ms | 66.35 ms | 10.68 ms | **6.88 ms** |
+| `xor_plus_clauses_n240_free18_s3` | UNSAT | **7.55 ms** | 56.42 ms | 132.74 ms | 23.97 ms | 21.41 ms |
+| `xor_plus_clauses_n240_free18_s4` | UNSAT | 12.62 ms | 102.00 ms | 116.16 ms | **6.29 ms** | 46.96 ms |
+| **Total (47 files, PAR-2)** | **47/47** | **47/47 — 1.00 s** *(fastest)* | 45/47 — 1,730.80 s *(1,729.08x)* | 46/47 — 1,004.18 s *(1,003.18x)* | 45/47 — 1,225.68 s *(1,224.46x)* | 45/47 — 1,323.20 s *(1,321.88x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

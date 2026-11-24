@@ -41,14 +41,14 @@ All 7 classic SATPLAN Blocks World planning-as-SAT instances (`anomaly`, `medium
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `anomaly` | SAT | 2.11 ms | 2.14 ms | 3.63 ms | 1.47 ms | **1.23 ms** |
-| `bw_large.a` | SAT | 12.50 ms | **3.42 ms** | 124.65 ms | 4.53 ms | 24.05 ms |
-| `bw_large.b` | SAT | 34.91 ms | **7.35 ms** | 352.77 ms | 8.76 ms | 28.79 ms |
-| `bw_large.c` | SAT | 132.87 ms | 52.90 ms | 537.91 ms | **42.31 ms** | 67.06 ms |
-| `bw_large.d` | SAT | 351.25 ms | 314.33 ms | 679.20 ms | **144.95 ms** | 196.21 ms |
-| `huge` | SAT | 13.66 ms | **4.17 ms** | 126.18 ms | 5.47 ms | 24.15 ms |
-| `medium` | SAT | 2.21 ms | 2.25 ms | 10.27 ms | 2.00 ms | **1.37 ms** |
-| **Total (7 files, PAR-2)** | **7/7** | 7/7 — 549.5 ms *(2.62x)* | 7/7 — 386.6 ms *(1.85x)* | 7/7 — 1,834.6 ms *(8.76x)* | **7/7 — 209.5 ms** *(fastest)* | 7/7 — 342.9 ms *(1.64x)* |
+| `anomaly` | SAT | 1.82 ms | 2.14 ms | 3.63 ms | 1.47 ms | **1.23 ms** |
+| `bw_large.a` | SAT | **3.27 ms** | 3.42 ms | 124.65 ms | 4.53 ms | 24.05 ms |
+| `bw_large.b` | SAT | 7.82 ms | **7.35 ms** | 352.77 ms | 8.76 ms | 28.79 ms |
+| `bw_large.c` | SAT | **38.05 ms** | 52.90 ms | 537.91 ms | 42.31 ms | 67.06 ms |
+| `bw_large.d` | SAT | **118.99 ms** | 314.33 ms | 679.20 ms | 144.95 ms | 196.21 ms |
+| `huge` | SAT | **3.68 ms** | 4.17 ms | 126.18 ms | 5.47 ms | 24.15 ms |
+| `medium` | SAT | 2.20 ms | 2.25 ms | 10.27 ms | 2.00 ms | **1.37 ms** |
+| **Total (7 files, PAR-2)** | **7/7** | **7/7 — 175.8 ms** *(fastest)* | 7/7 — 386.6 ms *(2.20x)* | 7/7 — 1,834.6 ms *(10.43x)* | 7/7 — 209.5 ms *(1.19x)* | 7/7 — 342.9 ms *(1.95x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
