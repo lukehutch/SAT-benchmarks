@@ -59,6 +59,17 @@ Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thre
 | `hub_60_unsat` | UNSAT | **23.41 ms** | 24.35 ms | 697.72 ms | 409.68 ms | 23.93 ms | 85.89 ms |
 | **Total (3 promoted, PAR-2)** | **3/3** | **3/3 — 59.4 ms** *(fastest)* | 3/3 — 82.3 ms *(1.39x)* | 3/3 — 1,627.1 ms *(27.38x)* | 3/3 — 1,012.8 ms *(17.04x)* | 3/3 — 61.9 ms *(1.04x)* | 3/3 — 206.0 ms *(3.47x)* |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$)
+
+Remaining 3 non-Gauntlet corpus instances evaluated on identical uncompressed flat `.cnf` (and `.xcnf` for CryptoMiniSat 5.18.0 XCNF) inputs, pinned to a single physical core (`1` thread per run, `--max-cores 1` for Frobenius, `-t 1` for CryptoMiniSat 5.18.0; exact median of 3 runs; $T_{\max} = 60\;\text{s}$; **0 verdict disagreements**):
+
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|---:|
+| `hub_24_unsat` | UNSAT | 13.35 ms | **5.84 ms** | 185.09 ms | 125.59 ms | 10.51 ms | 25.69 ms |
+| `hub_30_unsat` | UNSAT | 16.33 ms | **6.47 ms** | 216.66 ms | 149.57 ms | 12.51 ms | 27.28 ms |
+| `hub_80_unsat` | UNSAT | 48.75 ms | **13.30 ms** | 354.40 ms | 256.10 ms | 34.65 ms | 42.36 ms |
+| **Total (3 supplementary, PAR-2)** | **3/3** | 3/3 — 78.4 ms *(3.06x)* | **3/3 — 25.6 ms** *(fastest)* | 3/3 — 756.2 ms *(29.53x)* | 3/3 — 531.3 ms *(20.74x)* | 3/3 — 57.7 ms *(2.25x)* | 3/3 — 95.3 ms *(3.72x)* |
+
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
 

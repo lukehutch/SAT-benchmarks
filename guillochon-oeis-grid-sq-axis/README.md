@@ -106,6 +106,18 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `sq-axis_n14_m113.cnf` | `sq-axis` $14 \times 14$ ($a(14) \ge 112$; `16,381` vars, `33,301` cls) | 180 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 5 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `sq-axis_n12_m85.cnf` | SAT | >60 s | 2,240,192 | 4,329,857 | 165,166,288 |
+| `sq-axis_n12_m86.cnf` | UNSAT | >60 s | 2,210,432 | 4,100,232 | 160,993,450 |
+| `sq-axis_n13_m98.cnf` | SAT | >60 s | 2,290,048 | 4,514,384 | 161,627,058 |
+| `sq-axis_n13_m99.cnf` | UNSAT | >60 s | 2,038,400 | 3,934,894 | 170,934,739 |
+| `sq-axis_n14_m112.cnf` | SAT | >60 s | 2,757,824 | 5,813,610 | 245,598,175 |
+
 ### Verified Solutions (`solutions/`)
 
 Checksums verified with `sha256sum -c` against [`solutions/SHA256SUMS`](solutions/SHA256SUMS):

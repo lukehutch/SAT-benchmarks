@@ -68,6 +68,22 @@ Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thre
 
 *(Both `php_9_8_unsat` and `php_13_12_unsat` LRAT proofs emitted by Frobenius additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$)
+
+Remaining 8 non-Gauntlet corpus instances evaluated on identical uncompressed flat `.cnf` (and `.xcnf` for CryptoMiniSat 5.18.0 XCNF) inputs, pinned to a single physical core (`1` thread per run, `--max-cores 1` for Frobenius, `-t 1` for CryptoMiniSat 5.18.0; exact median of 3 runs for sub-$15\;\text{s}$ solves; $T_{\max} = 60\;\text{s}$; **0 verdict disagreements**; all SAT models verified against 100% of raw CNF clauses):
+
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|---:|
+| `php_13_12_unsat` | UNSAT | **4.57 ms** | 1,342.94 ms | >60 s (T/O) | >60 s (T/O) | 4,591.39 ms | 11,594.33 ms |
+| `php_14_13_unsat` | UNSAT | **4.87 ms** | 8,694.00 ms | >60 s (T/O) | >60 s (T/O) | 16,424.95 ms | >60 s (T/O) |
+| `php_15_14_unsat` | UNSAT | **5.82 ms** | 34,035.10 ms | >60 s (T/O) | >60 s (T/O) | 57,980.28 ms | >60 s (T/O) |
+| `php_17_16_unsat` | UNSAT | **6.96 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `php_19_18_unsat` | UNSAT | **18.09 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `php_31_30_unsat` | UNSAT | **49.46 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `php_20_20_sat` | SAT | 7.18 ms | 6.79 ms | 106.15 ms | 106.40 ms | 13.17 ms | **4.21 ms** |
+| `php_30_30_sat` | SAT | 17.16 ms | 14.72 ms | 430.51 ms | 434.89 ms | 110.94 ms | **8.70 ms** |
+| **Solved (8 supplementary)** | **8/8** | **8/8 — 114.1 ms** *(fastest)* | 5/8 *(3 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 5/8 *(3 T/O >60 s)* | 3/8 *(5 T/O >60 s)* |
+
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
 

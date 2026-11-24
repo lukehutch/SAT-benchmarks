@@ -116,6 +116,19 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `0`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `sortnet_n18_d10.cnf` | $a(18) \in \{10, 11\}$ (`2,598,203` vars, `63,274,184` cls) | 3,600 s | `taskset -c 0` | 378,304 | 2,832,125 | 13,462,134,613 | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 6 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `10 / 10` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `sortnet_n14_d8.cnf` | UNSAT | >60 s | 56,320 | 288,526 | 301,662,018 |
+| `sortnet_n16_d8.cnf` | UNSAT | >60 s | 22,528 | 157,227 | 246,585,574 |
+| `sortnet_n16_d9.cnf` | SAT | >60 s | 24,128 | 172,676 | 271,228,042 |
+| `sortnet_n17_d9.cnf` | UNSAT | >60 s | 9,920 | 76,460 | 225,039,188 |
+| `sortnet_n17_d10.cnf` | SAT | >60 s | 10,048 | 87,645 | 194,136,958 |
+| `sortnet_n18_d11.cnf` | SAT | >60 s | 7,040 | 84,043 | 161,741,942 |
+
 ### Verified Solutions (`solutions/`)
 
 Checksums verified with `sha256sum -c` against [`solutions/SHA256SUMS`](solutions/SHA256SUMS):

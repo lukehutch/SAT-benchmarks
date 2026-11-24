@@ -128,6 +128,26 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `vdw_3_20_N389.cnf` | Conjectured $w(2; 3, 20) = 389$ (`389` vars, `41,426` cls) | 600 s | `taskset -c 1` | 27,716,416 | 52,769,345 | 1,265,007,830 | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 13 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `22 / 22` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `vdw_3_13_N160.cnf` | UNSAT | >60 s | 4,124,288 | 5,323,867 | 124,878,098 |
+| `vdw_3_14_N186.cnf` | UNSAT | >60 s | 3,799,168 | 5,158,377 | 127,274,780 |
+| `vdw_3_15_N217.cnf` | SAT | >60 s | 3,573,632 | 5,070,651 | 129,657,242 |
+| `vdw_3_15_N218.cnf` | UNSAT | >60 s | 3,567,552 | 5,050,581 | 129,270,773 |
+| `vdw_3_16_N237.cnf` | SAT | >60 s | 3,421,568 | 5,153,758 | 131,143,046 |
+| `vdw_3_16_N238.cnf` | UNSAT | >60 s | 3,424,768 | 5,158,868 | 131,036,646 |
+| `vdw_3_17_N278.cnf` | SAT | >60 s | 3,141,824 | 4,983,917 | 130,334,513 |
+| `vdw_3_17_N279.cnf` | UNSAT | >60 s | 3,113,856 | 4,896,187 | 129,519,619 |
+| `vdw_3_18_N311.cnf` | SAT | >60 s | 2,889,024 | 4,847,260 | 128,301,192 |
+| `vdw_3_18_N312.cnf` | UNSAT | >60 s | 2,893,632 | 4,886,332 | 128,482,852 |
+| `vdw_3_19_N348.cnf` | SAT | >60 s | 2,670,656 | 4,906,442 | 127,418,932 |
+| `vdw_3_19_N349.cnf` | UNSAT | >60 s | 2,603,840 | 4,752,732 | 125,404,626 |
+| `vdw_3_20_N388.cnf` | SAT | >60 s | 2,387,776 | 4,664,131 | 124,246,348 |
+
 ### Verified Solutions & Certified Proofs (`solutions/`)
 
 All **8 verified files** (**5 SAT models + 3 formally certified UNSAT proofs**, all `< 95 MB`) match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS):

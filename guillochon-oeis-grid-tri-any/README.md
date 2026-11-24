@@ -108,6 +108,16 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `tri-any_n16_m37.cnf` | `tri-any` side 16 ($a(16) \ge 36$; `13,501` vars, `29,826` cls) | 600 s | `taskset -c 1` | 16,233,792 | 24,068,775 | 2,585,454,611 | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 3 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `tri-any_n14_m31.cnf` | SAT | >60 s | 2,859,008 | 4,199,246 | 218,188,693 |
+| `tri-any_n14_m32.cnf` | UNSAT | >60 s | 2,800,256 | 4,180,935 | 222,665,821 |
+| `tri-any_n15_m35.cnf` | UNSAT | >60 s | 2,701,760 | 4,207,951 | 240,869,882 |
+
 ### Verified Solutions (`solutions/`)
 
 All **3 verified SAT models** match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS) and passed both raw-clause checks and upstream `verify.py`:

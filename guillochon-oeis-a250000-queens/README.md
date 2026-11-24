@@ -123,6 +123,26 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `queens_n21_m65.cnf` | Peaceable queens $a(21) \ge 64$ (`331,762` vars, `691,449` cls) | 600 s | `taskset -c 1` | 1,320,960 | 4,679,688 | 4,155,524,610 | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 13 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `20 / 20` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `queens_n14_m29.cnf` | UNSAT | >60 s | 961,984 | 2,446,537 | 373,649,984 |
+| `queens_n15_m33.cnf` | UNSAT | >60 s | 843,008 | 2,330,605 | 384,642,738 |
+| `queens_n16_m37.cnf` | SAT | >60 s | 701,184 | 2,041,591 | 363,374,161 |
+| `queens_n16_m38.cnf` | UNSAT | >60 s | 691,136 | 2,114,765 | 376,009,337 |
+| `queens_n17_m42.cnf` | SAT | >60 s | 642,816 | 1,837,931 | 378,200,586 |
+| `queens_n17_m43.cnf` | UNSAT | >60 s | 626,944 | 1,922,017 | 379,734,099 |
+| `queens_n18_m47.cnf` | SAT | >60 s | 508,544 | 1,527,601 | 339,923,187 |
+| `queens_n18_m48.cnf` | UNSAT | >60 s | 512,640 | 1,633,087 | 337,945,952 |
+| `queens_n19_m52.cnf` | SAT | >60 s | 372,352 | 1,340,266 | 304,955,191 |
+| `queens_n19_m53.cnf` | UNSAT | >60 s | 412,096 | 1,242,343 | 325,757,494 |
+| `queens_n20_m58.cnf` | SAT | >60 s | 351,424 | 1,268,412 | 341,296,960 |
+| `queens_n20_m59.cnf` | UNSAT | >60 s | 308,800 | 1,089,641 | 323,105,508 |
+| `queens_n21_m64.cnf` | SAT | >60 s | 233,408 | 995,044 | 305,906,368 |
+
 ### Verified Solutions (`solutions/`)
 
 All **4 verified SAT models** ($n = 12 \dots 15$) match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS) and passed both 100% raw-clause verification and upstream `verify.py`:

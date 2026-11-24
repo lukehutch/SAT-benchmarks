@@ -124,6 +124,26 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 | `zaran3_n17_m144.cnf` | Zarankiewicz $n = 17$ upper bracket (`42,561` vars, `547,631` cls) | 15 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 | `zaran3_n17_m148.cnf` | Zarankiewicz $n = 17$ upper bracket (`41,409` vars, `545,331` cls) | 15 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 13 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `20 / 20` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `zaran3_n11_m70.cnf` | UNSAT | >60 s | 2,713,856 | 4,211,470 | 215,641,931 |
+| `zaran3_n12_m80.cnf` | SAT | >60 s | 2,324,608 | 3,947,764 | 241,807,949 |
+| `zaran3_n12_m81.cnf` | UNSAT | >60 s | 2,347,008 | 3,896,558 | 243,223,417 |
+| `zaran3_n13_m92.cnf` | SAT | >60 s | 2,070,080 | 3,451,761 | 253,456,834 |
+| `zaran3_n13_m93.cnf` | UNSAT | >60 s | 2,050,624 | 3,468,264 | 264,042,226 |
+| `zaran3_n14_m105.cnf` | SAT | >60 s | 1,613,696 | 2,849,798 | 252,442,090 |
+| `zaran3_n14_m106.cnf` | UNSAT | >60 s | 1,533,568 | 2,826,492 | 237,034,290 |
+| `zaran3_n15_m120.cnf` | SAT | >60 s | 1,353,216 | 2,345,942 | 246,692,669 |
+| `zaran3_n15_m121.cnf` | UNSAT | >60 s | 1,417,216 | 2,418,681 | 236,026,138 |
+| `zaran3_n16_m128.cnf` | SAT | >60 s | 947,392 | 1,857,441 | 185,973,055 |
+| `zaran3_n16_m129.cnf` | UNSAT | >60 s | 1,044,480 | 1,900,397 | 193,691,393 |
+| `zaran3_n17_m135.cnf` | SAT | >60 s | 683,200 | 1,421,813 | 187,323,555 |
+| `zaran3_n17_m151.cnf` | UNSAT | >60 s | 780,480 | 1,459,372 | 175,656,839 |
+
 ### Verified Solutions & Certified Proofs (`solutions/`)
 
 All **3 verified files** (**2 SAT models + 1 formally certified UNSAT proof**) match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS):

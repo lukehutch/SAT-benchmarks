@@ -111,6 +111,15 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `tri-up_n14_m47.cnf` | `tri-up` side 14 ($\ge 46$; `6,137` vars, `12,565` cls) | 600 s | `taskset -c 1` | 10,229,120 | 15,523,020 | 1,075,295,159 | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 2 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `tri-up_n12_m36.cnf` | UNSAT | >60 s | 2,585,280 | 3,669,117 | 123,479,784 |
+| `tri-up_n13_m41.cnf` | UNSAT | >60 s | 2,490,048 | 3,791,217 | 158,000,978 |
+
 ### Verified Solutions & Certified Proofs (`solutions/`)
 
 All **5 verified files** (**4 SAT models + 1 formally certified UNSAT proof**) match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS):

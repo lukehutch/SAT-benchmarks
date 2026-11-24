@@ -106,6 +106,18 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `sq-any_n11_m59.cnf` | `sq-any` $11 \times 11$ ($a(11) \ge 58$; `7,561` vars, `16,148` cls) | 180 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 5 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
+
+| Instance | Expected | Frobenius 1C | Conflicts | Decisions | Propagations |
+|---|:---:|---:|---:|---:|---:|
+| `sq-any_n9_m42.cnf` | SAT | >60 s | 3,017,088 | 4,553,495 | 158,407,829 |
+| `sq-any_n9_m43.cnf` | UNSAT | >60 s | 3,168,128 | 4,691,645 | 137,092,507 |
+| `sq-any_n10_m50.cnf` | SAT | >60 s | 3,265,408 | 5,324,149 | 179,929,007 |
+| `sq-any_n10_m51.cnf` | UNSAT | >60 s | 3,192,640 | 5,154,242 | 173,875,829 |
+| `sq-any_n11_m58.cnf` | SAT | >60 s | 2,922,048 | 5,308,231 | 225,245,675 |
+
 ### Verified Solutions (`solutions/`)
 
 Checksums verified with `sha256sum -c` against [`solutions/SHA256SUMS`](solutions/SHA256SUMS):

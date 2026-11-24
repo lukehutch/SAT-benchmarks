@@ -63,6 +63,17 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 | **Summary ($T_{\max}=10\;\text{s}$, PAR-2)** | **8 / 9** | **21,065.04 ms** *(fastest)* | 27,511.93 ms *(1.31x slower)* | 27,344.07 ms *(1.30x slower)* | 27,769.17 ms *(1.32x slower)* | 25,456.61 ms *(1.21x slower)* |
 | **Summary ($T_{\max}=30\;\text{s}$, PAR-2)** | **9 / 9** | **17,346.11 ms** *(fastest)* | 29,701.77 ms *(1.71x slower)* | 8/9 — 67,344.07 ms *(3.88x slower)* | 8/9 — 67,769.17 ms *(3.91x slower)* | 25,994.07 ms *(1.50x slower)* |
 
+### Open Frontier Coverage ($n = 6, s \le 12$, $T_{\max} = 60\;\text{s}$)
+
+Both open $n = 6$ frontier instances evaluated on identical uncompressed flat `.cnf` inputs, pinned to a single physical core (`1` thread per run, `--max-cores 1` for Frobenius, `-t 1` for CryptoMiniSat 5.18.0, $T_{\max} = 60\;\text{s}$):
+
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `mod3_n6_r1_le12_open.cnf` | Open | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+| `mod3_n6_r2_le12_open.cnf` | Open | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
+
+*(Within $60\;\text{s}$, Frobenius explored `1,193,856` conflicts / `5,792,790` decisions / `135,893,011` propagations on `mod3_n6_r1_le12_open.cnf` and `1,185,536` conflicts / `6,839,639` decisions / `137,707,301` propagations on `mod3_n6_r2_le12_open.cnf`; both targets remain open across all five solvers.)*
+
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
 

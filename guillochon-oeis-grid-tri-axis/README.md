@@ -40,7 +40,7 @@ All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` 
 | `xcnf-converted/` | 8 | 152.0 KB | 27.0 KB (`tri-axis_n16_m54.xcnf.xz`) | Lossless CryptoMiniSat `.xcnf.xz` conversions (`0` native XOR parity blocks) |
 | `aig-converted/` | 8 | 223.2 KB | 40.5 KB (`tri-axis_n16_m54.aig.xz`) | Exact Binary AIGER 1.9 combinational miters (`.aig.xz`) |
 | `anf-converted/` | 8 | 306.3 KB | 54.1 KB (`tri-axis_n16_m54.anf.xz`) | Lossless linear-size degree-$\le 3$ DIMACS-ANF conversions (`.anf.xz`) |
-| `solutions/` | 3 | 16.8 KB | 8.0 KB (`tri-axis_n16_m54.model.xz`) | **3** verified SAT models (`N=13, 14, 16`) + [`solutions/SHA256SUMS`](solutions/SHA256SUMS) |
+| `solutions/` | 4 | 23.0 KB | 8.0 KB (`tri-axis_n16_m54.model.xz`) | **4** verified SAT models (`N=13..16`) + [`solutions/SHA256SUMS`](solutions/SHA256SUMS) |
 | `src/` | — | — | — | [`src/gen_diagram.py`](src/gen_diagram.py) + verbatim upstream generator, verifier, `.map.json` sidecars, and `SHA256SUMS` under [`src/upstream/`](src/upstream/), plus upstream SA certificate `certificates/tri-axis_n16_54.model` |
 
 #### Complete Instance Inventory & Ground-Truth Verdicts (`expected.tsv`)
@@ -107,14 +107,27 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `tri-axis_n16_m55.cnf` | `tri-axis` side 16 ($a(16) \ge 54$; `11,071` vars, `22,912` cls) | 600 s | `taskset -c 1` | 10,361,024 | 17,046,294 | 1,563,592,717 | Open (`UNKNOWN`) |
 
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+
+Remaining 3 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`; all four external baselines were also evaluated at $T_{\max} = 60\;\text{s}$ on `tri-axis_n15_m49.cnf` (solved SAT by Frobenius in `38.69 s`, outperforming Kissat 4.0.4 at `40.78 s` while CryptoMiniSat 5.18.0 and dense-solver 0.0.4 timed out):
+
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `tri-axis_n14_m45.cnf` | UNSAT | >60 s | — | — | — | — |
+| `tri-axis_n15_m49.cnf` | SAT | 38.69 s | **3.90 s** | >60 s | >60 s | 40.78 s |
+| `tri-axis_n15_m50.cnf` | UNSAT | >60 s | — | — | — | — |
+
+*(Frobenius telemetry: `tri-axis_n14_m45.cnf` `2,264,576` conflicts / `3,619,008` decisions / `168,957,046` propagations; `tri-axis_n15_m49.cnf` `1,469,011` conflicts / `2,560,970` decisions / `135,065,981` propagations, model verified against all 17,758 clauses and upstream `verify.py`; `tri-axis_n15_m50.cnf` `2,168,320` conflicts / `3,629,931` decisions / `196,237,310` propagations. External baselines marked `—` were not run on supplementary instances that Frobenius did not solve within 60 s.)*
+
 ### Verified Solutions (`solutions/`)
 
-All **3 verified SAT models** match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS) and passed both raw-clause checks and upstream `verify.py`:
+All **4 verified SAT models** (`N = 13..16`) match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS) and passed both raw-clause checks and upstream `verify.py`:
 
 | Solution File | Size | SHA-256 (prefix) | Independent Verification Result |
 |---|---:|---|---|
 | [`solutions/tri-axis_n13_m39.model.xz`](solutions/tri-axis_n13_m39.model.xz) | 3.9 KB | `247a7ac244e0` | 9,923/9,923 cls OK; `verify.py`: `39 painted, 0 forbidden: VALID` |
 | [`solutions/tri-axis_n14_m44.model.xz`](solutions/tri-axis_n14_m44.model.xz) | 5.0 KB | `26df6191cab5` | 13,389/13,389 cls OK; `verify.py`: `44 painted, 0 forbidden: VALID` |
+| [`solutions/tri-axis_n15_m49.model.xz`](solutions/tri-axis_n15_m49.model.xz) | 6.2 KB | `4cd7b34cac95` | 17,758/17,758 cls OK; `verify.py`: `49 painted, 0 forbidden: VALID` |
 | [`solutions/tri-axis_n16_m54.model.xz`](solutions/tri-axis_n16_m54.model.xz) | 8.0 KB | `7cf7efc50434` | 23,181/23,181 cls OK; `verify.py`: `54 painted, 0 forbidden: VALID` (frontier LB) |
 
 *Upstream simulated-annealing certificate:* [`src/upstream/sequences/point-patterns/certificates/tri-axis_n16_54.model`](src/upstream/sequences/point-patterns/certificates/tri-axis_n16_54.model).
