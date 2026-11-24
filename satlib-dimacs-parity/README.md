@@ -41,37 +41,37 @@ All 30 parity-learning SAT benchmarks (`par8`, `par16`, `par32`, original & comp
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `par16-1` | SAT | **5.75 ms** | 44.80 ms | 54.69 ms | 30.65 ms | 42.56 ms |
-| `par16-1-c` | SAT | **1.04 ms** | 53.62 ms | 47.60 ms | 11.13 ms | 20.36 ms |
-| `par16-2` | SAT | **4.02 ms** | 20.10 ms | 62.20 ms | 5.40 ms | 70.47 ms |
-| `par16-2-c` | SAT | **1.09 ms** | 79.20 ms | 57.34 ms | 53.90 ms | 43.00 ms |
-| `par16-3` | SAT | **15.00 ms** | 58.73 ms | 56.41 ms | 21.50 ms | 24.98 ms |
-| `par16-3-c` | SAT | **1.12 ms** | 23.98 ms | 50.99 ms | 25.51 ms | 18.74 ms |
-| `par16-4` | SAT | 22.73 ms | **8.91 ms** | 52.45 ms | 60.16 ms | 38.70 ms |
-| `par16-4-c` | SAT | **1.04 ms** | 40.37 ms | 49.08 ms | 7.01 ms | 11.09 ms |
-| `par16-5` | SAT | **9.48 ms** | 71.23 ms | 56.37 ms | 43.08 ms | 14.60 ms |
-| `par16-5-c` | SAT | **1.04 ms** | 77.75 ms | 53.22 ms | 33.45 ms | 52.94 ms |
-| `par32-1` | SAT | **40.56 ms** | >5 s | 1,083.24 ms | >5 s | >5 s |
-| `par32-1-c` | SAT | **35.88 ms** | >5 s | 1,300.94 ms | >5 s | >5 s |
-| `par32-2` | SAT | **40.32 ms** | >5 s | 533.68 ms | >5 s | >5 s |
-| `par32-2-c` | SAT | **36.60 ms** | >5 s | 1,267.72 ms | >5 s | >5 s |
-| `par32-3` | SAT | **41.29 ms** | >5 s | 685.67 ms | >5 s | >5 s |
-| `par32-3-c` | SAT | **37.95 ms** | >5 s | 1,599.42 ms | >5 s | >5 s |
-| `par32-4` | SAT | **40.42 ms** | >5 s | 403.59 ms | >5 s | >5 s |
-| `par32-4-c` | SAT | **35.96 ms** | >5 s | 1,085.10 ms | >5 s | >5 s |
-| `par32-5` | SAT | **40.36 ms** | >5 s | 418.33 ms | >5 s | >5 s |
-| `par32-5-c` | SAT | **36.37 ms** | >5 s | 1,981.89 ms | >5 s | >5 s |
-| `par8-1` | SAT | 1.87 ms | 2.66 ms | 25.87 ms | 2.61 ms | **1.62 ms** |
-| `par8-1-c` | SAT | **1.06 ms** | 2.46 ms | 23.13 ms | 1.68 ms | 2.44 ms |
-| `par8-2` | SAT | **1.81 ms** | 2.61 ms | 27.67 ms | 2.47 ms | 2.72 ms |
-| `par8-2-c` | SAT | **1.03 ms** | 2.43 ms | 23.09 ms | 1.69 ms | 2.46 ms |
-| `par8-3` | SAT | **1.87 ms** | 2.66 ms | 28.05 ms | 2.57 ms | 3.17 ms |
-| `par8-3-c` | SAT | **1.07 ms** | 2.40 ms | 25.14 ms | 1.72 ms | 2.92 ms |
-| `par8-4` | SAT | **1.82 ms** | 2.85 ms | 29.08 ms | 2.62 ms | 3.08 ms |
-| `par8-4-c` | SAT | **1.04 ms** | 2.58 ms | 20.46 ms | 1.67 ms | 2.83 ms |
-| `par8-5` | SAT | **1.98 ms** | 2.78 ms | 26.20 ms | 2.97 ms | 2.94 ms |
-| `par8-5-c` | SAT | **1.07 ms** | 2.49 ms | 21.82 ms | 1.58 ms | 2.74 ms |
-| **Total (30 files, PAR-2)** | **30/30** | **30/30 — 462.7 ms** *(fastest)* | 20/30 — 100,504.6 ms *(217.23x)* | 30/30 — 11,150.4 ms *(24.10x)* | 20/30 — 100,313.4 ms *(216.82x)* | 20/30 — 100,364.4 ms *(216.93x)* |
+| `par16-1` | SAT | **5.09 ms** | 44.80 ms | 54.69 ms | 30.65 ms | 42.56 ms |
+| `par16-1-c` | SAT | **2.15 ms** | 53.62 ms | 47.60 ms | 11.13 ms | 20.36 ms |
+| `par16-2` | SAT | **4.91 ms** | 20.10 ms | 62.20 ms | 5.40 ms | 70.47 ms |
+| `par16-2-c` | SAT | **2.19 ms** | 79.20 ms | 57.34 ms | 53.90 ms | 43.00 ms |
+| `par16-3` | SAT | **5.18 ms** | 58.73 ms | 56.41 ms | 21.50 ms | 24.98 ms |
+| `par16-3-c` | SAT | **2.23 ms** | 23.98 ms | 50.99 ms | 25.51 ms | 18.74 ms |
+| `par16-4` | SAT | **4.84 ms** | 8.91 ms | 52.45 ms | 60.16 ms | 38.70 ms |
+| `par16-4-c` | SAT | **2.10 ms** | 40.37 ms | 49.08 ms | 7.01 ms | 11.09 ms |
+| `par16-5` | SAT | **4.93 ms** | 71.23 ms | 56.37 ms | 43.08 ms | 14.60 ms |
+| `par16-5-c` | SAT | **2.14 ms** | 77.75 ms | 53.22 ms | 33.45 ms | 52.94 ms |
+| `par32-1` | SAT | **41.44 ms** | >5 s | 1,083.24 ms | >5 s | >5 s |
+| `par32-1-c` | SAT | **7.88 ms** | >5 s | 1,300.94 ms | >5 s | >5 s |
+| `par32-2` | SAT | **41.28 ms** | >5 s | 533.68 ms | >5 s | >5 s |
+| `par32-2-c` | SAT | **7.79 ms** | >5 s | 1,267.72 ms | >5 s | >5 s |
+| `par32-3` | SAT | **41.98 ms** | >5 s | 685.67 ms | >5 s | >5 s |
+| `par32-3-c` | SAT | **8.84 ms** | >5 s | 1,599.42 ms | >5 s | >5 s |
+| `par32-4` | SAT | **41.38 ms** | >5 s | 403.59 ms | >5 s | >5 s |
+| `par32-4-c` | SAT | **8.09 ms** | >5 s | 1,085.10 ms | >5 s | >5 s |
+| `par32-5` | SAT | **41.78 ms** | >5 s | 418.33 ms | >5 s | >5 s |
+| `par32-5-c` | SAT | **7.77 ms** | >5 s | 1,981.89 ms | >5 s | >5 s |
+| `par8-1` | SAT | 2.98 ms | 2.66 ms | 25.87 ms | 2.61 ms | **1.62 ms** |
+| `par8-1-c` | SAT | 2.12 ms | 2.46 ms | 23.13 ms | **1.68 ms** | 2.44 ms |
+| `par8-2` | SAT | 2.95 ms | 2.61 ms | 27.67 ms | **2.47 ms** | 2.72 ms |
+| `par8-2-c` | SAT | 2.24 ms | 2.43 ms | 23.09 ms | **1.69 ms** | 2.46 ms |
+| `par8-3` | SAT | 2.95 ms | 2.66 ms | 28.05 ms | **2.57 ms** | 3.17 ms |
+| `par8-3-c` | SAT | 2.14 ms | 2.40 ms | 25.14 ms | **1.72 ms** | 2.92 ms |
+| `par8-4` | SAT | 3.26 ms | 2.85 ms | 29.08 ms | **2.62 ms** | 3.08 ms |
+| `par8-4-c` | SAT | 2.73 ms | 2.58 ms | 20.46 ms | **1.67 ms** | 2.83 ms |
+| `par8-5` | SAT | 3.41 ms | **2.78 ms** | 26.20 ms | 2.97 ms | 2.94 ms |
+| `par8-5-c` | SAT | 2.56 ms | 2.49 ms | 21.82 ms | **1.58 ms** | 2.74 ms |
+| **Total (30 files, PAR-2)** | **30/30** | **30/30 — 311.3 ms** *(fastest)* | 20/30 — 100,504.6 ms *(322.83x)* | 30/30 — 11,150.4 ms *(35.82x)* | 20/30 — 100,313.4 ms *(322.22x)* | 20/30 — 100,364.4 ms *(322.38x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

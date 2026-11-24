@@ -47,19 +47,19 @@ Following the benchmark protocol noted by [`@tavisrudd`](https://twitter.com/tav
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `vlsat2_1000_22250` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
-| `vlsat2_1022_14955` | UNSAT | **3.53 ms** | >5 s | >5 s | >5 s | 2,513.63 ms |
-| `vlsat2_1125_15795` | UNSAT | **3.65 ms** | >5 s | >5 s | >5 s | >5 s |
-| `vlsat2_544_8738` | UNSAT | **1.06 ms** | >5 s | >5 s | 2.84 ms | >5 s |
-| `vlsat2_600_11440` | UNSAT | **1.22 ms** | >5 s | >5 s | 3.03 ms | >5 s |
-| `vlsat2_684_13953` | UNSAT | **2.60 ms** | >5 s | >5 s | 5.06 ms | 869.17 ms |
-| `vlsat2_684_9417` | UNSAT | **2.43 ms** | >5 s | >5 s | 4.07 ms | 807.75 ms |
-| `vlsat2_708_10259` | UNSAT | **2.57 ms** | >5 s | >5 s | 4.07 ms | 652.52 ms |
-| `vlsat2_736_11022` | UNSAT | **1.20 ms** | >5 s | >5 s | 3.49 ms | >5 s |
-| `vlsat2_798_17543` | UNSAT | **3.15 ms** | >5 s | >5 s | 8.85 ms | >5 s |
-| **Total (10 files, PAR-2)** | **9/10** | **9/10 — 10,021.4 ms** *(fastest)* | 0/10 — 100,000.0 ms *(9.98x)* | 0/10 — 100,000.0 ms *(9.98x)* | 7/10 — 30,031.4 ms *(3.00x)* | 4/10 — 64,843.1 ms *(6.47x)* |
+| `vlsat2_1000_22250` | SAT | **6.32 ms** | >5 s | >5 s | >5 s | >5 s |
+| `vlsat2_1022_14955` | UNSAT | **4.51 ms** | >5 s | >5 s | >5 s | 2,513.63 ms |
+| `vlsat2_1125_15795` | UNSAT | **4.69 ms** | >5 s | >5 s | >5 s | >5 s |
+| `vlsat2_544_8738` | UNSAT | **2.26 ms** | >5 s | >5 s | 2.84 ms | >5 s |
+| `vlsat2_600_11440` | UNSAT | **2.29 ms** | >5 s | >5 s | 3.03 ms | >5 s |
+| `vlsat2_684_13953` | UNSAT | **3.87 ms** | >5 s | >5 s | 5.06 ms | 869.17 ms |
+| `vlsat2_684_9417` | UNSAT | **3.71 ms** | >5 s | >5 s | 4.07 ms | 807.75 ms |
+| `vlsat2_708_10259` | UNSAT | **3.85 ms** | >5 s | >5 s | 4.07 ms | 652.52 ms |
+| `vlsat2_736_11022` | UNSAT | **2.27 ms** | >5 s | >5 s | 3.49 ms | >5 s |
+| `vlsat2_798_17543` | UNSAT | **4.22 ms** | >5 s | >5 s | 8.85 ms | >5 s |
+| **Total (10 files, PAR-2)** | **10/10** | **10/10 — 37.98 ms** *(fastest)* | 0/10 — 100,000.0 ms *(2,633x)* | 0/10 — 100,000.0 ms *(2,633x)* | 7/10 — 30,031.4 ms *(790.7x)* | 4/10 — 64,843.1 ms *(1,707x)* |
 
-*Summary & Independent UNSAT Certification:* Frobenius 1C solves **9/10** instances in **`21.40 ms`** (`10,021.4 ms` PAR-2, **3.00x faster** than dense-solver 0.0.4 and **6.47x faster** than Kissat 4.0.4), including `vlsat2_1125_15795` (UNSAT in **`3.65 ms`**, where all four external baselines time out past $5\;\text{s}$) and `vlsat2_1022_14955` (UNSAT in **`3.53 ms`**, **712.1x faster** than Kissat 4.0.4). Both UNSAT proofs were independently triple-certified from direct LRAT emission (`vlsat2_1125_15795`: `9.5 ms` emit, `460.2 KB`, [`lrat-check`](https://github.com/marijnheule/drat-trim) `22.7 ms` + HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT` `21.4 ms`; `vlsat2_1022_14955`: `8.7 ms` emit, `349.7 KB`, `lrat-check` `21.6 ms` + `cake_lpr` `s VERIFIED UNSAT` `19.1 ms`). The sole remaining timeout `vlsat2_1000_22250` (SAT) also exceeds $60\;\text{s}$.
+*Summary & Independent UNSAT Certification:* Frobenius 1C solves **10/10** instances in **`37.98 ms`** (`37.98 ms` PAR-2, **790.7x faster** than dense-solver 0.0.4 and **1,707x faster** than Kissat 4.0.4), including `vlsat2_1000_22250` (SAT in **`6.32 ms`**, 100% clause-verified, where all four external baselines time out past $5\;\text{s}$), `vlsat2_1125_15795` (UNSAT in **`4.69 ms`**, also timing out for all four external baselines), and `vlsat2_1022_14955` (UNSAT in **`4.51 ms`**, **556.9x faster** than Kissat 4.0.4). Both large UNSAT proofs were independently triple-certified from direct LRAT emission (`vlsat2_1125_15795`: `9.5 ms` emit, `460.2 KB`, [`lrat-check`](https://github.com/marijnheule/drat-trim) `22.7 ms` + HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT` `21.4 ms`; `vlsat2_1022_14955`: `8.7 ms` emit, `349.7 KB`, `lrat-check` `21.6 ms` + `cake_lpr` `s VERIFIED UNSAT` `19.1 ms`).
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -78,16 +78,16 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `mapf_32x32_k30_m43.cnf` | SAT | **103.5 ms** | 379.7 ms | 3.70 s | 1.65 s | 157.2 ms |
-| `mapf_bn9x9_k12_m18.cnf` | UNSAT | 25.3 ms | **12.6 ms** | 556.4 ms | 148.6 ms | 37.2 ms |
-| `mapf_bn9x9_k12_m19.cnf` | SAT | 28.1 ms | **18.9 ms** | 583.7 ms | 189.9 ms | 44.2 ms |
-| `mapf_bn11x11_k18_m24.cnf` | UNSAT | **105.7 ms** | 271.6 ms | 867.7 ms | 805.2 ms | 285.7 ms |
-| `mapf_bn11x11_k18_m25.cnf` | SAT | **93.7 ms** | 331.1 ms | 869.8 ms | 858.8 ms | 252.4 ms |
-| `mapf_g16_p10_a10_m19.cnf` | SAT | 8.4 ms | 10.9 ms | 564.1 ms | 213.6 ms | **6.9 ms** |
-| `mapf_g16_p20_a20_m23.cnf` | SAT | 46.6 ms | 31.7 ms | 1.01 s | 734.2 ms | **14.2 ms** |
-| `mapf_g16_p20_a40_m22.cnf` | SAT | **177.0 ms** | 206.9 ms | 1.43 s | 1.73 s | 197.4 ms |
+| `mapf_32x32_k30_m43.cnf` | SAT | **87.0 ms** | 379.7 ms | 3.70 s | 1.65 s | 157.2 ms |
+| `mapf_bn9x9_k12_m18.cnf` | UNSAT | 22.0 ms | **12.6 ms** | 556.4 ms | 148.6 ms | 37.2 ms |
+| `mapf_bn9x9_k12_m19.cnf` | SAT | 25.7 ms | **18.9 ms** | 583.7 ms | 189.9 ms | 44.2 ms |
+| `mapf_bn11x11_k18_m24.cnf` | UNSAT | **94.0 ms** | 271.6 ms | 867.7 ms | 805.2 ms | 285.7 ms |
+| `mapf_bn11x11_k18_m25.cnf` | SAT | **73.0 ms** | 331.1 ms | 869.8 ms | 858.8 ms | 252.4 ms |
+| `mapf_g16_p10_a10_m19.cnf` | SAT | 8.8 ms | 10.9 ms | 564.1 ms | 213.6 ms | **6.9 ms** |
+| `mapf_g16_p20_a20_m23.cnf` | SAT | 40.6 ms | 31.7 ms | 1.01 s | 734.2 ms | **14.2 ms** |
+| `mapf_g16_p20_a40_m22.cnf` | SAT | **129.8 ms** | 206.9 ms | 1.43 s | 1.73 s | 197.4 ms |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **8 total** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **0.59 s** *(mean 0.07 s)* | 1.26 s *(mean 0.16 s)* | 9.58 s *(mean 1.20 s)* | 6.32 s *(mean 0.79 s)* | 1.00 s *(mean 0.12 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **0.48 s** *(mean 0.06 s)* | 1.26 s *(mean 0.16 s)* | 9.58 s *(mean 1.20 s)* | 6.32 s *(mean 0.79 s)* | 1.00 s *(mean 0.12 s)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

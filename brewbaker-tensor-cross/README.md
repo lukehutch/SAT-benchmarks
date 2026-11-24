@@ -68,16 +68,16 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `cross_k4_m2.cnf` | UNSAT | 14.9 ms | 22.0 ms | 41.2 ms | **14.5 ms** | 19.1 ms |
-| `cross_k4_m3.cnf` | UNSAT | 4.60 s | 24.31 s | 7.45 s | 46.38 s | **1.62 s** |
-| `cross_k4_m4.cnf` | UNSAT | **428.3 ms** | 4.58 s | 6.25 s | 4.96 s | 507.2 ms |
+| `cross_k4_m2.cnf` | UNSAT | 17.3 ms | 22.0 ms | 41.2 ms | **14.5 ms** | 19.1 ms |
+| `cross_k4_m3.cnf` | UNSAT | 3.01 s | 24.31 s | 7.45 s | 46.38 s | **1.62 s** |
+| `cross_k4_m4.cnf` | UNSAT | **360.8 ms** | 4.58 s | 6.25 s | 4.96 s | 507.2 ms |
 | `cross_k4_m5.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `cross_k5_m2.cnf` | SAT | 16.0 ms | 4.5 ms | 25.7 ms | **3.5 ms** | 8.6 ms |
-| `cross_k5_m3.cnf` | SAT | 23.2 ms | **17.1 ms** | 120.8 ms | 101.3 ms | 37.1 ms |
-| `cross_k5_m4.cnf` | SAT | **143.7 ms** | 158.7 ms | 625.9 ms | 215.3 ms | 336.8 ms |
-| `cross_k5_m5.cnf` | SAT | 308.3 ms | **280.7 ms** | 481.6 ms | 1.77 s | 692.2 ms |
+| `cross_k5_m2.cnf` | SAT | 14.8 ms | 4.5 ms | 25.7 ms | **3.5 ms** | 8.6 ms |
+| `cross_k5_m3.cnf` | SAT | 33.2 ms | **17.1 ms** | 120.8 ms | 101.3 ms | 37.1 ms |
+| `cross_k5_m4.cnf` | SAT | **150.7 ms** | 158.7 ms | 625.9 ms | 215.3 ms | 336.8 ms |
+| `cross_k5_m5.cnf` | SAT | 301.3 ms | **280.7 ms** | 481.6 ms | 1.77 s | 692.2 ms |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **8** | **7/8 (4 SAT, 3 UNSAT)** | **7/8 (4 SAT, 3 UNSAT)** | **7/8 (4 SAT, 3 UNSAT)** | **7/8 (4 SAT, 3 UNSAT)** | **7/8 (4 SAT, 3 UNSAT)** |
-| **Total PAR-2** | — | 125.53 s *(mean 15.69 s)* | 149.37 s *(mean 18.67 s)* | 135.00 s *(mean 16.88 s)* | 173.44 s *(mean 21.68 s)* | **123.22 s *(mean 15.40 s)*** |
+| **Total PAR-2** | — | 123.89 s *(mean 15.49 s)* | 149.37 s *(mean 18.67 s)* | 135.00 s *(mean 16.88 s)* | 173.44 s *(mean 21.68 s)* | **123.22 s *(mean 15.40 s)*** |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
