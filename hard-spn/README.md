@@ -1,5 +1,10 @@
 # Hard SPN / LowMC-Style Linear-Form + Nonlinear Circuits (`hard-spn`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis benchmarks pairing a dense $\mathbb{F}_2$ linear diffusion layer ($r = n/2$ sparse 5-input parity assertions) with nonlinear $\mathrm{And}$, $\mathrm{Maj}_3$, and $\mathrm{Mux}$ S-box gates evaluated on **3-input $\mathbb{F}_2$ linear forms** $\ell_a = x_i \oplus x_j \oplus x_k$ rather than raw input wires. Both satisfiable planted instances ($n \in \{64, 96, 128\}$) and a deep unsatisfiable flipped-target instance (`spn_unsat_n48_d24`) are included.

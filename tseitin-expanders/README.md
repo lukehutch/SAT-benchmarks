@@ -1,5 +1,10 @@
 # $\mathrm{MOD}_2$-Tseitin Expanders & Prisms (`tseitin-expanders`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander graphs ($n \in \{60, 120, 300\}$ vertices; Hamiltonian cycle plus pseudorandom perfect matching) and the 3-regular prism graph $C_{200} \times K_2$ ($n = 400$ vertices), assigning total odd vertex charge ($c_0 = 1$, $c_v = 0$ for $v > 0$).

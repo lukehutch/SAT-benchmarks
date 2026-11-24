@@ -1,5 +1,10 @@
 # Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks (`hamd-hamiltonian-cycle`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNSAT) graph benchmark suite encoded into compact $O(|E|\log N)$ strict binary-order Miller–Tucker–Zemlin (MTZ) flat DIMACS CNFs (following Van Vi et al., *StructHCP*, 2026). Every single graph is **non-trivial by construction** (all undirected instances satisfy $\delta(G) \ge 3$ and 2-connectivity with zero cut-vertices/bridges; directed Broken Crowns satisfy $\delta^+, \delta^- \ge 2$; every instance is randomly vertex-relabeled with a deterministic seed so vertex indices leak zero structure):

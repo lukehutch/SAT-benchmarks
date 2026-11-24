@@ -1,5 +1,10 @@
 # $\mathbb{F}_2$-Frobenius Circulants (`f2-frobenius-circulants`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ Boolean inputs with stride $s = 2^{\lfloor k/2 \rfloor}$ (4 SAT + 2 UNSAT):

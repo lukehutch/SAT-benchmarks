@@ -1,5 +1,10 @@
 # Adversarial Scaled AIGER Pigeonhole Principle Circuits (`zed-adversarial-php`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 A 12-instance bit-level AIG Pigeonhole Principle scaling suite (**2 SAT / 10 UNSAT**) originally constructed as native Binary AIGER 1.9 circuits (and exported to flat DIMACS CNF, XCNF, and degree-$\le 2$ DIMACS-ANF):

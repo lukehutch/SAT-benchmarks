@@ -1,5 +1,10 @@
 # FIPS 180-4 SHA-256 Preimage Circuits (`sha256-preimage`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing the NIST **FIPS 180-4 SHA-256** compression function on the padded single-block message `"abc"`, constraining all message bits except $k \in \{16, 20, 32\}$ free bits of message word $W_0$ to match the target $R$-round digest (or a 1-bit-flipped impossible digest for `sha256_64r_k16_unsat`).

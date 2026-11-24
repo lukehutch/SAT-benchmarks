@@ -1,5 +1,10 @@
 # Pure-Logic Integer Factorization & Masked Multiplier Circuits (`integer-factoring`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N$ (with odd-factor LSBs fixed to $1$ and $p \ge q$ / equal-half-bit symmetry breaking) across **Wallace-tree** and **Karatsuba** multiplier topologies, including a 28-bit prime UNSAT instance, 32–40-bit balanced semiprimes, and a 32-bit Wallace multiplier augmented with 16 sparse 4-bit $\mathbb{F}_2$ parity leakage constraints (`masked_mult_32b_xor16`, modeling side-channel / masked hardware cryptanalysis).

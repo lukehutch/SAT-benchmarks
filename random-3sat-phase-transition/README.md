@@ -1,5 +1,11 @@
 # Critical & Off-Threshold Phase-Transition Random 3-SAT (`random-3sat-phase-transition`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) and [`@tingan87`](https://twitter.com/tingan87) (Twitter/X)
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Uniform random 3-SAT formulas ($n = 200$ variables; clauses of 3 distinct uniformly random variables with independent uniform polarities) sampled across the classic **easy–hard–easy satisfiability phase transition** around the critical clause-to-variable ratio $\alpha_c = m / n \approx 4.26$:
@@ -10,7 +16,6 @@ Uniform random 3-SAT formulas ($n = 200$ variables; clauses of 3 distinct unifor
 
 These 8 instances (**4 SAT / 4 UNSAT**) provide a pure unstructured baseline with zero gate, parity, cardinality, or symmetry structure on both flanks and at the peak of the phase transition.
 
-- **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) and [`@tingan87`](https://twitter.com/tingan87) (Twitter/X)
 - **Origin:** **Original** generator (MIT [`../LICENSE`](../LICENSE)), sampling the canonical uniform random 3-SAT phase-transition ensemble (Mitchell, Selman, & Levesque, AAAI 1992; Crawford & Auton, [AIJ 1996](https://doi.org/10.1016/0004-3702(95)00046-1)).
 - **Why they are important:** They trace raw solver search and local-search behavior across the under-constrained SAT shoulder, the critical threshold peak, and the over-constrained UNSAT slope where structural preprocessing yields no simplification.
 

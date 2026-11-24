@@ -1,5 +1,10 @@
 # Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits (`zed-adversarial-hub`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 A 6-instance adversarial bit-level AIG soundness-audit suite (**1 SAT / 5 UNSAT**) originally constructed as native Binary AIGER 1.9 circuits (and exported to flat DIMACS CNF, native-XOR XCNF, and degree-$\le 2$ DIMACS-ANF):

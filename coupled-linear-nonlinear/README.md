@@ -1,5 +1,10 @@
 # Coupled Linear + Nonlinear Circuits (`coupled-linear-nonlinear`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Hybrid algebraic–Boolean benchmark circuits (3 SAT + 1 UNSAT) coupling an under-determined system of sparse 5-variable $\mathbb{F}_2$ linear parity constraints ($\mathrm{rank} = r$, nullspace dimension $d = n - r$) with a layer of nonlinear Boolean gates ($\mathrm{Maj}_3$, $\mathrm{And}$, $\mathrm{Mux}$) directly over primary inputs. The three SAT instances are consistent with a planted secret assignment $x^{\star} \in \mathbb{F}_2^n$; the UNSAT instance (`coupled_n128_d32_unsat`) flips the final nonlinear gate polarity so both the linear layer ($d = 32$) and nonlinear gates are individually consistent while their coupled intersection is unsatisfiable.

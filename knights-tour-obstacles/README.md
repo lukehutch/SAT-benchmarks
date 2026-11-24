@@ -1,5 +1,10 @@
 # Obstacle Knight's Tour — Hamiltonian Cycle on Punched Chessboards (`knights-tour-obstacles`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Given an $N \times N$ chessboard with a **random number of obstacle pieces** already occupying a subset $B \subset \{0,\dots,N-1\}^2$ of squares (each square occupied independently with probability $d$ via Python's deterministic `random.Random(seed)`), the **Obstacle Knight's Tour** problem asks whether there exists a **closed knight's tour** — a Hamiltonian cycle in the knight's graph over all unoccupied squares $V = \{0,\dots,N-1\}^2 \setminus B$ that visits every unoccupied square exactly once and returns to its starting square.

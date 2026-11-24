@@ -1,5 +1,10 @@
 # Peaceable Queen Armies (`queen-armies`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 The **Peaceable Queen Armies** problem asks whether $A \ge 2$ opposing armies of at least $k$ chess queens each can be placed simultaneously on an $R \times C$ chessboard so that **no queen attacks any queen of a different army** along a row, column, or diagonal (queens belonging to the *same* army are allowed to attack one another).

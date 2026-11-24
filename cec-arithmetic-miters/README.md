@@ -1,5 +1,10 @@
 # EDA Arithmetic Combinational Equivalence Checking (CEC) Miters (`cec-arithmetic-miters`)
 
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../LICENSE`](../LICENSE))
+
 ## Overview & Origin
 
 Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)** miter circuits asserting $\bigvee_k (A_k(x, y) \oplus B_k(x, y)) = 1$ across pairs of functionally identical but structurally distinct arithmetic architectures:
