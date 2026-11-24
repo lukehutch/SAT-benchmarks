@@ -1,5 +1,9 @@
 # SATLIB — 1996 Beijing SAT Competition (full) (`satlib-beijing`)
 
+![1996 Beijing SAT Competition three-domain benchmark showcase](diagram.svg)
+
+*Figure: Three-domain showcase of the 1996 Beijing SAT Competition: minimum-gate arithmetic synthesis (`2bitadd_10` UNSAT vs `11..12` SAT), Blocks World STRIPS planning, and $10 \times 5$ job-shop scheduling timelines. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 16 instances from the 1996 Beijing SAT Competition benchmark collection (combinatorial, graph, and planning encodings).
 
-![1996 Beijing SAT Competition three-domain benchmark showcase](diagram.svg)
-
-*Figure: Three-domain showcase of the 1996 Beijing SAT Competition: minimum-gate arithmetic synthesis (`2bitadd_10` UNSAT vs `11..12` SAT), Blocks World STRIPS planning, and $10 \times 5$ job-shop scheduling timelines. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 16 original native **DIMACS `.cnf.xz`** files (637.2 KB).
 - **`aig-converted/`** — 16 exact **Binary AIGER 1.9 `.aig.xz`** conversions (1.05 MB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 16 instances from the 1996 Beijing SAT Competition benchmark collection (com
 | **DIMACS-ANF** | `anf-converted/` | 16 | Vars: 205–29,196; Eqs: 390–123,329 (deg ≤ 3) | 1.92 MB |
 | **Total (4 Formats, Status: 15 SAT / 1 UNSAT)** | | **64** | | **4.19 MB** |
 
-## Comparative 1-Core Benchmark Results (All 16 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 16 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

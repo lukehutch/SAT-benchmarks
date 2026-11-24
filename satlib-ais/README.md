@@ -1,5 +1,9 @@
 # SATLIB — All-Interval Series (full) (`satlib-ais`)
 
+![Verified order-10 All-Interval Series permutation and difference bijection](diagram.svg)
+
+*Figure: Verified order-10 All-Interval Series permutation $s = (0,9,1,8,2,7,3,6,4,5)$ illustrating the exact bijection of consecutive absolute differences $\{1,\dots,9\}$ and the SATLIB `ais6`–`ais12` CNF encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All-Interval Series (`ais6`, `ais8`, `ais10`, `ais12`) combinatorial permutation problems from the official UBC SATLIB structured benchmark set (all 4 instances).
 
-![Verified order-10 All-Interval Series permutation and difference bijection](diagram.svg)
-
-*Figure: Verified order-10 All-Interval Series permutation $s = (0,9,1,8,2,7,3,6,4,5)$ illustrating the exact bijection of consecutive absolute differences $\{1,\dots,9\}$ and the SATLIB `ais6`–`ais12` CNF encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 4 original native **DIMACS `.cnf.xz`** files (13.4 KB).
 - **`aig-converted/`** — 4 exact **Binary AIGER 1.9 `.aig.xz`** conversions (19.3 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All-Interval Series (`ais6`, `ais8`, `ais10`, `ais12`) combinatorial permutation
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 89–461; Eqs: 609–5,862 (deg ≤ 3) | 21.6 KB |
 | **Total (4 Formats, Status: 4 SAT / 0 UNSAT)** | | **16** | | **67.5 KB** |
 
-## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

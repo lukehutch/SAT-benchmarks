@@ -1,22 +1,24 @@
 # FIPS 180-4 SHA-256 Preimage Circuits (`sha256-preimage`)
 
+![FIPS 180-4 SHA-256 CSA compression round datapath and R=16 to 17 preimage cliff](diagram.svg)
+
+*Figure: Bit-accurate FIPS 180-4 SHA-256 Carry-Save-Adder (CSA) compression round datapath, message schedule $W_t$, and the sharp $R = 16 \to 17$ preimage cliff triggered by $W_{16}$ re-injecting the $k$ free bits of $W_0$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing the NIST **FIPS 180-4 SHA-256** compression function on the padded single-block message `"abc"`, constraining all message bits except $k \in \{16, 20, 32\}$ free bits of message word $W_0$ to match the target $R$-round digest (or a 1-bit-flipped impossible digest for `sha256_64r_k16_unsat`).
 
 - **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), implementing [NIST FIPS PUB 180-4](https://csrc.nist.gov/publications/detail/fips/180/4/final) following the round-reduced and partial-preimage SHA-256 SAT cryptanalysis literature (Mironov & Zhang, SAT 2006; Nossum, 2012; Nejati et al., SAT 2017).
 - **Sharp Phase Transition ($R = 16 \to 17$):** For $R \le 16$, $W_0$ enters only round 0 so backward propagation resolves all 32 bits in $O(R)$ time. At $R = 17$, the message schedule $W_{16} = W_0 + \sigma_0(W_1) + W_9 + \sigma_1(W_{14})$ re-injects $W_0$ into deep ARX mixing, creating a classic $2^k$ preimage cliff where standard CDCL solvers spend $275\text{--}2{,}607\;\text{s}$ (or time out past $5{,}000\;\text{s}$) at $R = 64, k \in \{16, 20\}$.
 
-![FIPS 180-4 SHA-256 CSA compression round datapath and R=16 to 17 preimage cliff](diagram.svg)
+## Corpus & Data Sizes
 
-*Figure: Bit-accurate FIPS 180-4 SHA-256 Carry-Save-Adder (CSA) compression round datapath, message schedule $W_t$, and the sharp $R = 16 \to 17$ preimage cliff triggered by $W_{16}$ re-injecting the $k$ free bits of $W_0$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Directory Layout & Regeneration
+### Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`648.7 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`2.13 MB`).
@@ -25,7 +27,7 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 5 instances (**4 SAT / 1 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Rounds $R$ | Add IV | Free Bits $k$ | Message / Target | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
 |---|---:|:---:|---:|---|:---:|---:|---:|---:|---:|---:|---:|---:|
@@ -35,7 +37,7 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 | `sha256_64r_k16_unsat` | 64 | Yes | 16 | `"abc"` digest bit 0 flipped | UNSAT | 182,204 | 193.7 KB | 43,481 | 282,441 | 653.2 KB | 377.4 KB | 612.2 KB |
 | `sha256_64r_k20_sat` | 64 | Yes | 20 | `"abc"` exact | SAT | 183,109 | 192.5 KB | 43,624 | 283,828 | 652.6 KB | 378.1 KB | 616.7 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+## Benchmark Results
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 

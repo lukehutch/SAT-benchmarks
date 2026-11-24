@@ -1,20 +1,20 @@
 # Obstacle Knight's Tour — Hamiltonian Cycle on Punched Chessboards (`knights-tour-obstacles`)
 
+![Solved 12x12 Obstacle Knight's Tour closed Hamiltonian cycle](diagram.svg)
+
+*Figure: Verified 128-square closed knight's tour on the real `12×12` obstacle board parsed from `cnf-orig/knights_12x12_d15_obs16_s12150144_sat.cnf.xz` (16 blocked squares, bipartite knight-jump structure, and MTZ CNF encoding). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 Given an $N \times N$ chessboard with a **random number of obstacle pieces** already occupying a subset $B \subset \{0,\dots,N-1\}^2$ of squares (each square occupied independently with probability $d$ via Python's deterministic `random.Random(seed)`), the **Obstacle Knight's Tour** problem asks whether there exists a **closed knight's tour** — a Hamiltonian cycle in the knight's graph over all unoccupied squares $V = \{0,\dots,N-1\}^2 \setminus B$ that visits every unoccupied square exactly once and returns to its starting square.
 
 - **Origin:** **Original** parameterized benchmark suite and generator (MIT [`../LICENSE`](../LICENSE)).
 - **Mathematical structure:** Because every knight move alternates square color (white $\leftrightarrow$ black), the knight's graph is bipartite. Random obstacle placements with unequal remaining white/black squares, degree-$<2$ vertices, cut vertices, or Hall matching deficiencies are trivially non-Hamiltonian (`< 20 ms`). Every instance in this curated benchmark is **color-balanced** ($|W| = |B|$), **2-vertex-connected**, and **admits a spanning 2-factor (cycle cover)**, so every UNSAT instance fails strictly via global subtour entanglement rather than local parity or degree obstructions.
-
-![Solved 12x12 Obstacle Knight's Tour closed Hamiltonian cycle](diagram.svg)
-
-*Figure: Verified 128-square closed knight's tour on the real `12×12` obstacle board parsed from `cnf-orig/knights_12x12_d15_obs16_s12150144_sat.cnf.xz` (16 blocked squares, bipartite knight-jump structure, and MTZ CNF encoding). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ### Encoding (Hamiltonian Cycle CNF)
 
@@ -34,7 +34,9 @@ During initial benchmark selection using baseline Frobenius 1C with a **15 s** t
 
 The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spanning $N \in \{12, 14, 15, 16\}$ and $d \in [0.15, 0.26]$ with balanced satisfiability.
 
-## Directory Layout & Regeneration
+## Corpus & Data Sizes
+
+### Directory Layout & Regeneration
 
 - `cnf-orig/` — Original native **DIMACS CNF** encodings (10 `.cnf.xz` files, `610.9 KB`, 5 SAT / 5 UNSAT; each file includes an ASCII diagram of the obstacle layout in its header comments).
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`813.7 KB`, 10/10 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
@@ -43,7 +45,7 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 10 instances (**5 SAT / 5 UNSAT**).
 - `src/gen_knights_tour.py` — Standalone zero-dependency Python 3 generator and closed-tour verifier (`python3 src/gen_knights_tour.py --generate-suite .`), plus `cnf2aig.py` and `cnf2xcnf.py`.
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Board | Density $d$ | Obstacles | Free Squares $\lvert V \rvert$ | Seed | Status | CNF Vars | CNF Clauses | `.cnf.xz` | `.aig.xz` | `.anf.xz` |
 |---|:---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
@@ -58,7 +60,7 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 | `knights_15x15_d22_obs53_s756776522_unsat` | $15 \times 15$ | 0.22 | 53 | 172 | `756776522` | UNSAT | 8,780 | 24,214 | 63.8 KB | 84.5 KB | 229.8 KB |
 | `knights_15x15_d21_obs51_s556324743_unsat` | $15 \times 15$ | 0.21 | 51 | 174 | `556324743` | UNSAT | 8,890 | 24,674 | 65.5 KB | 84.7 KB | 234.9 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
+## Benchmark Results
 
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30{,}000\;\text{ms}$).
 - **Same machine?** **Yes** — all five solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; Frobenius 1C reports the exact median of 3 runs on a dedicated physical core on identical uncompressed flat `.cnf` inputs; 0 verdict disagreements; all 5/5 SAT Hamiltonian knight's tours decoded and independently verified against both raw CNF clauses and [`src/gen_knights_tour.py`](src/gen_knights_tour.py); all 5/5 UNSAT proofs independently certified via drat-trim, lrat-check, and cake_lpr).

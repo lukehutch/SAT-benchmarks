@@ -1,5 +1,9 @@
 # Aloul Array-Multiplier Integer Factoring Benchmarks (`aloul-difp-a`)
 
+![Carry-save 2D array multiplier mesh inverted for integer factoring difp_19_0_arr_rcr](diagram.svg)
+
+*Figure: Bit-slice 2D carry-save array multiplier mesh ($O(n)$ depth, diagonal XOR sums and vertical $\mathrm{Maj}_3$ carries into clamped target $N$) spotlighting real semiprime `difp_19_0_arr_rcr` ($283{,}097 \times 308{,}263$). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Fadi A. Aloul, Arathi Ramani, Igor L. Markov, and Karem A. Sakallah (University of Michigan / American University of Sharjah)
@@ -12,11 +16,7 @@
 
 Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded via **Array multipliers** multiplying two $n$-bit primes ($n \in \{19, 20, 21\}$), with variables and clauses randomly reordered.
 
-![Carry-save 2D array multiplier mesh inverted for integer factoring difp_19_0_arr_rcr](diagram.svg)
-
-*Figure: Bit-slice 2D carry-save array multiplier mesh ($O(n)$ depth, diagonal XOR sums and vertical $\mathrm{Maj}_3$ carries into clamped target $N$) spotlighting real semiprime `difp_19_0_arr_rcr` ($283{,}097 \times 308{,}263$). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 14 original native **DIMACS `.cnf.xz`** files (500.1 KB).
 - **`aig-converted/`** — 14 exact **Binary AIGER 1.9 `.aig.xz`** conversions (571.5 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -33,7 +33,7 @@ Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded vi
 | **DIMACS-ANF** | `anf-converted/` | 14 | Vars: 1,235–1,491; Eqs: 3,937–4,771 (deg ≤ 3) | 468.1 KB |
 | **Total (4 Formats, Status: 14 SAT / 0 UNSAT)** | | **56** | | **1.80 MB** |
 
-## Comparative 1-Core Benchmark Results (All 14 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned to a dedicated physical core, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius, reporting the exact median of 3 runs) on identical uncompressed flat `.cnf` inputs; **100% of all 14 instances** were run (no subsampling), all 14/14 Frobenius SAT models were independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

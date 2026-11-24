@@ -1,5 +1,9 @@
 # SATLIB — Artificial Random 3-SAT — Iwama et al. (full) (`satlib-dimacs-aim`)
 
+![Artificial random 3-SAT AIM planted low-alpha UNSAT and unique-SAT phase space](diagram.svg)
+
+*Figure: Phase-space contrast showing Iwama–Miyano–Asahiro's planted low-$\alpha$ UNSAT (`no` at $\alpha = 1.6, 2.0$) and high-$\alpha$ unique-model SAT (`yes1` up to $\alpha = 6.0$) alongside the parsed $3 \times 4$ matrix of all 72 CNFs. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 72 artificially generated random 3-SAT instances (`aim-50`, `aim-100`, `aim-200`) from the Second DIMACS Implementation Challenge, featuring unique-solution SAT and hard UNSAT formulas.
 
-![Artificial random 3-SAT AIM planted low-alpha UNSAT and unique-SAT phase space](diagram.svg)
-
-*Figure: Phase-space contrast showing Iwama–Miyano–Asahiro's planted low-$\alpha$ UNSAT (`no` at $\alpha = 1.6, 2.0$) and high-$\alpha$ unique-model SAT (`yes1` up to $\alpha = 6.0$) alongside the parsed $3 \times 4$ matrix of all 72 CNFs. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 72 original native **DIMACS `.cnf.xz`** files (121.6 KB).
 - **`aig-converted/`** — 72 exact **Binary AIGER 1.9 `.aig.xz`** conversions (142.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 72 artificially generated random 3-SAT instances (`aim-50`, `aim-100`, `aim-
 | **DIMACS-ANF** | `anf-converted/` | 72 | Vars: 50–200; Eqs: 76–1,197 (deg ≤ 3) | 197.8 KB |
 | **Total (4 Formats, Status: 48 SAT / 24 UNSAT)** | | **288** | | **587.2 KB** |
 
-## Comparative 1-Core Benchmark Results (All 72 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 72 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

@@ -13,7 +13,7 @@
   - National Institute of Standards and Technology, *Advanced Encryption Standard (AES)*, Federal Information Processing Standards Publication 197 (**FIPS 197**, 2001), [`doi:10.6028/NIST.FIPS.197`](https://doi.org/10.6028/NIST.FIPS.197).
   - Joan Boyar and René Peralta, *"A New Combinational Logic Minimization Technique with Applications to Cryptology"*, SEA 2010, LNCS 6049, pp. 178–189, [`doi:10.1007/978-3-642-13193-6_16`](https://doi.org/10.1007/978-3-642-13193-6_16).
 
-## Structural & Cryptographic Analysis
+## Problem Description
 
 Circuit-level analysis confirms that both instances encode **exact full 14-round NIST FIPS 197 AES-256 key recovery from two known 128-bit plaintext–ciphertext pairs**:
 $$\mathrm{AES\text{-}256}(K, P_1) = C_1 \quad \land \quad \mathrm{AES\text{-}256}(K, P_2) = C_2.$$
@@ -29,7 +29,7 @@ $$\mathrm{AES\text{-}256}(K, P_1) = C_1 \quad \land \quad \mathrm{AES\text{-}256
   - **`w5.solved.xcnf.xz`**: Hamming-weight-5 key ($\binom{256}{5} \approx 8.8 \times 10^9 \approx 2^{33}$ candidates — reachable via specialized low-weight search if the weight bound is known, though **no weight constraint is encoded in the XCNF**).
   - **`w126.unsolved.xcnf.xz`**: Balanced weight-126 key ($\binom{256}{126} \approx 2^{252}$ candidates — **full-strength 14-round AES-256** key recovery, matching the best known $\approx 2^{254.4}$ classical cryptanalytic barrier).
 
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 Native unmodified `.xcnf.xz` files live in `xcnf-orig/` (`978.4 KB`); exact Tseitin DIMACS `.cnf.xz` conversions (`cnf-converted/`, `3.83 MB`) and [Berkeley ABC](https://github.com/berkeley-abc/abc)-verified Binary AIGER 1.9 `.aig.xz` miters (`aig-converted/`, `914.6 KB`, `0` errors via `read_aiger`) are generated reproducibly by [`src/xcnf2cnf_aig.py`](src/xcnf2cnf_aig.py), and lossless degree-$\le 2$ **DIMACS-ANF `.anf.xz`** conversions (`anf-converted/`, `1.26 MB`, `59,324` vars / `165,824` eqs each) are generated via [`../src/to_anf.py`](../src/to_anf.py):
 
@@ -40,7 +40,7 @@ Native unmodified `.xcnf.xz` files live in `xcnf-orig/` (`978.4 KB`); exact Tsei
 | `w5.solved` | SAT *(known unique)* | 489.2 KB | 119,644 / 811,268 | 1.93 MB | 256 / 460,695 | 457.1 KB | 643.4 KB |
 | `w126.unsolved` | Open *(expected unique SAT)* | 489.2 KB | 119,644 / 811,268 | 1.89 MB | 256 / 460,647 | 457.5 KB | 643.4 KB |
 
-## Comparative 1-Core Benchmark Results ($T_{\max} = 30\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0, `--max-cores 1` for Frobenius), sequential execution, $T_{\max} = 30\;\text{s}$).
 - **Result:** All five solvers time out (`T/O`) on both instances — as expected for full 14-round AES-256 without key-weight side information. Because every solver remains inside the exponential search tree at 30 s, we report exact single-core search throughput (`conflicts/sec` and `propagations/sec`):
@@ -70,3 +70,9 @@ Native unmodified `.xcnf.xz` files live in `xcnf-orig/` (`978.4 KB`); exact Tsei
 
 **Collection Phase-Transition Summary (2 instances, 4 formats: 2 CNF / 2 AIG / 2 XCNF / 2 ANF):** median $\rho_{\mathrm{crit}} = 1.76\times$ (range `1.76x–1.76x`), median $\kappa = 1.08$, regime split **0 Under / 0 Near-critical / 2 Over**, total extracted native XOR parity clauses = **85,624**, total ANF equations = **331,648**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- V. Sigal ([`@uniexpertise`](https://twitter.com/uniexpertise)), Full 14-round AES-256 known-plaintext key-recovery XCNF challenges (`w5.solved.xcnf`, `w126.unsolved.xcnf`).
+- National Institute of Standards and Technology, *Advanced Encryption Standard (AES)*, Federal Information Processing Standards Publication 197 (**FIPS 197**, 2001), [`doi:10.6028/NIST.FIPS.197`](https://doi.org/10.6028/NIST.FIPS.197).
+- J. Boyar and R. Peralta, *"A New Combinational Logic Minimization Technique with Applications to Cryptology"*, SEA 2010, LNCS 6049, pp. 178–189, [`doi:10.1007/978-3-642-13193-6_16`](https://doi.org/10.1007/978-3-642-13193-6_16).

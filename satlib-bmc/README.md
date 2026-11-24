@@ -1,5 +1,9 @@
 # SATLIB — Bounded Model Checking — Shtrichman (full) (`satlib-bmc`)
 
+![Hardware Bounded Model Checking k-step sequential FSM unrolling and counterexample trace](diagram.svg)
+
+*Figure: Hardware Bounded Model Checking (BMC) unrolling of a sequential FSM transition relation $T(s_t, i_t, s_{t+1})$ across $k$ timeframes to find safety-violation counterexample traces ($\bigvee_t \neg P(s_t)=1$) across all 13 IBM/Galileo SAT benchmarks. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 13 hardware Bounded Model Checking (BMC) instances from Ofer Shtrichman's IBM/Galileo verification benchmark suite.
 
-![Hardware Bounded Model Checking k-step sequential FSM unrolling and counterexample trace](diagram.svg)
-
-*Figure: Hardware Bounded Model Checking (BMC) unrolling of a sequential FSM transition relation $T(s_t, i_t, s_{t+1})$ across $k$ timeframes to find safety-violation counterexample traces ($\bigvee_t \neg P(s_t)=1$) across all 13 IBM/Galileo SAT benchmarks. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 13 original native **DIMACS `.cnf.xz`** files (4.67 MB).
 - **`aig-converted/`** — 13 exact **Binary AIGER 1.9 `.aig.xz`** conversions (5.41 MB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 13 hardware Bounded Model Checking (BMC) instances from Ofer Shtrichman's IB
 | **DIMACS-ANF** | `anf-converted/` | 13 | Vars: 6,449–263,727; Eqs: 15,306–576,285 (deg ≤ 3) | 12.83 MB |
 | **Total (4 Formats, Status: 13 SAT / 0 UNSAT)** | | **52** | | **27.44 MB** |
 
-## Comparative 1-Core Benchmark Results (All 13 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 13 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

@@ -11,7 +11,7 @@
 - **Integrity:** All **20 / 20** `.cnf.xz` files in [`cnf-orig/`](cnf-orig/) are exact unmodified upstream files matching [`src/upstream/sequences/A250000/cnf/SHA256SUMS`](src/upstream/sequences/A250000/cnf/SHA256SUMS) byte-for-byte upon decompression.
 - **Ground Truth Manifest:** [`expected.tsv`](expected.tsv) lists all **20 instances** (**10 SAT / 9 UNSAT / 1 UNKNOWN** open OEIS frontier target).
 
-## Mathematical Problem & Open OEIS Frontier
+## Problem Description
 
 [OEIS A250000](https://oeis.org/A250000) gives $a(n)$, the largest integer $m$ such that $m$ white queens and $m$ black queens can be placed on an $n \times n$ chessboard so that no white queen attacks any black queen along a row, column, or diagonal (queens of the same color may attack each other freely).
 
@@ -28,7 +28,9 @@
 - **Cardinality constraints:** Two Sinz sequential counters (Sinz 2005) enforcing $\sum W(r,c) \ge m$ and $\sum B(r,c) \ge m$.
 - **Symmetry:** No symmetry breaking; all 8 dihedral board symmetries ($D_4$) and the white/black color swap remain intact. Formulas scale from `35,180` variables / `75,162` clauses (`n=12, m=22`) up to `332,642` variables / `693,207` clauses (`n=21, m=64`).
 
-## Repository Layout & Four-Format Inventory
+## Corpus & Data Sizes
+
+### Repository Layout & Four-Format Inventory
 
 All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` per-file size limit:
 
@@ -41,7 +43,7 @@ All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` 
 | `solutions/` | 4 | 132.5 KB | 46.8 KB (`queens_n15_m32.model.xz`) | **4** verified SAT models (`n=12..15`) + [`solutions/SHA256SUMS`](solutions/SHA256SUMS) |
 | `src/` | — | — | — | [`src/gen_diagram.py`](src/gen_diagram.py) + verbatim upstream generator, verifier, `.map.json` sidecars, and `SHA256SUMS` under [`src/upstream/`](src/upstream/) |
 
-### Complete Instance Inventory & Ground-Truth Verdicts (`expected.tsv`)
+#### Complete Instance Inventory & Ground-Truth Verdicts (`expected.tsv`)
 
 | Instance | Expected | Variables | Clauses | `.cnf.xz` | `.xcnf.xz` | `.aig.xz` | `.anf.xz` |
 |---|:---:|---:|---:|---:|---:|---:|---:|
@@ -66,7 +68,25 @@ All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` 
 | `queens_n21_m64.cnf` | SAT | 332,642 | 693,207 | 523.6 KB | 592.8 KB | 652.7 KB | 1.36 MB |
 | `queens_n21_m65.cnf` | **UNKNOWN** *(Open)* | 331,762 | 691,449 | 657.9 KB | 613.0 KB | 873.1 KB | 1.42 MB |
 
-## Benchmark Protocol & Hardware Parameters
+### Sibling Collections (`guillochon/oeis-sat-instances`)
+
+This directory is one of **9 single-problem-type collections** split from James Guillochon's [`guillochon/oeis-sat-instances`](https://github.com/guillochon/oeis-sat-instances) suite (`112` instances across `13` OEIS sequences):
+
+| Collection | OEIS Sequence(s) | Combinatorial Problem | Instances |
+|---|---|---|---:|
+| [`guillochon-oeis-a067782-sortnet/`](../guillochon-oeis-a067782-sortnet/) | [A067782](https://oeis.org/A067782) | Optimal-Depth Sorting Networks $a(n)$ | 10 (4 SAT / 5 UNSAT / 1 Open) |
+| [`guillochon-oeis-a171081-vdw/`](../guillochon-oeis-a171081-vdw/) | [A171081](https://oeis.org/A171081) / [A007783](https://oeis.org/A007783) | Van der Waerden Numbers $w(2; 3, t)$ | 22 (11 SAT / 10 UNSAT / 1 Open) |
+| **`guillochon-oeis-a250000-queens/`** *(this collection)* | [A250000](https://oeis.org/A250000) | Peaceable Coexisting Armies of Queens | 20 (10 SAT / 9 UNSAT / 1 Open) |
+| [`guillochon-oeis-a350304-zarankiewicz/`](../guillochon-oeis-a350304-zarankiewicz/) | [A350304](https://oeis.org/A350304) (+3 related) | Zarankiewicz Numbers $z(n; 3)$ ($K_{3,3}$-Free Matrices) | 20 (8 SAT / 8 UNSAT / 4 Open) |
+| [`guillochon-oeis-grid-sq-any/`](../guillochon-oeis-grid-sq-any/) | [A240443](https://oeis.org/A240443) | Square Grid — No Arbitrary-Orientation Square (`sq-any`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
+| [`guillochon-oeis-grid-sq-axis/`](../guillochon-oeis-grid-sq-axis/) | [A227133](https://oeis.org/A227133) / [A152125](https://oeis.org/A152125) | Square Grid — No Axis-Aligned Square (`sq-axis`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
+| [`guillochon-oeis-grid-tri-any/`](../guillochon-oeis-grid-tri-any/) | [A240114](https://oeis.org/A240114) / [A319159](https://oeis.org/A319159) | Triangular Grid — No Arbitrary Equilateral Triangle (`tri-any`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
+| [`guillochon-oeis-grid-tri-axis/`](../guillochon-oeis-grid-tri-axis/) | [A227308](https://oeis.org/A227308) / [A227116](https://oeis.org/A227116) | Triangular Grid — No Axis-Aligned Equilateral Triangle (`tri-axis`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
+| [`guillochon-oeis-grid-tri-up/`](../guillochon-oeis-grid-tri-up/) | [A157795](https://oeis.org/A157795) / [A319158](https://oeis.org/A319158) | Triangular Grid — No Upward Equilateral Triangle (`tri-up`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
+
+## Benchmark Results
+
+### Benchmark Protocol & Hardware Parameters
 
 - **Hardware:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, 128 GiB RAM, Linux x86_64).
 - **CPU Pinning & Isolation:** Strictly pinned to a single physical core (`taskset -c 1` for all 60 s 5-solver calibration runs; `taskset -c 0` or `taskset -c 1` for extended open-frontier runs), **1 thread per solver run** (`--max-cores 1`). All 5 solvers ran strictly sequentially on identical uncompressed flat `.cnf` inputs so solvers without native `.xz` streaming compete on identical inputs.
@@ -79,7 +99,7 @@ All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` 
 - **Independent Verification:**
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
 
-## Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
 
 Five calibration rungs spanning $n = 12, 13, 15$ evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread):
 
@@ -95,7 +115,7 @@ Five calibration rungs spanning $n = 12, 13, 15$ evaluated sequentially on ident
 
 - **Extended sweep milestones:** Frobenius also produced verified optimal SAT models for `queens_n14_m28.cnf` and `queens_n15_m32.cnf` (`3.84 s` native `.cnf.xz`), all archived in [`solutions/`](solutions/). Note: on `A250000`, CaDiCaL 3.1.0 requires `--modelalllits=true` so unassigned literals are emitted in printed witnesses; default `--modelalllits=false` omits unassigned variables and fails raw-clause checks.
 
-## Open OEIS Frontier Run (600 s, Single-Core Pinned)
+### Open OEIS Frontier Run (600 s, Single-Core Pinned)
 
 Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`, native `.cnf.xz` ingestion):
 
@@ -103,7 +123,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `queens_n21_m65.cnf` | Peaceable queens $a(21) \ge 64$ (`331,762` vars, `691,449` cls) | 600 s | `taskset -c 1` | 1,320,960 | 4,679,688 | 4,155,524,610 | Open (`UNKNOWN`) |
 
-## Verified Solutions (`solutions/`)
+### Verified Solutions (`solutions/`)
 
 All **4 verified SAT models** ($n = 12 \dots 15$) match [`solutions/SHA256SUMS`](solutions/SHA256SUMS) (`sha256sum -c` PASS) and passed both 100% raw-clause verification and upstream `verify.py`:
 
@@ -114,21 +134,36 @@ All **4 verified SAT models** ($n = 12 \dots 15$) match [`solutions/SHA256SUMS`]
 | [`solutions/queens_n14_m28.model.xz`](solutions/queens_n14_m28.model.xz) | 36.1 KB | `ad98c678e582` | 139,662/139,662 cls OK; `verify.py`: `28 W, 28 B, 0 attacks: VALID` |
 | [`solutions/queens_n15_m32.model.xz`](solutions/queens_n15_m32.model.xz) | 46.8 KB | `44b133042158` | 183,575/183,575 cls OK; `verify.py`: `32 W, 32 B, 0 attacks: VALID` |
 
-## Sibling Collections (`guillochon/oeis-sat-instances`)
+<!-- BEGIN_STRUCTURAL_ANALYSIS -->
+## Phase-Transition & Structural Analysis
 
-This directory is one of **9 single-problem-type collections** split from James Guillochon's [`guillochon/oeis-sat-instances`](https://github.com/guillochon/oeis-sat-instances) suite (`112` instances across `13` OEIS sequences):
+*Auto-generated by [`../src/analyze_benchmarks.py`](../src/analyze_benchmarks.py). Position relative to the critical phase transition is measured by $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (exact $\alpha/\alpha_c(k)$ for pure $k$-SAT; effective critical threshold $\alpha_c^{\mathrm{eff}} = \alpha/\rho_{\mathrm{crit}}$; `Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), alongside Gent–Walsh annealed constrainedness $\kappa = -\frac{1}{n}\sum_i \log_2(1-2^{-k_i})$ (AAAI 1996), clause-length profile ($\bar{k}$, `%Bin`, `%Horn`), variable-degree CV ($\sigma_d/\bar{d}$, uniformity vs. hub skew), and extracted native XOR parity clauses.*
 
-| Collection | OEIS Sequence(s) | Combinatorial Problem | Instances |
-|---|---|---|---:|
-| [`guillochon-oeis-a067782-sortnet/`](../guillochon-oeis-a067782-sortnet/) | [A067782](https://oeis.org/A067782) | Optimal-Depth Sorting Networks $a(n)$ | 10 (4 SAT / 5 UNSAT / 1 Open) |
-| [`guillochon-oeis-a171081-vdw/`](../guillochon-oeis-a171081-vdw/) | [A171081](https://oeis.org/A171081) / [A007783](https://oeis.org/A007783) | Van der Waerden Numbers $w(2; 3, t)$ | 22 (11 SAT / 10 UNSAT / 1 Open) |
-| **`guillochon-oeis-a250000-queens/`** *(this collection)* | [A250000](https://oeis.org/A250000) | Peaceable Coexisting Armies of Queens | 20 (10 SAT / 9 UNSAT / 1 Open) |
-| [`guillochon-oeis-a350304-zarankiewicz/`](../guillochon-oeis-a350304-zarankiewicz/) | [A350304](https://oeis.org/A350304) (+3 related) | Zarankiewicz Numbers $z(n; 3)$ ($K_{3,3}$-Free Matrices) | 20 (8 SAT / 8 UNSAT / 4 Open) |
-| [`guillochon-oeis-grid-sq-any/`](../guillochon-oeis-grid-sq-any/) | [A240443](https://oeis.org/A240443) | Square Grid — No Arbitrary-Orientation Square (`sq-any`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
-| [`guillochon-oeis-grid-sq-axis/`](../guillochon-oeis-grid-sq-axis/) | [A227133](https://oeis.org/A227133) / [A152125](https://oeis.org/A152125) | Square Grid — No Axis-Aligned Square (`sq-axis`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
-| [`guillochon-oeis-grid-tri-any/`](../guillochon-oeis-grid-tri-any/) | [A240114](https://oeis.org/A240114) / [A319159](https://oeis.org/A319159) | Triangular Grid — No Arbitrary Equilateral Triangle (`tri-any`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
-| [`guillochon-oeis-grid-tri-axis/`](../guillochon-oeis-grid-tri-axis/) | [A227308](https://oeis.org/A227308) / [A227116](https://oeis.org/A227116) | Triangular Grid — No Axis-Aligned Equilateral Triangle (`tri-axis`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
-| [`guillochon-oeis-grid-tri-up/`](../guillochon-oeis-grid-tri-up/) | [A157795](https://oeis.org/A157795) / [A319158](https://oeis.org/A319158) | Triangular Grid — No Upward Equilateral Triangle (`tri-up`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
+| Instance | Active $n$ | Clauses $m$ | $\alpha=m/n$ | $\alpha_c^{\mathrm{eff}}$ | $\rho_{\mathrm{crit}}$ (Regime) | $\kappa$ | $\bar{k}$ ($k_{\max}$) | Bin% | Horn% | Pos% | Deg CV | XORs |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `queens_n12_m21` | 35,466 | 75,732 | 2.14 | 1.54 | **1.39x** (Over) | 0.67 | 2.45 (3) | 54% | 54% | 57% | 2.67 | 0 |
+| `queens_n12_m22` | 35,180 | 75,162 | 2.14 | 1.54 | **1.39x** (Over) | 0.67 | 2.45 (3) | 54% | 54% | 57% | 2.67 | 0 |
+| `queens_n13_m24` | 49,058 | 104,311 | 2.13 | 1.55 | **1.38x** (Over) | 0.67 | 2.46 (3) | 54% | 54% | 57% | 2.87 | 0 |
+| `queens_n13_m25` | 48,722 | 103,641 | 2.13 | 1.55 | **1.38x** (Over) | 0.67 | 2.46 (3) | 54% | 54% | 57% | 2.86 | 0 |
+| `queens_n14_m28` | 65,912 | 139,662 | 2.12 | 1.55 | **1.37x** (Over) | 0.66 | 2.46 (3) | 53% | 53% | 57% | 3.06 | 0 |
+| `queens_n14_m29` | 65,522 | 138,884 | 2.12 | 1.55 | **1.37x** (Over) | 0.66 | 2.46 (3) | 53% | 53% | 57% | 3.06 | 0 |
+| `queens_n15_m32` | 86,914 | 183,575 | 2.11 | 1.56 | **1.36x** (Over) | 0.66 | 2.46 (3) | 53% | 53% | 57% | 3.26 | 0 |
+| `queens_n15_m33` | 86,466 | 182,681 | 2.11 | 1.56 | **1.36x** (Over) | 0.66 | 2.46 (3) | 53% | 53% | 57% | 3.25 | 0 |
+| `queens_n16_m37` | 112,202 | 236,348 | 2.11 | 1.56 | **1.35x** (Over) | 0.66 | 2.47 (3) | 53% | 53% | 57% | 3.44 | 0 |
+| `queens_n16_m38` | 111,692 | 235,330 | 2.11 | 1.56 | **1.35x** (Over) | 0.66 | 2.47 (3) | 53% | 53% | 57% | 3.44 | 0 |
+| `queens_n17_m42` | 142,850 | 300,147 | 2.10 | 1.56 | **1.34x** (Over) | 0.65 | 2.47 (3) | 53% | 53% | 57% | 3.63 | 0 |
+| `queens_n17_m43` | 142,274 | 298,997 | 2.10 | 1.56 | **1.34x** (Over) | 0.65 | 2.47 (3) | 53% | 53% | 57% | 3.63 | 0 |
+| `queens_n18_m47` | 179,590 | 376,456 | 2.10 | 1.57 | **1.34x** (Over) | 0.65 | 2.47 (3) | 53% | 53% | 58% | 3.82 | 0 |
+| `queens_n18_m48` | 178,944 | 375,166 | 2.10 | 1.57 | **1.34x** (Over) | 0.65 | 2.47 (3) | 53% | 53% | 58% | 3.82 | 0 |
+| `queens_n19_m52` | 223,202 | 466,855 | 2.09 | 1.57 | **1.33x** (Over) | 0.65 | 2.47 (3) | 52% | 52% | 58% | 4.01 | 0 |
+| `queens_n19_m53` | 222,482 | 465,417 | 2.09 | 1.57 | **1.33x** (Over) | 0.65 | 2.47 (3) | 53% | 52% | 58% | 4.01 | 0 |
+| `queens_n20_m58` | 273,716 | 571,426 | 2.09 | 1.57 | **1.33x** (Over) | 0.65 | 2.47 (3) | 52% | 52% | 58% | 4.20 | 0 |
+| `queens_n20_m59` | 272,918 | 569,832 | 2.09 | 1.57 | **1.33x** (Over) | 0.65 | 2.47 (3) | 52% | 52% | 58% | 4.19 | 0 |
+| `queens_n21_m64` | 332,642 | 693,207 | 2.08 | 1.57 | **1.32x** (Over) | 0.65 | 2.48 (3) | 52% | 52% | 58% | 4.39 | 0 |
+| `queens_n21_m65` | 331,762 | 691,449 | 2.08 | 1.57 | **1.32x** (Over) | 0.65 | 2.48 (3) | 52% | 52% | 58% | 4.38 | 0 |
+
+**Collection Phase-Transition Summary (20 instances, 4 formats: 20 CNF / 20 AIG / 20 XCNF / 20 ANF):** median $\rho_{\mathrm{crit}} = 1.35\times$ (range `1.32x–1.39x`), median $\kappa = 0.66$, regime split **0 Under / 0 Near-critical / 20 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **6,284,278**.
+<!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References
 

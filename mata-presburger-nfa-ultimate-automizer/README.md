@@ -1,5 +1,9 @@
 # MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer (`mata-presburger-nfa-ultimate-automizer`)
 
+![Parsed 16-state Ultimate Automizer NFA recHanoi03_73 and CEGAR loop](diagram.svg)
+
+*Figure: Real 16-state, 984-transition NFA parsed from `mata-orig/recHanoi03_true-unreach-call_true-termination.c_73.0.mata.xz` (aggregated into 60 weighted directed edges) alongside the Ultimate Automizer CEGAR trace-abstraction loop. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Benchmark Repository:** [`VeriFIT/nfa-bench`](https://github.com/VeriFIT/nfa-bench) (`bench-single-presburger-explicit-complement.input` / Presburger explicit-complement set)
@@ -15,22 +19,13 @@ This collection contains non-deterministic finite automata (NFAs) in the `.mata`
 
 Note: Unlike the propositional SAT collections in this repository, MATA instances represent **finite automata** (`.mata` transition relations over symbolic/explicit alphabets) rather than propositional SAT formulas, so no `.cnf`/`.aig`/`.xcnf`/`.anf` conversion is applied.
 
-![Parsed 16-state Ultimate Automizer NFA recHanoi03_73 and CEGAR loop](diagram.svg)
-
-*Figure: Real 16-state, 984-transition NFA parsed from `mata-orig/recHanoi03_true-unreach-call_true-termination.c_73.0.mata.xz` (aggregated into 60 weighted directed edges) alongside the Ultimate Automizer CEGAR trace-abstraction loop. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
 ## Corpus & Data Sizes
 
 - **`mata-orig/`** — **153 `.mata.xz` automata** (2.61 MB compressed total).
 - **[`expected.tsv`](expected.tsv)** — Ground-truth complementation verdicts (**153 SAT / 0 UNSAT**; `SAT` iff $\overline{L(A)} \neq \emptyset$, `UNSAT` iff $L(A) = \Sigma^*$; non-emptiness $L(A) \neq \emptyset$ is `SAT` for all 153/153 NFAs).
 - **`src/fetch_mata_presburger.py`** — Standalone fetcher script to refresh `mata-orig/` directly from [`VeriFIT/nfa-bench`](https://github.com/VeriFIT/nfa-bench).
 
-## Published Benchmarks & References
-
-- **Chocholatý et al. (TACAS 2024):** Benchmarked [Mata](https://github.com/VeriFIT/mata) against [Awali](https://gitlab.in2p3.fr/vaucanson/awali), [Automata.net](https://github.com/AutomataDotNet/Automata), [Brics](https://www.brics.dk/automaton/), [DK.Brics](https://www.brics.dk/automaton/), [FAdo](https://fado.dcc.fc.up.pt/), [OpenFST](https://www.openfst.org/), and [VATA](https://github.com/ondrik/libvata) across string-constraint, regex, and Presburger complementation workloads, establishing Mata as a state-of-the-art C++ NFA engine.
-- **Ergodis Notes ([`@tavisrudd`](https://twitter.com/tavisrudd)):** Evaluated all 169 entries of `bench-single-presburger-explicit-complement.input` as an automata complementation stress test alongside SAT workloads.
-
-## Comparative 1-Core Benchmark Results (All 153 NFAs, Native `.mata.xz`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** **AMD Ryzen 9 5950X** (16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$ per mode, full wall-clock time including in-process `.xz` decompression and `.mata` parsing). **100% of all 153 automata** were run across three Frobenius NFA decision modes: non-emptiness ($L(A) \neq \emptyset$, default), complement/universality (`--mata-complement`, $L(A) = \Sigma^*$ iff UNSAT), and explicit complementation (`--mata-explicit-complement`). All SAT/UNSAT complement verdicts agreed **100%** between both complement modes and match [`expected.tsv`](expected.tsv) (0 errors, 0 timeouts).
 
@@ -207,3 +202,8 @@ Note: Unlike the propositional SAT collections in this repository, MATA instance
 |---|---:|---:|---:|---:|---:|
 | `mata-orig/` | 153 | 145 / 277 | 10,588 / 1,094,080 | 32 / 1,024 | 66.17 |
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- **Chocholatý et al. (TACAS 2024):** Benchmarked [Mata](https://github.com/VeriFIT/mata) against [Awali](https://gitlab.in2p3.fr/vaucanson/awali), [Automata.net](https://github.com/AutomataDotNet/Automata), [Brics](https://www.brics.dk/automaton/), [DK.Brics](https://www.brics.dk/automaton/), [FAdo](https://fado.dcc.fc.up.pt/), [OpenFST](https://www.openfst.org/), and [VATA](https://github.com/ondrik/libvata) across string-constraint, regex, and Presburger complementation workloads, establishing Mata as a state-of-the-art C++ NFA engine.
+- **Ergodis Notes ([`@tavisrudd`](https://twitter.com/tavisrudd)):** Evaluated all 169 entries of `bench-single-presburger-explicit-complement.input` as an automata complementation stress test alongside SAT workloads.

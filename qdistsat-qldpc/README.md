@@ -1,5 +1,9 @@
 # Quantum Error-Correcting LDPC Code Distance SAT Benchmarks (`QDistSAT` / Bivariate-Bicycle Codes)
 
+![Real BB_144_12_12 Bivariate-Bicycle torus lattice with weight-6 stabilizers and logical Z operator](diagram.svg)
+
+*Figure: Real `BB_144_12_12` ("gross") Bivariate-Bicycle $12\times 6$ periodic torus decoded directly from `matrices/`, displaying actual weight-6 $H_X$/$H_Z$ stencils, a weight-12 minimum logical $Z$ operator, and the CSS distance SAT encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Benchmark Suite & Matrices:** [`guluchen/QDistSAT`](https://github.com/guluchen/QDistSAT) & [`guluchen/DistQLDPC`](https://github.com/guluchen/DistQLDPC) (Yu-Fang Chen and contributors)
@@ -21,11 +25,7 @@ Given a CSS quantum LDPC code defined by binary parity-check matrices $H_X, H_Z$
 
 The formula is **SAT** iff $d_Z \le w$ and **UNSAT** iff $d_Z > w$. These coupled sparse $\mathbb{F}_2$-linear + low-Hamming-weight cardinality instances are notorious stress tests for both CDCL and XOR-aware SAT solvers.
 
-![Real BB_144_12_12 Bivariate-Bicycle torus lattice with weight-6 stabilizers and logical Z operator](diagram.svg)
-
-*Figure: Real `BB_144_12_12` ("gross") Bivariate-Bicycle $12\times 6$ periodic torus decoded directly from `matrices/`, displaying actual weight-6 $H_X$/$H_Z$ stencils, a weight-12 minimum logical $Z$ operator, and the CSS distance SAT encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 Includes the exact upstream CSS parity-check and logical-basis matrices (`matrices/`, 20 files covering 5 canonical Bivariate-Bicycle codes) plus all 10 paired boundary decision instances ($w = d-1$ UNSAT and $w = d$ SAT) in all four compressed formats:
 - **`cnf-orig/`:** 10 `.cnf.xz` files (`259.2 KB`).
@@ -43,7 +43,7 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 | `BB_360_12_24` | `[[360, 12, 24]]` | 23 / 24 | UNSAT / SAT | 9,731 / 10,090 | 22,027 / 22,744 | 57,093 / 58,884 | 49.7 KB / 52.7 KB |
 | `BB_756_16_34` | `[[756, 16, 34]]` | 33 / 34 | UNSAT / SAT | 29,581 / 30,336 | 67,705 / 69,214 | 176,671 / 180,442 | 133.2 KB / 132.9 KB |
 
-## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned to a dedicated physical core, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius, reporting the exact median of 3 runs) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 10 instances** were run (no subsampling), all 3/3 solved Frobenius SAT models were independently verified against 100% of input clauses, both 2/2 solved Frobenius UNSAT proofs were independently certified via drat-trim, lrat-check, and cake_lpr, and **0 verdict disagreements** occurred across all solvers.
 
@@ -83,3 +83,11 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 
 **Collection Phase-Transition Summary (10 instances, 4 formats: 10 CNF / 10 AIG / 10 XCNF / 10 ANF):** median $\rho_{\mathrm{crit}} = 1.24\times$ (range `1.22x–1.25x`), median $\kappa = 0.66$, regime split **0 Under / 0 Near-critical / 10 Over**, total extracted native XOR parity clauses = **1,474**, total ANF equations = **147,815**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- Y.-F. Chen and contributors, [`guluchen/QDistSAT`](https://github.com/guluchen/QDistSAT) & [`guluchen/DistQLDPC`](https://github.com/guluchen/DistQLDPC): Exact quantum LDPC code minimum-distance SAT encodings.
+- S. Bravyi, A. W. Cross, J. M. Gambetta, D. Maslov, P. Rall, and T. J. Yoder, *"High-threshold and low-overhead fault-tolerant quantum memory"*, Nature 627, pp. 778–782 (2024), [`arXiv:2308.07915`](https://arxiv.org/abs/2308.07915).
+- M. Wang and F. Mueller, *"Coprime Bivariate Bicycle Codes and their Properties"*, [`arXiv:2408.10001`](https://arxiv.org/abs/2408.10001) (2024).
+- Z. Liang, K. Liu, H. Song, and Y.-A. Chen, *"Generalized toric codes on twisted tori for quantum error correction"*, PRX Quantum 6, 020357 (2025), [`arXiv:2503.03827`](https://arxiv.org/abs/2503.03827).
+- *"Large-Language-Model Discovery of Quantum LDPC Codes through Structured Concept Evolution (SCE)"*, [`arXiv:2606.24808`](https://arxiv.org/abs/2606.24808) (2026).

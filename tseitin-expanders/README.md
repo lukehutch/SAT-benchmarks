@@ -1,22 +1,24 @@
 # $\mathrm{MOD}_2$-Tseitin Expanders & Prisms (`tseitin-expanders`)
 
+![MOD2 Tseitin 3-regular expander vs prism control with odd vertex parity charge](diagram.svg)
+
+*Figure: $\mathrm{MOD}_2$-Tseitin 3-regular expander (high expansion, $2^{\Omega(n)}$ Resolution barrier) vs. bounded-treewidth prism $C_{200} \times K_2$ control under odd global vertex parity charge $\sum \sigma(v) \equiv 1 \pmod 2$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander graphs ($n \in \{60, 120, 300\}$ vertices; Hamiltonian cycle plus pseudorandom perfect matching) and the 3-regular prism graph $C_{200} \times K_2$ ($n = 400$ vertices), assigning total odd vertex charge ($c_0 = 1$, $c_v = 0$ for $v > 0$).
 
 - **Origin:** **Original** circuit-native AIG generator (MIT [`../LICENSE`](../LICENSE)), instantiating the classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart ([JACM 1987](https://doi.org/10.1145/7531.8928)).
 - **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both [Kissat](https://github.com/arminbiere/kissat) 4.0.4 and [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 time out past $5{,}000\;\text{s}$ starting at $n = 120$.
 
-![MOD2 Tseitin 3-regular expander vs prism control with odd vertex parity charge](diagram.svg)
+## Corpus & Data Sizes
 
-*Figure: $\mathrm{MOD}_2$-Tseitin 3-regular expander (high expansion, $2^{\Omega(n)}$ Resolution barrier) vs. bounded-treewidth prism $C_{200} \times K_2$ control under odd global vertex parity charge $\sum \sigma(v) \equiv 1 \pmod 2$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Directory Layout & Regeneration
+### Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`6.0 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`15.1 KB`).
@@ -25,7 +27,7 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 4 instances (**0 SAT / 4 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Graph Family | Vertices $n$ | Edges $m$ | Seed | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
 |---|---|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
@@ -34,7 +36,7 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 | `tseitin_exp_n300` | 3-reg expander | 300 | 450 | `779` | UNSAT | 2,099 | 1.9 KB | 750 | 2,700 | 5.2 KB | 1.6 KB | 1.6 KB |
 | `tseitin_prism_n400` | Prism $C_{200} \times K_2$ | 400 | 600 | — | UNSAT | 2,799 | 2.5 KB | 1,000 | 3,600 | 6.2 KB | 1.6 KB | 1.3 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+## Benchmark Results
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
 

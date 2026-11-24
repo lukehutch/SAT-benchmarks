@@ -1,5 +1,9 @@
 # SATLIB — Parity Learning `par8`/`par16`/`par32` (full) (`satlib-dimacs-parity`)
 
+![Parity learning system A*s = b (mod 2) compiled into binary Tseitin XOR trees](diagram.svg)
+
+*Figure: Crawford–Kearns–Schapire parity-learning system $A \cdot s = b \pmod 2$ over $k \in \{8,16,32\}$ bits compiled into binary Tseitin XOR trees, showing the `par32` CDCL vs. Gaussian elimination cliff. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 30 parity-learning SAT benchmarks (`par8`, `par16`, `par32`, original & compressed) encoding learning parity functions with noise.
 
-![Parity learning system A*s = b (mod 2) compiled into binary Tseitin XOR trees](diagram.svg)
-
-*Figure: Crawford–Kearns–Schapire parity-learning system $A \cdot s = b \pmod 2$ over $k \in \{8,16,32\}$ bits compiled into binary Tseitin XOR trees, showing the `par32` CDCL vs. Gaussian elimination cliff. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 30 original native **DIMACS `.cnf.xz`** files (252.4 KB).
 - **`aig-converted/`** — 30 exact **Binary AIGER 1.9 `.aig.xz`** conversions (345.3 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 30 parity-learning SAT benchmarks (`par8`, `par16`, `par32`, original & comp
 | **DIMACS-ANF** | `anf-converted/` | 30 | Vars: 64–3,176; Eqs: 86–5,645 (deg ≤ 3) | 189.7 KB |
 | **Total (4 Formats, Status: 30 SAT / 0 UNSAT)** | | **120** | | **912.5 KB** |
 
-## Comparative 1-Core Benchmark Results (All 30 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 30 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

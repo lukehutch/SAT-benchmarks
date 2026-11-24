@@ -1,5 +1,9 @@
 # SATLIB — SATPLAN Blocks World (full) (`satlib-planning-blocksworld`)
 
+![SATPLAN Blocks World Sussman Anomaly 3-step stack plan](diagram.svg)
+
+*Figure: Three-step SATPLAN execution solving the classic Sussman Anomaly (`anomaly.cnf.xz`) via interleaved `Move` actions, alongside the time-indexed fluent/frame axioms and `bw_large` scaling. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 7 classic SATPLAN Blocks World planning-as-SAT instances (`anomaly`, `medium`, `huge`, `bw_large.a`–`d`).
 
-![SATPLAN Blocks World Sussman Anomaly 3-step stack plan](diagram.svg)
-
-*Figure: Three-step SATPLAN execution solving the classic Sussman Anomaly (`anomaly.cnf.xz`) via interleaved `Move` actions, alongside the time-indexed fluent/frame axioms and `bw_large` scaling. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 7 original native **DIMACS `.cnf.xz`** files (229.8 KB).
 - **`aig-converted/`** — 7 exact **Binary AIGER 1.9 `.aig.xz`** conversions (454.9 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 7 classic SATPLAN Blocks World planning-as-SAT instances (`anomaly`, `medium
 | **DIMACS-ANF** | `anf-converted/` | 7 | Vars: 51–7,104; Eqs: 264–132,752 (deg ≤ 3) | 492.0 KB |
 | **Total (4 Formats, Status: 7 SAT / 0 UNSAT)** | | **28** | | **1.37 MB** |
 
-## Comparative 1-Core Benchmark Results (All 7 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 7 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

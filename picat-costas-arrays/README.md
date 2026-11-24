@@ -11,7 +11,7 @@
 - **License:** MIT License (see [`LICENSE`](LICENSE)).
 - **Ground Truth Manifest:** [`expected.tsv`](expected.tsv) (**9 SAT / 0 UNSAT** — pure SAT scaling ladder; Costas arrays exist for every order $N \le 31$, with $N = 32, 33$ open).
 
-## Mathematical Problem & Picat-SAT Encoding
+## Problem Description
 
 An **order-$N$ Costas array** (Costas 1984, originally introduced for optimal radar/sonar frequency-hopping patterns) is a permutation $\pi = (\pi_1, \dots, \pi_N)$ of $\{1, \dots, N\}$ whose $\binom{N}{2}$ signed differences
 
@@ -26,7 +26,7 @@ Following Barry O'Sullivan's MiniZinc formulation and Hakan Kjellerstrand's `cos
 
 - **Distinctive Sign-Magnitude Bit-Width Step:** Picat-SAT represents signed integer variables in **sign-magnitude** encoding (`(sign bit, log magnitude)`). At $N = 8$, signed differences span $[-7, +7]$ (3-bit magnitude, `808` vars / `35,592` clauses where Espresso expands smaller bit-width sums densely); stepping to $N = 9$ widens magnitudes to 4 bits ($[-8, +8]$), yielding a clean scaling ladder from `costas_n8` through hard `costas_n15` and `costas_n16`.
 
-## Corpus & Four-Format Inventory
+## Corpus & Data Sizes
 
 All **9 instances** are committed across all four lossless `xz`-compressed formats (`36` files total, every file well below GitHub's `95 MB` limit), accompanied by ground-truth verdicts in [`expected.tsv`](expected.tsv) (**9 SAT / 0 UNSAT**):
 
@@ -52,7 +52,22 @@ All **9 instances** are committed across all four lossless `xz`-compressed forma
 | `costas_n15.cnf` | $N=15$, 105 signed diffs (A008404: $19{,}612$) | SAT | 6,960 | 86,237 | 234.7 KB | 279.9 KB | 234.8 KB | 1.45 MB |
 | `costas_n16.cnf` | $N=16$, 120 signed diffs (A008404: $21{,}104$) | SAT | 8,661 | 104,655 | 285.2 KB | 345.5 KB | 285.1 KB | 1.74 MB |
 
-## Benchmark Results (Single-Core Pinned, $T_{\max} = 60\;\text{s}$)
+### Sibling Collections (Picat-SAT Benchmark Family)
+
+This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
+
+| Collection | Combinatorial Problem | Upstream Model & License | Instances |
+|---|---|---|---:|
+| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
+| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
+| **`picat-costas-arrays/`** *(this collection)* | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
+| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
+| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
+| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
+
+## Benchmark Results
+
+*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -80,19 +95,6 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 69.63 s *(mean 7.74 s)* | **40.94 s** *(mean 4.55 s)* | 63.50 s *(mean 7.06 s)* | 129.69 s *(mean 14.41 s)* | 165.07 s *(mean 18.34 s)* |
 
 *Ground-truth SAT note:* Every order $N \in \{8, \dots, 16\}$ is mathematically proven SAT with hundreds to tens of thousands of solutions ([OEIS A008404](https://oeis.org/A008404), $a(16)/2 = 10{,}552$ under $\pi_1 < \pi_{16}$).
-
-## Sibling Collections (Picat-SAT Benchmark Family)
-
-This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
-
-| Collection | Combinatorial Problem | Upstream Model & License | Instances |
-|---|---|---|---:|
-| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
-| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
-| **`picat-costas-arrays/`** *(this collection)* | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
-| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
-| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
-| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

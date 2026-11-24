@@ -1,5 +1,9 @@
 # SATLIB — Pigeonhole Principle `hole6..10` (full) (`satlib-dimacs-phole`)
 
+![Pigeonhole principle complete bipartite graph K_{7,6} and Hall deficiency](diagram.svg)
+
+*Figure: Complete bipartite pigeonhole graph $K_{7,6}$ (`hole6`) illustrating forced hole collision, Hall deficiency $\lvert P \rvert > \lvert N(P) \rvert$, direct ALO/AMO Horn encoding, and Haken's $2^{\Omega(n)}$ CDCL scaling across `hole6..hole10`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole10`, encoding $\mathrm{PHP}^{7}_{6}$ through $\mathrm{PHP}^{11}_{10}$).
 
-![Pigeonhole principle complete bipartite graph K_{7,6} and Hall deficiency](diagram.svg)
-
-*Figure: Complete bipartite pigeonhole graph $K_{7,6}$ (`hole6`) illustrating forced hole collision, Hall deficiency $\lvert P \rvert > \lvert N(P) \rvert$, direct ALO/AMO Horn encoding, and Haken's $2^{\Omega(n)}$ CDCL scaling across `hole6..hole10`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 5 original native **DIMACS `.cnf.xz`** files (4.6 KB).
 - **`aig-converted/`** — 5 exact **Binary AIGER 1.9 `.aig.xz`** conversions (5.2 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole1
 | **DIMACS-ANF** | `anf-converted/` | 5 | Vars: 63–187; Eqs: 154–638 (deg ≤ 3) | 6.1 KB |
 | **Total (4 Formats, Status: 0 SAT / 5 UNSAT)** | | **20** | | **20.7 KB** |
 
-## Comparative 1-Core Benchmark Results (All 5 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 5 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

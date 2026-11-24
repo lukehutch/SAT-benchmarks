@@ -1,5 +1,9 @@
 # VLSAT-2 Benchmark Suite (INRIA / CADP)
 
+![VLSAT-2 Nested-Unit Petri Net decomposition into concurrency graph and binary Horn SAT](diagram.svg)
+
+*Figure: End-to-end INRIA/CADP VLSAT-2 pipeline mapping a Nested-Unit Petri Net (1-safe hierarchical units) to its place concurrency graph and dense binary/Horn unit-coloring CNF formula. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors & Maintainers:** Hubert Garavel, Pierre Bouvier, and the CADP team at INRIA Grenoble – Rhône-Alpes
@@ -13,11 +17,7 @@ VLSAT-2 ("Very Large SAT", version 2) is a curated collection of **100 SAT formu
 
 During curation (2020), the CADP authors filtered out every formula solved in under 60 s by at least one of [CaDiCaL](https://github.com/arminbiere/cadical) 1.3.0, [Kissat](https://github.com/arminbiere/kissat) 1.0.3, [MathSAT](https://mathsat.fbk.eu/) 5.6.5, [MiniSat](https://github.com/niklasso/minisat) 2.2.0, or [Z3](https://github.com/Z3Prover/z3) 4.8.9, and retained formulas spanning increasing hardness up to 2 hours on a Xeon E5-2630 v4. Twenty-five percent of VLSAT-2 was later adopted by official SAT Competitions.
 
-![VLSAT-2 Nested-Unit Petri Net decomposition into concurrency graph and binary Horn SAT](diagram.svg)
-
-*Figure: End-to-end INRIA/CADP VLSAT-2 pipeline mapping a Nested-Unit Petri Net (1-safe hierarchical units) to its place concurrency graph and dense binary/Horn unit-coloring CNF formula. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 Following the benchmark protocol noted by [`@tavisrudd`](https://twitter.com/tavisrudd) (first 10 smallest instances committed directly + full 100-instance manifest):
 - **`cnf-orig/`:** First 10 VLSAT-2 `.cnf.xz` files (`139.2 KB` xz-compressed).
@@ -41,7 +41,7 @@ Following the benchmark protocol noted by [`@tavisrudd`](https://twitter.com/tav
 | `vlsat2_1022_14955` | 1,022 | 14,955 | UNSAT | 16.1 KB | 30,694 | 34.7 KB |
 | `vlsat2_1125_15795` | 1,125 | 15,795 | UNSAT | 19.5 KB | 32,459 | 33.3 KB |
 
-## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

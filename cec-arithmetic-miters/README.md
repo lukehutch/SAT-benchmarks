@@ -1,11 +1,15 @@
 # EDA Arithmetic Combinational Equivalence Checking (CEC) Miters (`cec-arithmetic-miters`)
 
+![EDA arithmetic combinational equivalence checking miter comparing adders and multipliers](diagram.svg)
+
+*Figure: Combinational Equivalence Checking (CEC) miter architecture comparing structurally divergent circuits (serial Ripple-Carry vs. logarithmic Kogge–Stone prefix adder; Array vs. Wallace vs. Karatsuba multipliers) through bitwise $\oplus$ and $\bigvee = 1$ UNSAT verification. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)** miter circuits asserting $\bigvee_k (A_k(x, y) \oplus B_k(x, y)) = 1$ across pairs of functionally identical but structurally distinct arithmetic architectures:
 - **32-bit Ripple-Carry vs. Kogge–Stone** logarithmic parallel-prefix adder (`cec_adder_32b_rc_vs_ks`)
@@ -15,11 +19,9 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 - **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), modeled on industrial EDA multiplier equivalence benchmarks ([HWMCC](https://hwmcc.github.io/); Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
 - **Why they are hard:** Multiplier miters between structurally divergent topologies (Array vs. Wallace vs. Karatsuba) have few internal equivalent wires, causing pure CDCL solvers to scale exponentially ($3.6\text{--}8.1\;\text{s}$ at $8\times 8$, exploding rapidly at $10\times 10$ and $12\times 12$).
 
-![EDA arithmetic combinational equivalence checking miter comparing adders and multipliers](diagram.svg)
+## Corpus & Data Sizes
 
-*Figure: Combinational Equivalence Checking (CEC) miter architecture comparing structurally divergent circuits (serial Ripple-Carry vs. logarithmic Kogge–Stone prefix adder; Array vs. Wallace vs. Karatsuba multipliers) through bitwise $\oplus$ and $\bigvee = 1$ UNSAT verification. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Directory Layout & Regeneration
+### Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`9.4 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`28.6 KB`).
@@ -28,7 +30,7 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 5 instances (**0 SAT / 5 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Circuit A vs. Circuit B | Width | Ans | AIG Inputs | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
 |---|---|---:|:---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -38,7 +40,7 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 | `cec_array_vs_wallace_10x10` | Array vs. Wallace Multiplier | 10×10 | UNSAT | 20 | 1,868 | 2.1 KB | 530 | 2,850 | 6.6 KB | 4.3 KB | 5.7 KB |
 | `cec_wallace_vs_karat_12x12` | Wallace vs. Karatsuba Multiplier | 12×12 | UNSAT | 24 | 2,673 | 3.4 KB | 814 | 4,247 | 9.5 KB | 6.9 KB | 8.9 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+## Benchmark Results
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 

@@ -1,11 +1,15 @@
 # Peaceable Queen Armies (`queen-armies`)
 
+![Peaceable Queen Armies 2-army and 3-army chessboard placements](diagram.svg)
+
+*Figure: Verified OEIS-optimal peaceable queen-army placements for $A=2$ ($8\times 8, k=9$, A250000) and $A=3$ ($9\times 9, k=5$, A277433) showing non-crossing opposing-army attack lines and the Sinz cardinality CNF encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 The **Peaceable Queen Armies** problem asks whether $A \ge 2$ opposing armies of at least $k$ chess queens each can be placed simultaneously on an $R \times C$ chessboard so that **no queen attacks any queen of a different army** along a row, column, or diagonal (queens belonging to the *same* army are allowed to attack one another).
 
@@ -14,10 +18,6 @@ The **Peaceable Queen Armies** problem asks whether $A \ge 2$ opposing armies of
   - $A = 2$ armies ([OEIS A250000](https://oeis.org/A250000)): $0, 0, 1, 2, 4, 5, 7, 9, 12, 14, 17, 21, 24, 28, 32, \dots$ for $n = 1\text{--}15$.
   - $A = 3$ armies ([OEIS A277433](https://oeis.org/A277433)): $0, 0, 0, 1, 1, 2, 3, 4, 5, 7, 8, 10, 11, 14, 15, 17, \dots$ for $n = 1\text{--}16$.
   - $A = 4$ armies ([OEIS A277434](https://oeis.org/A277434)): $0, 0, 0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, \dots$ for $n = 1\text{--}13$.
-
-![Peaceable Queen Armies 2-army and 3-army chessboard placements](diagram.svg)
-
-*Figure: Verified OEIS-optimal peaceable queen-army placements for $A=2$ ($8\times 8, k=9$, A250000) and $A=3$ ($9\times 9, k=5$, A277433) showing non-crossing opposing-army attack lines and the Sinz cardinality CNF encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ### Encoding
 
@@ -32,7 +32,9 @@ Each instance is encoded in standard flat DIMACS CNF:
 
 Instances were swept across board dimensions $R \times C$ and army counts $A \in \{2, 3, 4\}$ with Frobenius 1C up to a **15 s** timeout. For smaller boards (e.g., $7 \times 7$ to $13 \times 13$ SAT or $7 \times 7$ UNSAT), solving completes in `< 2 s`; past the 15 s frontier (e.g., $A=2$ UNSAT at $8 \times 8, k=10$ or $A=3$ SAT at $17 \times 17, k=19$), solvers time out. The final **8-instance suite (4 SAT / 4 UNSAT)** selects instances positioned cleanly in the **~5–15 second** difficulty band without timing out across repeated runs.
 
-## Directory Layout & Regeneration
+## Corpus & Data Sizes
+
+### Directory Layout & Regeneration
 
 - `cnf-orig/` — Original native **DIMACS CNF** encodings (8 `.cnf.xz` files, `139.8 KB`, 4 SAT / 4 UNSAT).
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`197.8 KB`, 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
@@ -41,7 +43,7 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 8 instances (**4 SAT / 4 UNSAT**).
 - `src/gen_queen_armies.py` — Standalone zero-dependency Python 3 generator and witness verifier (`python3 src/gen_queen_armies.py --generate-suite .`), plus `cnf2aig.py` and `cnf2xcnf.py`.
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Armies $A$ | Board $R \times C$ | Army Size $k$ | Status | CNF Vars | CNF Clauses | `.cnf.xz` | `.aig.xz` | `.anf.xz` |
 |---|---:|:---:|---:|:---:|---:|---:|---:|---:|---:|
@@ -54,7 +56,7 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 | `queen_armies_a3_6x11_k6_unsat` | 3 | $6 \times 11$ | 6 | UNSAT | 1,476 | 3,006 | 5.5 KB | 8.4 KB | 13.9 KB |
 | `queen_armies_a2_7x10_k12_unsat` | 2 | $7 \times 10$ | 12 | UNSAT | 1,733 | 3,510 | 5.5 KB | 9.5 KB | 16.1 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
+## Benchmark Results
 
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30{,}000\;\text{ms}$).
 - **Same machine?** **Yes** — all five solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; Frobenius 1C reports the exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT placements independently verified for non-attacking armies of size $\ge k$).

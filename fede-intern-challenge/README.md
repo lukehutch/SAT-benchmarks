@@ -10,17 +10,7 @@
 - **Archive & Integrity:** Imported unmodified from `frobenius-challenge-v2.tar.gz` (SHA-256: `c6085f84344516eaec3a0d569afac596325aedeeebdda961ebd90f791f9dbbb0`). All 12 `.cnf.xz` inputs match the upstream [`SHA256SUMS`](SHA256SUMS) manifest byte-for-byte; the original challenge description is preserved verbatim in [`CHALLENGE_README.md`](CHALLENGE_README.md).
 - **Upstream SAT Competition 2025 Instances (`c11`, `c12`):** Unmodified Main Track benchmarks from [SAT Competition 2025](https://satcompetition.github.io/2025/) / [Global Benchmark Database (GBD)](https://benchmark-database.de/) (CC-BY-4.0), previously unsolved by every competition participant within the 5,000 s Main Track timeout.
 
-## Benchmark Formats & Repository Layout
-
-- **`cnf-orig/` (`c01.cnf.xz`–`c12.cnf.xz`):** Exact unmodified `xz`-compressed DIMACS CNF files matching [`SHA256SUMS`](SHA256SUMS) (`3.23 MB` total).
-- **`aig-converted/` (`c01.aig.xz`–`c12.aig.xz`):** Verified Binary AIGER 1.9 combinational miter conversions (`3.14 MB` total).
-- **`xcnf-converted/` (`c01.xcnf.xz`–`c12.xcnf.xz`):** Lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) XOR-CNF conversions (`2.84 MB` total; collapses the exact $k(k-1)$ Tseitin XOR gates inside `c08`, `c09`, and `c10` to native `x ... 0` parity lines).
-- **`anf-converted/` (`c01.anf.xz`–`c12.anf.xz`):** Lossless linear-size DIMACS-ANF conversions (`5.15 MB` total, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
-- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 12 instances (**6 SAT / 4 UNSAT / 2 UNKNOWN**).
-- **`src/`:** Conversion scripts (`cnf2aig.py`, `cnf2xcnf.py`).
-- *(Large verified solver proof/model artifacts from `outputs/` are archived out-of-tree and excluded from Git via `.gitignore`.)*
-
-## Structural Analysis & Exact Problem Identification
+## Problem Description
 
 Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspection identifies the exact mathematical problem behind all 12 instances (even where variables were randomly renamed, literal polarities randomly flipped, and clauses shuffled):
 
@@ -78,7 +68,19 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
     - `5,040` ternary consistency clauses: $\binom{15}{2} \times 7 \times 6 = 4{,}410$ clique-edge implications ($\neg q_{u,r} \lor \neg q_{v,s} \lor e_{u,v}$) $+ \binom{15}{2} \times 6 = 630$ proper-coloring constraints ($\neg e_{u,v} \lor \neg c_{u,j} \lor \neg c_{v,j}$).
   - **Proof Complexity Barrier:** Clique-Coloring embeds the Pigeonhole Principle $\mathrm{PHP}_6^7$ **indirectly through the graph edge variables** via the 2-hop composition $p_{r,j} \leftrightarrow \bigvee_{v=1}^{15} (q_{v,r} \land c_{v,j})$ ("the vertex in clique slot $r$ has color $j$"). Plain Resolution/CDCL suffers a provable exponential lower bound (Pudlák 1997; Atserias–Bonet–Esteban 2002), whereas Extended Resolution (introducing the $7 \times 6 = 42$ auxiliary variables $p_{r,j}$ and reducing to $\mathrm{PHP}_6^7$) admits a short polynomial refutation.
 
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
+
+### Benchmark Formats & Repository Layout
+
+- **`cnf-orig/` (`c01.cnf.xz`–`c12.cnf.xz`):** Exact unmodified `xz`-compressed DIMACS CNF files matching [`SHA256SUMS`](SHA256SUMS) (`3.23 MB` total).
+- **`aig-converted/` (`c01.aig.xz`–`c12.aig.xz`):** Verified Binary AIGER 1.9 combinational miter conversions (`3.14 MB` total).
+- **`xcnf-converted/` (`c01.xcnf.xz`–`c12.xcnf.xz`):** Lossless [CryptoMiniSat](https://github.com/msoos/cryptominisat) XOR-CNF conversions (`2.84 MB` total; collapses the exact $k(k-1)$ Tseitin XOR gates inside `c08`, `c09`, and `c10` to native `x ... 0` parity lines).
+- **`anf-converted/` (`c01.anf.xz`–`c12.anf.xz`):** Lossless linear-size DIMACS-ANF conversions (`5.15 MB` total, degree $\le 3$, generated via [`../src/to_anf.py`](../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 12 instances (**6 SAT / 4 UNSAT / 2 UNKNOWN**).
+- **`src/`:** Conversion scripts (`cnf2aig.py`, `cnf2xcnf.py`).
+- *(Large verified solver proof/model artifacts from `outputs/` are archived out-of-tree and excluded from Git via `.gitignore`.)*
+
+### Four-Format Size Summary & Per-Instance Inventory
 
 | Instance | Identified Family | Vars | Clauses | `.cnf.xz` | `.aig.xz` | `.xcnf.xz` | `.anf.xz` | Native XORs |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
@@ -95,7 +97,7 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 | `c11` | SC 2025 Unsolved: `ramsey_4_4_18` ($R(4,4)=18$) | 153 | 6,120 | 47.5 KB | 50.7 KB | 47.6 KB | 189.2 KB | 0 |
 | `c12` | SC 2025 Unsolved: `cliquecolouring_n15_k7_c6` | 300 | 6,337 | 26.2 KB | 30.9 KB | 26.3 KB | 48.4 KB | 0 |
 
-## Comparative 1-Core Benchmark Results
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run** (`taskset -c 0` sequential; CaDiCaL/Kissat 300 s reference runs pinned to dedicated cores 2 & 3; default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius), full wall-clock time from process start to answer (including parsing). Every SAT model is independently verified against 100% of clauses in the exact `.cnf.xz`; every UNSAT proof is independently verified with [`lrat-check`](https://github.com/marijnheule/drat-trim), [`drat-trim`](https://github.com/marijnheule/drat-trim), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr).
 - **Zero Verdict Disagreements:** All solvers agree 100% on every mutually solved instance.

@@ -1,5 +1,9 @@
 # Heule $3\times 3$ Matrix Multiplication — `6pooled3and/challenge3` (`heule-matrix-6pooled3and-c3`)
 
+![Heule 6pooled3and encoding applied to Challenge 3 no-type3](diagram.svg)
+
+*Figure: Direct 3-AND resolution shortcut showing how `MM-23-63-no-type3`'s 27 forbidding clauses eliminate $s_1$ straight inside Leaf Pool 1 of each $\delta = 1$ 6-XOR tree, with head-to-head metrics vs plain Challenge 3. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Marijn J. H. Heule, Manuel Kauers, and Martina Seidl
@@ -15,11 +19,7 @@ Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a ten
 
 Compact pooled-AND (`6pooled3and`) re-encoding of `challenge3`, asking whether an $R = 23$ $\mathbb{F}_2$ $3\times 3$ matrix-multiplication scheme exists whose last summand contains no type-3 term.
 
-![Heule 6pooled3and encoding applied to Challenge 3 no-type3](diagram.svg)
-
-*Figure: Direct 3-AND resolution shortcut showing how `MM-23-63-no-type3`'s 27 forbidding clauses eliminate $s_1$ straight inside Leaf Pool 1 of each $\delta = 1$ 6-XOR tree, with head-to-head metrics vs plain Challenge 3. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 1 original native **DIMACS `.cnf.xz`** files (333.0 KB).
 - **`aig-converted/`** — 1 exact **Binary AIGER 1.9 `.aig.xz`** conversions (292.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -36,11 +36,7 @@ Compact pooled-AND (`6pooled3and`) re-encoding of `challenge3`, asking whether a
 | **DIMACS-ANF** | `anf-converted/` | 1 | Vars: 37,800; Eqs: 88,236 (deg ≤ 3) | 230.9 KB |
 | **Total (4 Formats, Status: Open / Hard)** | | **4** | | **933.7 KB** |
 
-## Published Results & References
-
-- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
-
-## Comparative 1-Core Benchmark Results (All 1 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 1 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
@@ -60,3 +56,7 @@ Compact pooled-AND (`6pooled3and`) re-encoding of `challenge3`, asking whether a
 
 **Collection Phase-Transition Summary (1 instances, 4 formats: 1 CNF / 1 AIG / 1 XCNF / 1 ANF):** median $\rho_{\mathrm{crit}} = 2.63\times$ (range `2.63x–2.63x`), median $\kappa = 1.22$, regime split **0 Under / 0 Near-critical / 1 Over**, total extracted native XOR parity clauses = **4,374**, total ANF equations = **88,236**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.

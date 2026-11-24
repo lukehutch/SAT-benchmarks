@@ -1,5 +1,9 @@
 # Heule $3\times 3$ Matrix Multiplication — Challenge 4 (`heule-matrix-challenge4`)
 
+![Heule 3x3 matrix multiplication Challenge 4 rank-22 open frontier and Brent circuit](diagram.svg)
+
+*Figure: Algebraic complexity frontier for $\mathrm{rank}_{\mathbb{F}_2}(T_{3,3,3})$ ($R = 19$ lower bound through open $R = 22$ to Laderman $R = 23$) and the plain 4-stage 2-AND + 4-XOR Brent circuit. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Marijn J. H. Heule, Manuel Kauers, and Martina Seidl
@@ -15,11 +19,7 @@ Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a ten
 
 Plain Brent-equation CNF encoding for the famous open $R = 22$ $3\times 3$ matrix multiplication problem over $\mathbb{F}_2$.
 
-![Heule 3x3 matrix multiplication Challenge 4 rank-22 open frontier and Brent circuit](diagram.svg)
-
-*Figure: Algebraic complexity frontier for $\mathrm{rank}_{\mathbb{F}_2}(T_{3,3,3})$ ($R = 19$ lower bound through open $R = 22$ to Laderman $R = 23$) and the plain 4-stage 2-AND + 4-XOR Brent circuit. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 1 original native **DIMACS `.cnf.xz`** files (193.0 KB).
 - **`aig-converted/`** — 1 exact **Binary AIGER 1.9 `.aig.xz`** conversions (215.6 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -36,11 +36,7 @@ Plain Brent-equation CNF encoding for the famous open $R = 22$ $3\times 3$ matri
 | **DIMACS-ANF** | `anf-converted/` | 1 | Vars: 24,975; Eqs: 60,750 (deg ≤ 3) | 147.8 KB |
 | **Total (4 Formats, Status: Open ($R = 22$))** | | **4** | | **635.8 KB** |
 
-## Published Results & References
-
-- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
-
-## Comparative 1-Core Benchmark Results (All 1 Instances, Flat `.cnf`, $T_{\max} = 10\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 1 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
@@ -60,3 +56,7 @@ Plain Brent-equation CNF encoding for the famous open $R = 22$ $3\times 3$ matri
 
 **Collection Phase-Transition Summary (1 instances, 4 formats: 1 CNF / 1 AIG / 1 XCNF / 1 ANF):** median $\rho_{\mathrm{crit}} = 1.83\times$ (range `1.83x–1.83x`), median $\kappa = 0.95$, regime split **0 Under / 0 Near-critical / 1 Over**, total extracted native XOR parity clauses = **7,290**, total ANF equations = **60,750**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.

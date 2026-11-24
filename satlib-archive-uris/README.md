@@ -12,7 +12,13 @@
 - **License:** Classic public scientific benchmark collection redistributed by UBC SATLIB for academic SAT research; no separate upstream `LICENSE` file is bundled in the archives.
 - **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) (Twitter/X)
 
-## Directory Layout & Usage
+## Problem Description
+
+UBC **SATLIB** (Hoos & Stützle, SAT 2000) is the classic foundational repository of SAT benchmarks spanning structured industrial/EDA verification, planning, graph coloring, combinatorial puzzles, and synthetic random $k$-SAT phase-transition ensembles across **97 official `.tar.gz` archives** ($50{,}000+$ raw formulas). Rather than duplicating multi-gigabyte synthetic ensembles in Git, this collection indexes all 97 upstream archive URIs alongside a parallel fetcher, while all 17 structured families (in full) plus stratified representatives from all 5 synthetic ensembles (**331 instances** across all 4 formats) are committed directly in the 22 standalone `../satlib-*/` collections.
+
+## Corpus & Data Sizes
+
+### Directory Layout & Usage
 
 Rather than duplicating multi-gigabyte synthetic ensemble archives (50,000+ raw formulas) in Git, this collection stores the complete official manifest of all **97 UBC SATLIB `.tar.gz` archive URLs** alongside a parallel downloader script (parallel to [`../sat-competition-2002-2026-uris/`](../sat-competition-2002-2026-uris/README.md)):
 
@@ -20,7 +26,7 @@ Rather than duplicating multi-gigabyte synthetic ensemble archives (50,000+ raw 
 - [`src/fetch_satlib.py`](src/fetch_satlib.py) — Parallel archive downloader (`python3 src/fetch_satlib.py --all-archives <out_dir>`).
 - **Ground-Truth Verdicts:** Because this catalog indexes multi-instance `.tar.gz` archives rather than individual formulas, per-instance `expected.tsv` manifests live directly inside each of the 22 standalone `../satlib-*/` collections below (331 committed instances total: **235 SAT / 96 UNSAT / 0 UNKNOWN**).
 
-## Committed Standalone SATLIB Collections (331 Instances Across 22 Collections, All 4 Formats)
+### Committed Standalone SATLIB Collections (331 Instances Across 22 Collections, All 4 Formats)
 
 Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instances in full; Pretolani's `PRET` formulas live in [`../pretolani-pret/`](../pretolani-pret/README.md)) plus 33 stratified representatives across all 5 synthetic ensembles are committed directly in 22 standalone top-level collections (all 4 formats: `cnf-orig/`, `aig-converted/`, `xcnf-converted/`, `anf-converted/`):
 
@@ -49,7 +55,7 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 | [`satlib-rnd3sat/`](../satlib-rnd3sat/README.md) | Uniform Random 3-SAT `uf`/`uuf50..250` (sample / 6,600*) | 10 | 33.1 KB | 37.1 KB | 33.6 KB | 59.2 KB |
 | [`satlib-sw-gcp/`](../satlib-sw-gcp/README.md) | Morphed Small-World 5-Colouring `lp0..p0` (sample / 901*) | 5 | 19.1 KB | 23.7 KB | 19.5 KB | 35.9 KB |
 
-## Comparative 1-Core Benchmark Results (All 331 Committed Instances Across 22 SATLIB Collections, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, 1 thread per run across 8 dedicated physical cores, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10{,}000\;\text{ms}$, identical flat `.cnf` input, 0 verdict disagreements, 100% SAT model verification).
 

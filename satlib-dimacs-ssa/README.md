@@ -1,5 +1,9 @@
 # SATLIB — Single-Stuck-At Circuit Faults (full) (`satlib-dimacs-ssa`)
 
+![Single-stuck-at s-a-0 ATPG Roth D-calculus propagation and output miter](diagram.svg)
+
+*Figure: Single-stuck-at (`s-a-0`) ATPG activation and Roth D-calculus propagation ($D = 1/0$, $\bar{D} = 0/1$) via non-controlling side inputs to an output miter contrasting detectable SAT (`c7552`) vs. redundant UNSAT (`c432`, `c2670`, `c6288`) ISCAS'85 faults. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -15,11 +19,7 @@
 
 All 8 Single-Stuck-At (`ssa`) combinational circuit fault-detection benchmarks from the Second DIMACS Challenge.
 
-![Single-stuck-at s-a-0 ATPG Roth D-calculus propagation and output miter](diagram.svg)
-
-*Figure: Single-stuck-at (`s-a-0`) ATPG activation and Roth D-calculus propagation ($D = 1/0$, $\bar{D} = 0/1$) via non-controlling side inputs to an output miter contrasting detectable SAT (`c7552`) vs. redundant UNSAT (`c432`, `c2670`, `c6288`) ISCAS'85 faults. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 8 original native **DIMACS `.cnf.xz`** files (147.5 KB).
 - **`aig-converted/`** — 8 exact **Binary AIGER 1.9 `.aig.xz`** conversions (176.3 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -36,7 +36,7 @@ All 8 Single-Stuck-At (`ssa`) combinational circuit fault-detection benchmarks f
 | **DIMACS-ANF** | `anf-converted/` | 8 | Vars: 504–12,845; Eqs: 1,087–36,673 (deg ≤ 3) | 282.7 KB |
 | **Total (4 Formats, Status: 4 SAT / 4 UNSAT)** | | **32** | | **753.4 KB** |
 
-## Comparative 1-Core Benchmark Results (All 8 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 8 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

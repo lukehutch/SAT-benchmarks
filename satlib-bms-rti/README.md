@@ -1,5 +1,9 @@
 # SATLIB — Backbone-Minimal Random 3-SAT (sample / 1,000*) (`satlib-bms-rti`)
 
+![Backbone-minimal random 3-SAT clause-deletion pipeline](diagram.svg)
+
+*Figure: Three-stage backbone-minimal clause-deletion pipeline showing redundant clause pruning (`RTI` $m=429 \to$ `BMS` $m=272\text{--}286$) until dropping any single clause shatters the frozen backbone core. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 Stratified sample of 4 instances from the 1,000-instance SATLIB Backbone-Minimal (`BMS`) / Random-3-SAT (`RTI`) ensemble (full archive URLs in [`../satlib-archive-uris/`](../satlib-archive-uris/README.md)).
 
-![Backbone-minimal random 3-SAT clause-deletion pipeline](diagram.svg)
-
-*Figure: Three-stage backbone-minimal clause-deletion pipeline showing redundant clause pruning (`RTI` $m=429 \to$ `BMS` $m=272\text{--}286$) until dropping any single clause shatters the frozen backbone core. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 4 original native **DIMACS `.cnf.xz`** files (6.9 KB).
 - **`aig-converted/`** — 4 exact **Binary AIGER 1.9 `.aig.xz`** conversions (8.6 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ Stratified sample of 4 instances from the 1,000-instance SATLIB Backbone-Minimal
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 100; Eqs: 272–429 (deg ≤ 3) | 12.8 KB |
 | **Total (4 Formats, Status: 4 SAT / 0 UNSAT)** | | **16** | | **35.5 KB** |
 
-## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

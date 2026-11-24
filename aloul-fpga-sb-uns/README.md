@@ -1,5 +1,9 @@
 # Aloul FPGA Switch-Box UNSAT Benchmarks — "Homer" (`aloul-fpga-sb-uns`)
 
+![Congested FPGA switch-box bottleneck UNSAT Homer and 2x PHP core](diagram.svg)
+
+*Figure: Congested FPGA switch-box channel bottleneck ($N > W$ nets colliding on saturated tracks) and exact symmetric two-side bipartite pigeonhole core ($2 \times \mathrm{PHP}_W^N$, $\text{Deg CV} = 0.00$) across all 10 UNSAT "Homer" instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Fadi A. Aloul, Arathi Ramani, Igor L. Markov, and Karem A. Sakallah (University of Michigan / American University of Sharjah)
@@ -12,11 +16,7 @@
 
 Unsatisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga11_*`; SAT 2002 *"Homer"* family, 10 instances) with rich permutation symmetry and cardinality bottlenecks, with variables/clauses randomly reordered.
 
-![Congested FPGA switch-box bottleneck UNSAT Homer and 2x PHP core](diagram.svg)
-
-*Figure: Congested FPGA switch-box channel bottleneck ($N > W$ nets colliding on saturated tracks) and exact symmetric two-side bipartite pigeonhole core ($2 \times \mathrm{PHP}_W^N$, $\text{Deg CV} = 0.00$) across all 10 UNSAT "Homer" instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 10 original native **DIMACS `.cnf.xz`** files (72.5 KB).
 - **`aig-converted/`** — 10 exact **Binary AIGER 1.9 `.aig.xz`** conversions (79.3 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -33,7 +33,7 @@ Unsatisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga11_*`; SAT 2002
 | **DIMACS-ANF** | `anf-converted/` | 10 | Vars: 374–760; Eqs: 1,276–4,540 (deg ≤ 3) | 96.1 KB |
 | **Total (4 Formats, Status: 0 SAT / 10 UNSAT)** | | **40** | | **321.0 KB** |
 
-## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

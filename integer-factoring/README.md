@@ -1,22 +1,24 @@
 # Pure-Logic Integer Factorization & Masked Multiplier Circuits (`integer-factoring`)
 
+![Recursive Karatsuba multiplier inversion and masked F2 parity leakage overlay](diagram.svg)
+
+*Figure: Recursive Karatsuba multiplier inversion ($z_0, z_1, z_2$ with Wallace base case, odd-LSB / $1 < p \le q$ symmetry guards, and clamped target $N$) plus the 16 sparse 4-bit $\mathbb{F}_2$ parity leakage overlay of `masked_mult_32b_xor16` across all 6 instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N$ (with odd-factor LSBs fixed to $1$ and $p \ge q$ / equal-half-bit symmetry breaking) across **Wallace-tree** and **Karatsuba** multiplier topologies, including a 28-bit prime UNSAT instance, 32–40-bit balanced semiprimes, and a 32-bit Wallace multiplier augmented with 16 sparse 4-bit $\mathbb{F}_2$ parity leakage constraints (`masked_mult_32b_xor16`, modeling side-channel / masked hardware cryptanalysis).
 
 - **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), motivated by classic bit-blasted factoring SAT benchmarks (Purdom & Sabry 2004; Srebrny 2004) and multiplier verification benchmarks (Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
 - **Why they are hard:** Bit-level carry chains create high-treewidth nonlinear arithmetic constraints; Karatsuba multiplication further couples partial products via extra adders/subtractors.
 
-![Recursive Karatsuba multiplier inversion and masked F2 parity leakage overlay](diagram.svg)
+## Corpus & Data Sizes
 
-*Figure: Recursive Karatsuba multiplier inversion ($z_0, z_1, z_2$ with Wallace base case, odd-LSB / $1 < p \le q$ symmetry guards, and clamped target $N$) plus the 16 sparse 4-bit $\mathbb{F}_2$ parity leakage overlay of `masked_mult_32b_xor16` across all 6 instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Directory Layout & Regeneration
+### Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`20.9 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`62.9 KB`).
@@ -25,7 +27,7 @@ Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 6 instances (**5 SAT / 1 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Target $N$ | Factors $(p, q)$ | Topology | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
 |---|---:|---|---|:---:|---:|---:|---:|---:|---:|---:|---:|
@@ -36,7 +38,7 @@ Bit-level combinational multiplier inversion benchmarks asserting $p \cdot q = N
 | `factor_wallace_40b` | `1,006,647,906,441` | `960017 × 1048573` | Wallace | SAT | 4,296 | 4.4 KB | 1,271 | 6,717 | 14.1 KB | 10.4 KB | 14.4 KB |
 | `masked_mult_32b_xor16` | `4,292,870,399` | `65519 × 65521` + 16 XOR4 leaks | Wallace + $\mathbb{F}_2$ | SAT | 2,886 | 3.3 KB | 856 | 4,486 | 9.7 KB | 6.9 KB | 9.1 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+## Benchmark Results
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers operate strictly on flat `.cnf` with **zero number-theoretic shortcuts**):
 

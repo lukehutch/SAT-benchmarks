@@ -1,5 +1,9 @@
 # SATLIB — Controlled Backbone Random 3-SAT (sample / 40,000*) (`satlib-cbs`)
 
+![Controlled Backbone random 3-SAT fluid b=10% vs frozen b=90% solution matrix](diagram.svg)
+
+*Figure: Solution-space assignment matrix contrasting fluid low-backbone ($b = 10\%$) against rigid frozen-core ($b = 90\%$) satisfying assignments alongside the parsed 6-instance $(m, b)$ parameter grid. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 Stratified sample of 6 instances from the 40,000-instance SATLIB Controlled Backbone Size (`CBS`) random 3-SAT ensemble (full archive URLs in [`../satlib-archive-uris/`](../satlib-archive-uris/README.md)).
 
-![Controlled Backbone random 3-SAT fluid b=10% vs frozen b=90% solution matrix](diagram.svg)
-
-*Figure: Solution-space assignment matrix contrasting fluid low-backbone ($b = 10\%$) against rigid frozen-core ($b = 90\%$) satisfying assignments alongside the parsed 6-instance $(m, b)$ parameter grid. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 6 original native **DIMACS `.cnf.xz`** files (12.1 KB).
 - **`aig-converted/`** — 6 exact **Binary AIGER 1.9 `.aig.xz`** conversions (15.0 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ Stratified sample of 6 instances from the 40,000-instance SATLIB Controlled Back
 | **DIMACS-ANF** | `anf-converted/` | 6 | Vars: 100; Eqs: 403–449 (deg ≤ 3) | 22.4 KB |
 | **Total (4 Formats, Status: 6 SAT / 0 UNSAT)** | | **24** | | **61.8 KB** |
 
-## Comparative 1-Core Benchmark Results (All 6 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 6 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

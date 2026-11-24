@@ -1025,6 +1025,31 @@ def check_hygiene(repo_root: Path, cols: list[str]) -> list[str]:
         if re.search(r"CryptoMiniSat(?:\]\([^)]+\))?\s+5\.18(?!\.0)", text):
             errors.append(f"Inconsistent version 'CryptoMiniSat 5.18' (missing .0) in {rel}")
         errors.extend(validate_gfm_tables(md, repo_root))
+        if md != repo_root / "README.md":
+            lines = text.splitlines()
+            if not lines or not lines[0].startswith("# "):
+                errors.append(f"README structure error in {rel}: line 1 must be H1 '# ...'")
+            if len(lines) < 3 or not (lines[2].startswith("![") and "diagram.svg" in lines[2]):
+                errors.append(f"README structure error in {rel}: figure '![...](diagram.svg)' must appear directly below title (line 3), above Provenance & Credit")
+            h2s = [l for l in lines if l.startswith("## ")]
+            exp_analysis = "## Automata Structural Analysis" if rel.startswith("mata-presburger-nfa-") else "## Phase-Transition & Structural Analysis"
+            exp_h2s = [
+                "## Provenance & Credit",
+                "## Problem Description",
+                "## Corpus & Data Sizes",
+                "## Benchmark Results",
+                exp_analysis,
+                "## References",
+            ]
+            if h2s != exp_h2s:
+                errors.append(f"README section structure mismatch in {rel}: got {h2s}, expected {exp_h2s}")
+            elif "## Provenance & Credit" in lines and "## Problem Description" in lines:
+                pi = lines.index("## Provenance & Credit")
+                pdi = lines.index("## Problem Description")
+                top_b = [l for l in lines[pi + 1 : pdi] if l.startswith("- ")]
+                rec_idxs = [i for i, b in enumerate(top_b) if "recommended by" in b.lower()]
+                if rec_idxs and rec_idxs != [len(top_b) - 1]:
+                    errors.append(f"README Provenance error in {rel}: 'Recommended by' bullet must be last")
         for m in link_re.finditer(text):
             t = m.group(1).strip()
             if t.startswith(("http://", "https://", "mailto:", "#")):

@@ -1,22 +1,24 @@
 # Hard SPN / LowMC-Style Linear-Form + Nonlinear Circuits (`hard-spn`)
 
+![Hard SPN LowMC-style linear diffusion and nonlinear S-box circuit](diagram.svg)
+
+*Figure: LowMC/SPN-style circuit coupling a sparse 5-input $\mathbb{F}_2$ affine diffusion matrix $L x = b$ ($r = n/2$) with nonlinear $\mathrm{And}/\mathrm{Maj}_3/\mathrm{Mux}$ S-box gates fed by 3-input linear forms $\ell = x_i \oplus x_j \oplus x_k$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis benchmarks pairing a dense $\mathbb{F}_2$ linear diffusion layer ($r = n/2$ sparse 5-input parity assertions) with nonlinear $\mathrm{And}$, $\mathrm{Maj}_3$, and $\mathrm{Mux}$ S-box gates evaluated on **3-input $\mathbb{F}_2$ linear forms** $\ell_a = x_i \oplus x_j \oplus x_k$ rather than raw input wires. Both satisfiable planted instances ($n \in \{64, 96, 128\}$) and a deep unsatisfiable flipped-target instance (`spn_unsat_n48_d24`) are included.
 
 - **Origin:** **Original** benchmark suite (MIT [`../LICENSE`](../LICENSE)), modeled on algebraic LowMC-style ciphers (Albrecht et al., [EUROCRYPT 2015](https://eprint.iacr.org/2016/687)).
 - **Why they are hard:** Feeding 3-input linear forms into nonlinear gates couples the affine diffusion layer with nonlinear S-box constraints, making flat clausal propagation challenging: at $n = 128$, [Kissat](https://github.com/arminbiere/kissat) 4.0.4 takes `4,330 ms`, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 takes `2,137 ms`, and [CryptoMiniSat](https://github.com/msoos/cryptominisat) CNF takes `10,805 ms`.
 
-![Hard SPN LowMC-style linear diffusion and nonlinear S-box circuit](diagram.svg)
+## Corpus & Data Sizes
 
-*Figure: LowMC/SPN-style circuit coupling a sparse 5-input $\mathbb{F}_2$ affine diffusion matrix $L x = b$ ($r = n/2$) with nonlinear $\mathrm{And}/\mathrm{Maj}_3/\mathrm{Mux}$ S-box gates fed by 3-input linear forms $\ell = x_i \oplus x_j \oplus x_k$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Directory Layout & Regeneration
+### Directory Layout & Regeneration
 
 - `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`12.3 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
 - `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`29.6 KB`).
@@ -25,7 +27,7 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 4 instances (**3 SAT / 1 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Inputs $n$ | Linear Eqs $r$ | Nullspace $d$ | Nonlinear S-box Gates | Seed | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
 |---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
@@ -34,7 +36,7 @@ Substitution–Permutation Network (SPN) / LowMC-style algebraic cryptanalysis b
 | `spn_sat_n96_d48` | 96 | 48 | 48 | 85 | `0x13572468ABCD0096` | SAT | 2,205 | 3.2 KB | 539 | 3,060 | 7.6 KB | 3.4 KB | 3.1 KB |
 | `spn_sat_n128_d64` | 128 | 64 | 64 | 150 | `0x13572468ABCD7981` | SAT | 3,643 | 5.3 KB | 856 | 5,104 | 12.8 KB | 5.5 KB | 5.4 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+## Benchmark Results
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
 

@@ -11,7 +11,7 @@
 - **Integrity:** All **8 / 8** `.cnf.xz` files in [`cnf-orig/`](cnf-orig/) are exact unmodified upstream files matching [`src/upstream/sequences/point-patterns/cnf/SHA256SUMS`](src/upstream/sequences/point-patterns/cnf/SHA256SUMS) byte-for-byte upon decompression.
 - **Ground Truth Manifest:** [`expected.tsv`](expected.tsv) lists all **8 instances** (**4 SAT / 3 UNSAT / 1 UNKNOWN** open OEIS frontier target).
 
-## Mathematical Problem & Open OEIS Frontier
+## Problem Description
 
 [OEIS A240443](https://oeis.org/A240443) gives $a(N)$, the maximum number of points that can be painted on an $N \times N$ square lattice $\{0, \dots, N-1\}^2$ such that **no four painted points form the corners of a square of any orientation** (neither axis-aligned nor tilted).
 
@@ -28,7 +28,9 @@
 - **Cardinality constraint:** Sinz sequential counter (Sinz 2005) enforcing at least $m$ painted points.
 - **Symmetry:** No symmetry breaking; all 8 symmetries of the square ($D_4$) remain intact.
 
-## Repository Layout & Four-Format Inventory
+## Corpus & Data Sizes
+
+### Repository Layout & Four-Format Inventory
 
 All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` per-file size limit:
 
@@ -41,7 +43,7 @@ All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` 
 | `solutions/` | 1 | 1.8 KB | 1.8 KB (`sq-any_n8_m34.model.xz`) | **1** verified SAT model (`sq-any_n8_m34.model.xz`) + [`solutions/SHA256SUMS`](solutions/SHA256SUMS) |
 | `src/` | — | — | — | [`src/gen_diagram.py`](src/gen_diagram.py) + verbatim upstream generator, verifier, `.map.json` sidecars, and `SHA256SUMS` under [`src/upstream/`](src/upstream/) |
 
-### Complete Instance Inventory & Ground-Truth Verdicts (`expected.tsv`)
+#### Complete Instance Inventory & Ground-Truth Verdicts (`expected.tsv`)
 
 | Instance | Expected | Variables | Clauses | `.cnf.xz` | `.xcnf.xz` | `.aig.xz` | `.anf.xz` |
 |---|:---:|---:|---:|---:|---:|---:|---:|
@@ -54,47 +56,7 @@ All committed files are `xz`-compressed and strictly respect GitHub's `< 95 MB` 
 | `sq-any_n9_m42.cnf` | SAT | 3,201 | 6,821 | 9.6 KB | 9.7 KB | 15.1 KB | 19.5 KB |
 | `sq-any_n9_m43.cnf` | UNSAT | 3,121 | 6,662 | 9.4 KB | 9.3 KB | 14.5 KB | 19.5 KB |
 
-## Benchmark Protocol & Hardware Parameters
-
-- **Hardware:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, 128 GiB RAM, Linux x86_64).
-- **CPU Pinning & Isolation:** Strictly pinned to a single physical core (`taskset -c 1` for all 60 s 5-solver calibration runs; `taskset -c 0` or `taskset -c 1` for extended open-frontier runs), **1 thread per solver run** (`--max-cores 1`). All 5 solvers ran strictly sequentially on identical uncompressed flat `.cnf` inputs so solvers without native `.xz` streaming compete on identical inputs.
-- **Solvers & Exact Flags:**
-  - Frobenius v0.1.0 (`--timeout 60`, 1 thread)
-  - [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`)
-  - [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`)
-  - [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, GNU `timeout -k 2s 60.0s`)
-  - [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`)
-- **Independent Verification:**
-  - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
-
-## Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
-
-Two $N = 8$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest** on `sq-any_n8_m34.cnf` (**`0.07 s`**, 2.7× faster than #2 CaDiCaL 3.1.0):
-
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|:---:|---:|---:|---:|---:|---:|
-| `sq-any_n8_m34.cnf` | SAT | **0.07 s** | 0.19 s | 0.58 s | 1.10 s | 1.11 s |
-| `sq-any_n8_m35.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 2** | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **120.07 s** *(mean 60.03 s)* | 120.19 s *(mean 60.09 s)* | 120.58 s *(mean 60.29 s)* | 121.10 s *(mean 60.55 s)* | 121.11 s *(mean 60.55 s)* |
-
-## Open OEIS Frontier Run (180 s, Single-Core Pinned)
-
-Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`, native `.cnf.xz` ingestion):
-
-| Open Target | OEIS Frontier | Budget | Pinning | Conflicts | Decisions | Propagations | Status |
-|---|---|---:|---|---:|---:|---:|:---:|
-| `sq-any_n11_m59.cnf` | `sq-any` $11 \times 11$ ($a(11) \ge 58$; `7,561` vars, `16,148` cls) | 180 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
-
-## Verified Solutions (`solutions/`)
-
-Checksums verified with `sha256sum -c` against [`solutions/SHA256SUMS`](solutions/SHA256SUMS):
-
-| Solution File | Size | SHA-256 (prefix) | Independent Verification Result |
-|---|---:|---|---|
-| [`solutions/sq-any_n8_m34.model.xz`](solutions/sq-any_n8_m34.model.xz) | 1.8 KB | `42ba0f2e3b2f` | 4,149/4,149 cls OK; `verify.py`: `34 painted, 0 forbidden: VALID` |
-
-## Sibling Collections (`guillochon/oeis-sat-instances`)
+### Sibling Collections (`guillochon/oeis-sat-instances`)
 
 This directory is one of **9 single-problem-type collections** split from James Guillochon's [`guillochon/oeis-sat-instances`](https://github.com/guillochon/oeis-sat-instances) suite (`112` instances across `13` OEIS sequences):
 
@@ -109,6 +71,67 @@ This directory is one of **9 single-problem-type collections** split from James 
 | [`guillochon-oeis-grid-tri-any/`](../guillochon-oeis-grid-tri-any/) | [A240114](https://oeis.org/A240114) / [A319159](https://oeis.org/A319159) | Triangular Grid — No Arbitrary Equilateral Triangle (`tri-any`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
 | [`guillochon-oeis-grid-tri-axis/`](../guillochon-oeis-grid-tri-axis/) | [A227308](https://oeis.org/A227308) / [A227116](https://oeis.org/A227116) | Triangular Grid — No Axis-Aligned Equilateral Triangle (`tri-axis`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
 | [`guillochon-oeis-grid-tri-up/`](../guillochon-oeis-grid-tri-up/) | [A157795](https://oeis.org/A157795) / [A319158](https://oeis.org/A319158) | Triangular Grid — No Upward Equilateral Triangle (`tri-up`) | 8 (4 SAT / 3 UNSAT / 1 Open) |
+
+## Benchmark Results
+
+### Benchmark Protocol & Hardware Parameters
+
+- **Hardware:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, 128 GiB RAM, Linux x86_64).
+- **CPU Pinning & Isolation:** Strictly pinned to a single physical core (`taskset -c 1` for all 60 s 5-solver calibration runs; `taskset -c 0` or `taskset -c 1` for extended open-frontier runs), **1 thread per solver run** (`--max-cores 1`). All 5 solvers ran strictly sequentially on identical uncompressed flat `.cnf` inputs so solvers without native `.xz` streaming compete on identical inputs.
+- **Solvers & Exact Flags:**
+  - Frobenius v0.1.0 (`--timeout 60`, 1 thread)
+  - [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`)
+  - [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`)
+  - [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, GNU `timeout -k 2s 60.0s`)
+  - [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`)
+- **Independent Verification:**
+  - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
+
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+
+Two $N = 8$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest** on `sq-any_n8_m34.cnf` (**`0.07 s`**, 2.7× faster than #2 CaDiCaL 3.1.0):
+
+| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|
+| `sq-any_n8_m34.cnf` | SAT | **0.07 s** | 0.19 s | 0.58 s | 1.10 s | 1.11 s |
+| `sq-any_n8_m35.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 2** | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **120.07 s** *(mean 60.03 s)* | 120.19 s *(mean 60.09 s)* | 120.58 s *(mean 60.29 s)* | 121.10 s *(mean 60.55 s)* | 121.11 s *(mean 60.55 s)* |
+
+### Open OEIS Frontier Run (180 s, Single-Core Pinned)
+
+Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`, native `.cnf.xz` ingestion):
+
+| Open Target | OEIS Frontier | Budget | Pinning | Conflicts | Decisions | Propagations | Status |
+|---|---|---:|---|---:|---:|---:|:---:|
+| `sq-any_n11_m59.cnf` | `sq-any` $11 \times 11$ ($a(11) \ge 58$; `7,561` vars, `16,148` cls) | 180 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
+
+### Verified Solutions (`solutions/`)
+
+Checksums verified with `sha256sum -c` against [`solutions/SHA256SUMS`](solutions/SHA256SUMS):
+
+| Solution File | Size | SHA-256 (prefix) | Independent Verification Result |
+|---|---:|---|---|
+| [`solutions/sq-any_n8_m34.model.xz`](solutions/sq-any_n8_m34.model.xz) | 1.8 KB | `42ba0f2e3b2f` | 4,149/4,149 cls OK; `verify.py`: `34 painted, 0 forbidden: VALID` |
+
+<!-- BEGIN_STRUCTURAL_ANALYSIS -->
+## Phase-Transition & Structural Analysis
+
+*Auto-generated by [`../src/analyze_benchmarks.py`](../src/analyze_benchmarks.py). Position relative to the critical phase transition is measured by $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (exact $\alpha/\alpha_c(k)$ for pure $k$-SAT; effective critical threshold $\alpha_c^{\mathrm{eff}} = \alpha/\rho_{\mathrm{crit}}$; `Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), alongside Gent–Walsh annealed constrainedness $\kappa = -\frac{1}{n}\sum_i \log_2(1-2^{-k_i})$ (AAAI 1996), clause-length profile ($\bar{k}$, `%Bin`, `%Horn`), variable-degree CV ($\sigma_d/\bar{d}$, uniformity vs. hub skew), and extracted native XOR parity clauses.*
+
+| Instance | Active $n$ | Clauses $m$ | $\alpha=m/n$ | $\alpha_c^{\mathrm{eff}}$ | $\rho_{\mathrm{crit}}$ (Regime) | $\kappa$ | $\bar{k}$ ($k_{\max}$) | Bin% | Horn% | Pos% | Deg CV | XORs |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `sq-any_n10_m50` | 5,050 | 10,774 | 2.13 | 1.70 | **1.26x** (Over) | 0.63 | 2.59 (4) | 47% | 55% | 53% | 2.02 | 0 |
+| `sq-any_n10_m51` | 4,951 | 10,577 | 2.14 | 1.70 | **1.26x** (Over) | 0.63 | 2.60 (4) | 47% | 55% | 53% | 2.01 | 0 |
+| `sq-any_n11_m58` | 7,681 | 16,387 | 2.13 | 1.70 | **1.26x** (Over) | 0.63 | 2.59 (4) | 47% | 54% | 53% | 2.26 | 0 |
+| `sq-any_n11_m59` | 7,561 | 16,148 | 2.14 | 1.70 | **1.26x** (Over) | 0.63 | 2.60 (4) | 47% | 54% | 53% | 2.25 | 0 |
+| `sq-any_n8_m34` | 1,954 | 4,149 | 2.12 | 1.68 | **1.26x** (Over) | 0.63 | 2.59 (4) | 48% | 55% | 53% | 1.56 | 0 |
+| `sq-any_n8_m35` | 1,891 | 4,024 | 2.13 | 1.68 | **1.27x** (Over) | 0.63 | 2.59 (4) | 48% | 55% | 52% | 1.55 | 0 |
+| `sq-any_n9_m42` | 3,201 | 6,821 | 2.13 | 1.69 | **1.26x** (Over) | 0.63 | 2.59 (4) | 48% | 55% | 53% | 1.79 | 0 |
+| `sq-any_n9_m43` | 3,121 | 6,662 | 2.13 | 1.69 | **1.26x** (Over) | 0.63 | 2.60 (4) | 47% | 55% | 53% | 1.78 | 0 |
+
+**Collection Phase-Transition Summary (8 instances, 4 formats: 8 CNF / 8 AIG / 8 XCNF / 8 ANF):** median $\rho_{\mathrm{crit}} = 1.26\times$ (range `1.26x–1.27x`), median $\kappa = 0.63$, regime split **0 Under / 0 Near-critical / 8 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **81,364**.
+<!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References
 

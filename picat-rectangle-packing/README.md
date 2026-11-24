@@ -11,7 +11,7 @@
 - **License:** MIT License (see [`LICENSE`](LICENSE)).
 - **Ground Truth Manifest:** [`expected.tsv`](expected.tsv) (**5 SAT / 5 UNSAT**).
 
-## Mathematical Problem & Picat-SAT Encoding
+## Problem Description
 
 The **Consecutive Squares 2D Rectangle Packing Problem** (Korf 2003; Simonis & O'Sullivan 2008; MiniZinc `rectangle-packing`) asks whether $n$ axis-aligned squares of side lengths $1 \times 1, 2 \times 2, \dots, n \times n$ (total occupied area $A_{\min}(n) = \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}$) can be placed without overlap inside a fixed $H \times W$ integer bounding box.
 
@@ -22,7 +22,7 @@ For every $i \in \{1, \dots, n\}$, Picat-SAT introduces log-encoded origin coord
 
 Every UNSAT instance in the ladder satisfies $H \cdot W \ge A_{\min}(n)$ (strictly area-sufficient — including exact zero-slack $25 \times 26 = 650$ for $n=12$ and tight $+15$-cell $40 \times 45 = 1{,}800$ for $n=17$), so infeasibility arises purely from 2D geometric packing obstructions rather than trivial area shortage.
 
-## Corpus & Four-Format Inventory
+## Corpus & Data Sizes
 
 All **10 instances** are committed across all four lossless `xz`-compressed formats (`40` files total, every file well below GitHub's `95 MB` limit), accompanied by ground-truth verdicts in [`expected.tsv`](expected.tsv) (**5 SAT / 5 UNSAT**):
 
@@ -49,7 +49,22 @@ All **10 instances** are committed across all four lossless `xz`-compressed form
 | `rpack_n17_40x45.cnf` | $n=17$ ($\Sigma i^2=1{,}785$), box $40\times 45 = 1{,}800$ ($+15$ slack) | UNSAT | 11,304 | 60,537 | 160.3 KB | 274.7 KB | 159.6 KB | 498.3 KB |
 | `rpack_n17_41x44.cnf` | $n=17$ ($\Sigma i^2=1{,}785$), box $41\times 44 = 1{,}804$ ($+19$, tight SAT) | SAT | 11,321 | 60,571 | 160.5 KB | 274.6 KB | 159.9 KB | 498.5 KB |
 
-## Benchmark Results (Single-Core Pinned, $T_{\max} = 60\;\text{s}$)
+### Sibling Collections (Picat-SAT Benchmark Family)
+
+This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
+
+| Collection | Combinatorial Problem | Upstream Model & License | Instances |
+|---|---|---|---:|
+| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
+| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
+| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
+| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
+| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
+| **`picat-rectangle-packing/`** *(this collection)* | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
+
+## Benchmark Results
+
+*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -76,19 +91,6 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `rpack_n17_41x44.cnf` | SAT | **327.3 ms** | 857.0 ms | 2.21 s | 2.82 s | 546.9 ms |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **10 total** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** |
 | **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **2.51 s** *(mean 0.25 s)* | 4.71 s *(mean 0.47 s)* | 8.78 s *(mean 0.88 s)* | 6.90 s *(mean 0.69 s)* | 5.22 s *(mean 0.52 s)* |
-
-## Sibling Collections (Picat-SAT Benchmark Family)
-
-This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
-
-| Collection | Combinatorial Problem | Upstream Model & License | Instances |
-|---|---|---|---:|
-| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
-| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
-| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
-| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
-| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
-| **`picat-rectangle-packing/`** *(this collection)* | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

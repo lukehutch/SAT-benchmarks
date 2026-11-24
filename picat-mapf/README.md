@@ -11,7 +11,7 @@
 - **License:** Mozilla Public License 2.0 (MPL-2.0, see [`LICENSE`](LICENSE)); MiniZinc `.dzn` grid data files are MIT-licensed.
 - **Ground Truth Manifest:** [`expected.tsv`](expected.tsv) (**6 SAT / 2 UNSAT**).
 
-## Mathematical Problem & Picat-SAT Encoding
+## Problem Description
 
 Given an undirected grid graph $G = (V, E)$ with obstacles and $K$ agents with start–goal pairs $(s_a, g_a)$, the **Makespan Multi-Agent Path Finding (MAPF)** decision problem asks whether all $K$ agents can simultaneously move from $s_a$ to $g_a$ within horizon $M$ steps (at each step moving to a 4-connected neighbor or waiting in place) without any two agents occupying the same vertex at the same time step.
 
@@ -23,7 +23,7 @@ Following Barták, Zhou, Stern, Boyarski, and Surynek (ICTAI 2017, `mapf_makespa
 
 The suite pairs **two genuine collision-forced makespan brackets** where $M^* > \mathrm{LB}$ (`bn9x9_k12`: $\mathrm{LB}=16$, $M=18$ UNSAT vs. $M^*=19$ SAT; `bn11x11_k18`: $\mathrm{LB}=20$, $M=24$ UNSAT vs. $M^*=25$ SAT — every agent can reach its goal individually at $M^*-1$, so only vertex-collision queuing at the 1-cell gate makes $M^*-1$ unsatisfiable) with **four upstream obstacle grids** scaling up to the verbatim built-in `32×32` 30-agent `mapf_makespan.pi` instance (`187,798` vars / `968,458` clauses).
 
-## Corpus & Four-Format Inventory
+## Corpus & Data Sizes
 
 All **8 instances** are committed across all four lossless `xz`-compressed formats (`32` files total, every file well below GitHub's `95 MB` limit), accompanied by ground-truth verdicts in [`expected.tsv`](expected.tsv) (**6 SAT / 2 UNSAT**):
 
@@ -48,7 +48,22 @@ All **8 instances** are committed across all four lossless `xz`-compressed forma
 | `mapf_g16_p20_a20_m23.cnf` | Upstream $16\times 16$ (20% obs), $N=205, K=20, M=23$ | SAT | 17,651 | 83,883 | 156.2 KB | 249.1 KB | 156.0 KB | 524.2 KB |
 | `mapf_g16_p20_a40_m22.cnf` | Upstream $16\times 16$ (20% obs), $N=205, K=40, M=22$ | SAT | 40,473 | 206,294 | 381.6 KB | 615.8 KB | 383.4 KB | 1.19 MB |
 
-## Benchmark Results (Single-Core Pinned, $T_{\max} = 60\;\text{s}$)
+### Sibling Collections (Picat-SAT Benchmark Family)
+
+This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
+
+| Collection | Combinatorial Problem | Upstream Model & License | Instances |
+|---|---|---|---:|
+| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
+| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
+| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
+| **`picat-mapf/`** *(this collection)* | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
+| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
+| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
+
+## Benchmark Results
+
+*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -73,19 +88,6 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `mapf_g16_p20_a40_m22.cnf` | SAT | 881.6 ms | 206.9 ms | 1.43 s | 1.73 s | **197.4 ms** |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **8 total** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** | **8 / 8 (6 SAT, 2 UNSAT)** |
 | **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 5.12 s *(mean 0.64 s)* | 1.26 s *(mean 0.16 s)* | 9.58 s *(mean 1.20 s)* | 6.32 s *(mean 0.79 s)* | **1.00 s** *(mean 0.12 s)* |
-
-## Sibling Collections (Picat-SAT Benchmark Family)
-
-This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
-
-| Collection | Combinatorial Problem | Upstream Model & License | Instances |
-|---|---|---|---:|
-| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
-| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
-| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
-| **`picat-mapf/`** *(this collection)* | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
-| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
-| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

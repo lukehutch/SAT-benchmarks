@@ -1,5 +1,9 @@
 # Aloul Wallace-Multiplier Integer Factoring Benchmarks (`aloul-difp-w`)
 
+![Wallace-tree 3:2 CSA multiplier reduction stages inverted for integer factoring](diagram.svg)
+
+*Figure: Wallace-tree 3:2 Carry-Save Adder (CSA) parallel bit-column dot-reduction stages ($O(\log_{3/2} n)$ depth) contrasted directly against the array topology on the same 19-bit semiprime across all 15 SAT instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Fadi A. Aloul, Arathi Ramani, Igor L. Markov, and Karem A. Sakallah (University of Michigan / American University of Sharjah)
@@ -12,11 +16,7 @@
 
 Difficult Integer Factorization Problems (`difp_w`, 15 SAT instances) encoded via **Wallace Tree multipliers** multiplying two $n$-bit primes ($n \in \{19, 20, 21\}$), with variables and clauses randomly reordered.
 
-![Wallace-tree 3:2 CSA multiplier reduction stages inverted for integer factoring](diagram.svg)
-
-*Figure: Wallace-tree 3:2 Carry-Save Adder (CSA) parallel bit-column dot-reduction stages ($O(\log_{3/2} n)$ depth) contrasted directly against the array topology on the same 19-bit semiprime across all 15 SAT instances. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 15 original native **DIMACS `.cnf.xz`** files (856.7 KB).
 - **`aig-converted/`** — 15 exact **Binary AIGER 1.9 `.aig.xz`** conversions (957.9 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -33,7 +33,7 @@ Difficult Integer Factorization Problems (`difp_w`, 15 SAT instances) encoded vi
 | **DIMACS-ANF** | `anf-converted/` | 15 | Vars: 1,789–2,163; Eqs: 6,061–7,348 (deg ≤ 3) | 776.4 KB |
 | **Total (4 Formats, Status: 15 SAT / 0 UNSAT)** | | **60** | | **3.06 MB** |
 
-## Comparative 1-Core Benchmark Results (All 15 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned to a dedicated physical core, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius, reporting the exact median of 3 runs) on identical uncompressed flat `.cnf` inputs; **100% of all 15 instances** were run (no subsampling), all 15/15 Frobenius SAT models were independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

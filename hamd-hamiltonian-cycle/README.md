@@ -1,11 +1,15 @@
 # Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks (`hamd-hamiltonian-cycle`)
 
+![HAMD Hamiltonian cycle benchmark graphs GP(15,2), GP(11,2), and Flower Snark J5](diagram.svg)
+
+*Figure: Representative 3-regular, 3-connected HAMD benchmark families comparing Hamiltonian $GP(15,2)$ (SAT, verified 30-vertex cycle) against hypohamiltonian $GP(11,2)$ and Isaacs Flower Snark $J_5$ (UNSAT). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 
-## Overview & Origin
+## Problem Description
 
 A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNSAT) graph benchmark suite encoded into compact $O(|E|\log N)$ strict binary-order Miller–Tucker–Zemlin (MTZ) flat DIMACS CNFs (following Van Vi et al., *StructHCP*, 2026). Every single graph is **non-trivial by construction** (all undirected instances satisfy $\delta(G) \ge 3$ and 2-connectivity with zero cut-vertices/bridges; directed Broken Crowns satisfy $\delta^+, \delta^- \ge 2$; every instance is randomly vertex-relabeled with a deterministic seed so vertex indices leak zero structure):
 
@@ -18,11 +22,9 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 - **Origin:** **Original** parameterized generator (MIT [`../LICENSE`](../LICENSE)), instantiating classic graph-theoretic families (Watkins 1969; Chvátal 1973; Meredith 1973; Isaacs 1975; [Haythorpe FHCP / Broken Crowns](https://arxiv.org/abs/1902.10351); Vandegriend & Culberson 1998) in compact binary-order MTZ CNF ([StructHCP](https://arxiv.org/abs/2610.14780)).
 
-![HAMD Hamiltonian cycle benchmark graphs GP(15,2), GP(11,2), and Flower Snark J5](diagram.svg)
+## Corpus & Data Sizes
 
-*Figure: Representative 3-regular, 3-connected HAMD benchmark families comparing Hamiltonian $GP(15,2)$ (SAT, verified 30-vertex cycle) against hypohamiltonian $GP(11,2)$ and Isaacs Flower Snark $J_5$ (UNSAT). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Directory Layout & Regeneration
+### Directory Layout & Regeneration
 
 - `cnf-orig/` — Original native **DIMACS CNF** encodings (22 `.cnf.xz` files, `478.7 KB`, compact binary-order MTZ).
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (22 files, `699.0 KB`, all 22/22 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
@@ -31,7 +33,7 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 22 instances (**12 SAT / 10 UNSAT**).
 - `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`) plus `cnf2xcnf.py`.
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Family | $N$ | $E$ | $\rho$ | Ans | CNF Vars | CNF Clauses | CNF (`.cnf.xz`) Size | AIG ANDs | AIG (`.aig.xz`) Size |
 |---|---|---:|---:|---:|:---:|---:|---:|---:|---:|---:|
@@ -58,7 +60,9 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 | `hamd_planted_n100_sparse_sat` | Planted Sparse | 100 | 297 | 0.060 | SAT | 5,197 | 14,769 | 39.3 KB | 41,307 | 55.5 KB |
 | `hamd_planted_n80_vdense_sat` | Planted VDense | 80 | 1,580 | 0.500 | SAT | 28,389 | 82,446 | 172.0 KB | 229,525 | 258.0 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$)
+## Benchmark Results
+
+*1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$.*
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; **10/10 UNSAT LRAT proofs** emitted by Frobenius verified `s VERIFIED UNSAT` in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and `c VERIFIED` in [`lrat-check`](https://github.com/marijnheule/drat-trim); **12/12 SAT cycles** independently verified):
 

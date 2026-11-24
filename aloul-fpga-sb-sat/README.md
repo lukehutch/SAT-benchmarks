@@ -1,5 +1,9 @@
 # Aloul FPGA Switch-Box SAT Benchmarks — "Bart" (`aloul-fpga-sb-sat`)
 
+![FPGA switch-box routing schematic SAT Bart with collision-free tracks](diagram.svg)
+
+*Figure: Four-sided programmable FPGA switch-box routing schematic ($N \le W$ collision-free tracks with $S_N \times S_W$ permutation symmetry) alongside the `fpga10_8_sat_rcr` CNF anatomy and 11-instance "Bart" corpus profile. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Fadi A. Aloul, Arathi Ramani, Igor L. Markov, and Karem A. Sakallah (University of Michigan / American University of Sharjah)
@@ -12,11 +16,7 @@
 
 Satisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga12_*`, `fpga13_*`; SAT 2002 *"Bart"* family, 11 instances) with rich permutation symmetry and variables/clauses randomly reordered.
 
-![FPGA switch-box routing schematic SAT Bart with collision-free tracks](diagram.svg)
-
-*Figure: Four-sided programmable FPGA switch-box routing schematic ($N \le W$ collision-free tracks with $S_N \times S_W$ permutation symmetry) alongside the `fpga10_8_sat_rcr` CNF anatomy and 11-instance "Bart" corpus profile. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 11 original native **DIMACS `.cnf.xz`** files (33.5 KB).
 - **`aig-converted/`** — 11 exact **Binary AIGER 1.9 `.aig.xz`** conversions (46.0 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -33,7 +33,7 @@ Satisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga12_*`, `fpga13_*`
 | **DIMACS-ANF** | `anf-converted/` | 11 | Vars: 336–978; Eqs: 664–1,986 (deg ≤ 3) | 77.0 KB |
 | **Total (4 Formats, Status: 11 SAT / 0 UNSAT)** | | **44** | | **190.6 KB** |
 
-## Comparative 1-Core Benchmark Results (All 11 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 11 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

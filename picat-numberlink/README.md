@@ -11,7 +11,7 @@
 - **License:** Mozilla Public License 2.0 (MPL-2.0, see [`LICENSE`](LICENSE)).
 - **Ground Truth Manifest:** [`expected.tsv`](expected.tsv) (**6 SAT / 3 UNSAT**).
 
-## Mathematical Problem & Picat-SAT Encoding
+## Problem Description
 
 Given an $R \times C$ planar grid containing $P$ numbered pairs of terminal cells (`1..P`), **Numberlink** (Arukone / Nanbarinku; NP-complete, Adcock et al. 2015) asks for $P$ vertex-disjoint orthogonal paths connecting each terminal pair and partitioning every cell of the grid.
 
@@ -22,7 +22,7 @@ Neng-Fa Zhou's `numberlink_b.pi` encodes the problem over Boolean indicator vari
 
 Because every cell has at most $4$ orthogonal neighbors, Picat-SAT compiles every degree-1 and guarded degree-2 pseudo-Boolean constraint via its embedded **Berkeley Espresso** logic minimizer into minimal prime-implicant CNF covers with zero auxiliary variables. Alongside **6 authentic SAT puzzles** scaling from `5×5` (`60` vars) to `42×25` (`62` terminal pairs, `73,920` vars / `500,345` clauses — independently verified SAT with zero degree violations across all `1,050` cells), the collection includes **3 topological-crossing UNSAT counterparts** (`10×10`, `12×12`, `15×15`) created by swapping two terminal labels to obstruct planarity while preserving identical CNF dimensions.
 
-## Corpus & Four-Format Inventory
+## Corpus & Data Sizes
 
 All **9 instances** are committed across all four lossless `xz`-compressed formats (`36` files total, every file well below GitHub's `95 MB` limit), accompanied by ground-truth verdicts in [`expected.tsv`](expected.tsv) (**6 SAT / 3 UNSAT**):
 
@@ -48,7 +48,22 @@ All **9 instances** are committed across all four lossless `xz`-compressed forma
 | `numberlink_15x15_p12_swap.cnf` | $15\times 15$, 12 pairs (crossing swap of pairs 10 & 11) | UNSAT | 2,613 | 22,206 | 45.6 KB | 71.0 KB | 45.4 KB | 141.9 KB |
 | `numberlink_42x25_p62.cnf` | $42\times 25$, 62 pairs (`numberlink_b.pi`, `INo=4`, 1,050 cells) | SAT | 73,920 | 500,345 | 1.07 MB | 1.46 MB | 1.06 MB | 3.51 MB |
 
-## Benchmark Results (Single-Core Pinned, $T_{\max} = 60\;\text{s}$)
+### Sibling Collections (Picat-SAT Benchmark Family)
+
+This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
+
+| Collection | Combinatorial Problem | Upstream Model & License | Instances |
+|---|---|---|---:|
+| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
+| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
+| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
+| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
+| **`picat-numberlink/`** *(this collection)* | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
+| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
+
+## Benchmark Results
+
+*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -76,19 +91,6 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 35.16 s *(mean 3.91 s)* | 120.39 s *(mean 13.38 s)* | 121.50 s *(mean 13.50 s)* | 38.51 s *(mean 4.28 s)* | **11.79 s** *(mean 1.31 s)* |
 
 *Ground-truth SAT note on `numberlink_42x25_p62.cnf`:* Directly solved and 100%-clause model-verified by Kissat 4.0.4 (`11.46 s`), Frobenius (`34.86 s`), and dense-solver 0.0.4 (`38.27 s`), and independently cross-checked via Picat-SAT's integer-grid formulation (`hakank_numberlink.pi`, `INo=4`, `NP=62`, `1,050/1,050` cells degree-verified).
-
-## Sibling Collections (Picat-SAT Benchmark Family)
-
-This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
-
-| Collection | Combinatorial Problem | Upstream Model & License | Instances |
-|---|---|---|---:|
-| [`picat-vmtl/`](../picat-vmtl/README.md) | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
-| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
-| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
-| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
-| **`picat-numberlink/`** *(this collection)* | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
-| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

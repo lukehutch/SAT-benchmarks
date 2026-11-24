@@ -1,5 +1,9 @@
 # SATLIB — Uniform Random 3-SAT `uf`/`uuf50..250` (sample / 6,600*) (`satlib-rnd3sat`)
 
+![Uniform random 3-SAT bipartite factor graph and Poisson degree scaling](diagram.svg)
+
+*Figure: Uniform random 3-SAT bipartite factor graph (solid positive / dashed negated literals) and $\mathrm{Poisson}(3\alpha)$ variable-degree profile paired with critical-threshold scaling across `uf`/`uuf50..250` ($\alpha = 4.26\text{--}4.36$). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 Stratified sample of 10 critical-threshold uniform random 3-SAT instances (`uf`/`uuf50` through `uf`/`uuf250`, 5 SAT / 5 UNSAT) from the 6,600-instance UBC SATLIB RND3SAT collection (full archive URLs in [`../satlib-archive-uris/`](../satlib-archive-uris/README.md)).
 
-![Uniform random 3-SAT bipartite factor graph and Poisson degree scaling](diagram.svg)
-
-*Figure: Uniform random 3-SAT bipartite factor graph (solid positive / dashed negated literals) and $\mathrm{Poisson}(3\alpha)$ variable-degree profile paired with critical-threshold scaling across `uf`/`uuf50..250` ($\alpha = 4.26\text{--}4.36$). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 10 original native **DIMACS `.cnf.xz`** files (33.1 KB).
 - **`aig-converted/`** — 10 exact **Binary AIGER 1.9 `.aig.xz`** conversions (37.1 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ Stratified sample of 10 critical-threshold uniform random 3-SAT instances (`uf`/
 | **DIMACS-ANF** | `anf-converted/` | 10 | Vars: 50–250; Eqs: 218–1,065 (deg ≤ 3) | 59.2 KB |
 | **Total (4 Formats, Status: 5 SAT / 5 UNSAT)** | | **40** | | **163.1 KB** |
 
-## Comparative 1-Core Benchmark Results (All 10 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 10 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

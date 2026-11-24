@@ -1,5 +1,9 @@
 # Exact Synthesis of Optimal $\mathrm{MOD}_n^{3,r}$ Boolean Circuits (`mod-circuit-sat`)
 
+![Exact minimum B2 gate DAGs for MOD_3^3,0 and MOD_3^3,1 and optimality staircase](diagram.svg)
+
+*Figure: Mathematically verified exact minimum $B_2$ gate DAGs for $\mathrm{MOD}_3^{3,0}$ ($s^*=3$) and $\mathrm{MOD}_3^{3,1}$ ($s=3$ UNSAT, $s^*=4$ SAT) alongside the sharp optimality-boundary staircase through the open $n=6, s \le 12$ frontier. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Vladimir Zhilin ([`@vzhilin_me`](https://twitter.com/vzhilin_me) on Twitter/X, GitHub [`vzhn`](https://github.com/vzhn))
@@ -15,11 +19,7 @@ $$\mathrm{MOD}_n^{m,r}(x_1, \dots, x_n) \;=\; \bigl[\, (x_1 + \dots + x_n) \bmod
 
 For a fixed input width $n$, modulus $m = 3$, target residue $r \in \{0, 1, 2\}$, and gate budget $s$, `src/modsat.py` generates a DIMACS CNF (plus a JSON variable map in `maps/` so any satisfying assignment decodes directly into a verified $B_2$ circuit over all $2^n$ inputs). The problem exhibits sharp optimality thresholds ($s = s^* - 1$ UNSAT vs. $s = s^*$ SAT), and the $n = 6$, $s \le 12$ cases remain challenging open synthesis targets.
 
-![Exact minimum B2 gate DAGs for MOD_3^3,0 and MOD_3^3,1 and optimality staircase](diagram.svg)
-
-*Figure: Mathematically verified exact minimum $B_2$ gate DAGs for $\mathrm{MOD}_3^{3,0}$ ($s^*=3$) and $\mathrm{MOD}_3^{3,1}$ ($s=3$ UNSAT, $s^*=4$ SAT) alongside the sharp optimality-boundary staircase through the open $n=6, s \le 12$ frontier. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 - **`cnf-orig/`:** 11 native `.cnf.xz` files (`650.5 KB`; 9 decidable optimality-boundary instances for $n \in \{3, 4, 5\}$ + 2 open $n = 6$ frontier instances).
@@ -43,7 +43,9 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 | `mod3_n6_r1_le12_open` | $(6,3,1,\le 12)$ | Open | 2,309 | 185,679 | 242.5 KB | 474,426 | 1.64 MB |
 | `mod3_n6_r2_le12_open` | $(6,3,2,\le 12)$ | Open | 2,309 | 185,760 | 248.7 KB | 474,549 | 1.64 MB |
 
-## Comparative 1-Core Benchmark Results ($n \in \{3, 4, 5\}$, 9 Decidable Instances, $T_{\max} = 10\;\text{s}$ & $30\;\text{s}$)
+## Benchmark Results
+
+*$n \in \{3, 4, 5\}$, 9 Decidable Instances, $T_{\max} = 10\;\text{s}$ & $30\;\text{s}$.*
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0, `--max-cores 1` for Frobenius), sequential execution, identical flat `.cnf` input, 0 verdict disagreements; all 5/5 SAT models verified via `src/modsat.py decode`).
 
@@ -82,3 +84,8 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 
 **Collection Phase-Transition Summary (11 instances, 4 formats: 11 CNF / 11 AIG / 11 XCNF / 11 ANF):** median $\rho_{\mathrm{crit}} = 7.52\times$ (range `3.24x–14.2x`), median $\kappa = 4.03$, regime split **0 Under / 0 Near-critical / 11 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **987,859**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- V. Zhilin ([`@vzhilin_me`](https://twitter.com/vzhilin_me)), [`vzhn/mod-circuit-sat`](https://github.com/vzhn/mod-circuit-sat): Exact synthesis of minimal Boolean circuits for $\mathrm{MOD}_m$ functions via SAT.
+- A. S. Kulikov, D. Pechenev, and N. Slezkin, *"SAT-based Circuit Local Improvement"*, [`arXiv:2102.12579`](https://arxiv.org/abs/2102.12579) (2021).

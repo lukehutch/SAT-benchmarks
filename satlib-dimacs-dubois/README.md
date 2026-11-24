@@ -1,5 +1,9 @@
 # SATLIB — Dubois Hard Parity UNSAT (full) (`satlib-dimacs-dubois`)
 
+![Dubois cyclic 3-XOR parity ladder with odd twist block](diagram.svg)
+
+*Figure: Exact Dubois mirror-rung cyclic 3-XOR parity ladder on $n = 3d$ degree-2 variables closing with one negated odd-twist block, 4-clause CNF XOR anatomy (74% Horn), and the preserved `dubois100` quirk. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -17,11 +21,7 @@
 
 All 13 classic Dubois parity-based 3-SAT formulas (`dubois20`–`dubois100`) from the Second DIMACS Implementation Challenge.
 
-![Dubois cyclic 3-XOR parity ladder with odd twist block](diagram.svg)
-
-*Figure: Exact Dubois mirror-rung cyclic 3-XOR parity ladder on $n = 3d$ degree-2 variables closing with one negated odd-twist block, 4-clause CNF XOR anatomy (74% Horn), and the preserved `dubois100` quirk. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 13 original native **DIMACS `.cnf.xz`** files (11.6 KB).
 - **`aig-converted/`** — 13 exact **Binary AIGER 1.9 `.aig.xz`** conversions (13.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -38,7 +38,7 @@ All 13 classic Dubois parity-based 3-SAT formulas (`dubois20`–`dubois100`) fro
 | **DIMACS-ANF** | `anf-converted/` | 13 | Vars: 60–300; Eqs: 40–100 (deg ≤ 1) | 5.4 KB |
 | **Total (4 Formats, Status: Mixed (12 UNSAT / 1 SAT*))** | | **52** | | **38.0 KB** |
 
-## Comparative 1-Core Benchmark Results (All 13 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 13 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

@@ -1,16 +1,34 @@
 # International SAT Competition & SAT-Race Archive URIs (2002–2026) (`sat-competition-2002-2026-uris`)
 
-## Overview & Origin
+![SAT Competition and SAT-Race 2002-2026 25-year multi-track URI archive and certification overview](diagram.svg)
+
+*Figure: 25-year SAT Competition & SAT-Race archive timeline (2002–2026, 62 track-year URI manifests, 32,194 track-slots $\to$ 20,225 unique CNFs), deduplicated SAT/UNSAT/UNKNOWN distribution by track family, non-main & SC 2024–2026 `cake_lpr` certification summary, and 4-stage reproducible pipeline. Regenerated live via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
+## Provenance & Credit
+
+- **Curators & Maintainers:** International SAT Competition Organizers ([`satcompetition.github.io`](https://satcompetition.github.io/)) and Global Benchmark Database (GBD, Markus Iser & Carsten Sinz, [`benchmark-database.de`](https://benchmark-database.de/))
+- **Upstream Repositories:** [`Udopia/gbd`](https://github.com/Udopia/gbd) & official International SAT Competition / SAT-Race archives (2002–2026)
+- **License:** **CC-BY-4.0** — see [`LICENSE`](LICENSE).
+
+## Problem Description
 
 Complete official benchmark URI manifests, ground-truth verdict registry, and reproducible download/conversion/evaluation harness covering **all 25 consecutive years (2002–2026)** and **all 62 official DIMACS CNF tracks** of the **[International SAT Competitions](https://satcompetition.github.io/)** (2002–2005, 2007, 2009, 2011, 2013–2014, 2016–2018, 2020–2026), **SAT-Races** (2006, 2008, 2010, 2015, 2019), and **SAT Challenge 2012**, indexed via the **[Global Benchmark Database (GBD)](https://benchmark-database.de/)** ([`Udopia/gbd`](https://github.com/Udopia/gbd); upstream benchmark license: **CC-BY-4.0**, see [`LICENSE`](LICENSE)).
 
 Across all 62 track-year manifests in [`uris/`](uris/), this archive spans **32,194 track-year URI slots** that deduplicate to **20,225 unique GBD `.cnf.xz` instances** (`7,818 SAT / 5,792 UNSAT / 6,615 UNKNOWN` in [`expected.tsv`](expected.tsv), i.e. **13,610 known verdicts** with **0 SAT/UNSAT disagreements** across GBD `meta.db`, official SC 2023/2024/2026 competition CSVs, and formally certified runs). Because the full upstream archive exceeds Git repository limits by orders of magnitude, this collection stores immutable HTTPS GBD URI lists (`https://benchmark-database.de/file/<gbd_hash>`) alongside on-demand fetchers and exact converters into `.aig` (`src/cnf2aig.py`) and `.anf` ([`../src/to_anf.py`](../src/to_anf.py)).
 
-![SAT Competition and SAT-Race 2002-2026 25-year multi-track URI archive and certification overview](diagram.svg)
+### Non-Main Tracks & Shared-Benchmark Sub-Tracks (Including SC 2026 AI Sub-Tracks)
 
-*Figure: 25-year SAT Competition & SAT-Race archive timeline (2002–2026, 62 track-year URI manifests, 32,194 track-slots $\to$ 20,225 unique CNFs), deduplicated SAT/UNSAT/UNKNOWN distribution by track family, non-main & SC 2024–2026 `cake_lpr` certification summary, and 4-stage reproducible pipeline. Regenerated live via [`src/gen_diagram.py`](src/gen_diagram.py).*
+Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated benchmark set in GBD is included directly in [`uris/`](uris/):
 
-## Directory Layout & Usage
+- **Dedicated Non-Main CNF Tracks (37 manifests):** `random_2002`–`random_2018` (13 years, 5,753 CNFs), `crafted_2005`–`crafted_2016` (8 years, 2,857 slots), `handmade_2002`–`handmade_2004` (3 years, 1,122 slots), `agile_2016`–`agile_2017` (3,959 slots, short-timeout CDCL agility), `anni_2022` (5,355 CNFs, 20th Anniversary historical union), `submissions_2022`–`submissions_2026` (4,110 CNFs, complete yearly benchmark submission pools including unselected formulas), `portfolio_2012` (599 CNFs, SAT Challenge 2012), `mus_2011` (299 UNSAT CNFs, Minimum Unsatisfiable Subsets), `planning_2020` (200 CNFs, classical & HTN automated planning), `crypto_2021` (200 CNFs, cryptographic encodings), and `parallel_2015` (96 CNFs, SAT-Race 2015 Parallel track).
+- **SC 2026 AI-Generated & AI-Tuned Sub-Tracks (`[main-ai]`, `[exp-ai]`):** As documented on the official [SAT Competition 2026 Tracks page](https://satcompetition.github.io/2026/tracks.html) and confirmed in `sc2026_scores.csv` and the SC 2026 slides, the AI-Generated and AI-Tuned awards are **solver-eligibility subcategories within the Main, Experimental, Parallel, and Cloud tracks** — they evaluate on the **exact same 400 Main Track instances** in [`uris/main_2026.uri`](uris/main_2026.uri) (not a separate benchmark URI list). SAT Competition 2025 likewise consisted solely of the Main Track (with No-Limits sub-evaluation) and Parallel Track on [`uris/main_2025.uri`](uris/main_2025.uri).
+- **Parallel, Cloud, Hack, Experimental & No-Limits Tracks (2016–2026):** From 2016 onward (outside `parallel_2015`), the Parallel, Cloud, Hack (Glucose/CaDiCaL), Experimental, and No-Limits tracks all evaluate on the corresponding year's Main Track benchmark manifest (`uris/main_<year>.uri`, with No-Limits scored on the new-submission subset).
+- **Incremental Library Tracks (2015–2021):** The Incremental tracks distribute interactive C/C++ IPASIR application drivers and assumption-sequence suites as `.tar.xz` archives (e.g., [SC 2020 Downloads](https://satcompetition.github.io/2020/downloads.html), [SC 2021 Downloads](https://satcompetition.github.io/2021/downloads.html)) rather than static single-query DIMACS `.cnf` instances, so they are outside static CNF GBD manifests.
+- **Historical Main Track Lineage (2002–2026):** The core sequential benchmark track spans all 25 consecutive years via `industrial_2002`–`industrial_2007` (5 years), `application_2009`–`application_2016` (6 years), and `main_2006`–`main_2026` (14 years) = **25 manifests, 7,644 slots, 5,758 unique CNFs**. The recent **4-year SC 2023–2026 Main Track slice** (`main_2023.uri`–`main_2026.uri`) contains **1,600 year-slots $\to$ 1,548 unique CNFs** (**674 SAT / 755 UNSAT / 119 UNKNOWN**, 92.3% known ground truth).
+
+## Corpus & Data Sizes
+
+### Directory Layout & Usage
 
 - [`uris/`](uris/) — **62 immutable GBD HTTPS URI manifests** (`<track>_<year>.uri`) spanning 2002–2026 across 14 track categories (`main`, `application`, `industrial`, `crafted`, `handmade`, `random`, `agile`, `anni`, `submissions`, `portfolio`, `mus`, `planning`, `crypto`, `parallel`).
 - [`expected.tsv`](expected.tsv) — Strict 2-column sorted ground-truth manifest for all **20,225 unique CNFs** (`<hash>.cnf\t<SAT|UNSAT|UNKNOWN>`: **7,818 SAT / 5,792 UNSAT / 6,615 UNKNOWN**), compiled from GBD `meta.db` (`https://benchmark-database.de/getdatabase/meta_db`), official SC 2023/2024/2026 competition logs, and our formally verified SC 2024–2026 `cake_lpr` runs (**0 conflicts across all 9 merged sources**).
@@ -21,19 +39,9 @@ Across all 62 track-year manifests in [`uris/`](uris/), this archive spans **32,
 - [`src/sc23_24_manifest.json`](src/sc23_24_manifest.json) — Exact 32-character GBD hashes and provenance metadata for the 14 curated SC 2023–2024 flat-CNF Gauntlet instances (14/14 covered by `uris/main_2023.uri`–`uris/main_2026.uri`).
 - [`src/gen_diagram.py`](src/gen_diagram.py) — Live SVG generator for [`diagram.svg`](diagram.svg).
 
-## Non-Main Tracks & Shared-Benchmark Sub-Tracks (Including SC 2026 AI Sub-Tracks)
+### Complete Track-Category & 62-Manifest Catalog (2002–2026)
 
-Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated benchmark set in GBD is included directly in [`uris/`](uris/):
-
-- **Dedicated Non-Main CNF Tracks (37 manifests):** `random_2002`–`random_2018` (13 years, 5,753 CNFs), `crafted_2005`–`crafted_2016` (8 years, 2,857 slots), `handmade_2002`–`handmade_2004` (3 years, 1,122 slots), `agile_2016`–`agile_2017` (3,959 slots, short-timeout CDCL agility), `anni_2022` (5,355 CNFs, 20th Anniversary historical union), `submissions_2022`–`submissions_2026` (4,110 CNFs, complete yearly benchmark submission pools including unselected formulas), `portfolio_2012` (599 CNFs, SAT Challenge 2012), `mus_2011` (299 UNSAT CNFs, Minimum Unsatisfiable Subsets), `planning_2020` (200 CNFs, classical & HTN automated planning), `crypto_2021` (200 CNFs, cryptographic encodings), and `parallel_2015` (96 CNFs, SAT-Race 2015 Parallel track).
-- **SC 2026 AI-Generated & AI-Tuned Sub-Tracks (`[main-ai]`, `[exp-ai]`):** As documented on the official [SAT Competition 2026 Tracks page](https://satcompetition.github.io/2026/tracks.html) and confirmed in `sc2026_scores.csv` and the SC 2026 slides, the AI-Generated and AI-Tuned awards are **solver-eligibility subcategories within the Main, Experimental, Parallel, and Cloud tracks** — they evaluate on the **exact same 400 Main Track instances** in [`uris/main_2026.uri`](uris/main_2026.uri) (not a separate benchmark URI list). SAT Competition 2025 likewise consisted solely of the Main Track (with No-Limits sub-evaluation) and Parallel Track on [`uris/main_2025.uri`](uris/main_2025.uri).
-- **Parallel, Cloud, Hack, Experimental & No-Limits Tracks (2016–2026):** From 2016 onward (outside `parallel_2015`), the Parallel, Cloud, Hack (Glucose/CaDiCaL), Experimental, and No-Limits tracks all evaluate on the corresponding year's Main Track benchmark manifest (`uris/main_<year>.uri`, with No-Limits scored on the new-submission subset).
-- **Incremental Library Tracks (2015–2021):** The Incremental tracks distribute interactive C/C++ IPASIR application drivers and assumption-sequence suites as `.tar.xz` archives (e.g., [SC 2020 Downloads](https://satcompetition.github.io/2020/downloads.html), [SC 2021 Downloads](https://satcompetition.github.io/2021/downloads.html)) rather than static single-query DIMACS `.cnf` instances, so they are outside static CNF GBD manifests.
-- **Historical Main Track Lineage (2002–2026):** The core sequential benchmark track spans all 25 consecutive years via `industrial_2002`–`industrial_2007` (5 years), `application_2009`–`application_2016` (6 years), and `main_2006`–`main_2026` (14 years) = **25 manifests, 7,644 slots, 5,758 unique CNFs**. The recent **4-year SC 2023–2026 Main Track slice** (`main_2023.uri`–`main_2026.uri`) contains **1,600 year-slots $\to$ 1,548 unique CNFs** (**674 SAT / 755 UNSAT / 119 UNKNOWN**, 92.3% known ground truth).
-
-## Complete Track-Category & 62-Manifest Catalog (2002–2026)
-
-### Summary by Track Category
+#### Summary by Track Category
 
 | Track Category | Manifests | Years Covered | URI Slots | Unique CNFs | SAT | UNSAT | UNKNOWN | Description |
 |---|---:|---|---:|---:|---:|---:|---:|---|
@@ -53,7 +61,7 @@ Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated be
 | `parallel` | 1 | 2015 | 96 | 96 | 49 | 33 | 14 | SAT-Race 2015 Dedicated Parallel Track |
 | **Total (Deduplicated)** | **62** | **2002–2026** | **32,194** | **20,225** | **7,818** | **5,792** | **6,615** | **11,969 cross-track/cross-year overlap slots deduplicated** |
 
-### All 62 Track-Year URI Manifests (`uris/*.uri`)
+#### All 62 Track-Year URI Manifests (`uris/*.uri`)
 
 | Year | Event | Manifest File | Track | URIs | SAT | UNSAT | UNKNOWN |
 |---:|---|---|---|---:|---:|---:|---:|
@@ -120,7 +128,9 @@ Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated be
 | 2026 | SAT 2026 | [`uris/main_2026.uri`](uris/main_2026.uri) | Main | 400 | 192 | 169 | 39 |
 | 2026 | SAT 2026 | [`uris/submissions_2026.uri`](uris/submissions_2026.uri) | Submissions | 1,096 | 128 | 93 | 875 |
 
-## 3-Year SC 2024–2026 `cake_lpr` Formal Certification Summary ($T = 300\;\text{s}$)
+## Benchmark Results
+
+### 3-Year SC 2024–2026 `cake_lpr` Formal Certification Summary ($T = 300\;\text{s}$)
 
 - **Hardware & Protocol:** Frobenius 1C (`--max-cores 1 --timeout 300` with UNSAT proof logging enabled) evaluated on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64, 1 core per instance) across all **1,166 unique Main Track CNFs** of SAT Competitions 2024, 2025, and 2026 (`1,200` year-slots). Every SAT model was independently verified against the raw `.cnf.xz` clauses, and every UNSAT refutation was formally certified by the verified CakeML checker [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) (`s VERIFIED UNSAT`), including previously official-unknown SC 2024 instance `35789168b67a74985804902008251269` (`tseitingrid6x200`) $\to$ `UNSAT`.
 
@@ -131,7 +141,7 @@ Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated be
 | **SC 2026** (`uris/main_2026.uri`) | 400 / 400 | **135** | 62 | 73 | **417.49 s** | 0 |
 | **Combined Deduplicated (SC 2024–2026)** | **1,166** | **441** | **234** | **207** | — | **0** |
 
-## Benchmark Results Across SC 2024–2026 Main Track Instances ($T = 15\;\text{s}, 60\;\text{s}$)
+### SC 2024–2026 Main Track Timings ($T = 15\;\text{s}, 60\;\text{s}$)
 
 - **Hardware & Protocol:** Frobenius 1C was run on our local **AMD Ryzen 9 5950X** (16 cores / 32 threads, Linux x86_64), **1 core per instance** (`--max-cores 1 --timeout 60`, unrestricted available RAM, 0 errors, 0 unsoundness, 0 verdict disagreements against official SC 2024 & SC 2026 ground truth). Competitor rows are taken directly from official published competition logs/slides (**StarExec** cluster for SC 2024; **LMU / HoreKa competition sequential clusters** for SC 2025–2026; different CPU hardware affects absolute runtimes, though rankings and PAR-2 magnitudes are comparable within an order of magnitude).
 
@@ -156,11 +166,11 @@ Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated be
 † SC 2025 published aggregate 5,000 s slide standings without a per-instance runtime CSV.
 *Notable unique wins:* Frobenius solved **12** SC 2024 instances within 60 s where [kissat-sc2024](https://github.com/arminbiere/kissat) timed out past 5,000 s (**26** vs. [CaDiCaL](https://github.com/arminbiere/cadical)), and **18** SC 2026 instances within 60 s where [satsuma-iter-kissat](https://github.com/markusa4/satsuma) timed out past 5,000 s (**41** vs. [Lymphosat](https://c.mov/lymphosat/), **53** vs. [kissat-biere](https://github.com/arminbiere/kissat)).
 
-## Curated 14-Instance SC 2023–2024 Gauntlet Slice (1-Core Flat `.cnf`, $T_{\max} = 600\;\text{s}$)
+### Curated 14-Instance SC 2023–2024 Gauntlet Slice (1-Core Flat `.cnf`, $T_{\max} = 600\;\text{s}$)
 
 Fourteen representative cross-domain SAT Competition 2023 & 2024 Main Track formulas spanning 11 industrial, cryptographic, hardware-verification, algebraic, and combinatorial domains (previously maintained as a separate directory; **14/14 = 100%** are indexed in `uris/main_2023.uri`–`uris/main_2026.uri` and [`src/sc23_24_manifest.json`](src/sc23_24_manifest.json)). Twelve form the SAT Competition slice of the unified 50-benchmark flat-CNF gauntlet (`two_trees_511v` and `mp1_nb7t42` are companion instances from the same selection).
 
-### Instance Metadata & Exact GBD Identifiers (14/14 in `expected.tsv`)
+#### Instance Metadata & Exact GBD Identifiers (14/14 in `expected.tsv`)
 
 | Instance | Track Year(s) | Family | GBD MD5 Hash (Download) | Ans | CNF Vars | CNF Clauses |
 |---|---|---|---|---|---:|---:|
@@ -179,7 +189,7 @@ Fourteen representative cross-domain SAT Competition 2023 & 2024 Main Track form
 | `si2_b03m_m800_03` | 2024 | SC24-SubIso | [`af750c18578d52e60472315692ad83c0`](https://benchmark-database.de/file/af750c18578d52e60472315692ad83c0) | SAT | 10,862 | 472,588 |
 | `mp1_nb7t42` | 2024 | SC24-PolyMul | [`c0293283432a9b15cd743702163f5184`](https://benchmark-database.de/file/c0293283432a9b15cd743702163f5184) | SAT | 52,731 | 208,936 |
 
-### Flat-CNF Gauntlet Timings (1-Core, $T_{\max} = 600\;\text{s}$; dense-solver 0.0.4 Verified to $T_{\max} = 5{,}000\;\text{s}$)
+#### Flat-CNF Gauntlet Timings (1-Core, $T_{\max} = 600\;\text{s}$; dense-solver 0.0.4 Verified to $T_{\max} = 5{,}000\;\text{s}$)
 
 Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs for sub-minute solves; all solvers read the identical flat `.cnf` file except the explicit CryptoMiniSat 5.18.0 (XCNF) column; dense-solver 0.0.4 timeouts were extended to competition-standard $T_{\max} = 5{,}000\;\text{s}$):
 

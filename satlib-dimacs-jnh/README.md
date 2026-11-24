@@ -1,5 +1,9 @@
 # SATLIB — Variable-Length Random SAT — Hooker (full) (`satlib-dimacs-jnh`)
 
+![Hooker JNH empirical variable clause-length histogram and heterogeneous factor graph](diagram.svg)
+
+*Figure: Empirical variable clause-length histogram $P(k)$ ($k \in [2,14]$, mean $\bar{k} = 4.91$) parsed across all 42,000 clauses of the 50 Hooker JNH benchmarks paired with a heterogeneous multi-arity factor graph. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 50 variable-clause-length random SAT benchmarks (`jnh1`–`jnh310`, $n = 100$) contributed by John Hooker to the Second DIMACS Challenge.
 
-![Hooker JNH empirical variable clause-length histogram and heterogeneous factor graph](diagram.svg)
-
-*Figure: Empirical variable clause-length histogram $P(k)$ ($k \in [2,14]$, mean $\bar{k} = 4.91$) parsed across all 42,000 clauses of the 50 Hooker JNH benchmarks paired with a heterogeneous multi-arity factor graph. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 50 original native **DIMACS `.cnf.xz`** files (285.7 KB).
 - **`aig-converted/`** — 50 exact **Binary AIGER 1.9 `.aig.xz`** conversions (373.9 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 50 variable-clause-length random SAT benchmarks (`jnh1`–`jnh310`, $n = 100
 | **DIMACS-ANF** | `anf-converted/` | 50 | Vars: 1,662–2,119; Eqs: 2,362–2,919 (deg ≤ 3) | 970.1 KB |
 | **Total (4 Formats, Status: 16 SAT / 34 UNSAT)** | | **200** | | **1.87 MB** |
 
-## Comparative 1-Core Benchmark Results (All 50 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 50 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

@@ -1,5 +1,9 @@
 # Heule $3\times 3$ Matrix Multiplication — XOR-6 Cut Encodings (`heule-matrix-xor6cut`)
 
+![Heule matrix multiplication xor6cut root-arity decomposition and CDCL scaling cliff](diagram.svg)
+
+*Figure: 6-variable XOR-cut root-arity decomposition (`xor6cut-27` down to open `xor6cut-22`) paired with the empirical 1-core CDCL runtime cliff (`1.09 s → 12.08 s → 39.85 s → >60 s`). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Marijn J. H. Heule, Manuel Kauers, and Martina Seidl
@@ -15,11 +19,7 @@ Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a ten
 
 Six compact XOR-6 cut encodings (`xor6cut-22` through `xor6cut-27`) of the $3\times 3$ $\mathbb{F}_2$ matrix-multiplication Brent equations spanning ranks $R = 22 \dots 27$.
 
-![Heule matrix multiplication xor6cut root-arity decomposition and CDCL scaling cliff](diagram.svg)
-
-*Figure: 6-variable XOR-cut root-arity decomposition (`xor6cut-27` down to open `xor6cut-22`) paired with the empirical 1-core CDCL runtime cliff (`1.09 s → 12.08 s → 39.85 s → >60 s`). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 6 original native **DIMACS `.cnf.xz`** files (2.04 MB).
 - **`aig-converted/`** — 6 exact **Binary AIGER 1.9 `.aig.xz`** conversions (1.77 MB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -36,11 +36,7 @@ Six compact XOR-6 cut encodings (`xor6cut-22` through `xor6cut-27`) of the $3\ti
 | **DIMACS-ANF** | `anf-converted/` | 6 | Vars: 35,982–44,955; Eqs: 84,297–104,085 (deg ≤ 3) | 1.44 MB |
 | **Total (4 Formats, Status: Mixed ($R = 22\text{--}27$))** | | **24** | | **5.73 MB** |
 
-## Published Results & References
-
-- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
-
-## Comparative 1-Core Benchmark Results (All 6 Instances, Flat `.cnf` + `.xcnf`, $T_{\max} = 60\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 60\;\text{s}$, PAR-2 penalty $120,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 6 instances** were run with **0 verdict disagreements**.
 
@@ -70,3 +66,7 @@ Six compact XOR-6 cut encodings (`xor6cut-22` through `xor6cut-27`) of the $3\ti
 
 **Collection Phase-Transition Summary (6 instances, 4 formats: 6 CNF / 6 AIG / 6 XCNF / 6 ANF):** median $\rho_{\mathrm{crit}} = 2.65\times$ (range `2.62x–2.68x`), median $\kappa = 1.22$, regime split **0 Under / 0 Near-critical / 6 Over**, total extracted native XOR parity clauses = **26,244**, total ANF equations = **565,146**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.

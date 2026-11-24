@@ -1,5 +1,9 @@
 # SAT Shortcut Challenge — Tier 1 Structured Suite (`sat-shortcut-challenge-tier1`)
 
+![Four-pillar architectural map of SAT Shortcut Challenge Tier 1 structured instances](diagram.svg)
+
+*Figure: Four-pillar architectural map of Keith Adler's 47 structured Tier-1 instances across 9 families ($\mathbb{F}_2$ parity, arithmetic miters, counting/coloring invariants, and graph obstructions + random 3-SAT control). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author & Created by:** Keith Adler ([`@keithadler`](https://twitter.com/keithadler) on Twitter/X)
@@ -22,11 +26,7 @@ Designed by Keith Adler to separate detecting known polynomial-time structure fr
 8. Hamiltonian cycle (`ham_*`: planted, unbalanced bipartite, cut-vertex, 8 instances)
 9. XOR system + random 3-clauses (`xor_plus_*`, 4 instances)
 
-![Four-pillar architectural map of SAT Shortcut Challenge Tier 1 structured instances](diagram.svg)
-
-*Figure: Four-pillar architectural map of Keith Adler's 47 structured Tier-1 instances across 9 families ($\mathbb{F}_2$ parity, arithmetic miters, counting/coloring invariants, and graph obstructions + random 3-SAT control). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 47 original native **DIMACS `.cnf.xz`** files (322.9 KB).
 - **`aig-converted/`** — 47 exact **Binary AIGER 1.9 `.aig.xz`** conversions (414.8 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -44,7 +44,7 @@ Designed by Keith Adler to separate detecting known polynomial-time structure fr
 | **DIMACS-ANF** | `anf-converted/` | 47 | Vars: 30–4,560; Eqs: 20–118,241 (deg ≤ 3) | 588.3 KB |
 | **Total (4 Formats, Status: 13 SAT / 34 UNSAT)** | | **188** | | **1.57 MB** |
 
-## Comparative 1-Core Benchmark Results (All 47 Instances, Flat `.cnf`, $T_{\max} = 300\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 14 dedicated physical cores `0..13` with zero SMT sharing, $T_{\max} = 300\;\text{s}$, PAR-2 penalty $600\;\text{s}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 47 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 - **Note on 14-core load vs. solo core:** Under simultaneous 14-core load, `ham_bipartite_14_15` took 38.65 s for Frobenius (vs. 74 ms on an uncontended solo core); the uniform 14-core sweep measurement is reported below for strict same-protocol consistency across all 5 solvers. At $T_{\max} = 300\;\text{s}$, [Kissat](https://github.com/arminbiere/kissat) (`79.18 s`), [CaDiCaL](https://github.com/arminbiere/cadical) (`157.98 s`), and [CryptoMiniSat](https://github.com/msoos/cryptominisat) (`214.92 s`) solve `cec_mult_10x10_arr_vs_wal` (UNSAT), while Frobenius and [dense-solver](https://github.com/libdense/dense-solver) solve `php_13_12` and `tseitin_n200_unsat` in `2–3 ms` where standard CDCL solvers time out (`>300 s`).
@@ -111,3 +111,7 @@ Designed by Keith Adler to separate detecting known polynomial-time structure fr
 
 **Collection Phase-Transition Summary (47 instances, 4 formats: 47 CNF / 47 AIG / 47 XCNF / 47 ANF):** median $\rho_{\mathrm{crit}} = 1.75\times$ (range `0.62x–72.0x`), median $\kappa = 0.92$, regime split **9 Under / 8 Near-critical / 30 Over**, total extracted native XOR parity clauses = **6,793**, total ANF equations = **310,239**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- K. Adler ([`@keithadler`](https://twitter.com/keithadler)), [`keithadler/sat-shortcut-challenge`](https://github.com/keithadler/sat-shortcut-challenge): Three-tier SAT shortcut vs. unstructured search benchmark challenge (Apache-2.0).

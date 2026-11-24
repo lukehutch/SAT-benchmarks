@@ -10,7 +10,7 @@
 - **Integrity & Manifest:** Both input DIMACS CNFs in `cnf-orig/` decompress byte-for-byte to match upstream [`SHA256SUMS`](SHA256SUMS); Jason Davies' original description is preserved verbatim in [`UPSTREAM_README.txt`](UPSTREAM_README.txt).
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 2 instances (**0 SAT / 1 UNSAT / 1 UNKNOWN**).
 
-## Mathematical Background & Historical Lineage
+## Problem Description
 
 A **$c$-coloring of an $m \times n$ grid** assigns each cell $(r, c) \in \{0, \dots, m-1\} \times \{0, \dots, n-1\}$ one of $c$ colors. The coloring is **rectangle-free** if no two distinct rows $r_1 < r_2$ and two distinct columns $c_1 < c_2$ have all four corners $(r_1, c_1), (r_1, c_2), (r_2, c_1), (r_2, c_2)$ assigned the same color. Equivalently, viewing the grid as the edges of the complete bipartite graph $K_{m,n}$, a rectangle-free $c$-coloring is an edge $c$-coloring of $K_{m,n}$ avoiding monochromatic $K_{2,2} \cong C_4$ subgraphs.
 
@@ -28,11 +28,11 @@ Two classical extremal quantities govern this problem:
    - **Conjecture 5:** For any prime power $k$, $z(k^2 + k - 3) = k^3 + 2k^2 - 6k + 2$. At $k = 5$, this predicts $z(27) = 147$ (attained by deleting 4 points and 4 lines with 9 incidences from the $31 \times 31$ incidence matrix of the projective plane $\mathrm{PG}(2, 5)$).
    - **Conjecture 11:** $b_5(2) = 28$. Because any rectangle-free 5-coloring of a $27 \times 27$ grid crops immediately to $26 \times 26$ by dropping one row and one column, **a single valid $27 \times 27$ 5-coloring proves $b_5(2) = 28$ and settles Conjecture 11**.
 
-## Exact Structural Anatomy of the DIMACS Encodings
+### Exact Structural Anatomy of the DIMACS Encodings
 
 Both instances share **5,244 variables** and an identical **1,067,824-clause base formula**, differing only in the trailing unit clauses that pin partial row/column images of the movable templates. Because $27^2 = 729$ and $z(27)$ is conjectured to be $147$, any 5-coloring must average $729 / 5 = 145.8$ cells per color; the encoding fixes three near-extremal $\mathrm{PG}(2,5)$-derived templates of sizes `147`, `147`, and `145` (covering `439` cells) and leaves the remaining `290` cells to be rectangle-free 2-colored by colors 4 and 5:
 
-### 1. Decoded $\mathrm{PG}(2, 5)$ Templates ($T_1 = T_2$ and $T_3$)
+#### 1. Decoded $\mathrm{PG}(2, 5)$ Templates ($T_1 = T_2$ and $T_3$)
 
 - **Fixed Color-1 Template $T_1$ & Movable Color-2 Template $T_2$ (`147` cells, $T_1 = T_2$):**
   - Exact row and column weight distribution: `15` rows of weight `5` and `12` rows of weight `6` ($15 \times 5 + 12 \times 6 = 147$; identical column profile), with pairwise row intersections strictly in $\{0, 1\}$ (`330` pairs meet in `1` column, `21` pairs are disjoint — zero $2 \times 2$ rectangles).
@@ -42,7 +42,7 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
   - Exact row and column weight distribution: `17` rows of weight `5` and `10` rows of weight `6` ($17 \times 5 + 10 \times 6 = 145$; `320` pairs meet in `1` column, `31` pairs disjoint — zero $2 \times 2$ rectangles), realizing $\mathrm{PG}(2, 5)$ minus a 7-edge $4 \times 4$ submatrix (`(2, 5, 5, 5)` non-intersection cliques).
   - Self-dual ($T_3 \cong T_3^\top$) with exact dihedral automorphism group $\mathrm{Aut}(T_3) \cong D_{10}$ of order **20** (row/column orbits `[2, 5, 10, 10]`).
 
-### 2. Variable Partition (`5,244` Variables)
+#### 2. Variable Partition (`5,244` Variables)
 
 | Variable Range | Count | Meaning |
 |---|---:|---|
@@ -52,7 +52,7 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 | `2188..2916` ($C_3$) | 729 | $27 \times 27$ column-permutation bijection for movable template $T_3$ |
 | `2917..5244` ($G_0, G_1, G_2, G_3$) | 2,328 | $582 \times 4$ color-indicator variables (colors 2, 3, 4, 5) for the $729 - 147 = 582$ non-$T_1$ cells in row-major order |
 
-### 3. Clause Accounting (`1,067,824` Shared Base Clauses; `99.92%` Horn, $\alpha = 203.6$)
+#### 3. Clause Accounting (`1,067,824` Shared Base Clauses; `99.92%` Horn, $\alpha = 203.6$)
 
 | Clause Family | Length | Count | Exact Combinatorial Formula |
 |---|---:|---:|---|
@@ -70,12 +70,12 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 | Color 4 vs. Color 5 row-0 symmetry breaking | 1..22 | 22 | First-appearance ordering across row 0's `22` non-$T_1$ cells |
 | **Shared Base Total** | **1..27** | **1,067,824** | **Exact match** (`848,556` ternary = `79.5%`) |
 
-### 4. Exact Difference Between `01-known-unsat` and `02-open`
+#### 4. Exact Difference Between `01-known-unsat` and `02-open`
 
 - **`01-known-unsat.cnf` (`1,067,876` clauses = base + `52` unit clauses):** Pins 13 row images and 13 column images of $T_2$ plus 13 row images and 13 column images of $T_3$. Pure level-0 unit propagation immediately fixes **3,006 / 5,244 variables** (`+129` true, `-2,877` false), collapsing the formula **12.8×** down to **`2,238` active variables** and **`83,252` clauses** (`10,893` binary, `15,106` ternary, `57,139` 4-clauses) and breaking all template automorphisms.
 - **`02-open.cnf` (`1,067,827` clauses = base + `3` unit clauses: `16 0`, `28 0`, `57 0`):** Pins only the first three row images of $T_2$ (host rows `0, 1, 2` $\mapsto$ source rows `15, 0, 2`). Level-0 unit propagation fixes only **237 / 5,244 variables**, leaving **`5,007` active variables** and **`924,915` clauses** (`108,395` binary, `719,840` ternary, `96,452` 4-clauses). While these three pins reduce $\mathrm{Stab}_{\mathrm{Aut}(T_1)}(0,1,2)$ and $\mathrm{Stab}_{\mathrm{Aut}(T_2)}(15,0,2)$ to the trivial group, **the full order-20 dihedral automorphism group $\mathrm{Aut}(T_3) \cong D_{10}$ acting on $(R_3, C_3)$ remains 100% unbroken** in `02-open.cnf`.
 
-## Directory Layout & Four-Format Corpus
+## Corpus & Data Sizes
 
 - `cnf-orig/` — Exact unmodified `xz`-compressed DIMACS CNFs matching [`SHA256SUMS`](SHA256SUMS) (`1.70 MB` total; excludes any `.out` files).
 - `aig-converted/` — Exact logically equivalent Binary AIGER 1.9 `.aig.xz` miters (`3.42 MB` total, 2/2 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`, `0` errors).
@@ -88,7 +88,7 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 | `01-known-unsat` | **UNSAT** | 5,244 | 1,067,876 | 872.3 KB | 1.74 MB (`3,002,828`) | 880.7 KB (`0`) | 1.10 MB (`1,170,048`) |
 | `02-open` | **UNKNOWN** *(Open)* | 5,244 | 1,067,827 | 872.2 KB | 1.68 MB (`3,002,781`) | 880.6 KB (`0`) | 1.15 MB (`1,169,999`) |
 
-## Comparative 1-Core Benchmark Results
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run** (`taskset -c 2` or `taskset -c 3`), identical uncompressed flat DIMACS `.cnf` inputs, default single-thread flags (Frobenius 1C default / `--timeout`, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 `-t`, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 `--maxtime -t 1`, [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 default under `timeout`, [Kissat](https://github.com/arminbiere/kissat) 4.0.4 `--time=`). Zero verdict disagreements across all solvers.
 - **Note on Jason Davies' 300 s pilot:** In [`UPSTREAM_README.txt`](UPSTREAM_README.txt), CaDiCaL 1.9.5 solved `01-known-unsat.cnf` in `236.82` CPU s (`drat-trim`: `446.90` CPU s), while CaDiCaL 3.1.0 and Kissat 4.0.4 reached the `300` CPU s pilot limit. Extending the single-core cutoff to **$T_{\max} = 600\;\text{s}$** cleanly closes `01-known-unsat.cnf` across four of the five solvers.

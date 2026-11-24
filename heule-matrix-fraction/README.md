@@ -1,5 +1,9 @@
 # Heule $3\times 3$ Matrix Multiplication — Fractional Variants (`heule-matrix-fraction`)
 
+![Heule matrix multiplication fraction cardinality-restricted Brent encoding](diagram.svg)
+
+*Figure: XOR-free cardinality-restricted $R = 23$ Brent encoding replacing mod-2 parity with `EXACTLY-1` ($\delta=1$) and `ZERO-OR-2` ($\delta=0$, `0` XORs, `89%` Horn) plus `noRank3` and live-decoded 4-pair pins for `f-d-3`, `f-d-4`, `f-d-6`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Authors:** Marijn J. H. Heule, Manuel Kauers, and Martina Seidl
@@ -15,11 +19,7 @@ Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a ten
 
 Three restricted-coefficient / fractional variants (`f-d-3`, `f-d-4`, `f-d-6`) of the $3\times 3$ matrix-multiplication Brent equations.
 
-![Heule matrix multiplication fraction cardinality-restricted Brent encoding](diagram.svg)
-
-*Figure: XOR-free cardinality-restricted $R = 23$ Brent encoding replacing mod-2 parity with `EXACTLY-1` ($\delta=1$) and `ZERO-OR-2` ($\delta=0$, `0` XORs, `89%` Horn) plus `noRank3` and live-decoded 4-pair pins for `f-d-3`, `f-d-4`, `f-d-6`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 3 original native **DIMACS `.cnf.xz`** files (947.7 KB).
 - **`aig-converted/`** — 3 exact **Binary AIGER 1.9 `.aig.xz`** conversions (1.31 MB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -36,11 +36,7 @@ Three restricted-coefficient / fractional variants (`f-d-3`, `f-d-4`, `f-d-6`) o
 | **DIMACS-ANF** | `anf-converted/` | 3 | Vars: 477,199; Eqs: 474,728 (deg ≤ 3) | 4.76 MB |
 | **Total (4 Formats, Status: Hard)** | | **12** | | **7.93 MB** |
 
-## Published Results & References
-
-- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.
-
-## Comparative 1-Core Benchmark Results (All 3 Instances, Flat `.cnf` + `.xcnf`, $T_{\max} = 60\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 60\;\text{s}$, PAR-2 penalty $120,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 3 instances** were run with **0 verdict disagreements**.
 
@@ -64,3 +60,7 @@ Three restricted-coefficient / fractional variants (`f-d-3`, `f-d-4`, `f-d-6`) o
 
 **Collection Phase-Transition Summary (3 instances, 4 formats: 3 CNF / 3 AIG / 3 XCNF / 3 ANF):** median $\rho_{\mathrm{crit}} = 2.60\times$ (range `2.60x–2.60x`), median $\kappa = 1.26$, regime split **0 Under / 0 Near-critical / 3 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **1,424,184**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.

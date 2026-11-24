@@ -1,5 +1,9 @@
 # [dense-solver](https://github.com/libdense/dense-solver) Synthetic Multi-Encoding Pigeonhole Principle Benchmarks (`dense-solver-synthetic-php/`)
 
+![Multi-encoding Pigeonhole Principle K_{5,4} collision graph and exact PHP 9x8 footprint comparison](diagram.svg)
+
+*Figure: Complete bipartite pigeonhole graph $K_{5,4}$ illustrating the global counting collision, Pairwise $O(n^3)$ vs. Sequential $O(n^2)$ scaling up to $\mathrm{PHP}^{65}_{64}$, and the exact log-scaled variable/clause footprints parsed across all 11 `php9x8-*` AMO encodings. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
@@ -17,11 +21,7 @@ This collection holds the **17 structured Pigeonhole Principle CNFs** shipped wi
 - **Large-scale UNSAT scaling (4 UNSAT files):** $\mathrm{PHP}^{31}_{30}$ and $\mathrm{PHP}^{65}_{64}$ in both quadratic pairwise (`133,185` clauses at $65 \times 64$) and linear Sinz sequential (`12,289` clauses at $65 \times 64$) encodings.
 - **Satisfiable bijection controls (2 SAT files):** `php8x8-pairwise` and `php8x8-sequential` ($\mathrm{PHP}^8_8$, $8!$ valid matchings).
 
-![Multi-encoding Pigeonhole Principle K_{5,4} collision graph and exact PHP 9x8 footprint comparison](diagram.svg)
-
-*Figure: Complete bipartite pigeonhole graph $K_{5,4}$ illustrating the global counting collision, Pairwise $O(n^3)$ vs. Sequential $O(n^2)$ scaling up to $\mathrm{PHP}^{65}_{64}$, and the exact log-scaled variable/clause footprints parsed across all 11 `php9x8-*` AMO encodings. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 17 original native **DIMACS `.cnf.xz`** files (113.6 KB).
 - **`aig-converted/`** — 17 exact **Binary AIGER 1.9 `.aig.xz`** conversions (190.6 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -38,7 +38,7 @@ This collection holds the **17 structured Pigeonhole Principle CNFs** shipped wi
 | **DIMACS-ANF** | `anf-converted/` | 17 | Vars: 104–12,221; Eqs: 208–137,150 (deg ≤ 3) | 330.7 KB |
 | **Total (4 Formats, Status: 2 SAT / 15 UNSAT)** | | **68** | | **748.0 KB** |
 
-## Comparative 1-Core Benchmark Results (All 17 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 17 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers (cross-checked against [`expected.tsv`](expected.tsv)).
 

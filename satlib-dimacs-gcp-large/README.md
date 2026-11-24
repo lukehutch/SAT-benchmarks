@@ -1,5 +1,9 @@
 # SATLIB — Large Graph Colouring `g125`/`g250` (full) (`satlib-dimacs-gcp-large`)
 
+![Large dense DIMACS graph coloring adjacency matrix and degree distribution for g125](diagram.svg)
+
+*Figure: Real 125-vertex adjacency density heatmap ($5\times 5$ blocks, $\rho=0.502$) and binomial degree distribution parsed from `cnf-orig/g125.17.cnf.xz` alongside the parsed `g125`/`g250` suite dimensions. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 All 4 large graph coloring benchmarks (`g125.17`, `g125.18`, `g250.15`, `g250.29`) from the Second DIMACS Challenge.
 
-![Large dense DIMACS graph coloring adjacency matrix and degree distribution for g125](diagram.svg)
-
-*Figure: Real 125-vertex adjacency density heatmap ($5\times 5$ blocks, $\rho=0.502$) and binomial degree distribution parsed from `cnf-orig/g125.17.cnf.xz` alongside the parsed `g125`/`g250` suite dimensions. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 4 original native **DIMACS `.cnf.xz`** files (586.2 KB).
 - **`aig-converted/`** — 4 exact **Binary AIGER 1.9 `.aig.xz`** conversions (294.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ All 4 large graph coloring benchmarks (`g125.17`, `g125.18`, `g250.15`, `g250.29
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 3,875–13,750; Eqs: 68,022–461,122 (deg ≤ 3) | 994.4 KB |
 | **Total (4 Formats, Status: 4 SAT / 0 UNSAT)** | | **16** | | **2.30 MB** |
 
-## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

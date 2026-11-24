@@ -11,7 +11,7 @@
 - **License:** Mozilla Public License 2.0 (MPL-2.0, see [`LICENSE`](LICENSE)).
 - **Ground Truth Manifest:** [`expected.tsv`](expected.tsv) (**6 SAT / 4 UNSAT**).
 
-## Mathematical Problem & Picat-SAT Encoding
+## Problem Description
 
 A **Vertex Magic Total Labeling (VMTL)** of the complete graph $K_n$ assigns distinct integers from $\{1, 2, \dots, M\}$ with $M = n + \binom{n}{2} = \frac{n(n+1)}{2}$ to all $n$ vertices $V_1, \dots, V_n$ and all $\binom{n}{2}$ undirected edges $E_{ij}$ ($1 \le i < j \le n$) such that every vertex weight equals a fixed magic constant $K$:
 
@@ -27,7 +27,7 @@ $$K_{\min}(n) = \left\lceil \frac{n(n^2+3)}{4} \right\rceil \le K \le \left\lflo
 
 - **Why Picat-SAT VMTL Challenges CDCL:** Picat compiles the single global `all_different(Vars)` over $M$ log-encoded variables alongside $n$ separate multi-operand integer adder trees (using Berkeley Espresso prime-implicant minimization). While `vmtl_n5_k34.cnf` ($490$ variables), `vmtl_n6_k58.cnf` ($870$ variables), and `vmtl_n10_k257.cnf` ($6{,}065$ variables) are provably UNSAT by the 3-line global double-counting bound $K < K_{\min}(n)$, that global linear invariant is invisible to bit-level clause resolution, turning even $490$-variable instances into formidable CDCL refutation killers. At $K_4$, $K=19$ is additionally infeasible (only $K \in \{20, 21, 23\}$ admit a VMTL of $K_4$), providing a fast certifiable UNSAT anchor (`vmtl_n4_k19.cnf`).
 
-## Corpus & Four-Format Inventory
+## Corpus & Data Sizes
 
 All **10 instances** are committed across all four lossless `xz`-compressed formats (`40` files total, every file well below GitHub's `95 MB` limit), accompanied by ground-truth verdicts in [`expected.tsv`](expected.tsv) (**6 SAT / 4 UNSAT**):
 
@@ -54,7 +54,22 @@ All **10 instances** are committed across all four lossless `xz`-compressed form
 | `vmtl_n10_k257.cnf` | $K_{10}$, $M=55$, $K=257 = K_{\min}-1$ | UNSAT | 6,065 | 43,705 | 84.3 KB | 142.5 KB | 84.5 KB | 317.1 KB |
 | `vmtl_n10_k280.cnf` | $K_{10}$, $M=55$, $K=280$ (mid $[258, 302]$) | SAT | 6,095 | 43,865 | 84.1 KB | 140.7 KB | 84.4 KB | 318.2 KB |
 
-## Benchmark Results (Single-Core Pinned, $T_{\max} = 60\;\text{s}$)
+### Sibling Collections (Picat-SAT Benchmark Family)
+
+This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
+
+| Collection | Combinatorial Problem | Upstream Model & License | Instances |
+|---|---|---|---:|
+| **`picat-vmtl/`** *(this collection)* | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
+| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
+| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
+| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
+| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
+| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
+
+## Benchmark Results
+
+*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -83,19 +98,6 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 374.53 s *(mean 37.45 s)* | 372.99 s *(mean 37.30 s)* | 383.98 s *(mean 38.40 s)* | 394.34 s *(mean 39.43 s)* | **300.00 s** *(mean 30.00 s)* |
 
 *Ground-truth UNSAT note:* `vmtl_n4_k19.cnf` is formally proof-certified (`drat-trim` + `lrat-check` + `cake_lpr`); `vmtl_n5_k34.cnf`, `vmtl_n6_k58.cnf`, and `vmtl_n10_k257.cnf` are mathematically UNSAT via the exact global double-counting theorem $K < K_{\min}(n)$ (`34 < 35`, `58 < 59`, `257 < 258`), making them exceptionally compact (`490–6,065` variables) CDCL refutation challenges.
-
-## Sibling Collections (Picat-SAT Benchmark Family)
-
-This directory is one of **6 single-problem-type collections** compiled natively via [Picat](https://picat-lang.org/) `3.9#12` `solve([$dump(...)], ...)` (`56` total instances across all four lossless `.xz` formats):
-
-| Collection | Combinatorial Problem | Upstream Model & License | Instances |
-|---|---|---|---:|
-| **`picat-vmtl/`** *(this collection)* | Vertex Magic Total Labeling on $K_n$ | `vmtl.pi` (MPL-2.0) | 10 (6 SAT / 4 UNSAT) |
-| [`picat-golomb-rulers/`](../picat-golomb-rulers/README.md) | Optimal Golomb Rulers ($M=6..10$) | `golomb_ruler.pi` (MIT) | 10 (5 SAT / 5 UNSAT) |
-| [`picat-costas-arrays/`](../picat-costas-arrays/README.md) | Costas Arrays ($N=8..16$) | `costas_array.pi` (MIT) | 9 (9 SAT / 0 UNSAT) |
-| [`picat-mapf/`](../picat-mapf/README.md) | Multi-Agent Path Finding (Makespan) | `mapf_makespan.pi` (MPL-2.0) | 8 (6 SAT / 2 UNSAT) |
-| [`picat-numberlink/`](../picat-numberlink/README.md) | Planar Numberlink Disjoint Paths | `numberlink_b.pi` (MPL-2.0) | 9 (6 SAT / 3 UNSAT) |
-| [`picat-rectangle-packing/`](../picat-rectangle-packing/README.md) | 2D Square / Rectangle Packing (`diffn` + `cumulative`) | `perfect_square_placement.pi` / `rect_packing.mzn` (MIT) | 10 (5 SAT / 5 UNSAT) |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

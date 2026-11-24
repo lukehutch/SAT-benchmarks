@@ -1,5 +1,9 @@
 # SATLIB — Morphed Small-World 5-Colouring `lp0..p0` (sample / 901*) (`satlib-sw-gcp`)
 
+![Morphed small-world 5-coloring ring topologies sw100-8](diagram.svg)
+
+*Figure: Real 100-vertex edge topologies parsed from `sw100-8-p0`, `lp4`, and `lp0`, showing Watts–Strogatz rewiring morphing a regular 4-neighbor ring lattice into a small-world 5-coloring graph with long-range chords. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -14,11 +18,7 @@
 
 Stratified sample of 5 instances (`sw100-8-*`) from the 901-instance SATLIB morphed small-world 5-colouring graph ensemble (full archive URLs in [`../satlib-archive-uris/`](../satlib-archive-uris/README.md)).
 
-![Morphed small-world 5-coloring ring topologies sw100-8](diagram.svg)
-
-*Figure: Real 100-vertex edge topologies parsed from `sw100-8-p0`, `lp4`, and `lp0`, showing Watts–Strogatz rewiring morphing a regular 4-neighbor ring lattice into a small-world 5-coloring graph with long-range chords. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 5 original native **DIMACS `.cnf.xz`** files (19.1 KB).
 - **`aig-converted/`** — 5 exact **Binary AIGER 1.9 `.aig.xz`** conversions (23.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -35,7 +35,7 @@ Stratified sample of 5 instances (`sw100-8-*`) from the 901-instance SATLIB morp
 | **DIMACS-ANF** | `anf-converted/` | 5 | Vars: 700; Eqs: 3,300 (deg ≤ 3) | 35.9 KB |
 | **Total (4 Formats, Status: 5 SAT / 0 UNSAT)** | | **20** | | **98.2 KB** |
 
-## Comparative 1-Core Benchmark Results (All 5 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 5 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

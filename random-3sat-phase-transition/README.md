@@ -1,12 +1,16 @@
 # Critical & Off-Threshold Phase-Transition Random 3-SAT (`random-3sat-phase-transition`)
 
+![Random 3-SAT phase-transition curve and factor graph around alpha_c = 4.267](diagram.svg)
+
+*Figure: Empirical $P(\mathrm{SAT})$ cliff and CDCL hardness peak around $\alpha_c \approx 4.267$ with all 8 committed $n=200$ sweep instances ($\alpha \in [3.80, 5.00]$, 4 SAT / 4 UNSAT) overlaid alongside a uniform 3-SAT factor graph. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
 - **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) and [`@tingan87`](https://twitter.com/tingan87) (Twitter/X)
 
-## Overview & Origin
+## Problem Description
 
 Uniform random 3-SAT formulas ($n = 200$ variables; clauses of 3 distinct uniformly random variables with independent uniform polarities) sampled across the classic **easy–hard–easy satisfiability phase transition** around the critical clause-to-variable ratio $\alpha_c = m / n \approx 4.26$:
 
@@ -19,11 +23,7 @@ These 8 instances (**4 SAT / 4 UNSAT**) provide a pure unstructured baseline wit
 - **Origin:** **Original** generator (MIT [`../LICENSE`](../LICENSE)), sampling the canonical uniform random 3-SAT phase-transition ensemble (Mitchell, Selman, & Levesque, AAAI 1992; Crawford & Auton, [AIJ 1996](https://doi.org/10.1016/0004-3702(95)00046-1)).
 - **Why they are important:** They trace raw solver search and local-search behavior across the under-constrained SAT shoulder, the critical threshold peak, and the over-constrained UNSAT slope where structural preprocessing yields no simplification.
 
-![Random 3-SAT phase-transition curve and factor graph around alpha_c = 4.267](diagram.svg)
-
-*Figure: Empirical $P(\mathrm{SAT})$ cliff and CDCL hardness peak around $\alpha_c \approx 4.267$ with all 8 committed $n=200$ sweep instances ($\alpha \in [3.80, 5.00]$, 4 SAT / 4 UNSAT) overlaid alongside a uniform 3-SAT factor graph. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Related Critical Phase-Transition Random 3-SAT Benchmarks in This Repo
+### Related Critical Phase-Transition Random 3-SAT Benchmarks in This Repo
 
 Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommendation to evaluate sampled SATLIB random UNSAT/SAT 3-SAT instances around the critical threshold (such as `uuf250-1065`), companion critical-threshold random 3-SAT corpora are also committed directly in this repository (in all four formats: `.cnf.xz`, `.aig.xz`, `.xcnf.xz`, and `.anf.xz`):
 
@@ -34,7 +34,9 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 - **SATLIB Large Random 3-SAT ([`../satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md)):** `f600`, `f1000`, `f2000` ($n \in \{600, 1{,}000, 2{,}000\}, \alpha = 4.25, \rho_{\mathrm{crit}} = 1.00\times$).
 - **SAT Shortcut Challenge Tier 3 ([`../sat-shortcut-challenge-tier3/`](../sat-shortcut-challenge-tier3/README.md)):** 25 uniform random 3-SAT instances scaling across $n \in \{300, 350, 400, 450, 500\}$ at $\alpha = 4.26$ ($\rho_{\mathrm{crit}} = 1.00\times$).
 
-## Directory Layout & Regeneration
+## Corpus & Data Sizes
+
+### Directory Layout & Regeneration
 
 - `cnf-orig/` — Original native **DIMACS CNF** formulas (8 `.cnf.xz` files, `35.2 KB`, 4 SAT / 4 UNSAT).
 - `aig-converted/` — Exact logically equivalent **Binary AIGER 1.9 `.aig.xz`** conversions (`42.5 KB`, all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
@@ -43,7 +45,7 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 - **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 8 instances (**4 SAT / 4 UNSAT**).
 - `src/gen_rand3sat.py` — Standalone zero-dependency Python 3 generator (`python3 src/gen_rand3sat.py`), alongside `src/cnf2aig.py` and `src/cnf2xcnf.py`.
 
-## Problem Parameters & Data Sizes
+### Problem Parameters & Data Sizes
 
 | Instance | Regime | Vars $n$ | Clauses $m$ | Ratio $m/n$ | Seed | Ans | `.cnf.xz` | AIG ANDs | `.aig.xz` | `.anf.xz` |
 |---|---|---:|---:|---:|---:|:---:|---:|---:|---:|---:|
@@ -56,7 +58,7 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 | `rand3sat_n200_r465_unsat` | Over-constrained | 200 | 930 | 4.65 | `204650` | UNSAT | 4.7 KB | 2,785 | 5.3 KB | 8.5 KB |
 | `rand3sat_n200_r500_unsat` | Over-constrained | 200 | 1,000 | 5.00 | `205000` | UNSAT | 5.1 KB | 2,990 | 6.2 KB | 9.1 KB |
 
-## Benchmark Results (1-Core, Flat DIMACS `.cnf` Input)
+## Benchmark Results
 
 - **Timeout:** $T_{\max} = 60\;\text{s}$ per instance.
 - **Same machine?** **Yes** — all six solver configurations were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT assignments independently verified clause-by-clause).

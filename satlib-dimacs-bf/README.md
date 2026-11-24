@@ -1,5 +1,9 @@
 # SATLIB — Circuit Bridge-Fault Analysis (full) (`satlib-dimacs-bf`)
 
+![Combinational circuit bridging-fault wired-AND/OR ATPG miter](diagram.svg)
+
+*Figure: Combinational circuit bridging-fault ATPG miter contrasting fault-free nets $(u, v)$ against a wired-AND/OR internal short-circuit ($u' = v'$) across all 4 redundant UNSAT Nemesis ISCAS'85 (`c432`, `c1355`, `c2670`) benchmarks. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Upstream Archive:** [SATLIB — Benchmark Problems (UBC)](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
@@ -15,11 +19,7 @@
 
 All 4 combinational circuit bridge-fault test-pattern generation instances (`bf0432`, `bf1355`, `bf2670`) from the Second DIMACS Challenge.
 
-![Combinational circuit bridging-fault wired-AND/OR ATPG miter](diagram.svg)
-
-*Figure: Combinational circuit bridging-fault ATPG miter contrasting fault-free nets $(u, v)$ against a wired-AND/OR internal short-circuit ($u' = v'$) across all 4 redundant UNSAT Nemesis ISCAS'85 (`c432`, `c1355`, `c2670`) benchmarks. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 4 original native **DIMACS `.cnf.xz`** files (61.0 KB).
 - **`aig-converted/`** — 4 exact **Binary AIGER 1.9 `.aig.xz`** conversions (73.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -36,7 +36,7 @@ All 4 combinational circuit bridge-fault test-pattern generation instances (`bf0
 | **DIMACS-ANF** | `anf-converted/` | 4 | Vars: 1,417–2,706; Eqs: 3,600–7,304 (deg ≤ 3) | 113.9 KB |
 | **Total (4 Formats, Status: 0 SAT / 4 UNSAT)** | | **16** | | **309.5 KB** |
 
-## Comparative 1-Core Benchmark Results (All 4 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 

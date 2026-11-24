@@ -1,5 +1,9 @@
 # Model RB Forced-Satisfiable SAT Benchmarks (`RB-bench` / BHOSLIB)
 
+![Model RB binary CSP constraint graph, nogood matrix, and exact phase transition](diagram.svg)
+
+*Figure: Model RB binary CSP constraint graph, $d \times d$ forbidden nogood matrix with hidden planted solution $(a^*, b^*)$, exact phase transition $p_c = 1 - e^{-\alpha/r} = 0.25$, and `frb30-15..frb59-26` scaling wall. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Prof. Ke Xu (Beihang University) and collaborators
@@ -17,11 +21,7 @@ Model RB generates random binary Constraint Satisfaction Problems (CSPs) whose d
 
 The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are direct CNF encodings of Model RB CSPs with $k = 2$, $\alpha = 0.8$, and $r = 0.8 / (\ln 4 - \ln 3)$, located precisely at the critical phase-transition threshold with a hidden planted solution. Every instance is **guaranteed SAT**, yet because the constraint structure hides the planted assignment among exponentially many near-solutions, larger sizes (`frb45`–`frb59`) remain very difficult for complete CDCL solvers.
 
-![Model RB binary CSP constraint graph, nogood matrix, and exact phase transition](diagram.svg)
-
-*Figure: Model RB binary CSP constraint graph, $d \times d$ forbidden nogood matrix with hidden planted solution $(a^*, b^*)$, exact phase transition $p_c = 1 - e^{-\alpha/r} = 0.25$, and `frb30-15..frb59-26` scaling wall. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`:** All 40 forced-SAT `.cnf.xz` files (`4.98 MB` xz-compressed) across all 8 size classes.
 - **`aig-converted/`:** 40 exact Binary AIGER 1.9 `.aig.xz` conversions (`5.80 MB` xz-compressed, all 40/40 verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -42,7 +42,7 @@ The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are
 | `frb59-26-1..5` | 5 | SAT | 1,534 | 132,295 | 1.16 MB | 20 |
 | **Total** | **40** | **40 SAT** | **450–1,534** | **19,084–132,295** | **4.98 MB** | **160** |
 
-## Comparative 1-Core Benchmark Results (All 40 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 40 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
@@ -108,3 +108,10 @@ The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are
 
 **Collection Phase-Transition Summary (40 instances, 4 formats: 40 CNF / 40 AIG / 40 XCNF / 40 ANF):** median $\rho_{\mathrm{crit}} = 69.4\times$ (range `42.3x–86.2x`), median $\kappa = 28.81$, regime split **0 Under / 0 Near-critical / 40 Over**, total extracted native XOR parity clauses = **0**, total ANF equations = **2,959,100**.
 <!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- K. Xu, [RB-bench — Forced Satisfiable CSP and SAT Benchmarks of Model RB](https://rb-bench.github.io/forced-sat-csp/).
+- K. Xu and W. Li, *"Exact Phase Transitions in Random Constraint Satisfaction Problems"*, Journal of Artificial Intelligence Research (JAIR), 12:93–103 (2000).
+- K. Xu, F. Boussemart, F. Hemery, and C. Lecoutre, *"Random Constraint Satisfaction: Easy Generation of Hard (Satisfiable) Instances"*, Artificial Intelligence (AIJ), 171(8–9):514–534 (2007); earlier version in IJCAI 2005, pp. 337–342.
+- K. Xu and G. Zhou, *"SAT Requires Exhaustive Search"*, Frontiers of Computer Science, 19, 1912405 (2025).

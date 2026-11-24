@@ -1,5 +1,9 @@
 # [dense-solver](https://github.com/libdense/dense-solver) Synthetic Mutilated Chessboard Tiling Benchmarks (`dense-solver-synthetic-chessboard/`)
 
+![Mutilated Chessboard domino tiling parity obstruction and CNF encoding](diagram.svg)
+
+*Figure: Maximal 30-domino packing on an $8 \times 8$ opposite-corner mutilated chessboard stranding 2 dark squares, paired with the bipartite Hall parity obstruction ($\lvert D \rvert = N^2/2 \neq N^2/2 - 2 = \lvert L \rvert$), direct edge-variable CNF encoding, and scaling across `chessboard12`, `chessboard16`, and `chessboard32`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
@@ -17,11 +21,7 @@ This collection holds the **3 Mutilated Chessboard domino-tiling UNSAT CNFs** (`
 - **Obstruction:** Removing two opposite light corners leaves $N^2/2$ dark squares and $N^2/2 - 2$ light squares. Because every domino covers one dark and one light square, no perfect matching exists (bipartite Hall deficiency $\lvert D \rvert - \lvert L \rvert = 2$). Pure Resolution / CDCL refutations require $2^{\Omega(N)}$ size, whereas cardinality/matching solvers refute all three boards in milliseconds.
 - **Generator:** [`src/chessboard.py`](src/chessboard.py) encodes one Boolean variable per adjacent board edge, an At-Least-One covering clause per square (length 2–4), and pairwise At-Most-One binary conflict clauses around each square.
 
-![Mutilated Chessboard domino tiling parity obstruction and CNF encoding](diagram.svg)
-
-*Figure: Maximal 30-domino packing on an $8 \times 8$ opposite-corner mutilated chessboard stranding 2 dark squares, paired with the bipartite Hall parity obstruction ($\lvert D \rvert = N^2/2 \neq N^2/2 - 2 = \lvert L \rvert$), direct edge-variable CNF encoding, and scaling across `chessboard12`, `chessboard16`, and `chessboard32`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`** — 3 original native **DIMACS `.cnf.xz`** files (16.3 KB).
 - **`aig-converted/`** — 3 exact **Binary AIGER 1.9 `.aig.xz`** conversions (18.0 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -38,7 +38,7 @@ This collection holds the **3 Mutilated Chessboard domino-tiling UNSAT CNFs** (`
 | **DIMACS-ANF** | `anf-converted/` | 3 | Vars: 360–2,880; Eqs: 956–7,676 (deg ≤ 3) | 38.8 KB |
 | **Total (4 Formats, Status: 0 SAT / 3 UNSAT)** | | **12** | | **89.8 KB** |
 
-## Comparative 1-Core Benchmark Results (All 3 Instances, Flat `.cnf`, $T_{\max} = 5\;\text{s}$)
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 3 instances** were run (no subsampling), and **0 verdict disagreements** occurred across all solvers (cross-checked against [`expected.tsv`](expected.tsv)).
 

@@ -1,5 +1,9 @@
 # Pretolani Parity-Charged 2-Coloring Instances (`PRET`)
 
+![Pretolani TRISAT parity-charged 2-coloring DAG and polarity Horn sweep](diagram.svg)
+
+*Figure: Pretolani `TRISAT` 3-regular parity-charged DAG with single odd root charge ($\sum \sigma(v) \equiv 1 \pmod 2$) and variable-polarity Horn-clause sweep across `{25%, 40%, 60%, 75%}`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 ## Provenance & Credit
 
 - **Author:** Daniele Pretolani (Second DIMACS Implementation Challenge / SATLIB)
@@ -14,11 +18,7 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 *(Historical note: the SATLIB summary webpage table historically contained a typo listing `pret60_*` and `pret150_*` as satisfiable, whereas the DIMACS file headers and mathematical construction explicitly specify `Charge = 1` / UNSAT.)*
 
-![Pretolani TRISAT parity-charged 2-coloring DAG and polarity Horn sweep](diagram.svg)
-
-*Figure: Pretolani `TRISAT` 3-regular parity-charged DAG with single odd root charge ($\sum \sigma(v) \equiv 1 \pmod 2$) and variable-polarity Horn-clause sweep across `{25%, 40%, 60%, 75%}`. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
-
-## Corpus & Data Sizes (Four Formats)
+## Corpus & Data Sizes
 
 - **`cnf-orig/`:** All 8 UNSAT `.cnf.xz` files (`10.1 KB`).
 - **`aig-converted/`:** 8 exact Binary AIGER 1.9 `.aig.xz` conversions (`10.2 KB`, all 8/8 verified with [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
@@ -37,7 +37,7 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 | `pret150_60` | 150 | 400 | 60% | 1.6 KB | 1,199 | 0.9 KB | 0.7 KB | UNSAT |
 | `pret150_75` | 150 | 400 | 75% | 1.6 KB | 1,199 | 0.9 KB | 0.7 KB | UNSAT |
 
-## Comparative 1-Core Benchmark Results
+## Benchmark Results
 
 - **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, 16C/32T Linux, 1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, $T_{\max} = 5\;\text{s}$, identical flat `.cnf` input, 100% verdict consensus).
 
