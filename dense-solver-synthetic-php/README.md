@@ -2,11 +2,12 @@
 
 ## Provenance & Credit
 
-- **Author & Recommended by:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
+- **Author:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
 - **Upstream Repository:** [`libdense/dense-solver`](https://github.com/libdense/dense-solver)
 - **Zenodo Archive (v0.0.4):** [`zenodo.org/records/24443907`](https://zenodo.org/records/24443907)
 - **License & Attribution:** **MIT License** — see [`LICENSE`](LICENSE), [`CITATION.cff`](CITATION.cff), and [`SOURCES.md`](SOURCES.md).
 - **Sibling & Related Collections:** [`dense-solver-synthetic-chessboard/`](../dense-solver-synthetic-chessboard/README.md) (3 mutilated chessboard domino-tiling UNSAT CNFs from the same upstream synthetic suite), [`dense-solver-public/`](../dense-solver-public/README.md) (30 SATLIB + SC 2025 public CNFs), [`satlib-dimacs-phole/`](../satlib-dimacs-phole/README.md), and [`zed-adversarial-php/`](../zed-adversarial-php/README.md).
+- **Recommended by:** [`@merlin_numa`](https://twitter.com/merlin_numa) (Twitter/X)
 
 ## Problem Description
 

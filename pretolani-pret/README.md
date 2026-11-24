@@ -2,11 +2,11 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@MMarchidann`](https://twitter.com/MMarchidann) (Twitter/X)
 - **Author:** Daniele Pretolani (Second DIMACS Implementation Challenge / SATLIB)
 - **Upstream Source:** [SATLIB PRET Benchmark Description & Archive](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/DIMACS/PRET/descr.html) (`pret.tar.gz`)
 - **License:** Classic public academic benchmark archive contributed to the Second DIMACS Implementation Challenge and redistributed by SATLIB; no separate upstream `LICENSE` file is bundled in `pret.tar.gz`.
 - **Format Hygiene Note:** The original 1990 DIMACS files in `pret.tar.gz` ended with a trailing `0` EOF sentinel after the final clause (`160` or `400`), which causes strict modern SAT Competition parsers (e.g., [Kissat](https://github.com/arminbiere/kissat), [CaDiCaL](https://github.com/arminbiere/cadical)) to reject the file as having an extra empty clause. The `.cnf.xz` files here preserve every original header comment and clause verbatim while stripping only that trailing sentinel line so all modern solvers parse the exact `p cnf 60 160` / `p cnf 150 400` formulas cleanly.
+- **Recommended by:** [`@MMarchidann`](https://twitter.com/MMarchidann) (Twitter/X)
 
 ## Problem Description
 

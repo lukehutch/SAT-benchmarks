@@ -2,11 +2,12 @@
 
 ## Provenance & Credit
 
-- **Author & Recommended by:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
+- **Author:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
 - **Upstream Repository:** [`libdense/dense-solver`](https://github.com/libdense/dense-solver)
 - **Zenodo Archive (v0.0.4):** [`zenodo.org/records/24443907`](https://zenodo.org/records/24443907)
 - **License & Attribution:** **MIT License** — see [`LICENSE`](LICENSE), [`CITATION.cff`](CITATION.cff), and [`SOURCES.md`](SOURCES.md).
 - **Sibling & Companion Collections:** [`dense-solver-synthetic-php/`](../dense-solver-synthetic-php/README.md) (17 multi-encoding Pigeonhole Principle CNFs from the same upstream synthetic suite) and [`dense-solver-public/`](../dense-solver-public/README.md) (30 SATLIB + SC 2025 public CNFs).
+- **Recommended by:** [`@merlin_numa`](https://twitter.com/merlin_numa) (Twitter/X)
 
 ## Problem Description
 

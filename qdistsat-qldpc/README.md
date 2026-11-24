@@ -2,7 +2,6 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 - **Upstream Benchmark Suite & Matrices:** [`guluchen/QDistSAT`](https://github.com/guluchen/QDistSAT) & [`guluchen/DistQLDPC`](https://github.com/guluchen/DistQLDPC) (Yu-Fang Chen and contributors)
 - **License & Attribution:** **GNU General Public License v3.0 or later (`GPL-3.0-or-later`)** — see [`LICENSE`](LICENSE), [`NOTICE`](NOTICE), and [`DATA-TIERS.md`](DATA-TIERS.md) (copied verbatim from `guluchen/QDistSAT`, retaining all upstream matrix notices).
 - **Quantum LDPC Code Literature Cited ([`@tavisrudd`](https://twitter.com/tavisrudd) notes & `NOTICE`):**
@@ -11,6 +10,7 @@
   - Z. Liang, K. Liu, H. Song, and Y.-A. Chen, *"Generalized toric codes on twisted tori for quantum error correction"*, PRX Quantum 6, 020357 (2025), [`arXiv:2503.03827`](https://arxiv.org/abs/2503.03827) — source of `BB_30_4_6`.
   - *"Large-Language-Model Discovery of Quantum LDPC Codes through Structured Concept Evolution (SCE)"*, [`arXiv:2606.24808`](https://arxiv.org/abs/2606.24808) — related `[[1496, ...]]` lifted-product codes.
   - Full tiering of all 80 QDistSAT/DistQLDPC codes (`tier0`–`tier5`) is documented in [`DATA-TIERS.md`](DATA-TIERS.md).
+- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 
 ## Problem Description
 

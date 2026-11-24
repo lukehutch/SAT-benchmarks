@@ -2,13 +2,14 @@
 
 ## Provenance & Credit
 
-- **Author & Recommended by:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
+- **Author:** Merlin Numa ([`@merlin_numa`](https://twitter.com/merlin_numa) on Twitter/X)
 - **Upstream Repository:** [`libdense/dense-solver`](https://github.com/libdense/dense-solver)
 - **Zenodo Archive (v0.0.4):** [`zenodo.org/records/24443907`](https://zenodo.org/records/24443907)
 - **License & Attribution:**
   - [dense-solver](https://github.com/libdense/dense-solver) scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
   - Third-party public formulas retain their full upstream provenance, SHA-256 digests, and credits in [`SOURCES.md`](SOURCES.md), [`CITATION.cff`](CITATION.cff), and [`src/public-inputs.csv`](src/public-inputs.csv) (22 SATLIB formulas + 8 SAT Competition 2025 Main Track GBD formulas).
 - **Companion Collections:** [`dense-solver-synthetic-chessboard/`](../dense-solver-synthetic-chessboard/README.md) (3 mutilated chessboard domino-tiling CNFs) and [`dense-solver-synthetic-php/`](../dense-solver-synthetic-php/README.md) (17 multi-encoding Pigeonhole Principle CNFs).
+- **Recommended by:** [`@merlin_numa`](https://twitter.com/merlin_numa) (Twitter/X)
 
 ## Problem Description
 

@@ -2,7 +2,6 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@merlin_numa`](https://twitter.com/merlin_numa) (Twitter/X)
 - **Author:** Prof. Ke Xu (Beihang University) and collaborators
 - **Upstream Homepage:** [RB-bench — Prof. Ke Xu's Homepage](https://rb-bench.github.io/) ([Forced Satisfiable CSP and SAT Benchmarks of Model RB](https://rb-bench.github.io/forced-sat-csp/))
 - **License:** Public academic benchmark collection distributed on `rb-bench.github.io` and used in SAT Competitions since 2004; no separate upstream `LICENSE` file is bundled in the archives.
@@ -10,6 +9,7 @@
   - K. Xu and W. Li, *"Exact Phase Transitions in Random Constraint Satisfaction Problems"*, Journal of Artificial Intelligence Research (JAIR), 12:93–103 (2000).
   - K. Xu, F. Boussemart, F. Hemery, and C. Lecoutre, *"Random Constraint Satisfaction: Easy Generation of Hard (Satisfiable) Instances"*, Artificial Intelligence (AIJ), 171(8–9):514–534 (2007); earlier version in IJCAI 2005, pp. 337–342.
   - K. Xu and G. Zhou, *"SAT Requires Exhaustive Search"*, Frontiers of Computer Science, 19, 1912405 (2025).
+- **Recommended by:** [`@merlin_numa`](https://twitter.com/merlin_numa) (Twitter/X)
 
 ## Problem Description
 

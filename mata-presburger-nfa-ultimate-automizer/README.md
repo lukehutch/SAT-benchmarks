@@ -2,12 +2,12 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 - **Upstream Benchmark Repository:** [`VeriFIT/nfa-bench`](https://github.com/VeriFIT/nfa-bench) (`bench-single-presburger-explicit-complement.input` / Presburger explicit-complement set)
 - **Upstream Automata Library:** [`VeriFIT/mata`](https://github.com/VeriFIT/mata) (Brno University of Technology, VeriFIT group)
 - **License:** MIT License — see [`LICENSE`](LICENSE) (copied from `VeriFIT/mata`).
 - **Companion Collection:** [`mata-presburger-nfa-tptp/`](../mata-presburger-nfa-tptp/README.md)
 - **Primary Paper:** D. Chocholatý, T. Fiedor, V. Havlena, L. Holík, M. Hruška, O. Lengál, and J. Síč, *"Mata: A Fast and Simple Finite Automata Library"*, TACAS 2024, LNCS 14570, pp. 130–151, DOI: [`10.1007/978-3-031-57249-4_7`](https://doi.org/10.1007/978-3-031-57249-4_7).
+- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 
 ## Problem Description
 

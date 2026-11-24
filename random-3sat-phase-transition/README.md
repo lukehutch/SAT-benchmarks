@@ -3,8 +3,8 @@
 ## Provenance & Credit
 
 - **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
-- **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) and [`@tingan87`](https://twitter.com/tingan87) (Twitter/X)
 - **License:** MIT License ([`../LICENSE`](../LICENSE))
+- **Recommended by:** [`@jasonslenderman`](https://twitter.com/jasonslenderman) and [`@tingan87`](https://twitter.com/tingan87) (Twitter/X)
 
 ## Overview & Origin
 

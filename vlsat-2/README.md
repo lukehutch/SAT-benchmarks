@@ -2,10 +2,10 @@
 
 ## Provenance & Credit
 
-- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 - **Authors & Maintainers:** Hubert Garavel, Pierre Bouvier, and the CADP team at INRIA Grenoble – Rhône-Alpes
 - **Upstream Homepage:** [VLSAT-2 Benchmark Suite — CADP Resources (INRIA)](https://cadp.inria.fr/resources/vlsat/2.html)
 - **License:** Public scientific benchmark collection published by INRIA / CADP for academic research and SAT competitions; no separate `LICENSE` file is bundled with the `.cnf.bz2` downloads.
+- **Recommended by:** [`@tavisrudd`](https://twitter.com/tavisrudd) (Twitter/X)
 
 ## Problem Description
 
