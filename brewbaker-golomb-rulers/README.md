@@ -75,20 +75,20 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `golomb_m10_l54.cnf` | UNSAT | 7.74 s | 14.36 s | 11.24 s | 19.43 s | **7.39 s** |
-| `golomb_m10_l55.cnf` | SAT | **169.6 ms** | 2.17 s | 1.18 s | 3.41 s | 1.01 s |
-| `golomb_m5_l10.cnf` | UNSAT | 3.4 ms | **3.2 ms** | 30.5 ms | 3.4 ms | 5.4 ms |
-| `golomb_m5_l11.cnf` | SAT | 3.3 ms | **3.0 ms** | 33.5 ms | 3.3 ms | 6.1 ms |
-| `golomb_m6_l16.cnf` | UNSAT | **4.8 ms** | 5.4 ms | 52.7 ms | 5.5 ms | 15.2 ms |
-| `golomb_m6_l17.cnf` | SAT | **3.5 ms** | 3.5 ms | 57.9 ms | 4.5 ms | 15.1 ms |
-| `golomb_m7_l24.cnf` | UNSAT | 29.8 ms | 32.4 ms | 99.7 ms | **22.3 ms** | 39.6 ms |
-| `golomb_m7_l25.cnf` | SAT | 6.1 ms | **3.8 ms** | 96.5 ms | 16.0 ms | 19.9 ms |
-| `golomb_m8_l33.cnf` | UNSAT | **138.7 ms** | 194.9 ms | 270.0 ms | 172.4 ms | 250.4 ms |
-| `golomb_m8_l34.cnf` | SAT | **31.7 ms** | 179.8 ms | 197.6 ms | 57.7 ms | 243.3 ms |
-| `golomb_m9_l43.cnf` | UNSAT | 1.11 s | 1.34 s | 1.23 s | 1.97 s | **1.05 s** |
-| `golomb_m9_l44.cnf` | SAT | 737.7 ms | **483.1 ms** | 794.1 ms | 1.18 s | 520.5 ms |
+| `golomb_m10_l54.cnf` | UNSAT | **6.83 s** | 14.36 s | 11.24 s | 19.43 s | 7.39 s |
+| `golomb_m10_l55.cnf` | SAT | **163.1 ms** | 2.17 s | 1.18 s | 3.41 s | 1.01 s |
+| `golomb_m5_l10.cnf` | UNSAT | 3.8 ms | **3.2 ms** | 30.5 ms | 3.4 ms | 5.4 ms |
+| `golomb_m5_l11.cnf` | SAT | 3.4 ms | **3.0 ms** | 33.5 ms | 3.3 ms | 6.1 ms |
+| `golomb_m6_l16.cnf` | UNSAT | **5.0 ms** | 5.4 ms | 52.7 ms | 5.5 ms | 15.2 ms |
+| `golomb_m6_l17.cnf` | SAT | 4.0 ms | **3.5 ms** | 57.9 ms | 4.5 ms | 15.1 ms |
+| `golomb_m7_l24.cnf` | UNSAT | 30.0 ms | 32.4 ms | 99.7 ms | **22.3 ms** | 39.6 ms |
+| `golomb_m7_l25.cnf` | SAT | 6.7 ms | **3.8 ms** | 96.5 ms | 16.0 ms | 19.9 ms |
+| `golomb_m8_l33.cnf` | UNSAT | **138.4 ms** | 194.9 ms | 270.0 ms | 172.4 ms | 250.4 ms |
+| `golomb_m8_l34.cnf` | SAT | **31.3 ms** | 179.8 ms | 197.6 ms | 57.7 ms | 243.3 ms |
+| `golomb_m9_l43.cnf` | UNSAT | 1.10 s | 1.34 s | 1.23 s | 1.97 s | **1.05 s** |
+| `golomb_m9_l44.cnf` | SAT | 925.6 ms | **483.1 ms** | 794.1 ms | 1.18 s | 520.5 ms |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **12** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** |
-| **Total PAR-2** | — | **9.98 s *(mean 0.83 s)*** | 18.77 s *(mean 1.56 s)* | 15.29 s *(mean 1.27 s)* | 26.28 s *(mean 2.19 s)* | 10.56 s *(mean 0.88 s)* |
+| **Total PAR-2** | — | **9.24 s *(mean 0.77 s)*** | 18.77 s *(mean 1.56 s)* | 15.29 s *(mean 1.27 s)* | 26.28 s *(mean 2.19 s)* | 10.56 s *(mean 0.88 s)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 

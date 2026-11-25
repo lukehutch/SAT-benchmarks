@@ -70,7 +70,7 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 | [`satlib-dimacs-bf/`](../satlib-dimacs-bf/README.md) (4) | **4/4 — 24.2 ms** | 4/4 — 25.4 ms | 4/4 — 208.1 ms | 4/4 — 92.0 ms | 4/4 — 27.4 ms |
 | [`satlib-dimacs-dubois/`](../satlib-dimacs-dubois/README.md) (13) | **13/13 — 8.4 ms** | 13/13 — 33.1 ms | 13/13 — 252.3 ms | 13/13 — 21.5 ms | 13/13 — 21.8 ms |
 | [`satlib-dimacs-gcp-large/`](../satlib-dimacs-gcp-large/README.md) (4) | **4/4 — 451.8 ms** | 2/4 — 22,861.2 ms | 1/4 — 31,575.5 ms | 0/4 — 40,000.0 ms | 0/4 — 40,000.0 ms |
-| [`satlib-dimacs-hanoi/`](../satlib-dimacs-hanoi/README.md) (2) | 2/2 — 181.4 ms | **2/2 — 173.9 ms** | 2/2 — 704.8 ms | 2/2 — 211.5 ms | 2/2 — 558.9 ms |
+| [`satlib-dimacs-hanoi/`](../satlib-dimacs-hanoi/README.md) (2) | **2/2 — 172.6 ms** | 2/2 — 173.9 ms | 2/2 — 704.8 ms | 2/2 — 211.5 ms | 2/2 — 558.9 ms |
 | [`satlib-dimacs-ii/`](../satlib-dimacs-ii/README.md) (41) | **41/41 — 145.4 ms** | 41/41 — 285.0 ms | 41/41 — 12,071.9 ms | 41/41 — 566.4 ms | 41/41 — 553.8 ms |
 | [`satlib-dimacs-jnh/`](../satlib-dimacs-jnh/README.md) (50) | **50/50 — 101.8 ms** | 50/50 — 158.6 ms | 50/50 — 1,105.1 ms | 50/50 — 112.2 ms | 50/50 — 279.1 ms |
 | [`satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md) (3) | **3/3 — 171.6 ms** | 2/3 — 13,747.5 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms |
@@ -83,7 +83,7 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 | [`satlib-qg/`](../satlib-qg/README.md) (22) | 22/22 — 4,235.1 ms | **22/22 — 3,665.8 ms** | 22/22 — 14,567.0 ms | 22/22 — 7,179.0 ms | 22/22 — 6,187.5 ms |
 | [`satlib-rnd3sat/`](../satlib-rnd3sat/README.md) (10) | **10/10 — 2,038.7 ms** | 10/10 — 3,542.8 ms | 10/10 — 4,147.5 ms | 10/10 — 3,257.8 ms | 10/10 — 2,435.5 ms |
 | [`satlib-sw-gcp/`](../satlib-sw-gcp/README.md) (5) | **5/5 — 5.7 ms** | 5/5 — 17.2 ms | 5/5 — 269.9 ms | 5/5 — 16.8 ms | 5/5 — 43.1 ms |
-| **Total (331 instances, 22 collections)** | **331/331 — 10,466.2 ms** *(fastest)* | 316/331 — 174,494.9 ms *(16.67x)* | 323/331 — 164,024.0 ms *(15.67x)* | 313/331 — 207,808.4 ms *(19.86x)* | 314/331 — 189,408.0 ms *(18.10x)* |
+| **Total (331 instances, 22 collections)** | **331/331 — 10,457.4 ms** *(fastest)* | 316/331 — 174,494.9 ms *(16.69x)* | 323/331 — 164,024.0 ms *(15.69x)* | 313/331 — 207,808.4 ms *(19.87x)* | 314/331 — 189,408.0 ms *(18.11x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
