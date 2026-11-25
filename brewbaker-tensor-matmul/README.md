@@ -73,18 +73,18 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `matmul_2x2x1_k3_m2.cnf` | UNSAT | **1.4 ms** | 4.5 ms | 48.0 ms | 4.0 ms | 4.8 ms |
-| `matmul_2x2x1_k4_m2.cnf` | SAT | 2.4 ms | 4.2 ms | 23.2 ms | 4.0 ms | **2.4 ms** |
-| `matmul_2x2x2_k6_m2.cnf` | UNSAT | **868.1 ms** | 38.88 s | 43.50 s | >60 s *(T/O)* | 31.38 s |
-| `matmul_2x2x2_k6_m3.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `matmul_2x2x2_k7_m2.cnf` | SAT | 763.7 ms | 147.2 ms | 111.7 ms | 50.42 s | **101.5 ms** |
-| `matmul_2x2x2_k7_m3.cnf` | SAT | **1.49 s** | 9.37 s | >60 s *(T/O)* | >60 s *(T/O)* | 4.26 s |
-| `matmul_2x2x2_k7_m4.cnf` | SAT | 2.40 s | 46.11 s | 21.31 s | >60 s *(T/O)* | **1.26 s** |
+| `matmul_2x2x1_k3_m2.cnf` | UNSAT | **1.5 ms** | 4.5 ms | 48.0 ms | 4.0 ms | 4.8 ms |
+| `matmul_2x2x1_k4_m2.cnf` | SAT | 2.5 ms | 4.2 ms | 23.2 ms | 4.0 ms | **2.4 ms** |
+| `matmul_2x2x2_k6_m2.cnf` | UNSAT | **92.1 ms** | 38.88 s | 43.50 s | >60 s *(T/O)* | 31.38 s |
+| `matmul_2x2x2_k6_m3.cnf` | UNSAT | **33.08 s** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `matmul_2x2x2_k7_m2.cnf` | SAT | 239.6 ms | 147.2 ms | 111.7 ms | 50.42 s | **101.5 ms** |
+| `matmul_2x2x2_k7_m3.cnf` | SAT | 17.39 s | 9.37 s | >60 s *(T/O)* | >60 s *(T/O)* | **4.26 s** |
+| `matmul_2x2x2_k7_m4.cnf` | SAT | 1.69 s | 46.11 s | 21.31 s | >60 s *(T/O)* | **1.26 s** |
 | `matmul_2x2x3_k10_m2.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `matmul_2x2x3_k11_m2.cnf` | SAT | 8.80 s | 3.11 s | **406.7 ms** | >60 s *(T/O)* | 1.57 s |
-| `matmul_2x3x2_k11_m2.cnf` | SAT | **2.66 s** | 8.73 s | 4.40 s | >60 s *(T/O)* | 5.66 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **10** | **8/10 (6 SAT, 2 UNSAT)** | **8/10 (6 SAT, 2 UNSAT)** | 7/10 (5 SAT, 2 UNSAT) | 3/10 (2 SAT, 1 UNSAT) | **8/10 (6 SAT, 2 UNSAT)** |
-| **Total PAR-2** | — | **256.99 s *(mean 25.70 s)*** | 346.35 s *(mean 34.64 s)* | 429.80 s *(mean 42.98 s)* | 890.43 s *(mean 89.04 s)* | 284.23 s *(mean 28.42 s)* |
+| `matmul_2x2x3_k11_m2.cnf` | SAT | 8.55 s | 3.11 s | **406.7 ms** | >60 s *(T/O)* | 1.57 s |
+| `matmul_2x3x2_k11_m2.cnf` | SAT | **2.65 s** | 8.73 s | 4.40 s | >60 s *(T/O)* | 5.66 s |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | **10** | **9/10 (6 SAT, 3 UNSAT)** | 8/10 (6 SAT, 2 UNSAT) | 7/10 (5 SAT, 2 UNSAT) | 3/10 (2 SAT, 1 UNSAT) | 8/10 (6 SAT, 2 UNSAT) |
+| **Total PAR-2** | — | **183.70 s *(mean 18.37 s)*** | 346.35 s *(mean 34.64 s)* | 429.80 s *(mean 42.98 s)* | 890.43 s *(mean 89.04 s)* | 284.23 s *(mean 28.42 s)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 

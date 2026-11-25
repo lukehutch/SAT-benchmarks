@@ -45,37 +45,37 @@ This collection holds the **30 third-party public CNFs** (`public-instances/`) s
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `anomaly` | SAT | 2.58 ms | 2.76 ms | 5.56 ms | 1.87 ms | **1.51 ms** |
-| `bw_large.a` | SAT | 15.55 ms | **4.22 ms** | 121.62 ms | 4.63 ms | 23.90 ms |
-| `flat30-1` | SAT | 1.79 ms | 2.16 ms | 9.81 ms | **1.28 ms** | 1.43 ms |
-| `flat30-2` | SAT | 1.72 ms | 1.91 ms | 7.92 ms | 1.32 ms | **1.20 ms** |
-| `flat30-3` | SAT | 2.03 ms | 1.92 ms | 7.38 ms | **1.40 ms** | 1.41 ms |
-| `hole10` | UNSAT | 2.00 ms | >5 s | >5 s | **1.48 ms** | 1,268.85 ms |
-| `hole6` | UNSAT | 2.27 ms | 5.03 ms | 23.34 ms | **1.55 ms** | 4.28 ms |
-| `hole7` | UNSAT | 1.78 ms | 28.95 ms | 53.23 ms | **1.50 ms** | 10.26 ms |
-| `hole8` | UNSAT | 2.25 ms | 267.08 ms | 330.46 ms | **1.55 ms** | 46.59 ms |
-| `hole9` | UNSAT | 1.78 ms | 3,131.20 ms | >5 s | **1.20 ms** | 124.17 ms |
-| `medium` | SAT | 2.62 ms | 3.21 ms | 11.79 ms | 3.41 ms | **1.37 ms** |
-| `par8-1-c` | SAT | 1.94 ms | 2.20 ms | >5 s | **1.27 ms** | 2.31 ms |
-| `par8-2-c` | SAT | 2.47 ms | 2.16 ms | >5 s | **1.31 ms** | 2.47 ms |
-| `par8-3-c` | SAT | 2.26 ms | 1.91 ms | >5 s | **1.59 ms** | 2.84 ms |
-| `sc25-fpga-routing` | UNSAT | 2.69 ms | >5 s | >5 s | **1.96 ms** | >5 s |
-| `sc25-hamiltonian` | SAT | **119.19 ms** | 218.70 ms | 174.33 ms | 412.11 ms | 348.18 ms |
-| `sc25-hgen` | SAT | **50.95 ms** | 339.34 ms | >5 s | >5 s | 1,265.29 ms |
-| `sc25-mutilated-chessboard` | UNSAT | 2.91 ms | >5 s | >5 s | **2.22 ms** | >5 s |
-| `sc25-pigeon-hole` | UNSAT | **2.91 ms** | >5 s | >5 s | 2.92 ms | >5 s |
-| `sc25-scheduling` | SAT | 7.11 ms | 2.37 ms | 51.50 ms | **2.15 ms** | 9.71 ms |
-| `sc25-subset-cardinality` | TIMEOUT | >5 s | >5 s | >5 s | >5 s | >5 s |
-| `sc25-tseitin-formulas` | UNSAT | 2.16 ms | >5 s | 33.98 ms | **1.49 ms** | >5 s |
-| `uf50-01` | SAT | 2.21 ms | 2.49 ms | 6.17 ms | **1.39 ms** | 3.01 ms |
-| `uf50-02` | SAT | 1.93 ms | 2.65 ms | 17.84 ms | **1.50 ms** | 3.28 ms |
-| `uf50-03` | SAT | 1.81 ms | 2.94 ms | 7.97 ms | **1.72 ms** | 2.44 ms |
-| `uf50-04` | SAT | 1.84 ms | 2.34 ms | 6.28 ms | **1.30 ms** | 3.02 ms |
-| `uuf50-01` | UNSAT | 3.01 ms | 2.40 ms | 13.44 ms | **1.39 ms** | 2.18 ms |
-| `uuf50-02` | UNSAT | 3.01 ms | 2.40 ms | 16.36 ms | **1.32 ms** | 2.50 ms |
-| `uuf50-03` | UNSAT | 2.92 ms | 2.13 ms | 14.21 ms | **1.35 ms** | 2.76 ms |
-| `uuf50-04` | UNSAT | 3.01 ms | 2.29 ms | 14.95 ms | **1.30 ms** | 2.35 ms |
-| **Total (30 files, PAR-2)** | **29/30** | **29/30 — 10,250.7 ms** *(fastest)* | 24/30 — 64,034.8 ms *(6.25x)* | 20/30 — 100,928.1 ms *(9.85x)* | 28/30 — 20,459.5 ms *(2.00x)* | 25/30 — 53,137.3 ms *(5.18x)* |
+| `anomaly` | SAT | **0.89 ms** | 2.76 ms | 5.56 ms | 1.87 ms | 1.51 ms |
+| `bw_large.a` | SAT | **2.74 ms** | 4.22 ms | 121.62 ms | 4.63 ms | 23.90 ms |
+| `flat30-1` | SAT | **0.74 ms** | 2.16 ms | 9.81 ms | 1.28 ms | 1.43 ms |
+| `flat30-2` | SAT | **0.73 ms** | 1.91 ms | 7.92 ms | 1.32 ms | 1.20 ms |
+| `flat30-3` | SAT | **0.74 ms** | 1.92 ms | 7.38 ms | 1.40 ms | 1.41 ms |
+| `hole10` | UNSAT | **0.65 ms** | >5 s | >5 s | 1.48 ms | 1,268.85 ms |
+| `hole6` | UNSAT | **0.62 ms** | 5.03 ms | 23.34 ms | 1.55 ms | 4.28 ms |
+| `hole7` | UNSAT | **0.62 ms** | 28.95 ms | 53.23 ms | 1.50 ms | 10.26 ms |
+| `hole8` | UNSAT | **0.64 ms** | 267.08 ms | 330.46 ms | 1.55 ms | 46.59 ms |
+| `hole9` | UNSAT | **0.63 ms** | 3,131.20 ms | >5 s | 1.20 ms | 124.17 ms |
+| `medium` | SAT | **1.24 ms** | 3.21 ms | 11.79 ms | 3.41 ms | 1.37 ms |
+| `par8-1-c` | SAT | **1.06 ms** | 2.20 ms | >5 s | 1.27 ms | 2.31 ms |
+| `par8-2-c` | SAT | **1.03 ms** | 2.16 ms | >5 s | 1.31 ms | 2.47 ms |
+| `par8-3-c` | SAT | **1.07 ms** | 1.91 ms | >5 s | 1.59 ms | 2.84 ms |
+| `sc25-fpga-routing` | UNSAT | **0.83 ms** | >5 s | >5 s | 1.96 ms | >5 s |
+| `sc25-hamiltonian` | SAT | **84.37 ms** | 218.70 ms | 174.33 ms | 412.11 ms | 348.18 ms |
+| `sc25-hgen` | SAT | **48.15 ms** | 339.34 ms | >5 s | >5 s | 1,265.29 ms |
+| `sc25-mutilated-chessboard` | UNSAT | **1.41 ms** | >5 s | >5 s | 2.22 ms | >5 s |
+| `sc25-pigeon-hole` | UNSAT | **1.16 ms** | >5 s | >5 s | 2.92 ms | >5 s |
+| `sc25-scheduling` | SAT | 2.39 ms | 2.37 ms | 51.50 ms | **2.15 ms** | 9.71 ms |
+| `sc25-subset-cardinality` | UNSAT | **10.48 ms** | >5 s | >5 s | >5 s | >5 s |
+| `sc25-tseitin-formulas` | UNSAT | **0.67 ms** | >5 s | 33.98 ms | 1.49 ms | >5 s |
+| `uf50-01` | SAT | **0.62 ms** | 2.49 ms | 6.17 ms | 1.39 ms | 3.01 ms |
+| `uf50-02` | SAT | **0.62 ms** | 2.65 ms | 17.84 ms | 1.50 ms | 3.28 ms |
+| `uf50-03` | SAT | **0.63 ms** | 2.94 ms | 7.97 ms | 1.72 ms | 2.44 ms |
+| `uf50-04` | SAT | **0.64 ms** | 2.34 ms | 6.28 ms | 1.30 ms | 3.02 ms |
+| `uuf50-01` | UNSAT | 2.04 ms | 2.40 ms | 13.44 ms | **1.39 ms** | 2.18 ms |
+| `uuf50-02` | UNSAT | 2.21 ms | 2.40 ms | 16.36 ms | **1.32 ms** | 2.50 ms |
+| `uuf50-03` | UNSAT | 2.00 ms | 2.13 ms | 14.21 ms | **1.35 ms** | 2.76 ms |
+| `uuf50-04` | UNSAT | 2.34 ms | 2.29 ms | 14.95 ms | **1.30 ms** | 2.35 ms |
+| **Total (30 files, PAR-2)** | **30/30** | **30/30 — 173.96 ms** *(fastest)* | 24/30 — 64,034.8 ms *(368.10x)* | 20/30 — 100,928.1 ms *(580.18x)* | 28/30 — 20,459.5 ms *(117.61x)* | 25/30 — 53,137.3 ms *(305.46x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

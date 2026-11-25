@@ -45,10 +45,10 @@ Six compact XOR-6 cut encodings (`xor6cut-22` through `xor6cut-27`) of the $3\ti
 | `xor6cut-22` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `xor6cut-23` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `xor6cut-24` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `xor6cut-25` | SAT | **20.52 s** | >60 s | >60 s | 40.49 s | >60 s | 39.85 s |
-| `xor6cut-26` | SAT | **6.52 s** | 12.08 s | 16.20 s | 43.53 s | >60 s | 16.28 s |
-| `xor6cut-27` | SAT | 1,238.54 ms | **1,093.31 ms** | 14.20 s | 11.08 s | >60 s | 2,136.28 ms |
-| **Total (6 files, PAR-2)** | **3/6** | **3/6 — 388,276.2 ms** *(fastest)* | 2/6 — 493,170.2 ms *(1.27x)* | 2/6 — 510,398.6 ms *(1.31x)* | 3/6 — 455,098.9 ms *(1.17x)* | 0/6 — 720,000.0 ms *(1.85x)* | 3/6 — 418,266.1 ms *(1.08x)* |
+| `xor6cut-25` | SAT | **20.84 s** | >60 s | >60 s | 40.49 s | >60 s | 39.85 s |
+| `xor6cut-26` | SAT | **6.29 s** | 12.08 s | 16.20 s | 43.53 s | >60 s | 16.28 s |
+| `xor6cut-27` | SAT | 1,145.44 ms | **1,093.31 ms** | 14.20 s | 11.08 s | >60 s | 2,136.28 ms |
+| **Total (6 files, PAR-2)** | **3/6** | **3/6 — 388,273.7 ms** *(fastest)* | 2/6 — 493,170.2 ms *(1.27x)* | 2/6 — 510,398.6 ms *(1.31x)* | 3/6 — 455,098.9 ms *(1.17x)* | 0/6 — 720,000.0 ms *(1.85x)* | 3/6 — 418,266.1 ms *(1.08x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

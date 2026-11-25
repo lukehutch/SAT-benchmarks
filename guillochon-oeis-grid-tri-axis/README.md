@@ -89,15 +89,15 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 ### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
 
-Three calibration rungs ($N = 13$ optimal pair + $N = 16$ frontier lower bound) evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). Only Frobenius and CaDiCaL 3.1.0 solve the side-16 frontier lower-bound instance `tri-axis_n16_m54.cnf` within 60 s (`1.62 s` and `2.19 s`, while CryptoMiniSat 5.18.0, dense-solver 0.0.4, and Kissat 4.0.4 all time out):
+Three calibration rungs ($N = 13$ optimal pair + $N = 16$ frontier lower bound) evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). Only Frobenius and CaDiCaL 3.1.0 solve the side-16 frontier lower-bound instance `tri-axis_n16_m54.cnf` within 60 s (`1.53 s` and `2.19 s`, while CryptoMiniSat 5.18.0, dense-solver 0.0.4, and Kissat 4.0.4 all time out):
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `tri-axis_n13_m39.cnf` | SAT | **213.5 ms** | 0.52 s | >60 s | 4.74 s | 16.78 s |
+| `tri-axis_n13_m39.cnf` | SAT | **300.6 ms** | 0.52 s | >60 s | 4.74 s | 16.78 s |
 | `tri-axis_n13_m40.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `tri-axis_n16_m54.cnf` | SAT | **1.62 s** | 2.19 s | >60 s | >60 s | >60 s |
+| `tri-axis_n16_m54.cnf` | SAT | **1.53 s** | 2.19 s | >60 s | >60 s | >60 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **2 / 3** | **2 / 3** (2 SAT, 0 UNSAT) | **2 / 3** (2 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | 1 / 3 (1 SAT, 0 UNSAT) | 1 / 3 (1 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **121.84 s** *(mean 40.61 s)* | 122.71 s *(mean 40.90 s)* | 360.00 s *(mean 120.00 s)* | 244.74 s *(mean 81.58 s)* | 256.78 s *(mean 85.59 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **121.83 s** *(mean 40.61 s)* | 122.71 s *(mean 40.90 s)* | 360.00 s *(mean 120.00 s)* | 244.74 s *(mean 81.58 s)* | 256.78 s *(mean 85.59 s)* |
 
 ### Open OEIS Frontier Run (600 s, Single-Core Pinned)
 

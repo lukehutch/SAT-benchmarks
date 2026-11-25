@@ -70,18 +70,18 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `dot_n3_k2_m4.cnf` | UNSAT | **4.8 ms** | 6.2 ms | 41.7 ms | 5.8 ms | 17.9 ms |
-| `dot_n3_k3_m4.cnf` | SAT | **3.1 ms** | 4.4 ms | 47.7 ms | 3.5 ms | 25.2 ms |
-| `dot_n5_k4_m2.cnf` | UNSAT | **15.3 ms** | 56.0 ms | 71.8 ms | 29.4 ms | 96.6 ms |
-| `dot_n5_k4_m3.cnf` | UNSAT | **347.8 ms** | 34.70 s | 20.41 s | >60 s *(T/O)* | 8.85 s |
-| `dot_n5_k4_m4.cnf` | UNSAT | **319.0 ms** | 41.95 s | >60 s *(T/O)* | >60 s *(T/O)* | 1.09 s |
-| `dot_n5_k5_m2.cnf` | SAT | 18.9 ms | 10.0 ms | 65.8 ms | **4.6 ms** | 5.1 ms |
-| `dot_n5_k5_m3.cnf` | SAT | **4.4 ms** | 30.3 ms | 253.8 ms | 12.1 ms | 51.6 ms |
-| `dot_n5_k5_m4.cnf` | SAT | **14.8 ms** | 78.0 ms | 275.9 ms | 325.0 ms | 119.0 ms |
-| `dot_n6_k5_m2.cnf` | UNSAT | **193.6 ms** | 4.52 s | 6.65 s | 23.06 s | 4.66 s |
-| `dot_n6_k6_m2.cnf` | SAT | 25.7 ms | 3.6 ms | 72.9 ms | 4.4 ms | **2.3 ms** |
+| `dot_n3_k2_m4.cnf` | UNSAT | **3.7 ms** | 6.2 ms | 41.7 ms | 5.8 ms | 17.9 ms |
+| `dot_n3_k3_m4.cnf` | SAT | **2.0 ms** | 4.4 ms | 47.7 ms | 3.5 ms | 25.2 ms |
+| `dot_n5_k4_m2.cnf` | UNSAT | **3.4 ms** | 56.0 ms | 71.8 ms | 29.4 ms | 96.6 ms |
+| `dot_n5_k4_m3.cnf` | UNSAT | **39.4 ms** | 34.70 s | 20.41 s | >60 s *(T/O)* | 8.85 s |
+| `dot_n5_k4_m4.cnf` | UNSAT | **43.1 ms** | 41.95 s | >60 s *(T/O)* | >60 s *(T/O)* | 1.09 s |
+| `dot_n5_k5_m2.cnf` | SAT | 4.9 ms | 10.0 ms | 65.8 ms | **4.6 ms** | 5.1 ms |
+| `dot_n5_k5_m3.cnf` | SAT | **3.4 ms** | 30.3 ms | 253.8 ms | 12.1 ms | 51.6 ms |
+| `dot_n5_k5_m4.cnf` | SAT | **13.6 ms** | 78.0 ms | 275.9 ms | 325.0 ms | 119.0 ms |
+| `dot_n6_k5_m2.cnf` | UNSAT | **9.1 ms** | 4.52 s | 6.65 s | 23.06 s | 4.66 s |
+| `dot_n6_k6_m2.cnf` | SAT | 10.6 ms | 3.6 ms | 72.9 ms | 4.4 ms | **2.3 ms** |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **10** | **10/10 (5 SAT, 5 UNSAT)** | **10/10 (5 SAT, 5 UNSAT)** | 9/10 (5 SAT, 4 UNSAT) | 8/10 (5 SAT, 3 UNSAT) | **10/10 (5 SAT, 5 UNSAT)** |
-| **Total PAR-2** | — | **0.95 s *(mean 0.09 s)*** | 81.36 s *(mean 8.14 s)* | 147.89 s *(mean 14.79 s)* | 263.45 s *(mean 26.34 s)* | 14.91 s *(mean 1.49 s)* |
+| **Total PAR-2** | — | **133.1 ms *(mean 13.3 ms)*** | 81.36 s *(mean 8.14 s)* | 147.89 s *(mean 14.79 s)* | 263.45 s *(mean 26.34 s)* | 14.91 s *(mean 1.49 s)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
