@@ -93,10 +93,10 @@ Two $N = 11$ calibration rungs evaluated sequentially on identical uncompressed 
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `sq-axis_n11_m73.cnf` | SAT | 2.59 s | **2.32 s** | >60 s | >60 s | >60 s |
+| `sq-axis_n11_m73.cnf` | SAT | **1.81 s** | 2.32 s | >60 s | >60 s | >60 s |
 | `sq-axis_n11_m74.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 2** | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | 0 / 2 (0 SAT, 0 UNSAT) | 0 / 2 (0 SAT, 0 UNSAT) | 0 / 2 (0 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 122.59 s *(mean 61.29 s)* | **122.32 s** *(mean 61.16 s)* | 240.00 s *(mean 120.00 s)* | 240.00 s *(mean 120.00 s)* | 240.00 s *(mean 120.00 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **121.81 s** *(mean 60.91 s)* | 122.32 s *(mean 61.16 s)* | 240.00 s *(mean 120.00 s)* | 240.00 s *(mean 120.00 s)* | 240.00 s *(mean 120.00 s)* |
 
 ### Open OEIS Frontier Run (180 s, Single-Core Pinned)
 
