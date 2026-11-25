@@ -42,11 +42,11 @@ All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole1
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `hole10` | UNSAT | **0.64 ms** | >5 s | >5 s | 1.32 ms | 1,280.27 ms |
-| `hole6` | UNSAT | **0.63 ms** | 5.38 ms | 21.95 ms | 1.21 ms | 3.84 ms |
-| `hole7` | UNSAT | **0.63 ms** | 28.14 ms | 52.26 ms | 1.35 ms | 10.36 ms |
-| `hole8` | UNSAT | **0.62 ms** | 266.52 ms | 326.03 ms | 1.36 ms | 46.83 ms |
-| `hole9` | UNSAT | **0.62 ms** | 3,117.30 ms | 4,740.79 ms | 1.68 ms | 126.11 ms |
-| **Total (5 files, PAR-2)** | **5/5** | **5/5 — 3.1 ms** *(fastest)* | 4/5 — 13,417.3 ms *(4,268.95x)* | 4/5 — 15,141.0 ms *(4,817.37x)* | 5/5 — 6.9 ms *(2.20x)* | 5/5 — 1,467.4 ms *(466.88x)* |
+| `hole6` | UNSAT | **0.61 ms** | 5.38 ms | 21.95 ms | 1.21 ms | 3.84 ms |
+| `hole7` | UNSAT | **0.61 ms** | 28.14 ms | 52.26 ms | 1.35 ms | 10.36 ms |
+| `hole8` | UNSAT | **0.61 ms** | 266.52 ms | 326.03 ms | 1.36 ms | 46.83 ms |
+| `hole9` | UNSAT | **0.61 ms** | 3,117.30 ms | 4,740.79 ms | 1.68 ms | 126.11 ms |
+| **Total (5 files, PAR-2)** | **5/5** | **5/5 — 3.1 ms** *(fastest)* | 4/5 — 13,417.3 ms *(4,342.18x)* | 4/5 — 15,141.0 ms *(4,900.01x)* | 5/5 — 6.9 ms *(2.24x)* | 5/5 — 1,467.4 ms *(474.89x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

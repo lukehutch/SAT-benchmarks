@@ -44,20 +44,20 @@ All 13 classic Dubois parity-based 3-SAT formulas (`dubois20`–`dubois100`) fro
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `dubois100` | SAT | **0.65 ms** | 2.60 ms | 5.22 ms | 1.60 ms | 1.53 ms |
-| `dubois20` | UNSAT | **0.66 ms** | 2.61 ms | 25.31 ms | 1.65 ms | 1.69 ms |
-| `dubois21` | UNSAT | **0.64 ms** | 2.46 ms | 18.18 ms | 1.46 ms | 1.48 ms |
-| `dubois22` | UNSAT | **0.64 ms** | 2.45 ms | 19.51 ms | 1.48 ms | 1.63 ms |
-| `dubois23` | UNSAT | **0.65 ms** | 2.94 ms | 18.23 ms | 1.39 ms | 1.54 ms |
-| `dubois24` | UNSAT | **0.64 ms** | 2.92 ms | 23.29 ms | 1.61 ms | 1.68 ms |
-| `dubois25` | UNSAT | **0.65 ms** | 2.17 ms | 18.00 ms | 2.05 ms | 1.70 ms |
-| `dubois26` | UNSAT | **0.64 ms** | 2.39 ms | 18.46 ms | 1.62 ms | 1.54 ms |
-| `dubois27` | UNSAT | **0.66 ms** | 2.34 ms | 18.48 ms | 1.57 ms | 1.55 ms |
-| `dubois28` | UNSAT | **0.65 ms** | 2.52 ms | 17.88 ms | 1.66 ms | 1.50 ms |
-| `dubois29` | UNSAT | **0.64 ms** | 2.67 ms | 24.04 ms | 1.83 ms | 1.88 ms |
-| `dubois30` | UNSAT | **0.65 ms** | 2.50 ms | 18.72 ms | 1.59 ms | 1.71 ms |
-| `dubois50` | UNSAT | **0.66 ms** | 2.54 ms | 26.98 ms | 2.02 ms | 2.34 ms |
-| **Total (13 files, PAR-2)** | **13/13** | **13/13 — 8.4 ms** *(fastest)* | 13/13 — 33.1 ms *(3.93x)* | 13/13 — 252.3 ms *(29.92x)* | 13/13 — 21.5 ms *(2.55x)* | 13/13 — 21.8 ms *(2.59x)* |
+| `dubois100` | SAT | **0.63 ms** | 2.60 ms | 5.22 ms | 1.60 ms | 1.53 ms |
+| `dubois20` | UNSAT | **0.59 ms** | 2.61 ms | 25.31 ms | 1.65 ms | 1.69 ms |
+| `dubois21` | UNSAT | **0.61 ms** | 2.46 ms | 18.18 ms | 1.46 ms | 1.48 ms |
+| `dubois22` | UNSAT | **0.59 ms** | 2.45 ms | 19.51 ms | 1.48 ms | 1.63 ms |
+| `dubois23` | UNSAT | **0.58 ms** | 2.94 ms | 18.23 ms | 1.39 ms | 1.54 ms |
+| `dubois24` | UNSAT | **0.59 ms** | 2.92 ms | 23.29 ms | 1.61 ms | 1.68 ms |
+| `dubois25` | UNSAT | **0.59 ms** | 2.17 ms | 18.00 ms | 2.05 ms | 1.70 ms |
+| `dubois26` | UNSAT | **0.58 ms** | 2.39 ms | 18.46 ms | 1.62 ms | 1.54 ms |
+| `dubois27` | UNSAT | **0.58 ms** | 2.34 ms | 18.48 ms | 1.57 ms | 1.55 ms |
+| `dubois28` | UNSAT | **0.59 ms** | 2.52 ms | 17.88 ms | 1.66 ms | 1.50 ms |
+| `dubois29` | UNSAT | **0.59 ms** | 2.67 ms | 24.04 ms | 1.83 ms | 1.88 ms |
+| `dubois30` | UNSAT | **0.59 ms** | 2.50 ms | 18.72 ms | 1.59 ms | 1.71 ms |
+| `dubois50` | UNSAT | **0.58 ms** | 2.54 ms | 26.98 ms | 2.02 ms | 2.34 ms |
+| **Total (13 files, PAR-2)** | **13/13** | **13/13 — 7.7 ms** *(fastest)* | 13/13 — 33.1 ms *(4.29x)* | 13/13 — 252.3 ms *(32.72x)* | 13/13 — 21.5 ms *(2.79x)* | 13/13 — 21.8 ms *(2.83x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

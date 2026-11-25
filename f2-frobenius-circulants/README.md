@@ -51,12 +51,12 @@ Evaluated sequentially on the same AMD Ryzen 9 5950X machine (16C/32T Linux, 1 c
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| `f2_frobenius_n64` | **1.20 ms** *(fastest)* | 2.91 ms *(2.4x)* | 23.08 ms *(19.2x)* | 22.23 ms *(18.5x)* | 1.59 ms *(1.3x)* | 2.68 ms *(2.2x)* |
-| `f2_frobenius_n256` | **1.36 ms** *(fastest)* | 388.02 ms *(285x)* | 34.73 ms *(25.5x)* | 27.54 ms *(20.3x)* | 1.96 ms *(1.4x)* | 156.50 ms *(115x)* |
-| `f2_frobenius_n1024` | **1.77 ms** *(fastest)* | 13,775.17 ms *(7,783x)* | 83.44 ms *(47.1x)* | 53.56 ms *(30.3x)* | 5.06 ms *(2.9x)* | 2,923.48 ms *(1,652x)* |
-| `f2_frobenius_n4096` | **2.79 ms** *(fastest)* | 210,776.92 ms *(75,547x)* | 516.92 ms *(185x)* | 999.39 ms *(358x)* | 63.48 ms *(22.8x)* | 364,047.66 ms *(130,483x)* |
-| `f2_frobenius_n256_unsat` | **1.34 ms** *(fastest)* | 75.75 ms *(56.5x)* | 36.07 ms *(26.9x)* | 23.03 ms *(17.2x)* | 2.21 ms *(1.6x)* | 62.87 ms *(46.9x)* |
-| `f2_frobenius_n1024_unsat` | **1.72 ms** *(fastest)* | >30 s *(T/O)* | 104.27 ms *(60.6x)* | 30.75 ms *(17.9x)* | 7.51 ms *(4.4x)* | 928.70 ms *(540x)* |
+| `f2_frobenius_n64` | **0.62 ms** *(fastest)* | 2.91 ms *(4.7x)* | 23.08 ms *(37.2x)* | 22.23 ms *(35.9x)* | 1.59 ms *(2.6x)* | 2.68 ms *(4.3x)* |
+| `f2_frobenius_n256` | **0.68 ms** *(fastest)* | 388.02 ms *(571x)* | 34.73 ms *(51.1x)* | 27.54 ms *(40.5x)* | 1.96 ms *(2.9x)* | 156.50 ms *(230x)* |
+| `f2_frobenius_n1024` | **0.80 ms** *(fastest)* | 13,775.17 ms *(17,219x)* | 83.44 ms *(104x)* | 53.56 ms *(67.0x)* | 5.06 ms *(6.3x)* | 2,923.48 ms *(3,654x)* |
+| `f2_frobenius_n4096` | **1.35 ms** *(fastest)* | 210,776.92 ms *(156,131x)* | 516.92 ms *(383x)* | 999.39 ms *(740x)* | 63.48 ms *(47.0x)* | 364,047.66 ms *(269,665x)* |
+| `f2_frobenius_n256_unsat` | **0.69 ms** *(fastest)* | 75.75 ms *(110x)* | 36.07 ms *(52.3x)* | 23.03 ms *(33.4x)* | 2.21 ms *(3.2x)* | 62.87 ms *(91.1x)* |
+| `f2_frobenius_n1024_unsat` | **0.85 ms** *(fastest)* | >30 s *(T/O)* | 104.27 ms *(123x)* | 30.75 ms *(36.2x)* | 7.51 ms *(8.8x)* | 928.70 ms *(1,093x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

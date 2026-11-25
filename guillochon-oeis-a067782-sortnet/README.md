@@ -102,9 +102,9 @@ Three smallest calibration rungs evaluated on identical uncompressed flat `.cnf`
 |---|:---:|---:|---:|---:|---:|---:|
 | `sortnet_n11_d7.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `sortnet_n12_d7.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `sortnet_n12_d8.cnf` | SAT | >60 s *(18.36 s updated build)* | >60 s | >60 s | >60 s | **13.50 s** |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 3** | 0 / 3 (0 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | **1 / 3** (1 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 360.00 s *(mean 120.00 s)* | 360.00 s *(mean 120.00 s)* | 360.00 s *(mean 120.00 s)* | 360.00 s *(mean 120.00 s)* | **253.50 s** *(mean 84.50 s)* |
+| `sortnet_n12_d8.cnf` | SAT | 42.40 s | >60 s | >60 s | >60 s | **13.50 s** |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 3** | **1 / 3** (1 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | **1 / 3** (1 SAT, 0 UNSAT) |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 282.40 s *(mean 94.13 s)* | 360.00 s *(mean 120.00 s)* | 360.00 s *(mean 120.00 s)* | 360.00 s *(mean 120.00 s)* | **253.50 s** *(mean 84.50 s)* |
 
 - **Extended & upstream reference timings:** An updated Frobenius build solved `sortnet_n12_d8.cnf` in **`18.36 s`** (producing the verified 46-comparator network committed in [`solutions/sortnet_n12_d8.model.xz`](solutions/sortnet_n12_d8.model.xz)), whereas CaDiCaL 3.1.0, CryptoMiniSat 5.18.0, and dense-solver 0.0.4 all timed out at `>60 s`. In James Guillochon's upstream baseline (CaDiCaL 1.5.3 via PySAT on an Intel i5-12600K), `sortnet_n12_d8.cnf` required `111 s` (SAT), `sortnet_n11_d7.cnf` required `1,264 s` (UNSAT), and `sortnet_n12_d7.cnf` required `2,142 s` (UNSAT).
 

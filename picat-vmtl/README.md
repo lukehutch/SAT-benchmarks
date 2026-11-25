@@ -84,18 +84,18 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `vmtl_n4_k19.cnf` | UNSAT | **45.8 ms** | 49.7 ms | 162.0 ms | 48.4 ms | 95.9 ms |
-| `vmtl_n5_k34.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | **37.19 s** |
-| `vmtl_n5_k35.cnf` | SAT | **73.6 ms** | 123.8 ms | 645.9 ms | 172.0 ms | 204.2 ms |
+| `vmtl_n4_k19.cnf` | UNSAT | **34.9 ms** | 49.7 ms | 162.0 ms | 48.4 ms | 95.9 ms |
+| `vmtl_n5_k34.cnf` | UNSAT | 44.54 s | >60 s | >60 s | >60 s | **37.19 s** |
+| `vmtl_n5_k35.cnf` | SAT | **72.2 ms** | 123.8 ms | 645.9 ms | 172.0 ms | 204.2 ms |
 | `vmtl_n6_k58.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `vmtl_n6_k59.cnf` | SAT | 1.72 s | **1.03 s** | 3.62 s | 1.24 s | 1.95 s |
-| `vmtl_n7_k111.cnf` | SAT | **177.9 ms** | 2.38 s | 6.24 s | 24.50 s | 12.83 s |
-| `vmtl_n8_k148.cnf` | SAT | **197.4 ms** | 260.4 ms | 704.8 ms | 939.2 ms | 1.44 s |
-| `vmtl_n9_k207.cnf` | SAT | **940.1 ms** | 5.07 s | 2.10 s | 4.25 s | 5.06 s |
+| `vmtl_n6_k59.cnf` | SAT | 1.91 s | **1.03 s** | 3.62 s | 1.24 s | 1.95 s |
+| `vmtl_n7_k111.cnf` | SAT | **1.48 s** | 2.38 s | 6.24 s | 24.50 s | 12.83 s |
+| `vmtl_n8_k148.cnf` | SAT | 484.8 ms | **260.4 ms** | 704.8 ms | 939.2 ms | 1.44 s |
+| `vmtl_n9_k207.cnf` | SAT | 2.17 s | 5.07 s | **2.10 s** | 4.25 s | 5.06 s |
 | `vmtl_n10_k257.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `vmtl_n10_k280.cnf` | SAT | 2.94 s | 4.08 s | 10.51 s | 3.19 s | **1.22 s** |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **10 total** | 7 / 10 (6 SAT, 1 UNSAT) | 7 / 10 (6 SAT, 1 UNSAT) | 7 / 10 (6 SAT, 1 UNSAT) | 7 / 10 (6 SAT, 1 UNSAT) | **8 / 10 (6 SAT, 2 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 366.10 s *(mean 36.61 s)* | 372.99 s *(mean 37.30 s)* | 383.98 s *(mean 38.40 s)* | 394.34 s *(mean 39.43 s)* | **300.00 s** *(mean 30.00 s)* |
+| `vmtl_n10_k280.cnf` | SAT | 9.81 s | 4.08 s | 10.51 s | 3.19 s | **1.22 s** |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | **10 total** | **8 / 10 (6 SAT, 2 UNSAT)** | 7 / 10 (6 SAT, 1 UNSAT) | 7 / 10 (6 SAT, 1 UNSAT) | 7 / 10 (6 SAT, 1 UNSAT) | **8 / 10 (6 SAT, 2 UNSAT)** |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 300.49 s *(mean 30.05 s)* | 372.99 s *(mean 37.30 s)* | 383.98 s *(mean 38.40 s)* | 394.34 s *(mean 39.43 s)* | **300.00 s** *(mean 30.00 s)* |
 
 *Ground-truth UNSAT note:* `vmtl_n4_k19.cnf` is formally proof-certified (`drat-trim` + `lrat-check` + `cake_lpr`); `vmtl_n5_k34.cnf`, `vmtl_n6_k58.cnf`, and `vmtl_n10_k257.cnf` are mathematically UNSAT via the exact global double-counting theorem $K < K_{\min}(n)$ (`34 < 35`, `58 < 59`, `257 < 258`), making them exceptionally compact (`490–6,065` variables) CDCL refutation challenges.
 

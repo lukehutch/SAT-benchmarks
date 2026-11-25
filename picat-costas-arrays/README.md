@@ -82,17 +82,17 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `costas_n8.cnf` | SAT | 29.6 ms | **27.5 ms** | 769.6 ms | 28.1 ms | 48.7 ms |
-| `costas_n9.cnf` | SAT | **20.6 ms** | 31.8 ms | 592.6 ms | 42.7 ms | 65.8 ms |
-| `costas_n10.cnf` | SAT | 29.6 ms | 54.5 ms | 619.5 ms | **26.0 ms** | 178.3 ms |
-| `costas_n11.cnf` | SAT | **47.7 ms** | 104.2 ms | 741.6 ms | 69.4 ms | 462.8 ms |
-| `costas_n12.cnf` | SAT | 384.9 ms | **107.2 ms** | 1.26 s | 249.4 ms | 1.16 s |
-| `costas_n13.cnf` | SAT | 361.9 ms | 784.7 ms | 1.84 s | **97.9 ms** | 2.24 s |
-| `costas_n14.cnf` | SAT | 4.22 s | 2.23 s | 6.09 s | **539.3 ms** | 2.48 s |
-| `costas_n15.cnf` | SAT | 9.00 s | 14.23 s | 18.81 s | **8.63 s** | 38.43 s |
-| `costas_n16.cnf` | SAT | 41.63 s | **23.38 s** | 32.77 s | >60 s | >60 s |
+| `costas_n8.cnf` | SAT | **16.6 ms** | 27.5 ms | 769.6 ms | 28.1 ms | 48.7 ms |
+| `costas_n9.cnf` | SAT | **10.2 ms** | 31.8 ms | 592.6 ms | 42.7 ms | 65.8 ms |
+| `costas_n10.cnf` | SAT | **16.1 ms** | 54.5 ms | 619.5 ms | 26.0 ms | 178.3 ms |
+| `costas_n11.cnf` | SAT | **31.2 ms** | 104.2 ms | 741.6 ms | 69.4 ms | 462.8 ms |
+| `costas_n12.cnf` | SAT | 167.9 ms | **107.2 ms** | 1.26 s | 249.4 ms | 1.16 s |
+| `costas_n13.cnf` | SAT | 2.03 s | 784.7 ms | 1.84 s | **97.9 ms** | 2.24 s |
+| `costas_n14.cnf` | SAT | 1.63 s | 2.23 s | 6.09 s | **539.3 ms** | 2.48 s |
+| `costas_n15.cnf` | SAT | 16.22 s | 14.23 s | 18.81 s | **8.63 s** | 38.43 s |
+| `costas_n16.cnf` | SAT | **19.69 s** | 23.38 s | 32.77 s | >60 s | >60 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **9 total** | **9 / 9 (9 SAT, 0 UNSAT)** | **9 / 9 (9 SAT, 0 UNSAT)** | **9 / 9 (9 SAT, 0 UNSAT)** | 8 / 9 (8 SAT, 0 UNSAT) | 8 / 9 (8 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | 55.71 s *(mean 6.19 s)* | **40.94 s** *(mean 4.55 s)* | 63.50 s *(mean 7.06 s)* | 129.69 s *(mean 14.41 s)* | 165.07 s *(mean 18.34 s)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **39.82 s** *(mean 4.42 s)* | 40.94 s *(mean 4.55 s)* | 63.50 s *(mean 7.06 s)* | 129.69 s *(mean 14.41 s)* | 165.07 s *(mean 18.34 s)* |
 
 *Ground-truth SAT note:* Every order $N \in \{8, \dots, 16\}$ is mathematically proven SAT with hundreds to tens of thousands of solutions ([OEIS A008404](https://oeis.org/A008404), $a(16)/2 = 10{,}552$ under $\pi_1 < \pi_{16}$).
 

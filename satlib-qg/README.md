@@ -41,29 +41,29 @@ All 22 Quasigroup existence / Latin Square (`qg1`–`qg7`) SAT and UNSAT instanc
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `qg1-07` | SAT | 14.64 ms | **12.95 ms** | 204.83 ms | 23.69 ms | 83.39 ms |
-| `qg1-08` | SAT | 123.32 ms | **107.57 ms** | 480.07 ms | 124.75 ms | 731.76 ms |
-| `qg2-07` | SAT | 10.60 ms | 12.27 ms | 269.39 ms | 22.19 ms | **6.20 ms** |
-| `qg2-08` | SAT | 272.68 ms | **107.08 ms** | 1,563.06 ms | 980.43 ms | 348.94 ms |
-| `qg3-08` | SAT | 6.84 ms | **5.05 ms** | 150.56 ms | 7.33 ms | 28.09 ms |
-| `qg3-09` | UNSAT | **528.53 ms** | 628.64 ms | 779.37 ms | 3,137.39 ms | 835.51 ms |
-| `qg4-08` | UNSAT | **10.43 ms** | 13.20 ms | 144.44 ms | 11.17 ms | 33.10 ms |
-| `qg4-09` | SAT | 21.33 ms | 34.97 ms | 217.03 ms | **16.00 ms** | 35.40 ms |
-| `qg5-09` | UNSAT | 9.79 ms | **6.78 ms** | 433.91 ms | 17.76 ms | 16.12 ms |
-| `qg5-10` | UNSAT | 13.82 ms | **10.82 ms** | 626.57 ms | 20.11 ms | 42.56 ms |
-| `qg5-11` | SAT | 20.39 ms | **16.58 ms** | 687.54 ms | 28.86 ms | 58.56 ms |
-| `qg5-12` | UNSAT | **39.04 ms** | 44.08 ms | 763.59 ms | 52.42 ms | 105.06 ms |
-| `qg5-13` | UNSAT | 2,255.39 ms | **1,734.15 ms** | 2,125.51 ms | 1,946.58 ms | 2,060.38 ms |
-| `qg6-09` | SAT | 5.69 ms | 6.50 ms | 525.08 ms | 10.02 ms | **3.03 ms** |
-| `qg6-10` | UNSAT | 11.91 ms | **10.74 ms** | 624.56 ms | 17.52 ms | 37.10 ms |
-| `qg6-11` | UNSAT | **31.32 ms** | 45.28 ms | 680.25 ms | 38.65 ms | 79.13 ms |
-| `qg6-12` | UNSAT | 479.57 ms | 586.13 ms | 989.44 ms | **469.95 ms** | 1,223.98 ms |
-| `qg7-09` | SAT | 6.80 ms | 6.91 ms | 48.40 ms | 11.00 ms | **3.07 ms** |
-| `qg7-10` | UNSAT | 13.36 ms | **8.56 ms** | 632.10 ms | 14.80 ms | 34.90 ms |
-| `qg7-11` | UNSAT | **25.26 ms** | 29.51 ms | 649.02 ms | 29.49 ms | 53.11 ms |
-| `qg7-12` | UNSAT | 295.58 ms | 213.63 ms | 838.03 ms | **127.10 ms** | 263.38 ms |
-| `qg7-13` | SAT | 38.75 ms | **24.35 ms** | 1,134.27 ms | 71.80 ms | 104.73 ms |
-| **Total (22 files, PAR-2)** | **22/22** | 22/22 — 4,235.1 ms *(1.16x)* | **22/22 — 3,665.8 ms** *(fastest)* | 22/22 — 14,567.0 ms *(3.97x)* | 22/22 — 7,179.0 ms *(1.96x)* | 22/22 — 6,187.5 ms *(1.69x)* |
+| `qg1-07` | SAT | 13.79 ms | **12.95 ms** | 204.83 ms | 23.69 ms | 83.39 ms |
+| `qg1-08` | SAT | 126.85 ms | **107.57 ms** | 480.07 ms | 124.75 ms | 731.76 ms |
+| `qg2-07` | SAT | 9.85 ms | 12.27 ms | 269.39 ms | 22.19 ms | **6.20 ms** |
+| `qg2-08` | SAT | 260.45 ms | **107.08 ms** | 1,563.06 ms | 980.43 ms | 348.94 ms |
+| `qg3-08` | SAT | **5.01 ms** | 5.05 ms | 150.56 ms | 7.33 ms | 28.09 ms |
+| `qg3-09` | UNSAT | **473.96 ms** | 628.64 ms | 779.37 ms | 3,137.39 ms | 835.51 ms |
+| `qg4-08` | UNSAT | **8.46 ms** | 13.20 ms | 144.44 ms | 11.17 ms | 33.10 ms |
+| `qg4-09` | SAT | 19.30 ms | 34.97 ms | 217.03 ms | **16.00 ms** | 35.40 ms |
+| `qg5-09` | UNSAT | 8.70 ms | **6.78 ms** | 433.91 ms | 17.76 ms | 16.12 ms |
+| `qg5-10` | UNSAT | 12.79 ms | **10.82 ms** | 626.57 ms | 20.11 ms | 42.56 ms |
+| `qg5-11` | SAT | 18.79 ms | **16.58 ms** | 687.54 ms | 28.86 ms | 58.56 ms |
+| `qg5-12` | UNSAT | **36.84 ms** | 44.08 ms | 763.59 ms | 52.42 ms | 105.06 ms |
+| `qg5-13` | UNSAT | **1,178.01 ms** | 1,734.15 ms | 2,125.51 ms | 1,946.58 ms | 2,060.38 ms |
+| `qg6-09` | SAT | 4.62 ms | 6.50 ms | 525.08 ms | 10.02 ms | **3.03 ms** |
+| `qg6-10` | UNSAT | 10.87 ms | **10.74 ms** | 624.56 ms | 17.52 ms | 37.10 ms |
+| `qg6-11` | UNSAT | **30.37 ms** | 45.28 ms | 680.25 ms | 38.65 ms | 79.13 ms |
+| `qg6-12` | UNSAT | **460.33 ms** | 586.13 ms | 989.44 ms | 469.95 ms | 1,223.98 ms |
+| `qg7-09` | SAT | 5.72 ms | 6.91 ms | 48.40 ms | 11.00 ms | **3.07 ms** |
+| `qg7-10` | UNSAT | 11.93 ms | **8.56 ms** | 632.10 ms | 14.80 ms | 34.90 ms |
+| `qg7-11` | UNSAT | **24.32 ms** | 29.51 ms | 649.02 ms | 29.49 ms | 53.11 ms |
+| `qg7-12` | UNSAT | 284.74 ms | 213.63 ms | 838.03 ms | **127.10 ms** | 263.38 ms |
+| `qg7-13` | SAT | 36.38 ms | **24.35 ms** | 1,134.27 ms | 71.80 ms | 104.73 ms |
+| **Total (22 files, PAR-2)** | **22/22** | **22/22 — 3,042.1 ms** *(fastest)* | 22/22 — 3,665.8 ms *(1.21x)* | 22/22 — 14,567.0 ms *(4.79x)* | 22/22 — 7,179.0 ms *(2.36x)* | 22/22 — 6,187.5 ms *(2.03x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
