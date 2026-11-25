@@ -72,21 +72,21 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `sha256_cec_r16_b4.cnf` | UNSAT | **505.2 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `sha256_cec_r16_b4.cnf` | UNSAT | **520.0 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
 | `sha256_cec_r1_b4.cnf` | UNSAT | **12.0 ms** | 296.6 ms | 695.2 ms | 378.0 ms | 346.3 ms |
 | `sha256_cec_r2_b2.cnf` | UNSAT | **7.6 ms** | 17.86 s | 14.64 s | >60 s *(T/O)* | 10.83 s |
-| `sha256_cec_r2_b4.cnf` | UNSAT | **57.4 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | 26.01 s |
+| `sha256_cec_r2_b4.cnf` | UNSAT | **56.8 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | 26.01 s |
 | `sha256_cec_r32_b4.cnf` | UNSAT | **1.23 s** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sha256_cec_r4_b1.cnf` | UNSAT | **13.0 ms** | 275.3 ms | 1.27 s | 370.0 ms | 243.4 ms |
-| `sha256_cec_r4_b4.cnf` | UNSAT | **138.5 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sha256_cec_r64_b4.cnf` | UNSAT | **2.75 s** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sha256_cec_r8_b1.cnf` | UNSAT | **28.2 ms** | 1.07 s | 2.31 s | 1.42 s | 833.9 ms |
-| `sha256_cec_r8_b4.cnf` | UNSAT | **253.3 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sha256_trace_r64_abc.cnf` | SAT | **26.9 ms** | 56.1 ms | 99.6 ms | 3.22 s | 33.3 ms |
-| `sha256_trace_r64_abc_expect_flip.cnf` | UNSAT | 24.8 ms | 48.5 ms | 59.0 ms | 3.26 s | **24.2 ms** |
-| `sha256_trace_r64_abc_expect_ok.cnf` | SAT | **26.9 ms** | 58.2 ms | 101.9 ms | 3.26 s | 32.4 ms |
+| `sha256_cec_r4_b1.cnf` | UNSAT | **12.7 ms** | 275.3 ms | 1.27 s | 370.0 ms | 243.4 ms |
+| `sha256_cec_r4_b4.cnf` | UNSAT | **137.4 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `sha256_cec_r64_b4.cnf` | UNSAT | **2.73 s** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `sha256_cec_r8_b1.cnf` | UNSAT | **28.4 ms** | 1.07 s | 2.31 s | 1.42 s | 833.9 ms |
+| `sha256_cec_r8_b4.cnf` | UNSAT | **254.4 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `sha256_trace_r64_abc.cnf` | SAT | **27.4 ms** | 56.1 ms | 99.6 ms | 3.22 s | 33.3 ms |
+| `sha256_trace_r64_abc_expect_flip.cnf` | UNSAT | 25.0 ms | 48.5 ms | 59.0 ms | 3.26 s | **24.2 ms** |
+| `sha256_trace_r64_abc_expect_ok.cnf` | SAT | **27.8 ms** | 58.2 ms | 101.9 ms | 3.26 s | 32.4 ms |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **13** | **13/13 (2 SAT, 11 UNSAT)** | 7/13 (2 SAT, 5 UNSAT) | 7/13 (2 SAT, 5 UNSAT) | 6/13 (2 SAT, 4 UNSAT) | 8/13 (2 SAT, 6 UNSAT) |
-| **Total PAR-2** | — | **5.07 s *(mean 0.39 s)*** | 739.66 s *(mean 56.90 s)* | 739.18 s *(mean 56.86 s)* | 851.91 s *(mean 65.53 s)* | 638.35 s *(mean 49.10 s)* |
+| **Total PAR-2** | — | **5.06 s *(mean 0.39 s)*** | 739.66 s *(mean 56.90 s)* | 739.18 s *(mean 56.86 s)* | 851.91 s *(mean 65.53 s)* | 638.35 s *(mean 49.10 s)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
