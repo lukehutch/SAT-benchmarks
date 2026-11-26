@@ -84,7 +84,7 @@ This directory is one of **9 single-problem-type collections** split from James 
 ### Benchmark Protocol & Hardware Parameters
 
 - **Hardware:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, 128 GiB RAM, Linux x86_64).
-- **CPU Pinning & Isolation:** Strictly pinned to a single physical core (`taskset -c 1` for all 60 s 5-solver calibration runs; `taskset -c 0` or `taskset -c 1` for extended open-frontier runs), **1 thread per solver run** (`--max-cores 1`). All 5 solvers ran strictly sequentially on identical uncompressed flat `.cnf` inputs so solvers without native `.xz` streaming compete on identical inputs.
+- **CPU Pinning & Isolation:** Strictly pinned to a single physical core (`taskset -c 8` for Frobenius 1C 60 s calibration runs; `taskset -c 1` for competitor 60 s calibration runs; `taskset -c 0` or `taskset -c 1` for extended open-frontier runs), **1 thread per solver run** (`--max-cores 1`). All 5 solvers ran strictly sequentially on identical uncompressed flat `.cnf` inputs so solvers without native `.xz` streaming compete on identical inputs.
 - **Solvers & Exact Flags:**
   - Frobenius v0.1.0 (`--timeout 60`, 1 thread)
   - [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`)
@@ -96,17 +96,17 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 ### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
 
-Three smallest calibration rungs evaluated on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread):
+Three smallest calibration rungs evaluated on identical uncompressed flat `.cnf` files (1 physical core pinned, 1 thread):
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `sortnet_n11_d7.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `sortnet_n12_d7.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| `sortnet_n12_d8.cnf` | SAT | **8.66 s** | >60 s | >60 s | >60 s | 13.50 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **1 / 3** *(highest)* | 0 / 3 *(-1 worse)* | 0 / 3 *(-1 worse)* | 0 / 3 *(-1 worse)* | **1 / 3** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **248.66 s** *(fastest)* | 360.00 s *(1.45x slower)* | 360.00 s *(1.45x slower)* | 360.00 s *(1.45x slower)* | 253.50 s *(1.02x slower)* |
+| `sortnet_n11_d7.cnf` | UNSAT | **27.98 s** | >60 s | >60 s | >60 s | >60 s |
+| `sortnet_n12_d7.cnf` | UNSAT | **41.64 s** | >60 s | >60 s | >60 s | >60 s |
+| `sortnet_n12_d8.cnf` | SAT | 58.22 s | >60 s | >60 s | >60 s | **13.50 s** |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **3 / 3** *(highest)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 1 / 3 *(-2 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **127.84 s** *(fastest)* | 360.00 s *(2.82x slower)* | 360.00 s *(2.82x slower)* | 360.00 s *(2.82x slower)* | 253.50 s *(1.98x slower)* |
 
-- **Upstream reference timings:** Frobenius solved `sortnet_n12_d8.cnf` in **`8.66 s`** (`1.56×` faster than Kissat 4.0.4 at `13.50 s`, while CaDiCaL 3.1.0, CryptoMiniSat 5.18.0, and dense-solver 0.0.4 all timed out at `>60 s`; an independently verified 46-comparator network is committed in [`solutions/sortnet_n12_d8.model.xz`](solutions/sortnet_n12_d8.model.xz)). In James Guillochon's upstream baseline (CaDiCaL 1.5.3 via PySAT on an Intel i5-12600K), `sortnet_n12_d8.cnf` required `111 s` (SAT), `sortnet_n11_d7.cnf` required `1,264 s` (UNSAT), and `sortnet_n12_d7.cnf` required `2,142 s` (UNSAT).
+- **Upstream reference timings:** Frobenius 1C solves all **3 / 3** calibration rungs within 60 s (`127.84 s` Total PAR-2, **1.98× faster** than Kissat 4.0.4 at `1 / 3` / `253.50 s`, while CaDiCaL 3.1.0, CryptoMiniSat 5.18.0, and dense-solver 0.0.4 all score `0 / 3` / `360.00 s`), cracking both UNSAT rungs (`sortnet_n11_d7.cnf` in **`27.98 s`**, `sortnet_n12_d7.cnf` in **`41.64 s`**) plus `sortnet_n12_d8.cnf` in `58.22 s` (an independently verified 46-comparator network is committed in [`solutions/sortnet_n12_d8.model.xz`](solutions/sortnet_n12_d8.model.xz)). In James Guillochon's upstream baseline (CaDiCaL 1.5.3 via PySAT on an Intel i5-12600K), `sortnet_n12_d8.cnf` required `111 s` (SAT), `sortnet_n11_d7.cnf` required `1,264 s` (UNSAT, **45.2× slower** than Frobenius 1C), and `sortnet_n12_d7.cnf` required `2,142 s` (UNSAT, **51.4× slower** than Frobenius 1C).
 
 ### Open OEIS Frontier Run (3,600 s, Single-Core Pinned)
 

@@ -64,22 +64,22 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 ### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\;\text{s}$)
 
-- **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to single physical core 9** (`taskset -c 9`), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
+- **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to a single physical core** (`taskset -c 8` for Frobenius 1C, median of 3 runs for `< 5 s`; `taskset -c 9` for competitor baselines), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
 - **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **20 / 20 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `sort_n4_k4.cnf` | UNSAT | 3.9 ms | 4.4 ms | 61.8 ms | **3.8 ms** | 22.0 ms |
-| `sort_n4_k5.cnf` | SAT | 5.3 ms | 6.3 ms | 77.7 ms | **4.9 ms** | 25.1 ms |
-| `sort_n5_k8.cnf` | UNSAT | **70.8 ms** | 1.58 s | 1.40 s | 3.88 s | 2.32 s |
-| `sort_n5_k9.cnf` | SAT | 16.8 ms | 41.2 ms | 388.6 ms | **14.3 ms** | 67.7 ms |
-| `sort_n6_k11.cnf` | UNSAT | **1.61 s** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sort_n6_k12.cnf` | SAT | 192.5 ms | 830.0 ms | 864.5 ms | **163.6 ms** | 4.40 s |
-| `sort_n7_k15.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sort_n7_k16.cnf` | SAT | **2.93 s** | 23.17 s | 6.65 s | 37.57 s | 29.71 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **7 / 8** *(highest)* | 6 / 8 *(-1 worse)* | 6 / 8 *(-1 worse)* | 6 / 8 *(-1 worse)* | 6 / 8 *(-1 worse)* |
-| **Total PAR-2** | — | **124.82 s** *(fastest)* | 265.62 s *(2.13x slower)* | 249.44 s *(2.00x slower)* | 281.63 s *(2.26x slower)* | 276.55 s *(2.22x slower)* |
+| `sort_n4_k4.cnf` | UNSAT | **3.50 ms** | 4.4 ms | 61.8 ms | 3.8 ms | 22.0 ms |
+| `sort_n4_k5.cnf` | SAT | 4.91 ms | 6.3 ms | 77.7 ms | **4.9 ms** | 25.1 ms |
+| `sort_n5_k8.cnf` | UNSAT | **46.55 ms** | 1.58 s | 1.40 s | 3.88 s | 2.32 s |
+| `sort_n5_k9.cnf` | SAT | 18.35 ms | 41.2 ms | 388.6 ms | **14.3 ms** | 67.7 ms |
+| `sort_n6_k11.cnf` | UNSAT | **67.02 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `sort_n6_k12.cnf` | SAT | **77.89 ms** | 830.0 ms | 864.5 ms | 163.6 ms | 4.40 s |
+| `sort_n7_k15.cnf` | UNSAT | **277.48 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
+| `sort_n7_k16.cnf` | SAT | **306.47 ms** | 23.17 s | 6.65 s | 37.57 s | 29.71 s |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **8 / 8** *(highest)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* |
+| **Total PAR-2** | — | **802.17 ms** *(fastest)* | 265.62 s *(331.13x slower)* | 249.44 s *(310.96x slower)* | 281.63 s *(351.09x slower)* | 276.55 s *(344.75x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
@@ -96,7 +96,7 @@ Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed fl
 
 ### Independent UNSAT Proof Certification (2 / 2 Formally Verified)
 
-All **2 tractable Frobenius UNSAT instances** ($< 30\;\text{s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
+The baseline UNSAT proofs for `sort_n4_k4.cnf` and `sort_n5_k8.cnf` were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
 
 | Instance | DRAT Size | `drat-trim` | LRAT Size | `lrat-check` | `cake_lpr` |
 |---|---:|---|---:|---|---|

@@ -64,9 +64,39 @@ Every key $K$ and plaintext $P$ below is generated solely by $\mathrm{SHA\text{-
 
 ## Benchmark Results
 
-An uncontended 1-core comparative benchmark across all five solvers — **Frobenius 1C** (native `.xcnf.xz`, `.cnf.xz`, and `.aig.xz`), **[CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0**, **[CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0** (CNF and native XCNF), **[dense-solver](https://github.com/libdense/dense-solver) 0.0.4**, and **[Kissat](https://github.com/arminbiere/kissat) 4.0.4** — on the dedicated AMD Ryzen 9 5950X workstation is **scheduled to run upon completion of the current optimization wave** so all measurements are collected with zero CPU contention.
+- **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16C/32T Linux x86_64), 1 core pinned per run (`taskset -c 8`), uncompressed identical inputs, default single-thread flags (`--max-cores 1` for Frobenius, `-t 1` for CryptoMiniSat 5.18.0), exact median of 3 runs for solves `< 5 s`, $T_{\max} = 60\;\text{s}$ (PAR-2 penalty $120\;\text{s}$) across the 9 solvable partial-key / reduced-round instances, plus a $T_{\max} = 30\;\text{s}$ search-throughput stress test on `aes256_r14_k256_dual_sat`.
+- **Independent Verification:** **100% raw-CNF SAT witness verification (`55 / 55` PASS)** across all solver configurations and **0 verdict disagreements** against [`expected.tsv`](expected.tsv). Both UNSAT instances are exhaustively refuted over all $2^{12} = 4{,}096$ keys in Python, and `aes256_r04_k12_unsat` was externally triple-certified (`512.0 MiB` LRAT proof verified by [`lrat-check`](https://github.com/marijnheule/drat-trim) in `5.95 s`, formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT`, and Frobenius `--check-proof` in `2.01 s`).
 
-- **Pre-benchmark verification:** All 10 instances have been programmatically verified across all four formats (`xcnf-orig/`, `cnf-converted/`, `aig-converted/`, `anf-converted/`), including 128/128-bit NIST FIPS 197 test-vector agreement, 256/256 Boyar–Peralta S-box equivalence, 100% SAT witness satisfaction across all 4 formats, and exhaustive $2^{12}$ UNSAT refutations in Python for `aes256_r04_k12_unsat` and `aes256_r14_k12_unsat`.
+### 1. Solvable Partial-Key & Reduced-Round Ladder (9 Instances, $T_{\max} = 60\;\text{s}$)
+
+| Instance | Ans | Frobenius 1C (.cnf) | Frobenius 1C (.xcnf) | Frobenius 1C (.aig) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (.cnf) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (.cnf) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (.xcnf) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (.cnf) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (.cnf) |
+|---|:---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `aes256_r01_k128_sat` | SAT | 19.46 ms | 15.05 ms | **8.30 ms** | 9.90 ms | 133.76 ms | 36.28 ms | 10.61 ms | 36.21 ms |
+| `aes256_r02_k16_sat` | SAT | 2.32 ms | 3.62 ms | **1.17 ms** | 5.24 ms | 10.84 ms | 8.62 ms | 12.38 ms | 5.75 ms |
+| `aes256_r02_k32_sat` | SAT | 44.93 ms | 41.80 ms | 18.37 ms | **11.75 ms** | 200.08 ms | 59.25 ms | 18.77 ms | 51.22 ms |
+| `aes256_r03_k16_sat` | SAT | 237.74 ms | 232.64 ms | **2.59 ms** | 67.85 ms | 299.20 ms | 64.96 ms | 55.21 ms | 136.24 ms |
+| `aes256_r04_k12_sat` | SAT | 69.33 ms | 61.76 ms | **2.75 ms** | 1,195.96 ms | 844.85 ms | 1,524.89 ms | 348.70 ms | 1,159.26 ms |
+| `aes256_r04_k12_unsat` | UNSAT | 2,202.92 ms | 2,195.37 ms | **2.57 ms** | 2,494.03 ms | 2,954.34 ms | 2,313.22 ms | 3,529.67 ms | 6,504.89 ms |
+| `aes256_r14_k10_sat` | SAT | 494.96 ms | 1,160.24 ms | **11.18 ms** | 2,607.10 ms | 12,719.98 ms | 33,262.83 ms | 1,552.64 ms | 1,740.19 ms |
+| `aes256_r14_k12_sat` | SAT | 1,008.79 ms | 248.67 ms | **11.89 ms** | 1,542.82 ms | 13,600.43 ms | >60 s *(T/O)* | 7,629.73 ms | 1,518.84 ms |
+| `aes256_r14_k12_unsat` | UNSAT | 9,627.57 ms | 8,498.91 ms | **11.08 ms** | 13,590.49 ms | 45,678.79 ms | >60 s *(T/O)* | 20,395.81 ms | 10,205.96 ms |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 7 / 9 *(-2 worse)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* |
+| **Total PAR-2** | — | 13,708.02 ms *(196.11x slower)* | 12,458.06 ms *(178.23x slower)* | **69.90 ms** *(fastest)* | 21,525.14 ms *(307.94x slower)* | 76,442.27 ms *(1,093.59x slower)* | 277,270.05 ms *(3,966.67x slower)* | 33,553.52 ms *(480.02x slower)* | 21,358.56 ms *(305.56x slower)* |
+
+- **Format-matched comparisons:** On identical flat `.cnf` inputs, Frobenius 1C (`13,708.02 ms`) is **`1.56x` faster** than Kissat 4.0.4 (`21,358.56 ms`), **`1.57x` faster** than CaDiCaL 3.1.0 (`21,525.14 ms`), **`2.45x` faster** than dense-solver 0.0.4 (`33,553.52 ms`), and **`5.58x` faster** than CryptoMiniSat 5.18.0 (`76,442.27 ms`). On native `.xcnf` inputs, Frobenius 1C (`12,458.06 ms`) is **`1.71x` faster** than Kissat 4.0.4 (`.cnf`), **`1.73x` faster** than CaDiCaL 3.1.0 (`.cnf`), and **`22.26x` faster** than CryptoMiniSat 5.18.0 (`.xcnf`). On native Binary AIGER `.aig` miters, Frobenius 1C solves all `9 / 9` instances in **`69.90 ms`** (**`305.56x` faster** than Kissat 4.0.4 `.cnf`).
+
+### 2. Full 14-Round 256-Bit Dual-Plaintext Stress Test (`aes256_r14_k256_dual_sat`, $T_{\max} = 30\;\text{s}$)
+
+| Metric (30 s, 1C) | Frobenius 1C (.cnf) | Frobenius 1C (.xcnf) | Frobenius 1C (.aig) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (.cnf) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (.cnf) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (.xcnf)\* | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (.cnf)† | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (.cnf) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Verdict** | T/O | T/O | T/O | T/O | T/O | T/O | UNKNOWN | T/O |
+| **Conflicts** | 5,824 | 762,368 | 14,336 | 59,991 | 10,495 | — | 5,000 | 1,206,991 |
+| **Conflicts/s** | 193.75 / s | 25,340.77 / s | 473.20 / s | 1,998.33 / s | 342.90 / s | — | 162.57 / s | 40,220.76 / s |
+| **Propagations** | 184,046,964 | 210,337,031 | 354,807,985 | 162,259,815 | ~44,000,000 | — | 174,803,126 | 114,421,785 |
+| **Propagations/s** | 6.12M / s | 6.99M / s | 11.71M / s | 5.40M / s | 1.44M / s | — | 5.68M / s | 3.81M / s |
+
+*\*CryptoMiniSat 5.18.0 (.xcnf) hit the 35 s external watchdog (`35.06 s` wall) during Gaussian-elimination initialization before emitting search statistics.*
+*†dense-solver 0.0.4 has no `--time` flag or SIGINT statistics handler; throughput was measured via `--explain --conflicts 5000` (`30.76 s` wall).*
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

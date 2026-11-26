@@ -63,16 +63,16 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 
 | Instance | Status | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `queen_armies_a3_13x16_k14_sat` | SAT | **24.2 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
-| `queen_armies_a4_14x16_k9_sat` | SAT | **23.9 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
-| `queen_armies_a2_15x16_k33_sat` | SAT | **13.8 ms** | 4,106.2 ms | 1,830.4 ms | >15 s (T/O) | 5,757.6 ms |
-| `queen_armies_a3_15x16_k16_sat` | SAT | **26.9 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
-| `queen_armies_a3_7x8_k5_unsat` | UNSAT | **912.0 ms** | >15 s (T/O) | >15 s (T/O) | 13,448.9 ms | 11,902.2 ms |
-| `queen_armies_a3_6x10_k5_unsat` | UNSAT | **1,286.9 ms** | >15 s (T/O) | >15 s (T/O) | 11,398.4 ms | 13,366.5 ms |
-| `queen_armies_a3_6x11_k6_unsat` | UNSAT | **1,385.1 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
-| `queen_armies_a2_7x10_k12_unsat` | UNSAT | **2,628.6 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | 9,577.9 ms |
+| `queen_armies_a3_13x16_k14_sat` | SAT | **25.79 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
+| `queen_armies_a4_14x16_k9_sat` | SAT | **25.13 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
+| `queen_armies_a2_15x16_k33_sat` | SAT | **16.38 ms** | 4,106.2 ms | 1,830.4 ms | >15 s (T/O) | 5,757.6 ms |
+| `queen_armies_a3_15x16_k16_sat` | SAT | **28.40 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
+| `queen_armies_a3_7x8_k5_unsat` | UNSAT | **902.47 ms** | >15 s (T/O) | >15 s (T/O) | 13,448.9 ms | 11,902.2 ms |
+| `queen_armies_a3_6x10_k5_unsat` | UNSAT | **1,282.73 ms** | >15 s (T/O) | >15 s (T/O) | 11,398.4 ms | 13,366.5 ms |
+| `queen_armies_a3_6x11_k6_unsat` | UNSAT | **1,379.76 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
+| `queen_armies_a2_7x10_k12_unsat` | UNSAT | **2,574.30 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | 9,577.9 ms |
 | **Solved (8 instances)** | — | **8 / 8** *(highest)* | 1 / 8 *(-7 worse)* | 1 / 8 *(-7 worse)* | 2 / 8 *(-6 worse)* | 4 / 8 *(-4 worse)* |
-| **Total PAR-2** | — | **6,301.3 ms** *(fastest)* | 214,106.2 ms *(33.98x slower)* | 211,830.4 ms *(33.62x slower)* | 204,847.3 ms *(32.51x slower)* | 160,604.2 ms *(25.49x slower)* |
+| **Total PAR-2** | — | **6,234.96 ms** *(fastest)* | 214,106.2 ms *(34.34x slower)* | 211,830.4 ms *(33.97x slower)* | 204,847.3 ms *(32.85x slower)* | 160,604.2 ms *(25.76x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
