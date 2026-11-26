@@ -1,0 +1,8 @@
+[package]
+name = "gen-sha256-64r-nonce-scaling"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gen-sha256-64r-nonce-scaling"
+path = "main.rs"
