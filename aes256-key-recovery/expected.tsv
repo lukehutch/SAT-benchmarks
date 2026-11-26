@@ -1,0 +1,10 @@
+aes256_r01_k128_sat.xcnf	SAT
+aes256_r02_k16_sat.xcnf	SAT
+aes256_r02_k32_sat.xcnf	SAT
+aes256_r03_k16_sat.xcnf	SAT
+aes256_r04_k12_sat.xcnf	SAT
+aes256_r04_k12_unsat.xcnf	UNSAT
+aes256_r14_k10_sat.xcnf	SAT
+aes256_r14_k12_sat.xcnf	SAT
+aes256_r14_k12_unsat.xcnf	UNSAT
+aes256_r14_k256_dual_sat.xcnf	SAT

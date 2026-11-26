@@ -11,7 +11,7 @@ Convention for ``expected.tsv`` (uniform across every collection):
   - Column 1 naming:
       * File-backed collections (``cnf-orig/``, ``aig-orig/``, ``xcnf-orig/``, ``mata-orig/``):
         the exact relative POSIX path inside the primary ``*-orig/`` directory with the
-        trailing ``.xz`` stripped (flat: ``foo.cnf``, ``bar.aig``, ``w5.solved.xcnf``,
+        trailing ``.xz`` stripped (flat: ``foo.cnf``, ``bar.aig``, ``aes256_r14_k256_dual_sat.xcnf``,
         ``ARI056_1.mata``; nested: ``A067782/sortnet_n11_d7.cnf``), uniquely identifying
         the original instance regardless of format.
       * URI-manifest instance collections (e.g. ``sat-competition-2002-2026-uris/``):

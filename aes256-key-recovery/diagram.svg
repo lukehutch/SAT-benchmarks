@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 536" width="920" height="536" role="img" aria-label="NIST FIPS 197 AES-256 SPN round, Boyar-Peralta S-box, Davies-Meyer equivalence, and graduated (R, k) difficulty ladder">
+<defs>
+  <marker id="arr-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/></marker>
+  <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/></marker>
+  <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/></marker>
+</defs>
+<rect x="2" y="2" width="916" height="532" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="26" y="34" font-size="17.2" font-weight="700" fill="#0f172a">Synthetic NIST FIPS 197 AES-256 Key-Recovery &amp; Hash-Preimage (aes256-key-recovery)</text>
+<text x="26" y="53" font-size="11.4" fill="#475569">Clean-room Boyar–Peralta S-box (32 AND / 81 XOR-XNOR) · Factored GF(2⁸) MixColumns · 10 calibrated instances (8 SAT / 2 UNSAT), R ∈ {1, 2, 3, 4, 14}</text>
+<line x1="24" y1="64" x2="896" y2="64" stroke="#e2e8f0" stroke-width="1.2"/>
+<rect x="24" y="74" width="574" height="294" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="36" y="93" font-size="12" font-weight="700" fill="#0f172a">NIST FIPS 197 AES-256 SPN Round r ∈ {1..R}  &amp;  256-Bit KeyExpansion</text>
+<text x="74" y="106" text-anchor="middle" font-size="9.2" font-weight="700" fill="#334155">4×4 State (128 b)</text>
+<rect x="40" y="110" width="16" height="16" rx="2.5" fill="#eff6ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="48.0" y="121.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">0</text>
+<rect x="57" y="110" width="16" height="16" rx="2.5" fill="#eff6ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="65.0" y="121.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">4</text>
+<rect x="74" y="110" width="16" height="16" rx="2.5" fill="#eff6ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="82.0" y="121.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">8</text>
+<rect x="91" y="110" width="16" height="16" rx="2.5" fill="#eff6ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="99.0" y="121.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">c</text>
+<rect x="40" y="127" width="16" height="16" rx="2.5" fill="#f5f3ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="48.0" y="138.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">1</text>
+<rect x="57" y="127" width="16" height="16" rx="2.5" fill="#f5f3ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="65.0" y="138.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">5</text>
+<rect x="74" y="127" width="16" height="16" rx="2.5" fill="#f5f3ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="82.0" y="138.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">9</text>
+<rect x="91" y="127" width="16" height="16" rx="2.5" fill="#f5f3ff" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="99.0" y="138.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">d</text>
+<rect x="40" y="144" width="16" height="16" rx="2.5" fill="#ecfdf5" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="48.0" y="155.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">2</text>
+<rect x="57" y="144" width="16" height="16" rx="2.5" fill="#ecfdf5" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="65.0" y="155.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">6</text>
+<rect x="74" y="144" width="16" height="16" rx="2.5" fill="#ecfdf5" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="82.0" y="155.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">a</text>
+<rect x="91" y="144" width="16" height="16" rx="2.5" fill="#ecfdf5" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="99.0" y="155.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">e</text>
+<rect x="40" y="161" width="16" height="16" rx="2.5" fill="#fffbeb" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="48.0" y="172.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">3</text>
+<rect x="57" y="161" width="16" height="16" rx="2.5" fill="#fffbeb" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="65.0" y="172.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">7</text>
+<rect x="74" y="161" width="16" height="16" rx="2.5" fill="#fffbeb" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="82.0" y="172.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">b</text>
+<rect x="91" y="161" width="16" height="16" rx="2.5" fill="#fffbeb" stroke="#94a3b8" stroke-width="0.9"/>
+<text x="99.0" y="172.2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.4" fill="#334155">f</text>
+<text x="74" y="190" text-anchor="middle" font-size="8.2" fill="#475569">P ⊕ RK₀</text>
+<line x1="110" y1="145" x2="127" y2="145" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+<rect x="130" y="112" width="108" height="66" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="184.0" y="132" text-anchor="middle" font-size="10.8" font-weight="700" fill="#6d28d9">SubBytes</text>
+<text x="184.0" y="150" text-anchor="middle" font-size="8.9" font-weight="600" fill="#334155">16× Boyar–Peralta</text>
+<text x="184.0" y="165" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#475569">32 AND · 81 XOR</text>
+<line x1="238" y1="145.0" x2="251" y2="145.0" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+<rect x="254" y="112" width="92" height="66" rx="7" fill="#f1f5f9" stroke="#64748b" stroke-width="1.3"/>
+<text x="300.0" y="132" text-anchor="middle" font-size="10.8" font-weight="700" fill="#334155">ShiftRows</text>
+<text x="300.0" y="150" text-anchor="middle" font-size="8.9" font-weight="600" fill="#334155">Row r ≪ r</text>
+<text x="300.0" y="165" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#475569">0 gates (wires)</text>
+<line x1="346" y1="145.0" x2="359" y2="145.0" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+<rect x="362" y="112" width="112" height="66" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3"/>
+<text x="418.0" y="132" text-anchor="middle" font-size="10.8" font-weight="700" fill="#1d4ed8">MixColumns*</text>
+<text x="418.0" y="150" text-anchor="middle" font-size="8.9" font-weight="600" fill="#334155">GF(2⁸) MDS</text>
+<text x="418.0" y="165" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#475569">76 XOR/col (w≤4)</text>
+<line x1="474" y1="145.0" x2="487" y2="145.0" stroke="#475569" stroke-width="1.4" marker-end="url(#arr-slate)"/>
+<rect x="490" y="112" width="94" height="66" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.3"/>
+<text x="537.0" y="132" text-anchor="middle" font-size="10.8" font-weight="700" fill="#047857">AddRoundKey</text>
+<text x="537.0" y="150" text-anchor="middle" font-size="8.9" font-weight="600" fill="#334155">State ⊕ RKᵣ</text>
+<text x="537.0" y="165" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.1" fill="#475569">128 2-XORs</text>
+<text x="418" y="190" text-anchor="middle" font-size="8.1" fill="#475569">*omitted on final round R (FIPS 197)</text>
+<rect x="40" y="204" width="544" height="74" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+<text x="52" y="222" font-size="10.4" font-weight="700" fill="#b45309">AES-256 KeyExpansion  (Nₖ = 8 words = 256 bits → 4(R+1) words, up to 60 words / 52 S-boxes at R = 14)</text>
+<rect x="52" y="231" width="134" height="36" rx="5" fill="#ffffff" stroke="#f59e0b" stroke-width="1.1"/>
+<text x="119.0" y="246" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">W[0..7] = Key K</text>
+<text x="119.0" y="260" text-anchor="middle" font-size="8.2" fill="#475569">vars 1..256 (LSB-first)</text>
+<line x1="186" y1="249.0" x2="201" y2="249.0" stroke="#d97706" stroke-width="1.3" marker-end="url(#arr-amber)"/>
+<rect x="204" y="231" width="174" height="36" rx="5" fill="#ffffff" stroke="#f59e0b" stroke-width="1.1"/>
+<text x="291.0" y="246" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">i mod 8 = 0: Sub(Rot)⊕Rcon</text>
+<text x="291.0" y="260" text-anchor="middle" font-size="8.2" fill="#475569">28 S-boxes at R=14</text>
+<line x1="378" y1="249.0" x2="393" y2="249.0" stroke="#d97706" stroke-width="1.3" marker-end="url(#arr-amber)"/>
+<rect x="396" y="231" width="176" height="36" rx="5" fill="#ffffff" stroke="#f59e0b" stroke-width="1.1"/>
+<text x="484.0" y="246" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">i mod 8 = 4: SubWord(Wᵢ₋₁)</text>
+<text x="484.0" y="260" text-anchor="middle" font-size="8.2" fill="#475569">AES-256 extra nonlinear step</text>
+<line x1="537" y1="204" x2="537" y2="180" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+<rect x="40" y="290" width="544" height="66" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.15"/>
+<text x="52" y="309" font-size="10.4" font-weight="700" fill="#0f172a">Davies–Meyer AES-256 Hash-Preimage Equivalence  &amp;  Dual-Plaintext Miter</text>
+<text x="52" y="328" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" font-weight="600" fill="#1d4ed8">H = AES-256(K, P) ⊕ P  ⟺  AES-256(K, P) = C   where C = H ⊕ P   (bit-identical circuit)</text>
+<text x="52" y="345" font-size="8.9" fill="#475569">For k = 256 (aes256_r14_k256_dual_sat), two blocks share KeyExpansion: AES-256(K, P₁)=C₁ ∧ AES-256(K, P₂)=C₂ (unique 256-bit key).</text>
+<rect x="612" y="74" width="284" height="148" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="624" y="94" font-size="11.6" font-weight="700" fill="#0f172a">Key Bit Mask &amp; Deterministic Seeds</text>
+<rect x="626" y="104" width="122.9" height="22" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="687.4" y="118.5" text-anchor="middle" font-size="9.1" font-weight="700" fill="#b91c1c">k free bits (0..k−1)</text>
+<rect x="752.9" y="104" width="129.1" height="22" rx="4" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+<text x="817.4" y="118.5" text-anchor="middle" font-size="8.9" font-weight="600" fill="#334155">256−k fixed units</text>
+<text x="626" y="143" font-size="9.0" font-weight="600" fill="#334155">100% synthetic SHA-256 provenance:</text>
+<rect x="626" y="149" width="256" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="754.0" y="164.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.6" font-weight="600" fill="#0f172a">SHA-256("frobenius-aes256-benchmark-v1:name:role")</text>
+<rect x="626" y="182" width="124" height="28" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="688" y="195" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">FIPS-197 C.3 &amp; (0,0)</text>
+<text x="688" y="205.5" text-anchor="middle" font-size="7.9" fill="#065f46">128/128 bits PASS ✓</text>
+<rect x="758" y="182" width="124" height="28" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="820" y="195" text-anchor="middle" font-size="8.4" font-weight="700" fill="#047857">BP S-Box &amp; UNSAT</text>
+<text x="820" y="205.5" text-anchor="middle" font-size="7.9" fill="#065f46">256/256 &amp; 2¹²=0 ✓</text>
+<rect x="612" y="232" width="284" height="136" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="624" y="252" font-size="11.4" font-weight="700" fill="#0f172a">Boyar–Peralta S-Box (113 Gates)</text>
+<rect x="626" y="262" width="76" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.15"/>
+<text x="664.0" y="276" text-anchor="middle" font-size="8.8" font-weight="700" fill="#1d4ed8">Top Linear</text>
+<text x="664.0" y="289" text-anchor="middle" font-size="8.2" font-weight="600" fill="#334155">23 XORs</text>
+<text x="664.0" y="300" text-anchor="middle" font-size="7.8" fill="#475569">U → y₁..y₂₁</text>
+<line x1="702" y1="284.0" x2="714" y2="284.0" stroke="#475569" stroke-width="1.2" marker-end="url(#arr-slate)"/>
+<rect x="716" y="262" width="76" height="44" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.15"/>
+<text x="754.0" y="276" text-anchor="middle" font-size="8.8" font-weight="700" fill="#6d28d9">GF(2⁴) Inv</text>
+<text x="754.0" y="289" text-anchor="middle" font-size="8.2" font-weight="600" fill="#334155">32 AND</text>
+<text x="754.0" y="300" text-anchor="middle" font-size="7.8" fill="#475569">+ 30 XORs</text>
+<line x1="792" y1="284.0" x2="804" y2="284.0" stroke="#475569" stroke-width="1.2" marker-end="url(#arr-slate)"/>
+<rect x="806" y="262" width="76" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.15"/>
+<text x="844.0" y="276" text-anchor="middle" font-size="8.8" font-weight="700" fill="#1d4ed8">Bot Affine</text>
+<text x="844.0" y="289" text-anchor="middle" font-size="8.2" font-weight="600" fill="#334155">28 XOR/XN</text>
+<text x="844.0" y="300" text-anchor="middle" font-size="7.8" fill="#475569">+ 0x63</text>
+<text x="626" y="324" font-size="9.0" font-weight="700" fill="#334155">Lossless 4-Format Export (40 files, 3.92 MB total):</text>
+<rect x="626" y="332" width="60" height="22" rx="4.5" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+<text x="656" y="346.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#b45309">xcnf-orig</text>
+<rect x="692" y="332" width="60" height="22" rx="4.5" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1"/>
+<text x="722" y="346.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#1d4ed8">cnf-conv</text>
+<rect x="756" y="332" width="60" height="22" rx="4.5" fill="#ecfdf5" stroke="#047857" stroke-width="1"/>
+<text x="786" y="346.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#047857">aig-conv</text>
+<rect x="820" y="332" width="60" height="22" rx="4.5" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1"/>
+<text x="850" y="346.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#6d28d9">anf-conv</text>
+<rect x="24" y="380" width="872" height="140" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="38" y="399" font-size="11.6" font-weight="700" fill="#0f172a">Graduated 10-Instance Difficulty Ladder:  Reduced-Round Propagation → Full Diffusion → Full 14-Round AES-256</text>
+<rect x="38" y="408" width="158" height="82" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+<text x="46" y="423" font-size="9.5" font-weight="700" fill="#059669">Tier 1 · R=1</text>
+<rect x="146" y="413" width="43" height="14" rx="3.5" fill="#ffffff" stroke="#059669" stroke-width="0.9"/>
+<text x="167.5" y="423" text-anchor="middle" font-size="7.6" font-weight="700" fill="#059669">SAT</text>
+<text x="46" y="440" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">r01_k128_sat</text>
+<text x="46" y="454" font-size="8.2" fill="#334155">128 free · 2.2k v</text>
+<text x="46" y="470" font-size="8.3" font-weight="600" fill="#1e293b">Trivial 1-round</text>
+<text x="46" y="482" font-size="7.9" fill="#475569">S-box inversion</text>
+<line x1="196" y1="449" x2="206" y2="449" stroke="#64748b" stroke-width="1.35" marker-end="url(#arr-slate)"/>
+<rect x="208" y="408" width="158" height="82" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="216" y="423" font-size="9.5" font-weight="700" fill="#2563eb">Tier 2 · R=2..3</text>
+<rect x="316" y="413" width="43" height="14" rx="3.5" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="337.5" y="423" text-anchor="middle" font-size="7.6" font-weight="700" fill="#2563eb">3 SAT</text>
+<text x="216" y="440" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">r02_k16, k32 · r03_k16</text>
+<text x="216" y="454" font-size="8.2" fill="#334155">16–32 free · 5–7.8k v</text>
+<text x="216" y="470" font-size="8.3" font-weight="600" fill="#1e293b">Easy → Medium</text>
+<text x="216" y="482" font-size="7.9" fill="#475569">Nonlinear key re-entry</text>
+<line x1="366" y1="449" x2="376" y2="449" stroke="#64748b" stroke-width="1.35" marker-end="url(#arr-slate)"/>
+<rect x="378" y="408" width="158" height="82" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+<text x="386" y="423" font-size="9.5" font-weight="700" fill="#d97706">Tier 3 · R=4</text>
+<rect x="486" y="413" width="43" height="14" rx="3.5" fill="#ffffff" stroke="#d97706" stroke-width="0.9"/>
+<text x="507.5" y="423" text-anchor="middle" font-size="7.6" font-weight="700" fill="#d97706">1S / 1U</text>
+<text x="386" y="440" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">r04_k12 sat / unsat</text>
+<text x="386" y="454" font-size="8.2" fill="#334155">12 free · 10.7k v</text>
+<text x="386" y="470" font-size="8.3" font-weight="600" fill="#1e293b">Full diffusion</text>
+<text x="386" y="482" font-size="7.9" fill="#475569">2¹² UNSAT proved</text>
+<line x1="536" y1="449" x2="546" y2="449" stroke="#64748b" stroke-width="1.35" marker-end="url(#arr-slate)"/>
+<rect x="548" y="408" width="158" height="82" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="556" y="423" font-size="9.5" font-weight="700" fill="#dc2626">Tier 4 · R=14</text>
+<rect x="656" y="413" width="43" height="14" rx="3.5" fill="#ffffff" stroke="#dc2626" stroke-width="0.9"/>
+<text x="677.5" y="423" text-anchor="middle" font-size="7.6" font-weight="700" fill="#dc2626">2S / 1U</text>
+<text x="556" y="440" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">r14_k10, k12 sat/uns</text>
+<text x="556" y="454" font-size="8.2" fill="#334155">10–12 free · 38.9k v</text>
+<text x="556" y="470" font-size="8.3" font-weight="600" fill="#1e293b">Full 14-round</text>
+<text x="556" y="482" font-size="7.9" fill="#475569">276 S-boxes · 29.8k XOR</text>
+<line x1="706" y1="449" x2="716" y2="449" stroke="#64748b" stroke-width="1.35" marker-end="url(#arr-slate)"/>
+<rect x="718" y="408" width="158" height="82" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="726" y="423" font-size="9.5" font-weight="700" fill="#7c3aed">Tier 5 · Full</text>
+<rect x="826" y="413" width="43" height="14" rx="3.5" fill="#ffffff" stroke="#7c3aed" stroke-width="0.9"/>
+<text x="847.5" y="423" text-anchor="middle" font-size="7.6" font-weight="700" fill="#7c3aed">SAT</text>
+<text x="726" y="440" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.0" font-weight="700" fill="#0f172a">r14_k256_dual_sat</text>
+<text x="726" y="454" font-size="8.2" fill="#334155">256 free · 69.9k v</text>
+<text x="726" y="470" font-size="8.3" font-weight="600" fill="#1e293b">Dual P₁,P₂ miter</text>
+<text x="726" y="482" font-size="7.9" fill="#475569">500 S-boxes · 53.7k XOR</text>
+<text x="38" y="508" font-size="9.2" fill="#475569">10 instances (8 SAT / 2 UNSAT)  ·  2,192–69,908 vars  ·  7,488–276,176 CNF clauses  ·  173,288 native XORs  ·  XCNF / CNF / AIG / ANF  ·  MIT License</text>
+</g>
+</svg>
