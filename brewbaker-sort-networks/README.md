@@ -70,16 +70,16 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `sort_n4_k4.cnf` | UNSAT | 4.5 ms | 4.4 ms | 61.8 ms | **3.8 ms** | 22.0 ms |
+| `sort_n4_k4.cnf` | UNSAT | 4.6 ms | 4.4 ms | 61.8 ms | **3.8 ms** | 22.0 ms |
 | `sort_n4_k5.cnf` | SAT | 5.5 ms | 6.3 ms | 77.7 ms | **4.9 ms** | 25.1 ms |
-| `sort_n5_k8.cnf` | UNSAT | **1.32 s** | 1.58 s | 1.40 s | 3.88 s | 2.32 s |
-| `sort_n5_k9.cnf` | SAT | 17.0 ms | 41.2 ms | 388.6 ms | **14.3 ms** | 67.7 ms |
+| `sort_n5_k8.cnf` | UNSAT | **1.14 s** | 1.58 s | 1.40 s | 3.88 s | 2.32 s |
+| `sort_n5_k9.cnf` | SAT | 16.9 ms | 41.2 ms | 388.6 ms | **14.3 ms** | 67.7 ms |
 | `sort_n6_k11.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sort_n6_k12.cnf` | SAT | 367.1 ms | 830.0 ms | 864.5 ms | **163.6 ms** | 4.40 s |
+| `sort_n6_k12.cnf` | SAT | 354.5 ms | 830.0 ms | 864.5 ms | **163.6 ms** | 4.40 s |
 | `sort_n7_k15.cnf` | UNSAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `sort_n7_k16.cnf` | SAT | **925.9 ms** | 23.17 s | 6.65 s | 37.57 s | 29.71 s |
+| `sort_n7_k16.cnf` | SAT | **945.3 ms** | 23.17 s | 6.65 s | 37.57 s | 29.71 s |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **8** | **6/8 (4 SAT, 2 UNSAT)** | **6/8 (4 SAT, 2 UNSAT)** | **6/8 (4 SAT, 2 UNSAT)** | **6/8 (4 SAT, 2 UNSAT)** | **6/8 (4 SAT, 2 UNSAT)** |
-| **Total PAR-2** | — | **242.64 s *(mean 30.33 s)*** | 265.62 s *(mean 33.20 s)* | 249.44 s *(mean 31.18 s)* | 281.63 s *(mean 35.20 s)* | 276.55 s *(mean 34.57 s)* |
+| **Total PAR-2** | — | **242.47 s *(mean 30.31 s)*** | 265.62 s *(mean 33.20 s)* | 249.44 s *(mean 31.18 s)* | 281.63 s *(mean 35.20 s)* | 276.55 s *(mean 34.57 s)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 

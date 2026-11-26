@@ -41,9 +41,9 @@ Both classic Towers of Hanoi planning-as-SAT benchmarks (`hanoi4` and `hanoi5`, 
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `hanoi4` | SAT | 22.91 ms | 20.25 ms | 139.53 ms | **20.16 ms** | 42.72 ms |
-| `hanoi5` | SAT | **149.66 ms** | 153.68 ms | 565.30 ms | 191.36 ms | 516.22 ms |
-| **Total (2 files, PAR-2)** | **2/2** | **2/2 — 172.6 ms** *(fastest)* | 2/2 — 173.9 ms *(1.01x)* | 2/2 — 704.8 ms *(4.08x)* | 2/2 — 211.5 ms *(1.23x)* | 2/2 — 558.9 ms *(3.24x)* |
+| `hanoi4` | SAT | **16.64 ms** | 20.25 ms | 139.53 ms | 20.16 ms | 42.72 ms |
+| `hanoi5` | SAT | **124.83 ms** | 153.68 ms | 565.30 ms | 191.36 ms | 516.22 ms |
+| **Total (2 files, PAR-2)** | **2/2** | **2/2 — 141.5 ms** *(fastest)* | 2/2 — 173.9 ms *(1.23x)* | 2/2 — 704.8 ms *(4.98x)* | 2/2 — 211.5 ms *(1.50x)* | 2/2 — 558.9 ms *(3.95x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

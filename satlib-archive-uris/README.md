@@ -70,7 +70,7 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 | [`satlib-dimacs-bf/`](../satlib-dimacs-bf/README.md) (4) | **4/4 — 20.4 ms** | 4/4 — 25.4 ms | 4/4 — 208.1 ms | 4/4 — 92.0 ms | 4/4 — 27.4 ms |
 | [`satlib-dimacs-dubois/`](../satlib-dimacs-dubois/README.md) (13) | **13/13 — 7.7 ms** | 13/13 — 33.1 ms | 13/13 — 252.3 ms | 13/13 — 21.5 ms | 13/13 — 21.8 ms |
 | [`satlib-dimacs-gcp-large/`](../satlib-dimacs-gcp-large/README.md) (4) | **4/4 — 451.8 ms** | 2/4 — 22,861.2 ms | 1/4 — 31,575.5 ms | 0/4 — 40,000.0 ms | 0/4 — 40,000.0 ms |
-| [`satlib-dimacs-hanoi/`](../satlib-dimacs-hanoi/README.md) (2) | **2/2 — 172.6 ms** | 2/2 — 173.9 ms | 2/2 — 704.8 ms | 2/2 — 211.5 ms | 2/2 — 558.9 ms |
+| [`satlib-dimacs-hanoi/`](../satlib-dimacs-hanoi/README.md) (2) | **2/2 — 141.5 ms** | 2/2 — 173.9 ms | 2/2 — 704.8 ms | 2/2 — 211.5 ms | 2/2 — 558.9 ms |
 | [`satlib-dimacs-ii/`](../satlib-dimacs-ii/README.md) (41) | **41/41 — 145.4 ms** | 41/41 — 285.0 ms | 41/41 — 12,071.9 ms | 41/41 — 566.4 ms | 41/41 — 553.8 ms |
 | [`satlib-dimacs-jnh/`](../satlib-dimacs-jnh/README.md) (50) | **50/50 — 101.8 ms** | 50/50 — 158.6 ms | 50/50 — 1,105.1 ms | 50/50 — 112.2 ms | 50/50 — 279.1 ms |
 | [`satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md) (3) | **3/3 — 170.7 ms** | 2/3 — 13,747.5 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms | 0/3 — 30,000.0 ms |
@@ -81,9 +81,9 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 | [`satlib-planning-blocksworld/`](../satlib-planning-blocksworld/README.md) (7) | **7/7 — 148.6 ms** | 7/7 — 386.6 ms | 7/7 — 1,834.6 ms | 7/7 — 209.5 ms | 7/7 — 342.9 ms |
 | [`satlib-planning-logistics/`](../satlib-planning-logistics/README.md) (4) | **4/4 — 26.0 ms** | 4/4 — 32.5 ms | 4/4 — 954.9 ms | 4/4 — 73.4 ms | 4/4 — 119.5 ms |
 | [`satlib-qg/`](../satlib-qg/README.md) (22) | **22/22 — 3,042.1 ms** | 22/22 — 3,665.8 ms | 22/22 — 14,567.0 ms | 22/22 — 7,179.0 ms | 22/22 — 6,187.5 ms |
-| [`satlib-rnd3sat/`](../satlib-rnd3sat/README.md) (10) | **10/10 — 1,111.8 ms** | 10/10 — 3,542.8 ms | 10/10 — 4,147.5 ms | 10/10 — 3,257.8 ms | 10/10 — 2,435.5 ms |
+| [`satlib-rnd3sat/`](../satlib-rnd3sat/README.md) (10) | **10/10 — 1,076.9 ms** | 10/10 — 3,542.8 ms | 10/10 — 4,147.5 ms | 10/10 — 3,257.8 ms | 10/10 — 2,435.5 ms |
 | [`satlib-sw-gcp/`](../satlib-sw-gcp/README.md) (5) | **5/5 — 5.7 ms** | 5/5 — 17.2 ms | 5/5 — 269.9 ms | 5/5 — 16.8 ms | 5/5 — 43.1 ms |
-| **Total (331 instances, 22 collections)** | **331/331 — 8,106.5 ms** *(fastest)* | 316/331 — 174,494.9 ms *(21.53x)* | 323/331 — 164,024.0 ms *(20.23x)* | 313/331 — 207,808.4 ms *(25.63x)* | 314/331 — 189,408.0 ms *(23.36x)* |
+| **Total (331 instances, 22 collections)** | **331/331 — 8,040.5 ms** *(fastest)* | 316/331 — 174,494.9 ms *(21.70x)* | 323/331 — 164,024.0 ms *(20.40x)* | 313/331 — 207,808.4 ms *(25.85x)* | 314/331 — 189,408.0 ms *(23.56x)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
