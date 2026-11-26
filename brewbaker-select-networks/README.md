@@ -73,20 +73,20 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `select_n4_r2_k3_adaptive.cnf` | UNSAT | **2.2 ms** | 3.1 ms | 53.4 ms | 3.1 ms | 14.8 ms |
-| `select_n4_r2_k4_adaptive.cnf` | SAT | **3.4 ms** | 4.0 ms | 112.9 ms | 4.1 ms | 22.1 ms |
-| `select_n4_r2_k4_fixed.cnf` | UNSAT | **2.8 ms** | 4.8 ms | 41.2 ms | 3.8 ms | 17.9 ms |
-| `select_n4_r2_k5_fixed.cnf` | SAT | **2.2 ms** | 3.7 ms | 51.2 ms | 3.4 ms | 23.3 ms |
-| `select_n5_r3_k5_adaptive.cnf` | UNSAT | 38.3 ms | 29.1 ms | 868.2 ms | **27.2 ms** | 44.9 ms |
-| `select_n5_r3_k6_adaptive.cnf` | SAT | **146.3 ms** | 348.1 ms | 1.47 s | 1.32 s | 814.1 ms |
-| `select_n5_r3_k6_fixed.cnf` | UNSAT | **60.2 ms** | 105.0 ms | 288.6 ms | 82.8 ms | 175.2 ms |
-| `select_n5_r3_k7_fixed.cnf` | SAT | **6.7 ms** | 6.9 ms | 282.7 ms | 10.3 ms | 33.0 ms |
-| `select_n6_r3_k10_fixed.cnf` | SAT | 224.9 ms | 94.4 ms | 705.3 ms | **80.7 ms** | 204.2 ms |
-| `select_n6_r3_k7_adaptive.cnf` | UNSAT | **14.11 s** | 50.15 s | >60 s *(T/O)* | 21.39 s | >60 s *(T/O)* |
-| `select_n6_r3_k8_fixed.cnf` | UNSAT | **3.02 s** | 4.01 s | 6.79 s | 18.71 s | 4.25 s |
-| `select_n7_r4_k13_fixed.cnf` | SAT | 776.4 ms | 1.53 s | 1.28 s | 3.66 s | **746.0 ms** |
+| `select_n4_r2_k3_adaptive.cnf` | UNSAT | **1.8 ms** | 3.1 ms | 53.4 ms | 3.1 ms | 14.8 ms |
+| `select_n4_r2_k4_adaptive.cnf` | SAT | **3.1 ms** | 4.0 ms | 112.9 ms | 4.1 ms | 22.1 ms |
+| `select_n4_r2_k4_fixed.cnf` | UNSAT | **2.5 ms** | 4.8 ms | 41.2 ms | 3.8 ms | 17.9 ms |
+| `select_n4_r2_k5_fixed.cnf` | SAT | **2.0 ms** | 3.7 ms | 51.2 ms | 3.4 ms | 23.3 ms |
+| `select_n5_r3_k5_adaptive.cnf` | UNSAT | 35.6 ms | 29.1 ms | 868.2 ms | **27.2 ms** | 44.9 ms |
+| `select_n5_r3_k6_adaptive.cnf` | SAT | **168.7 ms** | 348.1 ms | 1.47 s | 1.32 s | 814.1 ms |
+| `select_n5_r3_k6_fixed.cnf` | UNSAT | **28.3 ms** | 105.0 ms | 288.6 ms | 82.8 ms | 175.2 ms |
+| `select_n5_r3_k7_fixed.cnf` | SAT | **6.2 ms** | 6.9 ms | 282.7 ms | 10.3 ms | 33.0 ms |
+| `select_n6_r3_k10_fixed.cnf` | SAT | 158.0 ms | 94.4 ms | 705.3 ms | **80.7 ms** | 204.2 ms |
+| `select_n6_r3_k7_adaptive.cnf` | UNSAT | **900.8 ms** | 50.15 s | >60 s *(T/O)* | 21.39 s | >60 s *(T/O)* |
+| `select_n6_r3_k8_fixed.cnf` | UNSAT | **148.0 ms** | 4.01 s | 6.79 s | 18.71 s | 4.25 s |
+| `select_n7_r4_k13_fixed.cnf` | SAT | **505.0 ms** | 1.53 s | 1.28 s | 3.66 s | 746.0 ms |
 | **Solved ($T_{\max} = 60\;\text{s}$)** | **12** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | 11/12 (6 SAT, 5 UNSAT) | **12/12 (6 SAT, 6 UNSAT)** | 11/12 (6 SAT, 5 UNSAT) |
-| **Total PAR-2** | — | **18.39 s *(mean 1.53 s)*** | 56.29 s *(mean 4.69 s)* | 131.94 s *(mean 11.00 s)* | 45.29 s *(mean 3.77 s)* | 126.35 s *(mean 10.53 s)* |
+| **Total PAR-2** | — | **1.96 s *(mean 0.16 s)*** | 56.29 s *(mean 4.69 s)* | 131.94 s *(mean 11.00 s)* | 45.29 s *(mean 3.77 s)* | 126.35 s *(mean 10.53 s)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
