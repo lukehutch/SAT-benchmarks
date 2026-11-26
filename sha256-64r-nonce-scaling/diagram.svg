@@ -294,7 +294,7 @@
 <text x="329" y="474" font-size="10.2" font-weight="700" fill="#047857">2. Frobenius Exact 2ᵏ AVX2 Scaling</text>
 <text x="329" y="490.0" font-size="8.6" fill="#334155">• .aig k=14..24: α=0.9982, R²=0.99983 (1.7%)</text>
 <text x="329" y="503.5" font-size="8.6" fill="#334155">• .cnf k=14..24: α=1.0039, R²=0.99996 (0.6%)</text>
-<text x="329" y="517.0" font-size="8.6" fill="#334155">• 465–720× faster than CDCL on k=1..17</text>
+<text x="329" y="517.0" font-size="8.6" fill="#334155">• 495–767× faster than CDCL on k=1..17</text>
 <text x="329" y="530.5" font-size="8.6" fill="#334155">• Lifting k≤24 cap solves k=32 in 7.7–10.1m</text>
 <rect x="616" y="456" width="282" height="86" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.1"/>
 <text x="627" y="474" font-size="10.2" font-weight="700" fill="#1d4ed8">3. AICc/BIC Model Selection (M1–M4)</text>

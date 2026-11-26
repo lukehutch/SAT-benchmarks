@@ -18,6 +18,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 OUT_SVG = Path(__file__).resolve().parent.parent / "diagram.svg"
+OUT_GROWTH_SVG = Path(__file__).resolve().parent.parent / "growth_analysis.svg"
 
 FONT_SANS = "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 FONT_MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
@@ -325,7 +326,7 @@ def build_svg() -> str:
             "2. Frobenius Exact 2ᵏ AVX2 Scaling",
             "• .aig k=14..24: α=0.9982, R²=0.99983 (1.7%)",
             "• .cnf k=14..24: α=1.0039, R²=0.99996 (0.6%)",
-            "• 465–720× faster than CDCL on k=1..17",
+            "• 495–767× faster than CDCL on k=1..17",
             "• Lifting k≤24 cap solves k=32 in 7.7–10.1m",
         ),
         (
@@ -348,11 +349,193 @@ def build_svg() -> str:
     return "\n".join(parts)
 
 
+def build_growth_analysis_svg() -> str:
+    """Build a 3-panel publication-grade SVG chart (`growth_analysis.svg`):
+    - Top-Left:  Doubling exponent alpha (uncensored M1 vs right-censored Tobit MLE) vs exact 2^k
+    - Top-Right: Extrapolated full 32-bit nonce inversion time T(32) on log scale (minutes vs days)
+    - Bottom:    Model selection Delta-AICc (M2/M3/M4 vs shifted pure exponential M1)
+    """
+    W, H = 920, 620
+    parts: list[str] = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
+        f'width="{W}" height="{H}" role="img" '
+        f'aria-label="Growth-curve analysis: doubling exponents, extrapolated 32-bit nonce times, and AICc model selection across 7 SAT tracks">',
+        f'<rect x="2" y="2" width="{W - 4}" height="{H - 4}" rx="12" '
+        'fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>',
+        f'<g font-family="{FONT_SANS}">',
+        # Header
+        '<text x="24" y="31" font-size="16.4" font-weight="700" fill="#0f172a">'
+        "Growth-Curve Fits, 32-Bit Nonce Extrapolation &amp; Sub-Exponential Model Selection</text>",
+        '<text x="24" y="49" font-size="10.8" fill="#475569">'
+        "Shifted pure exponential M1: T(k) = c₀ + a·2^(αk) vs. polynomial (M2), √k (M3), and stretched-exp (M4) · 64-round FIPS 180-4 SHA-256 (1C)</text>",
+        '<line x1="22" y1="60" x2="898" y2="60" stroke="#e2e8f0" stroke-width="1.2"/>',
+    ]
+
+    # Track data ordered by T(32) / performance (matching README Table 2 exact numbers)
+    # (short_label, color, alpha_ols, alpha_tobit_or_none, t32_sec, t32_label, speedup_vs_frob_cnf, daicc_m2, daicc_m3, daicc_m4)
+    rows = [
+        ("Frobenius (.cnf)", "#0284c7", 1.0039, None,   464.4,       "7.74 min*",  "1.0×",    -0.80, -0.86, -0.95),
+        ("Frobenius (.aig)", "#059669", 0.9982, None,   603.6,       "10.06 min*", "1.3×",    -7.25, -7.26, -7.27),
+        ("CaDiCaL (.cnf)",   "#d97706", 0.6916, 0.8098, 7.71*86400,  "7.71 d†",    "1,435×",  -2.27, -3.04, -2.43),
+        ("CMS (.cnf)",       "#475569", 0.5337, 0.5438, 55.29*86400, "55.3 d‡",    "10,287×", -7.33, -7.33, -7.32),
+        ("dense (.cnf)",     "#7c3aed", 0.9708, 0.9753, 70.61*86400, "70.6 d",     "13,137×", -2.26, -2.85, -2.35),
+        ("Kissat (.cnf)",    "#dc2626", 0.7613, 1.0073, 171.19*86400,"171.2 d†",   "31,850×", -5.00, -4.88, -4.59),
+        ("CMS (.xcnf)",      "#db2777", 0.7096, 0.7905, 256.27*86400,"256.3 d†",   "47,679×", -1.66, -5.75, -2.96),
+    ]
+
+    # ===================== PANEL A (TOP-LEFT): DOUBLING EXPONENT alpha =====================
+    ax0, ay0, aw, ah = 24, 74, 424, 286
+    parts.append(f'<rect x="{ax0}" y="{ay0}" width="{aw}" height="{ah}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
+    parts.append(f'<text x="{ax0 + 12}" y="{ay0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">A. Fitted Scaling Exponent α  (base b = 2^α per bit)</text>')
+    parts.append(f'<text x="{ax0 + 12}" y="{ay0 + 34}" font-size="8.6" fill="#64748b">Solid bar: uncensored M1 fit  ·  Hollow diamond: Tobit right-censored MLE (+3 T/Os)</text>')
+
+    px0, py0, pw, ph = ax0 + 114, ay0 + 48, 294, 206
+    # x-axis: alpha in [0.0, 1.32] (leaves clean room right of 1.0 for value labels)
+    def ax_map(a: float) -> float:
+        return px0 + (a / 1.32) * pw
+
+    parts.append(f'<rect x="{px0}" y="{py0}" width="{pw}" height="{ph}" rx="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>')
+    for av in [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2]:
+        xx = ax_map(av)
+        sc = "#dc2626" if abs(av - 1.0) < 1e-6 else "#e2e8f0"
+        sw = "1.4" if abs(av - 1.0) < 1e-6 else "0.9"
+        da = ' stroke-dasharray="4,3"' if abs(av - 1.0) < 1e-6 else ""
+        parts.append(f'<line x1="{xx:.1f}" y1="{py0}" x2="{xx:.1f}" y2="{py0 + ph}" stroke="{sc}" stroke-width="{sw}"{da}/>')
+        lbl = "1.0 (2ᵏ)" if abs(av - 1.0) < 1e-6 else f"{av:.1f}"
+        fc = "#b91c1c" if abs(av - 1.0) < 1e-6 else "#475569"
+        fw = "700" if abs(av - 1.0) < 1e-6 else "400"
+        parts.append(f'<text x="{xx:.1f}" y="{py0 + ph + 14}" text-anchor="middle" font-family="{FONT_MONO}" font-size="8.3" font-weight="{fw}" fill="{fc}">{lbl}</text>')
+
+    row_h = ph / len(rows)
+    for i, (lbl, col, a_ols, a_tob, _, _, _, _, _, _) in enumerate(rows):
+        cy = py0 + (i + 0.5) * row_h
+        parts.append(f'<text x="{px0 - 7}" y="{cy + 3.2:.1f}" text-anchor="end" font-size="9.0" font-weight="600" fill="#1e293b">{lbl}</text>')
+        bw = ax_map(a_ols) - px0
+        parts.append(f'<rect x="{px0}" y="{cy - 7.5:.1f}" width="{bw:.1f}" height="15" rx="3" fill="{col}" opacity="0.84"/>')
+        if a_tob is not None:
+            xt = ax_map(a_tob)
+            if abs(xt - ax_map(a_ols)) > 4:
+                parts.append(f'<line x1="{ax_map(a_ols):.1f}" y1="{cy:.1f}" x2="{xt:.1f}" y2="{cy:.1f}" stroke="{col}" stroke-width="1.4" stroke-dasharray="2,2"/>')
+            draw_marker(parts, "diamond", xt, cy, col, r=4.2, hollow=True)
+            tx = max(ax_map(a_ols), xt) + 7
+            # Avoid overlapping the red 1.0 line when bar ends just left of 1.0
+            if 0.90 <= max(a_ols, a_tob) <= 1.02:
+                tx = max(tx, ax_map(1.0) + 6)
+            val_txt = "0.53→0.54 (0.71‡)" if lbl == "CMS (.cnf)" else f"{a_ols:.2f}→{a_tob:.2f}"
+        else:
+            tx = max(ax_map(a_ols) + 6, ax_map(1.0) + 6)
+            val_txt = f"{a_ols:.3f}"
+        if tx + len(val_txt) * 4.7 > px0 + pw - 2:
+            parts.append(f'<text x="{ax_map(a_ols) - 5:.1f}" y="{cy + 3.0:.1f}" text-anchor="end" font-family="{FONT_MONO}" font-size="7.9" font-weight="700" fill="#ffffff">{val_txt}</text>')
+        else:
+            parts.append(f'<text x="{tx:.1f}" y="{cy + 3.0:.1f}" font-family="{FONT_MONO}" font-size="7.9" font-weight="700" fill="#334155">{val_txt}</text>')
+
+    # ===================== PANEL B (TOP-RIGHT): EXTRAPOLATED T(32) =====================
+    bx0, by0, bw_box, bh_box = 462, 74, 434, 286
+    parts.append(f'<rect x="{bx0}" y="{by0}" width="{bw_box}" height="{bh_box}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
+    parts.append(f'<text x="{bx0 + 12}" y="{by0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">B. Extrapolated Full 32-Bit Nonce Time T(32)  [log scale]</text>')
+    parts.append(f'<text x="{bx0 + 12}" y="{by0 + 34}" font-size="8.6" fill="#64748b">Minutes (uncapped AVX2) vs. Days (CDCL) · ~1,400× to ~47,700× wall-clock gap</text>')
+
+    qpx0, qpy0, qpw, qph = bx0 + 112, by0 + 48, 304, 206
+    # log10(T32 in sec) from 10^2 s (1.7 min) to 10^8.2 s (~5 years)
+    lt_min, lt_max = 2.0, 8.3
+    def bx_map(t_sec: float) -> float:
+        lt = max(lt_min, min(lt_max, math.log10(t_sec)))
+        return qpx0 + (lt - lt_min) / (lt_max - lt_min) * qpw
+
+    parts.append(f'<rect x="{qpx0}" y="{qpy0}" width="{qpw}" height="{qph}" rx="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>')
+    time_ticks = [
+        (300.0, "5m"),
+        (3600.0, "1h"),
+        (86400.0, "1d"),
+        (10 * 86400.0, "10d"),
+        (100 * 86400.0, "100d"),
+        (365 * 86400.0, "1y"),
+    ]
+    for tv, tlbl in time_ticks:
+        xx = bx_map(tv)
+        parts.append(f'<line x1="{xx:.1f}" y1="{qpy0}" x2="{xx:.1f}" y2="{qpy0 + qph}" stroke="#e2e8f0" stroke-width="0.9"/>')
+        parts.append(f'<text x="{xx:.1f}" y="{qpy0 + qph + 14}" text-anchor="middle" font-family="{FONT_MONO}" font-size="8.4" fill="#475569">{tlbl}</text>')
+
+    for i, (lbl, col, _, _, t32_s, t32_lbl, sp_lbl, _, _, _) in enumerate(rows):
+        cy = qpy0 + (i + 0.5) * row_h
+        parts.append(f'<text x="{qpx0 - 7}" y="{cy + 3.2:.1f}" text-anchor="end" font-size="9.0" font-weight="600" fill="#1e293b">{lbl}</text>')
+        bar_w = max(4.0, bx_map(t32_s) - qpx0)
+        parts.append(f'<rect x="{qpx0}" y="{cy - 7.5:.1f}" width="{bar_w:.1f}" height="15" rx="3" fill="{col}" opacity="0.86"/>')
+        txt = f"{t32_lbl} ({sp_lbl})" if i >= 2 else t32_lbl
+        tx = qpx0 + bar_w + 5
+        if tx + len(txt) * 4.8 > qpx0 + qpw - 2:
+            parts.append(f'<text x="{qpx0 + bar_w - 5:.1f}" y="{cy + 3.0:.1f}" text-anchor="end" font-family="{FONT_MONO}" font-size="7.9" font-weight="700" fill="#ffffff">{txt}</text>')
+        else:
+            parts.append(f'<text x="{tx:.1f}" y="{cy + 3.0:.1f}" font-family="{FONT_MONO}" font-size="7.9" font-weight="700" fill="#334155">{txt}</text>')
+
+    # ===================== PANEL C (BOTTOM): AICc MODEL SELECTION =====================
+    cx0, cy0, cw, ch = 24, 374, 872, 226
+    parts.append(f'<rect x="{cx0}" y="{cy0}" width="{cw}" height="{ch}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
+    parts.append(f'<text x="{cx0 + 12}" y="{cy0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">C. Sub-Exponential Hypothesis Test: ΔAICc = AICc(M1) − AICc(Mⱼ)  (Values &gt; +2 Required to Beat Pure Exponential M1)</text>')
+    parts.append(f'<text x="{cx0 + 12}" y="{cy0 + 34}" font-size="8.6" fill="#64748b">Every single bar across all 7 tracks and all 3 modulation families (M2 polynomial k^β, M3 √k, M4 stretched-exp) is strictly negative → pure exponential M1 wins 7 / 7</text>')
+
+    cpx0, cpy0, cpw, cph = cx0 + 58, cy0 + 48, 796, 126
+    # y in [-9.0, +3.5] (matches all 7 tracks cleanly with generous space below bars)
+    dy_min, dy_max = -9.0, 3.5
+    def cy_map(v: float) -> float:
+        vc = max(dy_min, min(dy_max, v))
+        return cpy0 + cph - (vc - dy_min) / (dy_max - dy_min) * cph
+
+    parts.append(f'<rect x="{cpx0}" y="{cpy0}" width="{cpw}" height="{cph}" rx="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>')
+    # Highlight green "+2 support" zone at top
+    y_p2 = cy_map(2.0)
+    y_0 = cy_map(0.0)
+    parts.append(f'<rect x="{cpx0 + 1}" y="{cpy0 + 1}" width="{cpw - 2}" height="{y_p2 - cpy0 - 1:.1f}" fill="#dcfce7" opacity="0.7"/>')
+    parts.append(f'<text x="{cpx0 + cpw - 6}" y="{y_p2 - 2.5:.1f}" text-anchor="end" font-size="7.8" font-weight="700" fill="#15803d">Support threshold (+2)</text>')
+
+    for yv in [2, 0, -2, -4, -6, -8]:
+        yy = cy_map(yv)
+        sc = "#16a34a" if yv == 2 else ("#0f172a" if yv == 0 else "#e2e8f0")
+        sw = "1.2" if yv in (0, 2) else "0.8"
+        da = ' stroke-dasharray="4,3"' if yv == 2 else ""
+        parts.append(f'<line x1="{cpx0}" y1="{yy:.1f}" x2="{cpx0 + cpw}" y2="{yy:.1f}" stroke="{sc}" stroke-width="{sw}"{da}/>')
+        parts.append(f'<text x="{cpx0 - 6}" y="{yy + 3.0:.1f}" text-anchor="end" font-family="{FONT_MONO}" font-size="8.3" fill="#475569">{yv:+d}</text>')
+
+    # Grouped bars (3 bars per track: M2, M3, M4)
+    mod_colors = [("#2563eb", "M2: k^β·2^(αk)"), ("#7c3aed", "M3: 2^(αk + δ√k)"), ("#ea580c", "M4: exp(c₁·k^γ)")]
+    group_w = cpw / len(rows)
+    bar_w3 = 23.0
+    gap3 = 3.5
+    for i, (lbl, _, _, _, _, _, _, d2, d3, d4) in enumerate(rows):
+        gx = cpx0 + (i + 0.5) * group_w
+        parts.append(f'<text x="{gx:.1f}" y="{cpy0 + cph + 15}" text-anchor="middle" font-size="8.8" font-weight="600" fill="#1e293b">{lbl}</text>')
+        for m_idx, dv in enumerate([d2, d3, d4]):
+            bx = gx - 1.5 * bar_w3 - gap3 + m_idx * (bar_w3 + gap3)
+            yv = cy_map(dv)
+            bh = max(3.0, yv - y_0)
+            parts.append(f'<rect x="{bx:.1f}" y="{y_0:.1f}" width="{bar_w3:.1f}" height="{bh:.1f}" rx="2.5" fill="{mod_colors[m_idx][0]}" opacity="0.84"/>')
+            parts.append(f'<text x="{bx + bar_w3/2:.1f}" y="{yv + 9.5:.1f}" text-anchor="middle" font-family="{FONT_MONO}" font-size="7.3" font-weight="600" fill="#334155">{dv:.1f}</text>')
+
+    # Compact legend + footnote strip at bottom of Panel C
+    leg_y = cy0 + ch - 13
+    lx_cur = cpx0
+    for mc, mlbl in mod_colors:
+        parts.append(f'<rect x="{lx_cur:.1f}" y="{leg_y - 8}" width="10" height="10" rx="2" fill="{mc}" opacity="0.85"/>')
+        parts.append(f'<text x="{lx_cur + 14:.1f}" y="{leg_y + 0.5}" font-size="8.4" font-weight="600" fill="#334155">{mlbl}</text>')
+        lx_cur += 128
+    parts.append(f'<text x="{cpx0 + cpw:.1f}" y="{leg_y + 0.5}" text-anchor="end" font-size="7.8" fill="#64748b">*Uncapped AVX2 (k=14..24) · †Tobit censored (+3 T/Os) · ‡Post-floor (k≥5)</text>')
+
+    parts.append("</g>")
+    parts.append("</svg>\n")
+    return "\n".join(parts)
+
+
 def main() -> None:
     svg = build_svg()
     OUT_SVG.write_text(svg, encoding="utf-8")
     ET.parse(OUT_SVG)
     print(f"Wrote and XML-validated {OUT_SVG} ({OUT_SVG.stat().st_size:,} bytes)")
+
+    gsvg = build_growth_analysis_svg()
+    OUT_GROWTH_SVG.write_text(gsvg, encoding="utf-8")
+    ET.parse(OUT_GROWTH_SVG)
+    print(f"Wrote and XML-validated {OUT_GROWTH_SVG} ({OUT_GROWTH_SVG.stat().st_size:,} bytes)")
 
 
 if __name__ == "__main__":

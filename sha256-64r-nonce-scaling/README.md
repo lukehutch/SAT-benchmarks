@@ -117,6 +117,10 @@ A controlled, **zero-lucky-hit-bias** 32-instance scaling ladder sweeping $k = 1
 
 ### 2. Growth-Curve Modeling, Model Selection & Best-Fit Equations
 
+![Growth-curve exponents, extrapolated 32-bit nonce inversion times, and AICc model selection across all 7 tracks](growth_analysis.svg)
+
+*Figure: Fitted per-bit doubling exponents $\alpha$ (uncensored M1 vs. right-censored Tobit MLE relative to exact $2^k$), log-scale extrapolated full 32-bit nonce inversion times $T(32)$ (minutes for uncapped AVX2 vs. days for CDCL), and $\Delta\text{AICc}$ model-selection scores showing zero statistical support for sub-exponential modulation across all 7 tracks. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
 Four nested/candidate runtime models were fitted in log-space (minimizing $\sum_i (\ln T_i - \ln \hat{T}(k_i))^2$ via multi-start grid seeding + nested Levenberg–Marquardt + Nelder–Mead with monotonicity constraint $\alpha \ge 0$, excluding the degenerate 0-AND $k = 1$ collapse):
 
 - **M1 (Shifted Pure Exponential, $p = 3$):** $T(k) = c_0 + a \cdot 2^{\alpha k}$ (base $b = 2^\alpha$, bits per $10\times$ slowdown $= \log_2(10)/\alpha$)
