@@ -529,27 +529,25 @@ Every collection lives at the repository root in its own self-contained director
 - **Timeout:** Uniform competition-standard $T_{\max} = 5{,}000\;\text{s}$ per instance (PAR-2 penalty $10{,}000\;\text{s} = 10{,}000{,}000\;\text{ms}$) across all **50 / 50** instances (Part I: 30 circuit/algebraic instances; Part II: 20 adversarial Zed, SC 2023/2024, and Random 3-SAT instances) and all six solver configurations.
 - **Same machine?** **Yes** — all six solver configurations were run on the exact same machine (**AMD Ryzen 9 5950X**, 16-core/32-thread, Linux, 1 dedicated core per run, exact median of 3 runs for solves under $120\;\text{s}$; 0 verdict disagreements, 100% SAT models clause-verified).
 
-| Solver (1C) | Solved | Fastest Wins | Part I PAR-2 (30, $T_{\max}=5{,}000\;\text{s}$) | Part II PAR-2 (20, $T_{\max}=5{,}000\;\text{s}$) | Unified 50 PAR-2 |
-|---|---:|---:|---:|---:|---:|
-| **Frobenius 1C** | **50 / 50** | **47 / 50** *(50/50 vs. 4 main)* | **399.13 ms** *(fastest)* | **3,993.41 ms** *(fastest)* | **4,392.54 ms** *(fastest)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 42 / 50 | 0 / 50 | 25,715,225.61 ms *(64,428x slower)* | 63,590,706.89 ms *(15,924x slower)* | 89,305,932.50 ms *(20,331x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 41 / 50 | 0 / 50 | 30,027,443.01 ms *(75,232x slower)* | 66,244,167.48 ms *(16,588x slower)* | 96,271,610.49 ms *(21,917x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | 42 / 50 | 0 / 50 | 20,471,425.77 ms *(51,290x slower)* | 66,319,713.99 ms *(16,607x slower)* | 86,791,139.76 ms *(19,759x slower)* |
-| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | 44 / 50 | 3 / 50 | 11,402,189.74 ms *(28,568x slower)* | 51,005,536.14 ms *(12,772x slower)* | 62,407,725.88 ms *(14,208x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 40 / 50 | 0 / 50 | 35,047,925.98 ms *(87,811x slower)* | 70,251,994.22 ms *(17,592x slower)* | 105,299,920.20 ms *(23,972x slower)* |
+| Metric (1C, $T_{\max}=5{,}000\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|---:|---:|---:|
+| **Solved** | **50 / 50** | 42 / 50 | 41 / 50 | 42 / 50 | 44 / 50 | 40 / 50 |
+| **Fastest Wins** | **47 / 50** *(50/50 vs. 4 main)* | 0 / 50 | 0 / 50 | 0 / 50 | 3 / 50 | 0 / 50 |
+| **Part I PAR-2** (30) | **399.13 ms** *(fastest)* | 25,715,225.61 ms *(64,428x)* | 30,027,443.01 ms *(75,232x)* | 20,471,425.77 ms *(51,290x)* | 11,402,189.74 ms *(28,568x)* | 35,047,925.98 ms *(87,811x)* |
+| **Part II PAR-2** (20) | **3,993.41 ms** *(fastest)* | 63,590,706.89 ms *(15,924x)* | 66,244,167.48 ms *(16,588x)* | 66,319,713.99 ms *(16,607x)* | 51,005,536.14 ms *(12,772x)* | 70,251,994.22 ms *(17,592x)* |
+| **Unified 50 PAR-2** | **4,392.54 ms** *(fastest)* | 89,305,932.50 ms *(20,331x)* | 96,271,610.49 ms *(21,917x)* | 86,791,139.76 ms *(19,759x)* | 62,407,725.88 ms *(14,208x)* | 105,299,920.20 ms *(23,972x)* |
 
 ### 2. 22-Instance Provable HAMD Suite (1-Core, Identical Flat `.cnf` Input)
 
 - **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30\;\text{s}$).
-- **Same machine?** **Yes** — all four solvers were run sequentially on the exact same machine (**AMD Ryzen 9 5950X**, 1 core per run, exact median of 3 runs).
+- **Same machine?** **Yes** — all five solvers were run sequentially on the exact same machine (**AMD Ryzen 9 5950X**, 1 core per run, exact median of 3 runs).
 
-| Solver (1C) | Solved | Fastest Wins | Total PAR-2 ($T_{\max}=15\;\text{s}$) | Proof / Model Verification |
-|---|---:|---:|---:|---|
-| **Frobenius 1C** | **22 / 22** | **22 / 22** | **202.88 ms** *(fastest)* | 12/12 SAT cycles + 10/10 UNSAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 17 / 22 | 0 / 22 | 163,592.80 ms *(806x slower)* | 100% verdict agreement on solved instances |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | 18 / 22 | 0 / 22 | 148,852.60 ms *(734x slower)* | 100% verdict agreement on solved instances |
-| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | 17 / 22 | 0 / 22 | 159,432.38 ms *(786x slower)* | 100% verdict agreement on solved instances |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 18 / 22 | 0 / 22 | 140,869.50 ms *(694x slower)* | 100% verdict agreement on solved instances |
+| Metric (1C, $T_{\max}=15\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|---:|---:|
+| **Solved** | **22 / 22** | 17 / 22 | 18 / 22 | 17 / 22 | 18 / 22 |
+| **Fastest Wins** | **22 / 22** | 0 / 22 | 0 / 22 | 0 / 22 | 0 / 22 |
+| **Total PAR-2** | **202.88 ms** *(fastest)* | 163,592.80 ms *(806x)* | 148,852.60 ms *(734x)* | 159,432.38 ms *(786x)* | 140,869.50 ms *(694x)* |
+| **Verification** | 12/12 SAT + 10/10 UNSAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) & [`lrat-check`](https://github.com/marijnheule/drat-trim) OK | 100% agreement on solved | 100% agreement on solved | 100% agreement on solved | 100% agreement on solved |
 
 ### 3. Combinatorial Chessboard Suites (1-Core, Identical Flat `.cnf` Input)
 
@@ -602,16 +600,26 @@ Every collection lives at the repository root in its own self-contained director
 - **Timeout:** Evaluated below at $T_{\max} = 15\;\text{s}$ and $T_{\max} = 60\;\text{s}$ cutoffs (official competition full runs used $T_{\max} = 5{,}000\;\text{s}$).
 - **Same machine?** **No (different machines)** — Frobenius 1C ran on our local **AMD Ryzen 9 5950X** workstation (1 core per instance, unrestricted available RAM), whereas competitor scores are taken directly from official published competition logs/slides (**StarExec** cluster for SC 2024; **LMU / competition sequential clusters** for SC 2025–2026). CPU differences affect absolute runtimes, so ratios below reflect cross-machine published PAR-2 comparisons.
 
-| Track (400 CNFs each) | Solver (1C) | $T_{\max}=15\;\text{s}$ Solved & PAR-2 | $T_{\max}=60\;\text{s}$ Solved & PAR-2 |
-|---|---|---:|---:|
-| **SC 2024** | **Frobenius 1C** | **72 / 400 — 25.04 s** *(fastest)* | **111 / 400 — 91.02 s** *(fastest)* |
-| | [CaDiCaL](https://github.com/arminbiere/cadical) (Main #7) | 26 / 400 — 28.24 s *(1.13x slower)* | 54 / 400 — 106.69 s *(1.17x slower)* |
-| | [kissat-sc2024](https://github.com/arminbiere/kissat) (Main #1 Gold) | 43 / 400 — 27.15 s *(1.08x slower)* | 81 / 400 — 99.47 s *(1.09x slower)* |
-| **SC 2025** | **Frobenius 1C** | **95 / 400 — 23.51 s** | **141 / 400 — 81.92 s** |
-| | *(Official SC 2025 published aggregate 5,000 s slide totals only; no per-instance CSV)* | — | — |
-| **SC 2026** | **Frobenius 1C** | **122 / 400 — 21.37 s** *(fastest)* | **139 / 400 — 80.24 s** *(fastest)* |
-| | [Lymphosat](https://c.mov/lymphosat/) (AI-Track #1 Gold) | 81 / 400 — 24.58 s *(1.15x slower)* | 109 / 400 — 90.07 s *(1.12x slower)* |
-| | [satsuma-iter-kissat](https://github.com/markusa4/satsuma) (Main #1 Gold) | 70 / 400 — 25.13 s *(1.18x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
+#### SC 2024 Main Track (400 CNFs)
+
+| Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) (Main #7) | [kissat-sc2024](https://github.com/arminbiere/kissat) (Main #1 Gold) |
+|---|---:|---:|---:|
+| **$T_{\max}=15\;\text{s}$ Solved & PAR-2** | **72 / 400 — 25.04 s** *(fastest)* | 26 / 400 — 28.24 s *(1.13x slower)* | 43 / 400 — 27.15 s *(1.08x slower)* |
+| **$T_{\max}=60\;\text{s}$ Solved & PAR-2** | **111 / 400 — 91.02 s** *(fastest)* | 54 / 400 — 106.69 s *(1.17x slower)* | 81 / 400 — 99.47 s *(1.09x slower)* |
+
+#### SC 2025 Main Track (400 CNFs)
+
+| Metric | Frobenius 1C | Official SC 2025 Top-3 (Slides Only) |
+|---|---:|---:|
+| **$T_{\max}=15\;\text{s}$ Solved & PAR-2** | **95 / 400 — 23.51 s** | — *(aggregate 5,000 s slides only; no per-instance CSV)* |
+| **$T_{\max}=60\;\text{s}$ Solved & PAR-2** | **141 / 400 — 81.92 s** | — *(aggregate 5,000 s slides only; no per-instance CSV)* |
+
+#### SC 2026 Main Track (400 CNFs)
+
+| Metric | Frobenius 1C | [Lymphosat](https://c.mov/lymphosat/) (AI-Track #1 Gold) | [satsuma-iter-kissat](https://github.com/markusa4/satsuma) (Main #1 Gold) |
+|---|---:|---:|---:|
+| **$T_{\max}=15\;\text{s}$ Solved & PAR-2** | **122 / 400 — 21.37 s** *(fastest)* | 81 / 400 — 24.58 s *(1.15x slower)* | 70 / 400 — 25.13 s *(1.18x slower)* |
+| **$T_{\max}=60\;\text{s}$ Solved & PAR-2** | **139 / 400 — 80.24 s** *(fastest)* | 109 / 400 — 90.07 s *(1.12x slower)* | 112 / 400 — 90.46 s *(1.13x slower)* |
 
 ### 6. Four-Format Cross-Product Parity (`.aig.xz` × `.cnf.xz` × `.xcnf.xz` × `.anf.xz`, 1-Core)
 

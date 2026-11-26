@@ -41,13 +41,12 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 - **Hardware & Protocol:** Same machine (AMD Ryzen 9 5950X, 16C/32T Linux, 1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, $T_{\max} = 5\;\text{s}$, identical flat `.cnf` input, 100% verdict consensus).
 
-| Solver (1C) | Solved | Total Wall Time (8 instances) | Per-Instance Range | Relative Speed |
-|---|---:|---:|---:|---|
-| **Frobenius 1C** | **8 / 8** | **4.94 ms** | 0.60–0.65 ms | *(fastest)* |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 8 / 8 | 41.53 ms | 4.95–5.38 ms | *(8.41x slower)* |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | 8 / 8 | 161.74 ms | 18.55–22.15 ms | *(32.7x slower)* |
-| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | 8 / 8 | 6.43 ms | 0.72–0.98 ms | *(1.30x slower)* |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 8 / 8 | 58.45 ms | 4.58–11.04 ms | *(11.8x slower)* |
+| Metric (1C, 8 instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|---:|---:|
+| **Solved** | **8 / 8** | 8 / 8 | 8 / 8 | 8 / 8 | 8 / 8 |
+| **Total Wall Time** | **4.94 ms** | 41.53 ms | 161.74 ms | 6.43 ms | 58.45 ms |
+| **Per-Instance Range** | **0.60–0.65 ms** | 4.95–5.38 ms | 18.55–22.15 ms | 0.72–0.98 ms | 4.58–11.04 ms |
+| **Relative Speed** | *(fastest)* | *(8.41x slower)* | *(32.7x slower)* | *(1.30x slower)* | *(11.8x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

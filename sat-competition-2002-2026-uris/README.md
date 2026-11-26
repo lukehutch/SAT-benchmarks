@@ -145,23 +145,38 @@ Every official SAT Competition and SAT-Race DIMACS CNF track with a dedicated be
 
 - **Hardware & Protocol:** Frobenius 1C was run on our local **AMD Ryzen 9 5950X** (16 cores / 32 threads, Linux x86_64), **1 core per instance** (`--max-cores 1 --timeout 60`, unrestricted available RAM, 0 errors, 0 unsoundness, 0 verdict disagreements against official SC 2024 & SC 2026 ground truth). Competitor rows are taken directly from official published competition logs/slides (**StarExec** cluster for SC 2024; **LMU / HoreKa competition sequential clusters** for SC 2025–2026; different CPU hardware affects absolute runtimes, though rankings and PAR-2 magnitudes are comparable within an order of magnitude).
 
-| Year | Solver (Track / Official Rank) | $T = 15\;\text{s}$ Solved | $T = 15\;\text{s}$ PAR-2 | $T = 60\;\text{s}$ Solved | $T = 60\;\text{s}$ PAR-2 | Official $T = 5{,}000\;\text{s}$ Solved | Official PAR-2 |
-|---|---|---:|---:|---:|---:|---:|---:|
-| **SC 2024** | **Frobenius 1C (ours)** | **72 / 400** | **25.04 s** | **111 / 400** | **91.02 s** | *n/r* | *n/r* |
-| *(400 CNFs)* | [BreakID-Kissat](https://github.com/meelgroup/breakid) (Main #6) | 23 / 400 | 28.55 s | 50 / 400 | 107.75 s | 284 / 400 | 3,461.77 s |
-| | [CaDiCaL](https://github.com/arminbiere/cadical) (Main #7) | 26 / 400 | 28.24 s | 54 / 400 | 106.69 s | 284 / 400 | 3,494.11 s |
-| | [Kissat_MAB-DC](https://satcompetition.github.io/2024/) (Main #2 Silver) | 20 / 400 | 28.81 s | 50 / 400 | 108.11 s | 290 / 400 | 3,435.23 s |
-| | [kissat-sc2024](https://github.com/arminbiere/kissat) (Main #1 Gold) | 43 / 400 | 27.15 s | 81 / 400 | 99.47 s | 306 / 400 | 2,788.13 s |
-| **SC 2025** | **Frobenius 1C (ours)** | **95 / 400** | **23.51 s** | **141 / 400** | **81.92 s** | *n/r* | *n/r* |
-| *(400 CNFs)* | [AE-Kissat-MAB](https://github.com/FSQH-dh/AE_kissat2025_MAB) (Main #1 Gold) | —† | —† | —† | —† | 327 / 400 | 2,264.73 s |
-| | [Kissat-public](https://github.com/arminbiere/kissat) (Main #2 Silver) | —† | —† | —† | —† | 321 / 400 | 2,423.38 s |
-| | [Kissat-VSA](https://satcompetition.github.io/2025/downloads.html) (Main #3 Bronze) | —† | —† | —† | —† | 317 / 400 | 2,478.45 s |
-| **SC 2026** | **Frobenius 1C (ours)** | **122 / 400** | **21.37 s** | **139 / 400** | **80.24 s** | *n/r* | *n/r* |
-| *(400 CNFs)* | [kissat-biere](https://github.com/arminbiere/kissat) (Main #15) | 41 / 400 | 27.38 s | 74 / 400 | 100.38 s | 238 / 400 | 4,611.54 s |
-| | [kissat-mab-hypre](https://satcompetition.github.io/2026/downloads.html) (Main #3) | 63 / 400 | 25.73 s | 102 / 400 | 92.81 s | 255 / 400 | 3,996.29 s |
-| | [Lymphosat](https://c.mov/lymphosat/) (Main AI #1 Gold) | 81 / 400 | 24.58 s | 109 / 400 | 90.07 s | 251 / 400 | 4,176.90 s |
-| | [satsuma-iter-ae-kissat-mab](https://github.com/markusa4/satsuma) (Main #2) | 66 / 400 | 25.37 s | 108 / 400 | 91.58 s | 269 / 400 | 3,696.84 s |
-| | [satsuma-iter-kissat](https://github.com/markusa4/satsuma) (Main #1 Gold) | 70 / 400 | 25.13 s | 112 / 400 | 90.46 s | 276 / 400 | 3,647.02 s |
+#### SC 2024 Main Track (400 CNFs)
+
+| Metric | Frobenius 1C (ours) | [BreakID-Kissat](https://github.com/meelgroup/breakid) (Main #6) | [CaDiCaL](https://github.com/arminbiere/cadical) (Main #7) | [Kissat_MAB-DC](https://satcompetition.github.io/2024/) (Main #2 Silver) | [kissat-sc2024](https://github.com/arminbiere/kissat) (Main #1 Gold) |
+|---|---:|---:|---:|---:|---:|
+| **$T = 15\;\text{s}$ Solved** | **72 / 400** | 23 / 400 | 26 / 400 | 20 / 400 | 43 / 400 |
+| **$T = 15\;\text{s}$ PAR-2** | **25.04 s** | 28.55 s | 28.24 s | 28.81 s | 27.15 s |
+| **$T = 60\;\text{s}$ Solved** | **111 / 400** | 50 / 400 | 54 / 400 | 50 / 400 | 81 / 400 |
+| **$T = 60\;\text{s}$ PAR-2** | **91.02 s** | 107.75 s | 106.69 s | 108.11 s | 99.47 s |
+| **Official $T = 5{,}000\;\text{s}$ Solved** | *n/r* | 284 / 400 | 284 / 400 | 290 / 400 | 306 / 400 |
+| **Official PAR-2** | *n/r* | 3,461.77 s | 3,494.11 s | 3,435.23 s | 2,788.13 s |
+
+#### SC 2025 Main Track (400 CNFs)
+
+| Metric | Frobenius 1C (ours) | [AE-Kissat-MAB](https://github.com/FSQH-dh/AE_kissat2025_MAB) (Main #1 Gold) | [Kissat-public](https://github.com/arminbiere/kissat) (Main #2 Silver) | [Kissat-VSA](https://satcompetition.github.io/2025/downloads.html) (Main #3 Bronze) |
+|---|---:|---:|---:|---:|
+| **$T = 15\;\text{s}$ Solved** | **95 / 400** | —† | —† | —† |
+| **$T = 15\;\text{s}$ PAR-2** | **23.51 s** | —† | —† | —† |
+| **$T = 60\;\text{s}$ Solved** | **141 / 400** | —† | —† | —† |
+| **$T = 60\;\text{s}$ PAR-2** | **81.92 s** | —† | —† | —† |
+| **Official $T = 5{,}000\;\text{s}$ Solved** | *n/r* | 327 / 400 | 321 / 400 | 317 / 400 |
+| **Official PAR-2** | *n/r* | 2,264.73 s | 2,423.38 s | 2,478.45 s |
+
+#### SC 2026 Main Track (400 CNFs)
+
+| Metric | Frobenius 1C (ours) | [kissat-biere](https://github.com/arminbiere/kissat) (Main #15) | [kissat-mab-hypre](https://satcompetition.github.io/2026/downloads.html) (Main #3) | [Lymphosat](https://c.mov/lymphosat/) (Main AI #1 Gold) | [satsuma-iter-ae-kissat-mab](https://github.com/markusa4/satsuma) (Main #2) | [satsuma-iter-kissat](https://github.com/markusa4/satsuma) (Main #1 Gold) |
+|---|---:|---:|---:|---:|---:|---:|
+| **$T = 15\;\text{s}$ Solved** | **122 / 400** | 41 / 400 | 63 / 400 | 81 / 400 | 66 / 400 | 70 / 400 |
+| **$T = 15\;\text{s}$ PAR-2** | **21.37 s** | 27.38 s | 25.73 s | 24.58 s | 25.37 s | 25.13 s |
+| **$T = 60\;\text{s}$ Solved** | **139 / 400** | 74 / 400 | 102 / 400 | 109 / 400 | 108 / 400 | 112 / 400 |
+| **$T = 60\;\text{s}$ PAR-2** | **80.24 s** | 100.38 s | 92.81 s | 90.07 s | 91.58 s | 90.46 s |
+| **Official $T = 5{,}000\;\text{s}$ Solved** | *n/r* | 238 / 400 | 255 / 400 | 251 / 400 | 269 / 400 | 276 / 400 |
+| **Official PAR-2** | *n/r* | 4,611.54 s | 3,996.29 s | 4,176.90 s | 3,696.84 s | 3,647.02 s |
 
 † SC 2025 published aggregate 5,000 s slide standings without a per-instance runtime CSV.
 *Notable unique wins:* Frobenius solved **12** SC 2024 instances within 60 s where [kissat-sc2024](https://github.com/arminbiere/kissat) timed out past 5,000 s (**26** vs. [CaDiCaL](https://github.com/arminbiere/cadical)), and **18** SC 2026 instances within 60 s where [satsuma-iter-kissat](https://github.com/markusa4/satsuma) timed out past 5,000 s (**41** vs. [Lymphosat](https://c.mov/lymphosat/), **53** vs. [kissat-biere](https://github.com/arminbiere/kissat)).

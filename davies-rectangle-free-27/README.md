@@ -95,14 +95,14 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 
 ### 1. Calibration Case `01-known-unsat.cnf` ($T_{\max} = 600\;\text{s}$, 1 Core, Flat `.cnf`)
 
-| Solver (1C, $T_{\max} = 600\;\text{s}$) | Verdict | Wall Time | CPU Time | Conflicts | Propagations | Peak RSS |
-|---|:---:|---:|---:|---:|---:|---:|
-| **Frobenius 1C** *(default)* | **UNSAT** | **80.33 s** | — | — | — | — |
-| **Frobenius 1C** *(with `--proof` DRAT)*\* | **UNSAT** | 91.54 s | 91.13 s | 6,155,846 | 489.1M | 136 MB |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | **UNSAT** | 339.43 s | 334.99 s | 10,609,175 | 807.0M | 116 MB |
-| [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | **UNSAT** | 414.78 s | 412.04 s | 6,888,425 | 550.0M | 95 MB |
-| [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | T/O | >600 s | 594.97 s | — | — | 367 MB |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | **UNSAT** | 570.57 s | 561.66 s | 8,472,695 | 977.1M | 70 MB |
+| Metric (1C, $T_{\max} = 600\;\text{s}$) | Frobenius 1C (default) | Frobenius 1C (DRAT proof)\* | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Verdict** | **UNSAT** | **UNSAT** | **UNSAT** | **UNSAT** | T/O | **UNSAT** |
+| **Wall Time** | **80.33 s** | 91.54 s | 339.43 s | 414.78 s | >600 s | 570.57 s |
+| **CPU Time** | — | 91.13 s | 334.99 s | 412.04 s | 594.97 s | 561.66 s |
+| **Conflicts** | — | 6,155,846 | 10,609,175 | 6,888,425 | — | 8,472,695 |
+| **Propagations** | — | 489.1M | 807.0M | 550.0M | — | 977.1M |
+| **Peak RSS** | — | 136 MB | 116 MB | 95 MB | 367 MB | 70 MB |
 
 *\*Independent UNSAT Proof Verification: Frobenius's `--proof` run on `01-known-unsat.cnf` emitted a `497 MB` binary DRAT proof (`67,657 / 1,067,876` core clauses, `3,303,531 / 6,921,989` core lemmas, `0` RAT steps, `253,910,852` resolution steps) verified independently by [`drat-trim`](https://github.com/marijnheule/drat-trim) (`s VERIFIED`, `1,229.50 s`, producing a `2.2 GB` LRAT certificate) and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) (`s VERIFIED UNSAT`, `59.13 s`).*
 
@@ -110,11 +110,13 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 
 `02-open.cnf` remains **UNRESOLVED (UNKNOWN)** across all evaluated solvers, including a dedicated 3-hour (`10,800 s`) single-core run:
 
-| Solver (1C, Flat DIMACS) | Budget | Verdict | Conflicts (Rate) | Propagations (Rate) | Peak RSS |
-|---|---:|:---:|---:|---:|---:|
-| **Frobenius 1C**\* | 10,800 s *(3 hr)* | T/O *(Open)* | 78,310,464 (`7,251/s`) | 38,796.9M (`3.59M/s`) | 427 MB |
-| [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | 180 s *(3 min)* | T/O *(Open)* | 1,431,113 (`8,051/s`) | 455.5M (`2.56M/s`) | 256 MB |
-| [Kissat](https://github.com/arminbiere/kissat) 4.0.4 | 180 s *(3 min)* | T/O *(Open)* | 1,400,468 (`7,871/s`) | 763.4M (`4.29M/s`) | 98 MB |
+| Metric (1C, Flat DIMACS) | Frobenius 1C\* | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|
+| **Budget** | 10,800 s *(3 hr)* | 180 s *(3 min)* | 180 s *(3 min)* |
+| **Verdict** | T/O *(Open)* | T/O *(Open)* | T/O *(Open)* |
+| **Conflicts (Rate)** | 78,310,464 (`7,251/s`) | 1,431,113 (`8,051/s`) | 1,400,468 (`7,871/s`) |
+| **Propagations (Rate)** | 38,796.9M (`3.59M/s`) | 455.5M (`2.56M/s`) | 763.4M (`4.29M/s`) |
+| **Peak RSS** | 427 MB | 256 MB | 98 MB |
 
 *\*Frobenius 1C ran `02-open.cnf.xz` directly on pinned core 2 for `10,800 s` wall (`10,653.45 s` CPU, `578.5M` decisions, `495.4` propagations/conflict, `427 MB` peak RSS, zero swaps).*
 
