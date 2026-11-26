@@ -19,7 +19,7 @@ Every collection lives at the repository root in its own self-contained director
 
 ## Benchmark Collections (90 Collections)
 
-<table cellpadding="12" cellspacing="0">
+<table width="100%" cellpadding="12" cellspacing="0">
   <tr>
     <td width="25%" align="center" valign="top">
       <a href="aes256-key-recovery/README.md"><img src="aes256-key-recovery/diagram.svg" width="230" alt="Synthetic NIST FIPS 197 AES-256 Key-Recovery &amp; Hash-Preimage Circuits"></a><br><br>
@@ -54,41 +54,41 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>aloul-fpga-sb-uns</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-golomb-rulers/README.md"><img src="brewbaker-golomb-rulers/diagram.svg" width="240" alt="Optimal Golomb Ruler Synthesis"></a><br><br>
+      <a href="brewbaker-golomb-rulers/README.md"><img src="brewbaker-golomb-rulers/diagram.svg" width="230" alt="Optimal Golomb Ruler Synthesis"></a><br><br>
       <a href="brewbaker-golomb-rulers/README.md"><b>Optimal Golomb Ruler Synthesis</b></a><br>
       <sub><code>brewbaker-golomb-rulers</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-select-networks/README.md"><img src="brewbaker-select-networks/diagram.svg" width="240" alt="Fixed &amp; Adaptive Selection Network Synthesis"></a><br><br>
+      <a href="brewbaker-select-networks/README.md"><img src="brewbaker-select-networks/diagram.svg" width="230" alt="Fixed &amp; Adaptive Selection Network Synthesis"></a><br><br>
       <a href="brewbaker-select-networks/README.md"><b>Fixed &amp; Adaptive Selection Network Synthesis</b></a><br>
       <sub><code>brewbaker-select-networks</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-sha256-cec/README.md"><img src="brewbaker-sha256-cec/diagram.svg" width="240" alt="FIPS 180-4 SHA-256 Ripple-vs-Prefix Adder CEC Miters"></a><br><br>
+      <a href="brewbaker-sha256-cec/README.md"><img src="brewbaker-sha256-cec/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 Ripple-vs-Prefix Adder CEC Miters"></a><br><br>
       <a href="brewbaker-sha256-cec/README.md"><b>FIPS 180-4 SHA-256 Ripple-vs-Prefix Adder CEC Miters</b></a><br>
       <sub><code>brewbaker-sha256-cec</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-sort-networks/README.md"><img src="brewbaker-sort-networks/diagram.svg" width="240" alt="Minimum-Comparator Sorting Network Synthesis"></a><br><br>
+      <a href="brewbaker-sort-networks/README.md"><img src="brewbaker-sort-networks/diagram.svg" width="230" alt="Minimum-Comparator Sorting Network Synthesis"></a><br><br>
       <a href="brewbaker-sort-networks/README.md"><b>Minimum-Comparator Sorting Network Synthesis</b></a><br>
       <sub><code>brewbaker-sort-networks</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-tensor-cross/README.md"><img src="brewbaker-tensor-cross/diagram.svg" width="240" alt="Bilinear Rank-K 3D Cross-Product Tensor Synthesis"></a><br><br>
+      <a href="brewbaker-tensor-cross/README.md"><img src="brewbaker-tensor-cross/diagram.svg" width="230" alt="Bilinear Rank-K 3D Cross-Product Tensor Synthesis"></a><br><br>
       <a href="brewbaker-tensor-cross/README.md"><b>Bilinear Rank-<i>K</i> 3D Cross-Product Tensor Synthesis</b></a><br>
       <sub><code>brewbaker-tensor-cross</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-tensor-dot/README.md"><img src="brewbaker-tensor-dot/diagram.svg" width="240" alt="Bilinear Rank-K Inner-Product Tensor Synthesis"></a><br><br>
+      <a href="brewbaker-tensor-dot/README.md"><img src="brewbaker-tensor-dot/diagram.svg" width="230" alt="Bilinear Rank-K Inner-Product Tensor Synthesis"></a><br><br>
       <a href="brewbaker-tensor-dot/README.md"><b>Bilinear Rank-<i>K</i> Inner-Product Tensor Synthesis</b></a><br>
       <sub><code>brewbaker-tensor-dot</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-tensor-matmul/README.md"><img src="brewbaker-tensor-matmul/diagram.svg" width="240" alt="Bilinear Rank-K Matrix Multiplication Tensor Synthesis"></a><br><br>
+      <a href="brewbaker-tensor-matmul/README.md"><img src="brewbaker-tensor-matmul/diagram.svg" width="230" alt="Bilinear Rank-K Matrix Multiplication Tensor Synthesis"></a><br><br>
       <a href="brewbaker-tensor-matmul/README.md"><b>Bilinear Rank-<i>K</i> Matrix Multiplication Tensor Synthesis</b></a><br>
       <sub><code>brewbaker-tensor-matmul</code></sub>
     </td>
@@ -115,12 +115,12 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>dense-solver-public</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="dense-solver-synthetic-chessboard/README.md"><img src="dense-solver-synthetic-chessboard/diagram.svg" width="235" alt="dense-solver Synthetic Mutilated Chessboard Tiling Benchmarks"></a><br><br>
+      <a href="dense-solver-synthetic-chessboard/README.md"><img src="dense-solver-synthetic-chessboard/diagram.svg" width="230" alt="dense-solver Synthetic Mutilated Chessboard Tiling Benchmarks"></a><br><br>
       <a href="dense-solver-synthetic-chessboard/README.md"><b>dense-solver Synthetic Mutilated Chessboard Tiling Benchmarks</b></a><br>
       <sub><code>dense-solver-synthetic-chessboard</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="dense-solver-synthetic-php/README.md"><img src="dense-solver-synthetic-php/diagram.svg" width="240" alt="dense-solver Synthetic Multi-Encoding Pigeonhole Principle Benchmarks"></a><br><br>
+      <a href="dense-solver-synthetic-php/README.md"><img src="dense-solver-synthetic-php/diagram.svg" width="230" alt="dense-solver Synthetic Multi-Encoding Pigeonhole Principle Benchmarks"></a><br><br>
       <a href="dense-solver-synthetic-php/README.md"><b>dense-solver Synthetic Multi-Encoding Pigeonhole Principle Benchmarks</b></a><br>
       <sub><code>dense-solver-synthetic-php</code></sub>
     </td>
@@ -137,56 +137,56 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>fede-intern-challenge</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a067782-sortnet/README.md"><img src="guillochon-oeis-a067782-sortnet/diagram.svg" width="240" alt="OEIS A067782 — Optimal-Depth Sorting Networks"></a><br><br>
+      <a href="guillochon-oeis-a067782-sortnet/README.md"><img src="guillochon-oeis-a067782-sortnet/diagram.svg" width="230" alt="OEIS A067782 — Optimal-Depth Sorting Networks"></a><br><br>
       <a href="guillochon-oeis-a067782-sortnet/README.md"><b>OEIS A067782 — Optimal-Depth Sorting Networks</b></a><br>
       <sub><code>guillochon-oeis-a067782-sortnet</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a171081-vdw/README.md"><img src="guillochon-oeis-a171081-vdw/diagram.svg" width="240" alt="OEIS A171081 / A007783 — Van der Waerden Numbers w(2; 3, t)"></a><br><br>
+      <a href="guillochon-oeis-a171081-vdw/README.md"><img src="guillochon-oeis-a171081-vdw/diagram.svg" width="230" alt="OEIS A171081 / A007783 — Van der Waerden Numbers w(2; 3, t)"></a><br><br>
       <a href="guillochon-oeis-a171081-vdw/README.md"><b>OEIS A171081 / A007783 — Van der Waerden Numbers <i>w</i>(2; 3, <i>t</i>)</b></a><br>
       <sub><code>guillochon-oeis-a171081-vdw</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a250000-queens/README.md"><img src="guillochon-oeis-a250000-queens/diagram.svg" width="240" alt="OEIS A250000 — Peaceable Coexisting Armies of Queens"></a><br><br>
+      <a href="guillochon-oeis-a250000-queens/README.md"><img src="guillochon-oeis-a250000-queens/diagram.svg" width="230" alt="OEIS A250000 — Peaceable Coexisting Armies of Queens"></a><br><br>
       <a href="guillochon-oeis-a250000-queens/README.md"><b>OEIS A250000 — Peaceable Coexisting Armies of Queens</b></a><br>
       <sub><code>guillochon-oeis-a250000-queens</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a350304-zarankiewicz/README.md"><img src="guillochon-oeis-a350304-zarankiewicz/diagram.svg" width="240" alt="OEIS A350304 — Zarankiewicz Numbers z(n; 3) (K3,3-Free Binary Matrices)"></a><br><br>
+      <a href="guillochon-oeis-a350304-zarankiewicz/README.md"><img src="guillochon-oeis-a350304-zarankiewicz/diagram.svg" width="230" alt="OEIS A350304 — Zarankiewicz Numbers z(n; 3) (K3,3-Free Binary Matrices)"></a><br><br>
       <a href="guillochon-oeis-a350304-zarankiewicz/README.md"><b>OEIS A350304 — Zarankiewicz Numbers <i>z</i>(<i>n</i>; 3) (<i>K</i><sub>3,3</sub>-Free Binary Matrices)</b></a><br>
       <sub><code>guillochon-oeis-a350304-zarankiewicz</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-sq-any/README.md"><img src="guillochon-oeis-grid-sq-any/diagram.svg" width="240" alt="OEIS A240443 — Square-Grid No-Arbitrary-Square"></a><br><br>
+      <a href="guillochon-oeis-grid-sq-any/README.md"><img src="guillochon-oeis-grid-sq-any/diagram.svg" width="230" alt="OEIS A240443 — Square-Grid No-Arbitrary-Square"></a><br><br>
       <a href="guillochon-oeis-grid-sq-any/README.md"><b>OEIS A240443 — Square-Grid No-Arbitrary-Square</b></a><br>
       <sub><code>guillochon-oeis-grid-sq-any</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-sq-axis/README.md"><img src="guillochon-oeis-grid-sq-axis/diagram.svg" width="240" alt="OEIS A227133 / A152125 — Square-Grid No-Axis-Aligned-Square"></a><br><br>
+      <a href="guillochon-oeis-grid-sq-axis/README.md"><img src="guillochon-oeis-grid-sq-axis/diagram.svg" width="230" alt="OEIS A227133 / A152125 — Square-Grid No-Axis-Aligned-Square"></a><br><br>
       <a href="guillochon-oeis-grid-sq-axis/README.md"><b>OEIS A227133 / A152125 — Square-Grid No-Axis-Aligned-Square</b></a><br>
       <sub><code>guillochon-oeis-grid-sq-axis</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-tri-any/README.md"><img src="guillochon-oeis-grid-tri-any/diagram.svg" width="240" alt="OEIS A240114 / A319159 — Triangular-Grid No-Arbitrary-Equilateral-Triangle"></a><br><br>
+      <a href="guillochon-oeis-grid-tri-any/README.md"><img src="guillochon-oeis-grid-tri-any/diagram.svg" width="230" alt="OEIS A240114 / A319159 — Triangular-Grid No-Arbitrary-Equilateral-Triangle"></a><br><br>
       <a href="guillochon-oeis-grid-tri-any/README.md"><b>OEIS A240114 / A319159 — Triangular-Grid No-Arbitrary-Equilateral-Triangle</b></a><br>
       <sub><code>guillochon-oeis-grid-tri-any</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-tri-axis/README.md"><img src="guillochon-oeis-grid-tri-axis/diagram.svg" width="240" alt="OEIS A227308 / A227116 — Triangular-Grid No-Axis-Aligned-Equilateral-Triangle"></a><br><br>
+      <a href="guillochon-oeis-grid-tri-axis/README.md"><img src="guillochon-oeis-grid-tri-axis/diagram.svg" width="230" alt="OEIS A227308 / A227116 — Triangular-Grid No-Axis-Aligned-Equilateral-Triangle"></a><br><br>
       <a href="guillochon-oeis-grid-tri-axis/README.md"><b>OEIS A227308 / A227116 — Triangular-Grid No-Axis-Aligned-Equilateral-Triangle</b></a><br>
       <sub><code>guillochon-oeis-grid-tri-axis</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-tri-up/README.md"><img src="guillochon-oeis-grid-tri-up/diagram.svg" width="240" alt="OEIS A157795 / A319158 — Triangular-Grid No-Upward-Equilateral-Triangle"></a><br><br>
+      <a href="guillochon-oeis-grid-tri-up/README.md"><img src="guillochon-oeis-grid-tri-up/diagram.svg" width="230" alt="OEIS A157795 / A319158 — Triangular-Grid No-Upward-Equilateral-Triangle"></a><br><br>
       <a href="guillochon-oeis-grid-tri-up/README.md"><b>OEIS A157795 / A319158 — Triangular-Grid No-Upward-Equilateral-Triangle</b></a><br>
       <sub><code>guillochon-oeis-grid-tri-up</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="hamd-hamiltonian-cycle/README.md"><img src="hamd-hamiltonian-cycle/diagram.svg" width="235" alt="Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks"></a><br><br>
+      <a href="hamd-hamiltonian-cycle/README.md"><img src="hamd-hamiltonian-cycle/diagram.svg" width="230" alt="Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks"></a><br><br>
       <a href="hamd-hamiltonian-cycle/README.md"><b>Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks</b></a><br>
       <sub><code>hamd-hamiltonian-cycle</code></sub>
     </td>
@@ -198,18 +198,18 @@ Every collection lives at the repository root in its own self-contained director
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-6pooled3and-c1/README.md"><img src="heule-matrix-6pooled3and-c1/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and/challenge1"></a><br><br>
-      <a href="heule-matrix-6pooled3and-c1/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and/challenge1</b></a><br>
+      <a href="heule-matrix-6pooled3and-c1/README.md"><img src="heule-matrix-6pooled3and-c1/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 1"></a><br><br>
+      <a href="heule-matrix-6pooled3and-c1/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 1</b></a><br>
       <sub><code>heule-matrix-6pooled3and-c1</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-6pooled3and-c3/README.md"><img src="heule-matrix-6pooled3and-c3/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and/challenge3"></a><br><br>
-      <a href="heule-matrix-6pooled3and-c3/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and/challenge3</b></a><br>
+      <a href="heule-matrix-6pooled3and-c3/README.md"><img src="heule-matrix-6pooled3and-c3/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 3"></a><br><br>
+      <a href="heule-matrix-6pooled3and-c3/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 3</b></a><br>
       <sub><code>heule-matrix-6pooled3and-c3</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-6pooled3and-c4/README.md"><img src="heule-matrix-6pooled3and-c4/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and/challenge4"></a><br><br>
-      <a href="heule-matrix-6pooled3and-c4/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and/challenge4</b></a><br>
+      <a href="heule-matrix-6pooled3and-c4/README.md"><img src="heule-matrix-6pooled3and-c4/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 4"></a><br><br>
+      <a href="heule-matrix-6pooled3and-c4/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 4</b></a><br>
       <sub><code>heule-matrix-6pooled3and-c4</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
@@ -252,19 +252,19 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>integer-factoring</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="knights-tour-obstacles/README.md"><img src="knights-tour-obstacles/diagram.svg" width="235" alt="Obstacle Knight&#x27;s Tour — Hamiltonian Cycle on Punched Chessboards"></a><br><br>
+      <a href="knights-tour-obstacles/README.md"><img src="knights-tour-obstacles/diagram.svg" width="230" alt="Obstacle Knight&#x27;s Tour — Hamiltonian Cycle on Punched Chessboards"></a><br><br>
       <a href="knights-tour-obstacles/README.md"><b>Obstacle Knight's Tour — Hamiltonian Cycle on Punched Chessboards</b></a><br>
       <sub><code>knights-tour-obstacles</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="mata-presburger-nfa-tptp/README.md"><img src="mata-presburger-nfa-tptp/diagram.svg" width="235" alt="MATA Presburger Explicit-Complement NFA Benchmarks — TPTP"></a><br><br>
+      <a href="mata-presburger-nfa-tptp/README.md"><img src="mata-presburger-nfa-tptp/diagram.svg" width="230" alt="MATA Presburger Explicit-Complement NFA Benchmarks — TPTP"></a><br><br>
       <a href="mata-presburger-nfa-tptp/README.md"><b>MATA Presburger Explicit-Complement NFA Benchmarks — TPTP</b></a><br>
       <sub><code>mata-presburger-nfa-tptp</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="mata-presburger-nfa-ultimate-automizer/README.md"><img src="mata-presburger-nfa-ultimate-automizer/diagram.svg" width="235" alt="MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer"></a><br><br>
+      <a href="mata-presburger-nfa-ultimate-automizer/README.md"><img src="mata-presburger-nfa-ultimate-automizer/diagram.svg" width="230" alt="MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer"></a><br><br>
       <a href="mata-presburger-nfa-ultimate-automizer/README.md"><b>MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer</b></a><br>
       <sub><code>mata-presburger-nfa-ultimate-automizer</code></sub>
     </td>
@@ -274,34 +274,34 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>mod-circuit-sat</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="picat-costas-arrays/README.md"><img src="picat-costas-arrays/diagram.svg" width="235" alt="Costas Arrays"></a><br><br>
+      <a href="picat-costas-arrays/README.md"><img src="picat-costas-arrays/diagram.svg" width="230" alt="Costas Arrays"></a><br><br>
       <a href="picat-costas-arrays/README.md"><b>Costas Arrays</b></a><br>
       <sub><code>picat-costas-arrays</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="picat-golomb-rulers/README.md"><img src="picat-golomb-rulers/diagram.svg" width="235" alt="Optimal Golomb Rulers"></a><br><br>
+      <a href="picat-golomb-rulers/README.md"><img src="picat-golomb-rulers/diagram.svg" width="230" alt="Optimal Golomb Rulers"></a><br><br>
       <a href="picat-golomb-rulers/README.md"><b>Optimal Golomb Rulers</b></a><br>
       <sub><code>picat-golomb-rulers</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="picat-mapf/README.md"><img src="picat-mapf/diagram.svg" width="235" alt="Multi-Agent Path Finding — Makespan"></a><br><br>
+      <a href="picat-mapf/README.md"><img src="picat-mapf/diagram.svg" width="230" alt="Multi-Agent Path Finding — Makespan"></a><br><br>
       <a href="picat-mapf/README.md"><b>Multi-Agent Path Finding — Makespan</b></a><br>
       <sub><code>picat-mapf</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="picat-numberlink/README.md"><img src="picat-numberlink/diagram.svg" width="235" alt="Planar Numberlink Disjoint Paths"></a><br><br>
+      <a href="picat-numberlink/README.md"><img src="picat-numberlink/diagram.svg" width="230" alt="Planar Numberlink Disjoint Paths"></a><br><br>
       <a href="picat-numberlink/README.md"><b>Planar Numberlink Disjoint Paths</b></a><br>
       <sub><code>picat-numberlink</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="picat-rectangle-packing/README.md"><img src="picat-rectangle-packing/diagram.svg" width="235" alt="2D Square &amp; Rectangle Packing — diffn + cumulative"></a><br><br>
+      <a href="picat-rectangle-packing/README.md"><img src="picat-rectangle-packing/diagram.svg" width="230" alt="2D Square &amp; Rectangle Packing — diffn + cumulative"></a><br><br>
       <a href="picat-rectangle-packing/README.md"><b>2D Square &amp; Rectangle Packing — diffn + cumulative</b></a><br>
       <sub><code>picat-rectangle-packing</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="picat-vmtl/README.md"><img src="picat-vmtl/diagram.svg" width="235" alt="Vertex Magic Total Labeling on Kn"></a><br><br>
+      <a href="picat-vmtl/README.md"><img src="picat-vmtl/diagram.svg" width="230" alt="Vertex Magic Total Labeling on Kn"></a><br><br>
       <a href="picat-vmtl/README.md"><b>Vertex Magic Total Labeling on <i>K<sub>n</sub></i></b></a><br>
       <sub><code>picat-vmtl</code></sub>
     </td>
@@ -318,7 +318,7 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>qdistsat-qldpc</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="queen-armies/README.md"><img src="queen-armies/diagram.svg" width="235" alt="Peaceable Queen Armies"></a><br><br>
+      <a href="queen-armies/README.md"><img src="queen-armies/diagram.svg" width="230" alt="Peaceable Queen Armies"></a><br><br>
       <a href="queen-armies/README.md"><b>Peaceable Queen Armies</b></a><br>
       <sub><code>queen-armies</code></sub>
     </td>
@@ -335,7 +335,7 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>rb-bench-model-rb</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="sat-competition-2002-2026-uris/README.md"><img src="sat-competition-2002-2026-uris/diagram.svg" width="240" alt="International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)"></a><br><br>
+      <a href="sat-competition-2002-2026-uris/README.md"><img src="sat-competition-2002-2026-uris/diagram.svg" width="230" alt="International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)"></a><br><br>
       <a href="sat-competition-2002-2026-uris/README.md"><b>International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)</b></a><br>
       <sub><code>sat-competition-2002-2026-uris</code></sub>
     </td>
@@ -352,7 +352,7 @@ Every collection lives at the repository root in its own self-contained director
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-ais/README.md"><img src="satlib-ais/diagram.svg" width="235" alt="SATLIB — All-Interval Series (full)"></a><br><br>
+      <a href="satlib-ais/README.md"><img src="satlib-ais/diagram.svg" width="230" alt="SATLIB — All-Interval Series (full)"></a><br><br>
       <a href="satlib-ais/README.md"><b>SATLIB — All-Interval Series (full)</b></a><br>
       <sub><code>satlib-ais</code></sub>
     </td>
@@ -401,12 +401,12 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>satlib-dimacs-dubois</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-gcp-large/README.md"><img src="satlib-dimacs-gcp-large/diagram.svg" width="235" alt="SATLIB — Large Graph Colouring g125/g250 (full)"></a><br><br>
+      <a href="satlib-dimacs-gcp-large/README.md"><img src="satlib-dimacs-gcp-large/diagram.svg" width="230" alt="SATLIB — Large Graph Colouring g125/g250 (full)"></a><br><br>
       <a href="satlib-dimacs-gcp-large/README.md"><b>SATLIB — Large Graph Colouring g125/g250 (full)</b></a><br>
       <sub><code>satlib-dimacs-gcp-large</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-hanoi/README.md"><img src="satlib-dimacs-hanoi/diagram.svg" width="235" alt="SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)"></a><br><br>
+      <a href="satlib-dimacs-hanoi/README.md"><img src="satlib-dimacs-hanoi/diagram.svg" width="230" alt="SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)"></a><br><br>
       <a href="satlib-dimacs-hanoi/README.md"><b>SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)</b></a><br>
       <sub><code>satlib-dimacs-hanoi</code></sub>
     </td>
@@ -423,13 +423,13 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>satlib-dimacs-jnh</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-lran/README.md"><img src="satlib-dimacs-lran/diagram.svg" width="230" alt="SATLIB — Large Random 3-SAT f600/f1000/f2000 (full)"></a><br><br>
-      <a href="satlib-dimacs-lran/README.md"><b>SATLIB — Large Random 3-SAT f600/f1000/f2000 (full)</b></a><br>
+      <a href="satlib-dimacs-lran/README.md"><img src="satlib-dimacs-lran/diagram.svg" width="230" alt="SATLIB — Large Random 3-SAT f600 / f1000 / f2000 (full)"></a><br><br>
+      <a href="satlib-dimacs-lran/README.md"><b>SATLIB — Large Random 3-SAT f600 / f1000 / f2000 (full)</b></a><br>
       <sub><code>satlib-dimacs-lran</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-parity/README.md"><img src="satlib-dimacs-parity/diagram.svg" width="230" alt="SATLIB — Parity Learning par8/par16/par32 (full)"></a><br><br>
-      <a href="satlib-dimacs-parity/README.md"><b>SATLIB — Parity Learning par8/par16/par32 (full)</b></a><br>
+      <a href="satlib-dimacs-parity/README.md"><img src="satlib-dimacs-parity/diagram.svg" width="230" alt="SATLIB — Parity Learning par8 / par16 / par32 (full)"></a><br><br>
+      <a href="satlib-dimacs-parity/README.md"><b>SATLIB — Parity Learning par8 / par16 / par32 (full)</b></a><br>
       <sub><code>satlib-dimacs-parity</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
@@ -450,19 +450,19 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>satlib-flat-gcp</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-planning-blocksworld/README.md"><img src="satlib-planning-blocksworld/diagram.svg" width="235" alt="SATLIB — SATPLAN Blocks World (full)"></a><br><br>
+      <a href="satlib-planning-blocksworld/README.md"><img src="satlib-planning-blocksworld/diagram.svg" width="230" alt="SATLIB — SATPLAN Blocks World (full)"></a><br><br>
       <a href="satlib-planning-blocksworld/README.md"><b>SATLIB — SATPLAN Blocks World (full)</b></a><br>
       <sub><code>satlib-planning-blocksworld</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-planning-logistics/README.md"><img src="satlib-planning-logistics/diagram.svg" width="235" alt="SATLIB — SATPLAN Logistics a..d (full)"></a><br><br>
+      <a href="satlib-planning-logistics/README.md"><img src="satlib-planning-logistics/diagram.svg" width="230" alt="SATLIB — SATPLAN Logistics a..d (full)"></a><br><br>
       <a href="satlib-planning-logistics/README.md"><b>SATLIB — SATPLAN Logistics a..d (full)</b></a><br>
       <sub><code>satlib-planning-logistics</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-qg/README.md"><img src="satlib-qg/diagram.svg" width="235" alt="SATLIB — Quasigroup / Latin Squares — Zhang (full)"></a><br><br>
+      <a href="satlib-qg/README.md"><img src="satlib-qg/diagram.svg" width="230" alt="SATLIB — Quasigroup / Latin Squares — Zhang (full)"></a><br><br>
       <a href="satlib-qg/README.md"><b>SATLIB — Quasigroup / Latin Squares — Zhang (full)</b></a><br>
       <sub><code>satlib-qg</code></sub>
     </td>
@@ -472,7 +472,7 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>satlib-rnd3sat</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-sw-gcp/README.md"><img src="satlib-sw-gcp/diagram.svg" width="235" alt="SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)"></a><br><br>
+      <a href="satlib-sw-gcp/README.md"><img src="satlib-sw-gcp/diagram.svg" width="230" alt="SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)"></a><br><br>
       <a href="satlib-sw-gcp/README.md"><b>SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)</b></a><br>
       <sub><code>satlib-sw-gcp</code></sub>
     </td>
@@ -489,29 +489,29 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>tseitin-expanders</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="vlsat-2/README.md"><img src="vlsat-2/diagram.svg" width="235" alt="VLSAT-2 Benchmark Suite (INRIA / CADP)"></a><br><br>
+      <a href="vlsat-2/README.md"><img src="vlsat-2/diagram.svg" width="230" alt="VLSAT-2 Benchmark Suite (INRIA / CADP)"></a><br><br>
       <a href="vlsat-2/README.md"><b>VLSAT-2 Benchmark Suite (INRIA / CADP)</b></a><br>
       <sub><code>vlsat-2</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="vzhn-sat-inv-matrix-int/README.md"><img src="vzhn-sat-inv-matrix-int/diagram.svg" width="235" alt="Exact Integer Matrix Inversion over ℤ"></a><br><br>
+      <a href="vzhn-sat-inv-matrix-int/README.md"><img src="vzhn-sat-inv-matrix-int/diagram.svg" width="230" alt="Exact Integer Matrix Inversion over ℤ"></a><br><br>
       <a href="vzhn-sat-inv-matrix-int/README.md"><b>Exact Integer Matrix Inversion over ℤ</b></a><br>
       <sub><code>vzhn-sat-inv-matrix-int</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="vzhn-sat-inv-matrix-mod/README.md"><img src="vzhn-sat-inv-matrix-mod/diagram.svg" width="235" alt="Modular Ring Matrix Inversion over ℤ/mℤ"></a><br><br>
+      <a href="vzhn-sat-inv-matrix-mod/README.md"><img src="vzhn-sat-inv-matrix-mod/diagram.svg" width="230" alt="Modular Ring Matrix Inversion over ℤ/mℤ"></a><br><br>
       <a href="vzhn-sat-inv-matrix-mod/README.md"><b>Modular Ring Matrix Inversion over ℤ/<i>m</i>ℤ</b></a><br>
       <sub><code>vzhn-sat-inv-matrix-mod</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="zed-adversarial-hub/README.md"><img src="zed-adversarial-hub/diagram.svg" width="235" alt="Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits"></a><br><br>
+      <a href="zed-adversarial-hub/README.md"><img src="zed-adversarial-hub/diagram.svg" width="230" alt="Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits"></a><br><br>
       <a href="zed-adversarial-hub/README.md"><b>Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits</b></a><br>
       <sub><code>zed-adversarial-hub</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="zed-adversarial-php/README.md"><img src="zed-adversarial-php/diagram.svg" width="235" alt="Adversarial Scaled AIGER Pigeonhole Principle Circuits"></a><br><br>
+      <a href="zed-adversarial-php/README.md"><img src="zed-adversarial-php/diagram.svg" width="230" alt="Adversarial Scaled AIGER Pigeonhole Principle Circuits"></a><br><br>
       <a href="zed-adversarial-php/README.md"><b>Adversarial Scaled AIGER Pigeonhole Principle Circuits</b></a><br>
       <sub><code>zed-adversarial-php</code></sub>
     </td>
