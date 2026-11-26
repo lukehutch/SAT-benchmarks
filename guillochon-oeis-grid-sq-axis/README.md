@@ -91,12 +91,12 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 Two $N = 11$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). Only Frobenius and CaDiCaL 3.1.0 solve `sq-axis_n11_m73.cnf` within 60 s:
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `sq-axis_n11_m73.cnf` | SAT | **1.15 s** | 2.32 s | >60 s | >60 s | >60 s |
 | `sq-axis_n11_m74.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 2** | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | 0 / 2 (0 SAT, 0 UNSAT) | 0 / 2 (0 SAT, 0 UNSAT) | 0 / 2 (0 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **121.15 s** *(mean 60.57 s)* | 122.32 s *(mean 61.16 s)* | 240.00 s *(mean 120.00 s)* | 240.00 s *(mean 120.00 s)* | 240.00 s *(mean 120.00 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | 0 / 2 *(-1 worse)* | 0 / 2 *(-1 worse)* | 0 / 2 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **121.15 s** *(fastest)* | 122.32 s *(1.01x slower)* | 240.00 s *(1.98x slower)* | 240.00 s *(1.98x slower)* | 240.00 s *(1.98x slower)* |
 
 ### Open OEIS Frontier Run (180 s, Single-Core Pinned)
 

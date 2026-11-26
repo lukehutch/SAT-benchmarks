@@ -75,7 +75,8 @@ This collection holds the **30 third-party public CNFs** (`public-instances/`) s
 | `uuf50-02` | UNSAT | 2.24 ms | 2.40 ms | 16.36 ms | **1.32 ms** | 2.50 ms |
 | `uuf50-03` | UNSAT | 2.01 ms | 2.13 ms | 14.21 ms | **1.35 ms** | 2.76 ms |
 | `uuf50-04` | UNSAT | 2.21 ms | 2.29 ms | 14.95 ms | **1.30 ms** | 2.35 ms |
-| **Total (30 files, PAR-2)** | **30/30** | **30/30 — 104.64 ms** *(fastest)* | 24/30 — 64,034.8 ms *(611.95x)* | 20/30 — 100,928.1 ms *(964.53x)* | 28/30 — 20,459.5 ms *(195.52x)* | 25/30 — 53,137.3 ms *(507.81x)* |
+| **Solved (30 files)** | — | **30 / 30** *(highest)* | 24 / 30 *(-6 worse)* | 20 / 30 *(-10 worse)* | 28 / 30 *(-2 worse)* | 25 / 30 *(-5 worse)* |
+| **Total PAR-2** | — | **104.64 ms** *(fastest)* | 64,034.8 ms *(611.95x slower)* | 100,928.1 ms *(964.53x slower)* | 20,459.5 ms *(195.52x slower)* | 53,137.3 ms *(507.81x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -92,14 +92,14 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 Four calibration rungs ($N = 11$ SAT/UNSAT optimal pair, plus $N = 12, 13$ SAT rungs) evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** ranks **#1 fastest overall** (`4 / 4` solved, Total PAR-2 = **`15.34 s`**, **1.79× faster** than #2 CaDiCaL 3.1.0 at `27.46 s`):
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `tri-up_n11_m31.cnf` | SAT | 0.86 s | **0.38 s** | 0.47 s | 1.55 s | 4.90 s |
 | `tri-up_n11_m32.cnf` | UNSAT | 13.78 s | 26.49 s | 34.70 s | 26.37 s | **13.77 s** |
 | `tri-up_n12_m35.cnf` | SAT | 0.05 s *(0.03 s updated build)* | **0.04 s** | 3.35 s | 1.33 s | 0.26 s |
 | `tri-up_n13_m40.cnf` | SAT | 0.65 s | **0.55 s** | 11.79 s | 4.37 s | 17.61 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **4 / 4** | **4 / 4** (3 SAT, 1 UNSAT) | **4 / 4** (3 SAT, 1 UNSAT) | **4 / 4** (3 SAT, 1 UNSAT) | **4 / 4** (3 SAT, 1 UNSAT) | **4 / 4** (3 SAT, 1 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **15.34 s** *(mean 3.83 s)* | 27.46 s *(mean 6.86 s)* | 50.31 s *(mean 12.58 s)* | 33.62 s *(mean 8.40 s)* | 36.54 s *(mean 9.14 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **15.34 s** *(fastest)* | 27.46 s *(1.79x slower)* | 50.31 s *(3.28x slower)* | 33.62 s *(2.19x slower)* | 36.54 s *(2.38x slower)* |
 
 - **Frontier lower-bound milestone:** Frobenius independently recovered James Guillochon's side-14 lower bound `tri-up_n14_m46.cnf` from scratch (pure SAT, zero annealing hints) in **`57.10 s`**, archived in [`solutions/tri-up_n14_m46.model.xz`](solutions/tri-up_n14_m46.model.xz).
 

@@ -45,7 +45,8 @@ All 4 classic SATPLAN Logistics planning-as-SAT instances (`logistics.a` through
 | `logistics.b` | SAT | **3.17 ms** | 5.70 ms | 66.15 ms | 6.95 ms | 27.56 ms |
 | `logistics.c` | SAT | **8.54 ms** | 9.93 ms | 145.19 ms | 10.21 ms | 29.87 ms |
 | `logistics.d` | SAT | 11.22 ms | **10.53 ms** | 648.55 ms | 49.95 ms | 35.12 ms |
-| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 26.0 ms** *(fastest)* | 4/4 — 32.5 ms *(1.25x)* | 4/4 — 954.9 ms *(36.68x)* | 4/4 — 73.4 ms *(2.82x)* | 4/4 — 119.5 ms *(4.59x)* |
+| **Solved (4 files)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
+| **Total PAR-2** | — | **26.0 ms** *(fastest)* | 32.5 ms *(1.25x slower)* | 954.9 ms *(36.68x slower)* | 73.4 ms *(2.82x slower)* | 119.5 ms *(4.59x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

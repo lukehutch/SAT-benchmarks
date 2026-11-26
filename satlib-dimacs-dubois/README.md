@@ -57,7 +57,8 @@ All 13 classic Dubois parity-based 3-SAT formulas (`dubois20`–`dubois100`) fro
 | `dubois29` | UNSAT | **0.59 ms** | 2.67 ms | 24.04 ms | 1.83 ms | 1.88 ms |
 | `dubois30` | UNSAT | **0.59 ms** | 2.50 ms | 18.72 ms | 1.59 ms | 1.71 ms |
 | `dubois50` | UNSAT | **0.58 ms** | 2.54 ms | 26.98 ms | 2.02 ms | 2.34 ms |
-| **Total (13 files, PAR-2)** | **13/13** | **13/13 — 7.7 ms** *(fastest)* | 13/13 — 33.1 ms *(4.29x)* | 13/13 — 252.3 ms *(32.72x)* | 13/13 — 21.5 ms *(2.79x)* | 13/13 — 21.8 ms *(2.83x)* |
+| **Solved (13 files)** | — | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* |
+| **Total PAR-2** | — | **7.7 ms** *(fastest)* | 33.1 ms *(4.29x slower)* | 252.3 ms *(32.72x slower)* | 21.5 ms *(2.79x slower)* | 21.8 ms *(2.83x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -91,7 +91,8 @@ All 50 variable-clause-length random SAT benchmarks (`jnh1`–`jnh310`, $n = 100
 | `jnh7` | SAT | **1.20 ms** | 3.23 ms | 8.36 ms | 2.07 ms | 3.55 ms |
 | `jnh8` | UNSAT | 2.44 ms | 2.98 ms | 13.06 ms | **2.25 ms** | 2.27 ms |
 | `jnh9` | UNSAT | 2.33 ms | 3.09 ms | 14.40 ms | **2.11 ms** | 2.30 ms |
-| **Total (50 files, PAR-2)** | **50/50** | **50/50 — 101.8 ms** *(fastest)* | 50/50 — 158.6 ms *(1.56x)* | 50/50 — 1,105.1 ms *(10.85x)* | 50/50 — 112.2 ms *(1.10x)* | 50/50 — 279.1 ms *(2.74x)* |
+| **Solved (50 files)** | — | **50 / 50** *(highest)* | **50 / 50** *(highest)* | **50 / 50** *(highest)* | **50 / 50** *(highest)* | **50 / 50** *(highest)* |
+| **Total PAR-2** | — | **101.8 ms** *(fastest)* | 158.6 ms *(1.56x slower)* | 1,105.1 ms *(10.85x slower)* | 112.2 ms *(1.10x slower)* | 279.1 ms *(2.74x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

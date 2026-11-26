@@ -119,8 +119,8 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 | `c10.cnf.xz` | **UNSAT** | **0.014 s** *(proof: 38.11 s)* | 158.58 s | 85.85 s | `c10.bdrat.xz` (`4.67 MiB`, 40b prime `672003499631`) — **`drat-trim` VERIFIED** |
 | `c11.cnf.xz` | **UNSAT** | **0.067 s** *(proof: 0.54 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c11.lrat.xz` (`13.9 MiB`, SC25 unsolved `R(4,4)=18`) — **`lrat-check` + `cake_lpr` VERIFIED** |
 | `c12.cnf.xz` | **UNSAT** | **0.013 s** *(proof: 0.007 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c12.lrat.xz` (`66.3 KiB`, SC25 unsolved `CliqueCol(15,7,6)`) — **`lrat-check` + `cake_lpr` VERIFIED** |
-| **Solved ($T_{\max}=300\;\text{s}$)** | **10 / 12** | **10 / 12** | 4 / 12 | 4 / 12 | **6/6 SAT models + 4/4 UNSAT proofs verified** |
-| **Total PAR-2 ($T_{\max}=300\;\text{s}$)** | — | **1,243.25 s** *(fastest)* | 5,002.12 s *(4.02x)* | 4,926.02 s *(3.96x)* | `c04`–`c12` (9 instances) solved in **2.93 s** combined |
+| **Solved ($T_{\max}=300\;\text{s}$)** | — | **10 / 12** *(highest)* | 4 / 12 *(-6 worse)* | 4 / 12 *(-6 worse)* | **6/6 SAT models + 4/4 UNSAT proofs verified** |
+| **Total PAR-2 ($T_{\max}=300\;\text{s}$)** | — | **1,243.25 s** *(fastest)* | 5,002.12 s *(4.02x slower)* | 4,926.02 s *(3.96x slower)* | `c04`–`c12` (9 instances) solved in **2.93 s** combined |
 
 ### 2. 60 s All-Five-Solver Comparison (Identical Uncompressed Flat `.cnf`, `taskset -c 0`)
 
@@ -138,7 +138,8 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 | `c10` | UNSAT | **0.014 s** | >60 s | >60 s | >60 s | >60 s |
 | `c11` | UNSAT | **0.075 s** | >60 s | >60 s | >60 s | >60 s |
 | `c12` | UNSAT | **0.013 s** | >60 s | >60 s | >60 s | >60 s |
-| **Total (60 s PAR-2)** | **10 / 12** | **10/12 — 286.67 s** *(fastest)* | 3/12 — 1,120.20 s *(3.91x)* | 0/12 — 1,440.00 s *(5.02x)* | 0/12 — 1,440.00 s *(5.02x)* | 3/12 — 1,117.65 s *(3.90x)* |
+| **Solved ($T_{\max}=60\;\text{s}$)** | — | **10 / 12** *(highest)* | 3 / 12 *(-7 worse)* | 0 / 12 *(-10 worse)* | 0 / 12 *(-10 worse)* | 3 / 12 *(-7 worse)* |
+| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | **286.67 s** *(fastest)* | 1,120.20 s *(3.91x slower)* | 1,440.00 s *(5.02x slower)* | 1,440.00 s *(5.02x slower)* | 1,117.65 s *(3.90x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

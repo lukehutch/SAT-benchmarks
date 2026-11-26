@@ -54,7 +54,8 @@ All 13 hardware Bounded Model Checking (BMC) instances from Ofer Shtrichman's IB
 | `bmc-ibm-5` | SAT | **19.47 ms** | 21.65 ms | 324.13 ms | 57.21 ms | 39.59 ms |
 | `bmc-ibm-6` | SAT | 206.29 ms | 585.29 ms | 2,850.13 ms | 1,337.44 ms | **191.28 ms** |
 | `bmc-ibm-7` | SAT | 11.60 ms | 16.64 ms | 241.85 ms | 52.73 ms | **8.39 ms** |
-| **Total (13 files, PAR-2)** | **13/13** | **13/13 — 1,987.6 ms** *(fastest)* | 13/13 — 4,923.8 ms *(2.48x)* | 13/13 — 19,129.8 ms *(9.62x)* | 13/13 — 12,123.0 ms *(6.10x)* | 13/13 — 2,709.7 ms *(1.36x)* |
+| **Solved (13 files)** | — | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* |
+| **Total PAR-2** | — | **1,987.6 ms** *(fastest)* | 4,923.8 ms *(2.48x slower)* | 19,129.8 ms *(9.62x slower)* | 12,123.0 ms *(6.10x slower)* | 2,709.7 ms *(1.36x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

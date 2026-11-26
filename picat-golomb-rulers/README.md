@@ -78,7 +78,7 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 - **Independent Model Verification:** All **25 / 25** SAT models emitted across all 5 solvers were verified clause-by-clause against 100% of raw CNF clauses (**0 bad models**, **0 verdict disagreements**).
 - **Formal UNSAT Proof Certification:** All **5** tractable (`< 30 s`) Frobenius UNSAT verdicts (`golomb_m6_l16`, `golomb_m7_l24`, `golomb_m8_l33`, `golomb_m9_l43`, `golomb_m10_l54`) were independently certified by `drat-trim`, `lrat-check`, and `cake_lpr` (`s VERIFIED UNSAT`).
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `golomb_m6_l16.cnf` | UNSAT | 10.1 ms | **5.5 ms** | 77.2 ms | 6.7 ms | 27.2 ms |
 | `golomb_m6_l17.cnf` | SAT | 9.6 ms | **5.7 ms** | 93.4 ms | 7.0 ms | 26.7 ms |
@@ -90,8 +90,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `golomb_m9_l44.cnf` | SAT | 688.7 ms | 924.7 ms | 1.41 s | 768.4 ms | **258.9 ms** |
 | `golomb_m10_l54.cnf` | UNSAT | **4.80 s** | 6.00 s | 6.55 s | 12.49 s | 6.56 s |
 | `golomb_m10_l55.cnf` | SAT | **374.1 ms** | 5.55 s | 7.13 s | 3.21 s | 6.32 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **10 total** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** | **10 / 10 (5 SAT, 5 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **7.20 s** *(mean 0.72 s)* | 13.92 s *(mean 1.39 s)* | 18.53 s *(mean 1.85 s)* | 18.49 s *(mean 1.85 s)* | 14.81 s *(mean 1.48 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **7.20 s** *(fastest)* | 13.92 s *(1.93x slower)* | 18.53 s *(2.57x slower)* | 18.49 s *(2.57x slower)* | 14.81 s *(2.06x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

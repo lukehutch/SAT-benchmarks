@@ -96,9 +96,9 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 ### 1. Calibration Case `01-known-unsat.cnf` ($T_{\max} = 600\;\text{s}$, 1 Core, Flat `.cnf`)
 
 | Metric (1C, $T_{\max} = 600\;\text{s}$) | Frobenius 1C (default) | Frobenius 1C (DRAT proof)\* | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|
+|---|---:|---:|---:|---:|---:|---:|
 | **Verdict** | **UNSAT** | **UNSAT** | **UNSAT** | **UNSAT** | T/O | **UNSAT** |
-| **Wall Time** | **80.33 s** | 91.54 s | 339.43 s | 414.78 s | >600 s | 570.57 s |
+| **Wall Time** | **80.33 s** *(fastest)* | 91.54 s *(1.14x slower)* | 339.43 s *(4.23x slower)* | 414.78 s *(5.16x slower)* | >600 s *(T/O)* | 570.57 s *(7.10x slower)* |
 | **CPU Time** | — | 91.13 s | 334.99 s | 412.04 s | 594.97 s | 561.66 s |
 | **Conflicts** | — | 6,155,846 | 10,609,175 | 6,888,425 | — | 8,472,695 |
 | **Propagations** | — | 489.1M | 807.0M | 550.0M | — | 977.1M |
@@ -114,8 +114,10 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 |---|---:|---:|---:|
 | **Budget** | 10,800 s *(3 hr)* | 180 s *(3 min)* | 180 s *(3 min)* |
 | **Verdict** | T/O *(Open)* | T/O *(Open)* | T/O *(Open)* |
-| **Conflicts (Rate)** | 78,310,464 (`7,251/s`) | 1,431,113 (`8,051/s`) | 1,400,468 (`7,871/s`) |
-| **Propagations (Rate)** | 38,796.9M (`3.59M/s`) | 455.5M (`2.56M/s`) | 763.4M (`4.29M/s`) |
+| **Conflicts** | 78,310,464 | 1,431,113 | 1,400,468 |
+| **Conflict Rate** | 7,251 / s | 8,051 / s | 7,871 / s |
+| **Propagations** | 38,796.9M | 455.5M | 763.4M |
+| **Propagation Rate** | 3.59M / s | 2.56M / s | 4.29M / s |
 | **Peak RSS** | 427 MB | 256 MB | 98 MB |
 
 *\*Frobenius 1C ran `02-open.cnf.xz` directly on pinned core 2 for `10,800 s` wall (`10,653.45 s` CPU, `578.5M` decisions, `495.4` propagations/conflict, `427 MB` peak RSS, zero swaps).*

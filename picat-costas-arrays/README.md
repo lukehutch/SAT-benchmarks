@@ -80,7 +80,7 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 - **Independent Model Verification:** All **43 / 43** SAT models emitted across all 5 solvers were verified clause-by-clause against 100% of raw CNF clauses (**0 bad models**, **0 verdict disagreements**).
 - **Formal UNSAT Proof Certification:** No UNSAT instances in this collection terminated under `30 s` for Frobenius (all UNSAT ground truths are independently certified or mathematically proven as documented above).
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `costas_n8.cnf` | SAT | **17.0 ms** | 27.5 ms | 769.6 ms | 28.1 ms | 48.7 ms |
 | `costas_n9.cnf` | SAT | **10.5 ms** | 31.8 ms | 592.6 ms | 42.7 ms | 65.8 ms |
@@ -91,8 +91,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `costas_n14.cnf` | SAT | 3.24 s | 2.23 s | 6.09 s | **539.3 ms** | 2.48 s |
 | `costas_n15.cnf` | SAT | **1.24 s** | 14.23 s | 18.81 s | 8.63 s | 38.43 s |
 | `costas_n16.cnf` | SAT | **17.16 s** | 23.38 s | 32.77 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **9 total** | **9 / 9 (9 SAT, 0 UNSAT)** | **9 / 9 (9 SAT, 0 UNSAT)** | **9 / 9 (9 SAT, 0 UNSAT)** | 8 / 9 (8 SAT, 0 UNSAT) | 8 / 9 (8 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **22.47 s** *(mean 2.50 s)* | 40.94 s *(mean 4.55 s)* | 63.50 s *(mean 7.06 s)* | 129.69 s *(mean 14.41 s)* | 165.07 s *(mean 18.34 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **22.47 s** *(fastest)* | 40.94 s *(1.82x slower)* | 63.50 s *(2.83x slower)* | 129.69 s *(5.77x slower)* | 165.07 s *(7.35x slower)* |
 
 *Ground-truth SAT note:* Every order $N \in \{8, \dots, 16\}$ is mathematically proven SAT with hundreds to tens of thousands of solutions ([OEIS A008404](https://oeis.org/A008404), $a(16)/2 = 10{,}552$ under $\pi_1 < \pi_{16}$).
 

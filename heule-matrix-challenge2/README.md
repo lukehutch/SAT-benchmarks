@@ -52,7 +52,8 @@ Ten $R = 23$ $\mathbb{F}_2$ matrix-multiplication subproblems with hardcoded pai
 | `MM-23-3-3-N` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
 | `MM-23-5-A` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
 | `MM-23-5-B` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| **Total (10 files, PAR-2)** | **0/10** | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* | **0/10 — 200,000.0 ms** *(fastest)* |
+| **Solved (10 files)** | — | 0 / 10 | 0 / 10 | 0 / 10 | 0 / 10 | 0 / 10 | 0 / 10 |
+| **Total PAR-2** | — | 200,000.0 ms | 200,000.0 ms | 200,000.0 ms | 200,000.0 ms | 200,000.0 ms | 200,000.0 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

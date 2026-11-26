@@ -54,7 +54,8 @@ Difficult Integer Factorization Problems (`difp_w`, 15 SAT instances) encoded vi
 | `difp_21_2_wal_rcr` | SAT | **11.09 ms** | >5 s | >5 s | >5 s | >5 s |
 | `difp_21_3_wal_rcr` | SAT | **10.80 ms** | >5 s | 1,714.55 ms | >5 s | >5 s |
 | `difp_21_99_wal_rcr` | SAT | **10.37 ms** | >5 s | >5 s | >5 s | >5 s |
-| **Total (15 files, PAR-2)** | **15/15** | **15/15 — 128.2 ms** *(fastest)* | 6/15 — 101,151.7 ms *(788.76x)* | 7/15 — 88,570.7 ms *(690.66x)* | 4/15 — 115,672.1 ms *(901.99x)* | 7/15 — 97,100.5 ms *(757.17x)* |
+| **Solved (15 files)** | — | **15 / 15** *(highest)* | 6 / 15 *(-9 worse)* | 7 / 15 *(-8 worse)* | 4 / 15 *(-11 worse)* | 7 / 15 *(-8 worse)* |
+| **Total PAR-2** | — | **128.2 ms** *(fastest)* | 101,151.7 ms *(788.76x slower)* | 88,570.7 ms *(690.66x slower)* | 115,672.1 ms *(901.99x slower)* | 97,100.5 ms *(757.17x slower)* |
 
 *Summary:* Frobenius 1C solves all **15/15** instances (including `difp_21_1_wal_rcr` and `difp_21_2_wal_rcr`, where all four baseline solvers time out at $5\;\text{s}$) in **`128.2 ms` total** (`7.26–11.09 ms` per instance) — **690.66x faster** PAR-2 than CryptoMiniSat 5.18.0, **757.17x faster** than Kissat 4.0.4, **788.76x faster** than CaDiCaL 3.1.0, and **901.99x faster** than dense-solver 0.0.4.
 

@@ -82,7 +82,7 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 - **Independent Model Verification:** All **30 / 30** SAT models emitted across all 5 solvers were verified clause-by-clause against 100% of raw CNF clauses (**0 bad models**, **0 verdict disagreements**).
 - **Formal UNSAT Proof Certification:** All **1** tractable (`< 30 s`) Frobenius UNSAT verdicts (`vmtl_n4_k19`) were independently certified by `drat-trim`, `lrat-check`, and `cake_lpr` (`s VERIFIED UNSAT`).
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `vmtl_n4_k19.cnf` | UNSAT | **39.4 ms** | 49.7 ms | 162.0 ms | 48.4 ms | 95.9 ms |
 | `vmtl_n5_k34.cnf` | UNSAT | 45.43 s | >60 s | >60 s | >60 s | **37.19 s** |
@@ -94,8 +94,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `vmtl_n9_k207.cnf` | SAT | 2.60 s | 5.07 s | **2.10 s** | 4.25 s | 5.06 s |
 | `vmtl_n10_k257.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `vmtl_n10_k280.cnf` | SAT | 2.47 s | 4.08 s | 10.51 s | 3.19 s | **1.22 s** |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **10 total** | **8 / 10 (6 SAT, 2 UNSAT)** | 7 / 10 (6 SAT, 1 UNSAT) | 7 / 10 (6 SAT, 1 UNSAT) | 7 / 10 (6 SAT, 1 UNSAT) | **8 / 10 (6 SAT, 2 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **296.52 s** *(mean 29.65 s)* | 372.99 s *(mean 37.30 s)* | 383.98 s *(mean 38.40 s)* | 394.34 s *(mean 39.43 s)* | 300.00 s *(mean 30.00 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **8 / 10** *(highest)* | 7 / 10 *(-1 worse)* | 7 / 10 *(-1 worse)* | 7 / 10 *(-1 worse)* | **8 / 10** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **296.52 s** *(fastest)* | 372.99 s *(1.26x slower)* | 383.98 s *(1.29x slower)* | 394.34 s *(1.33x slower)* | 300.00 s *(1.01x slower)* |
 
 *Ground-truth UNSAT note:* `vmtl_n4_k19.cnf` is formally proof-certified (`drat-trim` + `lrat-check` + `cake_lpr`); `vmtl_n5_k34.cnf`, `vmtl_n6_k58.cnf`, and `vmtl_n10_k257.cnf` are mathematically UNSAT via the exact global double-counting theorem $K < K_{\min}(n)$ (`34 < 35`, `58 < 59`, `257 < 258`), making them exceptionally compact (`490–6,065` variables) CDCL refutation challenges.
 

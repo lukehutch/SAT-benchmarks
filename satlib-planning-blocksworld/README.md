@@ -48,7 +48,8 @@ All 7 classic SATPLAN Blocks World planning-as-SAT instances (`anomaly`, `medium
 | `bw_large.d` | SAT | **96.54 ms** | 314.33 ms | 679.20 ms | 144.95 ms | 196.21 ms |
 | `huge` | SAT | **2.73 ms** | 4.17 ms | 126.18 ms | 5.47 ms | 24.15 ms |
 | `medium` | SAT | **1.29 ms** | 2.25 ms | 10.27 ms | 2.00 ms | 1.37 ms |
-| **Total (7 files, PAR-2)** | **7/7** | **7/7 — 148.6 ms** *(fastest)* | 7/7 — 386.6 ms *(2.60x)* | 7/7 — 1,834.6 ms *(12.34x)* | 7/7 — 209.5 ms *(1.41x)* | 7/7 — 342.9 ms *(2.31x)* |
+| **Solved (7 files)** | — | **7 / 7** *(highest)* | **7 / 7** *(highest)* | **7 / 7** *(highest)* | **7 / 7** *(highest)* | **7 / 7** *(highest)* |
+| **Total PAR-2** | — | **148.6 ms** *(fastest)* | 386.6 ms *(2.60x slower)* | 1,834.6 ms *(12.34x slower)* | 209.5 ms *(1.41x slower)* | 342.9 ms *(2.31x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -70,7 +70,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
 - **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **10 / 10 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `sha256_cec_r16_b4.cnf` | UNSAT | **520.0 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
 | `sha256_cec_r1_b4.cnf` | UNSAT | **12.0 ms** | 296.6 ms | 695.2 ms | 378.0 ms | 346.3 ms |
@@ -85,28 +85,28 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `sha256_trace_r64_abc.cnf` | SAT | **27.4 ms** | 56.1 ms | 99.6 ms | 3.22 s | 33.3 ms |
 | `sha256_trace_r64_abc_expect_flip.cnf` | UNSAT | 25.0 ms | 48.5 ms | 59.0 ms | 3.26 s | **24.2 ms** |
 | `sha256_trace_r64_abc_expect_ok.cnf` | SAT | **27.8 ms** | 58.2 ms | 101.9 ms | 3.26 s | 32.4 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **13** | **13/13 (2 SAT, 11 UNSAT)** | 7/13 (2 SAT, 5 UNSAT) | 7/13 (2 SAT, 5 UNSAT) | 6/13 (2 SAT, 4 UNSAT) | 8/13 (2 SAT, 6 UNSAT) |
-| **Total PAR-2** | — | **5.06 s *(mean 0.39 s)*** | 739.66 s *(mean 56.90 s)* | 739.18 s *(mean 56.86 s)* | 851.91 s *(mean 65.53 s)* | 638.35 s *(mean 49.10 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **13 / 13** *(highest)* | 7 / 13 *(-6 worse)* | 7 / 13 *(-6 worse)* | 6 / 13 *(-7 worse)* | 8 / 13 *(-5 worse)* |
+| **Total PAR-2** | — | **5.06 s** *(fastest)* | 739.66 s *(146x slower)* | 739.18 s *(146x slower)* | 851.91 s *(168x slower)* | 638.35 s *(126x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
 Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats (same-build baseline four-format parity sweep). Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
 
-| Instance | Expected | Native XORs | Frobenius (`.cnf`) | Frobenius (`.aig`) | Frobenius (`.xcnf`) | Frobenius (`.anf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) |
+| Instance | Expected | Native XORs | Frobenius 1C (`.cnf`) | Frobenius 1C (`.aig`) | Frobenius 1C (`.xcnf`) | Frobenius 1C (`.anf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `sha256_cec_r16_b4.cnf` | UNSAT | 14,718 | >60 s | >15 s | >15 s | >15 s | >15 s |
-| `sha256_cec_r1_b4.cnf` | UNSAT | 364 | 328.5 ms | 360.3 ms | 352.9 ms | 350.6 ms | 341.3 ms |
-| `sha256_cec_r2_b2.cnf` | UNSAT | 887 | 13.0 ms | 28.36 s | 9.3 ms | 31.57 s | 16.44 s |
+| `sha256_cec_r1_b4.cnf` | UNSAT | 364 | **328.5 ms** | 360.3 ms | 352.9 ms | 350.6 ms | 341.3 ms |
+| `sha256_cec_r2_b2.cnf` | UNSAT | 887 | 13.0 ms | 28.36 s | **9.3 ms** | 31.57 s | 16.44 s |
 | `sha256_cec_r2_b4.cnf` | UNSAT | 1,301 | >60 s | >15 s | >15 s | >15 s | >15 s |
 | `sha256_cec_r32_b4.cnf` | UNSAT | 34,110 | >60 s | >15 s | >15 s | >15 s | >15 s |
-| `sha256_cec_r4_b1.cnf` | UNSAT | 2,601 | 15.8 ms | 310.3 ms | 16.5 ms | 348.1 ms | 815.7 ms |
+| `sha256_cec_r4_b1.cnf` | UNSAT | 2,601 | **15.8 ms** | 310.3 ms | 16.5 ms | 348.1 ms | 815.7 ms |
 | `sha256_cec_r4_b4.cnf` | UNSAT | 3,310 | >60 s | >15 s | >15 s | >15 s | >15 s |
 | `sha256_cec_r64_b4.cnf` | UNSAT | 87,076 | >60 s | >15 s | >15 s | >15 s | >15 s |
-| `sha256_cec_r8_b1.cnf` | UNSAT | 6,438 | 830.2 ms | 748.3 ms | 38.7 ms | 1.31 s | 3.97 s |
+| `sha256_cec_r8_b1.cnf` | UNSAT | 6,438 | 830.2 ms | 748.3 ms | **38.7 ms** | 1.31 s | 3.97 s |
 | `sha256_cec_r8_b4.cnf` | UNSAT | 7,100 | >60 s | >15 s | >15 s | >15 s | >15 s |
-| `sha256_trace_r64_abc.cnf` | SAT | 43,131 | 42.1 ms | 147.2 ms | 132.3 ms | 114.1 ms | 112.3 ms |
-| `sha256_trace_r64_abc_expect_flip.cnf` | UNSAT | 43,131 | 18.3 ms | 111.0 ms | 106.1 ms | 77.0 ms | 65.3 ms |
-| `sha256_trace_r64_abc_expect_ok.cnf` | SAT | 43,131 | 42.8 ms | 138.9 ms | 138.8 ms | 108.6 ms | 111.3 ms |
+| `sha256_trace_r64_abc.cnf` | SAT | 43,131 | **42.1 ms** | 147.2 ms | 132.3 ms | 114.1 ms | 112.3 ms |
+| `sha256_trace_r64_abc_expect_flip.cnf` | UNSAT | 43,131 | **18.3 ms** | 111.0 ms | 106.1 ms | 77.0 ms | 65.3 ms |
+| `sha256_trace_r64_abc_expect_ok.cnf` | SAT | 43,131 | **42.8 ms** | 138.9 ms | 138.8 ms | 108.6 ms | 111.3 ms |
 
 ### Independent UNSAT Proof Certification (10 Formally Verified)
 

@@ -71,7 +71,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
 - **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **30 / 30 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `select_n4_r2_k3_adaptive.cnf` | UNSAT | **1.8 ms** | 3.1 ms | 53.4 ms | 3.1 ms | 14.8 ms |
 | `select_n4_r2_k4_adaptive.cnf` | SAT | **3.1 ms** | 4.0 ms | 112.9 ms | 4.1 ms | 22.1 ms |
@@ -85,27 +85,27 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `select_n6_r3_k7_adaptive.cnf` | UNSAT | **900.8 ms** | 50.15 s | >60 s *(T/O)* | 21.39 s | >60 s *(T/O)* |
 | `select_n6_r3_k8_fixed.cnf` | UNSAT | **148.0 ms** | 4.01 s | 6.79 s | 18.71 s | 4.25 s |
 | `select_n7_r4_k13_fixed.cnf` | SAT | **505.0 ms** | 1.53 s | 1.28 s | 3.66 s | 746.0 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **12** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | 11/12 (6 SAT, 5 UNSAT) | **12/12 (6 SAT, 6 UNSAT)** | 11/12 (6 SAT, 5 UNSAT) |
-| **Total PAR-2** | — | **1.96 s *(mean 0.16 s)*** | 56.29 s *(mean 4.69 s)* | 131.94 s *(mean 11.00 s)* | 45.29 s *(mean 3.77 s)* | 126.35 s *(mean 10.53 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* |
+| **Total PAR-2** | — | **1.96 s** *(fastest)* | 56.29 s *(28.7x slower)* | 131.94 s *(67.3x slower)* | 45.29 s *(23.1x slower)* | 126.35 s *(64.5x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
 Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats (same-build baseline four-format parity sweep). Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
 
-| Instance | Expected | Frobenius (`.cnf`) | Frobenius (`.aig`) | Frobenius (`.xcnf`) | Frobenius (`.anf`) |
+| Instance | Expected | Frobenius 1C (`.cnf`) | Frobenius 1C (`.aig`) | Frobenius 1C (`.xcnf`) | Frobenius 1C (`.anf`) |
 |---|:---:|---:|---:|---:|---:|
-| `select_n4_r2_k3_adaptive.cnf` | UNSAT | 4.8 ms | 4.5 ms | 4.5 ms | 4.5 ms |
-| `select_n4_r2_k4_adaptive.cnf` | SAT | 7.6 ms | 7.1 ms | 7.5 ms | 9.0 ms |
-| `select_n4_r2_k4_fixed.cnf` | UNSAT | 5.2 ms | 5.0 ms | 5.0 ms | 5.4 ms |
-| `select_n4_r2_k5_fixed.cnf` | SAT | 5.3 ms | 5.5 ms | 5.1 ms | 6.3 ms |
-| `select_n5_r3_k5_adaptive.cnf` | UNSAT | 51.3 ms | 53.1 ms | 50.6 ms | 62.5 ms |
-| `select_n5_r3_k6_adaptive.cnf` | SAT | 250.2 ms | 254.0 ms | 248.2 ms | 291.0 ms |
-| `select_n5_r3_k6_fixed.cnf` | UNSAT | 67.2 ms | 68.3 ms | 67.3 ms | 70.9 ms |
-| `select_n5_r3_k7_fixed.cnf` | SAT | 31.7 ms | 33.1 ms | 31.4 ms | 38.0 ms |
-| `select_n6_r3_k10_fixed.cnf` | SAT | 99.4 ms | 100.9 ms | 92.2 ms | 113.4 ms |
-| `select_n6_r3_k7_adaptive.cnf` | UNSAT | 50.83 s | 49.85 s | 50.19 s | 51.33 s |
-| `select_n6_r3_k8_fixed.cnf` | UNSAT | 3.51 s | 3.56 s | 3.63 s | 3.57 s |
-| `select_n7_r4_k13_fixed.cnf` | SAT | 885.9 ms | 653.7 ms | 642.1 ms | 825.4 ms |
+| `select_n4_r2_k3_adaptive.cnf` | UNSAT | 4.8 ms | **4.5 ms** | **4.5 ms** | **4.5 ms** |
+| `select_n4_r2_k4_adaptive.cnf` | SAT | 7.6 ms | **7.1 ms** | 7.5 ms | 9.0 ms |
+| `select_n4_r2_k4_fixed.cnf` | UNSAT | 5.2 ms | **5.0 ms** | **5.0 ms** | 5.4 ms |
+| `select_n4_r2_k5_fixed.cnf` | SAT | 5.3 ms | 5.5 ms | **5.1 ms** | 6.3 ms |
+| `select_n5_r3_k5_adaptive.cnf` | UNSAT | 51.3 ms | 53.1 ms | **50.6 ms** | 62.5 ms |
+| `select_n5_r3_k6_adaptive.cnf` | SAT | 250.2 ms | 254.0 ms | **248.2 ms** | 291.0 ms |
+| `select_n5_r3_k6_fixed.cnf` | UNSAT | **67.2 ms** | 68.3 ms | 67.3 ms | 70.9 ms |
+| `select_n5_r3_k7_fixed.cnf` | SAT | 31.7 ms | 33.1 ms | **31.4 ms** | 38.0 ms |
+| `select_n6_r3_k10_fixed.cnf` | SAT | 99.4 ms | 100.9 ms | **92.2 ms** | 113.4 ms |
+| `select_n6_r3_k7_adaptive.cnf` | UNSAT | 50.83 s | **49.85 s** | 50.19 s | 51.33 s |
+| `select_n6_r3_k8_fixed.cnf` | UNSAT | **3.51 s** | 3.56 s | 3.63 s | 3.57 s |
+| `select_n7_r4_k13_fixed.cnf` | SAT | 885.9 ms | 653.7 ms | **642.1 ms** | 825.4 ms |
 
 ### Independent UNSAT Proof Certification (5 / 5 Formally Verified)
 

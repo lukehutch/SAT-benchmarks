@@ -71,7 +71,8 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 | `queen_armies_a3_6x10_k5_unsat` | UNSAT | **1,286.9 ms** | >15 s (T/O) | >15 s (T/O) | 11,398.4 ms | 13,366.5 ms |
 | `queen_armies_a3_6x11_k6_unsat` | UNSAT | **1,385.1 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) |
 | `queen_armies_a2_7x10_k12_unsat` | UNSAT | **2,628.6 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | 9,577.9 ms |
-| **TOTAL (8 instances, PAR-2)** | **4 / 4** | **8/8 — 6,301.3 ms** *(fastest)* | 1/8 — 214,106.2 ms *(33.98x slower)* | 1/8 — 211,830.4 ms *(33.62x slower)* | 2/8 — 204,847.3 ms *(32.51x slower)* | 4/8 — 160,604.2 ms *(25.49x slower)* |
+| **Solved (8 instances)** | — | **8 / 8** *(highest)* | 1 / 8 *(-7 worse)* | 1 / 8 *(-7 worse)* | 2 / 8 *(-6 worse)* | 4 / 8 *(-4 worse)* |
+| **Total PAR-2** | — | **6,301.3 ms** *(fastest)* | 214,106.2 ms *(33.98x slower)* | 211,830.4 ms *(33.62x slower)* | 204,847.3 ms *(32.51x slower)* | 160,604.2 ms *(25.49x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

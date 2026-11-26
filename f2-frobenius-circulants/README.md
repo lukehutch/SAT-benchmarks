@@ -51,12 +51,14 @@ Evaluated sequentially on the same AMD Ryzen 9 5950X machine (16C/32T Linux, 1 c
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| `f2_frobenius_n64` | **0.62 ms** *(fastest)* | 2.91 ms *(4.7x)* | 23.08 ms *(37.2x)* | 22.23 ms *(35.9x)* | 1.59 ms *(2.6x)* | 2.68 ms *(4.3x)* |
-| `f2_frobenius_n256` | **0.68 ms** *(fastest)* | 388.02 ms *(571x)* | 34.73 ms *(51.1x)* | 27.54 ms *(40.5x)* | 1.96 ms *(2.9x)* | 156.50 ms *(230x)* |
-| `f2_frobenius_n1024` | **0.80 ms** *(fastest)* | 13,775.17 ms *(17,219x)* | 83.44 ms *(104x)* | 53.56 ms *(67.0x)* | 5.06 ms *(6.3x)* | 2,923.48 ms *(3,654x)* |
-| `f2_frobenius_n4096` | **1.35 ms** *(fastest)* | 210,776.92 ms *(156,131x)* | 516.92 ms *(383x)* | 999.39 ms *(740x)* | 63.48 ms *(47.0x)* | 364,047.66 ms *(269,665x)* |
-| `f2_frobenius_n256_unsat` | **0.69 ms** *(fastest)* | 75.75 ms *(110x)* | 36.07 ms *(52.3x)* | 23.03 ms *(33.4x)* | 2.21 ms *(3.2x)* | 62.87 ms *(91.1x)* |
-| `f2_frobenius_n1024_unsat` | **0.85 ms** *(fastest)* | >30 s *(T/O)* | 104.27 ms *(123x)* | 30.75 ms *(36.2x)* | 7.51 ms *(8.8x)* | 928.70 ms *(1,093x)* |
+| `f2_frobenius_n64` | **0.62 ms** *(fastest)* | 2.91 ms *(4.7x slower)* | 23.08 ms *(37.2x slower)* | 22.23 ms *(35.9x slower)* | 1.59 ms *(2.6x slower)* | 2.68 ms *(4.3x slower)* |
+| `f2_frobenius_n256` | **0.68 ms** *(fastest)* | 388.02 ms *(571x slower)* | 34.73 ms *(51.1x slower)* | 27.54 ms *(40.5x slower)* | 1.96 ms *(2.9x slower)* | 156.50 ms *(230x slower)* |
+| `f2_frobenius_n1024` | **0.80 ms** *(fastest)* | 13,775.17 ms *(17,219x slower)* | 83.44 ms *(104x slower)* | 53.56 ms *(67.0x slower)* | 5.06 ms *(6.3x slower)* | 2,923.48 ms *(3,654x slower)* |
+| `f2_frobenius_n4096` | **1.35 ms** *(fastest)* | 210,776.92 ms *(156,131x slower)* | 516.92 ms *(383x slower)* | 999.39 ms *(740x slower)* | 63.48 ms *(47.0x slower)* | 364,047.66 ms *(269,665x slower)* |
+| `f2_frobenius_n256_unsat` | **0.69 ms** *(fastest)* | 75.75 ms *(110x slower)* | 36.07 ms *(52.3x slower)* | 23.03 ms *(33.4x slower)* | 2.21 ms *(3.2x slower)* | 62.87 ms *(91.1x slower)* |
+| `f2_frobenius_n1024_unsat` | **0.85 ms** *(fastest)* | >30 s *(T/O)* | 104.27 ms *(123x slower)* | 30.75 ms *(36.2x slower)* | 7.51 ms *(8.8x slower)* | 928.70 ms *(1,093x slower)* |
+| **Solved (6 instances)** | **6 / 6** *(highest)* | 5 / 6 *(-1 worse)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* |
+| **Total PAR-2** | **4.99 ms** *(fastest)* | 285,018.77 ms *(57,118x slower)* | 798.51 ms *(160x slower)* | 1,156.50 ms *(232x slower)* | 81.81 ms *(16.4x slower)* | 368,121.89 ms *(73,772x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

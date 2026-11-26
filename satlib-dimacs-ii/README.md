@@ -82,7 +82,8 @@ All 41 Inductive Inference (`ii8`, `ii16`, `ii32`) Boolean function synthesis be
 | `ii8d2` | SAT | **1.02 ms** | 5.17 ms | 179.61 ms | 4.33 ms | 2.45 ms |
 | `ii8e1` | SAT | **1.43 ms** | 4.25 ms | 76.65 ms | 3.65 ms | 2.22 ms |
 | `ii8e2` | SAT | **1.11 ms** | 4.23 ms | 161.50 ms | 3.95 ms | 2.42 ms |
-| **Total (41 files, PAR-2)** | **41/41** | **41/41 — 145.4 ms** *(fastest)* | 41/41 — 285.0 ms *(1.96x)* | 41/41 — 12,071.9 ms *(83.04x)* | 41/41 — 566.4 ms *(3.90x)* | 41/41 — 553.8 ms *(3.81x)* |
+| **Solved (41 files)** | — | **41 / 41** *(highest)* | **41 / 41** *(highest)* | **41 / 41** *(highest)* | **41 / 41** *(highest)* | **41 / 41** *(highest)* |
+| **Total PAR-2** | — | **145.4 ms** *(fastest)* | 285.0 ms *(1.96x slower)* | 12,071.9 ms *(83.04x slower)* | 566.4 ms *(3.90x slower)* | 553.8 ms *(3.81x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

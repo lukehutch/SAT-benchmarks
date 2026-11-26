@@ -77,7 +77,8 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 | `knights_15x15_d21_obs55_s956405106_unsat` | UNSAT | **16.4 ms** | 733.4 ms | 476.1 ms | 3,359.8 ms | 700.1 ms |
 | `knights_15x15_d22_obs53_s756776522_unsat` | UNSAT | 17.1 ms | **13.5 ms** | 853.5 ms | >15 s (T/O) | 40.6 ms |
 | `knights_15x15_d21_obs51_s556324743_unsat` | UNSAT | 17.4 ms | **14.8 ms** | 343.1 ms | 6,914.1 ms | 39.3 ms |
-| **TOTAL (10 instances, PAR-2)** | **5 / 5** | **10/10 — 178.8 ms** *(fastest)* | 10/10 — 11,301.6 ms *(63.22x slower)* | 10/10 — 9,121.0 ms *(51.02x slower)* | 2/10 — 250,274.0 ms *(1,399.90x slower)* | 10/10 — 8,678.3 ms *(48.54x slower)* |
+| **Solved (10 instances)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | 2 / 10 *(-8 worse)* | **10 / 10** *(highest)* |
+| **Total PAR-2** | — | **178.8 ms** *(fastest)* | 11,301.6 ms *(63.22x slower)* | 9,121.0 ms *(51.02x slower)* | 250,274.0 ms *(1,399.90x slower)* | 8,678.3 ms *(48.54x slower)* |
 
 *Summary:* Frobenius 1C solves all **10/10** instances in **`178.8 ms` total** (`15.6–21.9 ms` per instance) — **48.5x faster** than Kissat 4.0.4, **51.0x faster** than CryptoMiniSat 5.18.0, **63.2x faster** than CaDiCaL 3.1.0, and **1,400x faster** than dense-solver 0.0.4 — winning all 5/5 SAT tours plus the hardest UNSAT instance (`s956405106`, `16.4 ms` vs `476.1–733.4 ms`).
 

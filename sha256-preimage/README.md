@@ -44,10 +44,12 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | `sha256_16r_k32` | **8.94 ms** | 17.32 ms | 18.61 ms | 13.70 ms | 25.73 ms | 9.61 ms |
-| `sha256_17r_k16` | **19.35 ms** | 4,160.70 ms | 4,838.70 ms | 2,177.97 ms | 12.08 s | 7,719.28 ms |
+| `sha256_17r_k16` | **19.35 ms** | 4,160.70 ms | 4,838.70 ms | 2,177.97 ms | 12,080.00 ms | 7,719.28 ms |
 | `sha256_64r_k16_sat` | **89.35 ms** | 275,382.20 ms | >5,000 s (T/O) | 461,449.91 ms | 553,812.90 ms | 2,267,295.44 ms |
 | `sha256_64r_k16_unsat` | **98.86 ms** | 2,594,248.08 ms | >5,000 s (T/O) | >5,000 s (T/O) | 764,244.90 ms | 2,396,511.93 ms |
 | `sha256_64r_k20_sat` | **92.57 ms** | 2,606,732.29 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
+| **Solved (5 instances)** | **5 / 5** *(highest)* | **5 / 5** *(highest)* | 2 / 5 *(-3 worse)* | 3 / 5 *(-2 worse)* | 4 / 5 *(-1 worse)* | 4 / 5 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max}=5{,}000\;\text{s}$)** | **309.07 ms** *(fastest)* | 5,480,540.59 ms *(17,732x slower)* | 30,004,857.31 ms *(97,081x slower)* | 20,463,641.58 ms *(66,210x slower)* | 11,330,163.53 ms *(36,659x slower)* | 14,671,536.26 ms *(47,470x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

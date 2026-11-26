@@ -25,7 +25,7 @@ Compact pooled-AND (`6pooled3and`) re-encoding of `challenge4`, encoding the ope
 - **`aig-converted/`** — 1 exact **Binary AIGER 1.9 `.aig.xz`** conversions (246.4 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
 - **`xcnf-converted/`** — 1 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (72.3 KB, `3,645` extracted native XOR parity clauses).
 - **`anf-converted/`** — 1 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (210.0 KB, generated via [`../src/to_anf.py`](../src/to_anf.py)).
-- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 1 instances (**0 SAT / 0 UNSAT / 1 UNKNOWN**).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for the 1 instance (**0 SAT / 0 UNSAT / 1 UNKNOWN**).
 - **`src/`** — Upstream C utilities preserved from `marijnheule/matrix-challenges` (`encode.c`, `decode.c`, `exp2cnf.c`, `pair.c`, `palin.c`, `stats.c`, `type3.c`) plus `cnf2aig.py` and `cnf2xcnf.py`.
 
 | Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
@@ -38,12 +38,13 @@ Compact pooled-AND (`6pooled3and`) re-encoding of `challenge4`, encoding the ope
 
 ## Benchmark Results
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of all 1 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\;\text{s}$, PAR-2 penalty $20,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of the 1 instance** was run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `MM-22-63` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| **Total (1 files, PAR-2)** | **0/1** | **0/1 — 20,000.0 ms** *(fastest)* | **0/1 — 20,000.0 ms** *(fastest)* | **0/1 — 20,000.0 ms** *(fastest)* | **0/1 — 20,000.0 ms** *(fastest)* | **0/1 — 20,000.0 ms** *(fastest)* | **0/1 — 20,000.0 ms** *(fastest)* |
+| **Solved (1 file)** | — | 0 / 1 | 0 / 1 | 0 / 1 | 0 / 1 | 0 / 1 | 0 / 1 |
+| **Total PAR-2** | — | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
@@ -54,7 +55,7 @@ Compact pooled-AND (`6pooled3and`) re-encoding of `challenge4`, encoding the ope
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | `MM-22-63` | 19,548 | 180,792 | 9.25 | 3.45 | **2.68x** (Over) | 1.23 | 4.76 (6) | 27% | 48% | 48% | 0.53 | 3,645 |
 
-**Collection Phase-Transition Summary (1 instances, 4 formats: 1 CNF / 1 AIG / 1 XCNF / 1 ANF):** median $\rho_{\mathrm{crit}} = 2.68\times$ (range `2.68x–2.68x`), median $\kappa = 1.23$, regime split **0 Under / 0 Near-critical / 1 Over**, total extracted native XOR parity clauses = **3,645**, total ANF equations = **83,835**.
+**Collection Phase-Transition Summary (1 instance, 4 formats: 1 CNF / 1 AIG / 1 XCNF / 1 ANF):** median $\rho_{\mathrm{crit}} = 2.68\times$ (range `2.68x–2.68x`), median $\kappa = 1.23$, regime split **0 Under / 0 Near-critical / 1 Over**, total extracted native XOR parity clauses = **3,645**, total ANF equations = **83,835**.
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## References

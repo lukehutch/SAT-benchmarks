@@ -45,7 +45,8 @@ Stratified sample of 4 instances from the 1,000-instance SATLIB Backbone-Minimal
 | `BMS_k3_n100_m429_1` | SAT | **0.80 ms** | 3.37 ms | 23.52 ms | 4.16 ms | 7.89 ms |
 | `RTI_k3_n100_m429_0` | SAT | **0.89 ms** | 5.11 ms | 25.14 ms | 2.86 ms | 15.03 ms |
 | `RTI_k3_n100_m429_1` | SAT | **0.89 ms** | 4.18 ms | 23.01 ms | 1.97 ms | 15.26 ms |
-| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 5.6 ms** *(fastest)* | 4/4 — 20.6 ms *(3.66x)* | 4/4 — 85.4 ms *(15.17x)* | 4/4 — 11.6 ms *(2.06x)* | 4/4 — 49.0 ms *(8.70x)* |
+| **Solved (4 files)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
+| **Total PAR-2** | — | **5.6 ms** *(fastest)* | 20.6 ms *(3.66x slower)* | 85.4 ms *(15.17x slower)* | 11.6 ms *(2.06x slower)* | 49.0 ms *(8.70x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

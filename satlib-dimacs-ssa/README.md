@@ -50,7 +50,8 @@ All 8 Single-Stuck-At (`ssa`) combinational circuit fault-detection benchmarks f
 | `ssa7552-158` | SAT | 3.58 ms | 3.03 ms | 39.27 ms | 7.13 ms | **1.79 ms** |
 | `ssa7552-159` | SAT | 3.69 ms | 2.96 ms | 41.51 ms | 6.79 ms | **1.85 ms** |
 | `ssa7552-160` | SAT | 4.09 ms | 3.23 ms | 42.34 ms | 6.91 ms | **2.07 ms** |
-| **Total (8 files, PAR-2)** | **8/8** | **8/8 — 34.9 ms** *(fastest)* | 8/8 — 38.8 ms *(1.11x)* | 8/8 — 269.4 ms *(7.71x)* | 8/8 — 91.8 ms *(2.63x)* | 8/8 — 36.3 ms *(1.04x)* |
+| **Solved (8 files)** | — | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
+| **Total PAR-2** | — | **34.9 ms** *(fastest)* | 38.8 ms *(1.11x slower)* | 269.4 ms *(7.71x slower)* | 91.8 ms *(2.63x slower)* | 36.3 ms *(1.04x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

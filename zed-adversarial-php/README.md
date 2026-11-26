@@ -64,7 +64,8 @@ Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thre
 | `php_16_15_unsat` | UNSAT | **4.20 ms** | 109,447.65 ms | >5,000 s (T/O) | >5,000 s (T/O) | 499,657.63 ms | >5,000 s (T/O) |
 | `php_20_19_unsat` | UNSAT | **7.75 ms** | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
 | `php_50_49_unsat` | UNSAT | **107.39 ms** | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
-| **Solved (4 promoted)** | **4/4** | **4/4 — 121.4 ms** *(fastest)* | 2/4 *(2 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* | 2/4 *(2 T/O >5,000 s)* | 1/4 *(3 T/O >5,000 s)* |
+| **Solved (4 promoted)** | — | **4 / 4** *(highest)* | 2 / 4 *(-2 worse)* | 1 / 4 *(-3 worse)* | 1 / 4 *(-3 worse)* | 2 / 4 *(-2 worse)* | 1 / 4 *(-3 worse)* |
+| **Total PAR-2 ($T_{\max}=5{,}000\;\text{s}$)** | — | **121.43 ms** *(fastest)* | 20,109,480.61 ms *(165,606x slower)* | 30,000,438.14 ms *(247,059x slower)* | 30,000,474.27 ms *(247,060x slower)* | 20,499,672.69 ms *(168,819x slower)* | 30,000,026.86 ms *(247,056x slower)* |
 
 *(Both `php_9_8_unsat` and `php_13_12_unsat` LRAT proofs emitted by Frobenius additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 
@@ -82,7 +83,8 @@ Remaining 8 non-Gauntlet corpus instances evaluated on identical uncompressed fl
 | `php_31_30_unsat` | UNSAT | **26.00 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
 | `php_20_20_sat` | SAT | **3.98 ms** | 6.79 ms | 106.15 ms | 106.40 ms | 13.17 ms | 4.21 ms |
 | `php_30_30_sat` | SAT | 11.70 ms | 14.72 ms | 430.51 ms | 434.89 ms | 110.94 ms | **8.70 ms** |
-| **Solved (8 supplementary)** | **8/8** | **8/8 — 62.9 ms** *(fastest)* | 5/8 *(3 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 2/8 *(6 T/O >60 s)* | 5/8 *(3 T/O >60 s)* | 3/8 *(5 T/O >60 s)* |
+| **Solved (8 supplementary)** | — | **8 / 8** *(highest)* | 5 / 8 *(-3 worse)* | 2 / 8 *(-6 worse)* | 2 / 8 *(-6 worse)* | 5 / 8 *(-3 worse)* | 3 / 8 *(-5 worse)* |
+| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | **62.89 ms** *(fastest)* | 404,093.55 ms *(6,425x slower)* | 720,536.66 ms *(11,457x slower)* | 720,541.29 ms *(11,457x slower)* | 439,120.73 ms *(6,982x slower)* | 611,607.24 ms *(9,725x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

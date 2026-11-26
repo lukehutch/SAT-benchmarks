@@ -103,15 +103,15 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 Five calibration rungs spanning $n = 12, 13, 15$ evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread):
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `queens_n12_m21.cnf` | SAT | **2.73 s** | 3.79 s | >60 s | >60 s | 29.62 s |
 | `queens_n12_m22.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `queens_n13_m24.cnf` | SAT | 2.14 s | **1.82 s** | 51.87 s | >60 s | 3.89 s |
 | `queens_n13_m25.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `queens_n15_m32.cnf` | SAT | **7.44 s** | 9.70 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **3 / 5** | **3 / 5** (3 SAT, 0 UNSAT) | **3 / 5** (3 SAT, 0 UNSAT) | 1 / 5 (1 SAT, 0 UNSAT) | 0 / 5 (0 SAT, 0 UNSAT) | 2 / 5 (2 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **252.32 s** *(mean 50.46 s)* | 255.31 s *(mean 51.06 s)* | 531.87 s *(mean 106.37 s)* | 600.00 s *(mean 120.00 s)* | 393.51 s *(mean 78.70 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **3 / 5** *(highest)* | **3 / 5** *(highest)* | 1 / 5 *(-2 worse)* | 0 / 5 *(-3 worse)* | 2 / 5 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **252.32 s** *(fastest)* | 255.31 s *(1.01x slower)* | 531.87 s *(2.11x slower)* | 600.00 s *(2.38x slower)* | 393.51 s *(1.56x slower)* |
 
 - **Extended sweep milestones:** Frobenius also produced verified optimal SAT models for `queens_n14_m28.cnf` and `queens_n15_m32.cnf` (`3.84 s` native `.cnf.xz`), all archived in [`solutions/`](solutions/). Note: on `A250000`, CaDiCaL 3.1.0 requires `--modelalllits=true` so unassigned literals are emitted in printed witnesses; default `--modelalllits=false` omits unassigned variables and fails raw-clause checks.
 

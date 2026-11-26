@@ -45,7 +45,8 @@ Three restricted-coefficient / fractional variants (`f-d-3`, `f-d-4`, `f-d-6`) o
 | `f-d-3` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `f-d-4` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `f-d-6` | TIMEOUT | >60 s | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Total (3 files, PAR-2)** | **0/3** | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* | **0/3 — 360,000.0 ms** *(fastest)* |
+| **Solved (3 files)** | — | 0 / 3 | 0 / 3 | 0 / 3 | 0 / 3 | 0 / 3 | 0 / 3 |
+| **Total PAR-2** | — | 360,000.0 ms | 360,000.0 ms | 360,000.0 ms | 360,000.0 ms | 360,000.0 ms | 360,000.0 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

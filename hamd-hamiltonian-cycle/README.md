@@ -74,9 +74,9 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `hamd_gp_17_2_unsat` | **16.61 ms** | 316.7 ms | 466.9 ms | 107.57 ms | 773.5 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`13,461` lines) |
 | `hamd_meredith_k3_n50_unsat` | **2.74 ms** | 267.1 ms | 570.6 ms | 42.88 ms | 315.1 ms | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`387,813` lines) |
 | `hamd_meredith_k4_n70_unsat` | **3.50 ms** | >15 s (T/O) | 12,466.0 ms | 6,676.97 ms | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`1,322,451` lines) |
-| `hamd_chvatal_s3_q5_dense_unsat` | **4.05 ms** | >15 s (T/O) | >15 s (T/O) | >15 s | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`18,747` lines) |
-| `hamd_chvatal_s4_q6_med_unsat` | **3.71 ms** | >15 s (T/O) | >15 s (T/O) | >15 s | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`55,971` lines) |
-| `hamd_chvatal_s4_q7_dense_unsat` | **5.94 ms** | >15 s (T/O) | >15 s (T/O) | >15 s | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`91,235` lines) |
+| `hamd_chvatal_s3_q5_dense_unsat` | **4.05 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`18,747` lines) |
+| `hamd_chvatal_s4_q6_med_unsat` | **3.71 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`55,971` lines) |
+| `hamd_chvatal_s4_q7_dense_unsat` | **5.94 ms** | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | >15 s (T/O) | ER-LRAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) OK (`91,235` lines) |
 | `hamd_broken_crown_n8_v31_k0_unsat` | **2.71 ms** | 12.2 ms | 114.9 ms | 3.74 ms | 66.2 ms | [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + [`lrat-check`](https://github.com/marijnheule/drat-trim) OK (`420` lines) |
 | `hamd_broken_crown_n8_v31_k1_sat` | **3.04 ms** | 20.2 ms | 170.7 ms | 4.19 ms | 69.4 ms | Cycle + CNF OK |
 | `hamd_broken_crown_n12_v51_k1_sat` | **5.17 ms** | 168.7 ms | 318.5 ms | 8.34 ms | 66.5 ms | Cycle + CNF OK |
@@ -87,10 +87,11 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `hamd_planted_n40_sparse_sat` | **3.74 ms** | 33.2 ms | 216.2 ms | 4.99 ms | 165.5 ms | Cycle + CNF OK |
 | `hamd_planted_n40_dense_sat` | **6.98 ms** | 115.6 ms | 566.9 ms | 42.15 ms | 516.3 ms | Cycle + CNF OK |
 | `hamd_planted_n64_sparse_sat` | **5.73 ms** | 614.9 ms | 3,420.4 ms | 915.71 ms | 1,517.0 ms | Cycle + CNF OK |
-| `hamd_planted_n64_dense_sat` | **16.02 ms** | >15 s (T/O) | 8,211.6 ms | >15 s | 8,099.2 ms | Cycle + CNF OK |
+| `hamd_planted_n64_dense_sat` | **16.02 ms** | >15 s (T/O) | 8,211.6 ms | >15 s (T/O) | 8,099.2 ms | Cycle + CNF OK |
 | `hamd_planted_n100_sparse_sat` | **8.70 ms** | 1,016.6 ms | 1,320.8 ms | 1,435.92 ms | 669.8 ms | Cycle + CNF OK |
-| `hamd_planted_n80_vdense_sat` | **51.72 ms** | 10,564.7 ms | >15 s (T/O) | >15 s | 7,838.6 ms | Cycle + CNF OK |
-| **TOTAL (22 instances, PAR-2)** | **22/22 (202.88 ms)** | 17/22 (163,592.80 ms) | 18/22 (148,852.60 ms) | 17/22 (159,432.38 ms) | 18/22 (140,869.50 ms) | **10/10 [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + 12/12 HC** |
+| `hamd_planted_n80_vdense_sat` | **51.72 ms** | 10,564.7 ms | >15 s (T/O) | >15 s (T/O) | 7,838.6 ms | Cycle + CNF OK |
+| **Solved (22 instances)** | **22 / 22** *(highest)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* | **10/10 [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + 12/12 HC** |
+| **Total PAR-2** | **202.88 ms** *(fastest)* | 163,592.80 ms *(806x slower)* | 148,852.60 ms *(734x slower)* | 159,432.38 ms *(786x slower)* | 140,869.50 ms *(694x slower)* | — |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -91,12 +91,12 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 Two $N = 8$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest** on `sq-any_n8_m34.cnf` (**`0.07 s`**, 2.7× faster than #2 CaDiCaL 3.1.0):
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `sq-any_n8_m34.cnf` | SAT | **0.07 s** | 0.19 s | 0.58 s | 1.10 s | 1.11 s |
 | `sq-any_n8_m35.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 2** | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) | **1 / 2** (1 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **120.07 s** *(mean 60.03 s)* | 120.19 s *(mean 60.09 s)* | 120.58 s *(mean 60.29 s)* | 121.10 s *(mean 60.55 s)* | 121.11 s *(mean 60.55 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **120.07 s** *(fastest)* | 120.19 s *(1.001x slower)* | 120.58 s *(1.004x slower)* | 121.10 s *(1.01x slower)* | 121.11 s *(1.01x slower)* |
 
 ### Open OEIS Frontier Run (180 s, Single-Core Pinned)
 

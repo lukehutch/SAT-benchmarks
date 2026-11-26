@@ -104,12 +104,12 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 Two $n = 10$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest overall (`23.14 s` PAR-2 vs. `31.02 s` for Kissat 4.0.4 and `33.87 s` for CaDiCaL 3.1.0)** and **#1 fastest on the UNSAT optimality proof `zaran3_n10_m61.cnf`** (`18.80 s`):
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `zaran3_n10_m60.cnf` | SAT | 4.34 s | 7.35 s | 5.84 s | **2.03 s** | 4.69 s |
 | `zaran3_n10_m61.cnf` | UNSAT | **18.80 s** | 26.52 s | 40.54 s | >60 s | 26.33 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **2 / 2** | **2 / 2** (1 SAT, 1 UNSAT) | **2 / 2** (1 SAT, 1 UNSAT) | **2 / 2** (1 SAT, 1 UNSAT) | 1 / 2 (1 SAT, 0 UNSAT) | **2 / 2** (1 SAT, 1 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **23.14 s** *(mean 11.57 s)* | 33.87 s *(mean 16.93 s)* | 46.38 s *(mean 23.19 s)* | 122.03 s *(mean 61.02 s)* | 31.02 s *(mean 15.51 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | 1 / 2 *(-1 worse)* | **2 / 2** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **23.14 s** *(fastest)* | 33.87 s *(1.46x slower)* | 46.38 s *(2.00x slower)* | 122.03 s *(5.27x slower)* | 31.02 s *(1.34x slower)* |
 
 - **Extended sweep milestone:** Frobenius also solved `zaran3_n11_m69.cnf` (SAT), verified and archived in [`solutions/zaran3_n11_m69.model.xz`](solutions/zaran3_n11_m69.model.xz).
 

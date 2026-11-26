@@ -43,7 +43,8 @@ Both classic Towers of Hanoi planning-as-SAT benchmarks (`hanoi4` and `hanoi5`, 
 |---|:---:|---:|---:|---:|---:|---:|
 | `hanoi4` | SAT | **16.64 ms** | 20.25 ms | 139.53 ms | 20.16 ms | 42.72 ms |
 | `hanoi5` | SAT | **124.83 ms** | 153.68 ms | 565.30 ms | 191.36 ms | 516.22 ms |
-| **Total (2 files, PAR-2)** | **2/2** | **2/2 — 141.5 ms** *(fastest)* | 2/2 — 173.9 ms *(1.23x)* | 2/2 — 704.8 ms *(4.98x)* | 2/2 — 211.5 ms *(1.50x)* | 2/2 — 558.9 ms *(3.95x)* |
+| **Solved (2 files)** | — | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* |
+| **Total PAR-2** | — | **141.5 ms** *(fastest)* | 173.9 ms *(1.23x slower)* | 704.8 ms *(4.98x slower)* | 211.5 ms *(1.50x slower)* | 558.9 ms *(3.95x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

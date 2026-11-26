@@ -46,7 +46,8 @@ Stratified sample of 5 instances (`sw100-8-*`) from the 901-instance SATLIB morp
 | `sw100-8-lp4-c5_sw100-1` | SAT | **0.99 ms** | 2.91 ms | 46.89 ms | 2.95 ms | 1.72 ms |
 | `sw100-8-lp6-c5_sw100-1` | SAT | **1.68 ms** | 5.32 ms | 53.13 ms | 6.02 ms | 16.37 ms |
 | `sw100-8-p0-c5_sw100-1` | SAT | **0.95 ms** | 2.76 ms | 49.12 ms | 2.09 ms | 1.48 ms |
-| **Total (5 files, PAR-2)** | **5/5** | **5/5 — 5.7 ms** *(fastest)* | 5/5 — 17.2 ms *(3.04x)* | 5/5 — 269.9 ms *(47.66x)* | 5/5 — 16.8 ms *(2.97x)* | 5/5 — 43.1 ms *(7.61x)* |
+| **Solved (5 files)** | — | **5 / 5** *(highest)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* |
+| **Total PAR-2** | — | **5.7 ms** *(fastest)* | 17.2 ms *(3.04x slower)* | 269.9 ms *(47.66x slower)* | 16.8 ms *(2.97x slower)* | 43.1 ms *(7.61x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -45,7 +45,8 @@ All-Interval Series (`ais6`, `ais8`, `ais10`, `ais12`) combinatorial permutation
 | `ais12` | SAT | **0.91 ms** | 6.15 ms | 256.18 ms | 8.16 ms | 2.21 ms |
 | `ais6` | SAT | **0.81 ms** | 2.72 ms | 15.32 ms | 3.56 ms | 1.76 ms |
 | `ais8` | SAT | **0.99 ms** | 3.42 ms | 44.85 ms | 2.08 ms | 1.56 ms |
-| **Total (4 files, PAR-2)** | **4/4** | **4/4 — 4.0 ms** *(fastest)* | 4/4 — 15.9 ms *(3.96x)* | 4/4 — 458.9 ms *(114.35x)* | 4/4 — 20.9 ms *(5.21x)* | 4/4 — 8.8 ms *(2.19x)* |
+| **Solved (4 files)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
+| **Total PAR-2** | — | **4.0 ms** *(fastest)* | 15.9 ms *(3.96x slower)* | 458.9 ms *(114.35x slower)* | 20.9 ms *(5.21x slower)* | 8.8 ms *(2.19x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

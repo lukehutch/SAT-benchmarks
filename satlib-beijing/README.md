@@ -57,7 +57,8 @@ All 16 instances from the 1996 Beijing SAT Competition benchmark collection (com
 | `enddr2-10-by-5-8` | SAT | **8.09 ms** | 57.08 ms | 684.01 ms | 507.40 ms | 18.91 ms |
 | `ewddr2-10-by-5-1` | SAT | **8.35 ms** | 39.21 ms | 711.47 ms | 543.44 ms | 18.73 ms |
 | `ewddr2-10-by-5-8` | SAT | **8.83 ms** | 63.47 ms | 912.98 ms | 591.33 ms | 75.06 ms |
-| **Total (16 files, PAR-2)** | **16/16** | **16/16 — 232.2 ms** *(fastest)* | 15/16 — 10,375.0 ms *(44.69x)* | 15/16 — 18,153.0 ms *(78.19x)* | 15/16 — 13,334.9 ms *(57.44x)* | 16/16 — 3,813.0 ms *(16.42x)* |
+| **Solved (16 files)** | — | **16 / 16** *(highest)* | 15 / 16 *(-1 worse)* | 15 / 16 *(-1 worse)* | 15 / 16 *(-1 worse)* | **16 / 16** *(highest)* |
+| **Total PAR-2** | — | **232.2 ms** *(fastest)* | 10,375.0 ms *(44.69x slower)* | 18,153.0 ms *(78.19x slower)* | 13,334.9 ms *(57.44x slower)* | 3,813.0 ms *(16.42x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

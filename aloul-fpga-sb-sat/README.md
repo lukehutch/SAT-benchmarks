@@ -50,7 +50,8 @@ Satisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga12_*`, `fpga13_*`
 | `fpga13_11_sat_rcr` | SAT | **1.06 ms** | 5.76 ms | 46.19 ms | 2.47 ms | 19.64 ms |
 | `fpga13_12_sat_rcr` | SAT | **1.13 ms** | 4.50 ms | 55.39 ms | 2.02 ms | 21.27 ms |
 | `fpga13_9_sat_rcr` | SAT | **0.91 ms** | 3.71 ms | 32.31 ms | 1.68 ms | 1.29 ms |
-| **Total (11 files, PAR-2)** | **11/11** | **11/11 — 10.7 ms** *(fastest)* | 11/11 — 92.8 ms *(8.70x)* | 11/11 — 380.4 ms *(35.67x)* | 11/11 — 21.2 ms *(1.99x)* | 11/11 — 162.8 ms *(15.27x)* |
+| **Solved (11 files)** | — | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* |
+| **Total PAR-2** | — | **10.7 ms** *(fastest)* | 92.8 ms *(8.70x slower)* | 380.4 ms *(35.67x slower)* | 21.2 ms *(1.99x slower)* | 162.8 ms *(15.27x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

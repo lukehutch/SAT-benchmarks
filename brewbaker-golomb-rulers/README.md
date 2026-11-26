@@ -73,7 +73,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
 - **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **30 / 30 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `golomb_m10_l54.cnf` | UNSAT | **6.83 s** | 14.36 s | 11.24 s | 19.43 s | 7.39 s |
 | `golomb_m10_l55.cnf` | SAT | **163.1 ms** | 2.17 s | 1.18 s | 3.41 s | 1.01 s |
@@ -87,27 +87,27 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `golomb_m8_l34.cnf` | SAT | **31.3 ms** | 179.8 ms | 197.6 ms | 57.7 ms | 243.3 ms |
 | `golomb_m9_l43.cnf` | UNSAT | 1.10 s | 1.34 s | 1.23 s | 1.97 s | **1.05 s** |
 | `golomb_m9_l44.cnf` | SAT | 925.6 ms | **483.1 ms** | 794.1 ms | 1.18 s | 520.5 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **12** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** | **12/12 (6 SAT, 6 UNSAT)** |
-| **Total PAR-2** | — | **9.24 s *(mean 0.77 s)*** | 18.77 s *(mean 1.56 s)* | 15.29 s *(mean 1.27 s)* | 26.28 s *(mean 2.19 s)* | 10.56 s *(mean 0.88 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* |
+| **Total PAR-2** | — | **9.24 s** *(fastest)* | 18.77 s *(2.03x slower)* | 15.29 s *(1.65x slower)* | 26.28 s *(2.84x slower)* | 10.56 s *(1.14x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
 Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats (same-build baseline four-format parity sweep). Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
 
-| Instance | Expected | Frobenius (`.cnf`) | Frobenius (`.aig`) | Frobenius (`.xcnf`) | Frobenius (`.anf`) |
+| Instance | Expected | Frobenius 1C (`.cnf`) | Frobenius 1C (`.aig`) | Frobenius 1C (`.xcnf`) | Frobenius 1C (`.anf`) |
 |---|:---:|---:|---:|---:|---:|
-| `golomb_m10_l54.cnf` | UNSAT | 11.25 s | 10.96 s | 10.93 s | 11.05 s |
-| `golomb_m10_l55.cnf` | SAT | 1.00 s | 1.03 s | 1.01 s | 1.03 s |
-| `golomb_m5_l10.cnf` | UNSAT | 5.0 ms | 4.3 ms | 4.7 ms | 4.3 ms |
-| `golomb_m5_l11.cnf` | SAT | 5.0 ms | 4.4 ms | 4.9 ms | 4.4 ms |
-| `golomb_m6_l16.cnf` | UNSAT | 8.1 ms | 7.6 ms | 8.0 ms | 8.0 ms |
-| `golomb_m6_l17.cnf` | SAT | 8.4 ms | 7.9 ms | 8.2 ms | 7.8 ms |
-| `golomb_m7_l24.cnf` | UNSAT | 22.5 ms | 22.3 ms | 21.9 ms | 22.5 ms |
-| `golomb_m7_l25.cnf` | SAT | 15.2 ms | 15.5 ms | 15.0 ms | 15.6 ms |
-| `golomb_m8_l33.cnf` | UNSAT | 170.0 ms | 171.0 ms | 189.8 ms | 172.3 ms |
-| `golomb_m8_l34.cnf` | SAT | 28.2 ms | 27.1 ms | 26.2 ms | 27.5 ms |
-| `golomb_m9_l43.cnf` | UNSAT | 1.18 s | 1.24 s | 1.22 s | 1.23 s |
-| `golomb_m9_l44.cnf` | SAT | 330.2 ms | 342.6 ms | 340.7 ms | 348.3 ms |
+| `golomb_m10_l54.cnf` | UNSAT | 11.25 s | 10.96 s | **10.93 s** | 11.05 s |
+| `golomb_m10_l55.cnf` | SAT | **1.00 s** | 1.03 s | 1.01 s | 1.03 s |
+| `golomb_m5_l10.cnf` | UNSAT | 5.0 ms | **4.3 ms** | 4.7 ms | **4.3 ms** |
+| `golomb_m5_l11.cnf` | SAT | 5.0 ms | **4.4 ms** | 4.9 ms | **4.4 ms** |
+| `golomb_m6_l16.cnf` | UNSAT | 8.1 ms | **7.6 ms** | 8.0 ms | 8.0 ms |
+| `golomb_m6_l17.cnf` | SAT | 8.4 ms | 7.9 ms | 8.2 ms | **7.8 ms** |
+| `golomb_m7_l24.cnf` | UNSAT | 22.5 ms | 22.3 ms | **21.9 ms** | 22.5 ms |
+| `golomb_m7_l25.cnf` | SAT | 15.2 ms | 15.5 ms | **15.0 ms** | 15.6 ms |
+| `golomb_m8_l33.cnf` | UNSAT | **170.0 ms** | 171.0 ms | 189.8 ms | 172.3 ms |
+| `golomb_m8_l34.cnf` | SAT | 28.2 ms | 27.1 ms | **26.2 ms** | 27.5 ms |
+| `golomb_m9_l43.cnf` | UNSAT | **1.18 s** | 1.24 s | 1.22 s | 1.23 s |
+| `golomb_m9_l44.cnf` | SAT | **330.2 ms** | 342.6 ms | 340.7 ms | 348.3 ms |
 
 ### Independent UNSAT Proof Certification (6 / 6 Formally Verified)
 

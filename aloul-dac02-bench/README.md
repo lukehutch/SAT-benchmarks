@@ -71,7 +71,8 @@ Mixed symmetry-rich EDA/combinatorial suite from Aloul et al.'s DAC 2002 paper s
 | `s3-3-3-3` | SAT | **49.69 ms** | 65.23 ms | 203.24 ms | 67.14 ms | 78.92 ms |
 | `s3-3-3-4` | SAT | **68.08 ms** | 143.37 ms | 179.22 ms | 69.22 ms | 83.55 ms |
 | `s3-3-3-8` | SAT | 59.17 ms | 62.45 ms | 234.93 ms | 143.68 ms | **29.30 ms** |
-| **Total (32 files, PAR-2)** | **32/32** | **32/32 — 360.3 ms** *(fastest)* | 17/32 — 154,075.9 ms *(427.66x)* | 23/32 — 96,866.0 ms *(268.86x)* | 32/32 — 450.7 ms *(1.25x)* | 24/32 — 87,033.0 ms *(241.57x)* |
+| **Solved (32 files)** | — | **32 / 32** *(highest)* | 17 / 32 *(-15 worse)* | 23 / 32 *(-9 worse)* | **32 / 32** *(highest)* | 24 / 32 *(-8 worse)* |
+| **Total PAR-2** | — | **360.3 ms** *(fastest)* | 154,075.9 ms *(427.66x slower)* | 96,866.0 ms *(268.86x slower)* | 450.7 ms *(1.25x slower)* | 87,033.0 ms *(241.57x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

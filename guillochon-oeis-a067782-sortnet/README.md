@@ -98,13 +98,13 @@ This directory is one of **9 single-problem-type collections** split from James 
 
 Three smallest calibration rungs evaluated on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread):
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `sortnet_n11_d7.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `sortnet_n12_d7.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `sortnet_n12_d8.cnf` | SAT | **8.66 s** | >60 s | >60 s | >60 s | 13.50 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **1 / 3** | **1 / 3** (1 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | 0 / 3 (0 SAT, 0 UNSAT) | **1 / 3** (1 SAT, 0 UNSAT) |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **248.66 s** *(mean 82.89 s)* | 360.00 s *(mean 120.00 s)* | 360.00 s *(mean 120.00 s)* | 360.00 s *(mean 120.00 s)* | 253.50 s *(mean 84.50 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **1 / 3** *(highest)* | 0 / 3 *(-1 worse)* | 0 / 3 *(-1 worse)* | 0 / 3 *(-1 worse)* | **1 / 3** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **248.66 s** *(fastest)* | 360.00 s *(1.45x slower)* | 360.00 s *(1.45x slower)* | 360.00 s *(1.45x slower)* | 253.50 s *(1.02x slower)* |
 
 - **Upstream reference timings:** Frobenius solved `sortnet_n12_d8.cnf` in **`8.66 s`** (`1.56×` faster than Kissat 4.0.4 at `13.50 s`, while CaDiCaL 3.1.0, CryptoMiniSat 5.18.0, and dense-solver 0.0.4 all timed out at `>60 s`; an independently verified 46-comparator network is committed in [`solutions/sortnet_n12_d8.model.xz`](solutions/sortnet_n12_d8.model.xz)). In James Guillochon's upstream baseline (CaDiCaL 1.5.3 via PySAT on an Intel i5-12600K), `sortnet_n12_d8.cnf` required `111 s` (SAT), `sortnet_n11_d7.cnf` required `1,264 s` (UNSAT), and `sortnet_n12_d7.cnf` required `2,142 s` (UNSAT).
 

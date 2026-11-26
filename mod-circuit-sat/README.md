@@ -50,7 +50,7 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 - **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, Linux, 1 core pinned per run via `taskset -c 0`, default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0, `--max-cores 1` for Frobenius), sequential execution, identical flat `.cnf` input, 0 verdict disagreements; all 5/5 SAT models verified via `src/modsat.py decode`).
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
-|---|---:|---:|---:|---:|---:|---:|
+|---|:---:|---:|---:|---:|---:|---:|
 | `mod3_n3_r0_s3_sat.cnf` | SAT | 4.04 ms | 2.85 ms | 18.26 ms | **1.52 ms** | 1.94 ms |
 | `mod3_n3_r1_s3_unsat.cnf` | UNSAT | 3.61 ms | 2.32 ms | 12.84 ms | 1.66 ms | **1.57 ms** |
 | `mod3_n3_r1_s4_sat.cnf` | SAT | 4.31 ms | 2.53 ms | 19.06 ms | **1.99 ms** | 6.81 ms |
@@ -60,8 +60,10 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 | `mod3_n4_r0_s7_sat.cnf` | SAT | 31.06 ms | 16.97 ms | 786.73 ms | **14.06 ms** | 205.66 ms |
 | `mod3_n5_r1_s8_unsat.cnf` | UNSAT | **16,281.07 ms** | 22,189.84 ms | T/O ($>30\;\text{s}$) | T/O ($>30\;\text{s}$) | 20,537.45 ms |
 | `mod3_n5_r1_s9_sat.cnf` | SAT | **757.62 ms** | 7,290.54 ms | 5,454.97 ms | 7,621.60 ms | 4,832.84 ms |
-| **Summary ($T_{\max}=10\;\text{s}$, PAR-2)** | **8 / 9** | **21,065.04 ms** *(fastest)* | 27,511.93 ms *(1.31x slower)* | 27,344.07 ms *(1.30x slower)* | 27,769.17 ms *(1.32x slower)* | 25,456.61 ms *(1.21x slower)* |
-| **Summary ($T_{\max}=30\;\text{s}$, PAR-2)** | **9 / 9** | **17,346.11 ms** *(fastest)* | 29,701.77 ms *(1.71x slower)* | 8/9 — 67,344.07 ms *(3.88x slower)* | 8/9 — 67,769.17 ms *(3.91x slower)* | 25,994.07 ms *(1.50x slower)* |
+| **Solved ($T_{\max}=10\;\text{s}$)** | — | **8 / 9** *(highest)* | **8 / 9** *(highest)* | **8 / 9** *(highest)* | **8 / 9** *(highest)* | **8 / 9** *(highest)* |
+| **Total PAR-2 ($T_{\max}=10\;\text{s}$)** | — | **21,065.04 ms** *(fastest)* | 27,511.93 ms *(1.31x slower)* | 27,344.07 ms *(1.30x slower)* | 27,769.17 ms *(1.32x slower)* | 25,456.61 ms *(1.21x slower)* |
+| **Solved ($T_{\max}=30\;\text{s}$)** | — | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | **9 / 9** *(highest)* |
+| **Total PAR-2 ($T_{\max}=30\;\text{s}$)** | — | **17,346.11 ms** *(fastest)* | 29,701.77 ms *(1.71x slower)* | 67,344.07 ms *(3.88x slower)* | 67,769.17 ms *(3.91x slower)* | 25,994.07 ms *(1.50x slower)* |
 
 ### Open Frontier Coverage ($n = 6, s \le 12$, $T_{\max} = 60\;\text{s}$)
 

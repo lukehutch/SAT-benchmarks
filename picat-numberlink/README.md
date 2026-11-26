@@ -76,7 +76,7 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 - **Independent Model Verification:** All **28 / 28** SAT models emitted across all 5 solvers were verified clause-by-clause against 100% of raw CNF clauses (**0 bad models**, **0 verdict disagreements**).
 - **Formal UNSAT Proof Certification:** All **3** tractable (`< 30 s`) Frobenius UNSAT verdicts (`numberlink_10x10_p8_swap`, `numberlink_12x12_p10_swap`, `numberlink_15x15_p12_swap`) were independently certified by `drat-trim`, `lrat-check`, and `cake_lpr` (`s VERIFIED UNSAT`).
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `numberlink_5x5_p4.cnf` | SAT | **0.7 ms** | 2.9 ms | 7.0 ms | 3.7 ms | 1.8 ms |
 | `numberlink_7x7_p5.cnf` | SAT | 2.0 ms | 3.1 ms | 17.1 ms | 8.0 ms | **1.7 ms** |
@@ -87,8 +87,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `numberlink_15x15_p12.cnf` | SAT | 249.1 ms | 245.9 ms | 546.1 ms | **92.3 ms** | 188.9 ms |
 | `numberlink_15x15_p12_swap.cnf` | UNSAT | 10.7 ms | 16.5 ms | 32.7 ms | 13.6 ms | **8.2 ms** |
 | `numberlink_42x25_p62.cnf` | SAT | **8.61 s** | >60 s | >60 s | 38.27 s | 11.46 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **9 total** | **9 / 9 (6 SAT, 3 UNSAT)** | 8 / 9 (5 SAT, 3 UNSAT) | 8 / 9 (5 SAT, 3 UNSAT) | **9 / 9 (6 SAT, 3 UNSAT)** | **9 / 9 (6 SAT, 3 UNSAT)** |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **8.98 s** *(mean 1.00 s)* | 120.39 s *(mean 13.38 s)* | 121.50 s *(mean 13.50 s)* | 38.51 s *(mean 4.28 s)* | 11.79 s *(mean 1.31 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **8.98 s** *(fastest)* | 120.39 s *(13.4x slower)* | 121.50 s *(13.5x slower)* | 38.51 s *(4.29x slower)* | 11.79 s *(1.31x slower)* |
 
 *Ground-truth SAT note on `numberlink_42x25_p62.cnf`:* Directly solved and 100%-clause model-verified by Frobenius (`8.61 s`), Kissat 4.0.4 (`11.46 s`), and dense-solver 0.0.4 (`38.27 s`), and independently cross-checked via Picat-SAT's integer-grid formulation (`hakank_numberlink.pi`, `INo=4`, `NP=62`, `1,050/1,050` cells degree-verified).
 

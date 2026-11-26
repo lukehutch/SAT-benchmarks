@@ -29,11 +29,16 @@ Note: Unlike the propositional SAT collections in this repository, MATA instance
 
 - **Hardware & Protocol:** **AMD Ryzen 9 5950X** (16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$ per mode, full wall-clock time including in-process `.xz` decompression and `.mata` parsing). **100% of all 21 automata** were run across three Frobenius NFA decision modes: non-emptiness ($L(A) \neq \emptyset$, default), complement/universality (`--mata-complement`, $L(A) = \Sigma^*$ iff UNSAT), and explicit complementation (`--mata-explicit-complement`). All SAT/UNSAT complement verdicts agreed **100%** between both complement modes and match [`expected.tsv`](expected.tsv) (0 errors, 0 timeouts).
 
-| Frobenius Mode | Solved | SAT / UNSAT | Total Time | Min | Median | Mean | Max |
-|---|---:|:---:|---:|---:|---:|---:|---:|
-| **Frobenius 1C — Emptiness** (default) | **21 / 21** | 21 / 0 | **49.67 ms** | 1.61 ms | 2.20 ms | 2.37 ms | 3.42 ms |
-| **Frobenius 1C — Complement** (`--mata-complement`) | **21 / 21** | 17 / 4 | **42.56 ms** | 1.62 ms | 1.97 ms | 2.03 ms | 3.11 ms |
-| **Frobenius 1C — Explicit Complement** (`--mata-explicit-complement`) | **21 / 21** | 17 / 4 | **42.00 ms** | 1.65 ms | 1.86 ms | 2.00 ms | 4.02 ms |
+| Metric (1C, 21 NFAs, $T_{\max} = 5\;\text{s}$) | Frobenius 1C — Emptiness (default) | Frobenius 1C — Complement (`--mata-complement`) | Frobenius 1C — Explicit (`--mata-explicit-complement`) |
+|---|---:|---:|---:|
+| **Solved** | **21 / 21** *(highest)* | **21 / 21** *(highest)* | **21 / 21** *(highest)* |
+| **SAT** | 21 | 17 | 17 |
+| **UNSAT** | 0 | 4 | 4 |
+| **Total Wall Time** | 49.67 ms *(1.18x slower)* | 42.56 ms *(1.01x slower)* | **42.00 ms** *(fastest)* |
+| **Min** | **1.61 ms** *(fastest)* | 1.62 ms *(1.01x slower)* | 1.65 ms *(1.02x slower)* |
+| **Median** | 2.20 ms *(1.18x slower)* | 1.97 ms *(1.06x slower)* | **1.86 ms** *(fastest)* |
+| **Mean** | 2.37 ms *(1.19x slower)* | 2.03 ms *(1.02x slower)* | **2.00 ms** *(fastest)* |
+| **Max** | 3.42 ms *(1.10x slower)* | **3.11 ms** *(fastest)* | 4.02 ms *(1.29x slower)* |
 
 ### Per-Automaton Timings (All 21 NFAs)
 

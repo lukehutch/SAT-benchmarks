@@ -66,7 +66,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
 - **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **20 / 20 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
 
-| Instance | Expected | Frobenius | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `cross_k4_m2.cnf` | UNSAT | **2.8 ms** | 22.0 ms | 41.2 ms | 14.5 ms | 19.1 ms |
 | `cross_k4_m3.cnf` | UNSAT | **35.4 ms** | 24.31 s | 7.45 s | 46.38 s | 1.62 s |
@@ -76,22 +76,22 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `cross_k5_m3.cnf` | SAT | 20.2 ms | **17.1 ms** | 120.8 ms | 101.3 ms | 37.1 ms |
 | `cross_k5_m4.cnf` | SAT | **54.1 ms** | 158.7 ms | 625.9 ms | 215.3 ms | 336.8 ms |
 | `cross_k5_m5.cnf` | SAT | **105.3 ms** | 280.7 ms | 481.6 ms | 1.77 s | 692.2 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | **8** | **8/8 (4 SAT, 4 UNSAT)** | 7/8 (4 SAT, 3 UNSAT) | 7/8 (4 SAT, 3 UNSAT) | 7/8 (4 SAT, 3 UNSAT) | 7/8 (4 SAT, 3 UNSAT) |
-| **Total PAR-2** | — | **308.6 ms *(mean 38.6 ms)*** | 149.37 s *(mean 18.67 s)* | 135.00 s *(mean 16.88 s)* | 173.44 s *(mean 21.68 s)* | 123.22 s *(mean 15.40 s)* |
+| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **8 / 8** *(highest)* | 7 / 8 *(-1 worse)* | 7 / 8 *(-1 worse)* | 7 / 8 *(-1 worse)* | 7 / 8 *(-1 worse)* |
+| **Total PAR-2** | — | **308.6 ms** *(fastest)* | 149.37 s *(484x slower)* | 135.00 s *(437x slower)* | 173.44 s *(562x slower)* | 123.22 s *(399x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 
 Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats (same-build baseline four-format parity sweep). Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
 
-| Instance | Expected | Native XORs | Frobenius (`.cnf`) | Frobenius (`.aig`) | Frobenius (`.xcnf`) | Frobenius (`.anf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) |
+| Instance | Expected | Native XORs | Frobenius 1C (`.cnf`) | Frobenius 1C (`.aig`) | Frobenius 1C (`.xcnf`) | Frobenius 1C (`.anf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `cross_k4_m2.cnf` | UNSAT | 81 | 17.0 ms | 16.7 ms | 18.0 ms | 12.2 ms | 41.7 ms |
-| `cross_k4_m3.cnf` | UNSAT | 0 | 7.81 s | 7.60 s | 7.65 s | 7.53 s | — |
-| `cross_k4_m4.cnf` | UNSAT | 0 | 419.7 ms | 418.7 ms | 462.0 ms | 437.7 ms | — |
-| `cross_k5_m2.cnf` | SAT | 108 | 23.3 ms | 22.8 ms | 26.0 ms | 8.0 ms | 23.6 ms |
-| `cross_k5_m3.cnf` | SAT | 0 | 32.7 ms | 33.7 ms | 33.1 ms | 34.3 ms | — |
-| `cross_k5_m4.cnf` | SAT | 0 | 411.9 ms | 415.6 ms | 417.7 ms | 428.3 ms | — |
-| `cross_k5_m5.cnf` | SAT | 0 | 767.7 ms | 773.8 ms | 765.1 ms | 778.7 ms | — |
+| `cross_k4_m2.cnf` | UNSAT | 81 | 17.0 ms | 16.7 ms | 18.0 ms | **12.2 ms** | 41.7 ms |
+| `cross_k4_m3.cnf` | UNSAT | 0 | 7.81 s | 7.60 s | 7.65 s | **7.53 s** | — |
+| `cross_k4_m4.cnf` | UNSAT | 0 | 419.7 ms | **418.7 ms** | 462.0 ms | 437.7 ms | — |
+| `cross_k5_m2.cnf` | SAT | 108 | 23.3 ms | 22.8 ms | 26.0 ms | **8.0 ms** | 23.6 ms |
+| `cross_k5_m3.cnf` | SAT | 0 | **32.7 ms** | 33.7 ms | 33.1 ms | 34.3 ms | — |
+| `cross_k5_m4.cnf` | SAT | 0 | **411.9 ms** | 415.6 ms | 417.7 ms | 428.3 ms | — |
+| `cross_k5_m5.cnf` | SAT | 0 | 767.7 ms | 773.8 ms | **765.1 ms** | 778.7 ms | — |
 
 ### Independent UNSAT Proof Certification (3 / 3 Formally Verified)
 
