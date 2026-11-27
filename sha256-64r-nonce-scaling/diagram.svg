@@ -5,13 +5,13 @@
 <rect x="2" y="2" width="916" height="556" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
 <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
 <text x="24" y="32" font-size="16.8" font-weight="700" fill="#0f172a">FIPS 180-4 SHA-256 (64-Round) Nonce Scaling: k = 1..32 Unknown Bits</text>
-<text x="24" y="51" font-size="11.1" fill="#475569">Single-core wall-clock T(k) on AMD Ryzen 9 5950X (core 12, Tₘₐₓ = 300 s, W₀ = 0x9E3779B9, 290/290 SAT verified) · 5 engines (7 tracks)</text>
+<text x="24" y="51" font-size="11.1" fill="#475569">Single-core wall-clock T(k) on AMD Ryzen 9 5950X (Tₘₐₓ = 300 s, W₀ = 0x9E3779B9, 302/302 SAT verified) · 5 engines (7 tracks)</text>
 <line x1="22" y1="62" x2="898" y2="62" stroke="#e2e8f0" stroke-width="1.2"/>
 <rect x="78" y="86" width="568" height="326" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>
 <rect x="95.6" y="87" width="211.0" height="324" fill="#eff6ff" opacity="0.55"/>
 <rect x="306.6" y="87" width="338.4" height="324" fill="#ecfdf5" opacity="0.62"/>
-<text x="201.1" y="100" text-anchor="middle" font-size="8.3" font-weight="700" fill="#1d4ed8">Stage 0C (k=2..13)</text>
-<text x="476.3" y="100" text-anchor="middle" font-size="8.3" font-weight="700" fill="#047857">Unified 2048-lane CompiledAig256 AVX2 (k=14..32, zero k≤24 cliff)</text>
+<text x="201.1" y="100" text-anchor="middle" font-size="8.2" font-weight="700" fill="#1d4ed8">Stage 0C (k=2..13)</text>
+<text x="476.3" y="100" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Stage 0F WordDag / BitSliceJit AVX2 + Escalation (k=14..32)</text>
 <line x1="78" y1="406.8" x2="646" y2="406.8" stroke="#e2e8f0" stroke-width="0.9"/>
 <line x1="74" y1="406.8" x2="78" y2="406.8" stroke="#64748b" stroke-width="1"/>
 <text x="71" y="410.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#334155">1 ms</text>
@@ -66,8 +66,8 @@
 <text x="362.0" y="443" text-anchor="middle" font-size="10.4" font-weight="700" fill="#0f172a">Unknown Nonce Bits k  (LSB prefix of W₀ = 0x9E3779B9)</text>
 <text x="20" y="249.0" text-anchor="middle" font-size="10.4" font-weight="700" fill="#0f172a" transform="rotate(-90 20 249.0)">Wall-Clock Runtime T(k)  [log scale]</text>
 <g clip-path="url(#plot-clip)">
-<polyline points="456.1,280.0 459.7,276.8 463.4,273.7 467.1,270.6 470.7,267.5 474.4,264.4 478.1,261.3 481.7,258.1 485.4,255.0 489.1,251.9 492.7,248.8 496.4,245.7 500.0,242.6 503.7,239.4 507.4,236.3 511.0,233.2 514.7,230.1 518.4,227.0 522.0,223.9 525.7,220.7 529.4,217.6 533.0,214.5 536.7,211.4 540.3,208.3 544.0,205.1 547.7,202.0 551.3,198.9 555.0,195.8 558.7,192.7 562.3,189.6 566.0,186.4 569.7,183.3 573.3,180.2 577.0,177.1 580.6,174.0 584.3,170.9 588.0,167.7 591.6,164.6 595.3,161.5 599.0,158.4 602.6,155.3 606.3,152.2 610.0,149.0 613.6,145.9 617.3,142.8 620.9,139.7 624.6,136.6 628.3,133.4 631.9,130.3" fill="none" stroke="#0284c7" stroke-width="1.4" stroke-dasharray="3.5,3" opacity="0.55"/>
-<polyline points="456.1,279.0 459.7,275.8 463.4,272.6 467.1,269.4 470.7,266.2 474.4,263.0 478.1,259.9 481.7,256.7 485.4,253.5 489.1,250.3 492.7,247.1 496.4,243.9 500.0,240.8 503.7,237.6 507.4,234.4 511.0,231.2 514.7,228.0 518.4,224.8 522.0,221.7 525.7,218.5 529.4,215.3 533.0,212.1 536.7,208.9 540.3,205.7 544.0,202.6 547.7,199.4 551.3,196.2 555.0,193.0 558.7,189.8 562.3,186.7 566.0,183.5 569.7,180.3 573.3,177.1 577.0,173.9 580.6,170.7 584.3,167.6 588.0,164.4 591.6,161.2 595.3,158.0 599.0,154.8 602.6,151.6 606.3,148.5 610.0,145.3 613.6,142.1 617.3,138.9 620.9,135.7 624.6,132.5 628.3,129.4 631.9,126.2" fill="none" stroke="#059669" stroke-width="1.4" stroke-dasharray="3.5,3" opacity="0.55"/>
+<polyline points="456.1,289.5 459.7,286.5 463.4,283.6 467.1,280.6 470.7,277.6 474.4,274.7 478.1,271.7 481.7,268.7 485.4,265.7 489.1,262.8 492.7,259.8 496.4,256.8 500.0,253.9 503.7,250.9 507.4,247.9 511.0,244.9 514.7,242.0 518.4,239.0 522.0,236.0 525.7,233.1 529.4,230.1 533.0,227.1 536.7,224.1 540.3,221.2 544.0,218.2 547.7,215.2 551.3,212.3 555.0,209.3 558.7,206.3 562.3,203.3 566.0,200.4 569.7,197.4 573.3,194.4 577.0,191.4 580.6,188.5 584.3,185.5 588.0,182.5 591.6,179.6 595.3,176.6 599.0,173.6 602.6,170.6 606.3,167.7 610.0,164.7 613.6,161.7 617.3,158.8 620.9,155.8 624.6,152.8 628.3,149.8 631.9,146.9" fill="none" stroke="#059669" stroke-width="1.4" stroke-dasharray="3.5,3" opacity="0.55"/>
+<polyline points="456.1,292.5 459.7,289.4 463.4,286.3 467.1,283.2 470.7,280.1 474.4,277.0 478.1,273.9 481.7,270.7 485.4,267.6 489.1,264.5 492.7,261.4 496.4,258.3 500.0,255.2 503.7,252.1 507.4,249.0 511.0,245.9 514.7,242.8 518.4,239.7 522.0,236.6 525.7,233.5 529.4,230.4 533.0,227.3 536.7,224.2 540.3,221.1 544.0,218.0 547.7,214.9 551.3,211.8 555.0,208.7 558.7,205.6 562.3,202.5 566.0,199.4 569.7,196.3 573.3,193.2 577.0,190.1 580.6,187.0 584.3,183.9 588.0,180.8 591.6,177.7 595.3,174.6 599.0,171.5 602.6,168.4 606.3,165.3 610.0,162.2 613.6,159.1 617.3,156.0 620.9,152.9 624.6,149.8 628.3,146.7 631.9,143.6" fill="none" stroke="#0284c7" stroke-width="1.4" stroke-dasharray="3.5,3" opacity="0.55"/>
 <polyline points="245.1,224.8 248.2,222.5 251.3,220.2 254.4,217.9 257.5,215.6 260.6,213.3 263.7,211.0 266.9,208.7 270.0,206.4 273.1,204.1 276.2,201.8 279.3,199.5 282.4,197.2 285.5,194.9 288.7,192.6 291.8,190.3 294.9,188.0 298.0,185.7 301.1,183.4 304.2,181.1 307.3,178.8 310.5,176.5 313.6,174.2 316.7,171.9 319.8,169.6 322.9,167.3 326.0,165.0 329.1,162.7 332.3,160.4 335.4,158.1 338.5,155.8 341.6,153.5 344.7,151.2 347.8,148.9 350.9,146.6 354.1,144.3 357.2,142.0 360.3,139.7 363.4,137.4 366.5,135.0 369.6,132.7 372.7,130.4 375.8,128.1 379.0,125.8 382.1,123.5 385.2,121.2" fill="none" stroke="#d97706" stroke-width="1.1" stroke-dasharray="3.5,3" opacity="0.35"/>
 <polyline points="280.2,194.8 282.4,193.1 284.6,191.4 286.8,189.6 289.0,187.9 291.2,186.2 293.4,184.5 295.6,182.8 297.8,181.0 300.0,179.3 302.2,177.6 304.4,175.9 306.6,174.2 308.8,172.4 311.0,170.7 313.2,169.0 315.4,167.3 317.6,165.6 319.8,163.8 322.0,162.1 324.2,160.4 326.4,158.7 328.6,157.0 330.8,155.2 333.0,153.5 335.2,151.8 337.4,150.1 339.6,148.4 341.8,146.6 344.0,144.9 346.2,143.2 348.4,141.5 350.6,139.8 352.8,138.0 355.0,136.3 357.2,134.6 359.4,132.9 361.6,131.2 363.8,129.4 366.0,127.7 368.2,126.0 370.4,124.3 372.6,122.6" fill="none" stroke="#7c3aed" stroke-width="1.1" stroke-dasharray="3.5,3" opacity="0.35"/>
 <polyline points="245.1,233.4 247.4,230.8 249.8,228.3 252.2,225.8 254.6,223.2 257.0,220.7 259.3,218.2 261.7,215.6 264.1,213.1 266.5,210.6 268.9,208.0 271.3,205.5 273.6,202.9 276.0,200.4 278.4,197.9 280.8,195.3 283.2,192.8 285.5,190.3 287.9,187.7 290.3,185.2 292.7,182.7 295.1,180.1 297.4,177.6 299.8,175.0 302.2,172.5 304.6,170.0 307.0,167.4 309.4,164.9 311.7,162.4 314.1,159.8 316.5,157.3 318.9,154.8 321.3,152.2 323.6,149.7 326.0,147.1 328.4,144.6 330.8,142.1 333.2,139.5 335.5,137.0 337.9,134.5 340.3,131.9 342.7,129.4 345.1,126.9 347.5,124.3 349.8,121.8" fill="none" stroke="#dc2626" stroke-width="1.1" stroke-dasharray="3.5,3" opacity="0.35"/>
@@ -165,99 +165,99 @@
 <rect x="348.4" y="146.3" width="4.4" height="4.4" fill="#d97706" stroke="#ffffff" stroke-width="0.8"/>
 <rect x="366.0" y="205.8" width="4.4" height="4.4" fill="#d97706" stroke="#ffffff" stroke-width="0.8"/>
 <path d="M 382.4 117.8 L 389.0 124.4 M 382.4 124.4 L 389.0 117.8" stroke="#d97706" stroke-width="1.6"/>
-<line x1="86.8" y1="400.5" x2="104.4" y2="327.3" stroke="#059669" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.55"/>
-<polyline points="104.4,327.3 122.0,327.5 139.5,327.4 157.1,326.9 174.7,327.1 192.3,326.5 209.9,326.9 227.5,322.1 245.1,322.1 262.6,322.5 280.2,322.2 297.8,321.8 315.4,314.4 333.0,314.2 350.6,312.9 368.2,312.0 385.7,309.7 403.3,305.4 420.9,298.7 438.5,289.7 456.1,278.3 473.7,264.8 491.3,250.7 508.8,229.4 526.4,216.9 544.0,203.0 561.6,188.3 579.2,173.1 596.8,157.7 614.3,141.0 631.9,125.2" fill="none" stroke="#059669" stroke-width="2.2"/>
-<circle cx="86.8" cy="400.5" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="104.4" cy="327.3" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="122.0" cy="327.5" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="139.5" cy="327.4" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="157.1" cy="326.9" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="174.7" cy="327.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="192.3" cy="326.5" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="209.9" cy="326.9" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="227.5" cy="322.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="245.1" cy="322.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="262.6" cy="322.5" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="280.2" cy="322.2" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="297.8" cy="321.8" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="315.4" cy="314.4" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="333.0" cy="314.2" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="350.6" cy="312.9" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="368.2" cy="312.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="385.7" cy="309.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="403.3" cy="305.4" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="420.9" cy="298.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="438.5" cy="289.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="456.1" cy="278.3" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="473.7" cy="264.8" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="491.3" cy="250.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="508.8" cy="229.4" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="526.4" cy="216.9" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="544.0" cy="203.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="561.6" cy="188.3" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="579.2" cy="173.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="596.8" cy="157.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="614.3" cy="141.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<circle cx="631.9" cy="125.2" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<line x1="86.8" y1="397.9" x2="104.4" y2="307.5" stroke="#0284c7" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.55"/>
-<polyline points="104.4,307.5 122.0,301.4 139.5,301.7 157.1,301.8 174.7,301.8 192.3,301.9 209.9,301.2 227.5,300.1 245.1,300.5 262.6,300.6 280.2,300.4 297.8,300.3 315.4,297.4 333.0,296.7 350.6,296.9 368.2,296.4 385.7,295.3 403.3,293.8 420.9,290.5 438.5,285.1 456.1,277.0 473.7,265.9 491.3,253.7 508.8,231.7 526.4,220.7 544.0,206.8 561.6,192.8 579.2,173.1 596.8,159.9 614.3,144.2 631.9,130.5" fill="none" stroke="#0284c7" stroke-width="2.2"/>
-<polygon points="86.8,394.5 90.2,397.9 86.8,401.3 83.4,397.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="104.4,304.1 107.8,307.5 104.4,310.9 101.0,307.5" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="122.0,298.0 125.4,301.4 122.0,304.8 118.6,301.4" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="139.5,298.3 142.9,301.7 139.5,305.1 136.1,301.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="157.1,298.4 160.5,301.8 157.1,305.2 153.7,301.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="174.7,298.4 178.1,301.8 174.7,305.2 171.3,301.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="192.3,298.5 195.7,301.9 192.3,305.3 188.9,301.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="209.9,297.8 213.3,301.2 209.9,304.6 206.5,301.2" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="227.5,296.7 230.9,300.1 227.5,303.5 224.1,300.1" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="245.1,297.1 248.5,300.5 245.1,303.9 241.7,300.5" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="262.6,297.2 266.0,300.6 262.6,304.0 259.2,300.6" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="280.2,297.0 283.6,300.4 280.2,303.8 276.8,300.4" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="297.8,296.9 301.2,300.3 297.8,303.7 294.4,300.3" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="315.4,294.0 318.8,297.4 315.4,300.8 312.0,297.4" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="333.0,293.3 336.4,296.7 333.0,300.1 329.6,296.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="350.6,293.5 354.0,296.9 350.6,300.3 347.2,296.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="368.2,293.0 371.6,296.4 368.2,299.8 364.8,296.4" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="385.7,291.9 389.1,295.3 385.7,298.7 382.3,295.3" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="403.3,290.4 406.7,293.8 403.3,297.2 399.9,293.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="420.9,287.1 424.3,290.5 420.9,293.9 417.5,290.5" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="438.5,281.7 441.9,285.1 438.5,288.5 435.1,285.1" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="456.1,273.6 459.5,277.0 456.1,280.4 452.7,277.0" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="473.7,262.5 477.1,265.9 473.7,269.3 470.3,265.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="491.3,250.3 494.7,253.7 491.3,257.1 487.9,253.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="508.8,228.3 512.2,231.7 508.8,235.1 505.4,231.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="526.4,217.3 529.8,220.7 526.4,224.1 523.0,220.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="544.0,203.4 547.4,206.8 544.0,210.2 540.6,206.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="561.6,189.4 565.0,192.8 561.6,196.2 558.2,192.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="579.2,169.7 582.6,173.1 579.2,176.5 575.8,173.1" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="596.8,156.5 600.2,159.9 596.8,163.3 593.4,159.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="614.3,140.8 617.7,144.2 614.3,147.6 610.9,144.2" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<polygon points="631.9,127.1 635.3,130.5 631.9,133.9 628.5,130.5" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<line x1="86.8" y1="389.0" x2="104.4" y2="347.0" stroke="#059669" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.55"/>
+<polyline points="104.4,347.0 122.0,347.2 139.5,346.1 157.1,345.1 174.7,342.1 192.3,338.5 209.9,341.3 227.5,343.9 245.1,338.7 262.6,342.6 280.2,339.1 297.8,336.2 315.4,332.1 333.0,331.8 350.6,332.0 368.2,327.7 385.7,322.7 403.3,316.7 420.9,305.0 438.5,296.7 456.1,288.6 473.7,273.1 491.3,263.4 508.8,251.6 526.4,231.3 544.0,218.8 561.6,202.6 579.2,185.4 596.8,172.7 614.3,163.5 631.9,149.1" fill="none" stroke="#059669" stroke-width="2.2"/>
+<circle cx="86.8" cy="389.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="104.4" cy="347.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="122.0" cy="347.2" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="139.5" cy="346.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="157.1" cy="345.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="174.7" cy="342.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="192.3" cy="338.5" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="209.9" cy="341.3" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="227.5" cy="343.9" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="245.1" cy="338.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="262.6" cy="342.6" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="280.2" cy="339.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="297.8" cy="336.2" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="315.4" cy="332.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="333.0" cy="331.8" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="350.6" cy="332.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="368.2" cy="327.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="385.7" cy="322.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="403.3" cy="316.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="420.9" cy="305.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="438.5" cy="296.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="456.1" cy="288.6" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="473.7" cy="273.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="491.3" cy="263.4" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="508.8" cy="251.6" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="526.4" cy="231.3" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="544.0" cy="218.8" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="561.6" cy="202.6" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="579.2" cy="185.4" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="596.8" cy="172.7" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="614.3" cy="163.5" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<circle cx="631.9" cy="149.1" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<line x1="86.8" y1="396.9" x2="104.4" y2="322.9" stroke="#0284c7" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.55"/>
+<polyline points="104.4,322.9 122.0,319.6 139.5,322.7 157.1,316.0 174.7,322.1 192.3,321.4 209.9,318.0 227.5,317.0 245.1,318.3 262.6,323.2 280.2,321.4 297.8,317.7 315.4,317.6 333.0,315.3 350.6,316.3 368.2,315.6 385.7,307.6 403.3,305.3 420.9,303.3 438.5,299.0 456.1,289.7 473.7,276.6 491.3,266.7 508.8,248.8 526.4,230.8 544.0,219.0 561.6,206.2 579.2,187.6 596.8,170.9 614.3,157.2 631.9,144.5" fill="none" stroke="#0284c7" stroke-width="2.2"/>
+<polygon points="86.8,393.5 90.2,396.9 86.8,400.3 83.4,396.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="104.4,319.5 107.8,322.9 104.4,326.3 101.0,322.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="122.0,316.2 125.4,319.6 122.0,323.0 118.6,319.6" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="139.5,319.3 142.9,322.7 139.5,326.1 136.1,322.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="157.1,312.6 160.5,316.0 157.1,319.4 153.7,316.0" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="174.7,318.7 178.1,322.1 174.7,325.5 171.3,322.1" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="192.3,318.0 195.7,321.4 192.3,324.8 188.9,321.4" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="209.9,314.6 213.3,318.0 209.9,321.4 206.5,318.0" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="227.5,313.6 230.9,317.0 227.5,320.4 224.1,317.0" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="245.1,314.9 248.5,318.3 245.1,321.7 241.7,318.3" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="262.6,319.8 266.0,323.2 262.6,326.6 259.2,323.2" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="280.2,318.0 283.6,321.4 280.2,324.8 276.8,321.4" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="297.8,314.3 301.2,317.7 297.8,321.1 294.4,317.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="315.4,314.2 318.8,317.6 315.4,321.0 312.0,317.6" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="333.0,311.9 336.4,315.3 333.0,318.7 329.6,315.3" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="350.6,312.9 354.0,316.3 350.6,319.7 347.2,316.3" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="368.2,312.2 371.6,315.6 368.2,319.0 364.8,315.6" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="385.7,304.2 389.1,307.6 385.7,311.0 382.3,307.6" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="403.3,301.9 406.7,305.3 403.3,308.7 399.9,305.3" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="420.9,299.9 424.3,303.3 420.9,306.7 417.5,303.3" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="438.5,295.6 441.9,299.0 438.5,302.4 435.1,299.0" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="456.1,286.3 459.5,289.7 456.1,293.1 452.7,289.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="473.7,273.2 477.1,276.6 473.7,280.0 470.3,276.6" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="491.3,263.3 494.7,266.7 491.3,270.1 487.9,266.7" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="508.8,245.4 512.2,248.8 508.8,252.2 505.4,248.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="526.4,227.4 529.8,230.8 526.4,234.2 523.0,230.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="544.0,215.6 547.4,219.0 544.0,222.4 540.6,219.0" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="561.6,202.8 565.0,206.2 561.6,209.6 558.2,206.2" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="579.2,184.2 582.6,187.6 579.2,191.0 575.8,187.6" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="596.8,167.5 600.2,170.9 596.8,174.3 593.4,170.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="614.3,153.8 617.7,157.2 614.3,160.6 610.9,157.2" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<polygon points="631.9,141.1 635.3,144.5 631.9,147.9 628.5,144.5" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
 <rect x="396.3" y="167.9" width="154" height="31" rx="4" fill="#ffffff" stroke="#047857" stroke-width="0.95" opacity="0.96"/>
-<text x="473.3" y="180.4" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Overhead → 2ᵏ knee (k*≈20–21)</text>
-<text x="473.3" y="192.4" text-anchor="middle" font-size="7.7" fill="#334155">a·2ᵏ* = c₀ (58–123 ms floor)</text>
-<rect x="503.6" y="306.1" width="136" height="31" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="0.95" opacity="0.96"/>
-<text x="571.6" y="318.6" text-anchor="middle" font-size="8.2" font-weight="700" fill="#0369a1">32/32 solved (&lt;300 s, 1C!)</text>
-<text x="571.6" y="330.6" text-anchor="middle" font-size="7.8" fill="#334155">T(32): 3.30m .cnf · 4.16m .aig</text>
+<text x="473.3" y="180.4" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Overhead → 2ᵏ knee (k*≈19–21)</text>
+<text x="473.3" y="192.4" text-anchor="middle" font-size="7.7" fill="#334155">a·2^(αk*) = c₀ (26–57 ms floor)</text>
+<rect x="503.6" y="306.1" width="136" height="31" rx="4" fill="#ffffff" stroke="#059669" stroke-width="0.95" opacity="0.96"/>
+<text x="571.6" y="318.6" text-anchor="middle" font-size="8.2" font-weight="700" fill="#047857">32/32 solved (&lt;300 s, 1C!)</text>
+<text x="571.6" y="330.6" text-anchor="middle" font-size="7.8" fill="#334155">T(32): 1.45m .aig · 1.78m .cnf</text>
 <text x="93.8" y="404.7" font-size="7.8" fill="#64748b">k=1: 0-AND collapse</text>
 </g>
 <rect x="658" y="86" width="240" height="326" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>
 <text x="669" y="105" font-size="10.8" font-weight="700" fill="#0f172a">7 Solver Tracks &amp; Post-Knee Fits</text>
 <text x="669" y="118" font-size="8.0" fill="#64748b">T(k) = a·2^(αk) post-knee | Solved · T(32) 1C</text>
 <line x1="668" y1="124" x2="888" y2="124" stroke="#e2e8f0" stroke-width="1"/>
-<line x1="671" y1="137.0" x2="689" y2="137.0" stroke="#0284c7" stroke-width="2.2"/>
-<polygon points="680.0,133.6 683.4,137.0 680.0,140.4 676.6,137.0" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<text x="695" y="140.0" font-size="9.4" font-weight="700" fill="#0f172a">Frobenius 1C (.cnf)</text>
-<text x="887" y="140.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0284c7">32/32</text>
-<text x="695" y="152.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#475569">k≥22: α=0.953 (1.94×)</text>
-<text x="887" y="152.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#334155">T₃₂:3.30 min*</text>
+<line x1="671" y1="137.0" x2="689" y2="137.0" stroke="#059669" stroke-width="2.2"/>
+<circle cx="680.0" cy="137.0" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
+<text x="695" y="140.0" font-size="9.4" font-weight="700" fill="#0f172a">Frobenius 1C (.aig)</text>
+<text x="887" y="140.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#059669">32/32</text>
+<text x="695" y="152.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#475569">k≥22: α=0.909 (1.88×)</text>
+<text x="887" y="152.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#334155">T₃₂:1.45 min*</text>
 <rect x="664" y="162.5" width="228" height="33.5" rx="4" fill="#ffffff"/>
-<line x1="671" y1="172.5" x2="689" y2="172.5" stroke="#059669" stroke-width="2.2"/>
-<circle cx="680.0" cy="172.5" r="2.8" fill="#059669" stroke="#ffffff" stroke-width="0.8"/>
-<text x="695" y="175.5" font-size="9.4" font-weight="700" fill="#0f172a">Frobenius 1C (.aig)</text>
-<text x="887" y="175.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#059669">32/32</text>
-<text x="695" y="188.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#475569">k≥22: α=0.973 (1.96×)</text>
-<text x="887" y="188.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#334155">T₃₂:4.16 min*</text>
+<line x1="671" y1="172.5" x2="689" y2="172.5" stroke="#0284c7" stroke-width="2.2"/>
+<polygon points="680.0,169.1 683.4,172.5 680.0,175.9 676.6,172.5" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
+<text x="695" y="175.5" font-size="9.4" font-weight="700" fill="#0f172a">Frobenius 1C (.cnf)</text>
+<text x="887" y="175.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" font-weight="700" fill="#0284c7">32/32</text>
+<text x="695" y="188.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#475569">k≥22: α=0.948 (1.93×)</text>
+<text x="887" y="188.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#334155">T₃₂:1.78 min*</text>
 <line x1="671" y1="208.0" x2="689" y2="208.0" stroke="#d97706" stroke-width="2.2"/>
 <rect x="677.5" y="205.5" width="5.0" height="5.0" fill="#d97706" stroke="#ffffff" stroke-width="0.8"/>
 <text x="695" y="211.0" font-size="9.4" font-weight="700" fill="#0f172a">CaDiCaL 3.1.0 (.cnf)</text>
@@ -291,7 +291,7 @@
 <text x="695" y="365.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#475569">k≥2: α=0.791† (1.73×)</text>
 <text x="887" y="365.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7.9" fill="#334155">T₃₂:256 d†</text>
 <line x1="668" y1="383" x2="888" y2="383" stroke="#e2e8f0" stroke-width="1"/>
-<text x="669" y="395" font-size="7.3" fill="#64748b">*Actual measured 1C T(32) (&lt;300s, k≥22 R²≥0.998)</text>
+<text x="669" y="395" font-size="7.3" fill="#64748b">*Actual measured 1C T(32) (&lt;300s, k≥22 R²≥0.996)</text>
 <text x="669" y="405.5" font-size="7.3" fill="#64748b">†Post-knee Tobit MLE (+3 T/Os); skips flat low-k floors</text>
 <rect x="24" y="456" width="280" height="86" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>
 <text x="35" y="474" font-size="10.2" font-weight="700" fill="#0f172a">1. Zero-Bias FIPS 180-4 Specification</text>
@@ -300,16 +300,16 @@
 <text x="35" y="517.0" font-size="8.6" fill="#334155">• Bit-rev anchor ≈ 0.616 → zero lucky bias</text>
 <text x="35" y="530.5" font-size="8.6" fill="#334155">• 4 formats: .aig/.cnf/.xcnf/.anf (50.7 MB)</text>
 <rect x="318" y="456" width="284" height="86" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.1"/>
-<text x="329" y="474" font-size="10.2" font-weight="700" fill="#047857">2. Cliff-Free 2048-Lane AVX2 (32/32)</text>
-<text x="329" y="490.0" font-size="8.6" fill="#334155">• .cnf: 32/32, T(32)=3.30m (12.8M evals/s)</text>
-<text x="329" y="503.5" font-size="8.6" fill="#334155">• .aig: 32/32, T(32)=4.16m (11.2M evals/s)</text>
-<text x="329" y="517.0" font-size="8.6" fill="#334155">• k≥22 log-linear: α=0.953 (.cnf) / 0.973 (.aig)</text>
-<text x="329" y="530.5" font-size="8.6" fill="#334155">• 22.2–30.9× lower PAR-2 than all CDCL tracks</text>
+<text x="329" y="474" font-size="10.2" font-weight="700" fill="#047857">2. WordDag + BitSliceJit AVX2 (32/32)</text>
+<text x="329" y="490.0" font-size="8.6" fill="#334155">• .aig: 32/32, T(32)=1.45m (30.3M evals/s)</text>
+<text x="329" y="503.5" font-size="8.6" fill="#334155">• .cnf: 32/32, T(32)=1.78m (22.3M evals/s)</text>
+<text x="329" y="517.0" font-size="8.6" fill="#334155">• k≥22 log-linear: α=0.909 (.aig) / 0.948 (.cnf)</text>
+<text x="329" y="530.5" font-size="8.6" fill="#334155">• 46.9–65.2× lower PAR-2 than all CDCL tracks</text>
 <rect x="616" y="456" width="282" height="86" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.1"/>
 <text x="627" y="474" font-size="10.2" font-weight="700" fill="#1d4ed8">3. Post-Knee Asymptotic Scaling (M0)</text>
 <text x="627" y="490.0" font-size="8.6" fill="#334155">• Pure log-linear M0 wins every post-knee fit</text>
 <text x="627" y="503.5" font-size="8.6" fill="#334155">• Skips flat floors (Frob&lt;22, CDCL&lt;10/12, CMS=1)</text>
-<text x="627" y="517.0" font-size="8.6" fill="#334155">• 2,258–847,000× faster T(32) than CDCL</text>
-<text x="627" y="530.5" font-size="8.6" fill="#334155">• 290/290 SAT models verified (0 BADSAT)</text>
+<text x="627" y="517.0" font-size="8.6" fill="#334155">• 5,125–1,923,000× faster T(32) than CDCL</text>
+<text x="627" y="530.5" font-size="8.6" fill="#334155">• 302/302 SAT models verified (0 BADSAT)</text>
 </g>
 </svg>

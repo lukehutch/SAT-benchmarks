@@ -24,26 +24,28 @@ OUT_GROWTH_SVG = Path(__file__).resolve().parent.parent / "growth_analysis.svg"
 FONT_SANS = "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 FONT_MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
 
-# Exact single-core median/measured wall-clock times (seconds) on AMD Ryzen 9 5950X (CCD 1 core 12).
-# Frobenius tracks evaluated at commit 5f04ce8 (cliff-free shortcut-first + 2048-lane early-exit AVX2).
+# Exact single-core median/measured wall-clock times (seconds) on AMD Ryzen 9 5950X.
+# Frobenius tracks evaluated at commit ac9fea6 (CCD 0 core 6: omega::ingest + Backward Frontier +
+# Multi-Strip BitSliceJit + 32-bit WordDag AVX2 JIT + zero-recompilation shortcut-probe escalation);
+# external CDCL baselines on CCD 1 core 12.
 EMPIRICAL_SEC: dict[str, list[tuple[int, float]]] = {
     "frobenius_aig": [
-        (1, 0.001321), (2, 0.033381), (3, 0.033151), (4, 0.033307), (5, 0.034022),
-        (6, 0.033720), (7, 0.034650), (8, 0.034016), (9, 0.041996), (10, 0.041965),
-        (11, 0.041342), (12, 0.041891), (13, 0.042581), (14, 0.059082), (15, 0.059635),
-        (16, 0.062983), (17, 0.065768), (18, 0.072797), (19, 0.087792), (20, 0.118281),
-        (21, 0.175609), (22, 0.290589), (23, 0.528345), (24, 0.984260), (25, 2.514567),
-        (26, 4.362111), (27, 8.083584), (28, 15.464652), (29, 30.176542), (30, 59.670022),
-        (31, 124.634344), (32, 249.845147),
+        (1, 0.002188), (2, 0.014000), (3, 0.013891), (4, 0.014583), (5, 0.015249),
+        (6, 0.017398), (7, 0.020372), (8, 0.018037), (9, 0.016055), (10, 0.020164),
+        (11, 0.016966), (12, 0.019843), (13, 0.022574), (14, 0.027063), (15, 0.027434),
+        (16, 0.027102), (17, 0.032768), (18, 0.040864), (19, 0.053264), (20, 0.089465),
+        (21, 0.128854), (22, 0.184307), (23, 0.366045), (24, 0.560894), (25, 0.945161),
+        (26, 2.313375), (27, 4.018002), (28, 8.228936), (29, 17.523359), (30, 30.760987),
+        (31, 46.230970), (32, 87.164247),
     ],
     "frobenius_cnf": [
-        (1, 0.001483), (2, 0.080112), (3, 0.104678), (4, 0.103452), (5, 0.102904),
-        (6, 0.103139), (7, 0.102652), (8, 0.105553), (9, 0.110794), (10, 0.108892),
-        (11, 0.108415), (12, 0.109714), (13, 0.110023), (14, 0.125245), (15, 0.128901),
-        (16, 0.127796), (17, 0.130443), (18, 0.136945), (19, 0.146381), (20, 0.169332),
-        (21, 0.215628), (22, 0.307270), (23, 0.502963), (24, 0.859386), (25, 2.269195),
-        (26, 3.687928), (27, 6.821121), (28, 12.674746), (29, 30.148723), (30, 54.117110),
-        (31, 108.417972), (32, 197.827524),
+        (1, 0.001544), (2, 0.040492), (3, 0.046867), (4, 0.040975), (5, 0.055026),
+        (6, 0.041940), (7, 0.043326), (8, 0.050412), (9, 0.052701), (10, 0.049640),
+        (11, 0.040033), (12, 0.043267), (13, 0.051063), (14, 0.051202), (15, 0.056639),
+        (16, 0.054323), (17, 0.055987), (18, 0.079808), (19, 0.088226), (20, 0.096505),
+        (21, 0.116356), (22, 0.175317), (23, 0.313538), (24, 0.485168), (25, 1.068982),
+        (26, 2.363849), (27, 3.975995), (28, 7.013051), (29, 15.918029), (30, 33.322854),
+        (31, 60.887856), (32, 106.622241),
     ],
     "cadical_cnf": [
         (1, 0.002081), (2, 0.089583), (3, 0.104077), (4, 0.104277), (5, 0.347259),
@@ -88,8 +90,8 @@ TIMEOUT_KS: dict[str, list[int]] = {
 # Post-knee asymptotic log-linear fits T(k) = a * 2^(alpha * k) (skipping initial flat low-k regimes!)
 # Format: (c0_sec, a_sec, alpha, k_start, k_end)
 M1_FITS: dict[str, tuple[float, float, float, float, float]] = {
-    "frobenius_aig": (0.0, 1.016e-7, 0.9730, 22.0, 32.0),   # OLS k>=22 (R2=0.9990)
-    "frobenius_cnf": (0.0, 1.318e-7, 0.9530, 22.0, 32.0),   # OLS k>=22 (R2=0.9980)
+    "frobenius_aig": (0.0, 1.704e-7, 0.9085, 22.0, 32.0),   # OLS k>=22 (R2=0.9967)
+    "frobenius_cnf": (0.0, 8.156e-8, 0.9483, 22.0, 32.0),   # OLS k>=22 (R2=0.9980)
     "dense_cnf":     (0.0, 7.908e-3, 0.8764, 12.0, 18.0),   # Tobit k>=12 (+3 T/Os)
     "cadical_cnf":   (0.0, 9.902e-3, 0.8280, 10.0, 18.5),   # Tobit k>=10 (+3 T/Os)
     "kissat_cnf":    (0.0, 5.412e-4, 1.1929, 10.0, 16.5),   # Tobit k>=10 (+3 T/Os)
@@ -98,8 +100,8 @@ M1_FITS: dict[str, tuple[float, float, float, float, float]] = {
 }
 
 TRACK_STYLE = [
-    ("frobenius_cnf", "Frobenius 1C (.cnf)",   "#0284c7", "32/32", "k≥22: α=0.953 (1.94×)", "3.30 min*", "diamond",  ""),
-    ("frobenius_aig", "Frobenius 1C (.aig)",   "#059669", "32/32", "k≥22: α=0.973 (1.96×)", "4.16 min*", "circle",   ""),
+    ("frobenius_aig", "Frobenius 1C (.aig)",   "#059669", "32/32", "k≥22: α=0.909 (1.88×)", "1.45 min*", "circle",   ""),
+    ("frobenius_cnf", "Frobenius 1C (.cnf)",   "#0284c7", "32/32", "k≥22: α=0.948 (1.93×)", "1.78 min*", "diamond",  ""),
     ("cadical_cnf",   "CaDiCaL 3.1.0 (.cnf)",  "#d97706", "17/32", "k≥10: α=0.828† (1.78×)", "10.8 d†",  "square",   ""),
     ("dense_cnf",     "dense-solver 0.0.4",    "#7c3aed", "17/32", "k≥12: α=0.876† (1.84×)", "25.4 d†",  "triangle", ""),
     ("kissat_cnf",    "Kissat 4.0.4 (.cnf)",   "#dc2626", "15/32", "k≥10: α=1.193† (2.29×)", "5.31 yr†", "circle",   ""),
@@ -158,12 +160,12 @@ def build_svg() -> str:
         '<text x="24" y="32" font-size="16.8" font-weight="700" fill="#0f172a">'
         "FIPS 180-4 SHA-256 (64-Round) Nonce Scaling: k = 1..32 Unknown Bits</text>",
         '<text x="24" y="51" font-size="11.1" fill="#475569">'
-        "Single-core wall-clock T(k) on AMD Ryzen 9 5950X (core 12, Tₘₐₓ = 300 s, W₀ = 0x9E3779B9, "
-        "290/290 SAT verified) · 5 engines (7 tracks)</text>",
+        "Single-core wall-clock T(k) on AMD Ryzen 9 5950X (Tₘₐₓ = 300 s, W₀ = 0x9E3779B9, "
+        "302/302 SAT verified) · 5 engines (7 tracks)</text>",
         '<line x1="22" y1="62" x2="898" y2="62" stroke="#e2e8f0" stroke-width="1.2"/>',
     ]
 
-    # Plot frame & cliff-free regime background tints (smooth Stage 0C -> unified CompiledAig256 k=14..32)
+    # Plot frame & cliff-free regime background tints (smooth Stage 0C -> unified WordDag/BitSliceJit k=14..32)
     parts.append(f'<rect x="{px0}" y="{py0}" width="{pw}" height="{ph}" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
     rx_s0 = mx(1.5)
     rx_s1 = mx(13.5)
@@ -171,8 +173,8 @@ def build_svg() -> str:
     parts.append(f'<rect x="{rx_s1:.1f}" y="{py0 + 1}" width="{px1 - rx_s1 - 1:.1f}" height="{ph - 2}" fill="#ecfdf5" opacity="0.62"/>')
 
     # Regime header badges cleanly inside top band (above 300s line, y = py0 + 14)
-    parts.append(f'<text x="{(rx_s0 + rx_s1)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.3" font-weight="700" fill="#1d4ed8">Stage 0C (k=2..13)</text>')
-    parts.append(f'<text x="{(rx_s1 + px1)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.3" font-weight="700" fill="#047857">Unified 2048-lane CompiledAig256 AVX2 (k=14..32, zero k≤24 cliff)</text>')
+    parts.append(f'<text x="{(rx_s0 + rx_s1)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.2" font-weight="700" fill="#1d4ed8">Stage 0C (k=2..13)</text>')
+    parts.append(f'<text x="{(rx_s1 + px1)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Stage 0F WordDag / BitSliceJit AVX2 + Escalation (k=14..32)</text>')
 
     # Horizontal grid lines & Y-axis labels
     y_ticks = [
@@ -269,19 +271,19 @@ def build_svg() -> str:
             parts.append(f'<path d="M {xt - 3.3:.1f} {y300 - 3.3:.1f} L {xt + 3.3:.1f} {y300 + 3.3:.1f} M {xt - 3.3:.1f} {y300 + 3.3:.1f} L {xt + 3.3:.1f} {y300 - 3.3:.1f}" stroke="{color}" stroke-width="1.6"/>')
 
     # Clean in-plot callouts (placed in guaranteed open whitespace!)
-    # Callout 1: Smooth fixed-floor -> 2^k search crossover knee around k* ≈ 19.8 (.aig) / 21.3 (.cnf)
+    # Callout 1: Smooth fixed-floor -> 2^k search crossover knee around k* ≈ 18.9 (.aig) / 20.8 (.cnf)
     cx1 = mx(18.6)
     cy1 = my(38.0)
     parts.append(f'<rect x="{cx1:.1f}" y="{cy1:.1f}" width="154" height="31" rx="4" fill="#ffffff" stroke="#047857" stroke-width="0.95" opacity="0.96"/>')
-    parts.append(f'<text x="{cx1 + 77:.1f}" y="{cy1 + 12.5:.1f}" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Overhead → 2ᵏ knee (k*≈20–21)</text>')
-    parts.append(f'<text x="{cx1 + 77:.1f}" y="{cy1 + 24.5:.1f}" text-anchor="middle" font-size="7.7" fill="#334155">a·2ᵏ* = c₀ (58–123 ms floor)</text>')
+    parts.append(f'<text x="{cx1 + 77:.1f}" y="{cy1 + 12.5:.1f}" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Overhead → 2ᵏ knee (k*≈19–21)</text>')
+    parts.append(f'<text x="{cx1 + 77:.1f}" y="{cy1 + 24.5:.1f}" text-anchor="middle" font-size="7.7" fill="#334155">a·2^(αk*) = c₀ (26–57 ms floor)</text>')
 
     # Callout 2: Full 32-bit T(32) solved inside 300 s (open lower-right whitespace below k=25..32 curve)
     cx2 = mx(24.7)
     cy2 = my(0.085)
-    parts.append(f'<rect x="{cx2:.1f}" y="{cy2:.1f}" width="136" height="31" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="0.95" opacity="0.96"/>')
-    parts.append(f'<text x="{cx2 + 68:.1f}" y="{cy2 + 12.5:.1f}" text-anchor="middle" font-size="8.2" font-weight="700" fill="#0369a1">32/32 solved (&lt;300 s, 1C!)</text>')
-    parts.append(f'<text x="{cx2 + 68:.1f}" y="{cy2 + 24.5:.1f}" text-anchor="middle" font-size="7.8" fill="#334155">T(32): 3.30m .cnf · 4.16m .aig</text>')
+    parts.append(f'<rect x="{cx2:.1f}" y="{cy2:.1f}" width="136" height="31" rx="4" fill="#ffffff" stroke="#059669" stroke-width="0.95" opacity="0.96"/>')
+    parts.append(f'<text x="{cx2 + 68:.1f}" y="{cy2 + 12.5:.1f}" text-anchor="middle" font-size="8.2" font-weight="700" fill="#047857">32/32 solved (&lt;300 s, 1C!)</text>')
+    parts.append(f'<text x="{cx2 + 68:.1f}" y="{cy2 + 24.5:.1f}" text-anchor="middle" font-size="7.8" fill="#334155">T(32): 1.45m .aig · 1.78m .cnf</text>')
 
     # Callout 3: k=1 symbolic collapse
     parts.append(f'<text x="{mx(1.4):.1f}" y="{my(0.00125) + 3:.1f}" font-size="7.8" fill="#64748b">k=1: 0-AND collapse</text>')
@@ -310,7 +312,7 @@ def build_svg() -> str:
         parts.append(f'<text x="{lx + lw - 11}" y="{ry + 14.5}" text-anchor="end" font-family="{FONT_MONO}" font-size="7.9" fill="#334155">T₃₂:{t32_s}</text>')
 
     parts.append(f'<line x1="{lx + 10}" y1="{ly + lh - 29}" x2="{lx + lw - 10}" y2="{ly + lh - 29}" stroke="#e2e8f0" stroke-width="1"/>')
-    parts.append(f'<text x="{lx + 11}" y="{ly + lh - 17}" font-size="7.3" fill="#64748b">*Actual measured 1C T(32) (&lt;300s, k≥22 R²≥0.998)</text>')
+    parts.append(f'<text x="{lx + 11}" y="{ly + lh - 17}" font-size="7.3" fill="#64748b">*Actual measured 1C T(32) (&lt;300s, k≥22 R²≥0.996)</text>')
     parts.append(f'<text x="{lx + 11}" y="{ly + lh - 6.5}" font-size="7.3" fill="#64748b">†Post-knee Tobit MLE (+3 T/Os); skips flat low-k floors</text>')
 
     # ===================== BOTTOM 3 CALLOUT CARDS =====================
@@ -326,19 +328,19 @@ def build_svg() -> str:
         ),
         (
             318, 284, "#ecfdf5", "#a7f3d0", "#047857",
-            "2. Cliff-Free 2048-Lane AVX2 (32/32)",
-            "• .cnf: 32/32, T(32)=3.30m (12.8M evals/s)",
-            "• .aig: 32/32, T(32)=4.16m (11.2M evals/s)",
-            "• k≥22 log-linear: α=0.953 (.cnf) / 0.973 (.aig)",
-            "• 22.2–30.9× lower PAR-2 than all CDCL tracks",
+            "2. WordDag + BitSliceJit AVX2 (32/32)",
+            "• .aig: 32/32, T(32)=1.45m (30.3M evals/s)",
+            "• .cnf: 32/32, T(32)=1.78m (22.3M evals/s)",
+            "• k≥22 log-linear: α=0.909 (.aig) / 0.948 (.cnf)",
+            "• 46.9–65.2× lower PAR-2 than all CDCL tracks",
         ),
         (
             616, 282, "#eff6ff", "#bfdbfe", "#1d4ed8",
             "3. Post-Knee Asymptotic Scaling (M0)",
             "• Pure log-linear M0 wins every post-knee fit",
             "• Skips flat floors (Frob&lt;22, CDCL&lt;10/12, CMS=1)",
-            "• 2,258–847,000× faster T(32) than CDCL",
-            "• 290/290 SAT models verified (0 BADSAT)",
+            "• 5,125–1,923,000× faster T(32) than CDCL",
+            "• 302/302 SAT models verified (0 BADSAT)",
         ),
     ]
     for cx, cw, bg, bd, hdr_c, title, l1, l2, l3, l4 in cards:
@@ -375,15 +377,15 @@ def build_growth_analysis_svg() -> str:
     ]
 
     # Track data ordered by T(32) / performance (exact post-knee linear-regime fits!)
-    # (short_label, color, alpha_ols, alpha_tobit_or_none, t32_sec, t32_label, speedup_vs_frob_cnf, daicc_m2, daicc_m3, daicc_m4)
+    # (short_label, color, alpha_ols, alpha_tobit_or_none, t32_sec, t32_label, speedup_vs_frob_aig, daicc_m2, daicc_m3, daicc_m4)
     rows = [
-        ("Frobenius (.cnf)", "#0284c7", 0.9530, None,   197.83,            "3.30 min*", "1.0×",      -4.16,  -4.19,  -4.25),
-        ("Frobenius (.aig)", "#059669", 0.9730, None,   249.85,            "4.16 min*", "1.3×",      -5.19,  -5.19,  -5.18),
-        ("CMS (.cnf)",       "#475569", 0.5337, 0.5380, 5.17*86400,        "5.17 d†",   "2,258×",    -5.24,  -5.24,  -5.23),
-        ("CaDiCaL (.cnf)",   "#d97706", 0.4547, 0.8280, 10.84*86400,       "10.8 d†",   "4,734×",    -6.24,  -6.10,  -8.96),
-        ("dense (.cnf)",     "#7c3aed", 0.8285, 0.8764, 25.36*86400,       "25.4 d†",   "11,076×",  -29.13, -29.08, -29.62),
-        ("CMS (.xcnf)",      "#db2777", 0.7096, 0.7905, 256.27*86400,      "256.3 d†",  "111,923×",  +4.81,  +3.11,  +0.04),
-        ("Kissat (.cnf)",    "#dc2626", 0.8075, 1.1929, 5.31*365.25*86400, "5.31 yr†",  "847,000×", -30.00, -30.00, -30.00),
+        ("Frobenius (.aig)", "#059669", 0.90852, None,  87.16,             "1.45 min*", "1.0×",      -5.15,  -5.13,  -5.11),
+        ("Frobenius (.cnf)", "#0284c7", 0.9483, None,   106.62,            "1.78 min*", "1.2×",      -3.93,  -3.99,  -4.08),
+        ("CMS (.cnf)",       "#475569", 0.5337, 0.5380, 5.17*86400,        "5.17 d†",   "5,125×",    -5.24,  -5.24,  -5.23),
+        ("CaDiCaL (.cnf)",   "#d97706", 0.4547, 0.8280, 10.84*86400,       "10.8 d†",   "10,742×",   -6.24,  -6.10,  -8.96),
+        ("dense (.cnf)",     "#7c3aed", 0.8285, 0.8764, 25.36*86400,       "25.4 d†",   "25,136×",  -29.13, -29.08, -29.62),
+        ("CMS (.xcnf)",      "#db2777", 0.7096, 0.7905, 256.27*86400,      "256.3 d†",  "254,000×",  +4.81,  +3.11,  +0.04),
+        ("Kissat (.cnf)",    "#dc2626", 0.8075, 1.1929, 5.31*365.25*86400, "5.31 yr†",  "1.92M×",   -30.00, -30.00, -30.00),
     ]
 
     # ===================== PANEL A (TOP-LEFT): DOUBLING EXPONENT alpha =====================
@@ -438,10 +440,10 @@ def build_growth_analysis_svg() -> str:
     bx0, by0, bw_box, bh_box = 462, 74, 434, 286
     parts.append(f'<rect x="{bx0}" y="{by0}" width="{bw_box}" height="{bh_box}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
     parts.append(f'<text x="{bx0 + 12}" y="{by0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">B. Full 32-Bit Nonce Inversion Time T(32)  [log scale]</text>')
-    parts.append(f'<text x="{bx0 + 12}" y="{by0 + 34}" font-size="8.6" fill="#64748b">Measured 1C (3.3–4.2 min) vs. Post-Knee Tobit CDCL (5.2 d – 5.3 yr)</text>')
+    parts.append(f'<text x="{bx0 + 12}" y="{by0 + 34}" font-size="8.6" fill="#64748b">Measured 1C (1.45–1.78 min) vs. Post-Knee Tobit CDCL (5.2 d – 5.3 yr)</text>')
 
     qpx0, qpy0, qpw, qph = bx0 + 112, by0 + 48, 304, 206
-    lt_min, lt_max = 1.8, 8.6
+    lt_min, lt_max = 1.6, 8.6
     def bx_map(t_sec: float) -> float:
         lt = max(lt_min, min(lt_max, math.log10(t_sec)))
         return qpx0 + (lt - lt_min) / (lt_max - lt_min) * qpw
