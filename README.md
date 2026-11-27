@@ -1,23 +1,23 @@
 # SAT Benchmarks
 
-A curated, **four-format** (**Binary AIGER 1.9 `.aig.xz`**, **DIMACS `.cnf.xz`**, **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`**, and **DIMACS-ANF `.anf.xz`**) repository of **91 standalone top-level collections** (**87 SAT collections** totaling **1,080 instances** and **4,312 compressed SAT benchmark files** across all four formats, **2 MATA NFA collections** totaling **174 `.mata.xz` files**, and **2 URI-manifest collections** indexing the complete 25-year SAT Competition & SAT-Race archive plus all 97 UBC SATLIB archives, with bespoke reproducible **`diagram.svg`** vector illustrations across all **91 / 91** collections) spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, bilinear tensor decomposition & exact/modular matrix inversion, rectangle-free grid coloring, OEIS combinatorial frontiers (sorting/selection networks, Golomb rulers, van der Waerden numbers, peaceable queens, Zarankiewicz numbers, grid point patterns), Picat-SAT combinatorial encodings (VMTL, Golomb rulers, Costas arrays, MAPF, Numberlink, rectangle packing), graph theory, combinatorial chessboard puzzles, symmetry breaking, exact circuit synthesis, hardware/SHA-256 verification, finite-automata complementation, SATLIB/DIMACS classics, and SAT Competition corpora. All benchmark input files across the repository are stored xz-compressed (`.xz`) and strictly respect GitHub's `< 95 MB` per-file limit.
+A curated, **four-format** (**Binary AIGER 1.9 `.aig.xz`**, **DIMACS `.cnf.xz`**, **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`**, and **DIMACS-ANF `.anf.xz`**) repository of **92 standalone top-level collections** (**88 SAT collections** totaling **1,097 instances** and **4,380 compressed SAT benchmark files** across all four formats, **2 MATA NFA collections** totaling **174 `.mata.xz` files**, and **2 URI-manifest collections** indexing the complete 25-year SAT Competition & SAT-Race archive plus all 97 UBC SATLIB archives, with bespoke reproducible **`diagram.svg`** vector illustrations across all **92 / 92** collections) spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, bilinear tensor decomposition & exact/modular matrix inversion, rectangle-free grid coloring, OEIS combinatorial frontiers (sorting/selection networks, Golomb rulers, van der Waerden numbers, peaceable queens, Zarankiewicz numbers, grid point patterns), Picat-SAT combinatorial encodings (VMTL, Golomb rulers, Costas arrays, MAPF, Numberlink, rectangle packing), graph theory, combinatorial chessboard puzzles, symmetry breaking, exact circuit synthesis, hardware/SHA-256 verification, finite-automata complementation, SATLIB/DIMACS classics, and SAT Competition corpora. All benchmark input files across the repository are stored xz-compressed (`.xz`) and strictly respect GitHub's `< 95 MB` per-file limit.
 
 ## Uniform Collection Layout
 
 Every collection lives at the repository root in its own self-contained directory (`<collection>/`) with **zero** benchmark files at collection root:
 
-- **`README.md`** — Uniform 6-section page layout across all **91 / 91** collections: hero `diagram.svg` figure immediately below the title, followed by `## Provenance & Credit` (with `- **Recommended by:**` last when present), `## Problem Description`, `## Corpus & Data Sizes`, `## Benchmark Results` (Frobenius 1C, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0, [dense-solver](https://github.com/libdense/dense-solver) 0.0.4, [Kissat](https://github.com/arminbiere/kissat) 4.0.4, plus [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim) certification), `## Phase-Transition & Structural Analysis` (or `## Automata Structural Analysis`), and `## References`.
-- **`diagram.svg`** + **`src/gen_diagram.py`** — Reproducible bespoke vector illustration across all **91 / 91** collections, generated directly from real benchmark instances or problem geometry.
-- **`expected.tsv`** — Top-level 2-column ground-truth verdict manifest (`<instance_without_.xz>\t<SAT|UNSAT|UNKNOWN>`, no header, sorted alphabetically by instance name) across **90 / 91** collections (**21,479 rows**: `8,626 SAT / 6,195 UNSAT / 6,658 UNKNOWN`), covering 1-to-1 every file in `*-orig/` (flat relative POSIX paths such as `sortnet_n11_d7.cnf`, `bar.aig`, `aes256_r14_k256_dual_sat.xcnf`, `ARI056_1.mata`, plus `<hash>.cnf` entries for URI-only instance corpora and complementation verdicts for MATA NFAs), programmatically validated by [`src/verify_expected.py`](src/verify_expected.py).
-- **`<orig-fmt>-orig/`** — Native original compressed files directly inside: `aig-orig/` (10 collections, 84 instances), `cnf-orig/` (76 collections, 986 instances), `xcnf-orig/` (1 collection, 10 instances), or `mata-orig/` (2 NFA collections, 174 automata).
+- **`README.md`** — Uniform 6-section page layout across all **92 / 92** collections: hero `diagram.svg` figure immediately below the title, followed by `## Provenance & Credit` (with `- **Recommended by:**` last when present), `## Problem Description`, `## Corpus & Data Sizes`, `## Benchmark Results` (Frobenius 1C, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0, [dense-solver](https://github.com/libdense/dense-solver) 0.0.4, [Kissat](https://github.com/arminbiere/kissat) 4.0.4, plus [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim) certification), `## Phase-Transition & Structural Analysis` (or `## Automata Structural Analysis`), and `## References`.
+- **`diagram.svg`** + **`src/gen_diagram.py`** — Reproducible bespoke vector illustration across all **92 / 92** collections, generated directly from real benchmark instances or problem geometry.
+- **`expected.tsv`** — Top-level 2-column ground-truth verdict manifest (`<instance_without_.xz>\t<SAT|UNSAT|UNKNOWN>`, no header, sorted alphabetically by instance name) across **91 / 92** collections (**21,496 rows**: `8,642 SAT / 6,196 UNSAT / 6,658 UNKNOWN`), covering 1-to-1 every file in `*-orig/` (flat relative POSIX paths such as `sortnet_n11_d7.cnf`, `bar.aig`, `aes256_r14_k256_dual_sat.xcnf`, `ARI056_1.mata`, plus `<hash>.cnf` entries for URI-only instance corpora and complementation verdicts for MATA NFAs), programmatically validated by [`src/verify_expected.py`](src/verify_expected.py).
+- **`<orig-fmt>-orig/`** — Native original compressed files directly inside: `aig-orig/` (11 collections, 101 instances), `cnf-orig/` (76 collections, 986 instances), `xcnf-orig/` (1 collection, 10 instances), or `mata-orig/` (2 NFA collections, 174 automata).
 - **`<conv-fmt>-converted/`** — Exact lossless conversions for all remaining SAT formats directly inside (with any `> 95 MB` GitHub-limit omissions explicitly documented in `<collection>/format_exclusions.tsv` and validated by [`src/verify_expected.py`](src/verify_expected.py)):
-  - `aig-converted/` (or `aig-orig/`): **1,076 / 1,080** **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT; `218.55 MB` total, verified via [Berkeley **ABC**](https://github.com/berkeley-abc/abc) `read_aiger` / binary AIGER 1.9 decode & witness simulation, `0` errors; 4 largest `guillochon-oeis-a067782-sortnet` files `> 95 MB` omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
-  - `cnf-converted/` (or `cnf-orig/`): **1,080 / 1,080** **DIMACS `.cnf.xz`** (`385.13 MB` total).
-  - `xcnf-converted/` (or `xcnf-orig/`): **1,080 / 1,080** **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** (`357.99 MB` total, with complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
-  - `anf-converted/`: **1,076 / 1,080** **DIMACS-ANF `.anf.xz`** (`360.38 MB` total, linear-size degree-$\le 2$ from `aig-orig/` and degree-$\le 3$ from `xcnf-orig/` / `xcnf-converted/`, generated via [`src/to_anf.py`](src/to_anf.py); same 4 `> 95 MB` `guillochon-oeis-a067782-sortnet` files omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
+  - `aig-converted/` (or `aig-orig/`): **1,093 / 1,097** **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT; `226.28 MB` total, verified via [Berkeley **ABC**](https://github.com/berkeley-abc/abc) `read_aiger` / binary AIGER 1.9 decode & witness simulation, `0` errors; 4 largest `guillochon-oeis-a067782-sortnet` files `> 95 MB` omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
+  - `cnf-converted/` (or `cnf-orig/`): **1,097 / 1,097** **DIMACS `.cnf.xz`** (`457.93 MB` total).
+  - `xcnf-converted/` (or `xcnf-orig/`): **1,097 / 1,097** **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** (`407.51 MB` total, with complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
+  - `anf-converted/`: **1,093 / 1,097** **DIMACS-ANF `.anf.xz`** (`405.17 MB` total, linear-size degree-$\le 2$ from `aig-orig/` and degree-$\le 3$ from `xcnf-orig/` / `xcnf-converted/`, generated via [`src/to_anf.py`](src/to_anf.py); same 4 `> 95 MB` `guillochon-oeis-a067782-sortnet` files omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
 - **`src/`** — Standalone generator, exporter, fetcher, diagram, or converter source code (alongside repository-wide [`src/to_anf.py`](src/to_anf.py), [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py), and [`src/verify_expected.py`](src/verify_expected.py)).
 
-## Benchmark Collections (91 Collections)
+## Benchmark Collections (92 Collections)
 
 <table width="100%" cellpadding="12" cellspacing="0">
   <tr>
@@ -335,6 +335,11 @@ Every collection lives at the repository root in its own self-contained director
       <sub><code>rb-bench-model-rb</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
+      <a href="rsa-ntt-factoring/README.md"><img src="rsa-ntt-factoring/diagram.svg" width="230" alt="O(n log n) Fermat-Prime NTT RSA Factoring Circuits"></a><br><br>
+      <a href="rsa-ntt-factoring/README.md"><b><i>O</i>(<i>n</i> log <i>n</i>) Fermat-Prime NTT RSA Factoring Circuits</b></a><br>
+      <sub><code>rsa-ntt-factoring</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
       <a href="sat-competition-2002-2026-uris/README.md"><img src="sat-competition-2002-2026-uris/diagram.svg" width="230" alt="International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)"></a><br><br>
       <a href="sat-competition-2002-2026-uris/README.md"><b>International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)</b></a><br>
       <sub><code>sat-competition-2002-2026-uris</code></sub>
@@ -344,13 +349,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="sat-shortcut-challenge-tier1/README.md"><b>SAT Shortcut Challenge — Tier 1 Structured Suite</b></a><br>
       <sub><code>sat-shortcut-challenge-tier1</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="sat-shortcut-challenge-tier3/README.md"><img src="sat-shortcut-challenge-tier3/diagram.svg" width="230" alt="SAT Shortcut Challenge — Tier 3 Random 3-SAT Suite"></a><br><br>
       <a href="sat-shortcut-challenge-tier3/README.md"><b>SAT Shortcut Challenge — Tier 3 Random 3-SAT Suite</b></a><br>
       <sub><code>sat-shortcut-challenge-tier3</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-ais/README.md"><img src="satlib-ais/diagram.svg" width="230" alt="SATLIB — All-Interval Series (full)"></a><br><br>
       <a href="satlib-ais/README.md"><b>SATLIB — All-Interval Series (full)</b></a><br>
@@ -366,13 +371,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="satlib-beijing/README.md"><b>SATLIB — 1996 Beijing SAT Competition (full)</b></a><br>
       <sub><code>satlib-beijing</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-bmc/README.md"><img src="satlib-bmc/diagram.svg" width="230" alt="SATLIB — Bounded Model Checking — Shtrichman (full)"></a><br><br>
       <a href="satlib-bmc/README.md"><b>SATLIB — Bounded Model Checking — Shtrichman (full)</b></a><br>
       <sub><code>satlib-bmc</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-bms-rti/README.md"><img src="satlib-bms-rti/diagram.svg" width="230" alt="SATLIB — Backbone-Minimal Random 3-SAT (sample / 1,000*)"></a><br><br>
       <a href="satlib-bms-rti/README.md"><b>SATLIB — Backbone-Minimal Random 3-SAT (sample / 1,000*)</b></a><br>
@@ -388,13 +393,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="satlib-dimacs-aim/README.md"><b>SATLIB — Artificial Random 3-SAT — Iwama et al. (full)</b></a><br>
       <sub><code>satlib-dimacs-aim</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-dimacs-bf/README.md"><img src="satlib-dimacs-bf/diagram.svg" width="230" alt="SATLIB — Circuit Bridge-Fault Analysis (full)"></a><br><br>
       <a href="satlib-dimacs-bf/README.md"><b>SATLIB — Circuit Bridge-Fault Analysis (full)</b></a><br>
       <sub><code>satlib-dimacs-bf</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-dimacs-dubois/README.md"><img src="satlib-dimacs-dubois/diagram.svg" width="230" alt="SATLIB — Dubois Hard Parity UNSAT (full)"></a><br><br>
       <a href="satlib-dimacs-dubois/README.md"><b>SATLIB — Dubois Hard Parity UNSAT (full)</b></a><br>
@@ -410,13 +415,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="satlib-dimacs-hanoi/README.md"><b>SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)</b></a><br>
       <sub><code>satlib-dimacs-hanoi</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-dimacs-ii/README.md"><img src="satlib-dimacs-ii/diagram.svg" width="230" alt="SATLIB — Inductive Inference (full)"></a><br><br>
       <a href="satlib-dimacs-ii/README.md"><b>SATLIB — Inductive Inference (full)</b></a><br>
       <sub><code>satlib-dimacs-ii</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-dimacs-jnh/README.md"><img src="satlib-dimacs-jnh/diagram.svg" width="230" alt="SATLIB — Variable-Length Random SAT — Hooker (full)"></a><br><br>
       <a href="satlib-dimacs-jnh/README.md"><b>SATLIB — Variable-Length Random SAT — Hooker (full)</b></a><br>
@@ -432,13 +437,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="satlib-dimacs-parity/README.md"><b>SATLIB — Parity Learning par8 / par16 / par32 (full)</b></a><br>
       <sub><code>satlib-dimacs-parity</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-dimacs-phole/README.md"><img src="satlib-dimacs-phole/diagram.svg" width="230" alt="SATLIB — Pigeonhole Principle hole6..10 (full)"></a><br><br>
       <a href="satlib-dimacs-phole/README.md"><b>SATLIB — Pigeonhole Principle hole6..10 (full)</b></a><br>
       <sub><code>satlib-dimacs-phole</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-dimacs-ssa/README.md"><img src="satlib-dimacs-ssa/diagram.svg" width="230" alt="SATLIB — Single-Stuck-At Circuit Faults (full)"></a><br><br>
       <a href="satlib-dimacs-ssa/README.md"><b>SATLIB — Single-Stuck-At Circuit Faults (full)</b></a><br>
@@ -454,13 +459,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="satlib-planning-blocksworld/README.md"><b>SATLIB — SATPLAN Blocks World (full)</b></a><br>
       <sub><code>satlib-planning-blocksworld</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-planning-logistics/README.md"><img src="satlib-planning-logistics/diagram.svg" width="230" alt="SATLIB — SATPLAN Logistics a..d (full)"></a><br><br>
       <a href="satlib-planning-logistics/README.md"><b>SATLIB — SATPLAN Logistics a..d (full)</b></a><br>
       <sub><code>satlib-planning-logistics</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="satlib-qg/README.md"><img src="satlib-qg/diagram.svg" width="230" alt="SATLIB — Quasigroup / Latin Squares — Zhang (full)"></a><br><br>
       <a href="satlib-qg/README.md"><b>SATLIB — Quasigroup / Latin Squares — Zhang (full)</b></a><br>
@@ -476,13 +481,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="satlib-sw-gcp/README.md"><b>SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)</b></a><br>
       <sub><code>satlib-sw-gcp</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="sha256-64r-nonce-scaling/README.md"><img src="sha256-64r-nonce-scaling/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 64-Round Nonce-Scaling Benchmark"></a><br><br>
       <a href="sha256-64r-nonce-scaling/README.md"><b>FIPS 180-4 SHA-256 64-Round Nonce-Scaling Benchmark</b></a><br>
       <sub><code>sha256-64r-nonce-scaling</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="sha256-preimage/README.md"><img src="sha256-preimage/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 Preimage Circuits"></a><br><br>
       <a href="sha256-preimage/README.md"><b>FIPS 180-4 SHA-256 Preimage Circuits</b></a><br>
@@ -498,13 +503,13 @@ Every collection lives at the repository root in its own self-contained director
       <a href="vlsat-2/README.md"><b>VLSAT-2 Benchmark Suite (INRIA / CADP)</b></a><br>
       <sub><code>vlsat-2</code></sub>
     </td>
+  </tr>
+  <tr>
     <td width="25%" align="center" valign="top">
       <a href="vzhn-sat-inv-matrix-int/README.md"><img src="vzhn-sat-inv-matrix-int/diagram.svg" width="230" alt="Exact Integer Matrix Inversion over ℤ"></a><br><br>
       <a href="vzhn-sat-inv-matrix-int/README.md"><b>Exact Integer Matrix Inversion over ℤ</b></a><br>
       <sub><code>vzhn-sat-inv-matrix-int</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
       <a href="vzhn-sat-inv-matrix-mod/README.md"><img src="vzhn-sat-inv-matrix-mod/diagram.svg" width="230" alt="Modular Ring Matrix Inversion over ℤ/mℤ"></a><br><br>
       <a href="vzhn-sat-inv-matrix-mod/README.md"><b>Modular Ring Matrix Inversion over ℤ/<i>m</i>ℤ</b></a><br>
@@ -520,11 +525,10 @@ Every collection lives at the repository root in its own self-contained director
       <a href="zed-adversarial-php/README.md"><b>Adversarial Scaled AIGER Pigeonhole Principle Circuits</b></a><br>
       <sub><code>zed-adversarial-php</code></sub>
     </td>
-    <td width="25%"></td>
   </tr>
 </table>
 
-**Archive & Aggregate Notes:** [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) stores 62 immutable GBD URI lists (`uris/<track>_<year>.uri`, 25 consecutive years 2002–2026 across 14 track categories, 32,194 track-year slots $\to$ **20,225 unique CNFs**: `7,818 SAT / 5,792 UNSAT / 6,615 UNKNOWN`), [`vlsat-2/vlsat2_100.uri`](vlsat-2/vlsat2_100.uri) stores all 100 INRIA URLs, and [`satlib-archive-uris/satlib_all_97_archives.uri`](satlib-archive-uris/satlib_all_97_archives.uri) stores all 97 official UBC SATLIB `.tar.gz` archive URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **1,080 SAT benchmark instances** across **87 SAT collections** are committed across all four formats (**1,076** verified Binary AIGER 1.9 `.aig.xz`, **1,080** DIMACS `.cnf.xz`, **1,080** [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`, and **1,076** DIMACS-ANF `.anf.xz` = **4,312** xz-compressed SAT benchmark files, `1,322.05 MB` total; 4 largest `guillochon-oeis-a067782-sortnet` `.aig.xz`/`.anf.xz` files omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv) for GitHub's `< 95 MB` limit), alongside **174 `.mata.xz` NFA benchmarks** (`2.61 MB`), **29 verified OEIS solution certificates** across `guillochon-oeis-*/solutions/` (`174.57 MB`), **91 / 91** bespoke `diagram.svg` vector illustrations, and full generator/converter scripts.
+**Archive & Aggregate Notes:** [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) stores 62 immutable GBD URI lists (`uris/<track>_<year>.uri`, 25 consecutive years 2002–2026 across 14 track categories, 32,194 track-year slots $\to$ **20,225 unique CNFs**: `7,818 SAT / 5,792 UNSAT / 6,615 UNKNOWN`), [`vlsat-2/vlsat2_100.uri`](vlsat-2/vlsat2_100.uri) stores all 100 INRIA URLs, and [`satlib-archive-uris/satlib_all_97_archives.uri`](satlib-archive-uris/satlib_all_97_archives.uri) stores all 97 official UBC SATLIB `.tar.gz` archive URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **1,097 SAT benchmark instances** across **88 SAT collections** are committed across all four formats (**1,093** verified Binary AIGER 1.9 `.aig.xz`, **1,097** DIMACS `.cnf.xz`, **1,097** [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`, and **1,093** DIMACS-ANF `.anf.xz` = **4,380** xz-compressed SAT benchmark files, `1,496.89 MB` total; 4 largest `guillochon-oeis-a067782-sortnet` `.aig.xz`/`.anf.xz` files omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv) for GitHub's `< 95 MB` limit), alongside **174 `.mata.xz` NFA benchmarks** (`2.61 MB`), **29 verified OEIS solution certificates** across `guillochon-oeis-*/solutions/` (`174.57 MB`), **92 / 92** bespoke `diagram.svg` vector illustrations, and full generator/converter scripts.
 
 ## Highlighted Solver Summary
 
@@ -613,6 +617,8 @@ Every collection lives at the repository root in its own self-contained director
 | | **PAR-2** | **4.94 ms** *(fastest)* | 41.53 ms *(8.41x slower)* | 161.74 ms *(32.7x slower)* | 6.43 ms *(1.30x slower)* | 58.45 ms *(11.8x slower)* |
 | [**QDistSAT Full Suite**](qdistsat-qldpc/README.md)⁶ `BB_30..756` (10, 10 s) | **Solved** | **8 / 10** *(highest)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* |
 | | **PAR-2** | **40,227 ms** *(fastest)* | 100,078 ms *(2.49x slower)* | 100,515 ms *(2.50x slower)* | 100,119 ms *(2.49x slower)* | 100,090 ms *(2.49x slower)* |
+| [**RSA-NTT Factoring ($O(n \log n)$, 24b–1,024b)**](rsa-ntt-factoring/README.md) (17, 60 s) | **Solved** | **2 / 17** *(highest)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* |
+| | **PAR-2** | **1,803.5 s** *(fastest)* | 2,040.0 s *(1.13x slower)* | 2,040.0 s *(1.13x slower)* | 2,040.0 s *(1.13x slower)* | 2,040.0 s *(1.13x slower)* |
 | [**SAT Competition 2023/2024 Gauntlet**](sat-competition-2002-2026-uris/README.md)⁷ (12, 5,000 s) | **Solved** | **12 / 12** *(highest)* | 8 / 12 *(-4 worse)* | 9 / 12 *(-3 worse)* | 9 / 12 *(-3 worse)* | 8 / 12 *(-4 worse)* |
 | | **PAR-2** | **2,342 ms** *(fastest)* | 43,480,568 ms *(18,567x slower)* | 36,241,382 ms *(15,476x slower)* | 30,505,588 ms *(13,027x slower)* | 40,251,149 ms *(17,188x slower)* |
 | [**SAT Shortcut Challenge Tier-1**](sat-shortcut-challenge-tier1/README.md) (47, 300 s) | **Solved** | **47 / 47** *(highest)* | 45 / 47 *(-2 worse)* | 46 / 47 *(-1 worse)* | 45 / 47 *(-2 worse)* | 45 / 47 *(-2 worse)* |
@@ -707,7 +713,7 @@ Every collection lives at the repository root in its own self-contained director
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Cross-Collection Phase-Transition & Structural Profile
 
-*Auto-generated across all **87 SAT collections (1,080 instances)** by [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py) (with the curated 14-instance SC 2023–2024 slice also detailed in [`sat-competition-2002-2026-uris/README.md`](sat-competition-2002-2026-uris/README.md)). Each row summarizes where the collection sits relative to the clause-length-weighted critical threshold $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (`Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), Gent–Walsh constrainedness $\kappa$, clause geometry ($\bar{k}$, `%Bin`, `%Horn`), variable-degree skew (`Deg CV`), extracted XOR parity blocks, and total ANF equations.*
+*Auto-generated across all **88 SAT collections (1,097 instances)** by [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py) (with the curated 14-instance SC 2023–2024 slice also detailed in [`sat-competition-2002-2026-uris/README.md`](sat-competition-2002-2026-uris/README.md)). Each row summarizes where the collection sits relative to the clause-length-weighted critical threshold $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (`Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), Gent–Walsh constrainedness $\kappa$, clause geometry ($\bar{k}$, `%Bin`, `%Horn`), variable-degree skew (`Deg CV`), extracted XOR parity blocks, and total ANF equations.*
 
 | Collection | Inst | Med $\alpha$ | Med $\alpha_c^{\mathrm{eff}}$ | Med $\rho_{\mathrm{crit}}$ [Min–Max] | Regime Split (U/N/O) | Med $\kappa$ | Med $\bar{k}$ | Bin% | Horn% | Deg CV | XORs | ANF Eqs |
 |---|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
@@ -766,6 +772,7 @@ Every collection lives at the repository root in its own self-contained director
 | [`queen-armies/`](queen-armies/README.md) | 8 | 2.04 | 1.48 | **1.39x** [1.29x–1.48x] | 0 / 0 / 8 | 0.66 | 2.42 | 58% | 58% | 0.68 | 0 | 104,931 |
 | [`random-3sat-phase-transition/`](random-3sat-phase-transition/README.md) | 8 | 4.26 | 4.27 | **1.00x** [0.89x–1.17x] | 1 / 6 / 1 | 0.82 | 3.00 | 0% | 51% | 0.28 | 0 | 6,904 |
 | [`rb-bench-model-rb/`](rb-bench-model-rb/README.md) | 40 | 69.47 | 1.00 | **69.4x** [42.3x–86.2x] | 0 / 0 / 40 | 28.81 | 2.01 | 100% | 100% | 0.19 | 0 | 2,959,100 |
+| [`rsa-ntt-factoring/`](rsa-ntt-factoring/README.md) | 17 | 4.88 | 3.21 | **1.51x** [1.48x–1.54x] | 0 / 0 / 17 | 0.94 | 3.19 | 16% | 53% | 0.50 | 2,917,506 | 10,833,053 |
 | [`sat-shortcut-challenge-tier1/`](sat-shortcut-challenge-tier1/README.md) | 47 | 3.33 | 1.89 | **1.75x** [0.62x–72.0x] | 9 / 8 / 30 | 0.92 | 2.61 | 38% | 68% | 0.10 | 6,793 | 310,239 |
 | [`sat-shortcut-challenge-tier3/`](sat-shortcut-challenge-tier3/README.md) | 25 | 4.26 | 4.27 | **1.00x** [1.00x–1.00x] | 0 / 25 / 0 | 0.82 | 3.00 | 0% | 50% | 0.27 | 0 | 42,600 |
 | [`satlib-ais/`](satlib-ais/README.md) | 4 | 15.43 | 1.26 | **12.3x** [7.47x–17.1x] | 0 / 0 / 4 | 5.47 | 2.31 | 73% | 99% | 0.16 | 0 | 11,334 |

@@ -1,0 +1,17 @@
+ntt_prime_24b_unsat.aig	UNSAT
+ntt_semiprime_128b.aig	SAT
+ntt_semiprime_24b.aig	SAT
+ntt_semiprime_256b.aig	SAT
+ntt_semiprime_32b.aig	SAT
+ntt_semiprime_40b.aig	SAT
+ntt_semiprime_48b.aig	SAT
+ntt_semiprime_64b.aig	SAT
+rsa100_330b_ntt.aig	SAT
+rsa1024_1024b_ntt.aig	SAT
+rsa155_512b_ntt.aig	SAT
+rsa200_663b_ntt.aig	SAT
+rsa250_829b_ntt.aig	SAT
+rsa260_862b_ntt.aig	SAT
+rsa270_895b_ntt.aig	SAT
+rsa280_928b_ntt.aig	SAT
+rsa896_896b_ntt.aig	SAT

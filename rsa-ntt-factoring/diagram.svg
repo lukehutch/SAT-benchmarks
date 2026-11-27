@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520" role="img" aria-label="Fermat-Prime F_65537 NTT RSA Factoring Circuit Architecture and O(n log n) vs O(n^2) Gate-Count Crossover">
+  <defs>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arr-purp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arr-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arr-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect x="2" y="2" width="956" height="516" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="28" y="33" font-size="17" font-weight="700" fill="#0f172a">O(n log n) Fermat-Prime NTT RSA Factoring Circuits (rsa-ntt-factoring)</text>
+    <text x="28" y="51" font-size="11.3" fill="#475569">Exact 𝔽₆₅₅₃₇ (F₄ = 2¹⁶ + 1) NTT multiplier circuits from 24 bits through RSA-896 (2026 record) to RSA-280 &amp; RSA-1024</text>
+    <rect x="780" y="17" width="154" height="24" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <text x="857" y="33" text-anchor="middle" font-size="10.8" font-weight="700" fill="#047857">16 SAT · 1 UNSAT</text>
+    <line x1="24" y1="63" x2="936" y2="63" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="24" y="74" width="912" height="166" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="38" y="95" font-size="12.5" font-weight="700" fill="#0f172a">(a) Exact 𝔽₆₅₅₃₇ Number Theoretic Transform (NTT) Factoring Pipeline (Zero Wraparound: max cₖ ≤ 28,800 &lt; 65,537)</text>
+    <rect x="38" y="108" width="134" height="52" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="105.0" y="126" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">Factor p (b<tspan baseline-shift="sub" font-size="72%">p</tspan> = ⌈B/2⌉)</text>
+    <text x="105.0" y="141" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#0f172a">m<tspan baseline-shift="sub" font-size="72%">p</tspan> 4-bit limbs [0..15]</text>
+    <text x="105.0" y="154" text-anchor="middle" font-size="8.4" fill="#475569">p₀=1, p≥3, pad L zeros</text>
+    <rect x="38" y="170" width="134" height="52" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="105.0" y="188" text-anchor="middle" font-size="10.2" font-weight="700" fill="#1d4ed8">Factor q (b<tspan baseline-shift="sub" font-size="72%">q</tspan> ≤ 516)</text>
+    <text x="105.0" y="203" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#0f172a">m<tspan baseline-shift="sub" font-size="72%">q</tspan> 4-bit limbs [0..15]</text>
+    <text x="105.0" y="216" text-anchor="middle" font-size="8.4" fill="#475569">q₀=1, 3≤p≤q, pad L</text>
+    <line x1="172" y1="134" x2="196" y2="134" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arr-blue)"/>
+    <line x1="172" y1="196" x2="196" y2="196" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arr-blue)"/>
+    <rect x="198" y="108" width="152" height="52" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="274.0" y="126" text-anchor="middle" font-size="10.2" font-weight="700" fill="#6d28d9">Forward DIF NTT (p)</text>
+    <text x="274.0" y="141" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" fill="#0f172a">P̂ = NTT_L(p) mod F₄</text>
+    <text x="274.0" y="154" text-anchor="middle" font-size="8.3" fill="#475569">4b Stage-0 · CSD/2ᵏ twiddles</text>
+    <rect x="198" y="170" width="152" height="52" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="274.0" y="188" text-anchor="middle" font-size="10.2" font-weight="700" fill="#6d28d9">Forward DIF NTT (q)</text>
+    <text x="274.0" y="203" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.7" fill="#0f172a">Q̂ = NTT_L(q) mod F₄</text>
+    <text x="274.0" y="216" text-anchor="middle" font-size="8.3" fill="#475569">L ∈ {8,16,32,64,128,256}</text>
+    <path d="M 350 134 C 363 134, 363 146, 374 146" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <path d="M 350 196 C 363 196, 363 184, 374 184" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purp)"/>
+    <rect x="376" y="120" width="148" height="90" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+    <text x="450.0" y="140" text-anchor="middle" font-size="10.4" font-weight="700" fill="#b45309">Pointwise 𝔽₆₅₅₃₇ Mul</text>
+    <text x="450.0" y="159" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" font-weight="700" fill="#0f172a">Ĉ[k] = P̂[k]·Q̂[k]</text>
+    <text x="450.0" y="176" text-anchor="middle" font-size="8.6" fill="#475569">L parallel 16×16 Wallace</text>
+    <text x="450.0" y="190" text-anchor="middle" font-size="8.6" fill="#475569">+ exact F₄ negacyclic fold</text>
+    <text x="450.0" y="203" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#92400e">Z_lo − Z_hi mod (2¹⁶+1)</text>
+    <line x1="524" y1="165" x2="548" y2="165" stroke="#7c3aed" stroke-width="1.7" marker-end="url(#arr-purp)"/>
+    <rect x="550" y="120" width="152" height="90" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="626.0" y="140" text-anchor="middle" font-size="10.4" font-weight="700" fill="#6d28d9">Inverse DIT NTT</text>
+    <text x="626.0" y="159" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" font-weight="700" fill="#0f172a">cₖ = L⁻¹·INTT(Ĉ)[k]</text>
+    <text x="626.0" y="176" text-anchor="middle" font-size="8.5" fill="#475569">L⁻¹ ≡ 2³²⁻ˡᵒᵍ²ᴸ (1 shift-sub)</text>
+    <text x="626.0" y="190" text-anchor="middle" font-size="8.5" fill="#475569">Exact integer ∑ pᵢqⱼ</text>
+    <text x="626.0" y="203" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.2" fill="#6d28d9">0 ≤ cₖ ≤ 28,800 &lt; 2¹⁵</text>
+    <line x1="702" y1="165" x2="726" y2="165" stroke="#059669" stroke-width="1.7" marker-end="url(#arr-grn)"/>
+    <rect x="728" y="120" width="198" height="90" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+    <text x="827.0" y="140" text-anchor="middle" font-size="10.4" font-weight="700" fill="#047857">Base-2⁴ Carries &amp; Clamp N</text>
+    <text x="827.0" y="159" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.9" font-weight="700" fill="#0f172a">∑ cₖ·2⁴ᵏ == N (B bits)</text>
+    <text x="827.0" y="176" text-anchor="middle" font-size="8.5" fill="#047857">All upper product bits = 0</text>
+    <text x="827.0" y="191" text-anchor="middle" font-size="8.5" font-weight="600" fill="#047857">14/14 factored: AIG sim 1/0/0</text>
+    <text x="827.0" y="204" text-anchor="middle" font-size="8.3" fill="#dc2626">24b prime 2²⁴−3: UNSAT</text>
+    <rect x="24" y="252" width="578" height="250" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="38" y="273" font-size="12.5" font-weight="700" fill="#0f172a">(b) Exact AIGER AND-Gate Scaling: O(n log n) 𝔽₆₅₅₃₇ NTT vs. O(n²) Wallace</text>
+    <text x="38" y="288" font-size="9.6" fill="#475569">Empirical crossover at B = 934 bits (just past RSA-896 record &amp; RSA-280); NTT saves 391,627 ANDs at RSA-1024</text>
+    <line x1="86" y1="453.9" x2="578" y2="453.9" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="79" y="457.1" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">2K</text>
+    <line x1="86" y1="422.3" x2="578" y2="422.3" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="79" y="425.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">10K</text>
+    <line x1="86" y1="376.9" x2="578" y2="376.9" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="79" y="380.1" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">100K</text>
+    <line x1="86" y1="331.6" x2="578" y2="331.6" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="79" y="334.8" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">1M</text>
+    <line x1="86" y1="310.0" x2="578" y2="310.0" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="79" y="313.2" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.8" fill="#64748b">3M</text>
+    <line x1="107.5" y1="302" x2="107.5" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="107.5" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#64748b">24</text>
+    <line x1="141.4" y1="302" x2="141.4" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="141.4" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#64748b">32</text>
+    <line x1="223.1" y1="302" x2="223.1" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="223.1" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#64748b">64</text>
+    <line x1="304.8" y1="302" x2="304.8" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="304.8" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#64748b">128</text>
+    <line x1="386.5" y1="302" x2="386.5" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="386.5" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#64748b">256</text>
+    <line x1="468.2" y1="302" x2="468.2" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="468.2" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#64748b">512</text>
+    <line x1="534.1" y1="302" x2="534.1" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="530.1" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="700" fill="#dc2626">896</text>
+    <line x1="549.9" y1="302" x2="549.9" y2="464" stroke="#f1f5f9" stroke-width="0.9"/>
+    <text x="558.9" y="477" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" font-weight="700" fill="#0f172a">1024</text>
+    <rect x="86" y="302" width="492" height="162" fill="none" stroke="#94a3b8" stroke-width="1"/>
+    <text x="332.0" y="493" text-anchor="middle" font-size="9.8" font-weight="600" fill="#334155">Modulus Bit-Width B (log scale)</text>
+    <text x="40" y="383.0" text-anchor="middle" font-size="9.8" font-weight="600" fill="#334155" transform="rotate(-90 40 383.0)">AIGER AND Gates (log)</text>
+    <rect x="539.0" y="302" width="39.0" height="162" fill="#ecfdf5" opacity="0.65"/>
+    <line x1="534.1" y1="302" x2="534.1" y2="464" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <text x="528.1" y="313.5" text-anchor="end" font-size="8.6" font-weight="700" fill="#dc2626">RSA-896 (2026 Record)</text>
+    <polyline points="107.5,457.1 141.4,446.6 167.7,438.3 189.2,431.7 223.1,420.9 304.8,394.5 386.5,367.7 416.4,357.9 468.2,340.7 498.6,330.5 525.0,321.8 529.6,320.3 534.1,318.8 538.3,317.4 539.0,317.2 549.9,313.5" fill="none" stroke="#ea580c" stroke-width="2.2" stroke-dasharray="6,3"/>
+    <polyline points="107.5,404.7 141.4,403.2 167.7,387.0 189.2,386.4 223.1,385.3 304.8,368.3 386.5,351.6 416.4,335.5 468.2,334.4 498.6,318.1 525.0,317.5 529.6,317.4 534.1,317.3 538.3,317.2 539.0,317.2 549.9,316.9" fill="none" stroke="#2563eb" stroke-width="2.4"/>
+    <circle cx="107.5" cy="457.1" r="2.7" fill="#ea580c"/>
+    <circle cx="107.5" cy="404.7" r="3.0" fill="#2563eb"/>
+    <circle cx="141.4" cy="446.6" r="2.7" fill="#ea580c"/>
+    <circle cx="141.4" cy="403.2" r="3.0" fill="#2563eb"/>
+    <circle cx="167.7" cy="438.3" r="2.7" fill="#ea580c"/>
+    <circle cx="167.7" cy="387.0" r="3.0" fill="#2563eb"/>
+    <circle cx="189.2" cy="431.7" r="2.7" fill="#ea580c"/>
+    <circle cx="189.2" cy="386.4" r="3.0" fill="#2563eb"/>
+    <circle cx="223.1" cy="420.9" r="2.7" fill="#ea580c"/>
+    <circle cx="223.1" cy="385.3" r="3.0" fill="#2563eb"/>
+    <circle cx="304.8" cy="394.5" r="2.7" fill="#ea580c"/>
+    <circle cx="304.8" cy="368.3" r="3.0" fill="#2563eb"/>
+    <circle cx="386.5" cy="367.7" r="2.7" fill="#ea580c"/>
+    <circle cx="386.5" cy="351.6" r="3.0" fill="#2563eb"/>
+    <circle cx="416.4" cy="357.9" r="2.7" fill="#ea580c"/>
+    <circle cx="416.4" cy="335.5" r="3.0" fill="#2563eb"/>
+    <circle cx="468.2" cy="340.7" r="2.7" fill="#ea580c"/>
+    <circle cx="468.2" cy="334.4" r="3.0" fill="#2563eb"/>
+    <circle cx="498.6" cy="330.5" r="2.7" fill="#ea580c"/>
+    <circle cx="498.6" cy="318.1" r="3.0" fill="#2563eb"/>
+    <circle cx="525.0" cy="321.8" r="2.7" fill="#ea580c"/>
+    <circle cx="525.0" cy="317.5" r="3.0" fill="#2563eb"/>
+    <circle cx="529.6" cy="320.3" r="2.7" fill="#ea580c"/>
+    <circle cx="529.6" cy="317.4" r="3.0" fill="#2563eb"/>
+    <circle cx="534.1" cy="318.8" r="2.7" fill="#ea580c"/>
+    <circle cx="534.1" cy="317.3" r="3.0" fill="#2563eb"/>
+    <circle cx="538.3" cy="317.4" r="2.7" fill="#ea580c"/>
+    <circle cx="538.3" cy="317.2" r="3.0" fill="#2563eb"/>
+    <circle cx="549.9" cy="313.5" r="2.7" fill="#ea580c"/>
+    <circle cx="549.9" cy="316.9" r="3.0" fill="#2563eb"/>
+    <circle cx="539.0" cy="317.2" r="5.0" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M 538.0 322.2 L 507.0 418.0" fill="none" stroke="#059669" stroke-width="1.2"/>
+    <rect x="379.0" y="418.0" width="144" height="34" rx="5.5" fill="#ecfdf5" stroke="#059669" stroke-width="1.15"/>
+    <text x="451.0" y="432.0" text-anchor="middle" font-size="8.8" font-weight="700" fill="#047857">Crossover: B = 934 bits</text>
+    <text x="451.0" y="445.0" text-anchor="middle" font-size="8.2" fill="#065f46">1024b: 2.11M vs 2.50M (−15.6%)</text>
+    <rect x="96" y="310" width="186" height="42" rx="6" fill="#ffffff" fill-opacity="0.92" stroke="#cbd5e1" stroke-width="0.9"/>
+    <line x1="104" y1="323" x2="126" y2="323" stroke="#2563eb" stroke-width="2.4"/>
+    <text x="132" y="326.5" font-size="9.0" font-weight="600" fill="#0f172a">𝔽₆₅₅₃₇ NTT — O(n log n)</text>
+    <line x1="104" y1="340" x2="126" y2="340" stroke="#ea580c" stroke-width="2.2" stroke-dasharray="5,2.5"/>
+    <text x="132" y="343.5" font-size="9.0" font-weight="600" fill="#0f172a">Wallace Tree — O(n²)</text>
+    <rect x="616" y="252" width="320" height="250" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="630" y="273" font-size="12.5" font-weight="700" fill="#0f172a">(c) 2026 RSA Frontier (17 Instances)</text>
+    <text x="630" y="287" font-size="9.2" fill="#475569">4 formats (AIG/CNF/XCNF/ANF), max 9.11 MB (&lt;95 MB)</text>
+    <rect x="626" y="297.0" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="307.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">ntt_prime_24b_unsat</text>
+    <rect x="884" y="300.2" width="36" height="14.5" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="902" y="310.0" text-anchor="middle" font-size="7.6" font-weight="700" fill="#dc2626">UNSAT</text>
+    <text x="632" y="316.2" font-size="7.7" fill="#475569">2²⁴−3 · 24K AND · Frob 2.22s (CDCL T/O)</text>
+    <rect x="626" y="321.5" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="331.7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">ntt_semiprime_24b</text>
+    <rect x="884" y="324.7" width="36" height="14.5" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="902" y="334.5" text-anchor="middle" font-size="7.6" font-weight="700" fill="#059669">SAT</text>
+    <text x="632" y="340.7" font-size="7.7" fill="#475569">4091×4093 · 24K AND · Frob 1.31s (CDCL T/O)</text>
+    <rect x="626" y="346.0" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="356.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">rsa155_512b_ntt</text>
+    <rect x="884" y="349.2" width="36" height="14.5" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="902" y="359.0" text-anchor="middle" font-size="7.6" font-weight="700" fill="#2563eb">1999</text>
+    <text x="632" y="365.2" font-size="7.7" fill="#475569">512b · L=128 · 870K AND · sim 1/0/0</text>
+    <rect x="626" y="370.5" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="380.7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">rsa250 / rsa260</text>
+    <rect x="884" y="373.7" width="36" height="14.5" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="902" y="383.5" text-anchor="middle" font-size="7.6" font-weight="700" fill="#2563eb">20–26</text>
+    <text x="632" y="389.7" font-size="7.7" fill="#475569">829–862b · L=256 · 2.04–2.06M AND</text>
+    <rect x="626" y="395.0" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="405.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">rsa270_895b_ntt</text>
+    <rect x="884" y="398.2" width="36" height="14.5" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="0.9"/>
+    <text x="902" y="408.0" text-anchor="middle" font-size="7.6" font-weight="700" fill="#2563eb">Nov26</text>
+    <text x="632" y="414.2" font-size="7.7" fill="#475569">895b · L=256 · 2.07M AND · sim 1/0/0</text>
+    <rect x="626" y="419.5" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="429.7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">rsa896_896b_ntt</text>
+    <rect x="884" y="422.7" width="36" height="14.5" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="0.9"/>
+    <text x="902" y="432.5" text-anchor="middle" font-size="7.6" font-weight="700" fill="#dc2626">REC</text>
+    <text x="632" y="438.7" font-size="7.7" fill="#475569">896b Record (Sep 2026) · 2.07M · 1/0/0</text>
+    <rect x="626" y="444.0" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="454.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">rsa280_928b_ntt</text>
+    <rect x="884" y="447.2" width="36" height="14.5" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="0.9"/>
+    <text x="902" y="457.0" text-anchor="middle" font-size="7.6" font-weight="700" fill="#d97706">OPEN</text>
+    <text x="632" y="463.2" font-size="7.7" fill="#475569">928b First Unfactored · 2.08M (1.01× Wal)</text>
+    <rect x="626" y="468.5" width="300" height="21.5" rx="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.9"/>
+    <text x="632" y="478.7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.6" font-weight="700" fill="#0f172a">rsa1024_1024b_ntt</text>
+    <rect x="884" y="471.7" width="36" height="14.5" rx="7" fill="#ecfdf5" stroke="#059669" stroke-width="0.9"/>
+    <text x="902" y="481.5" text-anchor="middle" font-size="7.6" font-weight="700" fill="#059669">OPEN</text>
+    <text x="632" y="487.7" font-size="7.7" fill="#475569">1,024b Frontier · 2.11M (0.84× Wallace!)</text>
+  </g>
+</svg>
