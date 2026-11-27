@@ -2,7 +2,7 @@
 
 ![Exact minimum B2 gate DAGs for MOD_3^3,0 and MOD_3^3,1 and optimality staircase](diagram.svg)
 
-*Figure: Mathematically verified exact minimum $B_2$ gate DAGs for $\mathrm{MOD}_3^{3,0}$ ($s^*=3$) and $\mathrm{MOD}_3^{3,1}$ ($s=3$ UNSAT, $s^*=4$ SAT) alongside the sharp optimality-boundary staircase through the open $n=6, s \le 12$ frontier. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Mathematically verified exact minimum $B_2$ gate DAGs for $\mathrm{MOD}_3^{3,0}$ ($s^\ast=3$) and $\mathrm{MOD}_3^{3,1}$ ($s=3$ UNSAT, $s^\ast=4$ SAT) alongside the sharp optimality-boundary staircase through the open $n=6, s \le 12$ frontier. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Provenance & Credit
 
@@ -17,7 +17,7 @@
 Exact Boolean circuit synthesis asks for the minimum number of 2-input gates over the full binary basis $B_2$ needed to compute the symmetric modular-counting function:
 $$\mathrm{MOD}_n^{m,r}(x_1, \dots, x_n) \thickspace =\thickspace \bigl[\thinspace (x_1 + \dots + x_n) \bmod m = r \thinspace \bigr].$$
 
-For a fixed input width $n$, modulus $m = 3$, target residue $r \in \lbrace 0, 1, 2\rbrace$, and gate budget $s$, `src/modsat.py` generates a DIMACS CNF (plus a JSON variable map in `maps/` so any satisfying assignment decodes directly into a verified $B_2$ circuit over all $2^n$ inputs). The problem exhibits sharp optimality thresholds ($s = s^* - 1$ UNSAT vs. $s = s^*$ SAT), and the $n = 6$, $s \le 12$ cases remain challenging open synthesis targets.
+For a fixed input width $n$, modulus $m = 3$, target residue $r \in \lbrace 0, 1, 2\rbrace$, and gate budget $s$, `src/modsat.py` generates a DIMACS CNF (plus a JSON variable map in `maps/` so any satisfying assignment decodes directly into a verified $B_2$ circuit over all $2^n$ inputs). The problem exhibits sharp optimality thresholds ($s = s^\ast - 1$ UNSAT vs. $s = s^\ast$ SAT), and the $n = 6$, $s \le 12$ cases remain challenging open synthesis targets.
 
 ## Corpus & Data Sizes
 

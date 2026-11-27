@@ -1049,10 +1049,15 @@ def check_hygiene(repo_root: Path, cols: list[str]) -> list[str]:
             for tm in re.finditer(r"\\(?:text|texttt|textbf|textit|mbox)\{([^{}]*)\}", expr):
                 if "_" in tm.group(1) or "^" in tm.group(1):
                     errors.append(f"Unescaped _/^ inside {tm.group(0)} in {rel}:{mln}")
-            if not is_disp and expr.count("*") >= 2:
-                errors.append(f"Multiple '*' in inline math (GFM emphasis hazard; use \\ast) in {rel}:{mln}")
+            if not is_disp and "*" in expr:
+                errors.append(f"Raw '*' in inline math (GFM italic hazard; use \\ast) in {rel}:{mln}")
             if expr.count("{") != expr.count("}"):
                 errors.append(f"Unbalanced braces in math expression in {rel}:{mln}")
+        for mln, raw_line in enumerate(body_nc.splitlines(), 1):
+            if len(re.findall(r"\}_\{", raw_line)) >= 2:
+                errors.append(f"Multiple '}}_{{' on same line (GFM emphasis hazard; move subscript inside \\mathrm{{...}}) in {rel}:{mln}")
+            if raw_line.lstrip().startswith("|") and re.search(r"\*\([^*\n]*\$[^$\n]+\$[^*\n]*\)\*", raw_line):
+                errors.append(f"Inline $...$ inside italicized table parenthesis *(...)* in {rel}:{mln}")
         if md != repo_root / "README.md":
             lines = text.splitlines()
             if not lines or not lines[0].startswith("# "):

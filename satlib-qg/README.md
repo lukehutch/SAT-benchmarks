@@ -2,7 +2,7 @@
 
 ![Decoded order-7 idempotent QG1 quasigroup Latin square from qg1-07](diagram.svg)
 
-*Figure: Verified order-7 idempotent Latin square ($a * a = a$) satisfying QG1 orthogonality, decoded directly from `cnf-orig/qg1-07.cnf.xz`, together with the $n^3$-variable CNF encoding and Zhang's `QG1`–`QG7` algebraic laws. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Verified order-7 idempotent Latin square ($a \ast a = a$) satisfying QG1 orthogonality, decoded directly from `cnf-orig/qg1-07.cnf.xz`, together with the $n^3$-variable CNF encoding and Zhang's `QG1`–`QG7` algebraic laws. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Provenance & Credit
 

@@ -22,12 +22,12 @@ Note: Unlike the propositional SAT collections in this repository, MATA instance
 ## Corpus & Data Sizes
 
 - **`mata-orig/`** — **21 `.mata.xz` automata** (6.4 KB compressed total).
-- **[`expected.tsv`](expected.tsv)** — Ground-truth complementation verdicts (**17 SAT / 4 UNSAT**; `SAT` iff $\overline{L(A)} \neq \emptyset$, `UNSAT` iff $L(A) = \Sigma^*$; non-emptiness $L(A) \neq \emptyset$ is `SAT` for all 21/21 NFAs).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth complementation verdicts (**17 SAT / 4 UNSAT**; `SAT` iff $\overline{L(A)} \neq \emptyset$, `UNSAT` iff $L(A) = \Sigma^\ast$; non-emptiness $L(A) \neq \emptyset$ is `SAT` for all 21/21 NFAs).
 - **`src/fetch_mata_presburger.py`** — Standalone fetcher script to refresh `mata-orig/` directly from [`VeriFIT/nfa-bench`](https://github.com/VeriFIT/nfa-bench).
 
 ## Benchmark Results
 
-- **Hardware & Protocol:** **AMD Ryzen 9 5950X** (16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\text{ s}$ per mode, full wall-clock time including in-process `.xz` decompression and `.mata` parsing). **100% of all 21 automata** were run across three Frobenius NFA decision modes: non-emptiness ($L(A) \neq \emptyset$, default), complement/universality (`--mata-complement`, $L(A) = \Sigma^*$ iff UNSAT), and explicit complementation (`--mata-explicit-complement`). All SAT/UNSAT complement verdicts agreed **100%** between both complement modes and match [`expected.tsv`](expected.tsv) (0 errors, 0 timeouts).
+- **Hardware & Protocol:** **AMD Ryzen 9 5950X** (16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\text{ s}$ per mode, full wall-clock time including in-process `.xz` decompression and `.mata` parsing). **100% of all 21 automata** were run across three Frobenius NFA decision modes: non-emptiness ($L(A) \neq \emptyset$, default), complement/universality (`--mata-complement`, $L(A) = \Sigma^\ast$ iff UNSAT), and explicit complementation (`--mata-explicit-complement`). All SAT/UNSAT complement verdicts agreed **100%** between both complement modes and match [`expected.tsv`](expected.tsv) (0 errors, 0 timeouts).
 
 | Metric (1C, 21 NFAs, $T_{\max} = 5\text{ s}$) | Frobenius 1C — Emptiness (default) | Frobenius 1C — Complement (`--mata-complement`) | Frobenius 1C — Explicit (`--mata-explicit-complement`) |
 |---|---:|---:|---:|

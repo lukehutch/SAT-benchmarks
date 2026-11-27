@@ -16,7 +16,7 @@
 
 ## Problem Description
 
-All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole10`, encoding $\mathrm{PHP}^{7}_{6}$ through $\mathrm{PHP}^{11}_{10}$).
+All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole10`, encoding $\mathrm{PHP_{6}^{7}}$ through $\mathrm{PHP_{10}^{11}}$).
 
 ## Corpus & Data Sizes
 

@@ -2,7 +2,7 @@
 
 ![Heule 3x3 matrix multiplication Challenge 4 rank-22 open frontier and Brent circuit](diagram.svg)
 
-*Figure: Algebraic complexity frontier for $\mathrm{rank}_{\mathbb{F}_2}(T_{3,3,3})$ ($R = 19$ lower bound through open $R = 22$ to Laderman $R = 23$) and the plain 4-stage 2-AND + 4-XOR Brent circuit. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Algebraic complexity frontier for $\mathrm{rank_{\mathbb{F}_2}}(T_{3,3,3})$ ($R = 19$ lower bound through open $R = 22$ to Laderman $R = 23$) and the plain 4-stage 2-AND + 4-XOR Brent circuit. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Provenance & Credit
 

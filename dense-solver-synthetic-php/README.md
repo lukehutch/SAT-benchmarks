@@ -2,7 +2,7 @@
 
 ![Multi-encoding Pigeonhole Principle K_{5,4} collision graph and exact PHP 9x8 footprint comparison](diagram.svg)
 
-*Figure: Complete bipartite pigeonhole graph $K_{5,4}$ illustrating the global counting collision, Pairwise $O(n^3)$ vs. Sequential $O(n^2)$ scaling up to $\mathrm{PHP}^{65}_{64}$, and the exact log-scaled variable/clause footprints parsed across all 11 `php9x8-*` AMO encodings. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Complete bipartite pigeonhole graph $K_{5,4}$ illustrating the global counting collision, Pairwise $O(n^3)$ vs. Sequential $O(n^2)$ scaling up to $\mathrm{PHP_{64}^{65}}$, and the exact log-scaled variable/clause footprints parsed across all 11 `php9x8-*` AMO encodings. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Provenance & Credit
 
@@ -18,7 +18,7 @@
 This collection holds the **17 structured Pigeonhole Principle CNFs** shipped with [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (**2 SAT / 15 UNSAT**):
 
 - **$\mathrm{PHP}^9_8$ across 8 distinct At-Most-One (AMO) CNF encodings (11 UNSAT files):** pairwise, pairwise-functional, Sinz sequential counter, renamed sequential counter, bitwise, ladder, sorting network (`sortnetwrk`), cardinality network (`cardnetwrk`), totalizer, modulo-totalizer (`mtotalizer`), and $k$-modulo-totalizer (`kmtotalizer`) — testing whether solvers recover the global pigeonhole counting obstruction regardless of auxiliary-variable CNF encoding.
-- **Large-scale UNSAT scaling (4 UNSAT files):** $\mathrm{PHP}^{31}_{30}$ and $\mathrm{PHP}^{65}_{64}$ in both quadratic pairwise (`133,185` clauses at $65 \times 64$) and linear Sinz sequential (`12,289` clauses at $65 \times 64$) encodings.
+- **Large-scale UNSAT scaling (4 UNSAT files):** $\mathrm{PHP_{30}^{31}}$ and $\mathrm{PHP_{64}^{65}}$ in both quadratic pairwise (`133,185` clauses at $65 \times 64$) and linear Sinz sequential (`12,289` clauses at $65 \times 64$) encodings.
 - **Satisfiable bijection controls (2 SAT files):** `php8x8-pairwise` and `php8x8-sequential` ($\mathrm{PHP}^8_8$, $8!$ valid matchings).
 
 ## Corpus & Data Sizes
