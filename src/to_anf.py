@@ -818,6 +818,50 @@ def verify_conversion(in_path: str, out_path: str, meta: dict, solver_bin: str =
     return res_info
 
 
+# ============================================================================
+# Optional compiled accelerator (src/bench_tools -> `sat-bench-tools aig-to-anf`)
+# ============================================================================
+
+BENCH_TOOLS_BIN = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "bench_tools", "target", "release", "sat-bench-tools"
+)
+
+
+def try_rust_aig_to_anf(args) -> bool:
+    """Dispatch binary AIGER -> ANF to the compiled `sat-bench-tools` when available.
+
+    Produces byte-identical DIMACS-ANF text. Returns False (caller falls back to the
+    pure-Python path) when disabled, unsupported for these arguments, absent, or failing.
+    """
+    if args.pure_python or args.solver or os.environ.get("SAT_BENCH_PURE_PYTHON", "") == "1":
+        return False
+    if not (os.path.isfile(BENCH_TOOLS_BIN) and os.access(BENCH_TOOLS_BIN, os.X_OK)):
+        return False
+    in_low = args.input.lower()
+    out_low = args.output.lower()
+    if not (in_low.endswith(".aig") or in_low.endswith(".aig.xz")):
+        return False
+    if not (out_low.endswith(".anf") or out_low.endswith(".anf.xz")):
+        return False
+    cmd = [BENCH_TOOLS_BIN, "aig-to-anf", args.input, args.output, "--preset", str(args.preset)]
+    if args.verify:
+        cmd.append("--verify")
+    try:
+        proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    except OSError as e:
+        print(f"[warn] sat-bench-tools unavailable ({e}); falling back to pure Python", file=sys.stderr)
+        return False
+    if proc.returncode != 0:
+        print(
+            f"[warn] sat-bench-tools failed (rc={proc.returncode}): {proc.stderr.strip()}; "
+            f"falling back to pure Python",
+            file=sys.stderr,
+        )
+        return False
+    sys.stdout.write(proc.stdout)
+    return True
+
+
 def main():
     ap = argparse.ArgumentParser(description="Convert .aig/.aag/.cnf/.xcnf (optionally compressed) to DIMACS-ANF (.anf/.anf.xz).")
     ap.add_argument("input", help="Input .aig/.aag/.cnf/.xcnf (or .xz/.gz/.bz2)")
@@ -827,7 +871,12 @@ def main():
     ap.add_argument("--solver", default="", help="Path to frobenius binary for end-to-end --verify")
     ap.add_argument("--timeout", type=float, default=30.0, help="Per-instance solver timeout in seconds")
     ap.add_argument("--pin", default="", help="Optional taskset CPU list for --solver runs (e.g. 8-11)")
+    ap.add_argument("--pure-python", action="store_true",
+                    help="Never dispatch binary AIGER conversion to the compiled src/bench_tools accelerator")
     args = ap.parse_args()
+
+    if try_rust_aig_to_anf(args):
+        return
 
     t0 = time.perf_counter()
     raw = read_bytes_auto(args.input)

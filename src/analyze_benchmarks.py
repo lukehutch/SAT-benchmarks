@@ -58,7 +58,9 @@ import concurrent.futures
 import json
 import lzma
 import math
+import os
 import statistics
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
@@ -207,6 +209,37 @@ def read_anf_header(anf_path: Path | None) -> tuple[int | None, int | None]:
     return None, None
 
 
+# Optional compiled accelerator (src/bench_tools -> `sat-bench-tools analyze-cnf`).
+# Disabled by `--pure-python` (which sets SAT_BENCH_PURE_PYTHON=1 so pool workers inherit it).
+BENCH_TOOLS_BIN = Path(__file__).resolve().parent / "bench_tools" / "target" / "release" / "sat-bench-tools"
+
+
+def rust_cnf_metrics(cnf_path: Path) -> dict | None:
+    """Return the raw CNF metrics dict from `sat-bench-tools analyze-cnf`, or None to fall back."""
+    if os.environ.get("SAT_BENCH_PURE_PYTHON", "") == "1":
+        return None
+    if not (BENCH_TOOLS_BIN.is_file() and os.access(BENCH_TOOLS_BIN, os.X_OK)):
+        return None
+    try:
+        proc = subprocess.run(
+            [str(BENCH_TOOLS_BIN), "analyze-cnf", str(cnf_path)],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
+        )
+    except OSError:
+        return None
+    if proc.returncode != 0:
+        print(
+            f"[warn] sat-bench-tools analyze-cnf failed on {cnf_path} "
+            f"({proc.stderr.decode(errors='replace').strip()}); falling back to pure Python",
+            file=sys.stderr,
+        )
+        return None
+    try:
+        return json.loads(proc.stdout)
+    except ValueError:
+        return None
+
+
 def analyze_cnf(
     cnf_path: Path,
     suite: str = "",
@@ -215,6 +248,48 @@ def analyze_cnf(
     aig_path: Path | None = None,
     anf_path: Path | None = None,
 ) -> InstanceStats:
+    rs = rust_cnf_metrics(cnf_path)
+    if rs is not None:
+        stem = cnf_path.name
+        if stem.endswith(".xz"):
+            stem = stem[:-3]
+        if stem.endswith(".cnf"):
+            stem = stem[:-4]
+        anf_nv, anf_neq = read_anf_header(anf_path)
+        return InstanceStats(
+            suite=suite,
+            group=group,
+            name=stem,
+            rel_path=str(cnf_path),
+            declared_vars=rs["declared_vars"],
+            active_vars=rs["active_vars"],
+            clauses=rs["clauses"],
+            literals=rs["literals"],
+            alpha=rs["alpha"],
+            alpha_c_eff=rs["alpha_c_eff"],
+            rho_crit=rs["rho_crit"],
+            regime="Trivial" if rs["trivial"] else regime_label(rs["rho_crit"]),
+            kappa=rs["kappa"],
+            alpha_2=rs["alpha_2"],
+            k_avg=rs["k_avg"],
+            k_max=rs["k_max"],
+            pct_unit=rs["pct_unit"],
+            pct_bin=rs["pct_bin"],
+            pct_tern=rs["pct_tern"],
+            pct_long=rs["pct_long"],
+            pct_horn=rs["pct_horn"],
+            pct_pos=rs["pct_pos"],
+            pure_vars=rs["pure_vars"],
+            deg_mean=rs["deg_mean"],
+            deg_max=rs["deg_max"],
+            deg_cv=rs["deg_cv"],
+            vig_components=rs["vig_components"],
+            xor_clauses=count_xors(xcnf_path),
+            aig_ands=read_aig_ands(aig_path),
+            anf_vars=anf_nv,
+            anf_eqs=anf_neq,
+        )
+
     declared_vars = 0
     num_clauses = 0
     total_lits = 0
@@ -659,7 +734,11 @@ def main() -> None:
     ap.add_argument("--update-readmes", action="store_true", help="Update README.md files in-place")
     ap.add_argument("--json", type=Path, help="Write full per-instance metrics JSON to path")
     ap.add_argument("--workers", type=int, default=16)
+    ap.add_argument("--pure-python", action="store_true",
+                    help="Never dispatch CNF parsing to the compiled src/bench_tools accelerator")
     args = ap.parse_args()
+    if args.pure_python:
+        os.environ["SAT_BENCH_PURE_PYTHON"] = "1"
 
     if args.file:
         st = analyze_cnf(args.file)

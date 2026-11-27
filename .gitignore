@@ -1,6 +1,7 @@
 # Rust build artifacts (for suite generators in */src/)
 **/target/
 **/Cargo.lock
+src/bench_tools/target/
 
 # Python bytecode & virtual environments
 __pycache__/

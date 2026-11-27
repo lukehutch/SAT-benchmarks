@@ -1,1173 +1,231 @@
 #!/usr/bin/env python3
-"""Programmatic Ground-Truth Verdict Verifier for SAT Benchmarks.
+"""Programmatic Ground-Truth Verdict & Repository Verifier for SAT Benchmarks.
 
-Convention for ``expected.tsv`` (uniform across every collection):
-  - Location: ``<collection>/expected.tsv`` (top-level inside the collection directory).
-  - Format: Strict 2-column tab-separated file, NO header row, sorted alphabetically
-    by column 1 (ASCII / Python ``sorted()``), UTF-8, LF line endings, trailing newline:
-
-        <instance_without_.xz>\\t<SAT|UNSAT|UNKNOWN>
-
-  - Column 1 naming:
-      * File-backed collections (``cnf-orig/``, ``aig-orig/``, ``xcnf-orig/``, ``mata-orig/``):
-        the exact relative POSIX path inside the primary ``*-orig/`` directory with the
-        trailing ``.xz`` stripped (flat: ``foo.cnf``, ``bar.aig``, ``aes256_r14_k256_dual_sat.xcnf``,
-        ``ARI056_1.mata``; nested: ``A067782/sortnet_n11_d7.cnf``), uniquely identifying
-        the original instance regardless of format.
-      * URI-manifest instance collections (e.g. ``sat-competition-2002-2026-uris/``):
-        ``<hash>.cnf`` matching every unique instance URI entry in ``*.uri`` (recursively).
-      * Archive-level ``.tar.gz`` URI catalogs (``satlib-archive-uris/``): no
-        per-instance ``expected.tsv`` (its 331 committed instances live across the
-        22 standalone ``satlib-*/`` collections, each with its own ``expected.tsv``).
-  - Column 2 labels:
-      * ``SAT``     — Proven satisfiable (verified model or constructive proof).
-      * ``UNSAT``   — Proven unsatisfiable (verified refutation / formal proof / theorem).
-      * ``UNKNOWN`` — Open or uncertified instance (never guessed).
-      * For MATA NFA collections (``mata-orig/``), ``expected.tsv`` records the
-        complementation / non-universality verdict (``SAT`` iff complement is non-empty,
-        ``UNSAT`` iff L(A) = Sigma*, matching ``--mata-complement`` and
-        ``--mata-explicit-complement``).
+Thin CLI orchestrator over modular checks in ``src/checks/``:
+  - ``checks/check_expected.py``     — ``expected.tsv`` format, sorting, 1-to-1 ``*-orig/`` match, root README counts
+  - ``checks/check_formats.py``      — ``*-converted/`` 4-format completeness, ``format_exclusions.tsv``, ``< 95 MB`` limit
+  - ``checks/check_verdicts.py``     — README verdict parity vs ``expected.tsv``, solvers-in-columns convention, cache/live runs
+  - ``checks/check_layout.py``       — uniform 6-section README layout, zero root benchmark files, ``diagram.svg`` + ``src/gen_diagram.py``
+  - ``checks/check_math_hygiene.py`` — GFM MathJax escaping/underscore/star hygiene, GFM tables, handle & solver formatting
 
 Modes:
-  1. Repository verification (default):
-       python3 src/verify_expected.py
-       python3 src/verify_expected.py --collection knights-tour-obstacles
-       python3 src/verify_expected.py --exclude 'guillochon-*' --exclude 'davies-*' --exclude 'vzhn-*'
-     Validates:
-       (a) Every collection's ``expected.tsv`` syntax, sorting, valid labels, and exact
-           1-to-1 coverage against ``*-orig/**/*.xz`` (plus 4-format ``*-converted/`` parity,
-           respecting any strictly validated ``format_exclusions.tsv`` manifest for files
-           omitted due to GitHub's 95 MB per-file size limit).
-       (b) Cross-checks ALL solver verdicts recorded in every collection's ``README.md``
-           tables (and root ``README.md`` cross-product table) against ``expected.tsv``.
-       (c) Cross-checks cached solver run JSONs in ``--cache-dir`` (default
-           ``~/.cache/frobenius``: ``all_suites_8core.json``, ``gap_fill_8core.json``,
-           ``shortcut_300s.json``, ``new_suites_bench.json``, ``shortcut_tier3_solo.json``)
-           against ``expected.tsv``.
-       (d) Optional ``--check-hygiene`` audits compression (0 ``.gz``/``.bz2``/uncompressed
-           benchmark files), GitHub ``<= 95 MB`` per-file size limit, strict GFM Markdown tables
-           (unescaped ``|`` in math/code/links, header/separator/body column counts, surrounding
-           blank lines), solver name/version formatting, and relative Markdown links.
+  1. Full or incremental repository verification:
+       python3 src/verify_expected.py [--check-hygiene] [--jobs N]
+       python3 src/verify_expected.py --collection rsa-ntt-factoring --check-hygiene
+       python3 src/verify_expected.py --collection rsa-ntt-factoring --check math_hygiene
+       python3 src/verify_expected.py --changed --check-hygiene
+       python3 src/verify_expected.py --exclude 'guillochon-*' --exclude 'davies-*'
 
   2. Live solver-run verification:
        python3 src/verify_expected.py --check-run path/to/results.json
        python3 src/verify_expected.py --check-run path/to/run_logs_dir/ [--collection <name>]
-     Verifies any JSON, TSV/CSV, or solver log directory against ``expected.tsv``,
-     exiting non-zero if ANY verdict contradicts ground truth.
 """
 from __future__ import annotations
 
 import argparse
-import csv
-import fnmatch
-import json
-import lzma
-import re
 import sys
-from collections import defaultdict
+import time
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_CACHE_DIR = Path.home() / ".cache" / "frobenius"
+_SRC_DIR = Path(__file__).resolve().parent
+if str(_SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(_SRC_DIR))
 
-VALID_LABELS = frozenset({"SAT", "UNSAT", "UNKNOWN"})
-ORIG_DIRS = ("cnf-orig", "aig-orig", "xcnf-orig", "mata-orig")
-CONV_DIRS = ("aig-converted", "cnf-converted", "xcnf-converted", "anf-converted")
-SAT_EXTS = (".cnf.xz", ".aig.xz", ".xcnf.xz", ".anf.xz", ".mata.xz", ".cnf", ".aig", ".xcnf", ".anf", ".mata", ".xz")
-MAX_GITHUB_FILE_BYTES = 95 * 1024 * 1024
+from checks import discover_checks, select_checks
+from checks.check_expected import run as run_check_expected
+from checks.check_formats import run as run_check_formats
+from checks.check_layout import run as run_check_layout
+from checks.check_math_hygiene import (
+    is_gfm_separator_row,
+    run as run_check_math_hygiene,
+    split_gfm_table_cells,
+    validate_gfm_tables,
+)
+from checks.check_verdicts import (
+    check_live_run,
+    cross_check_cache_jsons,
+    cross_check_readmes,
+)
+from checks.common import (
+    ARCHIVE_ONLY_URI_COLLECTIONS,
+    CONV_DIRS,
+    DEFAULT_CACHE_DIR,
+    KNOWN_PRECOMMIT_CACHE_ARTIFACTS,
+    LEGACY_COLLECTION_MAP,
+    MAX_GITHUB_FILE_BYTES,
+    ORIG_DIRS,
+    REPO_ROOT,
+    SAT_EXTS,
+    VALID_LABELS,
+    CheckContext,
+    CheckResult,
+    build_stem_index,
+    default_jobs,
+    detect_changed_collections,
+    discover_collections,
+    get_collection_orig_entries,
+    load_expected_tsv,
+    load_format_exclusions_tsv,
+    norm_verdict,
+    strip_all_exts,
+    strip_rel_exts,
+)
 
-# Archive-only URI catalogs that list multi-instance .tar.gz archives rather than individual formulas.
-ARCHIVE_ONLY_URI_COLLECTIONS = frozenset({"satlib-archive-uris"})
-
-# Historical pre-commit cache artifact: new_suites_bench.json was recorded on 2026-11-22 19:23,
-# 9 minutes before commit 513ab8aa (2026-11-22 19:32) fixed the Gz matrix check in
-# qdistsat-qldpc/src/export_qdist_cnf.py. The committed BB_144_12_12_w11_unsat.cnf.xz is
-# mathematically UNSAT (d=12, Hz*Gz^T=0, rank([Hx;Gz])=n-rank(Hz)) and times out >10s in
-# post-commit all_suites_8core.json. Flagged under --strict-legacy-cache, annotated otherwise.
-KNOWN_PRECOMMIT_CACHE_ARTIFACTS = frozenset({
-    ("new_suites_bench.json", "qdistsat_6", "qdistsat-qldpc", "BB_144_12_12_w11_unsat"),
-    ("new_suites_bench.json", "qdistsat_xcnf_6", "qdistsat-qldpc", "BB_144_12_12_w11_unsat"),
-})
-
-
-def strip_all_exts(name: str) -> str:
-    s = Path(name).name
-    for ext in SAT_EXTS:
-        if s.endswith(ext):
-            s = s[: -len(ext)]
-            break
-    return s
-
-
-def strip_rel_exts(rel_path: str) -> str:
-    """Strip benchmark extension(s) while preserving any POSIX subdirectory prefix."""
-    p = rel_path.replace("\\", "/")
-    for ext in SAT_EXTS:
-        if p.endswith(ext):
-            p = p[: -len(ext)]
-            break
-    return p
-
-
-def norm_verdict(raw: object) -> str | None:
-    if raw is None:
-        return None
-    u = str(raw).strip().upper()
-    if u in ("SAT", "SATISFIABLE", "S SATISFIABLE", "SAT-VERIFIED"):
-        return "SAT"
-    if u in ("UNSAT", "UNSATISFIABLE", "S UNSATISFIABLE", "UNSAT-VERIFIED"):
-        return "UNSAT"
-    if u in ("UNKNOWN", "TIMEOUT", "T/O", "OPEN", "TBD", "PENDING"):
-        return "UNKNOWN"
-    return None
-
-
-def discover_collections(
-    repo_root: Path,
-    only: list[str] | None = None,
-    excludes: list[str] | None = None,
-) -> list[str]:
-    excludes = excludes or []
-    cols: list[str] = []
-    for entry in sorted(repo_root.iterdir()):
-        if not entry.is_dir() or entry.name.startswith(".") or entry.name == "src":
-            continue
-        if only and entry.name not in only:
-            continue
-        if any(fnmatch.fnmatch(entry.name, pat) for pat in excludes):
-            continue
-        cols.append(entry.name)
-    return cols
-
-
-def load_expected_tsv(tsv_path: Path, repo_root: Path = REPO_ROOT) -> tuple[dict[str, str], list[str]]:
-    """Parse and strictly validate an expected.tsv file."""
-    errors: list[str] = []
-    mapping: dict[str, str] = {}
-    try:
-        disp = str(tsv_path.relative_to(repo_root))
-    except ValueError:
-        disp = str(tsv_path)
-    if not tsv_path.exists():
-        return mapping, [f"Missing {disp}"]
-
-    raw = tsv_path.read_text(encoding="utf-8")
-    if not raw:
-        return mapping, [f"Empty {disp}"]
-    if "\r" in raw:
-        errors.append(f"{disp}: contains CRLF line endings (must be LF)")
-    if not raw.endswith("\n"):
-        errors.append(f"{disp}: missing trailing newline")
-
-    keys_in_order: list[str] = []
-    for lineno, line in enumerate(raw.splitlines(), 1):
-        if not line.strip():
-            errors.append(f"{disp}:{lineno}: blank line not allowed")
-            continue
-        parts = line.split("\t")
-        if len(parts) != 2:
-            errors.append(
-                f"{disp}:{lineno}: expected 2 tab-separated columns, got {len(parts)}: {line!r}"
-            )
-            continue
-        inst, label = parts
-        if inst != inst.strip() or label != label.strip():
-            errors.append(f"{disp}:{lineno}: leading/trailing whitespace in {line!r}")
-        if inst.endswith(".xz"):
-            errors.append(f"{disp}:{lineno}: instance must strip .xz suffix: {inst!r}")
-        if label not in VALID_LABELS:
-            errors.append(
-                f"{disp}:{lineno}: invalid verdict {label!r} (expected SAT|UNSAT|UNKNOWN)"
-            )
-            continue
-        if inst in mapping:
-            errors.append(f"{disp}:{lineno}: duplicate instance {inst!r}")
-            continue
-        mapping[inst] = label
-        keys_in_order.append(inst)
-
-    if keys_in_order != sorted(keys_in_order):
-        errors.append(f"{disp}: rows are not sorted alphabetically by instance name")
-
-    return mapping, errors
-
-
-def get_collection_orig_entries(col_dir: Path) -> tuple[str | None, list[str], list[str]]:
-    """Return (kind, expected_keys_without_xz, errors)."""
-    errors: list[str] = []
-    orig_found = [d for d in ORIG_DIRS if (col_dir / d).is_dir()]
-    if len(orig_found) > 1:
-        errors.append(f"{col_dir.name}: multiple *-orig dirs found: {orig_found}")
-
-    if orig_found:
-        od_name = orig_found[0]
-        od = col_dir / od_name
-        keys: list[str] = []
-        for f in sorted(od.rglob("*")):
-            if not f.is_file():
-                continue
-            rel = f.relative_to(od).as_posix()
-            if not rel.endswith(".xz"):
-                errors.append(f"{col_dir.name}/{od_name}/{rel}: uncompressed benchmark file (expected .xz)")
-                continue
-            keys.append(rel[:-3])
-        return od_name, sorted(keys), errors
-
-    if col_dir.name in ARCHIVE_ONLY_URI_COLLECTIONS:
-        return "archive-uri", [], errors
-
-    # Instance-level URI manifest collection (e.g. sat-competition-2002-2026-uris/uris/*.uri)
-    uri_files = sorted(col_dir.rglob("*.uri"))
-    if uri_files:
-        hashes: set[str] = set()
-        for uf in uri_files:
-            for line in uf.read_text(encoding="utf-8").splitlines():
-                s = line.strip()
-                if not s or s.startswith("#"):
-                    continue
-                tail = s.rsplit("/", 1)[-1]
-                h = tail.split("-")[0].split(".")[0]
-                hashes.add(f"{h}.cnf")
-        return "instance-uri", sorted(hashes), errors
-
-    errors.append(f"{col_dir.name}: neither *-orig/ directory nor *.uri manifest found")
-    return None, [], errors
-
-
-def load_format_exclusions_tsv(
-    tsv_path: Path,
-    repo_root: Path = REPO_ROOT,
-) -> tuple[dict[str, dict[str, str]], list[str]]:
-    """Parse and strictly validate an optional ``format_exclusions.tsv`` manifest.
-
-    Format: strict 3-column TSV, no header, LF line endings, trailing newline,
-    sorted alphabetically by ``(converted_dir, rel_stem)``:
-
-        <converted_dir>\\t<rel_stem>\\t<reason>
-    """
-    errors: list[str] = []
-    exclusions: dict[str, dict[str, str]] = defaultdict(dict)
-    if not tsv_path.exists():
-        return exclusions, errors
-
-    try:
-        disp = str(tsv_path.relative_to(repo_root))
-    except ValueError:
-        disp = str(tsv_path)
-
-    raw = tsv_path.read_text(encoding="utf-8")
-    if not raw:
-        return exclusions, [f"Empty {disp}"]
-    if "\r" in raw:
-        errors.append(f"{disp}: contains CRLF line endings (must be LF)")
-    if not raw.endswith("\n"):
-        errors.append(f"{disp}: missing trailing newline")
-
-    keys_in_order: list[tuple[str, str]] = []
-    for lineno, line in enumerate(raw.splitlines(), 1):
-        if not line.strip():
-            errors.append(f"{disp}:{lineno}: blank line not allowed")
-            continue
-        parts = line.split("\t")
-        if len(parts) != 3:
-            errors.append(
-                f"{disp}:{lineno}: expected 3 tab-separated columns (<conv_dir>, <rel_stem>, <reason>), got {len(parts)}"
-            )
-            continue
-        conv_dir, rel_stem, reason = parts
-        if conv_dir != conv_dir.strip() or rel_stem != rel_stem.strip() or reason != reason.strip():
-            errors.append(f"{disp}:{lineno}: leading/trailing whitespace in {line!r}")
-        if conv_dir not in CONV_DIRS:
-            errors.append(f"{disp}:{lineno}: invalid converted dir {conv_dir!r} (expected one of {CONV_DIRS})")
-            continue
-        if not rel_stem or strip_rel_exts(rel_stem) != rel_stem:
-            errors.append(f"{disp}:{lineno}: stem must omit benchmark/compression extensions: {rel_stem!r}")
-            continue
-        if not reason:
-            errors.append(f"{disp}:{lineno}: missing exclusion reason for {conv_dir}/{rel_stem}")
-            continue
-        if rel_stem in exclusions[conv_dir]:
-            errors.append(f"{disp}:{lineno}: duplicate exclusion ({conv_dir}, {rel_stem})")
-            continue
-        exclusions[conv_dir][rel_stem] = reason
-        keys_in_order.append((conv_dir, rel_stem))
-
-    if keys_in_order != sorted(keys_in_order):
-        errors.append(f"{disp}: rows are not sorted alphabetically by (converted_dir, rel_stem)")
-
-    return exclusions, errors
+__all__ = [
+    "ARCHIVE_ONLY_URI_COLLECTIONS",
+    "CONV_DIRS",
+    "DEFAULT_CACHE_DIR",
+    "KNOWN_PRECOMMIT_CACHE_ARTIFACTS",
+    "LEGACY_COLLECTION_MAP",
+    "MAX_GITHUB_FILE_BYTES",
+    "ORIG_DIRS",
+    "REPO_ROOT",
+    "SAT_EXTS",
+    "VALID_LABELS",
+    "build_stem_index",
+    "check_hygiene",
+    "check_live_run",
+    "cross_check_cache_jsons",
+    "cross_check_readmes",
+    "detect_changed_collections",
+    "discover_collections",
+    "get_collection_orig_entries",
+    "is_gfm_separator_row",
+    "load_expected_tsv",
+    "load_format_exclusions_tsv",
+    "norm_verdict",
+    "split_gfm_table_cells",
+    "strip_all_exts",
+    "strip_rel_exts",
+    "validate_collections",
+    "validate_gfm_tables",
+]
 
 
 def validate_collections(
     repo_root: Path,
     cols: list[str],
+    jobs: int = 1,
 ) -> tuple[dict[str, dict[str, str]], dict[str, str], list[str], list[str]]:
-    """Validate expected.tsv coverage and 4-format parity across collections."""
-    all_expected: dict[str, dict[str, str]] = {}
-    col_kinds: dict[str, str] = {}
-    errors: list[str] = []
-    notes: list[str] = []
-
-    for c in cols:
-        col_dir = repo_root / c
-        kind, orig_keys, k_errs = get_collection_orig_entries(col_dir)
-        errors.extend(k_errs)
-        if kind is None:
-            continue
-        col_kinds[c] = kind
-
-        if kind == "archive-uri":
-            continue
-
-        tsv_path = col_dir / "expected.tsv"
-        mapping, t_errs = load_expected_tsv(tsv_path, repo_root=repo_root)
-        errors.extend(t_errs)
-        all_expected[c] = mapping
-
-        orig_set = set(orig_keys)
-        tsv_set = set(mapping.keys())
-        missing = sorted(orig_set - tsv_set)
-        extra = sorted(tsv_set - orig_set)
-        if missing:
-            errors.append(f"{c}/expected.tsv: missing {len(missing)} instance(s) from {kind}: {missing[:5]}")
-        if extra:
-            errors.append(f"{c}/expected.tsv: {len(extra)} extra instance(s) not in {kind}: {extra[:5]}")
-
-        # For SAT collections, also verify converted directories match orig relative stems 1-to-1,
-        # honoring any strictly validated format_exclusions.tsv entries (e.g. >95 MB GitHub limit).
-        if kind in ("cnf-orig", "aig-orig", "xcnf-orig"):
-            orig_stems = {strip_rel_exts(k) for k in orig_keys}
-            excl_path = col_dir / "format_exclusions.tsv"
-            exclusions, ex_errs = load_format_exclusions_tsv(excl_path, repo_root=repo_root)
-            errors.extend(ex_errs)
-            for cd_name, stem_map in exclusions.items():
-                if not (col_dir / cd_name).is_dir():
-                    errors.append(f"{c}/format_exclusions.tsv: references missing directory {cd_name!r}")
-                for st in sorted(stem_map):
-                    if st not in orig_stems:
-                        errors.append(
-                            f"{c}/format_exclusions.tsv: stem {st!r} for {cd_name} does not exist in {kind}"
-                        )
-            for cd_name in CONV_DIRS:
-                cd = col_dir / cd_name
-                if not cd.is_dir():
-                    continue
-                conv_stems = {
-                    strip_rel_exts(f.relative_to(cd).as_posix())
-                    for f in cd.rglob("*")
-                    if f.is_file() and f.name.endswith(".xz")
-                }
-                excl_stems = set(exclusions.get(cd_name, {}).keys())
-                stale_excl = sorted(excl_stems & conv_stems)
-                if stale_excl:
-                    errors.append(
-                        f"{c}/format_exclusions.tsv: {cd_name} stem(s) are present on disk and should not be excluded: {stale_excl[:5]}"
-                    )
-                expected_conv_stems = orig_stems - excl_stems
-                if conv_stems != expected_conv_stems:
-                    m_c = sorted(expected_conv_stems - conv_stems)
-                    e_c = sorted(conv_stems - expected_conv_stems)
-                    errors.append(
-                        f"{c}/{cd_name}: stem mismatch vs {kind} (missing={m_c[:3]}, extra={e_c[:3]})"
-                    )
-                elif excl_stems:
-                    notes.append(
-                        f"[format exclusion] {c}/{cd_name}: {len(excl_stems)} documented omission(s) via format_exclusions.tsv"
-                    )
-
-    return all_expected, col_kinds, errors, notes
-
-
-def build_stem_index(
-    all_expected: dict[str, dict[str, str]],
-) -> tuple[dict[str, dict[str, tuple[str, str]]], dict[str, list[tuple[str, str, str]]]]:
-    """Build per-collection and global stem -> (inst_no_xz, verdict) indices.
-
-    Supports both flat names (``foo.cnf``, ``foo``) and recursive relative paths
-    (``A067782/sortnet_n11_d7.cnf``, ``A067782/sortnet_n11_d7``, plus unique basenames).
-    """
-    by_col: dict[str, dict[str, tuple[str, str]]] = {}
-    global_idx: dict[str, list[tuple[str, str, str]]] = defaultdict(list)
-    for col, mapping in all_expected.items():
-        cm: dict[str, tuple[str, str]] = {}
-        base_counts: dict[str, int] = defaultdict(int)
-        base_stem_counts: dict[str, int] = defaultdict(int)
-        for inst in mapping:
-            base_counts[Path(inst).name] += 1
-            base_stem_counts[strip_all_exts(inst)] += 1
-
-        for inst, label in mapping.items():
-            rst = strip_rel_exts(inst)
-            bn = Path(inst).name
-            bst = strip_all_exts(inst)
-            cm[inst] = (inst, label)
-            cm[rst] = (inst, label)
-            if base_counts[bn] == 1:
-                cm[bn] = (inst, label)
-            if base_stem_counts[bst] == 1:
-                cm[bst] = (inst, label)
-
-            seen_g: set[str] = set()
-            for key in (inst, rst, bn, bst):
-                if key not in seen_g:
-                    seen_g.add(key)
-                    global_idx[key].append((col, inst, label))
-        by_col[col] = cm
-    return by_col, global_idx
-
-
-def cross_check_readmes(
-    repo_root: Path,
-    cols: list[str],
-    col_kinds: dict[str, str],
-    by_col: dict[str, dict[str, tuple[str, str]]],
-    global_idx: dict[str, list[tuple[str, str, str]]],
-) -> tuple[int, list[str]]:
-    """Cross-check every verdict cell in every collection README.md and root README.md."""
-    checked = 0
-    mismatches: list[str] = []
-
-    for c in cols:
-        if c not in by_col:
-            continue
-        md = repo_root / c / "README.md"
-        if not md.exists():
-            continue
-        lines = md.read_text(encoding="utf-8", errors="replace").splitlines()
-        cm = by_col[c]
-        is_mata = col_kinds.get(c) == "mata-orig"
-
-        i = 0
-        while i < len(lines):
-            line = lines[i]
-            if (
-                line.strip().startswith("|")
-                and i + 1 < len(lines)
-                and re.match(r"^\s*\|[\s:\-\|]+\|\s*$", lines[i + 1])
-            ):
-                hdr = [x.strip() for x in line.strip().strip("|").split("|")]
-                verdict_col_idx: int | None = None
-                for idx, h in enumerate(hdr):
-                    hl = h.lower()
-                    if is_mata:
-                        if "complement verdict" in hl:
-                            verdict_col_idx = idx
-                            break
-                    else:
-                        if any(k in hl for k in ("verdict", "status", "ans", "expected")):
-                            verdict_col_idx = idx
-                            break
-                j = i + 2
-                while j < len(lines) and lines[j].strip().startswith("|"):
-                    cells = [x.strip() for x in lines[j].strip().strip("|").split("|")]
-                    if verdict_col_idx is not None and len(cells) > verdict_col_idx:
-                        c0 = cells[0].strip("`* ")
-                        tok0 = c0.split()[0].strip("`* ") if c0 else ""
-                        hit = cm.get(tok0) or cm.get(strip_rel_exts(tok0)) or cm.get(strip_all_exts(tok0))
-                        if hit is not None:
-                            raw_v = re.sub(r"\*[^*]*\*", "", cells[verdict_col_idx]).replace("*", "").strip()
-                            # Handle cells like "SAT *(known unique)*" -> "SAT"
-                            first_word = raw_v.split()[0] if raw_v else ""
-                            rv = norm_verdict(first_word) if first_word.upper() in ("SAT", "UNSAT") else None
-                            if rv in ("SAT", "UNSAT"):
-                                inst_key, exp_v = hit
-                                checked += 1
-                                if exp_v != rv:
-                                    mismatches.append(
-                                        f"README mismatch in {c}/README.md:{j+1} ({inst_key}): "
-                                        f"README says {rv}, expected.tsv says {exp_v}"
-                                    )
-                    j += 1
-                i = j
-            else:
-                i += 1
-
-    # Also cross-check root README.md Section 6 cross-product parity table
-    root_md = repo_root / "README.md"
-    if root_md.exists():
-        lines = root_md.read_text(encoding="utf-8", errors="replace").splitlines()
-        i = 0
-        while i < len(lines):
-            line = lines[i]
-            if (
-                line.strip().startswith("| Origin | Benchmark | Verdict |")
-                and i + 1 < len(lines)
-                and re.match(r"^\s*\|[\s:\-\|]+\|\s*$", lines[i + 1])
-            ):
-                j = i + 2
-                while j < len(lines) and lines[j].strip().startswith("|"):
-                    cells = [x.strip() for x in lines[j].strip().strip("|").split("|")]
-                    if len(cells) >= 3:
-                        tok = cells[1].split()[0].strip("`* ")
-                        st = strip_all_exts(tok)
-                        rv = norm_verdict(cells[2])
-                        matches = global_idx.get(st, [])
-                        if rv in ("SAT", "UNSAT") and matches:
-                            for col, inst_key, exp_v in matches:
-                                checked += 1
-                                if exp_v != rv:
-                                    mismatches.append(
-                                        f"Root README mismatch at README.md:{j+1} ({col}/{inst_key}): "
-                                        f"README says {rv}, expected.tsv says {exp_v}"
-                                    )
-                    j += 1
-                i = j
-            else:
-                i += 1
-
-    return checked, mismatches
-
-
-# Legacy collection names from pre-reorganization cache JSONs mapped to their current split/merged targets.
-LEGACY_COLLECTION_MAP: dict[str, tuple[str, ...]] = {
-    "dense-solver-synthetic": ("dense-solver-synthetic-chessboard", "dense-solver-synthetic-php"),
-    "zed-adversarial-hub-php": ("zed-adversarial-hub", "zed-adversarial-php"),
-    "vzhn-sat-inv-matrix": ("vzhn-sat-inv-matrix-int", "vzhn-sat-inv-matrix-mod"),
-    "sat-competition-2023-2024-selected": ("sat-competition-2002-2026-uris",),
-    "sat-competition-2024-2026-main-track": ("sat-competition-2002-2026-uris",),
-    "guillochon-oeis-sat-instances": (
-        "guillochon-oeis-a067782-sortnet",
-        "guillochon-oeis-a171081-vdw",
-        "guillochon-oeis-a250000-queens",
-        "guillochon-oeis-a350304-zarankiewicz",
-        "guillochon-oeis-grid-sq-any",
-        "guillochon-oeis-grid-sq-axis",
-        "guillochon-oeis-grid-tri-any",
-        "guillochon-oeis-grid-tri-axis",
-        "guillochon-oeis-grid-tri-up",
-    ),
-}
-
-
-def cross_check_cache_jsons(
-    cache_dir: Path,
-    by_col: dict[str, dict[str, tuple[str, str]]],
-    strict_legacy_cache: bool = False,
-    repo_root: Path = REPO_ROOT,
-) -> tuple[int, list[str], list[str]]:
-    """Cross-check cached solver JSONs in ~/.cache/frobenius against expected.tsv."""
-    checked = 0
-    mismatches: list[str] = []
-    notes: list[str] = []
-
-    sc23_24_alias: dict[str, str] = {}
-    sc_manifest = repo_root / "sat-competition-2002-2026-uris" / "src" / "sc23_24_manifest.json"
-    if sc_manifest.exists():
-        try:
-            mdata = json.loads(sc_manifest.read_text(encoding="utf-8"))
-            for entry in mdata.get("sat_competition_flat_cnfs", []):
-                nm = entry.get("name")
-                gh = entry.get("gbd_hash")
-                if isinstance(nm, str) and isinstance(gh, str):
-                    sc23_24_alias[nm] = f"{gh}.cnf"
-        except Exception:
-            pass
-
-    def check_one(src_file: str, section: str, col: str, stem_or_name: str, solver: str, raw_v: object) -> None:
-        nonlocal checked
-        rv = norm_verdict(raw_v)
-        if rv not in ("SAT", "UNSAT"):
-            return
-        candidate_cols = (col,) if col in by_col else LEGACY_COLLECTION_MAP.get(col, ())
-        if not candidate_cols:
-            return
-        st = strip_all_exts(stem_or_name)
-        mapped_name = sc23_24_alias.get(st)
-        resolved_col: str | None = None
-        hit: tuple[str, str] | None = None
-        for cand in candidate_cols:
-            cm = by_col.get(cand)
-            if not cm:
-                continue
-            h = cm.get(st) or cm.get(stem_or_name) or (cm.get(mapped_name) if mapped_name else None)
-            if h:
-                resolved_col = cand
-                hit = h
-                break
-        if not hit or resolved_col is None:
-            return
-        inst_key, exp_v = hit
-        checked += 1
-        if exp_v != rv:
-            if not strict_legacy_cache and (src_file, section, resolved_col, st) in KNOWN_PRECOMMIT_CACHE_ARTIFACTS:
-                notes.append(
-                    f"[legacy pre-commit cache note] {src_file}:{section} {resolved_col}/{inst_key} ({solver}): "
-                    f"recorded {rv} before commit 513ab8aa fixed export_qdist_cnf.py (expected.tsv={exp_v})"
-                )
-                return
-            mismatches.append(
-                f"Cache mismatch in {src_file}:{section} {resolved_col}/{inst_key} ({solver}): "
-                f"solver={rv}, expected.tsv={exp_v}"
-            )
-
-    # 1. all_suites_8core.json
-    p = cache_dir / "all_suites_8core.json"
-    if p.exists():
-        d = json.loads(p.read_text(encoding="utf-8"))
-        for col, cdata in d.get("sat", {}).items():
-            for item in cdata.get("items", []):
-                st = item.get("stem", "")
-                check_one(p.name, "sat", col, st, "consensus", item.get("verdict"))
-                for solver, sres in item.get("solvers", {}).items():
-                    if isinstance(sres, dict):
-                        check_one(p.name, "sat", col, st, solver, sres.get("verdict"))
-        for col, cdata in d.get("mata", {}).items():
-            for item in cdata.get("items", []):
-                st = item.get("stem", "")
-                modes = item.get("modes", {})
-                for mode in ("antichain_complement", "explicit_complement"):
-                    if mode in modes:
-                        check_one(p.name, "mata", col, st, mode, modes[mode].get("verdict"))
-                if "emptiness" in modes:
-                    ev = norm_verdict(modes["emptiness"].get("verdict"))
-                    if ev == "UNSAT":
-                        mismatches.append(f"Cache MATA emptiness unexpected UNSAT in {col}/{st}")
-                    elif ev == "SAT":
-                        checked += 1
-
-    # 2. gap_fill_8core.json
-    p = cache_dir / "gap_fill_8core.json"
-    if p.exists():
-        d = json.loads(p.read_text(encoding="utf-8"))
-        for col, cdata in d.get("dense", {}).items():
-            for item in cdata.get("items", []):
-                check_one(p.name, "dense", col, item.get("stem", ""), "dense-solver", item.get("verdict"))
-        for col, cdata in d.get("heule60", {}).items():
-            for item in cdata.get("items", []):
-                st = item.get("stem", "")
-                check_one(p.name, "heule60", col, st, "consensus", item.get("verdict"))
-                for solver, sres in item.get("solvers", {}).items():
-                    if isinstance(sres, dict):
-                        check_one(p.name, "heule60", col, st, solver, sres.get("verdict"))
-
-    # 3. shortcut_300s.json
-    p = cache_dir / "shortcut_300s.json"
-    if p.exists():
-        d = json.loads(p.read_text(encoding="utf-8"))
-        for key, col in (("tier1", "sat-shortcut-challenge-tier1"), ("tier3", "sat-shortcut-challenge-tier3")):
-            for st, sdict in d.get(key, {}).items():
-                if isinstance(sdict, dict):
-                    for solver, sres in sdict.items():
-                        if isinstance(sres, dict):
-                            check_one(p.name, key, col, st, solver, sres.get("verdict"))
-        for st in d.get("probsat_tier3", {}):
-            check_one(p.name, "probsat_tier3", "sat-shortcut-challenge-tier3", st, "probSAT", "SAT")
-
-    # 4. shortcut_tier3_solo.json
-    p = cache_dir / "shortcut_tier3_solo.json"
-    if p.exists():
-        d = json.loads(p.read_text(encoding="utf-8"))
-        for st, rec in d.get("frobenius_sat_solo_core0", {}).items():
-            if isinstance(rec, dict):
-                check_one(p.name, "solo_sat", "sat-shortcut-challenge-tier3", st, "frobenius", rec.get("verdict"))
-        for st, sdict in d.get("n300_unsat_solo_ccd", {}).items():
-            if isinstance(sdict, dict):
-                for solver, rec in sdict.items():
-                    if isinstance(rec, dict):
-                        check_one(p.name, "solo_unsat", "sat-shortcut-challenge-tier3", st, solver, rec.get("verdict"))
-
-    # 5. new_suites_bench.json
-    p = cache_dir / "new_suites_bench.json"
-    if p.exists():
-        d = json.loads(p.read_text(encoding="utf-8"))
-        map_col = {
-            "dense_public_30": ["dense-solver-public"],
-            "dense_instances_20": ["dense-solver-synthetic-chessboard", "dense-solver-synthetic-php"],
-            "pretolani_8": ["pretolani-pret"],
-            "qdistsat_6": ["qdistsat-qldpc"],
-            "qdistsat_xcnf_6": ["qdistsat-qldpc"],
-            "mod_circuit_9": ["mod-circuit-sat"],
-            "aloul_fpga_21": ["aloul-fpga-sb-sat", "aloul-fpga-sb-uns"],
-            "rb_frb30_5": ["rb-bench-model-rb"],
-            "vlsat2_10": ["vlsat-2"],
-            "shortcut_n300_5": ["sat-shortcut-challenge-tier3"],
-        }
-        for section, arr in d.items():
-            cols_k = map_col.get(section, [])
-            if not isinstance(arr, list):
-                continue
-            for row in arr:
-                fn = row.get("file", "")
-                st = strip_all_exts(fn)
-                target_col = None
-                for cand in cols_k:
-                    if cand in by_col and (st in by_col[cand] or fn in by_col[cand]):
-                        target_col = cand
-                        break
-                if target_col is None:
-                    continue
-                for solver, res in row.get("results", {}).items():
-                    rv = res[0] if isinstance(res, list) and res else (res.get("verdict") if isinstance(res, dict) else res)
-                    check_one(p.name, section, target_col, fn, solver, rv)
-
-    # 6. Certified SC 2024-2026 JSONs (optional if present)
-    sc_col = "sat-competition-2002-2026-uris"
-    if sc_col in by_col:
-        for fn in ("sc25_26_cake_lpr_300s.json", "sc24_cake_lpr_300s.json"):
-            p = cache_dir / fn
-            if not p.exists():
-                continue
-            try:
-                jd = json.loads(p.read_text(encoding="utf-8"))
-            except Exception:
-                continue
-            for h, rec in jd.get("results", {}).items():
-                if isinstance(rec, dict) and rec.get("verified") is True:
-                    check_one(fn, "results", sc_col, f"{h}.cnf", "frobenius-verified", rec.get("status"))
-
-    return checked, mismatches, notes
-
-
-def check_live_run(
-    target: Path,
-    by_col: dict[str, dict[str, tuple[str, str]]],
-    global_idx: dict[str, list[tuple[str, str, str]]],
-    restrict_col: str | None = None,
-) -> tuple[int, int, int, list[str], list[str]]:
-    """Verify a live solver run (JSON file, TSV/CSV file, or directory of logs/models).
-
-    Returns (checked, agreed, newly_solved_unknowns, mismatches, warnings).
-    """
-    observations: list[tuple[str | None, str, str, str]] = []  # (col_hint, inst_name, solver_label, verdict)
-
-    def add_obs(col_hint: str | None, inst_name: str, solver: str, raw_v: object) -> None:
-        rv = norm_verdict(raw_v)
-        if rv in ("SAT", "UNSAT"):
-            observations.append((col_hint, inst_name, solver, rv))
-
-    if target.is_dir():
-        for f in sorted(target.rglob("*")):
-            if not f.is_file():
-                continue
-            if f.suffix not in (".log", ".out", ".txt", ".model", ".xz"):
-                continue
-            try:
-                if f.suffix == ".xz":
-                    text = lzma.open(f, "rt", encoding="utf-8", errors="replace").read(1024 * 1024)
-                else:
-                    text = f.read_text(encoding="utf-8", errors="replace")
-            except Exception:
-                continue
-            verdict = None
-            for line in text.splitlines():
-                s = line.strip()
-                if s.startswith("s SATISFIABLE") or s == "SAT":
-                    verdict = "SAT"
-                    break
-                if s.startswith("s UNSATISFIABLE") or s == "UNSAT":
-                    verdict = "UNSAT"
-                    break
-            if verdict:
-                # Strip .model.xz / .log / .out / .txt
-                stem = f.name
-                for suf in (".model.xz", ".log", ".out", ".txt", ".model"):
-                    if stem.endswith(suf):
-                        stem = stem[: -len(suf)]
-                        break
-                add_obs(restrict_col, stem, f.parent.name, verdict)
-    elif target.suffix.lower() in (".tsv", ".csv"):
-        delim = "\t" if target.suffix.lower() == ".tsv" else ","
-        with target.open(encoding="utf-8", errors="replace") as fh:
-            for row in csv.reader(fh, delimiter=delim):
-                if len(row) < 2:
-                    continue
-                if row[0].strip().lower() in ("instance", "file", "name", "stem", "id"):
-                    continue
-                add_obs(restrict_col, row[0].strip(), target.name, row[1].strip())
-    else:
-        # Generic JSON parser supporting all known Frobenius & solver harness formats
-        data = json.loads(target.read_text(encoding="utf-8"))
-
-        def walk(obj: object, col_hint: str | None = None, solver_hint: str = "solver") -> None:
-            if isinstance(obj, list):
-                for item in obj:
-                    walk(item, col_hint, solver_hint)
-                return
-            if not isinstance(obj, dict):
-                return
-            # Record with explicit stem/file + verdict/status or solvers/results
-            inst = obj.get("stem") or obj.get("file") or obj.get("instance") or obj.get("name")
-            suite = obj.get("suite") or obj.get("collection") or col_hint
-            if isinstance(inst, str):
-                if "verdict" in obj or "status" in obj:
-                    add_obs(suite if isinstance(suite, str) else None, inst, solver_hint, obj.get("verdict") or obj.get("status"))
-                for sub_key in ("solvers", "results"):
-                    sub = obj.get(sub_key)
-                    if isinstance(sub, dict):
-                        for sk, sv in sub.items():
-                            if isinstance(sv, dict):
-                                add_obs(suite if isinstance(suite, str) else None, inst, sk, sv.get("verdict") or sv.get("status"))
-                            elif isinstance(sv, list) and sv:
-                                add_obs(suite if isinstance(suite, str) else None, inst, sk, sv[0])
-                            else:
-                                add_obs(suite if isinstance(suite, str) else None, inst, sk, sv)
-                return
-            # Mapping of suite/instance/results
-            for k, v in obj.items():
-                if k in ("results", "sat", "tier1", "tier3"):
-                    next_col = (
-                        "sat-shortcut-challenge-tier1" if k == "tier1"
-                        else "sat-shortcut-challenge-tier3" if k == "tier3"
-                        else col_hint
-                    )
-                    walk(v, next_col, solver_hint)
-                elif k in by_col:
-                    walk(v, k, solver_hint)
-                elif isinstance(v, dict):
-                    if "verdict" in v or "status" in v:
-                        add_obs(col_hint, k, solver_hint, v.get("verdict") or v.get("status"))
-                    elif "items" in v and isinstance(v["items"], list):
-                        walk(v["items"], k if k in by_col else col_hint, solver_hint)
-                    else:
-                        # Could be {inst: {solver: {verdict: ...}}}
-                        sub_vals = list(v.values())
-                        if sub_vals and all(isinstance(sv, dict) and ("verdict" in sv or "status" in sv) for sv in sub_vals):
-                            for sk, sv in v.items():
-                                add_obs(col_hint, k, sk, sv.get("verdict") or sv.get("status"))
-                        else:
-                            walk(v, col_hint, k)
-                elif isinstance(v, list):
-                    walk(v, col_hint, k)
-
-        walk(data, restrict_col, "solver")
-
-    checked = agreed = newly_solved = 0
-    mismatches: list[str] = []
-    warnings: list[str] = []
-
-    for col_hint, inst_name, solver, rv in observations:
-        rst = strip_rel_exts(inst_name)
-        st = strip_all_exts(inst_name)
-        col = restrict_col or col_hint
-        hits: list[tuple[str, str, str]] = []
-        if col and col in by_col:
-            h = by_col[col].get(inst_name) or by_col[col].get(rst) or by_col[col].get(st)
-            if h:
-                hits = [(col, h[0], h[1])]
-        if not hits:
-            hits = global_idx.get(inst_name) or global_idx.get(rst) or global_idx.get(st, [])
-            if restrict_col:
-                hits = [x for x in hits if x[0] == restrict_col]
-        if not hits:
-            warnings.append(f"Unrecognized instance {inst_name!r} (solver={solver}, verdict={rv})")
-            continue
-        # If stem appears in multiple collections (e.g. hole6 in dense-solver-public & satlib-dimacs-phole),
-        # check all of them (they agree on ground truth!).
-        checked += 1
-        all_match = True
-        for c_hit, inst_key, exp_v in hits:
-            if exp_v == "UNKNOWN":
-                newly_solved += 1
-                warnings.append(
-                    f"Instance {c_hit}/{inst_key} marked UNKNOWN in expected.tsv was solved as {rv} by {solver}"
-                )
-            elif exp_v != rv:
-                all_match = False
-                mismatches.append(
-                    f"MISMATCH on {c_hit}/{inst_key} (solver={solver}): got {rv}, expected {exp_v}"
-                )
-        if all_match and all(h[2] != "UNKNOWN" for h in hits):
-            agreed += 1
-
-    return checked, agreed, newly_solved, mismatches, warnings
-
-
-def split_gfm_table_cells(line: str) -> list[str]:
-    """Split a GFM Markdown table row on unescaped '|', stripping optional outer pipes."""
-    s = line.strip()
-    if s.startswith("|"):
-        s = s[1:]
-    if s.endswith("|") and not s.endswith("\\|"):
-        s = s[:-1]
-    cells: list[str] = []
-    cur: list[str] = []
-    i = 0
-    while i < len(s):
-        if s[i] == "\\" and i + 1 < len(s) and s[i + 1] == "|":
-            cur.append("\\|")
-            i += 2
-        elif s[i] == "|":
-            cells.append("".join(cur).strip())
-            cur = []
-            i += 1
-        else:
-            cur.append(s[i])
-            i += 1
-    cells.append("".join(cur).strip())
-    return cells
-
-
-def is_gfm_separator_row(line: str) -> bool:
-    s = line.strip()
-    if "|" not in s:
-        return False
-    cells = split_gfm_table_cells(s)
-    return bool(cells) and all(re.match(r"^:?-+:?$", c) for c in cells)
-
-
-def validate_gfm_tables(md: Path, repo_root: Path) -> list[str]:
-    """Strictly validate every GFM Markdown table in ``md``.
-
-    Catches:
-      - Any '|' inside inline math ``$...$`` on a table row (use ``\\lvert...\\rvert``,
-        ``\\mid``, or ``\\lVert...\\rVert`` so GitHub GFM never splits the cell).
-      - Unescaped '|' inside backtick code spans or Markdown links on a table row.
-      - Header vs. separator vs. body column-count mismatches.
-      - Orphan or malformed separator rows.
-      - Missing blank lines immediately before or after a table.
-    """
-    errors: list[str] = []
-    rel = str(md.relative_to(repo_root))
-    lines = md.read_text(encoding="utf-8", errors="replace").splitlines()
-    math_re = re.compile(r"(?<!\$)\$(?!\$)([^$\n]+?)(?<!\$)\$(?!\$)")
-    code_re = re.compile(r"`([^`\n]+)`")
-    link_re = re.compile(r"\[([^\]\n]+)\]\(([^)\n]+)\)")
-    fence_re = re.compile(r"^\s{0,3}(`{3,}|~{3,})")
-
-    in_fence = False
-    fence_char = ""
-    fence_len = 0
-    i = 0
-    n = len(lines)
-
-    while i < n:
-        line = lines[i]
-        fm = fence_re.match(line)
-        if fm:
-            marker = fm.group(1)
-            if not in_fence:
-                in_fence = True
-                fence_char = marker[0]
-                fence_len = len(marker)
-            elif marker[0] == fence_char and len(marker) >= fence_len:
-                in_fence = False
-            i += 1
-            continue
-        if in_fence:
-            i += 1
-            continue
-
-        if "|" in line and i + 1 < n and is_gfm_separator_row(lines[i + 1]):
-            hdr_line = line
-            sep_line = lines[i + 1]
-            hdr_cells = split_gfm_table_cells(hdr_line)
-            sep_cells = split_gfm_table_cells(sep_line)
-
-            if i > 0 and lines[i - 1].strip() != "" and not lines[i - 1].strip().startswith("<!--"):
-                errors.append(f"GFM table at {rel}:{i + 1}: missing blank line before table")
-
-            if len(hdr_cells) != len(sep_cells):
-                errors.append(
-                    f"GFM table at {rel}:{i + 1}: header/separator column count mismatch "
-                    f"(header={len(hdr_cells)}, separator={len(sep_cells)})"
-                )
-
-            j = i
-            while j < n and lines[j].strip().startswith("|"):
-                row = lines[j]
-                if j >= i + 2:
-                    body_cells = split_gfm_table_cells(row)
-                    if len(body_cells) != len(sep_cells):
-                        errors.append(
-                            f"GFM table at {rel}:{j + 1}: row column count mismatch "
-                            f"(row={len(body_cells)}, separator={len(sep_cells)})"
-                        )
-                if j != i + 1:
-                    for m in math_re.finditer(row):
-                        if "|" in m.group(1):
-                            errors.append(
-                                f"GFM table at {rel}:{j + 1}: '|' inside inline math `${m.group(1)}$` "
-                                "(use \\lvert...\\rvert, \\mid, or \\lVert...\\rVert)"
-                            )
-                    for m in code_re.finditer(row):
-                        if re.search(r"(?<!\\)\|", m.group(1)):
-                            errors.append(
-                                f"GFM table at {rel}:{j + 1}: unescaped '|' inside code span `{m.group(1)}`"
-                            )
-                    for m in link_re.finditer(row):
-                        if re.search(r"(?<!\\)\|", m.group(1)) or re.search(r"(?<!\\)\|", m.group(2)):
-                            errors.append(
-                                f"GFM table at {rel}:{j + 1}: unescaped '|' inside Markdown link `{m.group(0)}`"
-                            )
-                j += 1
-
-            if j < n and lines[j].strip() != "" and not lines[j].strip().startswith("<!--"):
-                errors.append(f"GFM table ending at {rel}:{j}: missing blank line after table")
-
-            i = j
-            continue
-
-        # Flag orphan or malformed separator rows (e.g. missing dashes or detached from a header)
-        if line.strip().startswith("|") and re.match(r"^\s*\|[\s:\-\|]+\|\s*$", line):
-            errors.append(f"GFM table at {rel}:{i + 1}: orphan or malformed separator row `{line.strip()[:80]}`")
-
-        i += 1
-
-    return errors
-
-
-def check_hygiene(repo_root: Path, cols: list[str]) -> list[str]:
-    """Audit compression hygiene, @tavisrudd spelling, GFM tables, solver formatting, and relative links."""
-    errors: list[str] = []
-    bad_exts = (".gz", ".bz2", ".cnf", ".aig", ".xcnf", ".anf", ".mata")
-    link_re = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
-    bt_re = re.compile(r"`([^`]+)`")
-    solver_word_re = re.compile(
-        r"\b(frobenius|cadical|kissat|cryptominisat\d*|dense-solver|probsat|satsuma|lymphosat)\b",
-        re.I,
-    )
-
-    def audit_md(md: Path) -> None:
-        rel = str(md.relative_to(repo_root))
-        text = md.read_text(encoding="utf-8", errors="replace")
-        if re.search("tr" + "avisrudd", text, re.I):
-            errors.append(f"Misspelled '@tavisrudd' handle in {rel}")
-        if re.search(r"CryptoMiniSat(?:\]\([^)]+\))?\s+5\.18(?!\.0)", text):
-            errors.append(f"Inconsistent version 'CryptoMiniSat 5.18' (missing .0) in {rel}")
-        errors.extend(validate_gfm_tables(md, repo_root))
-        # GFM MathJax hygiene: catch backslash-punctuation escapes stripped by cmark-gfm before MathJax
-        # (\; \, \: \! \_ \% \{ \} \|), unescaped _/^ inside \text{...}, and double * inside inline math.
-        in_fence = False
-        cleaned_lines = []
-        for raw_line in text.splitlines(True):
-            if raw_line.strip().startswith("```"):
-                in_fence = not in_fence
-                cleaned_lines.append("\n")
-            elif in_fence:
-                cleaned_lines.append("\n")
-            else:
-                cleaned_lines.append(raw_line)
-        body_nc = re.sub(r"`[^`\n]*`", lambda m: " " * len(m.group(0)), "".join(cleaned_lines))
-        for mm in re.finditer(r"(?<!\\)\$\$(.+?)(?<!\\)\$\$|(?<!\\)\$(?!\s)([^$\n]+?)(?<!\s)(?<!\\)\$", body_nc, re.S):
-            is_disp = mm.group(1) is not None
-            expr = mm.group(1) if is_disp else mm.group(2)
-            if not is_disp and re.match(r"^\d", expr) and not re.search(r"[\\^_{}=<>+\-*/]", expr):
-                continue
-            mln = body_nc.count("\n", 0, mm.start()) + 1
-            for pm in re.finditer(r"\\([;,:!_%{}|])", expr):
-                errors.append(f"GFM-unsafe math escape '{pm.group(0)}' in {rel}:{mln} (use alphabetic TeX macro or \\text{{ ...}})")
-            for tm in re.finditer(r"\\(?:text|texttt|textbf|textit|mbox)\{([^{}]*)\}", expr):
-                if "_" in tm.group(1) or "^" in tm.group(1):
-                    errors.append(f"Unescaped _/^ inside {tm.group(0)} in {rel}:{mln}")
-            if not is_disp and "*" in expr:
-                errors.append(f"Raw '*' in inline math (GFM italic hazard; use \\ast) in {rel}:{mln}")
-            if expr.count("{") != expr.count("}"):
-                errors.append(f"Unbalanced braces in math expression in {rel}:{mln}")
-        for mln, raw_line in enumerate(body_nc.splitlines(), 1):
-            if len(re.findall(r"\}_\{", raw_line)) >= 2:
-                errors.append(f"Multiple '}}_{{' on same line (GFM emphasis hazard; move subscript inside \\mathrm{{...}}) in {rel}:{mln}")
-            if raw_line.lstrip().startswith("|") and re.search(r"\*\([^*\n]*\$[^$\n]+\$[^*\n]*\)\*", raw_line):
-                errors.append(f"Inline $...$ inside italicized table parenthesis *(...)* in {rel}:{mln}")
-        if md != repo_root / "README.md":
-            lines = text.splitlines()
-            if not lines or not lines[0].startswith("# "):
-                errors.append(f"README structure error in {rel}: line 1 must be H1 '# ...'")
-            if len(lines) < 3 or not (lines[2].startswith("![") and "diagram.svg" in lines[2]):
-                errors.append(f"README structure error in {rel}: figure '![...](diagram.svg)' must appear directly below title (line 3), above Provenance & Credit")
-            h2s = [l for l in lines if l.startswith("## ")]
-            exp_analysis = "## Automata Structural Analysis" if rel.startswith("mata-presburger-nfa-") else "## Phase-Transition & Structural Analysis"
-            exp_h2s = [
-                "## Provenance & Credit",
-                "## Problem Description",
-                "## Corpus & Data Sizes",
-                "## Benchmark Results",
-                exp_analysis,
-                "## References",
-            ]
-            if h2s != exp_h2s:
-                errors.append(f"README section structure mismatch in {rel}: got {h2s}, expected {exp_h2s}")
-            elif "## Provenance & Credit" in lines and "## Problem Description" in lines:
-                pi = lines.index("## Provenance & Credit")
-                pdi = lines.index("## Problem Description")
-                top_b = [l for l in lines[pi + 1 : pdi] if l.startswith("- ")]
-                rec_idxs = [i for i, b in enumerate(top_b) if "recommended by" in b.lower()]
-                if rec_idxs and rec_idxs != [len(top_b) - 1]:
-                    errors.append(f"README Provenance error in {rel}: 'Recommended by' bullet must be last")
-        for m in link_re.finditer(text):
-            t = m.group(1).strip()
-            if t.startswith(("http://", "https://", "mailto:", "#")):
-                continue
-            tp = t.split("#")[0]
-            if tp and not (md.parent / tp).resolve().exists():
-                errors.append(f"Broken relative link in {rel}: {t}")
-        for lineno, line in enumerate(text.splitlines(), 1):
-            for m in bt_re.finditer(line):
-                tok = m.group(1)
-                if not solver_word_re.search(tok):
-                    continue
-                if (
-                    "/" in tok
-                    or "_" in tok
-                    or tok.startswith(("--", "./"))
-                    or tok.endswith((".py", ".c", ".rs", ".xz", ".cnf", ".aig", ".xcnf", ".anf", ".mata", ".json", ".tsv", ".csv", ".uri", ".gz", ".md"))
-                    or tok in (
-                        "dense-solver-public",
-                        "dense-solver-synthetic",
-                        "dense-solver-synthetic-chessboard",
-                        "dense-solver-synthetic-php",
-                        "f2-frobenius-circulants",
-                        "frobenius-challenge-v2",
-                    )
-                ):
-                    continue
-                errors.append(f"Backticked solver name `{tok}` in {rel}:{lineno}")
-
-    for c in cols:
-        col_dir = repo_root / c
-        for f in col_dir.rglob("*"):
-            if not f.is_file() or ".git" in f.parts:
-                continue
-            if f.stat().st_size > MAX_GITHUB_FILE_BYTES:
-                sz_mb = f.stat().st_size / (1024 * 1024)
-                errors.append(
-                    f"GitHub file-size violation (>95 MB): {f.relative_to(repo_root)} ({sz_mb:.2f} MB)"
-                )
-            if "src" in f.relative_to(col_dir).parts:
-                continue
-            if f.name.endswith(bad_exts):
-                errors.append(f"Compression hygiene violation: {f.relative_to(repo_root)}")
-
-        md = col_dir / "README.md"
-        if md.exists():
-            audit_md(md)
-
-    root_md = repo_root / "README.md"
-    if root_md.exists():
-        audit_md(root_md)
-
-    return errors
-
-
-def main() -> int:
-    ap = argparse.ArgumentParser(description="Verify expected.tsv manifests and solver verdicts.")
+    """Backward-compatible wrapper validating expected.tsv coverage and 4-format parity."""
+    with CheckContext(
+        repo_root=repo_root,
+        collections=cols,
+        is_full_repo=False,
+        include_root_readme=False,
+        check_hygiene=False,
+        jobs=jobs,
+    ) as ctx:
+        exp_res = run_check_expected(ctx)
+        fmt_res = run_check_formats(ctx)
+        return ctx.all_expected, ctx.col_kinds, exp_res.errors + fmt_res.errors, exp_res.notes + fmt_res.notes
+
+
+def check_hygiene(repo_root: Path, cols: list[str], jobs: int = 1) -> list[str]:
+    """Backward-compatible wrapper auditing compression, <95 MB sizes, layout, links, and GFM MathJax."""
+    with CheckContext(
+        repo_root=repo_root,
+        collections=cols,
+        is_full_repo=False,
+        include_root_readme=True,
+        check_hygiene=True,
+        jobs=jobs,
+    ) as ctx:
+        fmt_res = run_check_formats(ctx)
+        lay_res = run_check_layout(ctx)
+        math_res = run_check_math_hygiene(ctx)
+        # Return only hygiene-category errors from formats + all layout & math_hygiene errors
+        hyg_count = fmt_res.stats.get("hygiene_errors", 0)
+        fmt_hyg = fmt_res.errors[-hyg_count:] if hyg_count else []
+        return fmt_hyg + lay_res.errors + math_res.errors
+
+
+def build_arg_parser() -> argparse.ArgumentParser:
+    ap = argparse.ArgumentParser(description="Verify expected.tsv manifests, formats, verdicts, and repository hygiene.")
     ap.add_argument("--repo-root", type=Path, default=REPO_ROOT, help="Path to SAT-benchmarks repository root")
     ap.add_argument("--collection", action="append", help="Limit check to specific collection(s) (repeatable)")
+    ap.add_argument(
+        "--changed",
+        action="store_true",
+        help="Auto-detect modified/untracked collections from 'git status --porcelain' and check only those",
+    )
     ap.add_argument("--exclude", action="append", default=[], help="Exclude collection glob pattern(s) (repeatable)")
+    ap.add_argument(
+        "--check",
+        action="append",
+        help="Comma-separated subset of modular checks to run (e.g. expected,formats,verdicts,layout,math_hygiene or all)",
+    )
+    ap.add_argument("--list-checks", action="store_true", help="List available modular checks in src/checks/ and exit")
+    ap.add_argument(
+        "--jobs",
+        type=int,
+        default=default_jobs(),
+        help="Parallel worker count for per-collection checks (default: min(4, cpu_count))",
+    )
     ap.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR, help="Directory with cached frobenius JSONs")
     ap.add_argument("--skip-cache", action="store_true", help="Skip cross-checking cached JSON files")
     ap.add_argument("--strict-legacy-cache", action="store_true", help="Fail even on documented pre-commit cache artifacts")
-    ap.add_argument("--check-hygiene", action="store_true", help="Also verify compression, links, and @tavisrudd spelling")
+    ap.add_argument("--check-hygiene", action="store_true", help="Also verify layout, compression, <95 MB limit, links, and GFM MathJax")
     ap.add_argument(
         "--check-run",
         type=Path,
         default=None,
         help="Verify a live solver run JSON, TSV/CSV, or output directory against expected.tsv",
     )
-    args = ap.parse_args()
+    return ap
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = build_arg_parser()
+    args = ap.parse_args(argv)
+
+    if args.list_checks:
+        for mod in discover_checks():
+            tag = "hygiene" if getattr(mod, "REQUIRES_HYGIENE_FLAG", False) else "core"
+            desc = getattr(mod, "DESCRIPTION", "")
+            print(f"  {mod.CHECK_NAME:<14} [{tag:<7}]  {desc}")
+        return 0
 
     repo_root = args.repo_root.resolve()
-    cols = discover_collections(repo_root, only=args.collection, excludes=args.exclude)
-    all_expected, col_kinds, struct_errors, struct_notes = validate_collections(repo_root, cols)
-    by_col, global_idx = build_stem_index(all_expected)
+    jobs = max(1, args.jobs)
+
+    # Resolve target collection list
+    root_readme_changed = False
+    only: list[str] | None = [c.rstrip("/") for c in args.collection] if args.collection else None
+    if args.changed:
+        changed_cols, root_readme_changed = detect_changed_collections(repo_root)
+        if only is not None:
+            only = sorted(set(only) | set(changed_cols))
+        else:
+            only = changed_cols
+        if not only and not root_readme_changed and args.check_run is None:
+            print("No changed collections detected via git status --porcelain.")
+            print("\nALL CHECKS PASSED (0 errors, 0 verdict mismatches).")
+            return 0
+
+    cols = discover_collections(repo_root, only=only, excludes=args.exclude) if (only is None or only) else []
+    is_full_repo = (not args.collection) and (not args.changed) and (not args.exclude)
+    include_root_readme = is_full_repo or root_readme_changed
 
     # Mode 2: Live run verification
     if args.check_run is not None:
-        if struct_errors:
-            print(f"WARNING: {len(struct_errors)} expected.tsv structural error(s) in repo.", file=sys.stderr)
-        restrict = args.collection[0] if args.collection and len(args.collection) == 1 else None
-        checked, agreed, newly_solved, mismatches, warnings = check_live_run(
-            args.check_run, by_col, global_idx, restrict_col=restrict
-        )
+        with CheckContext(
+            repo_root=repo_root,
+            collections=cols,
+            is_full_repo=False,
+            include_root_readme=False,
+            check_hygiene=False,
+            jobs=jobs,
+        ) as ctx:
+            exp_res = run_check_expected(ctx)
+            fmt_res = run_check_formats(ctx)
+            struct_errors = exp_res.errors + fmt_res.errors
+            if struct_errors:
+                print(f"WARNING: {len(struct_errors)} expected.tsv structural error(s) in repo.", file=sys.stderr)
+            restrict = args.collection[0].rstrip("/") if args.collection and len(args.collection) == 1 else None
+            checked, agreed, newly_solved, mismatches, warnings = check_live_run(
+                args.check_run, ctx.by_col, ctx.global_idx, restrict_col=restrict
+            )
         print(f"Live run check ({args.check_run}):")
         print(f"  Verdicts checked : {checked}")
         print(f"  Agreed           : {agreed}")
@@ -1181,40 +239,88 @@ def main() -> int:
             print(f"  [FAIL] {m}", file=sys.stderr)
         return 1 if mismatches else 0
 
-    # Mode 1: Full repository verification
-    readme_checked, readme_mismatches = cross_check_readmes(repo_root, cols, col_kinds, by_col, global_idx)
+    # Mode 1: Modular repository verification
+    try:
+        selected = select_checks(args.check, check_hygiene=args.check_hygiene)
+    except ValueError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
 
-    cache_checked = 0
-    cache_mismatches: list[str] = []
-    cache_notes: list[str] = []
-    if not args.skip_cache and args.cache_dir.is_dir():
-        cache_checked, cache_mismatches, cache_notes = cross_check_cache_jsons(
-            args.cache_dir, by_col, strict_legacy_cache=args.strict_legacy_cache, repo_root=repo_root
+    explicit_subset = args.check is not None
+    # Enable file-level hygiene inside formats when --check-hygiene is passed OR formats is explicitly requested
+    effective_hygiene = args.check_hygiene or (explicit_subset and any(m.CHECK_NAME == "formats" for m in selected))
+
+    with CheckContext(
+        repo_root=repo_root,
+        collections=cols,
+        is_full_repo=is_full_repo,
+        include_root_readme=include_root_readme,
+        check_hygiene=effective_hygiene,
+        cache_dir=args.cache_dir,
+        skip_cache=args.skip_cache,
+        strict_legacy_cache=args.strict_legacy_cache,
+        jobs=jobs,
+    ) as ctx:
+        results: dict[str, CheckResult] = {}
+        ordered_results: list[CheckResult] = []
+        for mod in selected:
+            t0 = time.perf_counter()
+            res = mod.run(ctx)
+            res.duration_s = time.perf_counter() - t0
+            results[res.name] = res
+            ordered_results.append(res)
+
+    all_errors: list[str] = []
+    all_notes: list[str] = []
+    for res in ordered_results:
+        all_errors.extend(res.errors)
+        all_notes.extend(res.notes)
+
+    # Backward-compatible summary output when standard checks run, plus concise per-check output for --check subsets
+    if not explicit_subset:
+        exp_stats = results["expected"].stats if "expected" in results else {}
+        fmt_res = results.get("formats")
+        verd_stats = results["verdicts"].stats if "verdicts" in results else {}
+        struct_err_count = (
+            len(results["expected"].errors) if "expected" in results else 0
+        ) + (fmt_res.stats.get("format_errors", 0) if fmt_res else 0)
+        hygiene_err_count = (
+            (fmt_res.stats.get("hygiene_errors", 0) if fmt_res else 0)
+            + (len(results["layout"].errors) if "layout" in results else 0)
+            + (len(results["math_hygiene"].errors) if "math_hygiene" in results else 0)
         )
+        # Include any custom plugin check errors beyond the built-in 5
+        builtin_names = {"expected", "formats", "verdicts", "layout", "math_hygiene"}
+        extra_checks = [r for r in ordered_results if r.name not in builtin_names]
 
-    hygiene_errors = check_hygiene(repo_root, cols) if args.check_hygiene else []
+        print(f"Collections inspected   : {len(cols)} ({exp_stats.get('with_expected', len(ctx.all_expected))} with expected.tsv)")
+        print(
+            f"Total expected.tsv rows : {exp_stats.get('total_rows', 0)} "
+            f"(SAT={exp_stats.get('sat', 0)}, UNSAT={exp_stats.get('unsat', 0)}, UNKNOWN={exp_stats.get('unknown', 0)})"
+        )
+        print(f"Structural/1-to-1 errors: {struct_err_count}")
+        print(
+            f"README table verdicts   : {verd_stats.get('readme_checked', 0)} checked, "
+            f"{verd_stats.get('readme_mismatches', 0)} mismatches"
+        )
+        if not args.skip_cache:
+            print(
+                f"Cache JSON verdicts     : {verd_stats.get('cache_checked', 0)} checked, "
+                f"{verd_stats.get('cache_mismatches', 0)} mismatches"
+            )
+        if args.check_hygiene:
+            print(f"Hygiene errors          : {hygiene_err_count}")
+        for r in extra_checks:
+            print(f"Check {r.name:<18}: {len(r.errors)} error(s) ({r.duration_s:.3f}s)")
+    else:
+        print(f"Collections inspected   : {len(cols)}")
+        for r in ordered_results:
+            status = "OK" if r.ok else "FAIL"
+            print(f"Check {r.name:<18}: {status} ({len(r.errors)} error(s), {r.duration_s:.3f}s)")
 
-    # Summary stats
-    tot_entries = sum(len(m) for m in all_expected.values())
-    tot_sat = sum(1 for m in all_expected.values() for v in m.values() if v == "SAT")
-    tot_unsat = sum(1 for m in all_expected.values() for v in m.values() if v == "UNSAT")
-    tot_unk = sum(1 for m in all_expected.values() for v in m.values() if v == "UNKNOWN")
-
-    print(f"Collections inspected   : {len(cols)} ({len(all_expected)} with expected.tsv)")
-    print(f"Total expected.tsv rows : {tot_entries} (SAT={tot_sat}, UNSAT={tot_unsat}, UNKNOWN={tot_unk})")
-    print(f"Structural/1-to-1 errors: {len(struct_errors)}")
-    print(f"README table verdicts   : {readme_checked} checked, {len(readme_mismatches)} mismatches")
-    if not args.skip_cache:
-        print(f"Cache JSON verdicts     : {cache_checked} checked, {len(cache_mismatches)} mismatches")
-    if args.check_hygiene:
-        print(f"Hygiene errors          : {len(hygiene_errors)}")
-
-    for n in struct_notes:
+    for n in all_notes:
         print(f"  {n}")
-    for n in cache_notes:
-        print(f"  {n}")
 
-    all_errors = struct_errors + readme_mismatches + cache_mismatches + hygiene_errors
     if all_errors:
         print("\nERRORS:", file=sys.stderr)
         for e in all_errors:
