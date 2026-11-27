@@ -162,19 +162,16 @@ def build_svg() -> str:
         '<line x1="22" y1="62" x2="898" y2="62" stroke="#e2e8f0" stroke-width="1.2"/>',
     ]
 
-    # Plot frame & cliff-free regime background tints
+    # Plot frame & cliff-free regime background tints (smooth Stage 0C -> unified CompiledAig256 k=14..32)
     parts.append(f'<rect x="{px0}" y="{py0}" width="{pw}" height="{ph}" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
     rx_s0 = mx(1.5)
     rx_s1 = mx(13.5)
-    rx_s2 = mx(24.5)
     parts.append(f'<rect x="{rx_s0:.1f}" y="{py0 + 1}" width="{rx_s1 - rx_s0:.1f}" height="{ph - 2}" fill="#eff6ff" opacity="0.55"/>')
-    parts.append(f'<rect x="{rx_s1:.1f}" y="{py0 + 1}" width="{rx_s2 - rx_s1:.1f}" height="{ph - 2}" fill="#ecfdf5" opacity="0.60"/>')
-    parts.append(f'<rect x="{rx_s2:.1f}" y="{py0 + 1}" width="{px1 - rx_s2 - 1:.1f}" height="{ph - 2}" fill="#f0fdfa" opacity="0.72"/>')
+    parts.append(f'<rect x="{rx_s1:.1f}" y="{py0 + 1}" width="{px1 - rx_s1 - 1:.1f}" height="{ph - 2}" fill="#ecfdf5" opacity="0.62"/>')
 
     # Regime header badges cleanly inside top band (above 300s line, y = py0 + 14)
     parts.append(f'<text x="{(rx_s0 + rx_s1)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.3" font-weight="700" fill="#1d4ed8">Stage 0C (k=2..13)</text>')
-    parts.append(f'<text x="{(rx_s1 + rx_s2)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.3" font-weight="700" fill="#047857">Stage 0F 2048-lane (k=14..24)</text>')
-    parts.append(f'<text x="{(rx_s2 + px1)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.3" font-weight="700" fill="#0f766e">Probe+SIMD (k=25..32)</text>')
+    parts.append(f'<text x="{(rx_s1 + px1)/2:.1f}" y="{py0 + 14}" text-anchor="middle" font-size="8.3" font-weight="700" fill="#047857">Unified 2048-lane CompiledAig256 AVX2 (k=14..32, zero k≤24 cliff)</text>')
 
     # Horizontal grid lines & Y-axis labels
     y_ticks = [
@@ -198,9 +195,6 @@ def build_svg() -> str:
         parts.append(f'<line x1="{xx:.1f}" y1="{py0}" x2="{xx:.1f}" y2="{py1}" stroke="#e2e8f0" stroke-width="0.8"/>')
         parts.append(f'<line x1="{xx:.1f}" y1="{py1}" x2="{xx:.1f}" y2="{py1 + 4}" stroke="#64748b" stroke-width="1"/>')
         parts.append(f'<text x="{xx:.1f}" y="{py1 + 16}" text-anchor="middle" font-family="{FONT_MONO}" font-size="9.2" fill="#334155">{kv}</text>')
-
-    # Subtle teal dashed divider at k = 24.5 (Stage 0F -> shortcut-probe + 2048-lane escalation seam)
-    parts.append(f'<line x1="{rx_s2:.1f}" y1="{py0 + 20}" x2="{rx_s2:.1f}" y2="{py1}" stroke="#0d9488" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.8"/>')
 
     # Horizontal T_max = 300 s cutoff line
     y300 = my(300.0)
@@ -274,12 +268,12 @@ def build_svg() -> str:
             parts.append(f'<path d="M {xt - 3.3:.1f} {y300 - 3.3:.1f} L {xt + 3.3:.1f} {y300 + 3.3:.1f} M {xt - 3.3:.1f} {y300 + 3.3:.1f} L {xt + 3.3:.1f} {y300 - 3.3:.1f}" stroke="{color}" stroke-width="1.6"/>')
 
     # Clean in-plot callouts (placed in guaranteed open whitespace!)
-    # Callout 1: Cliff-free shortcut-probe + 2048-lane AVX2 seam (open upper-middle above k=19..26)
-    cx1 = mx(20.0)
-    cy1 = my(48.0)
-    parts.append(f'<rect x="{cx1:.1f}" y="{cy1:.1f}" width="136" height="31" rx="4" fill="#ffffff" stroke="#0d9488" stroke-width="0.95" opacity="0.96"/>')
-    parts.append(f'<text x="{cx1 + 68:.1f}" y="{cy1 + 12.5:.1f}" text-anchor="middle" font-size="8.2" font-weight="700" fill="#0f766e">No k≤24 cliff (2048-lane)</text>')
-    parts.append(f'<text x="{cx1 + 68:.1f}" y="{cy1 + 24.5:.1f}" text-anchor="middle" font-size="7.8" fill="#334155">+0.6s shortcut probe at k≥25</text>')
+    # Callout 1: Smooth fixed-floor -> 2^k search crossover knee around k* ≈ 19.8 (.aig) / 21.3 (.cnf)
+    cx1 = mx(18.6)
+    cy1 = my(38.0)
+    parts.append(f'<rect x="{cx1:.1f}" y="{cy1:.1f}" width="154" height="31" rx="4" fill="#ffffff" stroke="#047857" stroke-width="0.95" opacity="0.96"/>')
+    parts.append(f'<text x="{cx1 + 77:.1f}" y="{cy1 + 12.5:.1f}" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Overhead → 2ᵏ knee (k*≈20–21)</text>')
+    parts.append(f'<text x="{cx1 + 77:.1f}" y="{cy1 + 24.5:.1f}" text-anchor="middle" font-size="7.7" fill="#334155">a·2ᵏ* = c₀ (58–123 ms floor)</text>')
 
     # Callout 2: Full 32-bit T(32) solved inside 300 s (open lower-right whitespace below k=25..32 curve)
     cx2 = mx(24.7)

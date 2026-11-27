@@ -9,11 +9,9 @@
 <line x1="22" y1="62" x2="898" y2="62" stroke="#e2e8f0" stroke-width="1.2"/>
 <rect x="78" y="86" width="568" height="326" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>
 <rect x="95.6" y="87" width="211.0" height="324" fill="#eff6ff" opacity="0.55"/>
-<rect x="306.6" y="87" width="193.4" height="324" fill="#ecfdf5" opacity="0.60"/>
-<rect x="500.0" y="87" width="145.0" height="324" fill="#f0fdfa" opacity="0.72"/>
+<rect x="306.6" y="87" width="338.4" height="324" fill="#ecfdf5" opacity="0.62"/>
 <text x="201.1" y="100" text-anchor="middle" font-size="8.3" font-weight="700" fill="#1d4ed8">Stage 0C (k=2..13)</text>
-<text x="403.3" y="100" text-anchor="middle" font-size="8.3" font-weight="700" fill="#047857">Stage 0F 2048-lane (k=14..24)</text>
-<text x="573.0" y="100" text-anchor="middle" font-size="8.3" font-weight="700" fill="#0f766e">Probe+SIMD (k=25..32)</text>
+<text x="476.3" y="100" text-anchor="middle" font-size="8.3" font-weight="700" fill="#047857">Unified 2048-lane CompiledAig256 AVX2 (k=14..32, zero k≤24 cliff)</text>
 <line x1="78" y1="406.8" x2="646" y2="406.8" stroke="#e2e8f0" stroke-width="0.9"/>
 <line x1="74" y1="406.8" x2="78" y2="406.8" stroke="#64748b" stroke-width="1"/>
 <text x="71" y="410.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.0" fill="#334155">1 ms</text>
@@ -62,7 +60,6 @@
 <line x1="631.9" y1="86" x2="631.9" y2="412" stroke="#e2e8f0" stroke-width="0.8"/>
 <line x1="631.9" y1="412" x2="631.9" y2="416" stroke="#64748b" stroke-width="1"/>
 <text x="631.9" y="428" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.2" fill="#334155">32</text>
-<line x1="500.0" y1="106" x2="500.0" y2="412" stroke="#0d9488" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.8"/>
 <line x1="78" y1="121.1" x2="646" y2="121.1" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6,3.5"/>
 <rect x="84" y="105.6" width="112" height="13.5" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.8"/>
 <text x="89" y="115.6" font-size="8.4" font-weight="700" fill="#b91c1c">Tₘₐₓ = 300 s cutoff</text>
@@ -236,9 +233,9 @@
 <polygon points="596.8,156.5 600.2,159.9 596.8,163.3 593.4,159.9" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
 <polygon points="614.3,140.8 617.7,144.2 614.3,147.6 610.9,144.2" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
 <polygon points="631.9,127.1 635.3,130.5 631.9,133.9 628.5,130.5" fill="#ffffff" stroke="#0284c7" stroke-width="1.4"/>
-<rect x="420.9" y="162.6" width="136" height="31" rx="4" fill="#ffffff" stroke="#0d9488" stroke-width="0.95" opacity="0.96"/>
-<text x="488.9" y="175.1" text-anchor="middle" font-size="8.2" font-weight="700" fill="#0f766e">No k≤24 cliff (2048-lane)</text>
-<text x="488.9" y="187.1" text-anchor="middle" font-size="7.8" fill="#334155">+0.6s shortcut probe at k≥25</text>
+<rect x="396.3" y="167.9" width="154" height="31" rx="4" fill="#ffffff" stroke="#047857" stroke-width="0.95" opacity="0.96"/>
+<text x="473.3" y="180.4" text-anchor="middle" font-size="8.1" font-weight="700" fill="#047857">Overhead → 2ᵏ knee (k*≈20–21)</text>
+<text x="473.3" y="192.4" text-anchor="middle" font-size="7.7" fill="#334155">a·2ᵏ* = c₀ (58–123 ms floor)</text>
 <rect x="503.6" y="306.1" width="136" height="31" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="0.95" opacity="0.96"/>
 <text x="571.6" y="318.6" text-anchor="middle" font-size="8.2" font-weight="700" fill="#0369a1">32/32 solved (&lt;300 s, 1C!)</text>
 <text x="571.6" y="330.6" text-anchor="middle" font-size="7.8" fill="#334155">T(32): 3.30m .cnf · 4.16m .aig</text>
