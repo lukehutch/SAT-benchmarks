@@ -88,15 +88,15 @@ A controlled, **zero-lucky-hit-bias** 32-instance scaling ladder sweeping $k = 1
 | `sha256_64r_k09` | **42.00 ms** | 110.79 ms | 2.04 s | 55.51 s | 32.80 s | 2.07 s | 1.70 s |
 | `sha256_64r_k10` | **41.97 ms** | 108.89 ms | 2.21 s | 112.35 s | 62.93 s | 2.44 s | 7.21 s |
 | `sha256_64r_k11` | **41.34 ms** | 108.42 ms | 12.50 s | 255.40 s | 138.61 s | 4.47 s | 1.06 s |
-| `sha256_64r_k12` | **41.89 ms** | 109.71 ms | 13.92 s | 230.64 s | >300 s *(T/O)* | 12.91 s | 21.92 s |
-| `sha256_64r_k13` | **42.58 ms** | 110.02 ms | 6.71 s | >300 s *(T/O)* | >300 s *(T/O)* | 14.29 s | 21.36 s |
-| `sha256_64r_k14` | **59.08 ms** | 125.25 ms | 40.00 s | >300 s *(T/O)* | >300 s *(T/O)* | 34.91 s | 50.92 s |
-| `sha256_64r_k15` | **59.64 ms** | 128.90 ms | 159.39 s | >300 s *(T/O)* | — *(skipped; ~33.2 min)* | 178.36 s | 35.79 s |
-| `sha256_64r_k16` | **62.98 ms** | 127.80 ms | 89.40 s | — *(skipped; ~19.1 min)* | — *(skipped; ~57.5 min)* | 101.83 s | >300 s *(T/O)* |
-| `sha256_64r_k17` | **65.77 ms** | 130.44 ms | 6.48 s | — *(skipped; ~27.7 min)* | — *(skipped; ~1.7 h)* | 159.71 s | >300 s *(T/O)* |
-| `sha256_64r_k18` | **72.80 ms** | 136.94 ms | >300 s *(T/O)* | — *(skipped; ~40.2 min)* | — *(skipped; ~2.9 h)* | >300 s *(T/O)* | >300 s *(T/O)* |
-| `sha256_64r_k19` | **87.79 ms** | 146.38 ms | >300 s *(T/O)* | — *(skipped; ~58.4 min)* | — *(skipped; ~5.0 h)* | >300 s *(T/O)* | — *(skipped; ~60.0 min)* |
-| `sha256_64r_k20` | **118.28 ms** | 169.33 ms | >300 s *(T/O)* | — *(skipped; ~1.4 h)* | — *(skipped; ~8.6 h)* | >300 s *(T/O)* | — *(skipped; ~2.3 h)* |
+| `sha256_64r_k12` | **41.89 ms** | 109.71 ms | 13.92 s | 230.64 s | >300 s *(T/O; ~6.4 min)* | 12.91 s | 21.92 s |
+| `sha256_64r_k13` | **42.58 ms** | 110.02 ms | 6.71 s | >300 s *(T/O; ~6.2 min)* | >300 s *(T/O; ~11.1 min)* | 14.29 s | 21.36 s |
+| `sha256_64r_k14` | **59.08 ms** | 125.25 ms | 40.00 s | >300 s *(T/O; ~9.0 min)* | >300 s *(T/O; ~19.2 min)* | 34.91 s | 50.92 s |
+| `sha256_64r_k15` | **59.64 ms** | 128.90 ms | 159.39 s | >300 s *(T/O; ~13.1 min)* | — *(skipped; ~33.2 min)* | 178.36 s | 35.79 s |
+| `sha256_64r_k16` | **62.98 ms** | 127.80 ms | 89.40 s | — *(skipped; ~19.1 min)* | — *(skipped; ~57.5 min)* | 101.83 s | >300 s *(T/O; ~5.0 min)* |
+| `sha256_64r_k17` | **65.77 ms** | 130.44 ms | 6.48 s | — *(skipped; ~27.7 min)* | — *(skipped; ~1.7 h)* | 159.71 s | >300 s *(T/O; ~11.5 min)* |
+| `sha256_64r_k18` | **72.80 ms** | 136.94 ms | >300 s *(T/O; ~5.1 min)* | — *(skipped; ~40.2 min)* | — *(skipped; ~2.9 h)* | >300 s *(T/O; ~7.4 min)* | >300 s *(T/O; ~26.2 min)* |
+| `sha256_64r_k19` | **87.79 ms** | 146.38 ms | >300 s *(T/O; ~9.0 min)* | — *(skipped; ~58.4 min)* | — *(skipped; ~5.0 h)* | >300 s *(T/O; ~13.6 min)* | — *(skipped; ~60.0 min)* |
+| `sha256_64r_k20` | **118.28 ms** | 169.33 ms | >300 s *(T/O; ~15.9 min)* | — *(skipped; ~1.4 h)* | — *(skipped; ~8.6 h)* | >300 s *(T/O; ~24.9 min)* | — *(skipped; ~2.3 h)* |
 | `sha256_64r_k21` | **175.61 ms** | 215.63 ms | — *(skipped; ~28.3 min)* | — *(skipped; ~2.1 h)* | — *(skipped; ~14.8 h)* | — *(skipped; ~45.7 min)* | — *(skipped; ~5.2 h)* |
 | `sha256_64r_k22` | **290.59 ms** | 307.27 ms | — *(skipped; ~50.2 min)* | — *(skipped; ~3.0 h)* | — *(skipped; ~1.1 d)* | — *(skipped; ~1.4 h)* | — *(skipped; ~11.9 h)* |
 | `sha256_64r_k23` | 528.35 ms | **502.96 ms** | — *(skipped; ~1.5 h)* | — *(skipped; ~4.3 h)* | — *(skipped; ~1.8 d)* | — *(skipped; ~2.6 h)* | — *(skipped; ~1.1 d)* |
@@ -127,31 +127,31 @@ To isolate the **true asymptotic exponential scaling** $T(k) = a \cdot 2^{\alpha
 - **dense-solver 0.0.4 (`.cnf`):** skip $k < 12$, fitting $k \ge 12$ (solved $k = 12\dots 17$).
 - **CryptoMiniSat 5.18.0 (`.cnf` & `.xcnf`):** skip the degenerate 0-AND $k = 1$ collapse, fitting $k \ge 2$ (solved $k = 2\dots 12$ for `.cnf`; $k = 2\dots 11$ for `.xcnf`).
 
-For every CDCL track that hits the 300 s cutoff, we report **both** uncensored log-linear OLS over solved points and **right-censored Tobit log-linear MLE** over the same $k \ge k_{\text{lin}}$ window incorporating the 3 observed $T(k) \ge 300\;\text{s}$ timeouts. The right-censored post-knee gradient powers every `— *(skipped; ~...)*` extrapolation in Table 1 above, ensuring every extrapolated entry past the 3 timeouts remains mathematically consistent with $>300\;\text{s}$. We also test pure log-linear **M0** ($\ln T = \ln a + (\alpha\ln 2)\,k$, $p = 2$) against polynomial-modulated **M2** ($a\,k^\beta 2^{\alpha k}$), $\sqrt{k}$-modulated **M3** ($a\,2^{\alpha k + \delta\sqrt{k}}$), and stretched-exponential **M4** ($a\,e^{c_1 k^\gamma}$) via small-sample **AICc** ($\Delta\text{AICc} = \text{AICc}_{\text{M0}} - \text{AICc}_{\text{M}_j} > 2$ required to support sub-exponential modulation).
+For every CDCL track that hits the 300 s cutoff, we report **both** uncensored log-linear OLS over solved points and **right-censored Tobit log-linear MLE** over the same $k \ge k_{\text{lin}}$ window incorporating the 3 observed $T(k) \ge 300\;\text{s}$ timeouts. The right-censored post-knee gradient powers every `>300 s *(T/O; ~...)*` and `— *(skipped; ~...)*` estimate in Table 1 above, ensuring every extrapolated entry past the cutoff remains mathematically consistent with $>300\;\text{s}$. We also test pure log-linear **M0** ($\ln T = \ln a + (\alpha\ln 2)\,k$, $p = 2$) against polynomial-modulated **M2** ($a\,k^\beta 2^{\alpha k}$), $\sqrt{k}$-modulated **M3** ($a\,2^{\alpha k + \delta\sqrt{k}}$), and stretched-exponential **M4** ($a\,e^{c_1 k^\gamma}$) via small-sample **AICc** ($\Delta\text{AICc} = \text{AICc}_{\text{M0}} - \text{AICc}_{\text{M}_j} > 2$ required to support sub-exponential modulation).
 
-| Solver Track | Linear Fit Window | Uncensored OLS $\alpha$ ($b = 2^\alpha$) | OLS Prefactor $a$ | OLS Log $R^2$ / RMS | Tobit Censored $\alpha$ ($b = 2^\alpha$) | Tobit Prefactor $a$ | Bits / $10\times$ (Asymp.) | $T(32)$ (Meas.\* / Tobit Extrap.) |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| **Frobenius 1C (`.cnf`)** | $k = 22\dots 32$ (11) | **0.9530** (1.936x) | `1.318e-07` s | 0.99798 / 1.098x | — *(0 T/Os)* | — | 3.49 | **3.30 min\*** *(OLS 3.33m)* |
-| **Frobenius 1C (`.aig`)** | $k = 22\dots 32$ (11) | **0.9730** (1.963x) | `1.016e-07` s | 0.99900 / 1.070x | — *(0 T/Os)* | — | 3.41 | **4.16 min\*** *(OLS 3.99m)* |
-| **CryptoMiniSat 5.18.0 (`.cnf`)** | $k \ge 2$ (11 SAT + 3 T/O) | **0.5337** (1.448x) | `2.981e+00` s | 0.96929 / 1.231x | **0.5380** (1.452x) | `2.933e+00` s | 6.17 | **5.17 days** *(OLS 4.77 days)* |
-| **CaDiCaL 3.1.0 (`.cnf`)**† | $k \ge 10$ (8 SAT + 3 T/O) | 0.4547† (1.370x) | `2.509e-01` s | 0.28609 / 3.129x | **0.8280** (1.775x) | `9.902e-03` s | 4.01 | **10.84 days** *(excl. $k=17$: 28.62 days)* |
-| **dense-solver 0.0.4 (`.cnf`)** | $k \ge 12$ (6 SAT + 3 T/O) | **0.8285** (1.776x) | `1.246e-02` s | 0.82473 / 1.572x | **0.8764** (1.836x) | `7.908e-03` s | 3.79 | **25.36 days** *(OLS 13.80 days)* |
-| **CryptoMiniSat 5.18.0 (`.xcnf`)** | $k \ge 2$ (10 SAT + 3 T/O) | **0.7096** (1.635x) | `7.158e-01` s | 0.76150 / 2.205x | **0.7905** (1.730x) | `5.370e-01` s | 4.20 | **256.27 days** *(OLS 56.72 days)* |
-| **Kissat 4.0.4 (`.cnf`)** | $k \ge 10$ (6 SAT + 3 T/O) | **0.8075** (1.750x) | `1.251e-02` s | 0.54763 / 2.384x | **1.1929** (2.286x) | `5.412e-04` s | 2.78 | **5.31 yr** *(OLS 8.70 days)* |
+| Metric | Frobenius 1C (`.aig`) | Frobenius 1C (`.cnf`) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`.cnf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.cnf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (`.cnf`) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`.cnf`) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **Linear Fit Window** | $k = 22\dots 32$ (11 SAT) | $k = 22\dots 32$ (11 SAT) | $k \ge 10$ (8 SAT + 3 T/O) | $k \ge 2$ (11 SAT + 3 T/O) | $k \ge 2$ (10 SAT + 3 T/O) | $k \ge 12$ (6 SAT + 3 T/O) | $k \ge 10$ (6 SAT + 3 T/O) |
+| **Uncensored OLS $\alpha$ ($2^\alpha$/bit)** | **0.9730** (1.963x) | **0.9530** (1.936x) | 0.4547† (1.370x) | **0.5337** (1.448x) | **0.7096** (1.635x) | **0.8285** (1.776x) | **0.8075** (1.750x) |
+| **OLS Prefactor $a$** | `1.016e-07` s | `1.318e-07` s | `2.509e-01` s | `2.981e+00` s | `7.158e-01` s | `1.246e-02` s | `1.251e-02` s |
+| **OLS Log $R^2$ / RMS** | 0.99900 / 1.070x | 0.99798 / 1.098x | 0.28609 / 3.129x | 0.96929 / 1.231x | 0.76150 / 2.205x | 0.82473 / 1.572x | 0.54763 / 2.384x |
+| **Tobit Censored $\alpha$ ($2^\alpha$/bit)** | — *(0 T/O)* | — *(0 T/O)* | **0.8280** (1.775x) | **0.5380** (1.452x) | **0.7905** (1.730x) | **0.8764** (1.836x) | **1.1929** (2.286x) |
+| **Tobit Prefactor $a$** | — | — | `9.902e-03` s | `2.933e+00` s | `5.370e-01` s | `7.908e-03` s | `5.412e-04` s |
+| **Bits / $10\times$ (Asymptotic)** | 3.41 | 3.49 | 4.01 | 6.17 | 4.20 | 3.79 | 2.78 |
+| **$T(32)$ (Meas.\* / Tobit Extrap.)** | **4.16 min\*** *(OLS 3.99m)* | **3.30 min\*** *(OLS 3.33m)* | **~10.84 days** *(excl. $k=17$: 28.62 days)* | **~5.17 days** *(OLS 4.77 days)* | **~256.27 days** *(OLS 56.72 days)* | **~25.36 days** *(OLS 13.80 days)* | **~5.31 yr** *(OLS 8.70 days)* |
 
 *\*Actual measured single-core $T(32)$ on core 12 (`197.83 s = 3.30 min` `.cnf`, `249.85 s = 4.16 min` `.aig`; separating the constant setup floor via shifted M1 over $k = 14\dots 32$ gives exact $\alpha = 1.0042$ `.cnf` / $0.9973$ `.aig`). †CaDiCaL's uncensored $k = 10\dots 17$ OLS slope (`0.4547`) is pulled down by the single 40x lucky draw at $k = 17$ (`6.48 s` vs. `159.39 s` at $k=15$ and 3 consecutive $>300\;\text{s}$ timeouts at $k = 18\text{–}20$); excluding $k = 17$ gives $k = 10\dots 16$ OLS $\alpha = 0.8888$ (`1.852x`/bit, $R^2_{\log} = 0.7912$, $T(32) = 28.62 days$), closely matching Tobit censored MLE ($\alpha = 0.8280$, $T(32) = 10.84 days$).*
 
 #### Post-Knee Sub-Exponential Hypothesis Test (M2–M4 vs. Pure Log-Linear M0)
 
-| Solver Track | Linear Window ($n$) | M0 AICc (BIC) | M2 $\Delta\text{AICc}$ ($\beta$) | M3 $\Delta\text{AICc}$ ($\delta$) | M4 $\Delta\text{AICc}$ ($\gamma$) | Sub-Exp Supported? |
-|---|---:|---:|---:|---:|---:|:---:|
-| Frobenius 1C (`.cnf`) | $k = 22\dots 32$ (11) | -11.39 (-13.63) | `-4.16` (-4.65) | `-4.19` (-5.12) | `-4.25` (1.25) | No |
-| Frobenius 1C (`.aig`) | $k = 22\dots 32$ (11) | -18.70 (-20.94) | `-5.19` (-0.70) | `-5.19` (-0.84) | `-5.18` (1.05) | No |
-| CaDiCaL 3.1.0 (`.cnf`) | $k = 10\dots 17$ (8) | 36.81 (31.05) | `-6.24` (+49.35) | `-6.10` (+80.15) | `-8.96` (0.15) | No |
-| dense-solver 0.0.4 (`.cnf`) | $k = 12\dots 17$ (6) | 25.50 (12.88) | `-29.13` (+27.48) | `-29.08` (+42.96) | `-29.62` (0.15) | No |
-| Kissat 4.0.4 (`.cnf`) | $k = 10\dots 15$ (6) | 33.34 (20.71) | `-30.00` (-0.83) | `-30.00` (+0.87) | `-30.00` (0.85) | No |
-| CryptoMiniSat 5.18.0 (`.cnf`) | $k = 2\dots 12$ (11) | 6.12 (3.89) | `-5.24` (+0.02) | `-5.24` (-0.04) | `-5.23` (1.02) | No |
-| CryptoMiniSat 5.18.0 (`.xcnf`)‡ | $k = 2\dots 11$ (10) | 33.68 (30.59) | `+4.81`‡ (+5.25) | `+3.11`‡ (+13.03) | `+0.04` (0.15) | No *(Gauss jump at $k=2$‡)* |
+| Metric | Frobenius 1C (`.aig`) | Frobenius 1C (`.cnf`) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`.cnf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.cnf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (`.cnf`) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`.cnf`) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **Linear Window ($n$)** | $k = 22\dots 32$ (11) | $k = 22\dots 32$ (11) | $k = 10\dots 17$ (8) | $k = 2\dots 12$ (11) | $k = 2\dots 11$ (10)‡ | $k = 12\dots 17$ (6) | $k = 10\dots 15$ (6) |
+| **M0 AICc (BIC)** | -18.70 (-20.94) | -11.39 (-13.63) | 36.81 (31.05) | 6.12 (3.89) | 33.68 (30.59) | 25.50 (12.88) | 33.34 (20.71) |
+| **M2 $\Delta\text{AICc}$ ($\beta$)** | `-5.19` (-0.70) | `-4.16` (-4.65) | `-6.24` (+49.35) | `-5.24` (+0.02) | `+4.81`‡ (+5.25) | `-29.13` (+27.48) | `-30.00` (-0.83) |
+| **M3 $\Delta\text{AICc}$ ($\delta$)** | `-5.19` (-0.84) | `-4.19` (-5.12) | `-6.10` (+80.15) | `-5.24` (-0.04) | `+3.11`‡ (+13.03) | `-29.08` (+42.96) | `-30.00` (+0.87) |
+| **M4 $\Delta\text{AICc}$ ($\gamma$)** | `-5.18` (1.05) | `-4.25` (1.25) | `-8.96` (0.15) | `-5.23` (1.02) | `+0.04` (0.15) | `-29.62` (0.15) | `-30.00` (0.85) |
+| **Sub-Exp Supported?** | No | No | No | No | No *(Gauss jump‡)* | No | No |
 
 *‡On `cms_xcnf`, `k = 2` (`0.30 s`, solved by Gauss) sits 19x below `k = 3` (`5.73 s`, CDCL), creating a step-discontinuity artifact (`ΔAICc = +4.81`) over `k = 2..11`; starting at `k = 3..11` immediately restores decisive pure-exponential M0 wins (`ΔAICc = -6.48` / `-6.62` / `-6.60`).*
 
@@ -159,7 +159,7 @@ For every CDCL track that hits the 300 s cutoff, we report **both** uncensored l
   - **Frobenius 1C (`.cnf` / `.aig`, $k = 22\dots 32$):** pure log-linear slopes **$\alpha = 0.953$ (`1.94x`/bit, $R^2 = 0.9980$)** and **$\alpha = 0.973$ (`1.96x`/bit, $R^2 = 0.9990$)** (and exact **$\alpha = 1.004$ / $0.997$** once the residual constant setup floor is separated in shifted M1), solving $k = 32$ in **`3.30–4.16 min`** on 1 core.
   - **CaDiCaL 3.1.0 ($k \ge 10$):** right-censored Tobit **$\alpha = 0.828$ (`1.78x`/bit, $T(32) \approx 10.8\;\text{days}$)**; excluding the single 40x lucky draw at $k = 17$ gives **$\alpha = 0.889$ (`1.85x`/bit, $T(32) \approx 28.6\;\text{days}$)**.
   - **dense-solver 0.0.4 ($k \ge 12$):** OLS **$\alpha = 0.829$ (`1.78x`/bit, $T(32) \approx 13.8\;\text{days}$)**; right-censored Tobit **$\alpha = 0.876$ (`1.84x`/bit, $T(32) \approx 25.4\;\text{days}$)**.
-  - **Kissat 4.0.4 ($k \ge 10$):** OLS **$\alpha = 0.808$ (`1.75x`/bit, $T(32) \approx 8.7\;\text{days}$)**; right-censored Tobit including $k = 16\text{–}18$ timeouts gives **$\alpha = 1.193$ (`2.29x`/bit, $T(32) \approx 5.3\;\text{yr}$)**.
+  - **Kissat 4.0.4 ($k \ge 10$):** OLS **$\alpha = 0.808$ (`1.75x`/bit, $T(32) \approx 8.7\;\text{days}$)**; right-censored Tobit including $k = 16\text{–}18$ timeouts gives **$\alpha = 1.193$ (`2.29x`/bit, $T(32) \approx 5.31\;\text{yr}$)**.
   - **CryptoMiniSat 5.18.0 ($k \ge 2$):** `.cnf` settles cleanly at **$\alpha = 0.534\text{–}0.538$ (`1.45x`/bit, $R^2 = 0.969$, $T(32) \approx 4.8\text{–}5.2\;\text{days}$)**; `.xcnf` settles at **$\alpha = 0.710\text{–}0.791$ (`1.64x–1.73x`/bit, $T(32) \approx 56.7\text{–}256.3\;\text{days}$)**.
 
 ### 3. Frobenius Cliff-Free Piecewise Regimes & 2048-Lane Early-Exit AVX2 Scaling
