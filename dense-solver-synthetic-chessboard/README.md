@@ -17,7 +17,7 @@
 
 This collection holds the **3 Mutilated Chessboard domino-tiling UNSAT CNFs** (`chessboard12`, `chessboard16`, `chessboard32`) shipped with [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (0 SAT / 3 UNSAT):
 
-- **Problem:** Given an $N \times N$ chessboard ($N \in \{12, 16, 32\}$) with two opposite same-color corners $(0,0)$ and $(N-1, N-1)$ removed, cover every remaining square with disjoint $1 \times 2$ dominoes.
+- **Problem:** Given an $N \times N$ chessboard ($N \in \lbrace 12, 16, 32\rbrace$) with two opposite same-color corners $(0,0)$ and $(N-1, N-1)$ removed, cover every remaining square with disjoint $1 \times 2$ dominoes.
 - **Obstruction:** Removing two opposite light corners leaves $N^2/2$ dark squares and $N^2/2 - 2$ light squares. Because every domino covers one dark and one light square, no perfect matching exists (bipartite Hall deficiency $\lvert D \rvert - \lvert L \rvert = 2$). Pure Resolution / CDCL refutations require $2^{\Omega(N)}$ size, whereas cardinality/matching solvers refute all three boards in milliseconds.
 - **Generator:** [`src/chessboard.py`](src/chessboard.py) encodes one Boolean variable per adjacent board edge, an At-Least-One covering clause per square (length 2–4), and pairwise At-Most-One binary conflict clauses around each square.
 
@@ -40,7 +40,7 @@ This collection holds the **3 Mutilated Chessboard domino-tiling UNSAT CNFs** (`
 
 ## Benchmark Results
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 3 instances** were run (no subsampling), and **0 verdict disagreements** occurred across all solvers (cross-checked against [`expected.tsv`](expected.tsv)).
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\text{ s}$, PAR-2 penalty $10,000\text{ ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 3 instances** were run (no subsampling), and **0 verdict disagreements** occurred across all solvers (cross-checked against [`expected.tsv`](expected.tsv)).
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

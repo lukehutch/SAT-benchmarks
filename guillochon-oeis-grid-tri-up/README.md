@@ -13,7 +13,7 @@
 
 ## Problem Description
 
-[OEIS A157795](https://oeis.org/A157795) (indexed as $\text{A157795}(N - 1)$ for a side-$N$ triangular grid of $N(N+1)/2$ points) gives the maximum number of painted points such that **no three painted points form an upward grid-aligned equilateral triangle** $\{(x, y), (x+s, y), (x, y+s)\}$ (both downward grid-aligned and tilted equilateral triangles remain allowed). Its complementary hitting-set sequence is [OEIS A319158](https://oeis.org/A319158) with $\text{A319158}(N) = N(N+1)/2 - \text{A157795}(N - 1)$.
+[OEIS A157795](https://oeis.org/A157795) (indexed as $\text{A157795}(N - 1)$ for a side-$N$ triangular grid of $N(N+1)/2$ points) gives the maximum number of painted points such that **no three painted points form an upward grid-aligned equilateral triangle** $\lbrace (x, y), (x+s, y), (x, y+s)\rbrace$ (both downward grid-aligned and tilted equilateral triangles remain allowed). Its complementary hitting-set sequence is [OEIS A319158](https://oeis.org/A319158) with $\text{A319158}(N) = N(N+1)/2 - \text{A157795}(N - 1)$.
 
 - **Known exact values ($N = 11, 12, 13$):** `31` (side 11), `35` (side 12), and `40` (side 13).
 - **Open question ($N = 14$):** Can $47$ points be painted on a side-14 triangular lattice (`105` points) avoiding upward triangles? James Guillochon discovered a striking `+6` jump lower bound of **`46`** via simulated annealing ([`src/upstream/sequences/point-patterns/certificates/tri-up_n14_46.model`](src/upstream/sequences/point-patterns/certificates/tri-up_n14_46.model)), and Frobenius independently recovered a verified `46`-point solution from scratch via pure SAT in `57.10 s` ([`solutions/tri-up_n14_m46.model.xz`](solutions/tri-up_n14_m46.model.xz)).
@@ -24,7 +24,7 @@
 ### Encoding Architecture (`gen_points.py tri-up N M`)
 
 - **Point variables:** $P = N(N+1)/2$ Boolean variables (`1..P`) in axial coordinates $(x, y)$ with $x, y \ge 0, x + y \le N - 1$.
-- **Forbidden upward-triangle 3-clauses:** One all-negative 3-clause for every upward grid-aligned triple $\{(x, y), (x+s, y), (x, y+s)\}$ ($\binom{N+1}{3} = (N-1)N(N+1)/6$ clauses: `455` at $N = 14$).
+- **Forbidden upward-triangle 3-clauses:** One all-negative 3-clause for every upward grid-aligned triple $\lbrace (x, y), (x+s, y), (x, y+s)\rbrace$ ($\binom{N+1}{3} = (N-1)N(N+1)/6$ clauses: `455` at $N = 14$).
 - **Cardinality constraint:** Sinz sequential counter (Sinz 2005) enforcing at least $m$ painted points.
 - **Symmetry:** No symmetry breaking; all 6 symmetries of the equilateral triangle ($D_3$) remain intact.
 
@@ -88,7 +88,7 @@ This directory is one of **9 single-problem-type collections** split from James 
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
   - **UNSAT proofs:** Every Frobenius UNSAT result was re-run with proof emission (`--lrat` or `--proof` binary-DRAT) and triple-certified with [`drat-trim`](https://github.com/marijnheule/drat-trim) (`s VERIFIED`), [`lrat-check`](https://github.com/marijnheule/drat-trim) (`c VERIFIED`), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) (`s VERIFIED UNSAT`).
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Four calibration rungs ($N = 11$ SAT/UNSAT optimal pair, plus $N = 12, 13$ SAT rungs) evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** ranks **#1 fastest overall** (`4 / 4` solved, Total PAR-2 = **`15.34 s`**, **1.79× faster** than #2 CaDiCaL 3.1.0 at `27.46 s`):
 
@@ -98,8 +98,8 @@ Four calibration rungs ($N = 11$ SAT/UNSAT optimal pair, plus $N = 12, 13$ SAT r
 | `tri-up_n11_m32.cnf` | UNSAT | 13.78 s | 26.49 s | 34.70 s | 26.37 s | **13.77 s** |
 | `tri-up_n12_m35.cnf` | SAT | 0.05 s *(0.03 s updated build)* | **0.04 s** | 3.35 s | 1.33 s | 0.26 s |
 | `tri-up_n13_m40.cnf` | SAT | 0.65 s | **0.55 s** | 11.79 s | 4.37 s | 17.61 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **15.34 s** *(fastest)* | 27.46 s *(1.79x slower)* | 50.31 s *(3.28x slower)* | 33.62 s *(2.19x slower)* | 36.54 s *(2.38x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **15.34 s** *(fastest)* | 27.46 s *(1.79x slower)* | 50.31 s *(3.28x slower)* | 33.62 s *(2.19x slower)* | 36.54 s *(2.38x slower)* |
 
 - **Frontier lower-bound milestone:** Frobenius independently recovered James Guillochon's side-14 lower bound `tri-up_n14_m46.cnf` from scratch (pure SAT, zero annealing hints) in **`57.10 s`**, archived in [`solutions/tri-up_n14_m46.model.xz`](solutions/tri-up_n14_m46.model.xz).
 
@@ -111,7 +111,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `tri-up_n14_m47.cnf` | `tri-up` side 14 ($\ge 46$; `6,137` vars, `12,565` cls) | 600 s | `taskset -c 1` | 10,229,120 | 15,523,020 | 1,075,295,159 | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 2 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
 

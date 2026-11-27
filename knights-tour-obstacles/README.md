@@ -11,7 +11,7 @@
 
 ## Problem Description
 
-Given an $N \times N$ chessboard with a **random number of obstacle pieces** already occupying a subset $B \subset \{0,\dots,N-1\}^2$ of squares (each square occupied independently with probability $d$ via Python's deterministic `random.Random(seed)`), the **Obstacle Knight's Tour** problem asks whether there exists a **closed knight's tour** — a Hamiltonian cycle in the knight's graph over all unoccupied squares $V = \{0,\dots,N-1\}^2 \setminus B$ that visits every unoccupied square exactly once and returns to its starting square.
+Given an $N \times N$ chessboard with a **random number of obstacle pieces** already occupying a subset $B \subset \lbrace 0,\dots,N-1\rbrace^2$ of squares (each square occupied independently with probability $d$ via Python's deterministic `random.Random(seed)`), the **Obstacle Knight's Tour** problem asks whether there exists a **closed knight's tour** — a Hamiltonian cycle in the knight's graph over all unoccupied squares $V = \lbrace 0,\dots,N-1\rbrace^2 \setminus B$ that visits every unoccupied square exactly once and returns to its starting square.
 
 - **Origin:** **Original** parameterized benchmark suite and generator (MIT [`../LICENSE`](../LICENSE)).
 - **Mathematical structure:** Because every knight move alternates square color (white $\leftrightarrow$ black), the knight's graph is bipartite. Random obstacle placements with unequal remaining white/black squares, degree-$<2$ vertices, cut vertices, or Hall matching deficiencies are trivially non-Hamiltonian (`< 20 ms`). Every instance in this curated benchmark is **color-balanced** ($|W| = |B|$), **2-vertex-connected**, and **admits a spanning 2-factor (cycle cover)**, so every UNSAT instance fails strictly via global subtour entanglement rather than local parity or degree obstructions.
@@ -20,19 +20,19 @@ Given an $N \times N$ chessboard with a **random number of obstacle pieces** alr
 
 Each punched knight graph $G = (V, E)$ is encoded into flat DIMACS CNF using compact $O(|E|\log |V|)$ **directed 1-factor + strict binary-order Miller–Tucker–Zemlin (MTZ) subtour elimination**:
 1. **Arc variables:** $a_{u \to v}$ for every directed knight jump $(u, v)$ between unoccupied squares.
-2. **Exact-One in-degree and out-degree** at every vertex $v \in V$ (pairwise AMO for $\deg(v) \le 6$, Sinz sequential counter for $\deg(v) \in \{7, 8\}$).
-3. **No 2-cycles:** $(\neg a_{u \to v} \lor \neg a_{v \to u})$ for every undirected knight edge $\{u, v\}$.
+2. **Exact-One in-degree and out-degree** at every vertex $v \in V$ (pairwise AMO for $\deg(v) \le 6$, Sinz sequential counter for $\deg(v) \in \lbrace 7, 8\rbrace$).
+3. **No 2-cycles:** $(\neg a_{u \to v} \lor \neg a_{v \to u})$ for every undirected knight edge $\lbrace u, v\rbrace$.
 4. **Reversal symmetry breaking** at vertex $0$: $\mathrm{succ}(0) < \mathrm{pred}(0)$.
 5. **Strict binary-order MTZ rank constraints:** $b = \lceil \log_2 |V| \rceil$ rank bits $r_v$ per vertex $v \ne 0$ enforcing $a_{u \to v} \implies r_u < r_v$ for all $u, v \ne 0$.
 
 ### Calibration Sweep Across Board Sizes & Obstacle Densities
 
-During initial benchmark selection using baseline Frobenius 1C with a **15 s** timeout across $N \in \{8, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24\}$ and obstacle densities $d \in [0.10, 0.35]$:
+During initial benchmark selection using baseline Frobenius 1C with a **15 s** timeout across $N \in \lbrace 8, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24\rbrace$ and obstacle densities $d \in [0.10, 0.35]$:
 - **$N \le 11$:** Non-trivial color-balanced boards solved almost exclusively in `0.15–0.65 s`.
 - **$N = 12\text{--}16$, $d \in [0.15, 0.26]$:** Hard phase-transition frontier where both SAT and globally entangled UNSAT boards initially fell cleanly in the **~5–15 second** window on baseline Frobenius (and remain `~0.7–3.3 s` SAT / `~13–854 ms` UNSAT across CaDiCaL, CryptoMiniSat, and Kissat; current Frobenius 1C solves all 10 instances in `15.6–21.9 ms` each).
 - **$N \ge 18$:** Nearly all non-trivial color-balanced boards timed out past `15 s` during initial selection.
 
-The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spanning $N \in \{12, 14, 15, 16\}$ and $d \in [0.15, 0.26]$ with balanced satisfiability.
+The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spanning $N \in \lbrace 12, 14, 15, 16\rbrace$ and $d \in [0.15, 0.26]$ with balanced satisfiability.
 
 ## Corpus & Data Sizes
 
@@ -62,7 +62,7 @@ The final **10-instance benchmark (5 SAT / 5 UNSAT)** selects hard instances spa
 
 ## Benchmark Results
 
-- **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30{,}000\;\text{ms}$).
+- **Timeout:** $T_{\max} = 15\text{ s}$ per instance (PAR-2 penalty $30{,}000\text{ ms}$).
 - **Same machine?** **Yes** — all five solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; Frobenius 1C reports the exact median of 3 runs on a dedicated physical core on identical uncompressed flat `.cnf` inputs; 0 verdict disagreements; all 5/5 SAT Hamiltonian knight's tours decoded and independently verified against both raw CNF clauses and [`src/gen_knights_tour.py`](src/gen_knights_tour.py); all 5/5 UNSAT proofs independently certified via drat-trim, lrat-check, and cake_lpr).
 
 | Instance | Status | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |

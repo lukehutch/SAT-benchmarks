@@ -17,7 +17,7 @@ An **$M$-mark Golomb ruler** of length $L$ places strictly increasing integer ma
 
 $$L^*(6) = 17, \quad L^*(7) = 25, \quad L^*(8) = 34, \quad L^*(9) = 44, \quad L^*(10) = 55.$$
 
-Each mark count $M \in \{6, 7, 8, 9, 10\}$ is represented by an exact **optimality bracket pair**:
+Each mark count $M \in \lbrace 6, 7, 8, 9, 10\rbrace$ is represented by an exact **optimality bracket pair**:
 - **Tight UNSAT ($L = L^*(M) - 1$):** Proves optimality of $L^*(M)$ by refuting every ruler of length $L^*-1$.
 - **Optimal SAT ($L = L^*(M)$):** Certifies attainability with an explicit minimum-length ruler.
 
@@ -65,7 +65,7 @@ This directory is one of **6 single-problem-type collections** compiled natively
 
 ## Benchmark Results
 
-*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
+*Single-Core Pinned, $T_{\max} = 60\text{ s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -90,8 +90,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `golomb_m9_l44.cnf` | SAT | 688.7 ms | 924.7 ms | 1.41 s | 768.4 ms | **258.9 ms** |
 | `golomb_m10_l54.cnf` | UNSAT | **4.80 s** | 6.00 s | 6.55 s | 12.49 s | 6.56 s |
 | `golomb_m10_l55.cnf` | SAT | **374.1 ms** | 5.55 s | 7.13 s | 3.21 s | 6.32 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **7.20 s** *(fastest)* | 13.92 s *(1.93x slower)* | 18.53 s *(2.57x slower)* | 18.49 s *(2.57x slower)* | 14.81 s *(2.06x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **7.20 s** *(fastest)* | 13.92 s *(1.93x slower)* | 18.53 s *(2.57x slower)* | 18.49 s *(2.57x slower)* | 14.81 s *(2.06x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

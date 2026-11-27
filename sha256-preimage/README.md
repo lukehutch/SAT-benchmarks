@@ -11,10 +11,10 @@
 
 ## Problem Description
 
-Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing the NIST **FIPS 180-4 SHA-256** compression function on the padded single-block message `"abc"`, constraining all message bits except $k \in \{16, 20, 32\}$ free bits of message word $W_0$ to match the target $R$-round digest (or a 1-bit-flipped impossible digest for `sha256_64r_k16_unsat`).
+Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing the NIST **FIPS 180-4 SHA-256** compression function on the padded single-block message `"abc"`, constraining all message bits except $k \in \lbrace 16, 20, 32\rbrace$ free bits of message word $W_0$ to match the target $R$-round digest (or a 1-bit-flipped impossible digest for `sha256_64r_k16_unsat`).
 
 - **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), implementing [NIST FIPS PUB 180-4](https://csrc.nist.gov/publications/detail/fips/180/4/final) following the round-reduced and partial-preimage SHA-256 SAT cryptanalysis literature (Mironov & Zhang, SAT 2006; Nossum, 2012; Nejati et al., SAT 2017).
-- **Sharp Phase Transition ($R = 16 \to 17$):** For $R \le 16$, $W_0$ enters only round 0 so backward propagation resolves all 32 bits in $O(R)$ time. At $R = 17$, the message schedule $W_{16} = W_0 + \sigma_0(W_1) + W_9 + \sigma_1(W_{14})$ re-injects $W_0$ into deep ARX mixing, creating a classic $2^k$ preimage cliff where standard CDCL solvers spend $275\text{--}2{,}607\;\text{s}$ (or time out past $5{,}000\;\text{s}$) at $R = 64, k \in \{16, 20\}$.
+- **Sharp Phase Transition ($R = 16 \to 17$):** For $R \le 16$, $W_0$ enters only round 0 so backward propagation resolves all 32 bits in $O(R)$ time. At $R = 17$, the message schedule $W_{16} = W_0 + \sigma_0(W_1) + W_9 + \sigma_1(W_{14})$ re-injects $W_0$ into deep ARX mixing, creating a classic $2^k$ preimage cliff where standard CDCL solvers spend $275\text{--}2{,}607\text{ s}$ (or time out past $5{,}000\text{ s}$) at $R = 64, k \in \lbrace 16, 20\rbrace$.
 
 ## Corpus & Data Sizes
 
@@ -39,7 +39,7 @@ Exact bit-accurate Carry-Save-Adder (CSA) combinational circuits implementing th
 
 ## Benchmark Results
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\text{ s}$):
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -49,7 +49,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `sha256_64r_k16_unsat` | **98.86 ms** | 2,594,248.08 ms | >5,000 s (T/O) | >5,000 s (T/O) | 764,244.90 ms | 2,396,511.93 ms |
 | `sha256_64r_k20_sat` | **92.57 ms** | 2,606,732.29 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
 | **Solved (5 instances)** | **5 / 5** *(highest)* | **5 / 5** *(highest)* | 2 / 5 *(-3 worse)* | 3 / 5 *(-2 worse)* | 4 / 5 *(-1 worse)* | 4 / 5 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max}=5{,}000\;\text{s}$)** | **309.07 ms** *(fastest)* | 5,480,540.59 ms *(17,732x slower)* | 30,004,857.31 ms *(97,081x slower)* | 20,463,641.58 ms *(66,210x slower)* | 11,330,163.53 ms *(36,659x slower)* | 14,671,536.26 ms *(47,470x slower)* |
+| **Total PAR-2 ($T_{\max}=5{,}000\text{ s}$)** | **309.07 ms** *(fastest)* | 5,480,540.59 ms *(17,732x slower)* | 30,004,857.31 ms *(97,081x slower)* | 20,463,641.58 ms *(66,210x slower)* | 11,330,163.53 ms *(36,659x slower)* | 14,671,536.26 ms *(47,470x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

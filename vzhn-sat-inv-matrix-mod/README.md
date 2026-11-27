@@ -14,14 +14,14 @@
 
 ### Mathematical Problem & Encodings
 
-Given a fixed constant integer matrix $A \in \mathbb{Z}^{n \times n}$ and modulus $m \ge 2$, find $B \in \{0, \dots, m-1\}^{n \times n}$ satisfying $A \cdot B \equiv I_n \pmod m$, encoded via [`src/modinv.py`](src/modinv.py). The inverse exists (and is unique) if and only if $\gcd(\det A, m) = 1$; otherwise the formula is UNSAT. Two exact encodings are included:
+Given a fixed constant integer matrix $A \in \mathbb{Z}^{n \times n}$ and modulus $m \ge 2$, find $B \in \lbrace 0, \dots, m-1\rbrace^{n \times n}$ satisfying $A \cdot B \equiv I_n \pmod m$, encoded via [`src/modinv.py`](src/modinv.py). The inverse exists (and is unique) if and only if $\gcd(\det A, m) = 1$; otherwise the formula is UNSAT. Two exact encodings are included:
 
 1. **One-hot running-sum (`onehot`):** Every value modulo $m$ is represented as an $m$-variable one-hot vector with `exactly_one` constraints. Each dot product $(A B)_{i,j}$ is accumulated via running sums $s_0 = 0$, $s_k = (s_{k-1} + A_{i,k} B_{k,j}) \bmod m$ using $O(n^3 m^2)$ direct-implication clauses. By the Chinese Remainder Theorem (CRT) and column independence ($A b_j \equiv e_j \pmod{p^e}$), composite moduli such as $m = 26 = 2 \cdot 13$ split into independent prime-power columns (e.g. `mod_10x10_m13_c0_oh_sat`). Over $\mathbb{F}_2$ ($m = 2$), each binary bit is split into an `exactly_one` pair $(b_0, b_1)$, disguising the underlying $\mathbb{F}_2$ parity constraints from purely syntactic XOR-block extraction.
 2. **Binary quotient adder-tree (`binary`):** Each $B_{k,j}$ is an unsigned $\lceil \log_2 m \rceil$-bit integer bounded by $B_{k,j} \le m - 1$, coupled with an explicit unsigned quotient $Q_{i,j}$ via the exact integer equation $\sum_k A_{i,k} B_{k,j} - m Q_{i,j} = \delta_{ij}$ using full/half adder-tree compression. At $m = 2$, this exposes thousands of explicit Tseitin XOR gates that collapse cleanly into native parity clauses in `xcnf-converted/`.
 
 ### Algebraic Scaling Regimes
 
-- **Linear systems over $\mathbb{F}_2$ (`mod_24x24_m2`–`mod_48x48_m2`):** Exponential $2^{\Omega(n)}$ resolution lower bounds cause pure CDCL solvers (CaDiCaL 3.1.0, dense-solver 0.0.4, Kissat 4.0.4) to time out past 60 s at $n \ge 32$, whereas Frobenius solves all $n \in \{24, 32, 40, 48\}$ in `27.0–404.4 ms` (closing the largest $48\times 48$ one-hot instance `113,664` vars in **`169.7 ms`**, **22.0× faster** than CryptoMiniSat 5.18.0 at `3.73 s`).
+- **Linear systems over $\mathbb{F}_2$ (`mod_24x24_m2`–`mod_48x48_m2`):** Exponential $2^{\Omega(n)}$ resolution lower bounds cause pure CDCL solvers (CaDiCaL 3.1.0, dense-solver 0.0.4, Kissat 4.0.4) to time out past 60 s at $n \ge 32$, whereas Frobenius solves all $n \in \lbrace 24, 32, 40, 48\rbrace$ in `27.0–404.4 ms` (closing the largest $48\times 48$ one-hot instance `113,664` vars in **`169.7 ms`**, **22.0× faster** than CryptoMiniSat 5.18.0 at `3.73 s`).
 - **Moderate odd-prime / composite one-hot systems (`mod_3x3_m26`, `mod_5x5_m27`, `mod_12x12_m3`):** Dense one-hot running-sum clauses where Frobenius leads across every instance in `3.4–14.6 ms` (including `mod_5x5_m27_oh_sat` in **`14.6 ms`** vs. `4.84–22.56 s` for the external baselines).
 - **Hard odd-prime linear-algebra frontier (`mod_10x10_m13_c0_oh_sat`):** A single column of upstream `src/samples/matrix10x10_mod_26.txt` modulo 13 (`1,170` vars, `20,630` clauses) — provably SAT; Frobenius solves and verifies it in **`3.3 ms`**, while all four external baseline solvers time out past 60 s (consistent with the upstream report of >300 s timeout for CaDiCaL).
 
@@ -69,10 +69,10 @@ All 3 upstream modular sample matrices (`src/samples/{matrix3x3_mod_26,matrix5x5
 
 ## Benchmark Results
 
-### Single-Core Flat-CNF Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat-CNF Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Pinning:** AMD Ryzen 9 5950X (16 cores / 32 threads, Linux x86_64), **1 thread pinned strictly to physical core 4** (`taskset -c 4`), executed strictly sequentially (one solver process at a time).
-- **Timeout & Metric:** $T_{\max} = 60\;\text{s}$ wall-clock time from process start to termination (including parsing); PAR-2 assigns $2 \times T_{\max} = 120\;\text{s}$ per timeout.
+- **Timeout & Metric:** $T_{\max} = 60\text{ s}$ wall-clock time from process start to termination (including parsing); PAR-2 assigns $2 \times T_{\max} = 120\text{ s}$ per timeout.
 - **Input Fairness & Default Flags:** Because CryptoMiniSat 5.18.0 and dense-solver 0.0.4 do not read `.xz` archives directly, every solver read the exact same uncompressed flat `.cnf` file using default single-thread search settings: Frobenius (default flags), CaDiCaL 3.1.0 (default flags + `--modelalllits=true` so eliminated variables are emitted in the DIMACS witness for external checking; verified identical conflict count and runtime to bare default), CryptoMiniSat 5.18.0 (default single-thread `-t 1`), dense-solver 0.0.4 (default flags), and Kissat 4.0.4 (default flags).
 - **100% Independent Verification:** Zero verdict disagreements across all 5 solvers and [`expected.tsv`](expected.tsv). Every SAT witness produced by every solver (37/37 SAT runs in this table) passed both 100% raw-clause checking against `cnf-orig/*.cnf.xz` (0 unsatisfied clauses) and exact decoded matrix verification ($A \cdot B \equiv I_n \pmod m$). Every UNSAT instance (5/5) was independently certified with formally verified `cake_lpr` (see below).
 
@@ -93,11 +93,11 @@ All 3 upstream modular sample matrices (`src/samples/{matrix3x3_mod_26,matrix5x5
 | `mod_40x40_m2_oh_sat` | SAT | **87.7 ms** | >60 s *(T/O)* | 2.17 s | >60 s *(T/O)* | >60 s *(T/O)* |
 | `mod_40x40_m2_bin_unsat` | UNSAT | **404.4 ms** | 1.41 s | 2.64 s | 2.50 s | >60 s *(T/O)* |
 | `mod_48x48_m2_oh_sat` | SAT | **169.7 ms** | >60 s *(T/O)* | 3.73 s | >60 s *(T/O)* | >60 s *(T/O)* |
-| **Solved ($T_{\max}=60\;\text{s}$)** | — | **15 / 15** *(highest)* | 11 / 15 *(-4 worse)* | 14 / 15 *(-1 worse)* | 11 / 15 *(-4 worse)* | 10 / 15 *(-5 worse)* |
-| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | **1.08 s** *(fastest)* | 499.33 s *(462x slower)* | 142.65 s *(132x slower)* | 509.79 s *(472x slower)* | 611.47 s *(566x slower)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **15 / 15** *(highest)* | 11 / 15 *(-4 worse)* | 14 / 15 *(-1 worse)* | 11 / 15 *(-4 worse)* | 10 / 15 *(-5 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **1.08 s** *(fastest)* | 499.33 s *(462x slower)* | 142.65 s *(132x slower)* | 509.79 s *(472x slower)* | 611.47 s *(566x slower)* |
 | **Shared-14 Solved Sum (14 instances)** | — | **1.07 s** *(fastest)* | — | 22.65 s *(21.13x slower)* | — | — |
 
-### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\;\text{s}$)
+### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\text{ s}$)
 
 Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inputs pinned to core 4 (`taskset -c 4`, same-build baseline four-format sweep). All 4 formats agree 100% on every verdict (13/15 solved for Frobenius in every format; 14/15 for CryptoMiniSat 5.18.0 `.xcnf`), and every SAT witness passed 100% raw-clause and exact modular matrix-product verification.
 
@@ -118,8 +118,8 @@ Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inp
 | `mod_40x40_m2_oh_sat` | SAT | 408.0 ms | 408.7 ms | **375.0 ms** | 437.0 ms | 1.90 s |
 | `mod_40x40_m2_bin_unsat` | UNSAT | 1.04 s | 1.66 s | **105.9 ms** | 1.57 s | 786.8 ms |
 | `mod_48x48_m2_oh_sat` | SAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | **3.77 s** |
-| **Solved ($T_{\max}=60\;\text{s}$)** | — | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | **14 / 15** *(highest)* |
-| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | 244.70 s *(1.75x slower)* | 248.11 s *(1.77x slower)* | 246.09 s *(1.76x slower)* | 247.87 s *(1.77x slower)* | **140.10 s** *(fastest)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | **14 / 15** *(highest)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | 244.70 s *(1.75x slower)* | 248.11 s *(1.77x slower)* | 246.09 s *(1.76x slower)* | 247.87 s *(1.77x slower)* | **140.10 s** *(fastest)* |
 
 **Key Format Observation:**
 

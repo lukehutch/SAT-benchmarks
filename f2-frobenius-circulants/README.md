@@ -13,7 +13,7 @@
 
 Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ Boolean inputs with stride $s = 2^{\lfloor k/2 \rfloor}$ (4 SAT + 2 UNSAT):
 
-- **Uniquely satisfiable 3-XOR circulants** $\Psi_{k, b}$ ($n \in \{64, 256, 1{,}024, 4{,}096\}$):
+- **Uniquely satisfiable 3-XOR circulants** $\Psi_{k, b}$ ($n \in \lbrace 64, 256, 1{,}024, 4{,}096\rbrace$):
   $$x_i \oplus x_{(i+1) \bmod n} \oplus x_{(i+s) \bmod n} = b_i \quad (0 \le i < n),$$
   constructed with a deterministic planted unique solution $x^{\star} \in \mathbb{F}_2^n$ (the circulant polynomial $1 + t + t^s \in \mathbb{F}_2[t]/(t^{2^k} - 1)$ is invertible over $\mathbb{F}_2$ because $(1 + t + t^s)^{2^k} = 1$).
 - **Minimally unsatisfiable 4-XOR circulants** (`f2_frobenius_n256_unsat`, `f2_frobenius_n1024_unsat`):
@@ -21,7 +21,7 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
   where $b_i$ matches a planted assignment for $i > 0$ and is flipped at $i = 0$. Every variable appears in exactly 4 equations, so the $\mathbb{F}_2$ sum of all $n$ LHS rows is identically $0$ while $\sum_i b_i = 1 \pmod 2$, yielding a strictly balanced global parity contradiction.
 
 - **Origin:** **Original** suite of algebraic circulant parity benchmark circuits (MIT [`../LICENSE`](../LICENSE)).
-- **Why they are hard:** Every merge-tree DNF/ANF circuit solver incurs $\ge 2^{\sqrt{n}/(3\sqrt{2})}$ blowup, and pure CDCL solvers without $\mathbb{F}_2$ parity reasoning scale super-polynomially ($364\;\text{s}$ for [Kissat](https://github.com/arminbiere/kissat) and $211\;\text{s}$ for [CaDiCaL](https://github.com/arminbiere/cadical) at $n = 4{,}096$ SAT; [CaDiCaL](https://github.com/arminbiere/cadical) times out past $30\;\text{s}$ on `n1024_unsat`).
+- **Why they are hard:** Every merge-tree DNF/ANF circuit solver incurs $\ge 2^{\sqrt{n}/(3\sqrt{2})}$ blowup, and pure CDCL solvers without $\mathbb{F}_2$ parity reasoning scale super-polynomially ($364\text{ s}$ for [Kissat](https://github.com/arminbiere/kissat) and $211\text{ s}$ for [CaDiCaL](https://github.com/arminbiere/cadical) at $n = 4{,}096$ SAT; [CaDiCaL](https://github.com/arminbiere/cadical) times out past $30\text{ s}$ on `n1024_unsat`).
 
 ## Corpus & Data Sizes
 
@@ -47,7 +47,7 @@ Strictly balanced $\mathbb{F}_2$-linear circulant parity circuits on $n = 2^k$ B
 
 ## Benchmark Results
 
-Evaluated sequentially on the same AMD Ryzen 9 5950X machine (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$ on SAT instances, $T_{\max} = 30\;\text{s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
+Evaluated sequentially on the same AMD Ryzen 9 5950X machine (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\text{ s}$ on SAT instances, $T_{\max} = 30\text{ s}$ on UNSAT instances; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|

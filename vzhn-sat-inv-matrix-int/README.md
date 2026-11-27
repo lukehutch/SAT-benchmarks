@@ -63,10 +63,10 @@ All 4 upstream integer matrices (`src/matrix/{4x4,8x8,10x10,16x16}.txt`) and the
 
 ## Benchmark Results
 
-### Single-Core Flat-CNF Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat-CNF Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Pinning:** AMD Ryzen 9 5950X (16 cores / 32 threads, Linux x86_64), **1 thread pinned strictly to physical core 4** (`taskset -c 4`), executed strictly sequentially (one solver process at a time).
-- **Timeout & Metric:** $T_{\max} = 60\;\text{s}$ wall-clock time from process start to termination (including parsing); PAR-2 assigns $2 \times T_{\max} = 120\;\text{s}$ per timeout.
+- **Timeout & Metric:** $T_{\max} = 60\text{ s}$ wall-clock time from process start to termination (including parsing); PAR-2 assigns $2 \times T_{\max} = 120\text{ s}$ per timeout.
 - **Input Fairness & Default Flags:** Because CryptoMiniSat 5.18.0 and dense-solver 0.0.4 do not read `.xz` archives directly, every solver read the exact same uncompressed flat `.cnf` file using default single-thread search settings: Frobenius (default flags), CaDiCaL 3.1.0 (default flags + `--modelalllits=true` so eliminated variables are emitted in the DIMACS witness for external checking; verified identical conflict count and runtime to bare default), CryptoMiniSat 5.18.0 (default single-thread `-t 1`), dense-solver 0.0.4 (default flags), and Kissat 4.0.4 (default flags).
 - **100% Independent Verification:** Zero verdict disagreements across all 5 solvers and [`expected.tsv`](expected.tsv). Every SAT witness produced by every solver (30/30 SAT runs in this table) passed both 100% raw-clause checking against `cnf-orig/*.cnf.xz` (0 unsatisfied clauses) and exact decoded matrix verification ($A \cdot B = I_n$). Every UNSAT instance (5/5) was independently certified with formally verified `cake_lpr` (see below).
 
@@ -83,10 +83,10 @@ All 4 upstream integer matrices (`src/matrix/{4x4,8x8,10x10,16x16}.txt`) and the
 | `int_16x16_w5_unsat` | UNSAT | 507.0 ms | **265.3 ms** | 4.00 s | 1.39 s | 1.90 s |
 | `int_16x16_sing_w16_unsat` | UNSAT | **1.18 s** | 1.24 s | 17.89 s | 17.57 s | 2.90 s |
 | `int_16x16_w16_sat` | SAT | **7.45 s** | 24.98 s | 19.69 s | 22.39 s | 13.27 s |
-| **Solved ($T_{\max}=60\;\text{s}$)** | — | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* |
-| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | **10.29 s** *(fastest)* | 31.83 s *(3.09x slower)* | 106.65 s *(10.4x slower)* | 92.10 s *(8.95x slower)* | 20.06 s *(1.95x slower)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **10.29 s** *(fastest)* | 31.83 s *(3.09x slower)* | 106.65 s *(10.4x slower)* | 92.10 s *(8.95x slower)* | 20.06 s *(1.95x slower)* |
 
-### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\;\text{s}$)
+### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\text{ s}$)
 
 Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inputs pinned to core 4 (`taskset -c 4`, same-build baseline four-format sweep). All 4 formats agree 100% on every verdict (11/11 solved for Frobenius in every format), and every SAT witness passed 100% raw-clause and exact matrix-product verification.
 
@@ -103,8 +103,8 @@ Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inp
 | `int_16x16_w5_unsat` | UNSAT | 684.1 ms | 1.14 s | 578.3 ms | **386.3 ms** | 1.76 s |
 | `int_16x16_sing_w16_unsat` | UNSAT | 2.28 s | 2.68 s | **824.2 ms** | 2.77 s | 23.78 s |
 | `int_16x16_w16_sat` | SAT | 14.29 s | 22.19 s | **6.08 s** | 13.65 s | 24.94 s |
-| **Solved ($T_{\max}=60\;\text{s}$)** | — | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | 10 / 11 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | **29.31 s** *(fastest)* | 38.52 s *(1.31x slower)* | 60.64 s *(2.07x slower)* | 39.56 s *(1.35x slower)* | 178.22 s *(6.08x slower)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | 10 / 11 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **29.31 s** *(fastest)* | 38.52 s *(1.31x slower)* | 60.64 s *(2.07x slower)* | 39.56 s *(1.35x slower)* | 178.22 s *(6.08x slower)* |
 
 **Key Format Observations:**
 

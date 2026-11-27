@@ -12,14 +12,14 @@
 
 ## Problem Description
 
-Given $N$ input wires and a sequential budget of $K$ compare-exchange gates $(i, j)$ with $0 \le i < j < N$ (mapping $(x_i, x_j) \mapsto (\min(x_i, x_j), \max(x_i, x_j))$), determine whether an $N$-wire sorting network of size at most $K$ exists. By Knuth's **0/1 principle**, a comparator network sorts all permutations of arbitrary keys if and only if it sorts all $2^N$ Boolean vectors in $\{0, 1\}^N$ (omitting the $N+1$ already-sorted vectors).
+Given $N$ input wires and a sequential budget of $K$ compare-exchange gates $(i, j)$ with $0 \le i < j < N$ (mapping $(x_i, x_j) \mapsto (\min(x_i, x_j), \max(x_i, x_j))$), determine whether an $N$-wire sorting network of size at most $K$ exists. By Knuth's **0/1 principle**, a comparator network sorts all permutations of arbitrary keys if and only if it sorts all $2^N$ Boolean vectors in $\lbrace 0, 1\rbrace^N$ (omitting the $N+1$ already-sorted vectors).
 
 - **Exact optimal comparator counts $S(N)$ ([OEIS A003075](https://oeis.org/A003075), Floyd & Knuth 1966; Knuth TAOCP Vol. 3 §5.3.4):**
   - $S(4) = 5$ (`sort_n4_k4` UNSAT / `sort_n4_k5` SAT — Chad Brewbaker's exact reference pair).
   - $S(5) = 9$ (`sort_n5_k8` UNSAT / `sort_n5_k9` SAT).
   - $S(6) = 12$ (`sort_n6_k11` UNSAT / `sort_n6_k12` SAT).
   - $S(7) = 16$ (`sort_n7_k15` UNSAT / `sort_n7_k16` SAT).
-- **Pure size optimization (contrast with parallel depth):** Unlike [`../guillochon-oeis-a067782-sortnet/`](../guillochon-oeis-a067782-sortnet/README.md) (which minimizes parallel *depth* with fixed first layer and adjacent last layer), `sat_challenges.py sort N K` encodes **unrestricted sequential comparator count** with one `at_most_one` selector group `cmp[t,i,j]` per slot $t \in \{0, \dots, K-1\}$ (allowing idle slots so $K$ is a strict upper bound) and zero symmetry breaking.
+- **Pure size optimization (contrast with parallel depth):** Unlike [`../guillochon-oeis-a067782-sortnet/`](../guillochon-oeis-a067782-sortnet/README.md) (which minimizes parallel *depth* with fixed first layer and adjacent last layer), `sat_challenges.py sort N K` encodes **unrestricted sequential comparator count** with one `at_most_one` selector group `cmp[t,i,j]` per slot $t \in \lbrace 0, \dots, K-1\rbrace$ (allowing idle slots so $K$ is a strict upper bound) and zero symmetry breaking.
 
 ## Corpus & Data Sizes
 
@@ -62,11 +62,11 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 ## Benchmark Results
 
-### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to a single physical core** (`taskset -c 8` for Frobenius 1C, median of 3 runs for `< 5 s`; `taskset -c 9` for competitor baselines), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
-- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **20 / 20 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
+- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **20 / 20 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\text{ s}$.
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
@@ -78,7 +78,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `sort_n6_k12.cnf` | SAT | **77.89 ms** | 830.0 ms | 864.5 ms | 163.6 ms | 4.40 s |
 | `sort_n7_k15.cnf` | UNSAT | **277.48 ms** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
 | `sort_n7_k16.cnf` | SAT | **306.47 ms** | 23.17 s | 6.65 s | 37.57 s | 29.71 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **8 / 8** *(highest)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **8 / 8** *(highest)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* | 6 / 8 *(-2 worse)* |
 | **Total PAR-2** | — | **802.17 ms** *(fastest)* | 265.62 s *(331.13x slower)* | 249.44 s *(310.96x slower)* | 281.63 s *(351.09x slower)* | 276.55 s *(344.75x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)

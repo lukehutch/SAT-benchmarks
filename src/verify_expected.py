@@ -1025,6 +1025,34 @@ def check_hygiene(repo_root: Path, cols: list[str]) -> list[str]:
         if re.search(r"CryptoMiniSat(?:\]\([^)]+\))?\s+5\.18(?!\.0)", text):
             errors.append(f"Inconsistent version 'CryptoMiniSat 5.18' (missing .0) in {rel}")
         errors.extend(validate_gfm_tables(md, repo_root))
+        # GFM MathJax hygiene: catch backslash-punctuation escapes stripped by cmark-gfm before MathJax
+        # (\; \, \: \! \_ \% \{ \} \|), unescaped _/^ inside \text{...}, and double * inside inline math.
+        in_fence = False
+        cleaned_lines = []
+        for raw_line in text.splitlines(True):
+            if raw_line.strip().startswith("```"):
+                in_fence = not in_fence
+                cleaned_lines.append("\n")
+            elif in_fence:
+                cleaned_lines.append("\n")
+            else:
+                cleaned_lines.append(raw_line)
+        body_nc = re.sub(r"`[^`\n]*`", lambda m: " " * len(m.group(0)), "".join(cleaned_lines))
+        for mm in re.finditer(r"(?<!\\)\$\$(.+?)(?<!\\)\$\$|(?<!\\)\$(?!\s)([^$\n]+?)(?<!\s)(?<!\\)\$", body_nc, re.S):
+            is_disp = mm.group(1) is not None
+            expr = mm.group(1) if is_disp else mm.group(2)
+            if not is_disp and re.match(r"^\d", expr) and not re.search(r"[\\^_{}=<>+\-*/]", expr):
+                continue
+            mln = body_nc.count("\n", 0, mm.start()) + 1
+            for pm in re.finditer(r"\\([;,:!_%{}|])", expr):
+                errors.append(f"GFM-unsafe math escape '{pm.group(0)}' in {rel}:{mln} (use alphabetic TeX macro or \\text{{ ...}})")
+            for tm in re.finditer(r"\\(?:text|texttt|textbf|textit|mbox)\{([^{}]*)\}", expr):
+                if "_" in tm.group(1) or "^" in tm.group(1):
+                    errors.append(f"Unescaped _/^ inside {tm.group(0)} in {rel}:{mln}")
+            if not is_disp and expr.count("*") >= 2:
+                errors.append(f"Multiple '*' in inline math (GFM emphasis hazard; use \\ast) in {rel}:{mln}")
+            if expr.count("{") != expr.count("}"):
+                errors.append(f"Unbalanced braces in math expression in {rel}:{mln}")
         if md != repo_root / "README.md":
             lines = text.splitlines()
             if not lines or not lines[0].startswith("# "):

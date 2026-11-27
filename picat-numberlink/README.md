@@ -15,7 +15,7 @@
 
 Given an $R \times C$ planar grid containing $P$ numbered pairs of terminal cells (`1..P`), **Numberlink** (Arukone / Nanbarinku; NP-complete, Adcock et al. 2015) asks for $P$ vertex-disjoint orthogonal paths connecting each terminal pair and partitioning every cell of the grid.
 
-Neng-Fa Zhou's `numberlink_b.pi` encodes the problem over Boolean indicator variables $M[p, r, c] \in \{0, 1\}$:
+Neng-Fa Zhou's `numberlink_b.pi` encodes the problem over Boolean indicator variables $M[p, r, c] \in \lbrace 0, 1\rbrace$:
 1. **Cell partition (Exactly-One color per cell):** $\sum_{p=1}^{P} M[p, r, c] = 1$ for every cell $(r, c)$.
 2. **Terminal degree-1 constraint:** If cell $(r, c)$ holds terminal $p$, then $M[p, r, c] = 1$ and $\sum_{(r', c') \in N(r,c)} M[p, r', c'] = 1$.
 3. **Interior degree-2 implication:** Otherwise, $M[p, r, c] \implies \sum_{(r', c') \in N(r,c)} M[p, r', c'] = 2$.
@@ -63,7 +63,7 @@ This directory is one of **6 single-problem-type collections** compiled natively
 
 ## Benchmark Results
 
-*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
+*Single-Core Pinned, $T_{\max} = 60\text{ s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -87,8 +87,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `numberlink_15x15_p12.cnf` | SAT | 249.1 ms | 245.9 ms | 546.1 ms | **92.3 ms** | 188.9 ms |
 | `numberlink_15x15_p12_swap.cnf` | UNSAT | 10.7 ms | 16.5 ms | 32.7 ms | 13.6 ms | **8.2 ms** |
 | `numberlink_42x25_p62.cnf` | SAT | **8.61 s** | >60 s | >60 s | 38.27 s | 11.46 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **8.98 s** *(fastest)* | 120.39 s *(13.4x slower)* | 121.50 s *(13.5x slower)* | 38.51 s *(4.29x slower)* | 11.79 s *(1.31x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **8.98 s** *(fastest)* | 120.39 s *(13.4x slower)* | 121.50 s *(13.5x slower)* | 38.51 s *(4.29x slower)* | 11.79 s *(1.31x slower)* |
 
 *Ground-truth SAT note on `numberlink_42x25_p62.cnf`:* Directly solved and 100%-clause model-verified by Frobenius (`8.61 s`), Kissat 4.0.4 (`11.46 s`), and dense-solver 0.0.4 (`38.27 s`), and independently cross-checked via Picat-SAT's integer-grid formulation (`hakank_numberlink.pi`, `INo=4`, `NP=62`, `1,050/1,050` cells degree-verified).
 

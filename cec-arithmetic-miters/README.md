@@ -17,7 +17,7 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 - **Wallace-tree vs. Karatsuba** recursive multiplier ($12\times 12$)
 
 - **Origin:** **Original** circuit generator (MIT [`../LICENSE`](../LICENSE)), modeled on industrial EDA multiplier equivalence benchmarks ([HWMCC](https://hwmcc.github.io/); Kaufmann, Biere, & Kauers, [AMulet](https://github.com/d-kaufmann/amulet), FMCAD 2019).
-- **Why they are hard:** Multiplier miters between structurally divergent topologies (Array vs. Wallace vs. Karatsuba) have few internal equivalent wires, causing pure CDCL solvers to scale exponentially ($3.6\text{--}8.1\;\text{s}$ at $8\times 8$, exploding rapidly at $10\times 10$ and $12\times 12$).
+- **Why they are hard:** Multiplier miters between structurally divergent topologies (Array vs. Wallace vs. Karatsuba) have few internal equivalent wires, causing pure CDCL solvers to scale exponentially ($3.6\text{--}8.1\text{ s}$ at $8\times 8$, exploding rapidly at $10\times 10$ and $12\times 12$).
 
 ## Corpus & Data Sizes
 
@@ -42,7 +42,7 @@ Unsatisfiable hardware verification **Combinational Equivalence Checking (CEC)**
 
 ## Benchmark Results
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\text{ s}$):
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -52,18 +52,18 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | **Solved (3 instances)** | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* |
 | **Total PAR-2** | **9.54 ms** *(fastest)* | 6,013.84 ms *(630x slower)* | 8,789.61 ms *(921x slower)* | 3,664.70 ms *(384x slower)* | 10,257.06 ms *(1,075x slower)* | 3,859.16 ms *(405x slower)* |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$)
 
-Remaining two larger multiplier miter instances evaluated on identical uncompressed flat `.cnf` (and `.xcnf` for CryptoMiniSat 5.18.0 XCNF) inputs, pinned to a single physical core (`1` thread per run, `--max-cores 1` for Frobenius, `-t 1` for CryptoMiniSat 5.18.0, $T_{\max} = 60\;\text{s}$):
+Remaining two larger multiplier miter instances evaluated on identical uncompressed flat `.cnf` (and `.xcnf` for CryptoMiniSat 5.18.0 XCNF) inputs, pinned to a single physical core (`1` thread per run, `--max-cores 1` for Frobenius, `-t 1` for CryptoMiniSat 5.18.0, $T_{\max} = 60\text{ s}$):
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `cec_array_vs_wallace_10x10` | UNSAT | **1.46 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
 | `cec_wallace_vs_karat_12x12` | UNSAT | **2.19 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
 | **Solved (2 supplementary)** | — | **2 / 2** *(highest)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* |
-| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | **3.65 ms** *(fastest)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **3.65 ms** *(fastest)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* |
 
-*(Frobenius 1C proves both `cec_array_vs_wallace_10x10` (**`1.46 ms`**) and `cec_wallace_vs_karat_12x12` (**`2.19 ms`**) UNSAT — closing all **5/5** miters in **`13.18 ms`** total where all five external baseline configurations time out past $60\;\text{s}$.)*
+*(Frobenius 1C proves both `cec_array_vs_wallace_10x10` (**`1.46 ms`**) and `cec_wallace_vs_karat_12x12` (**`2.19 ms`**) UNSAT — closing all **5/5** miters in **`13.18 ms`** total where all five external baseline configurations time out past $60\text{ s}$.)*
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

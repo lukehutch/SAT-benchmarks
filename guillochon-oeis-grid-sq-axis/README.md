@@ -13,7 +13,7 @@
 
 ## Problem Description
 
-[OEIS A227133](https://oeis.org/A227133) gives $a(N)$, the maximum number of points that can be painted on an $N \times N$ square grid $\{0, \dots, N-1\}^2$ such that **no four painted points form an axis-aligned square** $\{(x, y), (x+s, y), (x, y+s), (x+s, y+s)\}$ (tilted squares remain allowed). Its complementary hitting-set sequence [OEIS A152125](https://oeis.org/A152125) gives the minimum points to remove so every axis-aligned square is hit: $\text{A152125}(N) = N^2 - \text{A227133}(N)$.
+[OEIS A227133](https://oeis.org/A227133) gives $a(N)$, the maximum number of points that can be painted on an $N \times N$ square grid $\lbrace 0, \dots, N-1\rbrace^2$ such that **no four painted points form an axis-aligned square** $\lbrace (x, y), (x+s, y), (x, y+s), (x+s, y+s)\rbrace$ (tilted squares remain allowed). Its complementary hitting-set sequence [OEIS A152125](https://oeis.org/A152125) gives the minimum points to remove so every axis-aligned square is hit: $\text{A152125}(N) = N^2 - \text{A227133}(N)$.
 
 - **Known exact values ($N = 11, 12, 13$):** $a(11) = 73$, $a(12) = 85$, and $a(13) = 98$.
 - **Open question ($N = 14$):** Can $113$ points be painted on a $14 \times 14$ grid without forming an axis-aligned square? Karpov (2016) established $a(14) \ge 112$ (`sq-axis_n14_m112.cnf` is SAT).
@@ -23,8 +23,8 @@
 
 ### Encoding Architecture (`gen_points.py sq-axis N M`)
 
-- **Point variables:** $N^2$ Boolean variables (`1..N^2`), one per lattice point $(x, y) \in \{0, \dots, N-1\}^2$.
-- **Forbidden axis-square 4-clauses:** One all-negative 4-clause for every axis-aligned square of side $s \in \{1, \dots, N-1\}$ ($\sum_{s=1}^{N-1} (N - s)^2 = N(N-1)(2N-1)/6$ clauses: `385` at $N = 11$, `819` at $N = 14$).
+- **Point variables:** $N^2$ Boolean variables (`1..N^2`), one per lattice point $(x, y) \in \lbrace 0, \dots, N-1\rbrace^2$.
+- **Forbidden axis-square 4-clauses:** One all-negative 4-clause for every axis-aligned square of side $s \in \lbrace 1, \dots, N-1\rbrace$ ($\sum_{s=1}^{N-1} (N - s)^2 = N(N-1)(2N-1)/6$ clauses: `385` at $N = 11$, `819` at $N = 14$).
 - **Cardinality constraint:** Sinz sequential counter (Sinz 2005) enforcing at least $m$ painted points.
 - **Symmetry:** No symmetry breaking; all 8 symmetries of the square ($D_4$) remain intact.
 
@@ -87,7 +87,7 @@ This directory is one of **9 single-problem-type collections** split from James 
 - **Independent Verification:**
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Two $N = 11$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). Only Frobenius and CaDiCaL 3.1.0 solve `sq-axis_n11_m73.cnf` within 60 s:
 
@@ -95,8 +95,8 @@ Two $N = 11$ calibration rungs evaluated sequentially on identical uncompressed 
 |---|:---:|---:|---:|---:|---:|---:|
 | `sq-axis_n11_m73.cnf` | SAT | **1.15 s** | 2.32 s | >60 s | >60 s | >60 s |
 | `sq-axis_n11_m74.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | 0 / 2 *(-1 worse)* | 0 / 2 *(-1 worse)* | 0 / 2 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **121.15 s** *(fastest)* | 122.32 s *(1.01x slower)* | 240.00 s *(1.98x slower)* | 240.00 s *(1.98x slower)* | 240.00 s *(1.98x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | 0 / 2 *(-1 worse)* | 0 / 2 *(-1 worse)* | 0 / 2 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **121.15 s** *(fastest)* | 122.32 s *(1.01x slower)* | 240.00 s *(1.98x slower)* | 240.00 s *(1.98x slower)* | 240.00 s *(1.98x slower)* |
 
 ### Open OEIS Frontier Run (180 s, Single-Core Pinned)
 
@@ -106,7 +106,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `sq-axis_n14_m113.cnf` | `sq-axis` $14 \times 14$ ($a(14) \ge 112$; `16,381` vars, `33,301` cls) | 180 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 5 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
 

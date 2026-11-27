@@ -13,19 +13,19 @@
 
 ## Problem Description
 
-The off-diagonal two-color **Van der Waerden number** $w(2; 3, t)$ ([OEIS A171081](https://oeis.org/A171081), equal to [OEIS A007783](https://oeis.org/A007783) for $t \ge 3$) is the smallest positive integer $N$ such that every red/blue coloring of $\{1, \dots, N\}$ contains either a monochromatic **red 3-term arithmetic progression** ($\{a, a+d, a+2d\}$) or a monochromatic **blue $t$-term arithmetic progression** ($\{a, a+d, \dots, a+(t-1)d\}$).
+The off-diagonal two-color **Van der Waerden number** $w(2; 3, t)$ ([OEIS A171081](https://oeis.org/A171081), equal to [OEIS A007783](https://oeis.org/A007783) for $t \ge 3$) is the smallest positive integer $N$ such that every red/blue coloring of $\lbrace 1, \dots, N\rbrace$ contains either a monochromatic **red 3-term arithmetic progression** ($\lbrace a, a+d, a+2d\rbrace$) or a monochromatic **blue $t$-term arithmetic progression** ($\lbrace a, a+d, \dots, a+(t-1)d\rbrace$).
 
 - **Known exact values ($t = 10 \dots 19$):** $w(2;3,10) = 97$, $w(2;3,11) = 114$, $w(2;3,12) = 135$, $w(2;3,13) = 160$, $w(2;3,14) = 186$, $w(2;3,15) = 218$, $w(2;3,16) = 238$, $w(2;3,17) = 279$, $w(2;3,18) = 312$, and $w(2;3,19) = 349$ (Ahmed, Kullmann, and Snevily 2014).
-- **Open question ($t = 20$):** Is $w(2; 3, 20) = 389$? Ahmed, Kullmann, and Snevily (2014) constructed an explicit witness coloring of $\{1, \dots, 388\}$ proving $w(2; 3, 20) \ge 389$ (`vdw_3_20_N388.cnf` is SAT) and conjectured equality.
+- **Open question ($t = 20$):** Is $w(2; 3, 20) = 389$? Ahmed, Kullmann, and Snevily (2014) constructed an explicit witness coloring of $\lbrace 1, \dots, 388\rbrace$ proving $w(2; 3, 20) \ge 389$ (`vdw_3_20_N388.cnf` is SAT) and conjectured equality.
 - **Target instance `vdw_3_20_N389.cnf`:**
   - **UNSAT** (with a machine-checkable DRAT/LRAT proof accepted by `drat-trim` / `cake_lpr`) settles $w(2; 3, 20) = 389$ and adds a new OEIS term.
   - **SAT** refutes the conjecture ($w(2; 3, 20) \ge 390$) and is independently checked in under a second by `verify.py`.
 
 ### Encoding Architecture (`gen_vdw.py`)
 
-- **Variables:** Exactly $N$ Boolean variables (`96`–`389`), where $x_i = \text{true}$ iff integer $i \in \{1, \dots, N\}$ is colored red (zero auxiliary variables).
-- **Forbidden red 3-AP clauses:** One all-negative ternary clause $(\neg x_a \lor \neg x_{a+d} \lor \neg x_{a+2d})$ for every 3-term arithmetic progression in $\{1, \dots, N\}$.
-- **Forbidden blue $t$-AP clauses:** One all-positive $t$-literal clause $(x_a \lor x_{a+d} \lor \dots \lor x_{a+(t-1)d})$ for every $t$-term arithmetic progression in $\{1, \dots, N\}$.
+- **Variables:** Exactly $N$ Boolean variables (`96`–`389`), where $x_i = \text{true}$ iff integer $i \in \lbrace 1, \dots, N\rbrace$ is colored red (zero auxiliary variables).
+- **Forbidden red 3-AP clauses:** One all-negative ternary clause $(\neg x_a \lor \neg x_{a+d} \lor \neg x_{a+2d})$ for every 3-term arithmetic progression in $\lbrace 1, \dots, N\rbrace$.
+- **Forbidden blue $t$-AP clauses:** One all-positive $t$-literal clause $(x_a \lor x_{a+d} \lor \dots \lor x_{a+(t-1)d})$ for every $t$-term arithmetic progression in $\lbrace 1, \dots, N\rbrace$.
 - **Symmetry:** No symmetry breaking; the reflection $i \mapsto N + 1 - i$ is left intact. Despite tiny variable counts (`389` variables and `41,426` clauses at $t = 20, N = 389$), the UNSAT rungs scale steeply in CDCL hardness.
 
 ## Corpus & Data Sizes
@@ -102,7 +102,7 @@ This directory is one of **9 single-problem-type collections** split from James 
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
   - **UNSAT proofs:** Every Frobenius UNSAT result was re-run with proof emission (`--lrat` or `--proof` binary-DRAT) and triple-certified with [`drat-trim`](https://github.com/marijnheule/drat-trim) (`s VERIFIED`), [`lrat-check`](https://github.com/marijnheule/drat-trim) (`c VERIFIED`), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) (`s VERIFIED UNSAT`).
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Seven calibration rungs spanning $t = 10 \dots 13$ evaluated sequentially on identical uncompressed flat `.cnf` files (1 physical core pinned, 1 thread). **Frobenius** ranks **#1 overall** (`7 / 7` solved, Total PAR-2 = **`11.78 s`**, **10.07× faster** than #2 Kissat 4.0.4 at `118.59 s`) and **#1 on all three UNSAT rungs**:
 
@@ -115,8 +115,8 @@ Seven calibration rungs spanning $t = 10 \dots 13$ evaluated sequentially on ide
 | `vdw_3_12_N134.cnf` | SAT | **194.8 ms** | 1.18 s | 38.88 s | 42.64 s | 49.18 s |
 | `vdw_3_12_N135.cnf` | UNSAT | **9.20 s** | >60 s | >60 s | >60 s | 51.28 s |
 | `vdw_3_13_N159.cnf` | SAT | **202.0 ms** | 1.13 s | 10.74 s | 2.82 s | 9.48 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **7 / 7** *(highest)* | 6 / 7 *(-1 worse)* | 6 / 7 *(-1 worse)* | 6 / 7 *(-1 worse)* | **7 / 7** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **11.78 s** *(fastest)* | 130.76 s *(11.10x slower)* | 180.12 s *(15.29x slower)* | 173.16 s *(14.70x slower)* | 118.59 s *(10.07x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **7 / 7** *(highest)* | 6 / 7 *(-1 worse)* | 6 / 7 *(-1 worse)* | 6 / 7 *(-1 worse)* | **7 / 7** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **11.78 s** *(fastest)* | 130.76 s *(11.10x slower)* | 180.12 s *(15.29x slower)* | 173.16 s *(14.70x slower)* | 118.59 s *(10.07x slower)* |
 
 - **Extended sweep milestone:** Beyond the 60 s cutoff, Frobenius also solved `vdw_3_14_N185.cnf` (SAT) in **`78.14 s`**, archived in [`solutions/vdw_3_14_N185.model.xz`](solutions/vdw_3_14_N185.model.xz).
 
@@ -128,7 +128,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `vdw_3_20_N389.cnf` | Conjectured $w(2; 3, 20) = 389$ (`389` vars, `41,426` cls) | 600 s | `taskset -c 1` | 27,716,416 | 52,769,345 | 1,265,007,830 | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 13 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `22 / 22` instances in `cnf-orig/`:
 

@@ -14,10 +14,10 @@
 
 Given vector dimension $N \ge 1$, product budget $K$, and modulus $m \ge 2$, the scalar inner product $\langle x, y \rangle = \sum_{i=0}^{N-1} x_i y_i \pmod{m}$ has bilinear tensor $T_{i,j,0} = \delta_{ij}$ (the $N \times N$ identity matrix $I_N$). A rank-$K$ bilinear factorization requires vectors $u_t, v_t \in (\mathbb{Z}/m\mathbb{Z})^N$ and scalars $w_t \in \mathbb{Z}/m\mathbb{Z}$ ($0 \le t < K$) satisfying:
 
-$$\sum_{t=0}^{K-1} w_t \, u_{t,i} \, v_{t,j} \equiv \delta_{ij} \pmod{m} \qquad \forall\, 0 \le i, j < N.$$
+$$\sum_{t=0}^{K-1} w_t \thinspace u_{t,i} \thinspace v_{t,j} \equiv \delta_{ij} \pmod{m} \qquad \forall\thinspace 0 \le i, j < N.$$
 
 - **Universal exact rank theorem:** For every $m \ge 2$, pick any prime divisor $p \mid m$; reducing modulo $p$ maps $U^\top \operatorname{diag}(w) V = I_N$ into $\mathbb{F}_p^{N \times N}$, whose rank is at most $K$. Hence $K = N - 1$ is **provably UNSAT** and $K = N$ is **provably SAT** (attained by standard basis vectors or any invertible change of basis in $\operatorname{GL}_N(\mathbb{Z}/m\mathbb{Z})$).
-- **Algebraic hardness for SAT solvers:** Although the lower bound $\operatorname{rank}(I_N) = N$ is a one-line theorem of linear algebra, proving UNSAT via propositional resolution over bit-blasted `and2`/`xor2` ($m=2$) or one-hot ring tables ($m \in \{3, 4\}$, including nilpotent zero divisors $2 \cdot 2 \equiv 0 \pmod 4$) produces sharply scaling algebraic refutation benchmarks from milliseconds (`N=3, mod 4`) to tens of seconds (`N=6, mod 2` and `N=5, mod 3`).
+- **Algebraic hardness for SAT solvers:** Although the lower bound $\operatorname{rank}(I_N) = N$ is a one-line theorem of linear algebra, proving UNSAT via propositional resolution over bit-blasted `and2`/`xor2` ($m=2$) or one-hot ring tables ($m \in \lbrace 3, 4\rbrace$, including nilpotent zero divisors $2 \cdot 2 \equiv 0 \pmod 4$) produces sharply scaling algebraic refutation benchmarks from milliseconds (`N=3, mod 4`) to tens of seconds (`N=6, mod 2` and `N=5, mod 3`).
 
 ## Corpus & Data Sizes
 
@@ -62,11 +62,11 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 ## Benchmark Results
 
-### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to single physical core 9** (`taskset -c 9`), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
-- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **25 / 25 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
+- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **25 / 25 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\text{ s}$.
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
@@ -80,7 +80,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `dot_n5_k5_m4.cnf` | SAT | **13.3 ms** | 78.0 ms | 275.9 ms | 325.0 ms | 119.0 ms |
 | `dot_n6_k5_m2.cnf` | UNSAT | **8.8 ms** | 4.52 s | 6.65 s | 23.06 s | 4.66 s |
 | `dot_n6_k6_m2.cnf` | SAT | 10.3 ms | 3.6 ms | 72.9 ms | 4.4 ms | **2.3 ms** |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | 9 / 10 *(-1 worse)* | 8 / 10 *(-2 worse)* | **10 / 10** *(highest)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | 9 / 10 *(-1 worse)* | 8 / 10 *(-2 worse)* | **10 / 10** *(highest)* |
 | **Total PAR-2** | — | **130.7 ms** *(fastest)* | 81.36 s *(622x slower)* | 147.89 s *(1,132x slower)* | 263.45 s *(2,016x slower)* | 14.91 s *(114x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
@@ -102,7 +102,7 @@ Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed fl
 
 ### Independent UNSAT Proof Certification (4 / 4 Formally Verified)
 
-All **4 tractable Frobenius UNSAT instances** ($< 30\;\text{s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
+All **4 tractable Frobenius UNSAT instances** ($< 30\text{ s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
 
 | Instance | DRAT Size | `drat-trim` | LRAT Size | `lrat-check` | `cake_lpr` |
 |---|---:|---|---:|---|---|

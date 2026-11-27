@@ -100,7 +100,7 @@ This directory is one of **9 single-problem-type collections** split from James 
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
   - **UNSAT proofs:** Every Frobenius UNSAT result was re-run with proof emission (`--lrat` or `--proof` binary-DRAT) and triple-certified with [`drat-trim`](https://github.com/marijnheule/drat-trim) (`s VERIFIED`), [`lrat-check`](https://github.com/marijnheule/drat-trim) (`c VERIFIED`), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) (`s VERIFIED UNSAT`).
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Two $n = 10$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest overall (`23.14 s` PAR-2 vs. `31.02 s` for Kissat 4.0.4 and `33.87 s` for CaDiCaL 3.1.0)** and **#1 fastest on the UNSAT optimality proof `zaran3_n10_m61.cnf`** (`18.80 s`):
 
@@ -108,8 +108,8 @@ Two $n = 10$ calibration rungs evaluated sequentially on identical uncompressed 
 |---|:---:|---:|---:|---:|---:|---:|
 | `zaran3_n10_m60.cnf` | SAT | 4.34 s | 7.35 s | 5.84 s | **2.03 s** | 4.69 s |
 | `zaran3_n10_m61.cnf` | UNSAT | **18.80 s** | 26.52 s | 40.54 s | >60 s | 26.33 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | 1 / 2 *(-1 worse)* | **2 / 2** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **23.14 s** *(fastest)* | 33.87 s *(1.46x slower)* | 46.38 s *(2.00x slower)* | 122.03 s *(5.27x slower)* | 31.02 s *(1.34x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | 1 / 2 *(-1 worse)* | **2 / 2** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **23.14 s** *(fastest)* | 33.87 s *(1.46x slower)* | 46.38 s *(2.00x slower)* | 122.03 s *(5.27x slower)* | 31.02 s *(1.34x slower)* |
 
 - **Extended sweep milestone:** Frobenius also solved `zaran3_n11_m69.cnf` (SAT), verified and archived in [`solutions/zaran3_n11_m69.model.xz`](solutions/zaran3_n11_m69.model.xz).
 
@@ -124,7 +124,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 | `zaran3_n17_m144.cnf` | Zarankiewicz $n = 17$ upper bracket (`42,561` vars, `547,631` cls) | 15 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 | `zaran3_n17_m148.cnf` | Zarankiewicz $n = 17$ upper bracket (`41,409` vars, `545,331` cls) | 15 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 13 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `20 / 20` instances in `cnf-orig/`:
 

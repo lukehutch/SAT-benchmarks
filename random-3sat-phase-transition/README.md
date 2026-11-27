@@ -14,9 +14,9 @@
 
 Uniform random 3-SAT formulas ($n = 200$ variables; clauses of 3 distinct uniformly random variables with independent uniform polarities) sampled across the classic **easy–hard–easy satisfiability phase transition** around the critical clause-to-variable ratio $\alpha_c = m / n \approx 4.26$:
 
-- **Under-constrained (SAT side, below threshold):** $\alpha \in \{3.80, 4.00, 4.10\}$ ($m \in \{760, 800, 820\}$, 3 SAT instances)
+- **Under-constrained (SAT side, below threshold):** $\alpha \in \lbrace 3.80, 4.00, 4.10\rbrace$ ($m \in \lbrace 760, 800, 820\rbrace$, 3 SAT instances)
 - **Critical phase transition:** $\alpha = 4.26$ ($m = 852$, 1 SAT + 1 UNSAT instance — also included in the Unified 50-Benchmark Gauntlet)
-- **Over-constrained (UNSAT side, above threshold):** $\alpha \in \{4.45, 4.65, 5.00\}$ ($m \in \{890, 930, 1{,}000\}$, 3 UNSAT instances)
+- **Over-constrained (UNSAT side, above threshold):** $\alpha \in \lbrace 4.45, 4.65, 5.00\rbrace$ ($m \in \lbrace 890, 930, 1{,}000\rbrace$, 3 UNSAT instances)
 
 These 8 instances (**4 SAT / 4 UNSAT**) provide a pure unstructured baseline with zero gate, parity, cardinality, or symmetry structure on both flanks and at the peak of the phase transition.
 
@@ -31,8 +31,8 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
   - **`uuf250-1065` / `uf250-1065`** ($n = 250, m = 1{,}065, \alpha = 4.26, \rho_{\mathrm{crit}} = 1.00\times$): [`uuf250-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uuf250-01.cnf.xz) (UNSAT) & [`uf250-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uf250-01.cnf.xz) (SAT), plus full 100-instance UBC archives ([`uuf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf250-1065.tar.gz), [`uf250-1065.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uf250-1065.tar.gz)).
   - **`uuf200-860` / `uf200-860` & `uuf225-960`** ($n = 200\text{--}225, \alpha \approx 4.27\text{--}4.30$): [`uuf200-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uuf200-01.cnf.xz) (UNSAT) & [`uf200-01.cnf.xz`](../satlib-rnd3sat/cnf-orig/uf200-01.cnf.xz) (SAT), plus [`uuf225-960.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf225-960.tar.gz) and [`uuf200-860.tar.gz`](https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/RND3SAT/uuf200-860.tar.gz).
   - **`uuf150-645`, `uuf100-430`, `uuf50-218`** (and SAT `uf*` counterparts): committed in [`../satlib-rnd3sat/`](../satlib-rnd3sat/README.md), with all 19 official SATLIB RND3SAT archive URLs listed in [`../satlib-archive-uris/satlib_all_97_archives.uri`](../satlib-archive-uris/satlib_all_97_archives.uri).
-- **SATLIB Large Random 3-SAT ([`../satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md)):** `f600`, `f1000`, `f2000` ($n \in \{600, 1{,}000, 2{,}000\}, \alpha = 4.25, \rho_{\mathrm{crit}} = 1.00\times$).
-- **SAT Shortcut Challenge Tier 3 ([`../sat-shortcut-challenge-tier3/`](../sat-shortcut-challenge-tier3/README.md)):** 25 uniform random 3-SAT instances scaling across $n \in \{300, 350, 400, 450, 500\}$ at $\alpha = 4.26$ ($\rho_{\mathrm{crit}} = 1.00\times$).
+- **SATLIB Large Random 3-SAT ([`../satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md)):** `f600`, `f1000`, `f2000` ($n \in \lbrace 600, 1{,}000, 2{,}000\rbrace, \alpha = 4.25, \rho_{\mathrm{crit}} = 1.00\times$).
+- **SAT Shortcut Challenge Tier 3 ([`../sat-shortcut-challenge-tier3/`](../sat-shortcut-challenge-tier3/README.md)):** 25 uniform random 3-SAT instances scaling across $n \in \lbrace 300, 350, 400, 450, 500\rbrace$ at $\alpha = 4.26$ ($\rho_{\mathrm{crit}} = 1.00\times$).
 
 ## Corpus & Data Sizes
 
@@ -60,7 +60,7 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 
 ## Benchmark Results
 
-- **Timeout:** $T_{\max} = 60\;\text{s}$ per instance.
+- **Timeout:** $T_{\max} = 60\text{ s}$ per instance.
 - **Same machine?** **Yes** — all six solver configurations were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius, exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT assignments independently verified clause-by-clause).
 
 | Instance ($m/n$) | Ans | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |

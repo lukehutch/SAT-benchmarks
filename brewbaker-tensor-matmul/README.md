@@ -14,11 +14,11 @@
 
 Given matrix dimensions $(A, B, C)$, product budget $K$, and modulus $m \ge 2$, the matrix multiplication tensor $\langle A, B, C \rangle$ maps $(X, Y) \in (\mathbb{Z}/m\mathbb{Z})^{A\times B} \times (\mathbb{Z}/m\mathbb{Z})^{B\times C}$ to $Z = XY \in (\mathbb{Z}/m\mathbb{Z})^{A\times C}$. A rank-$K$ bilinear algorithm specifies factor matrices $U \in (\mathbb{Z}/m\mathbb{Z})^{K \times AB}$, $V \in (\mathbb{Z}/m\mathbb{Z})^{K \times BC}$, and $W \in (\mathbb{Z}/m\mathbb{Z})^{K \times AC}$ satisfying the exact Brent (1970) tensor equations across all basis pairs $(i, j, o)$:
 
-$$\sum_{t=0}^{K-1} U_{t,i} \, V_{t,j} \, W_{t,o} \equiv T_{i,j,o} \pmod{m}, \qquad T_{iB+j,\, jC+k,\, iC+k} = 1, \quad \text{all other } T = 0.$$
+$$\sum_{t=0}^{K-1} U_{t,i} \thinspace V_{t,j} \thinspace W_{t,o} \equiv T_{i,j,o} \pmod{m}, \qquad T_{iB+j,\thinspace jC+k,\thinspace iC+k} = 1, \quad \text{all other } T = 0.$$
 
 - **Exact bilinear ranks proven across every ring $\mathbb{Z}/m\mathbb{Z}$ ($m \ge 2$):**
   - $\langle 2, 2, 1 \rangle$ (matrix–vector product): $R(2,2,1) = 4$ (`k=3` UNSAT, `k=4` SAT).
-  - $\langle 2, 2, 2 \rangle$ (Strassen 1969; Winograd 1971; Hopcroft & Kerr 1971): $R(2,2,2) = 7$ over every field, hence over $\mathbb{Z}/2\mathbb{Z}$, $\mathbb{Z}/3\mathbb{Z}$, and $\mathbb{Z}/4\mathbb{Z}$ (since $\mathbb{Z}/4\mathbb{Z} \twoheadrightarrow \mathbb{F}_2$ lower-bounds rank by 7 and Strassen's $\{-1,0,1\}$ witness reduces modulo every $m$).
+  - $\langle 2, 2, 2 \rangle$ (Strassen 1969; Winograd 1971; Hopcroft & Kerr 1971): $R(2,2,2) = 7$ over every field, hence over $\mathbb{Z}/2\mathbb{Z}$, $\mathbb{Z}/3\mathbb{Z}$, and $\mathbb{Z}/4\mathbb{Z}$ (since $\mathbb{Z}/4\mathbb{Z} \twoheadrightarrow \mathbb{F}_2$ lower-bounds rank by 7 and Strassen's $\lbrace -1,0,1\rbrace$ witness reduces modulo every $m$).
   - $\langle 2, 2, 3 \rangle$ and transposed $\langle 2, 3, 2 \rangle$ (Hopcroft & Kerr 1971, Theorem 1): $R(2,2,3) = R(2,3,2) = 11$ over every field (`k=10` UNSAT, `k=11` SAT).
 - **Encoding (`sat_challenges.py matmul A B C K --mod m`):** For $m = 2$, each coefficient is a single bit with `and2` products (3 clauses) and `xor2` accumulation trees (4 clauses each, collapsing losslessly into native XOR parity equations in `xcnf-converted/`). For $m \ge 3$, each residue uses $m$ one-hot variables with an `exactly_one` constraint and $m^2$ table-implication clauses per ring operation. Because no symmetry breaking is imposed, the formula retains the full $K!$ term-permutation and scaling gauge group.
 
@@ -65,11 +65,11 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 ## Benchmark Results
 
-### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to single physical core 9** (`taskset -c 9`), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
-- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **25 / 25 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
+- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **25 / 25 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\text{ s}$.
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
@@ -83,7 +83,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `matmul_2x2x3_k10_m2.cnf` | UNSAT | **10.43 s** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
 | `matmul_2x2x3_k11_m2.cnf` | SAT | 3.63 s | 3.11 s | **406.7 ms** | >60 s *(T/O)* | 1.57 s |
 | `matmul_2x3x2_k11_m2.cnf` | SAT | **1.59 s** | 8.73 s | 4.40 s | >60 s *(T/O)* | 5.66 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **10 / 10** *(highest)* | 8 / 10 *(-2 worse)* | 7 / 10 *(-3 worse)* | 3 / 10 *(-7 worse)* | 8 / 10 *(-2 worse)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10** *(highest)* | 8 / 10 *(-2 worse)* | 7 / 10 *(-3 worse)* | 3 / 10 *(-7 worse)* | 8 / 10 *(-2 worse)* |
 | **Total PAR-2** | — | **23.45 s** *(fastest)* | 346.35 s *(14.8x slower)* | 429.80 s *(18.3x slower)* | 890.43 s *(38.0x slower)* | 284.23 s *(12.1x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
@@ -104,7 +104,7 @@ Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed fl
 
 ### Independent UNSAT Proof Certification (1 / 1 Formally Verified)
 
-All **1 tractable Frobenius UNSAT instances** ($< 30\;\text{s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
+All **1 tractable Frobenius UNSAT instances** ($< 30\text{ s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
 
 | Instance | DRAT Size | `drat-trim` | LRAT Size | `lrat-check` | `cake_lpr` |
 |---|---:|---|---:|---|---|

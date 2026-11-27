@@ -13,7 +13,7 @@
 
 ## Problem Description
 
-A **Vertex Magic Total Labeling (VMTL)** of the complete graph $K_n$ assigns distinct integers from $\{1, 2, \dots, M\}$ with $M = n + \binom{n}{2} = \frac{n(n+1)}{2}$ to all $n$ vertices $V_1, \dots, V_n$ and all $\binom{n}{2}$ undirected edges $E_{ij}$ ($1 \le i < j \le n$) such that every vertex weight equals a fixed magic constant $K$:
+A **Vertex Magic Total Labeling (VMTL)** of the complete graph $K_n$ assigns distinct integers from $\lbrace 1, 2, \dots, M\rbrace$ with $M = n + \binom{n}{2} = \frac{n(n+1)}{2}$ to all $n$ vertices $V_1, \dots, V_n$ and all $\binom{n}{2}$ undirected edges $E_{ij}$ ($1 \le i < j \le n$) such that every vertex weight equals a fixed magic constant $K$:
 
 $$V_i + \sum_{j \ne i} E_{ij} = K \qquad (i = 1, \dots, n).$$
 
@@ -21,11 +21,11 @@ Summing across all $n$ vertices double-counts every edge label while counting ea
 
 $$n K + \sum_{i=1}^{n} V_i = 2 \sum_{\ell=1}^{M} \ell = M(M+1).$$
 
-Because $V_1, \dots, V_n$ are $n$ distinct integers in $\{1, \dots, M\}$, $\frac{n(n+1)}{2} \le \sum_{i=1}^n V_i \le nM - \frac{n(n-1)}{2}$, giving the sharp arithmetic feasibility interval:
+Because $V_1, \dots, V_n$ are $n$ distinct integers in $\lbrace 1, \dots, M\rbrace$, $\frac{n(n+1)}{2} \le \sum_{i=1}^n V_i \le nM - \frac{n(n-1)}{2}$, giving the sharp arithmetic feasibility interval:
 
 $$K_{\min}(n) = \left\lceil \frac{n(n^2+3)}{4} \right\rceil \le K \le \left\lfloor \frac{n(n+1)^2}{4} \right\rfloor = K_{\max}(n).$$
 
-- **Why Picat-SAT VMTL Challenges CDCL:** Picat compiles the single global `all_different(Vars)` over $M$ log-encoded variables alongside $n$ separate multi-operand integer adder trees (using Berkeley Espresso prime-implicant minimization). While `vmtl_n5_k34.cnf` ($490$ variables), `vmtl_n6_k58.cnf` ($870$ variables), and `vmtl_n10_k257.cnf` ($6{,}065$ variables) are provably UNSAT by the 3-line global double-counting bound $K < K_{\min}(n)$, that global linear invariant is invisible to bit-level clause resolution, turning even $490$-variable instances into formidable CDCL refutation killers. At $K_4$, $K=19$ is additionally infeasible (only $K \in \{20, 21, 23\}$ admit a VMTL of $K_4$), providing a fast certifiable UNSAT anchor (`vmtl_n4_k19.cnf`).
+- **Why Picat-SAT VMTL Challenges CDCL:** Picat compiles the single global `all_different(Vars)` over $M$ log-encoded variables alongside $n$ separate multi-operand integer adder trees (using Berkeley Espresso prime-implicant minimization). While `vmtl_n5_k34.cnf` ($490$ variables), `vmtl_n6_k58.cnf` ($870$ variables), and `vmtl_n10_k257.cnf` ($6{,}065$ variables) are provably UNSAT by the 3-line global double-counting bound $K < K_{\min}(n)$, that global linear invariant is invisible to bit-level clause resolution, turning even $490$-variable instances into formidable CDCL refutation killers. At $K_4$, $K=19$ is additionally infeasible (only $K \in \lbrace 20, 21, 23\rbrace$ admit a VMTL of $K_4$), providing a fast certifiable UNSAT anchor (`vmtl_n4_k19.cnf`).
 
 ## Corpus & Data Sizes
 
@@ -69,7 +69,7 @@ This directory is one of **6 single-problem-type collections** compiled natively
 
 ## Benchmark Results
 
-*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
+*Single-Core Pinned, $T_{\max} = 60\text{ s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -94,8 +94,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `vmtl_n9_k207.cnf` | SAT | 2.60 s | 5.07 s | **2.10 s** | 4.25 s | 5.06 s |
 | `vmtl_n10_k257.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `vmtl_n10_k280.cnf` | SAT | 2.47 s | 4.08 s | 10.51 s | 3.19 s | **1.22 s** |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **8 / 10** *(highest)* | 7 / 10 *(-1 worse)* | 7 / 10 *(-1 worse)* | 7 / 10 *(-1 worse)* | **8 / 10** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **296.52 s** *(fastest)* | 372.99 s *(1.26x slower)* | 383.98 s *(1.29x slower)* | 394.34 s *(1.33x slower)* | 300.00 s *(1.01x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **8 / 10** *(highest)* | 7 / 10 *(-1 worse)* | 7 / 10 *(-1 worse)* | 7 / 10 *(-1 worse)* | **8 / 10** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **296.52 s** *(fastest)* | 372.99 s *(1.26x slower)* | 383.98 s *(1.29x slower)* | 394.34 s *(1.33x slower)* | 300.00 s *(1.01x slower)* |
 
 *Ground-truth UNSAT note:* `vmtl_n4_k19.cnf` is formally proof-certified (`drat-trim` + `lrat-check` + `cake_lpr`); `vmtl_n5_k34.cnf`, `vmtl_n6_k58.cnf`, and `vmtl_n10_k257.cnf` are mathematically UNSAT via the exact global double-counting theorem $K < K_{\min}(n)$ (`34 < 35`, `58 < 59`, `257 < 258`), making them exceptionally compact (`490–6,065` variables) CDCL refutation challenges.
 

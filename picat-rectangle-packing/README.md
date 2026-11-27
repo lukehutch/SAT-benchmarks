@@ -15,7 +15,7 @@
 
 The **Consecutive Squares 2D Rectangle Packing Problem** (Korf 2003; Simonis & O'Sullivan 2008; MiniZinc `rectangle-packing`) asks whether $n$ axis-aligned squares of side lengths $1 \times 1, 2 \times 2, \dots, n \times n$ (total occupied area $A_{\min}(n) = \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}$) can be placed without overlap inside a fixed $H \times W$ integer bounding box.
 
-For every $i \in \{1, \dots, n\}$, Picat-SAT introduces log-encoded origin coordinates $X_i \in [0, W - i]$ and $Y_i \in [0, H - i]$ subject to:
+For every $i \in \lbrace 1, \dots, n\rbrace$, Picat-SAT introduces log-encoded origin coordinates $X_i \in [0, W - i]$ and $Y_i \in [0, H - i]$ subject to:
 1. **2D non-overlap (`diffn`):** Every pair $i < j$ separates horizontally or vertically: $(X_i + i \le X_j) \lor (X_j + j \le X_i) \lor (Y_i + i \le Y_j) \lor (Y_j + j \le Y_i)$.
 2. **Redundant 1D resource projections (`cumulative`):** Both `cumulative(X, S, S, H)` and `cumulative(Y, S, S, W)` enforce that squares intersecting any vertical strip $x$ sum in height to $\le H$ and any horizontal strip $y$ sum in width to $\le W$ — exercising Picat-SAT's time-indexed scheduling/PB compilation.
 3. **Centroid reflection symmetry breaking:** $2 X_n \le W - n$ and $2 Y_n \le H - n$ pins the largest square $n \times n$ into the top-left quadrant (4× search reduction).
@@ -64,7 +64,7 @@ This directory is one of **6 single-problem-type collections** compiled natively
 
 ## Benchmark Results
 
-*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
+*Single-Core Pinned, $T_{\max} = 60\text{ s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -89,8 +89,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `rpack_n14_31x33.cnf` | UNSAT | 32.2 ms | 36.2 ms | 546.0 ms | **26.4 ms** | 75.7 ms |
 | `rpack_n17_40x45.cnf` | UNSAT | **1.46 s** | 3.68 s | 2.42 s | 3.83 s | 4.12 s |
 | `rpack_n17_41x44.cnf` | SAT | **377.9 ms** | 857.0 ms | 2.21 s | 2.82 s | 546.9 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **2.19 s** *(fastest)* | 4.71 s *(2.15x slower)* | 8.78 s *(4.01x slower)* | 6.90 s *(3.15x slower)* | 5.22 s *(2.38x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **2.19 s** *(fastest)* | 4.71 s *(2.15x slower)* | 8.78 s *(4.01x slower)* | 6.90 s *(3.15x slower)* | 5.22 s *(2.38x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -13,7 +13,7 @@
 
 ## Problem Description
 
-[OEIS A227308](https://oeis.org/A227308) gives $a(N)$, the maximum number of points that can be painted on a side-$N$ triangular lattice ($N(N+1)/2$ points) such that **no three painted points form a grid-aligned equilateral triangle of either orientation** (neither upward $\{(x, y), (x+s, y), (x, y+s)\}$ nor downward $\{(x+s, y), (x, y+s), (x+s, y+s)\}$; tilted equilateral triangles remain allowed). Its complementary hitting-set sequence is [OEIS A227116](https://oeis.org/A227116) with $\text{A227116}(N) = N(N+1)/2 - \text{A227308}(N)$.
+[OEIS A227308](https://oeis.org/A227308) gives $a(N)$, the maximum number of points that can be painted on a side-$N$ triangular lattice ($N(N+1)/2$ points) such that **no three painted points form a grid-aligned equilateral triangle of either orientation** (neither upward $\lbrace (x, y), (x+s, y), (x, y+s)\rbrace$ nor downward $\lbrace (x+s, y), (x, y+s), (x+s, y+s)\rbrace$; tilted equilateral triangles remain allowed). Its complementary hitting-set sequence is [OEIS A227116](https://oeis.org/A227116) with $\text{A227116}(N) = N(N+1)/2 - \text{A227308}(N)$.
 
 - **Known exact values ($N = 13, 14, 15$):** $a(13) = 39$, $a(14) = 44$, and $a(15) = 49$.
 - **Open question ($N = 16$):** Can $55$ points be painted on a side-16 triangular lattice (`136` points) avoiding both upward and downward grid-aligned triangles? James Guillochon established the newly published lower bound $a(16) \ge 54$ via simulated annealing ([`src/upstream/sequences/point-patterns/certificates/tri-axis_n16_54.model`](src/upstream/sequences/point-patterns/certificates/tri-axis_n16_54.model)), and Frobenius independently recovered a verified `54`-point configuration from scratch in **`2.50 s`** ([`solutions/tri-axis_n16_m54.model.xz`](solutions/tri-axis_n16_m54.model.xz)).
@@ -24,7 +24,7 @@
 ### Encoding Architecture (`gen_points.py tri-axis N M`)
 
 - **Point variables:** $P = N(N+1)/2$ Boolean variables (`1..P`) in axial coordinates $(x, y)$ with $x, y \ge 0, x + y \le N - 1$.
-- **Forbidden grid-aligned triangle 3-clauses:** One all-negative 3-clause for every upward grid-aligned triangle $\{(x,y),(x+s,y),(x,y+s)\}$ and every downward grid-aligned triangle $\{(x+s,y),(x,y+s),(x+s,y+s)\}$ (`988` forbidden triangles at $N = 16$, versus `3,060` in `tri-any`).
+- **Forbidden grid-aligned triangle 3-clauses:** One all-negative 3-clause for every upward grid-aligned triangle $\lbrace (x,y),(x+s,y),(x,y+s)\rbrace$ and every downward grid-aligned triangle $\lbrace (x+s,y),(x,y+s),(x+s,y+s)\rbrace$ (`988` forbidden triangles at $N = 16$, versus `3,060` in `tri-any`).
 - **Cardinality constraint:** Sinz sequential counter (Sinz 2005) enforcing at least $m$ painted points.
 - **Symmetry:** No symmetry breaking; all 6 symmetries of the equilateral triangle ($D_3$) remain intact.
 
@@ -87,7 +87,7 @@ This directory is one of **9 single-problem-type collections** split from James 
 - **Independent Verification:**
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Three calibration rungs ($N = 13$ optimal pair + $N = 16$ frontier lower bound) evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). Only Frobenius and CaDiCaL 3.1.0 solve the side-16 frontier lower-bound instance `tri-axis_n16_m54.cnf` within 60 s (`1.56 s` and `2.19 s`, while CryptoMiniSat 5.18.0, dense-solver 0.0.4, and Kissat 4.0.4 all time out):
 
@@ -96,8 +96,8 @@ Three calibration rungs ($N = 13$ optimal pair + $N = 16$ frontier lower bound) 
 | `tri-axis_n13_m39.cnf` | SAT | **215.0 ms** | 0.52 s | >60 s | 4.74 s | 16.78 s |
 | `tri-axis_n13_m40.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `tri-axis_n16_m54.cnf` | SAT | **1.56 s** | 2.19 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **2 / 3** *(highest)* | **2 / 3** *(highest)* | 0 / 3 *(-2 worse)* | 1 / 3 *(-1 worse)* | 1 / 3 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **121.78 s** *(fastest)* | 122.71 s *(1.01x slower)* | 360.00 s *(2.96x slower)* | 244.74 s *(2.01x slower)* | 256.78 s *(2.11x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **2 / 3** *(highest)* | **2 / 3** *(highest)* | 0 / 3 *(-2 worse)* | 1 / 3 *(-1 worse)* | 1 / 3 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **121.78 s** *(fastest)* | 122.71 s *(1.01x slower)* | 360.00 s *(2.96x slower)* | 244.74 s *(2.01x slower)* | 256.78 s *(2.11x slower)* |
 
 ### Open OEIS Frontier Run (600 s, Single-Core Pinned)
 
@@ -107,9 +107,9 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `tri-axis_n16_m55.cnf` | `tri-axis` side 16 ($a(16) \ge 54$; `11,071` vars, `22,912` cls) | 600 s | `taskset -c 1` | 10,361,024 | 17,046,294 | 1,563,592,717 | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
-Remaining 3 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`; all four external baselines were also evaluated at $T_{\max} = 60\;\text{s}$ on `tri-axis_n15_m49.cnf` (solved SAT by Frobenius in `38.69 s`, outperforming Kissat 4.0.4 at `40.78 s` while CryptoMiniSat 5.18.0 and dense-solver 0.0.4 timed out):
+Remaining 3 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`; all four external baselines were also evaluated at $T_{\max} = 60\text{ s}$ on `tri-axis_n15_m49.cnf` (solved SAT by Frobenius in `38.69 s`, outperforming Kissat 4.0.4 at `40.78 s` while CryptoMiniSat 5.18.0 and dense-solver 0.0.4 timed out):
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

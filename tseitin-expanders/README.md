@@ -11,10 +11,10 @@
 
 ## Problem Description
 
-Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander graphs ($n \in \{60, 120, 300\}$ vertices; Hamiltonian cycle plus pseudorandom perfect matching) and the 3-regular prism graph $C_{200} \times K_2$ ($n = 400$ vertices), assigning total odd vertex charge ($c_0 = 1$, $c_v = 0$ for $v > 0$).
+Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander graphs ($n \in \lbrace 60, 120, 300\rbrace$ vertices; Hamiltonian cycle plus pseudorandom perfect matching) and the 3-regular prism graph $C_{200} \times K_2$ ($n = 400$ vertices), assigning total odd vertex charge ($c_0 = 1$, $c_v = 0$ for $v > 0$).
 
 - **Origin:** **Original** circuit-native AIG generator (MIT [`../LICENSE`](../LICENSE)), instantiating the classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart ([JACM 1987](https://doi.org/10.1145/7531.8928)).
-- **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both [Kissat](https://github.com/arminbiere/kissat) 4.0.4 and [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 time out past $5{,}000\;\text{s}$ starting at $n = 120$.
+- **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both [Kissat](https://github.com/arminbiere/kissat) 4.0.4 and [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 time out past $5{,}000\text{ s}$ starting at $n = 120$.
 
 ## Corpus & Data Sizes
 
@@ -38,7 +38,7 @@ Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander grap
 
 ## Benchmark Results
 
-Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\;\text{s}$; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\text{ s}$; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
 
 | Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -47,7 +47,7 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `tseitin_exp_n300` | **0.66 ms** | >5,000 s (T/O) | 29.10 ms | 23.68 ms | 2.13 ms | >5,000 s (T/O) |
 | `tseitin_prism_n400` | **0.68 ms** | 9.56 ms | 27.82 ms | 23.21 ms | 2.05 ms | 13.60 ms |
 | **Solved (4 instances)** | **4 / 4** *(highest)* | 2 / 4 *(-2 worse)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | 2 / 4 *(-2 worse)* |
-| **Total PAR-2 ($T_{\max}=5{,}000\;\text{s}$)** | **2.58 ms** *(fastest)* | 20,000,555.95 ms *(7,752,153x slower)* | 107.13 ms *(41.5x slower)* | 93.25 ms *(36.1x slower)* | 7.19 ms *(2.79x slower)* | 20,000,072.19 ms *(7,751,966x slower)* |
+| **Total PAR-2 ($T_{\max}=5{,}000\text{ s}$)** | **2.58 ms** *(fastest)* | 20,000,555.95 ms *(7,752,153x slower)* | 107.13 ms *(41.5x slower)* | 93.25 ms *(36.1x slower)* | 7.19 ms *(2.79x slower)* | 20,000,072.19 ms *(7,751,966x slower)* |
 
 *(All three expander proofs emitted by Frobenius in LRAT format additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 

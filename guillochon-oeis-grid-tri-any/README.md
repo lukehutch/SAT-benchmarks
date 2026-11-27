@@ -13,7 +13,7 @@
 
 ## Problem Description
 
-[OEIS A240114](https://oeis.org/A240114) gives $a(N)$, the maximum number of points that can be painted on a side-$N$ triangular lattice ($\{(x, y) \in \mathbb{Z}_{\ge 0}^2 : x + y \le N - 1\}$, containing $N(N+1)/2$ points) such that **no three painted points form the vertices of an equilateral triangle of any orientation** (upward, downward, or tilted). Its complementary hitting-set sequence is [OEIS A319159](https://oeis.org/A319159) with $\text{A319159}(N - 1) = N(N+1)/2 - \text{A240114}(N)$.
+[OEIS A240114](https://oeis.org/A240114) gives $a(N)$, the maximum number of points that can be painted on a side-$N$ triangular lattice ($\lbrace (x, y) \in \mathbb{Z}_{\ge 0}^2 : x + y \le N - 1\rbrace$, containing $N(N+1)/2$ points) such that **no three painted points form the vertices of an equilateral triangle of any orientation** (upward, downward, or tilted). Its complementary hitting-set sequence is [OEIS A319159](https://oeis.org/A319159) with $\text{A319159}(N - 1) = N(N+1)/2 - \text{A240114}(N)$.
 
 - **Known exact values ($N = 13, 14, 15$):** $a(13) = 28$, $a(14) = 31$, and $a(15) = 34$.
 - **Open question ($N = 16$):** Can $37$ points be painted on a side-16 triangular lattice (`136` points) without forming any equilateral triangle? James Guillochon established the newly published lower bound $a(16) \ge 36$ via simulated annealing ([`src/upstream/sequences/point-patterns/certificates/tri-any_n16_36.model`](src/upstream/sequences/point-patterns/certificates/tri-any_n16_36.model)), and Frobenius independently recovered a verified `36`-point solution from scratch via pure SAT in `17.05 s` ([`solutions/tri-any_n16_m36.model.xz`](solutions/tri-any_n16_m36.model.xz)).
@@ -87,7 +87,7 @@ This directory is one of **9 single-problem-type collections** split from James 
 - **Independent Verification:**
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Two $N = 13$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread):
 
@@ -95,8 +95,8 @@ Two $N = 13$ calibration rungs evaluated sequentially on identical uncompressed 
 |---|:---:|---:|---:|---:|---:|---:|
 | `tri-any_n13_m28.cnf` | SAT | **0.29 s** | 0.56 s | 37.60 s | >60 s | 27.19 s |
 | `tri-any_n13_m29.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | 0 / 2 *(-1 worse)* | **1 / 2** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **120.29 s** *(fastest)* | 120.56 s *(1.002x slower)* | 157.60 s *(1.31x slower)* | 240.00 s *(2.00x slower)* | 147.19 s *(1.22x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | 0 / 2 *(-1 worse)* | **1 / 2** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **120.29 s** *(fastest)* | 120.56 s *(1.002x slower)* | 157.60 s *(1.31x slower)* | 240.00 s *(2.00x slower)* | 147.19 s *(1.22x slower)* |
 
 - **Frontier lower-bound milestone:** Beyond the 2-instance 60 s calibration slice, Frobenius independently recovered from scratch (pure SAT, zero annealing hints) both `tri-any_n15_m34.cnf` and James Guillochon's newly published side-16 lower bound `tri-any_n16_m36.cnf` (**`17.05 s`**), both archived in [`solutions/`](solutions/).
 
@@ -108,7 +108,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `tri-any_n16_m37.cnf` | `tri-any` side 16 ($a(16) \ge 36$; `13,501` vars, `29,826` cls) | 600 s | `taskset -c 1` | 16,233,792 | 24,068,775 | 2,585,454,611 | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 3 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
 

@@ -16,7 +16,7 @@
 [OEIS A067782](https://oeis.org/A067782) gives $a(n)$, the minimum parallel depth of an $n$-input comparator sorting network. A comparator $(i, j)$ with $i < j$ maps $(x_i, x_j) \mapsto (\min(x_i, x_j), \max(x_i, x_j))$, and comparators operating on disjoint channels execute simultaneously in one parallel layer.
 
 - **Known exact values ($n \le 17$):** $a(11) = a(12) = 8$, $a(14) = a(16) = 9$ (Bundala & Závodný 2014), and $a(17) = 10$ (Ehlers & Müller 2014/2015).
-- **Open question ($n = 18$):** Does an 18-input sorting network of depth 10 exist? Depth 11 is achievable (`sortnet_n18_d11.cnf` is SAT), and monotonicity gives $a(18) \ge a(17) = 10$, so $a(18) \in \{10, 11\}$.
+- **Open question ($n = 18$):** Does an 18-input sorting network of depth 10 exist? Depth 11 is achievable (`sortnet_n18_d11.cnf` is SAT), and monotonicity gives $a(18) \ge a(17) = 10$, so $a(18) \in \lbrace 10, 11\rbrace$.
 - **Target instance `sortnet_n18_d10.cnf`:**
   - **SAT** settles $a(18) = 10$ with an explicit comparator network independently checked across all $2^{18} = 262{,}144$ 0/1 inputs in milliseconds via `decode_verify.py`.
   - **UNSAT** (with a machine-checkable DRAT/LRAT proof accepted by `drat-trim` / `cake_lpr`) settles $a(18) = 11$.
@@ -94,7 +94,7 @@ This directory is one of **9 single-problem-type collections** split from James 
 - **Independent Verification:**
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Three smallest calibration rungs evaluated on identical uncompressed flat `.cnf` files (1 physical core pinned, 1 thread):
 
@@ -103,8 +103,8 @@ Three smallest calibration rungs evaluated on identical uncompressed flat `.cnf`
 | `sortnet_n11_d7.cnf` | UNSAT | **27.98 s** | >60 s | >60 s | >60 s | >60 s |
 | `sortnet_n12_d7.cnf` | UNSAT | **41.64 s** | >60 s | >60 s | >60 s | >60 s |
 | `sortnet_n12_d8.cnf` | SAT | 58.22 s | >60 s | >60 s | >60 s | **13.50 s** |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **3 / 3** *(highest)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 1 / 3 *(-2 worse)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **127.84 s** *(fastest)* | 360.00 s *(2.82x slower)* | 360.00 s *(2.82x slower)* | 360.00 s *(2.82x slower)* | 253.50 s *(1.98x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **3 / 3** *(highest)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 1 / 3 *(-2 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **127.84 s** *(fastest)* | 360.00 s *(2.82x slower)* | 360.00 s *(2.82x slower)* | 360.00 s *(2.82x slower)* | 253.50 s *(1.98x slower)* |
 
 - **Upstream reference timings:** Frobenius 1C solves all **3 / 3** calibration rungs within 60 s (`127.84 s` Total PAR-2, **1.98× faster** than Kissat 4.0.4 at `1 / 3` / `253.50 s`, while CaDiCaL 3.1.0, CryptoMiniSat 5.18.0, and dense-solver 0.0.4 all score `0 / 3` / `360.00 s`), cracking both UNSAT rungs (`sortnet_n11_d7.cnf` in **`27.98 s`**, `sortnet_n12_d7.cnf` in **`41.64 s`**) plus `sortnet_n12_d8.cnf` in `58.22 s` (an independently verified 46-comparator network is committed in [`solutions/sortnet_n12_d8.model.xz`](solutions/sortnet_n12_d8.model.xz)). In James Guillochon's upstream baseline (CaDiCaL 1.5.3 via PySAT on an Intel i5-12600K), `sortnet_n12_d8.cnf` required `111 s` (SAT), `sortnet_n11_d7.cnf` required `1,264 s` (UNSAT, **45.2× slower** than Frobenius 1C), and `sortnet_n12_d7.cnf` required `2,142 s` (UNSAT, **51.4× slower** than Frobenius 1C).
 
@@ -114,9 +114,9 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `0`,
 
 | Open Target | OEIS Frontier | Budget | Pinning | Conflicts | Decisions | Propagations | Status |
 |---|---|---:|---|---:|---:|---:|:---:|
-| `sortnet_n18_d10.cnf` | $a(18) \in \{10, 11\}$ (`2,598,203` vars, `63,274,184` cls) | 3,600 s | `taskset -c 0` | 378,304 | 2,832,125 | 13,462,134,613 | Open (`UNKNOWN`) |
+| `sortnet_n18_d10.cnf` | $a(18) \in \lbrace 10, 11\rbrace$ (`2,598,203` vars, `63,274,184` cls) | 3,600 s | `taskset -c 0` | 378,304 | 2,832,125 | 13,462,134,613 | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 6 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `10 / 10` instances in `cnf-orig/`:
 

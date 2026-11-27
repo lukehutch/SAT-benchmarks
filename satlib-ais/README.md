@@ -2,7 +2,7 @@
 
 ![Verified order-10 All-Interval Series permutation and difference bijection](diagram.svg)
 
-*Figure: Verified order-10 All-Interval Series permutation $s = (0,9,1,8,2,7,3,6,4,5)$ illustrating the exact bijection of consecutive absolute differences $\{1,\dots,9\}$ and the SATLIB `ais6`–`ais12` CNF encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Verified order-10 All-Interval Series permutation $s = (0,9,1,8,2,7,3,6,4,5)$ illustrating the exact bijection of consecutive absolute differences $\lbrace 1,\dots,9\rbrace$ and the SATLIB `ais6`–`ais12` CNF encoding. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Provenance & Credit
 
@@ -37,7 +37,7 @@ All-Interval Series (`ais6`, `ais8`, `ais10`, `ais12`) combinatorial permutation
 
 ## Benchmark Results
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\text{ s}$, PAR-2 penalty $10,000\text{ ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 4 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

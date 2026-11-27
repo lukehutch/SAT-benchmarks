@@ -14,7 +14,7 @@
 
 ## Problem Description
 
-Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded via **Array multipliers** multiplying two $n$-bit primes ($n \in \{19, 20, 21\}$), with variables and clauses randomly reordered.
+Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded via **Array multipliers** multiplying two $n$-bit primes ($n \in \lbrace 19, 20, 21\rbrace$), with variables and clauses randomly reordered.
 
 ## Corpus & Data Sizes
 
@@ -35,7 +35,7 @@ Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded vi
 
 ## Benchmark Results
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned to a dedicated physical core, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius, reporting the exact median of 3 runs) on identical uncompressed flat `.cnf` inputs; **100% of all 14 instances** were run (no subsampling), all 14/14 Frobenius SAT models were independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned to a dedicated physical core, $T_{\max} = 5\text{ s}$, PAR-2 penalty $10,000\text{ ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius, reporting the exact median of 3 runs) on identical uncompressed flat `.cnf` inputs; **100% of all 14 instances** were run (no subsampling), all 14/14 Frobenius SAT models were independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
@@ -56,7 +56,7 @@ Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded vi
 | **Solved (14 files)** | — | **14 / 14** *(highest)* | 8 / 14 *(-6 worse)* | 7 / 14 *(-7 worse)* | 5 / 14 *(-9 worse)* | 8 / 14 *(-6 worse)* |
 | **Total PAR-2** | — | **61.7 ms** *(fastest)* | 82,148.3 ms *(1,331.11x slower)* | 85,064.6 ms *(1,378.37x slower)* | 106,012.0 ms *(1,717.79x slower)* | 80,636.4 ms *(1,306.61x slower)* |
 
-*Summary:* Frobenius 1C solves all **14/14** instances (including `difp_21_1_arr_rcr` and `difp_21_2_arr_rcr`, where all four baseline solvers time out at $5\;\text{s}$) in **`61.7 ms` total** (`3.32–6.17 ms` per instance) — **1,306.61x faster** PAR-2 than Kissat 4.0.4, **1,331.11x faster** than CaDiCaL 3.1.0, **1,378.37x faster** than CryptoMiniSat 5.18.0, and **1,717.79x faster** than dense-solver 0.0.4.
+*Summary:* Frobenius 1C solves all **14/14** instances (including `difp_21_1_arr_rcr` and `difp_21_2_arr_rcr`, where all four baseline solvers time out at $5\text{ s}$) in **`61.7 ms` total** (`3.32–6.17 ms` per instance) — **1,306.61x faster** PAR-2 than Kissat 4.0.4, **1,331.11x faster** than CaDiCaL 3.1.0, **1,378.37x faster** than CryptoMiniSat 5.18.0, and **1,717.79x faster** than dense-solver 0.0.4.
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

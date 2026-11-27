@@ -26,11 +26,11 @@ Each instance is encoded in standard flat DIMACS CNF:
 2. **Line-occupancy non-attacking constraints:** For every line $\ell$ (each row, column, main diagonal, and anti-diagonal of length $\ge 2$):
    - For $A = 2$: a single polarity variable $L_\ell$ with clauses $(\neg q_{r,c,0} \lor L_\ell)$ and $(\neg q_{r,c,1} \lor \neg L_\ell)$, ensuring no line contains both armies (and simultaneously enforcing per-square mutual exclusion).
    - For $A \ge 3$: per-army occupancy variables $L_{\ell, a}$ with clauses $(\neg q_{r,c,a} \lor L_{\ell,a})$ and pairwise mutual exclusion $(\neg L_{\ell,a} \lor \neg L_{\ell,b})$ for all $a < b$.
-3. **Army-size cardinality constraints:** $\sum_{r,c} q_{r,c,a} \ge k$ for each army $a \in \{0, \dots, A-1\}$, encoded via **Sinz (2005)** monotone sequential counters.
+3. **Army-size cardinality constraints:** $\sum_{r,c} q_{r,c,a} \ge k$ for each army $a \in \lbrace 0, \dots, A-1\rbrace$, encoded via **Sinz (2005)** monotone sequential counters.
 
 ### Calibration & Selection
 
-Instances were swept across board dimensions $R \times C$ and army counts $A \in \{2, 3, 4\}$ with Frobenius 1C up to a **15 s** timeout. For smaller boards (e.g., $7 \times 7$ to $13 \times 13$ SAT or $7 \times 7$ UNSAT), solving completes in `< 2 s`; past the 15 s frontier (e.g., $A=2$ UNSAT at $8 \times 8, k=10$ or $A=3$ SAT at $17 \times 17, k=19$), solvers time out. The final **8-instance suite (4 SAT / 4 UNSAT)** selects instances positioned cleanly in the **~5–15 second** difficulty band without timing out across repeated runs.
+Instances were swept across board dimensions $R \times C$ and army counts $A \in \lbrace 2, 3, 4\rbrace$ with Frobenius 1C up to a **15 s** timeout. For smaller boards (e.g., $7 \times 7$ to $13 \times 13$ SAT or $7 \times 7$ UNSAT), solving completes in `< 2 s`; past the 15 s frontier (e.g., $A=2$ UNSAT at $8 \times 8, k=10$ or $A=3$ SAT at $17 \times 17, k=19$), solvers time out. The final **8-instance suite (4 SAT / 4 UNSAT)** selects instances positioned cleanly in the **~5–15 second** difficulty band without timing out across repeated runs.
 
 ## Corpus & Data Sizes
 
@@ -58,7 +58,7 @@ Instances were swept across board dimensions $R \times C$ and army counts $A \in
 
 ## Benchmark Results
 
-- **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30{,}000\;\text{ms}$).
+- **Timeout:** $T_{\max} = 15\text{ s}$ per instance (PAR-2 penalty $30{,}000\text{ ms}$).
 - **Same machine?** **Yes** — all five solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; Frobenius 1C reports the exact median of 3 runs; 0 verdict disagreements; all 4/4 SAT placements independently verified for non-attacking armies of size $\ge k$).
 
 | Instance | Status | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |

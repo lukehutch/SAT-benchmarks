@@ -12,7 +12,7 @@
 
 ## Problem Description
 
-Implements the full NIST [FIPS 180-4](https://doi.org/10.6028/NIST.FIPS.180-4) SHA-256 compression function (standard one-block padding, standard IV, message schedule $W_0, \dots, W_{R-1}$, $R \in \{0, \dots, 64\}$ compression rounds with $\operatorname{Ch}, \operatorname{Maj}, \Sigma_0, \Sigma_1, \sigma_0, \sigma_1$, and final 8-word IV feed-forward) in two complementary SAT modes:
+Implements the full NIST [FIPS 180-4](https://doi.org/10.6028/NIST.FIPS.180-4) SHA-256 compression function (standard one-block padding, standard IV, message schedule $W_0, \dots, W_{R-1}$, $R \in \lbrace 0, \dots, 64\rbrace$ compression rounds with $\operatorname{Ch}, \operatorname{Maj}, \Sigma_0, \Sigma_1, \sigma_0, \sigma_1$, and final 8-word IV feed-forward) in two complementary SAT modes:
 
 1. **Combinational Equivalence Checking (CEC) Miter Mode (`sha256 R --bytes B`):** Instantiates **two independent bit-blasted copies** of $R$-round SHA-256 over the same symbolic $B$-byte message ($8B$ primary inputs, remaining block bytes constant-folded): Circuit A uses a 32-bit **ripple-carry adder** ($c_{i+1} = g_i \lor (p_i \land c_i)$), while Circuit B uses a 5-level **parallel-prefix carry-lookahead adder** (strides `1, 2, 4, 8, 16`). A 256-bit XOR+OR miter asserts that at least one digest bit differs between Circuit A and Circuit B. Because ripple-carry and parallel-prefix addition compute the identical function $(x + y) \bmod 2^{32}$, **every CEC miter is mathematically UNSAT**.
 2. **Fixed-Message Trace Verification Mode (`sha256 64 --message-hex 616263 [--expect ...]`):** Fixes the 3-byte NIST test message `"abc"` (`0x616263`) at full 64 rounds (`101,614` vars, `347,923` clauses, `43,131` native XORs), yielding unique **SAT** witness `ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad` (both unconstrained and with `--expect <valid>`), and **UNSAT** when `--expect` flips the least significant digest bit (`...0015ac`).
@@ -64,11 +64,11 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 ## Benchmark Results
 
-### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to single physical core 9** (`taskset -c 9`), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
-- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **10 / 10 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
+- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **10 / 10 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\text{ s}$.
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
@@ -85,7 +85,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `sha256_trace_r64_abc.cnf` | SAT | **27.4 ms** | 56.1 ms | 99.6 ms | 3.22 s | 33.3 ms |
 | `sha256_trace_r64_abc_expect_flip.cnf` | UNSAT | 25.0 ms | 48.5 ms | 59.0 ms | 3.26 s | **24.2 ms** |
 | `sha256_trace_r64_abc_expect_ok.cnf` | SAT | **27.8 ms** | 58.2 ms | 101.9 ms | 3.26 s | 32.4 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **13 / 13** *(highest)* | 7 / 13 *(-6 worse)* | 7 / 13 *(-6 worse)* | 6 / 13 *(-7 worse)* | 8 / 13 *(-5 worse)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **13 / 13** *(highest)* | 7 / 13 *(-6 worse)* | 7 / 13 *(-6 worse)* | 6 / 13 *(-7 worse)* | 8 / 13 *(-5 worse)* |
 | **Total PAR-2** | — | **5.06 s** *(fastest)* | 739.66 s *(146x slower)* | 739.18 s *(146x slower)* | 851.91 s *(168x slower)* | 638.35 s *(126x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)

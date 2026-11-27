@@ -2,7 +2,7 @@
 
 ![Parity learning system A*s = b (mod 2) compiled into binary Tseitin XOR trees](diagram.svg)
 
-*Figure: Crawford–Kearns–Schapire parity-learning system $A \cdot s = b \pmod 2$ over $k \in \{8,16,32\}$ bits compiled into binary Tseitin XOR trees, showing the `par32` CDCL vs. Gaussian elimination cliff. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Crawford–Kearns–Schapire parity-learning system $A \cdot s = b \pmod 2$ over $k \in \lbrace 8,16,32\rbrace$ bits compiled into binary Tseitin XOR trees, showing the `par32` CDCL vs. Gaussian elimination cliff. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Provenance & Credit
 
@@ -37,7 +37,7 @@ All 30 parity-learning SAT benchmarks (`par8`, `par16`, `par32`, original & comp
 
 ## Benchmark Results
 
-- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\;\text{s}$, PAR-2 penalty $10,000\;\text{ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 30 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 5\text{ s}$, PAR-2 penalty $10,000\text{ ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs; **100% of all 30 instances** were run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|

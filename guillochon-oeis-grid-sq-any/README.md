@@ -13,7 +13,7 @@
 
 ## Problem Description
 
-[OEIS A240443](https://oeis.org/A240443) gives $a(N)$, the maximum number of points that can be painted on an $N \times N$ square lattice $\{0, \dots, N-1\}^2$ such that **no four painted points form the corners of a square of any orientation** (neither axis-aligned nor tilted).
+[OEIS A240443](https://oeis.org/A240443) gives $a(N)$, the maximum number of points that can be painted on an $N \times N$ square lattice $\lbrace 0, \dots, N-1\rbrace^2$ such that **no four painted points form the corners of a square of any orientation** (neither axis-aligned nor tilted).
 
 - **Known exact values ($N = 8, 9, 10$):** $a(8) = 34$, $a(9) = 42$, and $a(10) = 50$.
 - **Open question ($N = 11$):** Can $59$ points be painted on an $11 \times 11$ grid without forming any square? Robert Israel (2016) established $a(11) \ge 58$ (`sq-any_n11_m58.cnf` is SAT).
@@ -23,7 +23,7 @@
 
 ### Encoding Architecture (`gen_points.py sq-any N M`)
 
-- **Point variables:** $N^2$ Boolean variables (`1..N^2`), one per lattice point $(x, y) \in \{0, \dots, N-1\}^2$.
+- **Point variables:** $N^2$ Boolean variables (`1..N^2`), one per lattice point $(x, y) \in \lbrace 0, \dots, N-1\rbrace^2$.
 - **Forbidden-square 4-clauses:** Every corner $(x, y)$ and side vector $(a, b)$ with $a > 0, b \ge 0$ whose four corners $(x, y), (x+a, y+b), (x+a-b, y+b+a), (x-b, y+a)$ lie inside the grid yields one all-negative 4-clause forbidding all four corners from being painted ($N^2(N^2-1)/12$ forbidden squares: `336` at $N = 8$, `1,210` at $N = 11$).
 - **Cardinality constraint:** Sinz sequential counter (Sinz 2005) enforcing at least $m$ painted points.
 - **Symmetry:** No symmetry breaking; all 8 symmetries of the square ($D_4$) remain intact.
@@ -87,7 +87,7 @@ This directory is one of **9 single-problem-type collections** split from James 
 - **Independent Verification:**
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Two $N = 8$ calibration rungs evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread). **Frobenius** is **#1 fastest** on `sq-any_n8_m34.cnf` (**`0.07 s`**, 2.7× faster than #2 CaDiCaL 3.1.0):
 
@@ -95,8 +95,8 @@ Two $N = 8$ calibration rungs evaluated sequentially on identical uncompressed f
 |---|:---:|---:|---:|---:|---:|---:|
 | `sq-any_n8_m34.cnf` | SAT | **0.07 s** | 0.19 s | 0.58 s | 1.10 s | 1.11 s |
 | `sq-any_n8_m35.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **120.07 s** *(fastest)* | 120.19 s *(1.001x slower)* | 120.58 s *(1.004x slower)* | 121.10 s *(1.01x slower)* | 121.11 s *(1.01x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **120.07 s** *(fastest)* | 120.19 s *(1.001x slower)* | 120.58 s *(1.004x slower)* | 121.10 s *(1.01x slower)* | 121.11 s *(1.01x slower)* |
 
 ### Open OEIS Frontier Run (180 s, Single-Core Pinned)
 
@@ -106,7 +106,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `sq-any_n11_m59.cnf` | `sq-any` $11 \times 11$ ($a(11) \ge 58$; `7,561` vars, `16,148` cls) | 180 s | `taskset -c 1` | — | — | — | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 5 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `8 / 8` instances in `cnf-orig/`:
 

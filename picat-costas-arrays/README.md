@@ -13,14 +13,14 @@
 
 ## Problem Description
 
-An **order-$N$ Costas array** (Costas 1984, originally introduced for optimal radar/sonar frequency-hopping patterns) is a permutation $\pi = (\pi_1, \dots, \pi_N)$ of $\{1, \dots, N\}$ whose $\binom{N}{2}$ signed differences
+An **order-$N$ Costas array** (Costas 1984, originally introduced for optimal radar/sonar frequency-hopping patterns) is a permutation $\pi = (\pi_1, \dots, \pi_N)$ of $\lbrace 1, \dots, N\rbrace$ whose $\binom{N}{2}$ signed differences
 
-$$D_{i,j} = \pi_j - \pi_{j-i} \in \{-(N-1), \dots, +(N-1)\} \setminus \{0\} \qquad (1 \le i < j \le N)$$
+$$D_{i,j} = \pi_j - \pi_{j-i} \in \lbrace -(N-1), \dots, +(N-1)\rbrace \setminus \lbrace 0\rbrace \qquad (1 \le i < j \le N)$$
 
-are pairwise distinct within every lag row $i \in \{1, \dots, N-1\}$. Equivalently, all $\binom{N}{2}$ 2D displacement vectors between dots in the $N \times N$ permutation matrix are distinct.
+are pairwise distinct within every lag row $i \in \lbrace 1, \dots, N-1\rbrace$. Equivalently, all $\binom{N}{2}$ 2D displacement vectors between dots in the $N \times N$ permutation matrix are distinct.
 
 Following Barry O'Sullivan's MiniZinc formulation and Hakan Kjellerstrand's `costas_array.pi`, each instance includes:
-- Global `all_different(Costas)` over $\{1, \dots, N\}$ and $N - 1$ row-wise `all_different` constraints on signed differences.
+- Global `all_different(Costas)` over $\lbrace 1, \dots, N\rbrace$ and $N - 1$ row-wise `all_different` constraints on signed differences.
 - Non-zero domain exclusion ($D_{i,j} \ne 0$) and redundant diamond identities $D_{k-2,l-1} + D_{k,l} = D_{k-1,l-1} + D_{k-1,l}$.
 - Reflection symmetry breaking $\pi_1 < \pi_N$ (halving the [OEIS A008404](https://oeis.org/A008404) solution count $a(N)$ while preserving satisfiability for every $N \ge 2$).
 
@@ -67,7 +67,7 @@ This directory is one of **6 single-problem-type collections** compiled natively
 
 ## Benchmark Results
 
-*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
+*Single-Core Pinned, $T_{\max} = 60\text{ s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -91,10 +91,10 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `costas_n14.cnf` | SAT | 3.24 s | 2.23 s | 6.09 s | **539.3 ms** | 2.48 s |
 | `costas_n15.cnf` | SAT | **1.24 s** | 14.23 s | 18.81 s | 8.63 s | 38.43 s |
 | `costas_n16.cnf` | SAT | **17.16 s** | 23.38 s | 32.77 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **22.47 s** *(fastest)* | 40.94 s *(1.82x slower)* | 63.50 s *(2.83x slower)* | 129.69 s *(5.77x slower)* | 165.07 s *(7.35x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **22.47 s** *(fastest)* | 40.94 s *(1.82x slower)* | 63.50 s *(2.83x slower)* | 129.69 s *(5.77x slower)* | 165.07 s *(7.35x slower)* |
 
-*Ground-truth SAT note:* Every order $N \in \{8, \dots, 16\}$ is mathematically proven SAT with hundreds to tens of thousands of solutions ([OEIS A008404](https://oeis.org/A008404), $a(16)/2 = 10{,}552$ under $\pi_1 < \pi_{16}$).
+*Ground-truth SAT note:* Every order $N \in \lbrace 8, \dots, 16\rbrace$ is mathematically proven SAT with hundreds to tens of thousands of solutions ([OEIS A008404](https://oeis.org/A008404), $a(16)/2 = 10{,}552$ under $\pi_1 < \pi_{16}$).
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

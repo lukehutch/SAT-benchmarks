@@ -530,10 +530,10 @@ Every collection lives at the repository root in its own self-contained director
 
 ### 1. Unified 50-Benchmark Flat-CNF Gauntlet (1-Core, Identical Flat `.cnf` Input)
 
-- **Timeout:** Uniform competition-standard $T_{\max} = 5{,}000\;\text{s}$ per instance (PAR-2 penalty $10{,}000\;\text{s} = 10{,}000{,}000\;\text{ms}$) across all **50 / 50** instances (Part I: 30 circuit/algebraic instances; Part II: 20 adversarial Zed, SC 2023/2024, and Random 3-SAT instances) and all six solver configurations.
-- **Same machine?** **Yes** — all six solver configurations were run on the exact same machine (**AMD Ryzen 9 5950X**, 16-core/32-thread, Linux, 1 dedicated core per run, exact median of 3 runs for solves under $120\;\text{s}$; 0 verdict disagreements, 100% SAT models clause-verified).
+- **Timeout:** Uniform competition-standard $T_{\max} = 5{,}000\text{ s}$ per instance (PAR-2 penalty $10{,}000\text{ s} = 10{,}000{,}000\text{ ms}$) across all **50 / 50** instances (Part I: 30 circuit/algebraic instances; Part II: 20 adversarial Zed, SC 2023/2024, and Random 3-SAT instances) and all six solver configurations.
+- **Same machine?** **Yes** — all six solver configurations were run on the exact same machine (**AMD Ryzen 9 5950X**, 16-core/32-thread, Linux, 1 dedicated core per run, exact median of 3 runs for solves under $120\text{ s}$; 0 verdict disagreements, 100% SAT models clause-verified).
 
-| Metric (1C, $T_{\max}=5{,}000\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Metric (1C, $T_{\max}=5{,}000\text{ s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | **Solved** | **50 / 50** *(highest)* | 42 / 50 *(-8 worse)* | 41 / 50 *(-9 worse)* | 42 / 50 *(-8 worse)* | 44 / 50 *(-6 worse)* | 40 / 50 *(-10 worse)* |
 | **Fastest Wins (vs. all 5 solvers)** | **47 / 50** *(highest)* | 0 / 50 *(-47 worse)* | 0 / 50 *(-47 worse)* | 0 / 50 *(-47 worse)* | 3 / 50 *(-44 worse)* | 0 / 50 *(-47 worse)* |
@@ -544,10 +544,10 @@ Every collection lives at the repository root in its own self-contained director
 
 ### 2. 22-Instance Provable HAMD Suite (1-Core, Identical Flat `.cnf` Input)
 
-- **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30\;\text{s}$).
+- **Timeout:** $T_{\max} = 15\text{ s}$ per instance (PAR-2 penalty $30\text{ s}$).
 - **Same machine?** **Yes** — all five solvers were run sequentially on the exact same machine (**AMD Ryzen 9 5950X**, 1 core per run, exact median of 3 runs).
 
-| Metric (1C, $T_{\max}=15\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Metric (1C, $T_{\max}=15\text{ s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
 | **Solved** | **22 / 22** *(highest)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* |
 | **Fastest Wins** | **22 / 22** *(highest)* | 0 / 22 *(-22 worse)* | 0 / 22 *(-22 worse)* | 0 / 22 *(-22 worse)* | 0 / 22 *(-22 worse)* |
@@ -556,7 +556,7 @@ Every collection lives at the repository root in its own self-contained director
 
 ### 3. Combinatorial Chessboard Suites (1-Core, Identical Flat `.cnf` Input)
 
-- **Timeout:** $T_{\max} = 15\;\text{s}$ per instance (PAR-2 penalty $30\;\text{s}$).
+- **Timeout:** $T_{\max} = 15\text{ s}$ per instance (PAR-2 penalty $30\text{ s}$).
 - **Same machine?** **Yes** — all five solvers were run sequentially on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 core per run, 0 verdict disagreements).
 
 | Collection (Instances, $T_{\max}$) | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
@@ -568,7 +568,7 @@ Every collection lives at the repository root in its own self-contained director
 
 ### 4. Imported External & Cryptographic Benchmark Collections (1-Core, Identical Flat `.cnf` Input; Plus Native `.mata.xz`)
 
-- **Timeout:** Per-instance $T_{\max}$ is listed in each row (PAR-2 penalty $= 2\,T_{\max}$).
+- **Timeout:** Per-instance $T_{\max}$ is listed in each row (PAR-2 penalty $= 2\thinspace T_{\max}$).
 - **Same machine?** **Yes** — all solvers were run on the exact same **AMD Ryzen 9 5950X** Linux workstation (1 thread per run, 0 verdict disagreements, 100% SAT model verification; full-suite sweeps pinned to dedicated physical cores with zero SMT sharing). **100% of every committed collection was benchmarked** (including the synthetic cryptographic `aes256-key-recovery` suite alongside all imported external collections, with the 9 Guillochon OEIS collections evaluated on their 30-instance 5-solver calibration ladder plus up to `3,600 s` frontier runs, and `davies-rectangle-free-27` evaluated on `01-known-unsat` at `600 s` plus extended `02-open` profiling).
 
 | Collection (Instances, $T_{\max}$) | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
@@ -631,38 +631,38 @@ Every collection lives at the repository root in its own self-contained director
 | | **PAR-2** | **1.08 s** *(fastest)* | 499.33 s *(464x slower)* | 142.65 s *(133x slower)* | 509.79 s *(474x slower)* | 611.47 s *(569x slower)* |
 
 **Notes for Section 4:**
-1. **AES-256 Key-Recovery:** Synthetic NIST FIPS 197 AES-256 key-recovery & Davies–Meyer hash-preimage benchmark suite ([`aes256-key-recovery/`](aes256-key-recovery/README.md), 9 solvable partial-key / reduced-round instances at $T_{\max} = 60\;\text{s}$, plus 30 s full 14-round 256-bit dual-plaintext throughput stress test). Row reports flat `.cnf` parity across all five solvers; on native Binary AIGER `.aig` miters, Frobenius 1C solves all `9 / 9` in **`69.90 ms` (`306x` faster than Kissat 4.0.4 `.cnf`)**, and on native `.xcnf` in **`12,458 ms` (`1.71x` faster than Kissat 4.0.4 `.cnf`)** vs. CryptoMiniSat 5.18.0 `.xcnf` (`7 / 9`, `277,270 ms`).
+1. **AES-256 Key-Recovery:** Synthetic NIST FIPS 197 AES-256 key-recovery & Davies–Meyer hash-preimage benchmark suite ([`aes256-key-recovery/`](aes256-key-recovery/README.md), 9 solvable partial-key / reduced-round instances at $T_{\max} = 60\text{ s}$, plus 30 s full 14-round 256-bit dual-plaintext throughput stress test). Row reports flat `.cnf` parity across all five solvers; on native Binary AIGER `.aig` miters, Frobenius 1C solves all `9 / 9` in **`69.90 ms` (`306x` faster than Kissat 4.0.4 `.cnf`)**, and on native `.xcnf` in **`12,458 ms` (`1.71x` faster than Kissat 4.0.4 `.cnf`)** vs. CryptoMiniSat 5.18.0 `.xcnf` (`7 / 9`, `277,270 ms`).
 2. **Davies Rectangle-Free $27\times 27$:** Frobenius 1C with binary-DRAT proof emission (`--proof`) solved `01-known-unsat` in `91.54 s` (`1.14x slower` than default; independently verified by `drat-trim` and `cake_lpr`).
 3. **Guillochon OEIS SAT:** Frobenius 1C solved `7 / 13` UNSAT calibration rungs (`113.5 s` combined, including cracking both `sortnet_n11_d7` in `27.98 s` and `sortnet_n12_d7` in `41.64 s`, plus all `5 / 5` non-sortnet UNSAT rungs in `43.9 s`).
-4. **Heule Matrix `xor6cut`:** On native `.xcnf` input, CryptoMiniSat 5.18.0 solved `3 / 6` with `455,099 ms` PAR-2 (`1.17x slower` than Frobenius 1C). Across the other 8 Heule $3\times 3$ matrix collections (37 instances, $T_{\max} = 10\;\text{s}$ / $60\;\text{s}$), all solvers timed out (`0 / 37`).
+4. **Heule Matrix `xor6cut`:** On native `.xcnf` input, CryptoMiniSat 5.18.0 solved `3 / 6` with `455,099 ms` PAR-2 (`1.17x slower` than Frobenius 1C). Across the other 8 Heule $3\times 3$ matrix collections (37 instances, $T_{\max} = 10\text{ s}$ / $60\text{ s}$), all solvers timed out (`0 / 37`).
 5. **MATA Presburger NFAs:** Native `.mata.xz` NFA decision benchmarks (`--mata-complement`: `1,596 ms` total; emptiness mode: `1,692 ms`; explicit complement: `2,147 ms`). External baselines accept CNF/XCNF only (`—`).
 6. **QDistSAT Full Suite:** Frobenius 1C solved its 8 solved instances in `420.7 ms` total wall time. On native `.xcnf` input, CryptoMiniSat 5.18.0 solved `5 / 10` with `100,297 ms` PAR-2 (`2.48x slower`).
 7. **SAT Competition 2023/2024 Gauntlet:** The curated 14-instance SC 2023/2024 Gauntlet slice (12 instances in Part II of the Unified 50-Benchmark Flat-CNF Gauntlet in Section 1 above) is indexed in [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) alongside all 25 years of SAT Competition & SAT-Race URI manifests (62 `.uri` manifests, 20,225 unique CNFs; SC 2024–2026 Main Track results summarized in Section 5 below).
-8. **SHA-256 64-Round Nonce Scaling:** Zero-bias 32-instance ladder ($k = 1 \dots 32$ unknown LSBs of golden-ratio nonce $W_0 = \texttt{0x9E3779B9}$, full 64-round FIPS 180-4 SHA-256, $T_{\max} = 300\;\text{s}$, 3-consecutive-timeout stopping rule, 290/290 SAT models verified). Row reports flat `.cnf` parity: Frobenius 1C (`.cnf`) solves **all 32 / 32** with **`420.07 s`** total PAR-2 (`0` timeouts, full 32-bit $T(32) = \mathbf{197.83\;\text{s} = 3.30\;\text{min}}$ on 1 core at `12.1–12.8M` evals/s; `1.76 s` vs. CaDiCaL `334.87 s` / dense-solver `518.51 s` on $k = 1 \dots 17$). On native `.aig`, Frobenius 1C also solves **all 32 / 32** (`497.70 s` PAR-2, $T(32) = \mathbf{249.85\;\text{s} = 4.16\;\text{min}}$ at `10.6–11.2M` evals/s), while CryptoMiniSat 5.18.0 `.xcnf` solves `11 / 32` (`12,969.64 s` PAR-2). Multi-model AICc/BIC fitting confirms pure shifted exponential M1 across all single-codepath regimes (Frobenius 2048-lane early-exit `CompiledAig256` $k = 14 \dots 32$: $\alpha = 0.9973$ `.aig` / $1.0042$ `.cnf`, $R^2_{\log} > 0.999$, with a `~0.6 s` shortcut-first probe turning on at $k = 25$; measured 1C $T(32) = 3.30\text{--}4.16\;\text{min}$ vs. $7.7\text{--}256\;\text{days}$ extrapolated for CDCL — `3,367x–111,922x` faster).
+8. **SHA-256 64-Round Nonce Scaling:** Zero-bias 32-instance ladder ($k = 1 \dots 32$ unknown LSBs of golden-ratio nonce $W_0 = \texttt{0x9E3779B9}$, full 64-round FIPS 180-4 SHA-256, $T_{\max} = 300\text{ s}$, 3-consecutive-timeout stopping rule, 290/290 SAT models verified). Row reports flat `.cnf` parity: Frobenius 1C (`.cnf`) solves **all 32 / 32** with **`420.07 s`** total PAR-2 (`0` timeouts, full 32-bit $T(32) = \mathbf{197.83\text{ s} = 3.30\text{ min}}$ on 1 core at `12.1–12.8M` evals/s; `1.76 s` vs. CaDiCaL `334.87 s` / dense-solver `518.51 s` on $k = 1 \dots 17$). On native `.aig`, Frobenius 1C also solves **all 32 / 32** (`497.70 s` PAR-2, $T(32) = \mathbf{249.85\text{ s} = 4.16\text{ min}}$ at `10.6–11.2M` evals/s), while CryptoMiniSat 5.18.0 `.xcnf` solves `11 / 32` (`12,969.64 s` PAR-2). Multi-model AICc/BIC fitting confirms pure shifted exponential M1 across all single-codepath regimes (Frobenius 2048-lane early-exit `CompiledAig256` $k = 14 \dots 32$: $\alpha = 0.9973$ `.aig` / $1.0042$ `.cnf`, $R^2_{\log} > 0.999$, with a `~0.6 s` shortcut-first probe turning on at $k = 25$; measured 1C $T(32) = 3.30\text{--}4.16\text{ min}$ vs. $7.7\text{--}256\text{ days}$ extrapolated for CDCL — `3,367x–111,922x` faster).
 
 ### 5. SAT Competition 2024–2026 Main Track (`sat-competition-2002-2026-uris/`, 1,166 Unique CNFs, 1-Core)
 
-- **Archive & Scope:** Part of the complete 25-year [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) corpus (`2002–2026`, 62 `.uri` manifests across 14 track categories, 32,194 slots $\to$ **20,225 unique CNFs**). At $T_{\max} = 300\;\text{s}$ with UNSAT proof logging, Frobenius 1C solved and formally certified **441 / 1,166** deduplicated SC 2024–2026 Main Track instances (**234 SAT** model-verified + **207 UNSAT** [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr)-certified, `0` errors).
-- **Timeout:** Evaluated below at $T_{\max} = 15\;\text{s}$ and $T_{\max} = 60\;\text{s}$ cutoffs (official competition full runs used $T_{\max} = 5{,}000\;\text{s}$).
+- **Archive & Scope:** Part of the complete 25-year [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) corpus (`2002–2026`, 62 `.uri` manifests across 14 track categories, 32,194 slots $\to$ **20,225 unique CNFs**). At $T_{\max} = 300\text{ s}$ with UNSAT proof logging, Frobenius 1C solved and formally certified **441 / 1,166** deduplicated SC 2024–2026 Main Track instances (**234 SAT** model-verified + **207 UNSAT** [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr)-certified, `0` errors).
+- **Timeout:** Evaluated below at $T_{\max} = 15\text{ s}$ and $T_{\max} = 60\text{ s}$ cutoffs (official competition full runs used $T_{\max} = 5{,}000\text{ s}$).
 - **Same machine?** **No (different machines)** — Frobenius 1C ran on our local **AMD Ryzen 9 5950X** workstation (1 core per instance, unrestricted available RAM), whereas competitor scores are taken directly from official published competition logs/slides (**StarExec** cluster for SC 2024; **LMU / competition sequential clusters** for SC 2025–2026). CPU differences affect absolute runtimes, so ratios below reflect cross-machine published PAR-2 comparisons.
 
 #### SC 2024 Main Track (400 CNFs)
 
 | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) (Main #7) | [kissat-sc2024](https://github.com/arminbiere/kissat) (Main #1 Gold) |
 |---|---:|---:|---:|
-| **$T_{\max}=15\;\text{s}$ Solved** | **72 / 400** *(highest)* | 26 / 400 *(-46 worse)* | 43 / 400 *(-29 worse)* |
-| **$T_{\max}=15\;\text{s}$ PAR-2** | **25.04 s** *(fastest)* | 28.24 s *(1.13x slower)* | 27.15 s *(1.08x slower)* |
-| **$T_{\max}=60\;\text{s}$ Solved** | **111 / 400** *(highest)* | 54 / 400 *(-57 worse)* | 81 / 400 *(-30 worse)* |
-| **$T_{\max}=60\;\text{s}$ PAR-2** | **91.02 s** *(fastest)* | 106.69 s *(1.17x slower)* | 99.47 s *(1.09x slower)* |
+| **$T_{\max}=15\text{ s}$ Solved** | **72 / 400** *(highest)* | 26 / 400 *(-46 worse)* | 43 / 400 *(-29 worse)* |
+| **$T_{\max}=15\text{ s}$ PAR-2** | **25.04 s** *(fastest)* | 28.24 s *(1.13x slower)* | 27.15 s *(1.08x slower)* |
+| **$T_{\max}=60\text{ s}$ Solved** | **111 / 400** *(highest)* | 54 / 400 *(-57 worse)* | 81 / 400 *(-30 worse)* |
+| **$T_{\max}=60\text{ s}$ PAR-2** | **91.02 s** *(fastest)* | 106.69 s *(1.17x slower)* | 99.47 s *(1.09x slower)* |
 
 #### SC 2025 Main Track (400 CNFs)
 
 | Metric | Frobenius 1C | Official SC 2025 Top-3 (Slides Only)\* |
 |---|---:|---:|
-| **$T_{\max}=15\;\text{s}$ Solved** | **95 / 400** | — |
-| **$T_{\max}=15\;\text{s}$ PAR-2** | **23.51 s** | — |
-| **$T_{\max}=60\;\text{s}$ Solved** | **141 / 400** | — |
-| **$T_{\max}=60\;\text{s}$ PAR-2** | **81.92 s** | — |
+| **$T_{\max}=15\text{ s}$ Solved** | **95 / 400** | — |
+| **$T_{\max}=15\text{ s}$ PAR-2** | **23.51 s** | — |
+| **$T_{\max}=60\text{ s}$ Solved** | **141 / 400** | — |
+| **$T_{\max}=60\text{ s}$ PAR-2** | **81.92 s** | — |
 
 *\*Official SC 2025 published aggregate 5,000 s slide standings only, with no per-instance runtime CSV for 15 s / 60 s cutoffs.*
 
@@ -670,15 +670,15 @@ Every collection lives at the repository root in its own self-contained director
 
 | Metric | Frobenius 1C | [Lymphosat](https://c.mov/lymphosat/) (AI-Track #1 Gold) | [satsuma-iter-kissat](https://github.com/markusa4/satsuma) (Main #1 Gold) |
 |---|---:|---:|---:|
-| **$T_{\max}=15\;\text{s}$ Solved** | **122 / 400** *(highest)* | 81 / 400 *(-41 worse)* | 70 / 400 *(-52 worse)* |
-| **$T_{\max}=15\;\text{s}$ PAR-2** | **21.37 s** *(fastest)* | 24.58 s *(1.15x slower)* | 25.13 s *(1.18x slower)* |
-| **$T_{\max}=60\;\text{s}$ Solved** | **139 / 400** *(highest)* | 109 / 400 *(-30 worse)* | 112 / 400 *(-27 worse)* |
-| **$T_{\max}=60\;\text{s}$ PAR-2** | **80.24 s** *(fastest)* | 90.07 s *(1.12x slower)* | 90.46 s *(1.13x slower)* |
+| **$T_{\max}=15\text{ s}$ Solved** | **122 / 400** *(highest)* | 81 / 400 *(-41 worse)* | 70 / 400 *(-52 worse)* |
+| **$T_{\max}=15\text{ s}$ PAR-2** | **21.37 s** *(fastest)* | 24.58 s *(1.15x slower)* | 25.13 s *(1.18x slower)* |
+| **$T_{\max}=60\text{ s}$ Solved** | **139 / 400** *(highest)* | 109 / 400 *(-30 worse)* | 112 / 400 *(-27 worse)* |
+| **$T_{\max}=60\text{ s}$ PAR-2** | **80.24 s** *(fastest)* | 90.07 s *(1.12x slower)* | 90.46 s *(1.13x slower)* |
 
 ### 6. Four-Format Cross-Product Parity (`.aig.xz` × `.cnf.xz` × `.xcnf.xz` × `.anf.xz`, 1-Core)
 
 - **What this test is:** **All four columns are Frobenius 1C itself** — comparing Frobenius's four native input frontends (`.aig.xz`, `.cnf.xz`, `.xcnf.xz`, `.anf.xz`) head-to-head on the exact same **18 logical problems** (7 native `aig-orig` circuits + 11 native `cnf-orig` formulas = **72 format × problem cells**). There are **no external competitor solvers** in this table; bold marks whichever *input format* was fastest for Frobenius on each problem. The goal is twofold: (1) verify **100% cross-format verdict equivalence** across all four repository representations, and (2) measure frontend ingestion, translation, and representation overhead.
-- **Protocol:** **AMD Ryzen 9 5950X**, 1 core (`taskset -c 0`), 3-run median wall-clock time (including in-process `.xz` decompression, parsing, solving, and full model verification) at $T_{\max} = 30\;\text{s}$ (PAR-2 penalty $60{,}000\;\text{ms}$ per timeout): **70 / 72 cells solved**, **0 verdict disagreements**.
+- **Protocol:** **AMD Ryzen 9 5950X**, 1 core (`taskset -c 0`), 3-run median wall-clock time (including in-process `.xz` decompression, parsing, solving, and full model verification) at $T_{\max} = 30\text{ s}$ (PAR-2 penalty $60{,}000\text{ ms}$ per timeout): **70 / 72 cells solved**, **0 verdict disagreements**.
 - **Scheduled Cross-Format Optimization:** Native `.xcnf.xz` currently leads overall (`18 / 18`, `654.05 ms` PAR-2, fastest format on 9 / 18 problems), closely followed by `.cnf.xz` (`18 / 18`, `749.01 ms`, `1.15x slower`). However, `.aig.xz` still trails `.cnf.xz`/`.xcnf.xz` substantially on `spn_sat_n96_d48` (`163.90 ms` vs. `5.96 ms`) and `spn_sat_n128_d64` (`8,689.03 ms` vs. `36.42 ms`), and `.anf.xz` lags or times out on `factor_wallace_40b` (`806.62 ms`), `spn_sat_n128_d64` (`1,243.61 ms`), `sha256_64r_k16_unsat` (`>30 s`), and `c08` (`>30 s`). **Closing these `.aig.xz` and `.anf.xz` cross-format frontend parity gaps is scheduled for the next optimization wave** so Frobenius delivers uniform best-of-format speed regardless of input format.
 
 | Origin | Benchmark | Verdict | Frobenius 1C (`.aig.xz`) | Frobenius 1C (`.cnf.xz`) | Frobenius 1C (`.xcnf.xz`) | Frobenius 1C (`.anf.xz`) |
@@ -701,8 +701,8 @@ Every collection lives at the repository root in its own self-contained director
 | `cnf-orig` | `c08` *(Fede 48b factoring)* | SAT | 28.22 ms | 20.34 ms | **13.90 ms** | *>30 s* |
 | `cnf-orig` | `c11` *(SC25 `ramsey_4_4_18`)* | UNSAT | 60.18 ms | 53.33 ms | **52.83 ms** | 64.33 ms |
 | `cnf-orig` | `c12` *(SC25 `cliquecol`)* | UNSAT | 8.27 ms | 4.69 ms | **4.50 ms** | 7.45 ms |
-| **Solved ($T_{\max}=30\;\text{s}$)** | — | — | **18 / 18** *(highest)* | **18 / 18** *(highest)* | **18 / 18** *(highest)* | 16 / 18 *(-2 worse)* |
-| **Total PAR-2 ($T_{\max}=30\;\text{s}$)** | — | — | 9,535.21 ms *(14.6x slower)* | 749.01 ms *(1.15x slower)* | **654.05 ms** *(fastest)* | 122,752.77 ms *(188x slower)* |
+| **Solved ($T_{\max}=30\text{ s}$)** | — | — | **18 / 18** *(highest)* | **18 / 18** *(highest)* | **18 / 18** *(highest)* | 16 / 18 *(-2 worse)* |
+| **Total PAR-2 ($T_{\max}=30\text{ s}$)** | — | — | 9,535.21 ms *(14.6x slower)* | 749.01 ms *(1.15x slower)* | **654.05 ms** *(fastest)* | 122,752.77 ms *(188x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Cross-Collection Phase-Transition & Structural Profile

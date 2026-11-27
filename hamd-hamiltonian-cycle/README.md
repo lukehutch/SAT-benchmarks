@@ -17,7 +17,7 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 2. **Isaacs Flower Snarks $J_k$** (Isaacs 1975; Haythorpe 2019): 3-regular, cyclically 6-edge-connected non-Hamiltonian snarks ($J_5, J_7$, UNSAT) plus minimal $+1$-edge Hamiltonian perturbation ($J_7+e$, SAT).
 3. **Meredith $k$-Regular $k$-Connected Non-Hamiltonian Graphs $G_k$** (Meredith 1973; Adler et al. 2022): $K_{k, k-1}$ vertex inflation of the Petersen $k$-multigraph ($G_3$: $N=50$, $G_4$: $N=70$, UNSAT) — locally indistinguishable from Hamiltonian expanders.
 4. **Chvátal Toughness Obstructions $\mathrm{Chv}(s, q)$** (Chvátal 1973): High-density ($\rho = 0.26\text{--}0.41$), high-degree ($\delta \ge 6$), $s$-connected graphs violating toughness $t(G) = s/(s+1) < 1$ (UNSAT).
-5. **Haythorpe Broken Crown Directed Graphs $\mathcal{B}_{n, k}$** (Haythorpe 2019): Asymmetric directed graphs ($N \in \{31, 51\}$) with *provably exact* $k = 0$ (UNSAT) or $k = 1$ unique (SAT) directed Hamiltonian cycles.
+5. **Haythorpe Broken Crown Directed Graphs $\mathcal{B}_{n, k}$** (Haythorpe 2019): Asymmetric directed graphs ($N \in \lbrace 31, 51\rbrace$) with *provably exact* $k = 0$ (UNSAT) or $k = 1$ unique (SAT) directed Hamiltonian cycles.
 6. **Planted Tunable-Density Random Graphs** (Vandegriend & Culberson 1998): Hidden randomly permuted Hamiltonian cycle inside sparse ($\rho = 0.06$), medium ($\rho = 0.18$), dense ($\rho = 0.30\text{--}0.35$), and very-dense ($\rho = 0.50$, $N = 80$, `28,389` CNF vars) graphs (SAT).
 
 - **Origin:** **Original** parameterized generator (MIT [`../LICENSE`](../LICENSE)), instantiating classic graph-theoretic families (Watkins 1969; Chvátal 1973; Meredith 1973; Isaacs 1975; [Haythorpe FHCP / Broken Crowns](https://arxiv.org/abs/1902.10351); Vandegriend & Culberson 1998) in compact binary-order MTZ CNF ([StructHCP](https://arxiv.org/abs/2610.14780)).
@@ -62,7 +62,7 @@ A 22-instance provably Hamiltonian (12 SAT) and provably non-Hamiltonian (10 UNS
 
 ## Benchmark Results
 
-*1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\;\text{s}$.*
+*1-Core, Flat DIMACS `.cnf`, $T_{\max} = 15\text{ s}$.*
 
 Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; **10/10 UNSAT LRAT proofs** emitted by Frobenius verified `s VERIFIED UNSAT` in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and `c VERIFIED` in [`lrat-check`](https://github.com/marijnheule/drat-trim); **12/12 SAT cycles** independently verified):
 

@@ -19,8 +19,8 @@ $$G(5) = 11, \quad G(6) = 17, \quad G(7) = 25, \quad G(8) = 34, \quad G(9) = 44,
 - **Encoding (`sat_challenges.py golomb M L`):**
   - **Ticks & translation breaking:** Boolean variables `mark[0..L]` with unit clause `mark[0]` pinning the first mark at 0 (no reflection symmetry breaking).
   - **Exact-$M$ cardinality:** Sequential prefix counter `ge[j]` tracking whether the prefix contains at least $j$ marks, asserting `ge[M]` and `¬ge[M+1]`.
-  - **Distinct pairwise distances:** For every positive distance $d \in \{1, \dots, L\}$, define pair indicators $p_{i,d} \leftrightarrow \text{mark}[i] \land \text{mark}[i+d]$ and enforce `at_most_one` over $\{p_{0,d}, \dots, p_{L-d,d}\}$ (pairwise for $\le 4$ literals, sequential counter for $> 4$).
-- **Complete 6-rung optimality ladder:** Every rung $M \in \{5, 6, 7, 8, 9, 10\}$ pairs tight infeasible $L = G(M) - 1$ (UNSAT) against optimal $L = G(M)$ (SAT), scaling smoothly from ~5 ms (`M=5`) to ~10 s (`M=10`), with **6/6 UNSAT optimality proofs** formally certified by `cake_lpr`.
+  - **Distinct pairwise distances:** For every positive distance $d \in \lbrace 1, \dots, L\rbrace$, define pair indicators $p_{i,d} \leftrightarrow \text{mark}[i] \land \text{mark}[i+d]$ and enforce `at_most_one` over $\lbrace p_{0,d}, \dots, p_{L-d,d}\rbrace$ (pairwise for $\le 4$ literals, sequential counter for $> 4$).
+- **Complete 6-rung optimality ladder:** Every rung $M \in \lbrace 5, 6, 7, 8, 9, 10\rbrace$ pairs tight infeasible $L = G(M) - 1$ (UNSAT) against optimal $L = G(M)$ (SAT), scaling smoothly from ~5 ms (`M=5`) to ~10 s (`M=10`), with **6/6 UNSAT optimality proofs** formally certified by `cake_lpr`.
 
 ## Corpus & Data Sizes
 
@@ -67,11 +67,11 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 ## Benchmark Results
 
-### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to single physical core 9** (`taskset -c 9`), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
-- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **30 / 30 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
+- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **30 / 30 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\text{ s}$.
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
@@ -87,7 +87,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `golomb_m8_l34.cnf` | SAT | **31.3 ms** | 179.8 ms | 197.6 ms | 57.7 ms | 243.3 ms |
 | `golomb_m9_l43.cnf` | UNSAT | 1.10 s | 1.34 s | 1.23 s | 1.97 s | **1.05 s** |
 | `golomb_m9_l44.cnf` | SAT | 925.6 ms | **483.1 ms** | 794.1 ms | 1.18 s | 520.5 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* |
 | **Total PAR-2** | — | **9.24 s** *(fastest)* | 18.77 s *(2.03x slower)* | 15.29 s *(1.65x slower)* | 26.28 s *(2.84x slower)* | 10.56 s *(1.14x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
@@ -111,7 +111,7 @@ Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed fl
 
 ### Independent UNSAT Proof Certification (6 / 6 Formally Verified)
 
-All **6 tractable Frobenius UNSAT instances** ($< 30\;\text{s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
+All **6 tractable Frobenius UNSAT instances** ($< 30\text{ s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
 
 | Instance | DRAT Size | `drat-trim` | LRAT Size | `lrat-check` | `cake_lpr` |
 |---|---:|---|---:|---|---|

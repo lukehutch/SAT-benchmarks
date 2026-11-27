@@ -12,7 +12,7 @@
 
 ## Problem Description
 
-Given $N$ inputs and a target 1-indexed order statistic $R \in \{1, \dots, N\}$ (e.g., median $R = \lceil N/2 \rceil$), `sat_challenges.py select` contrasts two fundamental comparison-based computation models:
+Given $N$ inputs and a target 1-indexed order statistic $R \in \lbrace 1, \dots, N\rbrace$ (e.g., median $R = \lceil N/2 \rceil$), `sat_challenges.py select` contrasts two fundamental comparison-based computation models:
 
 1. **Fixed (data-oblivious) selection networks (`select N R K`):** A fixed sequence of at most $K$ compare-exchange gates whose final wire $R-1$ must hold the $R$-th smallest element on every input. By monotonicity of min/max, testing only the two adjacent Boolean Hamming-weight boundary layers ($R-1$ zeros expecting output `1`, and $R$ zeros expecting output `0`, totaling $\binom{N}{R-1} + \binom{N}{R}$ vectors) is both necessary and sufficient.
 2. **Adaptive comparison decision trees (`select N R K --adaptive`):** A binary decision tree of worst-case depth $K$ ($2^K - 1$ internal test nodes `test[h,i,j]` and $2^K$ leaf nodes `return[h,i]`) routed over all $N!$ input permutations. Because each internal test may depend on prior outcomes, adaptive selection achieves strictly smaller worst-case cost $V_R(N)$ (Knuth TAOCP Vol. 3 §5.3.3) than fixed comparator networks:
@@ -65,11 +65,11 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 ## Benchmark Results
 
-### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\;\text{s}$)
+### Single-Core Flat DIMACS `.cnf` Comparison ($T_{\max} = 60\text{ s}$)
 
 - **Hardware & Isolation:** AMD Ryzen 9 5950X (16 physical cores / 32 threads, 64 MiB L3 cache, Linux x86_64), **strictly pinned to single physical core 9** (`taskset -c 9`), executed strictly sequentially (one single-threaded solver process at a time) on identical uncompressed flat `.cnf` inputs.
 - **Solvers & Flags:** Frobenius (`--max-cores 1 --timeout 60`), [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (`-q --modelalllits=true -t 60`), [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`-t 1 --maxtime 60`), [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (1 thread, `timeout -k 2s 60.0s`), and [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (`-q --time=60`).
-- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **30 / 30 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\;\text{s}$.
+- **Independent Verification:** **0 verdict disagreements** across all 5 solvers and [`expected.tsv`](expected.tsv); **30 / 30 SAT models** passed 100% raw-clause verification against every clause in `cnf-orig/`. PAR-2 scores each timeout as $2 \times T_{\max} = 120\text{ s}$.
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
@@ -85,7 +85,7 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `select_n6_r3_k7_adaptive.cnf` | UNSAT | **900.8 ms** | 50.15 s | >60 s *(T/O)* | 21.39 s | >60 s *(T/O)* |
 | `select_n6_r3_k8_fixed.cnf` | UNSAT | **148.0 ms** | 4.01 s | 6.79 s | 18.71 s | 4.25 s |
 | `select_n7_r4_k13_fixed.cnf` | SAT | **505.0 ms** | 1.53 s | 1.28 s | 3.66 s | 746.0 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* |
 | **Total PAR-2** | — | **1.96 s** *(fastest)* | 56.29 s *(28.7x slower)* | 131.94 s *(67.3x slower)* | 45.29 s *(23.1x slower)* | 126.35 s *(64.5x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
@@ -109,7 +109,7 @@ Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed fl
 
 ### Independent UNSAT Proof Certification (5 / 5 Formally Verified)
 
-All **5 tractable Frobenius UNSAT instances** ($< 30\;\text{s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
+All **5 tractable Frobenius UNSAT instances** ($< 30\text{ s}$) in this collection were independently certified via both DRAT (`drat-trim`) and direct LRAT (`lrat-check` + formally verified `cake_lpr` outputting `s VERIFIED UNSAT`) on core 9 (`taskset -c 9`):
 
 | Instance | DRAT Size | `drat-trim` | LRAT Size | `lrat-check` | `cake_lpr` |
 |---|---:|---|---:|---|---|

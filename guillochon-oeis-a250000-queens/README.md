@@ -99,7 +99,7 @@ This directory is one of **9 single-problem-type collections** split from James 
 - **Independent Verification:**
   - **SAT models:** Every SAT output from every solver was checked both clause-by-clause against 100% of clauses in the original `.cnf.xz` AND decoded/verified by James Guillochon's independent combinatorial verifier (`decode_verify.py` / `verify.py`). Zero invalid models, zero verdict disagreements.
 
-### Comparative Single-Core Calibration Results ($T_{\max} = 60\;\text{s}$)
+### Comparative Single-Core Calibration Results ($T_{\max} = 60\text{ s}$)
 
 Five calibration rungs spanning $n = 12, 13, 15$ evaluated sequentially on identical uncompressed flat `.cnf` files (`taskset -c 1`, 1 thread):
 
@@ -110,8 +110,8 @@ Five calibration rungs spanning $n = 12, 13, 15$ evaluated sequentially on ident
 | `queens_n13_m24.cnf` | SAT | 2.14 s | **1.82 s** | 51.87 s | >60 s | 3.89 s |
 | `queens_n13_m25.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `queens_n15_m32.cnf` | SAT | **7.44 s** | 9.70 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **3 / 5** *(highest)* | **3 / 5** *(highest)* | 1 / 5 *(-2 worse)* | 0 / 5 *(-3 worse)* | 2 / 5 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **252.32 s** *(fastest)* | 255.31 s *(1.01x slower)* | 531.87 s *(2.11x slower)* | 600.00 s *(2.38x slower)* | 393.51 s *(1.56x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **3 / 5** *(highest)* | **3 / 5** *(highest)* | 1 / 5 *(-2 worse)* | 0 / 5 *(-3 worse)* | 2 / 5 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **252.32 s** *(fastest)* | 255.31 s *(1.01x slower)* | 531.87 s *(2.11x slower)* | 600.00 s *(2.38x slower)* | 393.51 s *(1.56x slower)* |
 
 - **Extended sweep milestones:** Frobenius also produced verified optimal SAT models for `queens_n14_m28.cnf` and `queens_n15_m32.cnf` (`3.84 s` native `.cnf.xz`), all archived in [`solutions/`](solutions/). Note: on `A250000`, CaDiCaL 3.1.0 requires `--modelalllits=true` so unassigned literals are emitted in printed witnesses; default `--modelalllits=false` omits unassigned variables and fails raw-clause checks.
 
@@ -123,7 +123,7 @@ Evaluated directly with Frobenius (`--max-cores 1`, pinned to physical core `1`,
 |---|---|---:|---|---:|---:|---:|:---:|
 | `queens_n21_m65.cnf` | Peaceable queens $a(21) \ge 64$ (`331,762` vars, `691,449` cls) | 600 s | `taskset -c 1` | 1,320,960 | 4,679,688 | 4,155,524,610 | Open (`UNKNOWN`) |
 
-### Supplementary Full-Corpus Coverage ($T_{\max} = 60\;\text{s}$, Single-Core Pinned)
+### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$, Single-Core Pinned)
 
 Remaining 13 corpus instances evaluated with Frobenius (`--max-cores 1 --timeout 60`, single physical core pinned per run, uncompressed flat `.cnf` input) to provide explicit coverage across all `20 / 20` instances in `cnf-orig/`:
 

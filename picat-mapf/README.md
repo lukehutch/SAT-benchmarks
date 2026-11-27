@@ -15,11 +15,11 @@
 
 Given an undirected grid graph $G = (V, E)$ with obstacles and $K$ agents with start–goal pairs $(s_a, g_a)$, the **Makespan Multi-Agent Path Finding (MAPF)** decision problem asks whether all $K$ agents can simultaneously move from $s_a$ to $g_a$ within horizon $M$ steps (at each step moving to a 4-connected neighbor or waiting in place) without any two agents occupying the same vertex at the same time step.
 
-Following Barták, Zhou, Stern, Boyarski, and Surynek (ICTAI 2017, `mapf_makespan.pi`), Picat-SAT allocates a 3D Boolean spacetime tensor $B[t, a, v] \in \{0, 1\}$ for $t \in \{1, \dots, M+1\}$:
+Following Barták, Zhou, Stern, Boyarski, and Surynek (ICTAI 2017, `mapf_makespan.pi`), Picat-SAT allocates a 3D Boolean spacetime tensor $B[t, a, v] \in \lbrace 0, 1\rbrace$ for $t \in \lbrace 1, \dots, M+1\rbrace$:
 1. **Spacetime reachability pruning:** Fixes $B[t, a, v] = 0$ whenever $\operatorname{dist}(s_a, v) > t - 1$ or $\operatorname{dist}(v, g_a) > M + 1 - t$ before SAT compilation.
 2. **Exactly-One location per agent/time:** $\sum_{v=1}^{N} B[t, a, v] = 1$ (ALO + Chen 2-product AMO).
 3. **Vertex collision avoidance:** $\sum_{a=1}^{K} B[t, a, v] \le 1$ (sparse Chen 2-product AMO).
-4. **Valid transitions:** $B[t, a, v] \implies \bigvee_{u \in N(v) \cup \{v\}} B[t+1, a, u]$.
+4. **Valid transitions:** $B[t, a, v] \implies \bigvee_{u \in N(v) \cup \lbrace v\rbrace} B[t+1, a, u]$.
 
 The suite pairs **two genuine collision-forced makespan brackets** where $M^* > \mathrm{LB}$ (`bn9x9_k12`: $\mathrm{LB}=16$, $M=18$ UNSAT vs. $M^*=19$ SAT; `bn11x11_k18`: $\mathrm{LB}=20$, $M=24$ UNSAT vs. $M^*=25$ SAT — every agent can reach its goal individually at $M^*-1$, so only vertex-collision queuing at the 1-cell gate makes $M^*-1$ unsatisfiable) with **four upstream obstacle grids** scaling up to the verbatim built-in `32×32` 30-agent `mapf_makespan.pi` instance (`187,798` vars / `968,458` clauses).
 
@@ -63,7 +63,7 @@ This directory is one of **6 single-problem-type collections** compiled natively
 
 ## Benchmark Results
 
-*Single-Core Pinned, $T_{\max} = 60\;\text{s}$.*
+*Single-Core Pinned, $T_{\max} = 60\text{ s}$.*
 
 All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64) pinned to a single dedicated physical core (`taskset -c 11`, 1 thread per run) on identical uncompressed flat `.cnf` inputs:
 
@@ -86,8 +86,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `mapf_g16_p10_a10_m19.cnf` | SAT | 8.8 ms | 10.9 ms | 564.1 ms | 213.6 ms | **6.9 ms** |
 | `mapf_g16_p20_a20_m23.cnf` | SAT | 40.6 ms | 31.7 ms | 1.01 s | 734.2 ms | **14.2 ms** |
 | `mapf_g16_p20_a40_m22.cnf` | SAT | **129.8 ms** | 206.9 ms | 1.43 s | 1.73 s | 197.4 ms |
-| **Solved ($T_{\max} = 60\;\text{s}$)** | — | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\;\text{s}$)** | — | **0.48 s** *(fastest)* | 1.26 s *(2.62x slower)* | 9.58 s *(20.0x slower)* | 6.32 s *(13.2x slower)* | 1.00 s *(2.08x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **0.48 s** *(fastest)* | 1.26 s *(2.62x slower)* | 9.58 s *(20.0x slower)* | 6.32 s *(13.2x slower)* | 1.00 s *(2.08x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -16,7 +16,7 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 
 ### 1. Uniform Random 3-SAT at the Phase Transition (`c01`–`c05`)
 
-- **Structure:** Pure 3-CNF ($100\%$ ternary clauses) at exact clause-to-variable ratio $\alpha = m/n = 4.2600$ for $n \in \{300, 350, 400, 450, 500\}$, sitting right on the uniform random 3-SAT satisfiability threshold ($\alpha_c(3) \approx 4.267$).
+- **Structure:** Pure 3-CNF (100% ternary clauses) at exact clause-to-variable ratio $\alpha = m/n = 4.2600$ for $n \in \lbrace 300, 350, 400, 450, 500\rbrace$, sitting right on the uniform random 3-SAT satisfiability threshold ($\alpha_c(3) \approx 4.267$).
 - **Statistical Signature:** Exact Poisson variable-degree distribution (mean degree $12.78$, $\sigma^2/\mu \approx 0.96$), uniform sign-pattern distribution $(1/8, 3/8, 3/8, 1/8)$ for $(0, 1, 2, 3)$ positive literals, and zero polarity bias ($\mathbb{E}[|\text{pos}-\text{neg}|/\sqrt{d}] \in [0.765, 0.825]$ vs. theoretical uniform $\sqrt{2/\pi} \approx 0.798$).
 - **Difficulty:** Satisfiable instances near threshold (`c04`, `c05`) can be closed rapidly, whereas unsatisfiable instances (`c01` proved UNSAT; `c02`, `c03` under evaluation) require exponential $2^{\Omega(n)}$ resolution refutations.
 
@@ -30,8 +30,8 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 
 ### 3. Scrambled Schoolbook Ripple-Carry Array Multiplier Factoring (`c10`, `c08`, `c09`)
 
-- **Structure:** Plain Tseitin encodings of $N = A \cdot B$ ($A, B \ge 2$) for bit-widths $w \in \{40, 48, 64\}$ with variables randomly renamed, polarities randomly flipped, and clauses shuffled.
-- **Exact Gate-Level Accounting:** Letting factor width $k = w - 1 \in \{39, 47, 63\}$ (for `c10`, `c08`, `c09` respectively), **every single variable, gate, and clause count matches a $k \times k$ schoolbook ripple-carry array multiplier to the exact integer**:
+- **Structure:** Plain Tseitin encodings of $N = A \cdot B$ ($A, B \ge 2$) for bit-widths $w \in \lbrace 40, 48, 64\rbrace$ with variables randomly renamed, polarities randomly flipped, and clauses shuffled.
+- **Exact Gate-Level Accounting:** Letting factor width $k = w - 1 \in \lbrace 39, 47, 63\rbrace$ (for `c10`, `c08`, `c09` respectively), **every single variable, gate, and clause count matches a $k \times k$ schoolbook ripple-carry array multiplier to the exact integer**:
   - **Total variables** $= 3k^2$:
     - $2k$ factor input bits ($a_0 \dots a_{k-1}, b_0 \dots b_{k-1}$),
     - $k^2$ partial-product AND gates $p_{i,j} = a_i \land b_j$ (`1,521`, `2,209`, `3,969`),
@@ -101,7 +101,7 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 
 - **Hardware & Protocol:** Same machine — **AMD Ryzen 9 5950X** (16 cores / 32 threads, 64 MiB L3, Linux x86_64), **1 thread pinned per run** (`taskset -c 0` sequential; CaDiCaL/Kissat 300 s reference runs pinned to dedicated cores 2 & 3; default single-thread flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius), full wall-clock time from process start to answer (including parsing). Every SAT model is independently verified against 100% of clauses in the exact `.cnf.xz`; every UNSAT proof is independently verified with [`lrat-check`](https://github.com/marijnheule/drat-trim), [`drat-trim`](https://github.com/marijnheule/drat-trim), and formally verified [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr).
 - **Zero Verdict Disagreements:** All solvers agree 100% on every mutually solved instance.
-- **Cutoffs Reported:** All 5 solvers were evaluated sequentially at **$T_{\max} = 60\;\text{s}$** on identical uncompressed flat `.cnf` files (since [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 and [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 do not read `.xz` natively); **Frobenius 1C**, **[CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0**, and **[Kissat](https://github.com/arminbiere/kissat) 4.0.4** were additionally evaluated up to **$T_{\max} = 300\;\text{s}$** directly on the original `.cnf.xz` archives.
+- **Cutoffs Reported:** All 5 solvers were evaluated sequentially at **$T_{\max} = 60\text{ s}$** on identical uncompressed flat `.cnf` files (since [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 and [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 do not read `.xz` natively); **Frobenius 1C**, **[CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0**, and **[Kissat](https://github.com/arminbiere/kissat) 4.0.4** were additionally evaluated up to **$T_{\max} = 300\text{ s}$** directly on the original `.cnf.xz` archives.
 
 ### 1. 300 s Single-Core Comparison (`.cnf.xz`, Wall-Clock Time)
 
@@ -119,12 +119,12 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 | `c10.cnf.xz` | **UNSAT** | **0.014 s** *(proof: 38.11 s)* | 158.58 s | 85.85 s | `c10.bdrat.xz` (`4.67 MiB`, 40b prime `672003499631`) — **`drat-trim` VERIFIED** |
 | `c11.cnf.xz` | **UNSAT** | **0.067 s** *(proof: 0.54 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c11.lrat.xz` (`13.9 MiB`, SC25 unsolved `R(4,4)=18`) — **`lrat-check` + `cake_lpr` VERIFIED** |
 | `c12.cnf.xz` | **UNSAT** | **0.013 s** *(proof: 0.007 s)* | >300 s *(T/O)* | >300 s *(T/O)* | `c12.lrat.xz` (`66.3 KiB`, SC25 unsolved `CliqueCol(15,7,6)`) — **`lrat-check` + `cake_lpr` VERIFIED** |
-| **Solved ($T_{\max}=300\;\text{s}$)** | — | **10 / 12** *(highest)* | 4 / 12 *(-6 worse)* | 4 / 12 *(-6 worse)* | **6/6 SAT models + 4/4 UNSAT proofs verified** |
-| **Total PAR-2 ($T_{\max}=300\;\text{s}$)** | — | **1,243.25 s** *(fastest)* | 5,002.12 s *(4.02x slower)* | 4,926.02 s *(3.96x slower)* | `c04`–`c12` (9 instances) solved in **2.93 s** combined |
+| **Solved ($T_{\max}=300\text{ s}$)** | — | **10 / 12** *(highest)* | 4 / 12 *(-6 worse)* | 4 / 12 *(-6 worse)* | **6/6 SAT models + 4/4 UNSAT proofs verified** |
+| **Total PAR-2 ($T_{\max}=300\text{ s}$)** | — | **1,243.25 s** *(fastest)* | 5,002.12 s *(4.02x slower)* | 4,926.02 s *(3.96x slower)* | `c04`–`c12` (9 instances) solved in **2.93 s** combined |
 
 ### 2. 60 s All-Five-Solver Comparison (Identical Uncompressed Flat `.cnf`, `taskset -c 0`)
 
-| Instance | Verdict ($\le 60\;\text{s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+| Instance | Verdict ($\le 60\text{ s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
 | `c01` | UNSAT | 43.27 s | 39.20 s | >60 s | >60 s | **27.58 s** |
 | `c02` | *TBD* | >60 s | >60 s | >60 s | >60 s | >60 s |
@@ -138,8 +138,8 @@ Forensic clause-level, degree-distribution, gate-extraction, and GBD-hash inspec
 | `c10` | UNSAT | **0.014 s** | >60 s | >60 s | >60 s | >60 s |
 | `c11` | UNSAT | **0.075 s** | >60 s | >60 s | >60 s | >60 s |
 | `c12` | UNSAT | **0.013 s** | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max}=60\;\text{s}$)** | — | **10 / 12** *(highest)* | 3 / 12 *(-7 worse)* | 0 / 12 *(-10 worse)* | 0 / 12 *(-10 worse)* | 3 / 12 *(-7 worse)* |
-| **Total PAR-2 ($T_{\max}=60\;\text{s}$)** | — | **286.67 s** *(fastest)* | 1,120.20 s *(3.91x slower)* | 1,440.00 s *(5.02x slower)* | 1,440.00 s *(5.02x slower)* | 1,117.65 s *(3.90x slower)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **10 / 12** *(highest)* | 3 / 12 *(-7 worse)* | 0 / 12 *(-10 worse)* | 0 / 12 *(-10 worse)* | 3 / 12 *(-7 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **286.67 s** *(fastest)* | 1,120.20 s *(3.91x slower)* | 1,440.00 s *(5.02x slower)* | 1,440.00 s *(5.02x slower)* | 1,117.65 s *(3.90x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
