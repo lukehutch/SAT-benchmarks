@@ -85,25 +85,26 @@ TIMEOUT_KS: dict[str, list[int]] = {
     "cms_xcnf": [12, 13, 14],
 }
 
-# Best-fit M1 curves: (c0_sec, a_sec, alpha, k_start, k_end)
+# Post-knee asymptotic log-linear fits T(k) = a * 2^(alpha * k) (skipping initial flat low-k regimes!)
+# Format: (c0_sec, a_sec, alpha, k_start, k_end)
 M1_FITS: dict[str, tuple[float, float, float, float, float]] = {
-    "frobenius_aig": (0.05751, 6.1818e-8, 0.9973, 14.0, 32.0),
-    "frobenius_cnf": (0.12257, 4.6245e-8, 1.0042, 14.0, 32.0),
-    "dense_cnf": (0.89826, 2.713e-3, 0.9708, 2.0, 18.0),
-    "cadical_cnf": (0.04902, 1.054e-2, 0.8098, 2.0, 18.5),   # Tobit right-censored M1
-    "kissat_cnf": (0.16666, 2.926e-3, 1.0073, 2.0, 17.0),    # Tobit right-censored M1
-    "cms_cnf": (0.0, 2.981, 0.5337, 2.0, 13.5),
-    "cms_xcnf": (0.0, 0.5370, 0.7905, 2.0, 12.5),            # Tobit right-censored M1
+    "frobenius_aig": (0.0, 1.016e-7, 0.9730, 22.0, 32.0),   # OLS k>=22 (R2=0.9990)
+    "frobenius_cnf": (0.0, 1.318e-7, 0.9530, 22.0, 32.0),   # OLS k>=22 (R2=0.9980)
+    "dense_cnf":     (0.0, 7.908e-3, 0.8764, 12.0, 18.0),   # Tobit k>=12 (+3 T/Os)
+    "cadical_cnf":   (0.0, 9.902e-3, 0.8280, 10.0, 18.5),   # Tobit k>=10 (+3 T/Os)
+    "kissat_cnf":    (0.0, 5.412e-4, 1.1929, 10.0, 16.5),   # Tobit k>=10 (+3 T/Os)
+    "cms_cnf":       (0.0, 2.933,    0.5380,  2.0, 13.5),   # Tobit k>=2 (+3 T/Os)
+    "cms_xcnf":      (0.0, 0.5370,   0.7905,  2.0, 12.5),   # Tobit k>=2 (+3 T/Os)
 }
 
 TRACK_STYLE = [
-    ("frobenius_cnf", "Frobenius 1C (.cnf)",   "#0284c7", "32/32", "α=1.004 (2.01×/b)", "3.30 min*", "diamond",  ""),
-    ("frobenius_aig", "Frobenius 1C (.aig)",   "#059669", "32/32", "α=0.997 (2.00×/b)", "4.16 min*", "circle",   ""),
-    ("cadical_cnf",   "CaDiCaL 3.1.0 (.cnf)",  "#d97706", "17/32", "α=0.810† (1.75×)",  "7.7 d†",    "square",   ""),
-    ("dense_cnf",     "dense-solver 0.0.4",    "#7c3aed", "17/32", "α=0.971 (1.96×/b)", "70.6 d",    "triangle", ""),
-    ("kissat_cnf",    "Kissat 4.0.4 (.cnf)",   "#dc2626", "15/32", "α=1.007† (2.01×)",  "171 d†",    "circle",   ""),
-    ("cms_cnf",       "CMS 5.18.0 (.cnf)",     "#475569", "12/32", "α=0.707‡ (1.63×)",  "55.3 d‡",   "square",   ""),
-    ("cms_xcnf",      "CMS 5.18.0 (.xcnf)",    "#db2777", "11/32", "α=0.791† (1.73×)",  "256 d†",    "diamond",  "4,2"),
+    ("frobenius_cnf", "Frobenius 1C (.cnf)",   "#0284c7", "32/32", "k≥22: α=0.953 (1.94×)", "3.30 min*", "diamond",  ""),
+    ("frobenius_aig", "Frobenius 1C (.aig)",   "#059669", "32/32", "k≥22: α=0.973 (1.96×)", "4.16 min*", "circle",   ""),
+    ("cadical_cnf",   "CaDiCaL 3.1.0 (.cnf)",  "#d97706", "17/32", "k≥10: α=0.828† (1.78×)", "10.8 d†",  "square",   ""),
+    ("dense_cnf",     "dense-solver 0.0.4",    "#7c3aed", "17/32", "k≥12: α=0.876† (1.84×)", "25.4 d†",  "triangle", ""),
+    ("kissat_cnf",    "Kissat 4.0.4 (.cnf)",   "#dc2626", "15/32", "k≥10: α=1.193† (2.29×)", "5.31 yr†", "circle",   ""),
+    ("cms_cnf",       "CMS 5.18.0 (.cnf)",     "#475569", "12/32", "k≥2: α=0.538† (1.45×)",  "5.17 d†",  "square",   ""),
+    ("cms_xcnf",      "CMS 5.18.0 (.xcnf)",    "#db2777", "11/32", "k≥2: α=0.791† (1.73×)",  "256 d†",   "diamond",  "4,2"),
 ]
 
 
@@ -290,8 +291,8 @@ def build_svg() -> str:
     # ===================== RIGHT LEGEND & FIT SUMMARY PANEL =====================
     lx, ly, lw, lh = 658, 86, 240, 326
     parts.append(f'<rect x="{lx}" y="{ly}" width="{lw}" height="{lh}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
-    parts.append(f'<text x="{lx + 11}" y="{ly + 19}" font-size="10.8" font-weight="700" fill="#0f172a">7 Solver Tracks &amp; M1 Fits</text>')
-    parts.append(f'<text x="{lx + 11}" y="{ly + 32}" font-size="8.0" fill="#64748b">T(k) = c₀ + a·2^(αk)   |   Solved · T(32) 1C</text>')
+    parts.append(f'<text x="{lx + 11}" y="{ly + 19}" font-size="10.8" font-weight="700" fill="#0f172a">7 Solver Tracks &amp; Post-Knee Fits</text>')
+    parts.append(f'<text x="{lx + 11}" y="{ly + 32}" font-size="8.0" fill="#64748b">T(k) = a·2^(αk) post-knee | Solved · T(32) 1C</text>')
     parts.append(f'<line x1="{lx + 10}" y1="{ly + 38}" x2="{lx + lw - 10}" y2="{ly + 38}" stroke="#e2e8f0" stroke-width="1"/>')
 
     row_y0 = ly + 52
@@ -305,12 +306,12 @@ def build_svg() -> str:
         draw_marker(parts, shape, lx + 22, ry - 1, color, r=2.8, hollow=(tid in ("frobenius_cnf", "cms_xcnf")))
         parts.append(f'<text x="{lx + 37}" y="{ry + 2}" font-size="9.4" font-weight="700" fill="#0f172a">{label}</text>')
         parts.append(f'<text x="{lx + lw - 11}" y="{ry + 2}" text-anchor="end" font-family="{FONT_MONO}" font-size="8.7" font-weight="700" fill="{color}">{solved}</text>')
-        parts.append(f'<text x="{lx + 37}" y="{ry + 14.5}" font-family="{FONT_MONO}" font-size="8.1" fill="#475569">{exp_s}</text>')
-        parts.append(f'<text x="{lx + lw - 11}" y="{ry + 14.5}" text-anchor="end" font-family="{FONT_MONO}" font-size="8.1" fill="#334155">T₃₂:{t32_s}</text>')
+        parts.append(f'<text x="{lx + 37}" y="{ry + 14.5}" font-family="{FONT_MONO}" font-size="7.9" fill="#475569">{exp_s}</text>')
+        parts.append(f'<text x="{lx + lw - 11}" y="{ry + 14.5}" text-anchor="end" font-family="{FONT_MONO}" font-size="7.9" fill="#334155">T₃₂:{t32_s}</text>')
 
     parts.append(f'<line x1="{lx + 10}" y1="{ly + lh - 29}" x2="{lx + lw - 10}" y2="{ly + lh - 29}" stroke="#e2e8f0" stroke-width="1"/>')
-    parts.append(f'<text x="{lx + 11}" y="{ly + lh - 17}" font-size="7.4" fill="#64748b">*Actual measured 1C T(32) (&lt;300s, k=14..32 R²&gt;0.999)</text>')
-    parts.append(f'<text x="{lx + 11}" y="{ly + lh - 6.5}" font-size="7.4" fill="#64748b">†Tobit right-censored M1 (+3 T/Os)  ‡Post-floor k≥5</text>')
+    parts.append(f'<text x="{lx + 11}" y="{ly + lh - 17}" font-size="7.3" fill="#64748b">*Actual measured 1C T(32) (&lt;300s, k≥22 R²≥0.998)</text>')
+    parts.append(f'<text x="{lx + 11}" y="{ly + lh - 6.5}" font-size="7.3" fill="#64748b">†Post-knee Tobit MLE (+3 T/Os); skips flat low-k floors</text>')
 
     # ===================== BOTTOM 3 CALLOUT CARDS =====================
     by, bh = 456, 86
@@ -328,15 +329,15 @@ def build_svg() -> str:
             "2. Cliff-Free 2048-Lane AVX2 (32/32)",
             "• .cnf: 32/32, T(32)=3.30m (12.8M evals/s)",
             "• .aig: 32/32, T(32)=4.16m (11.2M evals/s)",
-            "• k=14..32 M1: α=0.997 (.aig) / 1.004 (.cnf)",
+            "• k≥22 log-linear: α=0.953 (.cnf) / 0.973 (.aig)",
             "• 22.2–30.9× lower PAR-2 than all CDCL tracks",
         ),
         (
             616, 282, "#eff6ff", "#bfdbfe", "#1d4ed8",
-            "3. AICc/BIC Model Selection (M1–M4)",
-            "• Pure exp M1 wins every single-codepath fit",
-            "• +0.6s probe step at k=25 (&lt;0.3% at k=32)",
-            "• 3,367–111,922× faster T(32) than CDCL",
+            "3. Post-Knee Asymptotic Scaling (M0)",
+            "• Pure log-linear M0 wins every post-knee fit",
+            "• Skips flat floors (Frob&lt;22, CDCL&lt;10/12, CMS=1)",
+            "• 2,258–847,000× faster T(32) than CDCL",
             "• 290/290 SAT models verified (0 BADSAT)",
         ),
     ]
@@ -367,47 +368,45 @@ def build_growth_analysis_svg() -> str:
         f'<g font-family="{FONT_SANS}">',
         # Header
         '<text x="24" y="31" font-size="16.4" font-weight="700" fill="#0f172a">'
-        "Growth-Curve Fits, 32-Bit Nonce Inversion Times &amp; Sub-Exponential Model Selection</text>",
+        "Post-Knee Asymptotic Linear Fits, 32-Bit Nonce Times &amp; Sub-Exponential Test</text>",
         '<text x="24" y="49" font-size="10.8" fill="#475569">'
-        "Shifted pure exponential M1: T(k) = c₀ + a·2^(αk) vs. polynomial (M2), √k (M3), and stretched-exp (M4) · 64-round FIPS 180-4 SHA-256 (1C)</text>",
+        "Log-linear T(k) = a·2^(αk) skipping low-k floors (Frob k≥22, CaDiCaL/Kissat k≥10, dense k≥12, CMS k≥2) · 64R SHA-256 (1C)</text>",
         '<line x1="22" y1="60" x2="898" y2="60" stroke="#e2e8f0" stroke-width="1.2"/>',
     ]
 
-    # Track data ordered by T(32) / performance (matching README Table 2 exact numbers)
+    # Track data ordered by T(32) / performance (exact post-knee linear-regime fits!)
     # (short_label, color, alpha_ols, alpha_tobit_or_none, t32_sec, t32_label, speedup_vs_frob_cnf, daicc_m2, daicc_m3, daicc_m4)
-    # Note: Panel C plots full k=14..32 for Frobenius (.aig) and single-codepath k=14..24 / k=25..32 note vs k=14..32 seam for .cnf.
-    # Here we show exact k=14..32 Delta-AICc for both Frobenius tracks (transparently showing the +2.08 seam blip on .cnf at k=25).
     rows = [
-        ("Frobenius (.cnf)", "#0284c7", 1.0042, None,   197.83,      "3.30 min*",  "1.0×",     +2.08, +2.08, +2.08),
-        ("Frobenius (.aig)", "#059669", 0.9973, None,   249.85,      "4.16 min*",  "1.3×",     -0.85, -0.89, -0.91),
-        ("CaDiCaL (.cnf)",   "#d97706", 0.6916, 0.8098, 7.71*86400,  "7.71 d†",    "3,367×",   -2.27, -3.04, -2.43),
-        ("CMS (.cnf)",       "#475569", 0.5337, 0.5438, 55.29*86400, "55.3 d‡",    "24,149×",  -7.33, -7.33, -7.32),
-        ("dense (.cnf)",     "#7c3aed", 0.9708, 0.9753, 70.61*86400, "70.6 d",     "30,838×",  -2.26, -2.85, -2.35),
-        ("Kissat (.cnf)",    "#dc2626", 0.7613, 1.0073, 171.19*86400,"171.2 d†",   "74,766×",  -5.00, -4.88, -4.59),
-        ("CMS (.xcnf)",      "#db2777", 0.7096, 0.7905, 256.27*86400,"256.3 d†",   "111,922×", -1.66, -5.75, -2.96),
+        ("Frobenius (.cnf)", "#0284c7", 0.9530, None,   197.83,            "3.30 min*", "1.0×",      -4.16,  -4.19,  -4.25),
+        ("Frobenius (.aig)", "#059669", 0.9730, None,   249.85,            "4.16 min*", "1.3×",      -5.19,  -5.19,  -5.18),
+        ("CMS (.cnf)",       "#475569", 0.5337, 0.5380, 5.17*86400,        "5.17 d†",   "2,258×",    -5.24,  -5.24,  -5.23),
+        ("CaDiCaL (.cnf)",   "#d97706", 0.4547, 0.8280, 10.84*86400,       "10.8 d†",   "4,734×",    -6.24,  -6.10,  -8.96),
+        ("dense (.cnf)",     "#7c3aed", 0.8285, 0.8764, 25.36*86400,       "25.4 d†",   "11,076×",  -29.13, -29.08, -29.62),
+        ("CMS (.xcnf)",      "#db2777", 0.7096, 0.7905, 256.27*86400,      "256.3 d†",  "111,923×",  +4.81,  +3.11,  +0.04),
+        ("Kissat (.cnf)",    "#dc2626", 0.8075, 1.1929, 5.31*365.25*86400, "5.31 yr†",  "847,000×", -30.00, -30.00, -30.00),
     ]
 
     # ===================== PANEL A (TOP-LEFT): DOUBLING EXPONENT alpha =====================
     ax0, ay0, aw, ah = 24, 74, 424, 286
     parts.append(f'<rect x="{ax0}" y="{ay0}" width="{aw}" height="{ah}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
-    parts.append(f'<text x="{ax0 + 12}" y="{ay0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">A. Fitted Scaling Exponent α  (base b = 2^α per bit)</text>')
-    parts.append(f'<text x="{ax0 + 12}" y="{ay0 + 34}" font-size="8.6" fill="#64748b">Solid bar: uncensored M1 (Frobenius k=14..32) · Diamond: Tobit MLE (+3 T/Os)</text>')
+    parts.append(f'<text x="{ax0 + 12}" y="{ay0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">A. Post-Knee Log-Linear Exponent α  (b = 2^α / bit)</text>')
+    parts.append(f'<text x="{ax0 + 12}" y="{ay0 + 34}" font-size="8.6" fill="#64748b">Solid bar: post-knee OLS · Diamond: Tobit right-censored MLE (+3 T/Os)</text>')
 
     px0, py0, pw, ph = ax0 + 114, ay0 + 48, 294, 206
     def ax_map(a: float) -> float:
-        return px0 + (a / 1.32) * pw
+        return px0 + (a / 1.48) * pw
 
     parts.append(f'<rect x="{px0}" y="{py0}" width="{pw}" height="{ph}" rx="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>')
-    for av in [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2]:
+    for av in [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4]:
         xx = ax_map(av)
         sc = "#dc2626" if abs(av - 1.0) < 1e-6 else "#e2e8f0"
         sw = "1.4" if abs(av - 1.0) < 1e-6 else "0.9"
         da = ' stroke-dasharray="4,3"' if abs(av - 1.0) < 1e-6 else ""
         parts.append(f'<line x1="{xx:.1f}" y1="{py0}" x2="{xx:.1f}" y2="{py0 + ph}" stroke="{sc}" stroke-width="{sw}"{da}/>')
-        lbl = "1.0 (2ᵏ)" if abs(av - 1.0) < 1e-6 else f"{av:.1f}"
+        lbl = "1.0(2ᵏ)" if abs(av - 1.0) < 1e-6 else f"{av:.1f}"
         fc = "#b91c1c" if abs(av - 1.0) < 1e-6 else "#475569"
         fw = "700" if abs(av - 1.0) < 1e-6 else "400"
-        parts.append(f'<text x="{xx:.1f}" y="{py0 + ph + 14}" text-anchor="middle" font-family="{FONT_MONO}" font-size="8.3" font-weight="{fw}" fill="{fc}">{lbl}</text>')
+        parts.append(f'<text x="{xx:.1f}" y="{py0 + ph + 14}" text-anchor="middle" font-family="{FONT_MONO}" font-size="8.1" font-weight="{fw}" fill="{fc}">{lbl}</text>')
 
     row_h = ph / len(rows)
     for i, (lbl, col, a_ols, a_tob, _, _, _, _, _, _) in enumerate(rows):
@@ -423,24 +422,26 @@ def build_growth_analysis_svg() -> str:
             tx = max(ax_map(a_ols), xt) + 7
             if 0.90 <= max(a_ols, a_tob) <= 1.02:
                 tx = max(tx, ax_map(1.0) + 6)
-            val_txt = "0.53→0.54 (0.71‡)" if lbl == "CMS (.cnf)" else f"{a_ols:.2f}→{a_tob:.2f}"
+            val_txt = f"{a_ols:.2f}→{a_tob:.2f}"
         else:
             tx = max(ax_map(a_ols) + 6, ax_map(1.0) + 6)
             val_txt = f"{a_ols:.3f}"
         if tx + len(val_txt) * 4.7 > px0 + pw - 2:
             parts.append(f'<text x="{ax_map(a_ols) - 5:.1f}" y="{cy + 3.0:.1f}" text-anchor="end" font-family="{FONT_MONO}" font-size="7.9" font-weight="700" fill="#ffffff">{val_txt}</text>')
         else:
+            tw = len(val_txt) * 4.8 + 4.0
+            if tx <= ax_map(1.0) + 2 <= tx + tw:
+                parts.append(f'<rect x="{tx - 2:.1f}" y="{cy - 5.5:.1f}" width="{tw:.1f}" height="11.0" rx="2" fill="#ffffff" opacity="0.92"/>')
             parts.append(f'<text x="{tx:.1f}" y="{cy + 3.0:.1f}" font-family="{FONT_MONO}" font-size="7.9" font-weight="700" fill="#334155">{val_txt}</text>')
 
     # ===================== PANEL B (TOP-RIGHT): FULL 32-BIT NONCE TIME T(32) =====================
     bx0, by0, bw_box, bh_box = 462, 74, 434, 286
     parts.append(f'<rect x="{bx0}" y="{by0}" width="{bw_box}" height="{bh_box}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
     parts.append(f'<text x="{bx0 + 12}" y="{by0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">B. Full 32-Bit Nonce Inversion Time T(32)  [log scale]</text>')
-    parts.append(f'<text x="{bx0 + 12}" y="{by0 + 34}" font-size="8.6" fill="#64748b">Measured 1C (3.3–4.2 min) vs. Extrapolated CDCL (days) · 3,367×–111,922× gap</text>')
+    parts.append(f'<text x="{bx0 + 12}" y="{by0 + 34}" font-size="8.6" fill="#64748b">Measured 1C (3.3–4.2 min) vs. Post-Knee Tobit CDCL (5.2 d – 5.3 yr)</text>')
 
     qpx0, qpy0, qpw, qph = bx0 + 112, by0 + 48, 304, 206
-    # log10(T32 in sec) from 10^1.8 s (63 s) to 10^8.3 s (~6.3 years)
-    lt_min, lt_max = 1.8, 8.3
+    lt_min, lt_max = 1.8, 8.6
     def bx_map(t_sec: float) -> float:
         lt = max(lt_min, min(lt_max, math.log10(t_sec)))
         return qpx0 + (lt - lt_min) / (lt_max - lt_min) * qpw
@@ -483,12 +484,12 @@ def build_growth_analysis_svg() -> str:
     # ===================== PANEL C (BOTTOM): AICc MODEL SELECTION =====================
     cx0, cy0, cw, ch = 24, 374, 872, 226
     parts.append(f'<rect x="{cx0}" y="{cy0}" width="{cw}" height="{ch}" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
-    parts.append(f'<text x="{cx0 + 12}" y="{cy0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">C. Sub-Exponential Hypothesis Test: ΔAICc = AICc(M1) − AICc(Mⱼ)  (Values &gt; +2 Required to Beat Pure Exponential M1)</text>')
-    parts.append(f'<text x="{cx0 + 12}" y="{cy0 + 34}" font-size="8.5" fill="#64748b">Pure exponential M1 wins 6/7 full tracks directly; .cnf k=14..32 (+2.1§) is solely the +0.6s k=25 probe seam (single-path k=14..24: −3.6, k=25..32: −15.9)</text>')
+    parts.append(f'<text x="{cx0 + 12}" y="{cy0 + 20}" font-size="11.4" font-weight="700" fill="#0f172a">C. Post-Knee Sub-Exponential Test: ΔAICc = AICc(M0) − AICc(Mⱼ)  (Values &gt; +2 Required to Beat Pure Log-Linear M0)</text>')
+    parts.append(f'<text x="{cx0 + 12}" y="{cy0 + 34}" font-size="8.5" fill="#64748b">Pure log-linear M0 wins 6/7 post-knee tracks outright; CMS (.xcnf) +4.8‡ is solely the k=2 Gauss jump (0.30s → 5.73s; k≥3 gives −6.5)</text>')
 
     cpx0, cpy0, cpw, cph = cx0 + 58, cy0 + 48, 796, 126
-    # y in [-9.0, +4.2] (cleanly accommodates +2.1 seam bar + label above it without clipping)
-    dy_min, dy_max = -9.0, 4.2
+    # y in [-10.0, +6.6] (cleanly fits CMS .xcnf +4.81 + label at top, and clamped -29/-30 bars at bottom!)
+    dy_min, dy_max = -10.0, 6.6
     def cy_map(v: float) -> float:
         vc = max(dy_min, min(dy_max, v))
         return cpy0 + cph - (vc - dy_min) / (dy_max - dy_min) * cph
@@ -498,15 +499,16 @@ def build_growth_analysis_svg() -> str:
     y_p2 = cy_map(2.0)
     y_0 = cy_map(0.0)
     parts.append(f'<rect x="{cpx0 + 1}" y="{cpy0 + 1}" width="{cpw - 2}" height="{y_p2 - cpy0 - 1:.1f}" fill="#dcfce7" opacity="0.7"/>')
-    parts.append(f'<text x="{cpx0 + cpw - 6}" y="{y_p2 - 2.5:.1f}" text-anchor="end" font-size="7.8" font-weight="700" fill="#15803d">Support threshold (+2)</text>')
+    parts.append(f'<text x="{cpx0 + cpw - 6}" y="{cpy0 + 11.5:.1f}" text-anchor="end" font-size="7.8" font-weight="700" fill="#15803d">Support threshold (&gt; +2)</text>')
 
-    for yv in [2, 0, -2, -4, -6, -8]:
+    for yv in [4, 2, 0, -2, -4, -6, -8, -10]:
         yy = cy_map(yv)
         sc = "#16a34a" if yv == 2 else ("#0f172a" if yv == 0 else "#e2e8f0")
         sw = "1.2" if yv in (0, 2) else "0.8"
         da = ' stroke-dasharray="4,3"' if yv == 2 else ""
         parts.append(f'<line x1="{cpx0}" y1="{yy:.1f}" x2="{cpx0 + cpw}" y2="{yy:.1f}" stroke="{sc}" stroke-width="{sw}"{da}/>')
-        parts.append(f'<text x="{cpx0 - 6}" y="{yy + 3.0:.1f}" text-anchor="end" font-family="{FONT_MONO}" font-size="8.3" fill="#475569">{yv:+d}</text>')
+        ylbl = "≤-10" if yv == -10 else f"{yv:+d}"
+        parts.append(f'<text x="{cpx0 - 6}" y="{yy + 3.0:.1f}" text-anchor="end" font-family="{FONT_MONO}" font-size="8.0" fill="#475569">{ylbl}</text>')
 
     # Grouped bars (3 bars per track: M2, M3, M4)
     mod_colors = [("#2563eb", "M2: k^β·2^(αk)"), ("#7c3aed", "M3: 2^(αk + δ√k)"), ("#ea580c", "M4: exp(c₁·k^γ)")]
@@ -520,18 +522,24 @@ def build_growth_analysis_svg() -> str:
             bx = gx - 1.5 * bar_w3 - gap3 + m_idx * (bar_w3 + gap3)
             yv = cy_map(dv)
             if dv >= 0.0:
-                bh = max(3.0, y_0 - yv)
-                parts.append(f'<rect x="{bx:.1f}" y="{yv:.1f}" width="{bar_w3:.1f}" height="{bh:.1f}" rx="2.5" fill="{mod_colors[m_idx][0]}" opacity="0.84"/>')
-                parts.append(f'<text x="{bx + bar_w3/2:.1f}" y="{yv - 3.5:.1f}" text-anchor="middle" font-family="{FONT_MONO}" font-size="7.1" font-weight="600" fill="#334155">+{dv:.1f}</text>')
+                bh = max(2.2, y_0 - yv)
+                y_top = y_0 - bh
+                parts.append(f'<rect x="{bx:.1f}" y="{y_top:.1f}" width="{bar_w3:.1f}" height="{bh:.1f}" rx="2.0" fill="{mod_colors[m_idx][0]}" opacity="0.84"/>')
+                parts.append(f'<text x="{bx + bar_w3/2:.1f}" y="{y_top - 3.2:.1f}" text-anchor="middle" font-family="{FONT_MONO}" font-size="7.1" font-weight="600" fill="#334155">+{dv:.1f}</text>')
             else:
                 bh = max(3.0, yv - y_0)
                 parts.append(f'<rect x="{bx:.1f}" y="{y_0:.1f}" width="{bar_w3:.1f}" height="{bh:.1f}" rx="2.5" fill="{mod_colors[m_idx][0]}" opacity="0.84"/>')
-                parts.append(f'<text x="{bx + bar_w3/2:.1f}" y="{yv + 9.5:.1f}" text-anchor="middle" font-family="{FONT_MONO}" font-size="7.2" font-weight="600" fill="#334155">{dv:.1f}</text>')
+                val_s = f"{dv:.0f}" if dv <= -10.0 else f"{dv:.1f}"
+                if yv + 9.5 > cpy0 + cph - 2:
+                    # Place cleanly inside bottom of bar in crisp white text so it never collides with x-axis labels!
+                    parts.append(f'<text x="{bx + bar_w3/2:.1f}" y="{yv - 4.0:.1f}" text-anchor="middle" font-family="{FONT_MONO}" font-size="7.0" font-weight="700" fill="#ffffff">{val_s}</text>')
+                else:
+                    parts.append(f'<text x="{bx + bar_w3/2:.1f}" y="{yv + 9.2:.1f}" text-anchor="middle" font-family="{FONT_MONO}" font-size="7.1" font-weight="600" fill="#334155">{val_s}</text>')
 
-    # Small clean annotation below the positive Frobenius (.cnf) bars noting the k=25 probe seam
-    gx0 = cpx0 + 0.5 * group_w
-    parts.append(f'<text x="{gx0:.1f}" y="{y_0 + 13:.1f}" text-anchor="middle" font-size="7.3" font-weight="700" fill="#0369a1">§ k=25 probe seam</text>')
-    parts.append(f'<text x="{gx0:.1f}" y="{y_0 + 23:.1f}" text-anchor="middle" font-size="7.0" fill="#475569">(split: −3.6 / −15.9)</text>')
+    # Small clean annotation below the positive CMS (.xcnf) bars noting the k=2 Gauss jump
+    gx_xcnf = cpx0 + 5.5 * group_w
+    parts.append(f'<text x="{gx_xcnf:.1f}" y="{y_0 + 13:.1f}" text-anchor="middle" font-size="7.3" font-weight="700" fill="#be185d">‡ k=2 Gauss jump</text>')
+    parts.append(f'<text x="{gx_xcnf:.1f}" y="{y_0 + 23:.1f}" text-anchor="middle" font-size="7.0" fill="#475569">(k≥3: −6.5 / −6.6)</text>')
 
     # Compact legend + footnote strip at bottom of Panel C
     leg_y = cy0 + ch - 13
@@ -540,7 +548,7 @@ def build_growth_analysis_svg() -> str:
         parts.append(f'<rect x="{lx_cur:.1f}" y="{leg_y - 8}" width="10" height="10" rx="2" fill="{mc}" opacity="0.85"/>')
         parts.append(f'<text x="{lx_cur + 14:.1f}" y="{leg_y + 0.5}" font-size="8.4" font-weight="600" fill="#334155">{mlbl}</text>')
         lx_cur += 128
-    parts.append(f'<text x="{cpx0 + cpw:.1f}" y="{leg_y + 0.5}" text-anchor="end" font-size="7.6" fill="#64748b">*Measured 1C T(32) · †Tobit censored (+3 T/Os) · ‡Post-floor k≥5 · §k=24→25 +0.6s seam</text>')
+    parts.append(f'<text x="{cpx0 + cpw:.1f}" y="{leg_y + 0.5}" text-anchor="end" font-size="7.5" fill="#64748b">*Measured 1C T(32) · †Post-knee Tobit (+3 T/Os) · ‡k=2 Gauss step · bars ≤−10 clamped</text>')
 
     parts.append("</g>")
     parts.append("</svg>\n")

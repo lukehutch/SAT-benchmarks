@@ -2,7 +2,7 @@
 
 ![FIPS 180-4 64-round SHA-256 single-core nonce-scaling curves across 7 solver tracks](diagram.svg)
 
-*Figure: Single-core wall-clock runtime $T(k)$ (log scale) across $k = 1\dots 32$ unknown LSBs of nonce word $W_0 = \texttt{0x9E3779B9}$ on full 64-round FIPS 180-4 SHA-256 ($T_{\max} = 300\;\text{s}$, AMD Ryzen 9 5950X core 12, 290/290 SAT models verified), showing all 7 tracks (5 engines), shifted pure-exponential M1 fits, and Frobenius's cliff-free piecewise regimes (`Stage 0C` $\to$ `Stage 0F` 2048-lane early-exit `CompiledAig256` $\to$ shortcut-first probe + 2048-lane escalation solving **all 32 / 32** instances inside 300 s). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Single-core wall-clock runtime $T(k)$ (log scale) across $k = 1\dots 32$ unknown LSBs of nonce word $W_0 = \texttt{0x9E3779B9}$ on full 64-round FIPS 180-4 SHA-256 ($T_{\max} = 300\;\text{s}$, AMD Ryzen 9 5950X core 12, 290/290 SAT models verified), showing all 7 tracks (5 engines), post-knee log-linear asymptotic fits, and Frobenius's cliff-free piecewise regimes (`Stage 0C` $\to$ `Stage 0F` 2048-lane early-exit `CompiledAig256` $\to$ shortcut-first probe + 2048-lane escalation solving **all 32 / 32** instances inside 300 s). Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
 ## Provenance & Credit
 
@@ -71,7 +71,7 @@ A controlled, **zero-lucky-hit-bias** 32-instance scaling ladder sweeping $k = 1
 ## Benchmark Results
 
 - **Hardware & Isolation Protocol:** Evaluated strictly sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux x86_64), pinned to dedicated **CCD 1 core 12** (`taskset -c 12`, isolated 32 MiB L3 cache, zero concurrent solver contention), running on uncompressed inputs in `/tmp/` (excluding `.xz` I/O). Default single-thread flags: `--max-cores 1 --profile --timeout 300` for Frobenius (evaluated at `5f04ce8`, featuring cliff-free shortcut-first cost-amortized dispatch + 2048-lane early-exit `CompiledAig256`), `-t 1` for CryptoMiniSat 5.18.0, and default single-thread CLI for CaDiCaL 3.1.0, dense-solver 0.0.4, and Kissat 4.0.4.
-- **Timing, Stopping Rule & 100% Verification:** Per-instance cutoff $T_{\max} = 300\;\text{s}$ (PAR-2 penalty $600\;\text{s}$). Solves `< 2.0 s` report the **exact median of 3 runs**; solves `>= 2.0 s` use 1 clean run. Under the **3-consecutive-timeout stopping rule**, once a track hits its first timeout at $k_0$, only $k_0 + 1$ and $k_0 + 2$ are tested (resetting if either solves); remaining $k > k_0 + 2$ are recorded as `— *(skipped)*` (counted as $600\;\text{s}$ PAR-2). Every single SAT witness across all 7 tracks and all repetitions was independently verified (**290 / 290 SAT runs verified**: 100% raw CNF clauses + XCNF XOR clauses + exact FIPS 180-4 `hashlib.sha256` & Binary AIGER 1.9 evaluation; **0 BADSAT, 0 false UNSAT**).
+- **Timing, Stopping Rule & 100% Verification:** Per-instance cutoff $T_{\max} = 300\;\text{s}$ (PAR-2 penalty $600\;\text{s}$). Solves `< 2.0 s` report the **exact median of 3 runs**; solves `>= 2.0 s` use 1 clean run. Under the **3-consecutive-timeout stopping rule**, once a track hits its first timeout at $k_0$, only $k_0 + 1$ and $k_0 + 2$ are tested (resetting if either solves); remaining $k > k_0 + 2$ are recorded as `— *(skipped; ~extrap)*` with each engine's post-knee asymptotic extrapolation (and counted as $600\;\text{s}$ PAR-2). Every single SAT witness across all 7 tracks and all repetitions was independently verified (**290 / 290 SAT runs verified**: 100% raw CNF clauses + XCNF XOR clauses + exact FIPS 180-4 `hashlib.sha256` & Binary AIGER 1.9 evaluation; **0 BADSAT, 0 false UNSAT**).
 
 ### 1. Per-Bit Runtime Scaling ($k = 1 \dots 32$, $T_{\max} = 300\;\text{s}$)
 
@@ -91,85 +91,76 @@ A controlled, **zero-lucky-hit-bias** 32-instance scaling ladder sweeping $k = 1
 | `sha256_64r_k12` | **41.89 ms** | 109.71 ms | 13.92 s | 230.64 s | >300 s *(T/O)* | 12.91 s | 21.92 s |
 | `sha256_64r_k13` | **42.58 ms** | 110.02 ms | 6.71 s | >300 s *(T/O)* | >300 s *(T/O)* | 14.29 s | 21.36 s |
 | `sha256_64r_k14` | **59.08 ms** | 125.25 ms | 40.00 s | >300 s *(T/O)* | >300 s *(T/O)* | 34.91 s | 50.92 s |
-| `sha256_64r_k15` | **59.64 ms** | 128.90 ms | 159.39 s | >300 s *(T/O)* | — *(skipped)* | 178.36 s | 35.79 s |
-| `sha256_64r_k16` | **62.98 ms** | 127.80 ms | 89.40 s | — *(skipped)* | — *(skipped)* | 101.83 s | >300 s *(T/O)* |
-| `sha256_64r_k17` | **65.77 ms** | 130.44 ms | 6.48 s | — *(skipped)* | — *(skipped)* | 159.71 s | >300 s *(T/O)* |
-| `sha256_64r_k18` | **72.80 ms** | 136.94 ms | >300 s *(T/O)* | — *(skipped)* | — *(skipped)* | >300 s *(T/O)* | >300 s *(T/O)* |
-| `sha256_64r_k19` | **87.79 ms** | 146.38 ms | >300 s *(T/O)* | — *(skipped)* | — *(skipped)* | >300 s *(T/O)* | — *(skipped)* |
-| `sha256_64r_k20` | **118.28 ms** | 169.33 ms | >300 s *(T/O)* | — *(skipped)* | — *(skipped)* | >300 s *(T/O)* | — *(skipped)* |
-| `sha256_64r_k21` | **175.61 ms** | 215.63 ms | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k22` | **290.59 ms** | 307.27 ms | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k23` | 528.35 ms | **502.96 ms** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k24` | 984.26 ms | **859.39 ms** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k25` | 2.51 s | **2.27 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k26` | 4.36 s | **3.69 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k27` | 8.08 s | **6.82 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k28` | 15.46 s | **12.67 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k29` | 30.18 s | **30.15 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k30` | 59.67 s | **54.12 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k31` | 124.63 s | **108.42 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
-| `sha256_64r_k32` | 249.85 s | **197.83 s** | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* | — *(skipped)* |
+| `sha256_64r_k15` | **59.64 ms** | 128.90 ms | 159.39 s | >300 s *(T/O)* | — *(skipped; ~33.2 min)* | 178.36 s | 35.79 s |
+| `sha256_64r_k16` | **62.98 ms** | 127.80 ms | 89.40 s | — *(skipped; ~19.1 min)* | — *(skipped; ~57.5 min)* | 101.83 s | >300 s *(T/O)* |
+| `sha256_64r_k17` | **65.77 ms** | 130.44 ms | 6.48 s | — *(skipped; ~27.7 min)* | — *(skipped; ~1.7 h)* | 159.71 s | >300 s *(T/O)* |
+| `sha256_64r_k18` | **72.80 ms** | 136.94 ms | >300 s *(T/O)* | — *(skipped; ~40.2 min)* | — *(skipped; ~2.9 h)* | >300 s *(T/O)* | >300 s *(T/O)* |
+| `sha256_64r_k19` | **87.79 ms** | 146.38 ms | >300 s *(T/O)* | — *(skipped; ~58.4 min)* | — *(skipped; ~5.0 h)* | >300 s *(T/O)* | — *(skipped; ~60.0 min)* |
+| `sha256_64r_k20` | **118.28 ms** | 169.33 ms | >300 s *(T/O)* | — *(skipped; ~1.4 h)* | — *(skipped; ~8.6 h)* | >300 s *(T/O)* | — *(skipped; ~2.3 h)* |
+| `sha256_64r_k21` | **175.61 ms** | 215.63 ms | — *(skipped; ~28.3 min)* | — *(skipped; ~2.1 h)* | — *(skipped; ~14.8 h)* | — *(skipped; ~45.7 min)* | — *(skipped; ~5.2 h)* |
+| `sha256_64r_k22` | **290.59 ms** | 307.27 ms | — *(skipped; ~50.2 min)* | — *(skipped; ~3.0 h)* | — *(skipped; ~1.1 d)* | — *(skipped; ~1.4 h)* | — *(skipped; ~11.9 h)* |
+| `sha256_64r_k23` | 528.35 ms | **502.96 ms** | — *(skipped; ~1.5 h)* | — *(skipped; ~4.3 h)* | — *(skipped; ~1.8 d)* | — *(skipped; ~2.6 h)* | — *(skipped; ~1.1 d)* |
+| `sha256_64r_k24` | 984.26 ms | **859.39 ms** | — *(skipped; ~2.6 h)* | — *(skipped; ~6.3 h)* | — *(skipped; ~3.2 d)* | — *(skipped; ~4.7 h)* | — *(skipped; ~2.6 d)* |
+| `sha256_64r_k25` | 2.51 s | **2.27 s** | — *(skipped; ~4.7 h)* | — *(skipped; ~9.1 h)* | — *(skipped; ~5.5 d)* | — *(skipped; ~8.7 h)* | — *(skipped; ~5.9 d)* |
+| `sha256_64r_k26` | 4.36 s | **3.69 s** | — *(skipped; ~8.3 h)* | — *(skipped; ~13.2 h)* | — *(skipped; ~9.6 d)* | — *(skipped; ~15.9 h)* | — *(skipped; ~13.6 d)* |
+| `sha256_64r_k27` | 8.08 s | **6.82 s** | — *(skipped; ~14.8 h)* | — *(skipped; ~19.2 h)* | — *(skipped; ~16.6 d)* | — *(skipped; ~1.2 d)* | — *(skipped; ~31.1 d)* |
+| `sha256_64r_k28` | 15.46 s | **12.67 s** | — *(skipped; ~1.1 d)* | — *(skipped; ~1.2 d)* | — *(skipped; ~28.6 d)* | — *(skipped; ~2.2 d)* | — *(skipped; ~71.0 d)* |
+| `sha256_64r_k29` | 30.18 s | **30.15 s** | — *(skipped; ~1.9 d)* | — *(skipped; ~1.7 d)* | — *(skipped; ~49.5 d)* | — *(skipped; ~4.1 d)* | — *(skipped; ~162.4 d)* |
+| `sha256_64r_k30` | 59.67 s | **54.12 s** | — *(skipped; ~3.4 d)* | — *(skipped; ~2.5 d)* | — *(skipped; ~85.7 d)* | — *(skipped; ~7.5 d)* | — *(skipped; ~1.02 yr)* |
+| `sha256_64r_k31` | 124.63 s | **108.42 s** | — *(skipped; ~6.1 d)* | — *(skipped; ~3.6 d)* | — *(skipped; ~148.2 d)* | — *(skipped; ~13.8 d)* | — *(skipped; ~2.32 yr)* |
+| `sha256_64r_k32` | 249.85 s | **197.83 s** | — *(skipped; ~10.8 d)* | — *(skipped; ~5.2 d)* | — *(skipped; ~256.3 d)* | — *(skipped; ~25.4 d)* | — *(skipped; ~5.31 yr)* |
 | **Solved ($T_{\max} = 300\;\text{s}$)** | **32 / 32** *(highest)* | **32 / 32** *(highest)* | 17 / 32 *(-15 worse)* | 12 / 32 *(-20 worse)* | 11 / 32 *(-21 worse)* | 17 / 32 *(-15 worse)* | 15 / 32 *(-17 worse)* |
 | **Total PAR-2 ($T_{\max} = 300\;\text{s}$)** | 497.70 s *(1.18x slower)* | **420.07 s** *(fastest)* | 9,334.87 s *(22.2x slower)* | 12,834.03 s *(30.6x slower)* | 12,969.64 s *(30.9x slower)* | 9,518.51 s *(22.7x slower)* | 10,343.07 s *(24.6x slower)* |
 | **Stopping Point (3 consec. T/O)** | *None (32/32)* | *None (32/32)* | $k = 18\text{--}20$ | $k = 13\text{--}15$ | $k = 12\text{--}14$ | $k = 18\text{--}20$ | $k = 16\text{--}18$ |
 
 - **Full 32-Bit Single-Core Inversion & Overlap Highlights:** Both Frobenius tracks solve **all 32 / 32** instances inside the 300 s single-core cutoff with **zero timeouts** — completing full 32-bit 64-round FIPS 180-4 SHA-256 nonce inversion (`sha256_64r_k32`) in **`197.83 s` (`3.30 min`)** from flat DIMACS `.cnf` (`420.07 s` total PAR-2 across all 32 instances) and **`249.85 s` (`4.16 min`)** from native Binary AIGER `.aig` (`497.70 s` total PAR-2), achieving **`22.2x–30.9x` lower PAR-2** than all five CDCL tracks. Across $k = 1 \dots 15$ (all 15 instances solved by Kissat, CaDiCaL, dense-solver, and Frobenius), Frobenius 1C (`.aig`) totals **`0.566 s`** vs. Kissat 4.0.4 (`143.07 s`, **`253x` slower**), CaDiCaL 3.1.0 (`238.99 s`, **`422x` slower**), and dense-solver 0.0.4 (`256.98 s`, **`454x` slower**). Across $k = 1 \dots 17$ (all 17 instances solved by CaDiCaL and dense-solver), Frobenius 1C (`.aig`) totals **`0.695 s`** vs. CaDiCaL 3.1.0 (`334.87 s`, **`482x` slower**) and dense-solver 0.0.4 (`518.51 s`, **`746x` slower**), while Frobenius 1C (`.cnf`) totals **`1.764 s`** (**`190x` faster** than CaDiCaL, **`294x` faster** than dense-solver on identical flat `.cnf` files). At $k = 15$, Frobenius 1C (`.aig`) (`59.64 ms`) is **`600x`** faster than Kissat (`35.79 s`), **`2,673x`** faster than CaDiCaL (`159.39 s`), and **`2,991x`** faster than dense-solver (`178.36 s`).
 
-### 2. Growth-Curve Modeling, Model Selection & Best-Fit Equations
+### 2. Post-Knee Asymptotic Linear Regression, Model Selection & Extrapolations
 
-![Growth-curve exponents, 32-bit nonce inversion times, and AICc model selection across all 7 tracks](growth_analysis.svg)
+![Post-knee asymptotic scaling exponents, 32-bit nonce inversion times, and AICc model selection across all 7 tracks](growth_analysis.svg)
 
-*Figure: Fitted per-bit doubling exponents $\alpha$ (uncensored M1 vs. right-censored Tobit MLE relative to exact $2^k$), log-scale full 32-bit nonce inversion times $T(32)$ (measured `3.30–4.16 min` `< 5m` cutoff for Frobenius 1C vs. extrapolated days for CDCL), and $\Delta\text{AICc}$ model-selection scores showing zero statistical support for sub-exponential scaling in any single-codepath regime across all 7 tracks. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+*Figure: Post-knee log-linear asymptotic doubling exponents $\alpha$ (skipping each solver's initial flat low-$k$ overhead regime; uncensored OLS vs. right-censored Tobit MLE relative to exact $2^k$), log-scale full 32-bit nonce inversion times $T(32)$ (measured `3.30–4.16 min` `< 5m` cutoff for Frobenius 1C vs. post-knee extrapolated days/years for CDCL), and $\Delta\text{AICc}$ model-selection scores testing polynomial/sub-exponential modulation against pure exponential scaling. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
 
-Four nested/candidate runtime models were fitted in log-space (minimizing $\sum_i (\ln T_i - \ln \hat{T}(k_i))^2$ via multi-start grid seeding + nested Levenberg–Marquardt + Nelder–Mead with monotonicity constraint $\alpha \ge 0$, excluding the degenerate 0-AND $k = 1$ collapse):
+To isolate the **true asymptotic exponential scaling** $T(k) = a \cdot 2^{\alpha k}$ (linear on a $\log T$ plot) that every solver settles into once exponential search dominates fixed parse/setup/inprocessing overhead, all linear regressions below **skip the initial flat low-$k$ floor** per engine:
+- **Frobenius 1C (`.aig` & `.cnf`):** skip $k < 22$ (below the $a \cdot 2^{k^*} = c_0$ overhead crossover knee $k^* \approx 20\text{–}21$), fitting $k = 22 \dots 32$ ($n = 11$).
+- **CaDiCaL 3.1.0 & Kissat 4.0.4 (`.cnf`):** skip $k < 10$, fitting $k \ge 10$ (solved $k = 10\dots 17$ for CaDiCaL; $k = 10\dots 15$ for Kissat).
+- **dense-solver 0.0.4 (`.cnf`):** skip $k < 12$, fitting $k \ge 12$ (solved $k = 12\dots 17$).
+- **CryptoMiniSat 5.18.0 (`.cnf` & `.xcnf`):** skip the degenerate 0-AND $k = 1$ collapse, fitting $k \ge 2$ (solved $k = 2\dots 12$ for `.cnf`; $k = 2\dots 11$ for `.xcnf`).
 
-- **M1 (Shifted Pure Exponential, $p = 3$):** $T(k) = c_0 + a \cdot 2^{\alpha k}$ (base $b = 2^\alpha$, bits per $10\times$ slowdown $= \log_2(10)/\alpha$)
-- **M2 (Polynomial-Modulated Exponential, $p = 4$):** $T(k) = c_0 + a \cdot k^\beta \cdot 2^{\alpha k}$
-- **M3 ($\sqrt{k}$-Modulated Exponential, $p = 4$):** $T(k) = c_0 + a \cdot 2^{\alpha k + \delta \sqrt{k}}$
-- **M4 (Stretched Exponential, $p = 4$):** $T(k) = c_0 + a \cdot \exp(c_1 k^\gamma)$ ($\gamma < 1$ sub-exponential vs. $\gamma = 1$ pure exponential vs. $\gamma > 1$ super-exponential)
+For every CDCL track that hits the 300 s cutoff, we report **both** uncensored log-linear OLS over solved points and **right-censored Tobit log-linear MLE** over the same $k \ge k_{\text{lin}}$ window incorporating the 3 observed $T(k) \ge 300\;\text{s}$ timeouts. The right-censored post-knee gradient powers every `— *(skipped; ~...)*` extrapolation in Table 1 above, ensuring every extrapolated entry past the 3 timeouts remains mathematically consistent with $>300\;\text{s}$. We also test pure log-linear **M0** ($\ln T = \ln a + (\alpha\ln 2)\,k$, $p = 2$) against polynomial-modulated **M2** ($a\,k^\beta 2^{\alpha k}$), $\sqrt{k}$-modulated **M3** ($a\,2^{\alpha k + \delta\sqrt{k}}$), and stretched-exponential **M4** ($a\,e^{c_1 k^\gamma}$) via small-sample **AICc** ($\Delta\text{AICc} = \text{AICc}_{\text{M0}} - \text{AICc}_{\text{M}_j} > 2$ required to support sub-exponential modulation).
 
-Model complexity is penalized via small-sample **AICc** and **BIC** (with $K = p + 1$ parameters including $\sigma^2$; positive $\Delta\text{AICc} = \text{AICc}_{\text{M1}} - \text{AICc}_{\text{M}_j} > 2$ is required to support modulation beyond M1). Because CDCL solvers exhibit large multiplicative variance near $T_{\max} = 300\;\text{s}$ (creating survivorship bias when lucky hits like CaDiCaL's `6.48 s` at $k = 17$ survive below cutoff), we also fit a **right-censored Tobit MLE** for M1 incorporating each CDCL track's 3 observed $T(k) \ge 300\;\text{s}$ timeouts (Frobenius solves all 32/32 with zero censoring).
+| Solver Track | Linear Fit Window | Uncensored OLS $\alpha$ ($b = 2^\alpha$) | OLS Prefactor $a$ | OLS Log $R^2$ / RMS | Tobit Censored $\alpha$ ($b = 2^\alpha$) | Tobit Prefactor $a$ | Bits / $10\times$ (Asymp.) | $T(32)$ (Meas.\* / Tobit Extrap.) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Frobenius 1C (`.cnf`)** | $k = 22\dots 32$ (11) | **0.9530** (1.936x) | `1.318e-07` s | 0.99798 / 1.098x | — *(0 T/Os)* | — | 3.49 | **3.30 min\*** *(OLS 3.33m)* |
+| **Frobenius 1C (`.aig`)** | $k = 22\dots 32$ (11) | **0.9730** (1.963x) | `1.016e-07` s | 0.99900 / 1.070x | — *(0 T/Os)* | — | 3.41 | **4.16 min\*** *(OLS 3.99m)* |
+| **CryptoMiniSat 5.18.0 (`.cnf`)** | $k \ge 2$ (11 SAT + 3 T/O) | **0.5337** (1.448x) | `2.981e+00` s | 0.96929 / 1.231x | **0.5380** (1.452x) | `2.933e+00` s | 6.17 | **5.17 days** *(OLS 4.77 days)* |
+| **CaDiCaL 3.1.0 (`.cnf`)**† | $k \ge 10$ (8 SAT + 3 T/O) | 0.4547† (1.370x) | `2.509e-01` s | 0.28609 / 3.129x | **0.8280** (1.775x) | `9.902e-03` s | 4.01 | **10.84 days** *(excl. $k=17$: 28.62 days)* |
+| **dense-solver 0.0.4 (`.cnf`)** | $k \ge 12$ (6 SAT + 3 T/O) | **0.8285** (1.776x) | `1.246e-02` s | 0.82473 / 1.572x | **0.8764** (1.836x) | `7.908e-03` s | 3.79 | **25.36 days** *(OLS 13.80 days)* |
+| **CryptoMiniSat 5.18.0 (`.xcnf`)** | $k \ge 2$ (10 SAT + 3 T/O) | **0.7096** (1.635x) | `7.158e-01` s | 0.76150 / 2.205x | **0.7905** (1.730x) | `5.370e-01` s | 4.20 | **256.27 days** *(OLS 56.72 days)* |
+| **Kissat 4.0.4 (`.cnf`)** | $k \ge 10$ (6 SAT + 3 T/O) | **0.8075** (1.750x) | `1.251e-02` s | 0.54763 / 2.384x | **1.1929** (2.286x) | `5.412e-04` s | 2.78 | **5.31 yr** *(OLS 8.70 days)* |
 
-| Solver Track | Fit Range ($n$) | Best Model (AICc / BIC) | M1 Floor $c_0$ | M1 Prefactor $a$ | Doubling Exp $\alpha$ ($b = 2^\alpha$) | Bits / $10\times$ | Log $R^2$ | Mult. RMS | $\Delta\text{AICc}$ (Best M2–M4 vs M1) | $T(32)$ (Meas.\* / Extrap.) |
-|---|---:|:---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Frobenius 1C (`.aig`) | $k = 14\dots 32$ (19) | **M1** / M1 | 57.51 ms | `6.182e-08` s | **0.9973** (1.9963x) | 3.33 | 0.99954 | 1.062x | `-0.85` (M2) | **4.16 min\*** *(fit 4.17m)* |
-| Frobenius 1C (`.aig`, Stage 0F) | $k = 14\dots 24$ (11) | **M1** / M1 | 58.26 ms | `6.225e-08` s | **0.9929** (1.9902x) | 3.35 | 0.99995 | 1.007x | `-7.28` (M2) | **4.16 min\*** *(fit 3.81m)* |
-| Frobenius 1C (`.aig`, Probe+SIMD) | $k = 25\dots 32$ (8) | **M1** / M2 | 773.25 ms | `3.700e-08` s | **1.0200** (2.0280x) | 3.26 | 0.99995 | 1.011x | `-13.43` (M2) | **4.16 min\*** *(fit 4.14m)* |
-| Frobenius 1C (`.cnf`) | $k = 14\dots 32$ (19) | M3§ / M3§ | 122.57 ms | `4.625e-08` s | **1.0042** (2.0058x) | 3.31 | 0.99908 | 1.079x | `+2.08`§ (M3) | **3.30 min\*** *(fit 3.63m)* |
-| Frobenius 1C (`.cnf`, Stage 0F) | $k = 14\dots 24$ (11) | **M1** / M4 | 125.38 ms | `3.569e-08` s | **1.0130** (2.0181x) | 3.28 | 0.99978 | 1.009x | `-3.59` (M4) | **3.30 min\*** *(fit 3.41m)* |
-| Frobenius 1C (`.cnf`, Probe+SIMD) | $k = 25\dots 32$ (8) | **M1** / M4 | 600.44 ms | `4.307e-08` s | **1.0059** (2.0082x) | 3.30 | 0.99842 | 1.062x | `-15.86` (M4) | **3.30 min\*** *(fit 3.53m)* |
-| CaDiCaL 3.1.0 (`.cnf`) | $k = 2\dots 17$ (16) | **M1** / M1 | 7.62 ms | `2.389e-02` s | **0.6916** (1.6151x) | 4.80 | 0.85437 | 2.464x | `-2.27` (M2) | **1.27 days** |
-| dense-solver 0.0.4 (`.cnf`) | $k = 2\dots 17$ (16) | **M1** / M1 | 898.26 ms | `2.713e-03` s | **0.9708** (1.9600x) | 3.42 | 0.97422 | 1.357x | `-2.26` (M2) | **70.61 days** |
-| Kissat 4.0.4 (`.cnf`) | $k = 2\dots 15$ (14) | **M1** / M1 | 74.36 ms | `1.773e-02` s | **0.7613** (1.6950x) | 4.36 | 0.89101 | 1.956x | `-4.59` (M4) | **4.43 days** |
-| CryptoMiniSat 5.18.0 (`.cnf`) | $k = 2\dots 12$ (11) | **M1** / M1 | 0.00 ms | `2.981e+00` s | **0.5337** (1.4476x) | 6.22 | 0.96929 | 1.231x | `-7.32` (M4) | **4.77 days** |
-| CryptoMiniSat 5.18.0 (`.cnf`, post-floor) | $k = 5\dots 12$ (8) | **M1** / M1 | 14.74 s | `7.433e-01` s | **0.7067** (1.6321x) | 4.70 | 0.93485 | 1.245x | `-18.49` (M2) | **55.29 days** |
-| CryptoMiniSat 5.18.0 (`.xcnf`) | $k = 2\dots 11$ (10) | **M1** / M2 | 0.00 ms | `7.158e-01` s | **0.7096** (1.6353x) | 4.68 | 0.76150 | 2.205x | `-1.66` (M2) | **56.72 days** |
+*\*Actual measured single-core $T(32)$ on core 12 (`197.83 s = 3.30 min` `.cnf`, `249.85 s = 4.16 min` `.aig`; separating the constant setup floor via shifted M1 over $k = 14\dots 32$ gives exact $\alpha = 1.0042$ `.cnf` / $0.9973$ `.aig`). †CaDiCaL's uncensored $k = 10\dots 17$ OLS slope (`0.4547`) is pulled down by the single 40x lucky draw at $k = 17$ (`6.48 s` vs. `159.39 s` at $k=15$ and 3 consecutive $>300\;\text{s}$ timeouts at $k = 18\text{–}20$); excluding $k = 17$ gives $k = 10\dots 16$ OLS $\alpha = 0.8888$ (`1.852x`/bit, $R^2_{\log} = 0.7912$, $T(32) = 28.62 days$), closely matching Tobit censored MLE ($\alpha = 0.8280$, $T(32) = 10.84 days$).*
 
-*\*Actual measured single-core $T(32)$ on core 12 (`197.83 s = 3.30 min` `.cnf`, `249.85 s = 4.16 min` `.aig`; `3,367x–111,922x` faster than CDCL extrapolated $T(32)$). §On `frobenius_cnf` across $k = 14\dots 32$, the marginal $\Delta\text{AICc} = +2.08$ is strictly an additive regime-seam artifact from the `+0.64 s` shortcut-first probe turning on at $k = 25$ (plus CNF-to-AIG PI-order jitter at $k = 29\text{--}31$); splitting at the $k = 24 \to 25$ seam restores overwhelming M1 preference on BOTH halves (`-3.59` on $k = 14\dots 24$, `-15.86` on $k = 25\dots 32$), and even full $k = 2\dots 32$ favors M1 by `-2.76` AICc / `-3.33` BIC!*
+#### Post-Knee Sub-Exponential Hypothesis Test (M2–M4 vs. Pure Log-Linear M0)
 
-#### Full M1–M4 Model-Selection Diagnostics & Right-Censored Tobit Estimates
+| Solver Track | Linear Window ($n$) | M0 AICc (BIC) | M2 $\Delta\text{AICc}$ ($\beta$) | M3 $\Delta\text{AICc}$ ($\delta$) | M4 $\Delta\text{AICc}$ ($\gamma$) | Sub-Exp Supported? |
+|---|---:|---:|---:|---:|---:|:---:|
+| Frobenius 1C (`.cnf`) | $k = 22\dots 32$ (11) | -11.39 (-13.63) | `-4.16` (-4.65) | `-4.19` (-5.12) | `-4.25` (1.25) | No |
+| Frobenius 1C (`.aig`) | $k = 22\dots 32$ (11) | -18.70 (-20.94) | `-5.19` (-0.70) | `-5.19` (-0.84) | `-5.18` (1.05) | No |
+| CaDiCaL 3.1.0 (`.cnf`) | $k = 10\dots 17$ (8) | 36.81 (31.05) | `-6.24` (+49.35) | `-6.10` (+80.15) | `-8.96` (0.15) | No |
+| dense-solver 0.0.4 (`.cnf`) | $k = 12\dots 17$ (6) | 25.50 (12.88) | `-29.13` (+27.48) | `-29.08` (+42.96) | `-29.62` (0.15) | No |
+| Kissat 4.0.4 (`.cnf`) | $k = 10\dots 15$ (6) | 33.34 (20.71) | `-30.00` (-0.83) | `-30.00` (+0.87) | `-30.00` (0.85) | No |
+| CryptoMiniSat 5.18.0 (`.cnf`) | $k = 2\dots 12$ (11) | 6.12 (3.89) | `-5.24` (+0.02) | `-5.24` (-0.04) | `-5.23` (1.02) | No |
+| CryptoMiniSat 5.18.0 (`.xcnf`)‡ | $k = 2\dots 11$ (10) | 33.68 (30.59) | `+4.81`‡ (+5.25) | `+3.11`‡ (+13.03) | `+0.04` (0.15) | No *(Gauss jump at $k=2$‡)* |
 
-| Solver Track | Range | M1 AICc (BIC) | M2 $\Delta\text{AICc}$ ($\beta$) | M3 $\Delta\text{AICc}$ ($\delta$) | M4 $\Delta\text{AICc}$ ($\gamma$) | Sub-Exp Supported? | Post-Floor $T(k)/T(k-1)$ (Med / Geo) | Tobit Censored M1 $\alpha$ ($T(32)$) |
-|---|---:|---:|---:|---:|---:|:---:|---:|---:|
-| Frobenius 1C (`.aig`) | $k=14\dots 32$ | -96.07 (-95.15) | `-0.85` (+3.68) | `-0.89` (+4.16) | `-0.91` (0.80) | No | 1.853x / 1.732x | — *(0 T/Os; meas. 4.16 min)* |
-| Frobenius 1C (`.aig`, split) | $k=14\dots 24$ / $25\dots 32$ | -95.30 / -50.47 | `-7.28` / `-13.43` | `-7.28` / `-13.45` | `-7.29` / `-13.48` | No | — | — *(0 T/Os)* |
-| Frobenius 1C (`.cnf`) | $k=14\dots 32$ | -86.94 (-86.02) | `+2.08`§ (+8.63) | `+2.08`§ (+9.68) | `+2.08`§ (0.54) | No *(k=25 seam§)* | 1.709x / 1.630x | — *(0 T/Os; meas. 3.30 min)* |
-| Frobenius 1C (`.cnf`, split) | $k=14\dots 24$ / $25\dots 32$ | -88.61 / -23.67 | `-3.69` / `-16.89` | `-3.60` / `-16.98` | `-3.59` / `-15.86` | No | — | — *(0 T/Os)* |
-| CaDiCaL 3.1.0 (`.cnf`) | $k=2\dots 17$ | 8.33 (7.79) | `-2.27` (+5.35) | `-3.04` (+4.68) | `-2.43` (0.15) | No | 1.197x / 1.276x | **0.8098** (7.71 days) |
-| dense-solver 0.0.4 (`.cnf`) | $k=2\dots 17$ | -26.36 (-26.91) | `-2.26` (+8.91) | `-2.85` (+7.07) | `-2.35` (0.15) | No | 1.700x / 1.722x | **0.9753** (75.04 days) |
-| Kissat 4.0.4 (`.cnf`) | $k=2\dots 15$ | 1.28 (-0.61) | `-5.00` (-0.43) | `-4.88` (-1.74) | `-4.59` (1.40) | No | 2.163x / 1.726x | **1.0073** (171.19 days) |
-| CryptoMiniSat 5.18.0 (`.cnf`) | $k=2\dots 12$ | -19.86 (-24.93) | `-7.33` (+0.02) | `-7.33` (-0.04) | `-7.32` (1.02) | No | 1.316x / 1.368x | **0.5438** (5.63 days) |
-| CryptoMiniSat 5.18.0 (`.xcnf`) | $k=2\dots 11$ | 11.30 (4.51) | `-1.66` (+2.90) | `-5.75` (+3.56) | `-2.96` (0.15) | No *(AICc)* / artifact *(BIC)* | 1.445x / 1.308x | **0.7905** (256.27 days) |
+*‡On `cms_xcnf`, `k = 2` (`0.30 s`, solved by Gauss) sits 19x below `k = 3` (`5.73 s`, CDCL), creating a step-discontinuity artifact (`ΔAICc = +4.81`) over `k = 2..11`; starting at `k = 3..11` immediately restores decisive pure-exponential M0 wins (`ΔAICc = -6.48` / `-6.62` / `-6.60`).*
 
-- **Zero Statistical Evidence for Sub-Exponential Scaling on Any Single-Codepath Track:** Across every single solver in its post-floor / single-codepath regime, **shifted pure exponential M1 wins decisively by AICc**:
-  - On `frobenius_aig` across the entire 19-point `CompiledAig256` span ($k = 14\dots 32$), M1 wins BOTH AICc (`-0.85` to `-0.91`) and BIC (`-0.04` to `-0.10`) with **$\alpha = 0.9973$** ($R^2_{\log} = 0.99954$, RMS = `1.062x`), and matches measured $T(32) = 249.85\;\text{s}$ within **0.13%** (`250.18 s`).
-  - On `frobenius_cnf`, fitting a single constant-floor M1 across the $k = 24 \to 25$ shortcut-probe seam ($k = 14\dots 32$) produces a marginal $\Delta\text{AICc} = +2.08$ because the `+643 ms` probe floor steps up at $k = 25$ (`1.395x` over pure Stage 0F) while CNF-to-AIG recovery shifts PI sweep fraction slightly at $k = 29\text{--}31$ (`0.638` vs. `0.554` at $k = 25\text{--}28, 32$); separating the two codepaths immediately restores strong M1 preference on both halves (`k = 14..24`: $\Delta\text{AICc} = -3.59$ to $-3.69$, $\alpha = 1.0130$, $R^2_{\log} = 0.99978$; `k = 25..32`: $\Delta\text{AICc} = -15.86$ to $-16.98$, $c_0 = 600.4\;\text{ms}$, $\alpha = 1.0059$, $R^2_{\log} = 0.99842$), and full $k = 2\dots 32$ also prefers M1 by both AICc (`-2.76`) and BIC (`-3.33`).
-  - On `cms_xcnf` over $k = 2\dots 11$, the 19x discontinuity between $k = 2$ (`0.30 s` Gauss-solved) and $k = 3$ (`5.73 s` CDCL) mimics polynomial curvature on BIC while AICc still prefers M1 by `1.66`, and post-floor $k = 5\dots 11$ prefers M1 by both AICc and BIC.
-- **CDCL Scaling Exponents vs. Exact $2^k$ ($\alpha = 1.000$):**
-  - **dense-solver 0.0.4** shows the cleanest single-trajectory CDCL scaling of any external engine ($R^2_{\log} = 0.9742$, RMS = `1.36x`), landing right at **$\alpha = 0.9708$** ($1.960\times$/bit, Tobit **$\alpha = 0.9753$**, $T(32) \approx 71\text{--}75\;\text{days}$) — essentially pure $2^k$ brute-force scaling with **`~30,800x`** higher constant factor than Frobenius's 2048-lane AVX2 datapath!
-  - **Kissat 4.0.4** uncensored $k = 2\dots 15$ gives $\alpha = 0.7613$ (post-floor $k = 8\dots 15$: $\alpha = 0.8590$), and once right-censored survivorship bias from $k = 16\dots 18$ timeouts is accounted for via Tobit MLE, Kissat snaps directly to **$\alpha = 1.0073$** ($2.010\times$/bit, $T(32) \approx 171\;\text{days}$, **`~74,800x`** slower than Frobenius `.cnf`).
-  - **CaDiCaL 3.1.0** uncensored $k = 2\dots 17$ gives $\alpha = 0.6916$ (`RMS = 2.46x`) solely because of the 40x lucky draw at $k = 17$ (`6.48 s` vs. `159.39 s` at $k = 15$ and `89.40 s` at $k = 16$); excluding $k = 17$ gives $k = 2\dots 16$ M1 **$\alpha = 0.9033$** ($1.870\times$/bit, $R^2_{\log} = 0.9569$, RMS = `1.66x`, $T(32) \approx 34.1\;\text{days}$), and right-censored Tobit MLE over $k = 2\dots 20$ gives **$\alpha = 0.8098$** ($1.753\times$/bit, $T(32) \approx 7.71\;\text{days}$, **`3,367x`** slower than Frobenius `.cnf`).
-  - **CryptoMiniSat 5.18.0** pays a large `6–28 s` Gaussian-elimination/inprocessing floor even at $k = 2\dots 5$, which compresses its apparent `k = 2..12` slope to $\alpha = 0.5337$ (`cnf`); separating the `c0 = 14.74 s` floor over $k = 5\dots 12$ lifts `.cnf` to **$\alpha = 0.7067$** ($1.632\times$/bit, $T(32) \approx 55.3\;\text{days}$, **`24,149x`** slower), while Tobit right-censored MLE lifts `.xcnf` to **$\alpha = 0.7905$** ($1.730\times$/bit, $T(32) \approx 256\;\text{days}$, **`111,922x`** slower).
+- **Universal Exponential Scaling Past Each Solver's Overhead Knee:** Once the initial flat low-$k$ regimes are excluded, **every single solver settles into pure exponential scaling $T(k) = a \cdot 2^{\alpha k}$** with zero statistically supported sub-exponential curvature:
+  - **Frobenius 1C (`.cnf` / `.aig`, $k = 22\dots 32$):** pure log-linear slopes **$\alpha = 0.953$ (`1.94x`/bit, $R^2 = 0.9980$)** and **$\alpha = 0.973$ (`1.96x`/bit, $R^2 = 0.9990$)** (and exact **$\alpha = 1.004$ / $0.997$** once the residual constant setup floor is separated in shifted M1), solving $k = 32$ in **`3.30–4.16 min`** on 1 core.
+  - **CaDiCaL 3.1.0 ($k \ge 10$):** right-censored Tobit **$\alpha = 0.828$ (`1.78x`/bit, $T(32) \approx 10.8\;\text{days}$)**; excluding the single 40x lucky draw at $k = 17$ gives **$\alpha = 0.889$ (`1.85x`/bit, $T(32) \approx 28.6\;\text{days}$)**.
+  - **dense-solver 0.0.4 ($k \ge 12$):** OLS **$\alpha = 0.829$ (`1.78x`/bit, $T(32) \approx 13.8\;\text{days}$)**; right-censored Tobit **$\alpha = 0.876$ (`1.84x`/bit, $T(32) \approx 25.4\;\text{days}$)**.
+  - **Kissat 4.0.4 ($k \ge 10$):** OLS **$\alpha = 0.808$ (`1.75x`/bit, $T(32) \approx 8.7\;\text{days}$)**; right-censored Tobit including $k = 16\text{–}18$ timeouts gives **$\alpha = 1.193$ (`2.29x`/bit, $T(32) \approx 5.3\;\text{yr}$)**.
+  - **CryptoMiniSat 5.18.0 ($k \ge 2$):** `.cnf` settles cleanly at **$\alpha = 0.534\text{–}0.538$ (`1.45x`/bit, $R^2 = 0.969$, $T(32) \approx 4.8\text{–}5.2\;\text{days}$)**; `.xcnf` settles at **$\alpha = 0.710\text{–}0.791$ (`1.64x–1.73x`/bit, $T(32) \approx 56.7\text{–}256.3\;\text{days}$)**.
 
 ### 3. Frobenius Cliff-Free Piecewise Regimes & 2048-Lane Early-Exit AVX2 Scaling
 
