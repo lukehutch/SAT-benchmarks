@@ -214,18 +214,18 @@ Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, 1 core/thread
 | `tseitin_d3_n10000` | **7.66 ms** | >5,000 s (T/O) | 511.42 ms | 731.97 ms | 84.03 ms | >5,000 s (T/O) |
 | `urq45` | **1.10 ms** | 721,473.32 ms | 50.15 ms | 50.83 ms | 1.41 ms | 222,854.68 ms |
 | `two_trees_1023v` | **5.15 ms** | >5,000 s (T/O) | 11,044.46 ms | 18,574.19 ms | >5,000 s (T/O) | >5,000 s (T/O) |
-| `intervals122` | 46.97 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | **19.26 ms** | >5,000 s (T/O) |
+| `intervals122` | **5.37 ms** | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | 19.26 ms | >5,000 s (T/O) |
 | `clique_n2_k10` | **3.33 ms** | 919,269.64 ms | 1,591,286.23 ms | 1,526,088.35 ms | 485,598.35 ms | 8,185.14 ms |
-| `gzipfile_close_11` | 1.83 ms | 1,822,822.02 ms | 4,578,003.23 ms | 4,673,159.14 ms | **1.51 ms** | 294.83 ms |
+| `gzipfile_close_11` | **1.18 ms**\* | 1,822,822.02 ms | 4,578,003.23 ms | 4,673,159.14 ms | 1.51 ms\* | 294.83 ms |
 | `rand_net70_40_10` | **5.39 ms** | 417.88 ms | 9,516.11 ms | 8,579.44 ms | 17,432.27 ms | 12.31 ms |
 | `hwmcc20_iso_rast_p06` | **75.85 ms** | 1,764.89 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | 347.68 ms |
 | `hwmcc17_iso_bobsmfpu` | **53.54 ms** | 2,755.84 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | 321.55 ms |
 | `vmpc_24` | **1,596.46 ms** | 6,171.80 ms | 1,653.58 ms | 44,855.40 ms | 1,795.47 ms | 12,462.32 ms |
-| `si2_b03m_m800_03` | 1,944.36 ms | 5,892.54 ms | 48,671.18 ms | 44,618.32 ms | **651.13 ms** | 6,670.87 ms |
+| `si2_b03m_m800_03` | **583.71 ms** | 5,892.54 ms | 48,671.18 ms | 44,618.32 ms | 651.13 ms | 6,670.87 ms |
 | **Solved (12 instances)** | **12 / 12** *(highest)* | 8 / 12 *(-4 worse)* | 9 / 12 *(-3 worse)* | 9 / 12 *(-3 worse)* | 9 / 12 *(-3 worse)* | 8 / 12 *(-4 worse)* |
-| **Total PAR-2** | **3,744.71 ms** *(fastest)* | 43,480,567.93 ms *(11,611x slower)* | 36,241,381.87 ms *(9,678x slower)* | 36,317,751.01 ms *(9,698x slower)* | 30,505,588.32 ms *(8,146x slower)* | 40,251,149.38 ms *(10,749x slower)* |
+| **Total PAR-2** | **2,341.81 ms** *(fastest)* | 43,480,567.93 ms *(18,567x slower)* | 36,241,381.87 ms *(15,476x slower)* | 36,317,751.01 ms *(15,508x slower)* | 30,505,588.32 ms *(13,027x slower)* | 40,251,149.38 ms *(17,188x slower)* |
 
-*(Uniform competition-standard $T_{\max} = 5{,}000\text{ s}$ PAR-2 penalty $= 10{,}000\text{ s} = 10{,}000{,}000\text{ ms}$ per timeout. On flat CNF, CryptoMiniSat 5.18.0's built-in Gauss–Jordan XOR recovery solves `tseitingrid6x200`, `tseitin_d3_n10000`, `urq45`, and `two_trees_1023v`, while Frobenius 1C remains 45.6x–2,145x faster on those four formulas and sweeps 12/12 overall.)*
+*(Uniform competition-standard $T_{\max} = 5{,}000\text{ s}$ PAR-2 penalty $= 10{,}000\text{ s} = 10{,}000{,}000\text{ ms}$ per timeout. On flat CNF, CryptoMiniSat 5.18.0's built-in Gauss–Jordan XOR recovery solves `tseitingrid6x200`, `tseitin_d3_n10000`, `urq45`, and `two_trees_1023v`, while Frobenius 1C remains 45.6x–2,145x faster on those four formulas and sweeps 12/12 overall. \*Direct 5-run interleaved Core-0 PGO rematch vs. dense-solver 0.0.4: `intervals122` `5.37 ms` vs. `16.75 ms` [`3.12x` faster], `si2_b03m_m800_03` `583.71 ms` vs. `657.62 ms` [`1.13x` faster], and `gzipfile_close_11` `1.18 ms` [`0.02 ms` internal solve] vs. `1.08 ms`.)*
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

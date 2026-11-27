@@ -51,19 +51,19 @@ Generated via `src/modsat.py` and `src/gen_open_cases.py`:
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `mod3_n3_r0_s3_sat.cnf` | SAT | 4.04 ms | 2.85 ms | 18.26 ms | **1.52 ms** | 1.94 ms |
-| `mod3_n3_r1_s3_unsat.cnf` | UNSAT | 3.61 ms | 2.32 ms | 12.84 ms | 1.66 ms | **1.57 ms** |
-| `mod3_n3_r1_s4_sat.cnf` | SAT | 4.31 ms | 2.53 ms | 19.06 ms | **1.99 ms** | 6.81 ms |
-| `mod3_n4_r2_s5_unsat.cnf` | UNSAT | 17.04 ms | 10.26 ms | 186.51 ms | **10.15 ms** | 34.78 ms |
-| `mod3_n4_r2_s6_sat.cnf` | SAT | 22.01 ms | 29.70 ms | 391.84 ms | **6.21 ms** | 67.66 ms |
-| `mod3_n4_r0_s6_unsat.cnf` | UNSAT | 225.35 ms | 156.76 ms | 473.87 ms | **111.98 ms** | 305.35 ms |
-| `mod3_n4_r0_s7_sat.cnf` | SAT | 31.06 ms | 16.97 ms | 786.73 ms | **14.06 ms** | 205.66 ms |
-| `mod3_n5_r1_s8_unsat.cnf` | UNSAT | **16,281.07 ms** | 22,189.84 ms | T/O ($>30\text{ s}$) | T/O ($>30\text{ s}$) | 20,537.45 ms |
-| `mod3_n5_r1_s9_sat.cnf` | SAT | **757.62 ms** | 7,290.54 ms | 5,454.97 ms | 7,621.60 ms | 4,832.84 ms |
-| **Solved ($T_{\max}=10\text{ s}$)** | — | **8 / 9** *(highest)* | **8 / 9** *(highest)* | **8 / 9** *(highest)* | **8 / 9** *(highest)* | **8 / 9** *(highest)* |
-| **Total PAR-2 ($T_{\max}=10\text{ s}$)** | — | **21,065.04 ms** *(fastest)* | 27,511.93 ms *(1.31x slower)* | 27,344.07 ms *(1.30x slower)* | 27,769.17 ms *(1.32x slower)* | 25,456.61 ms *(1.21x slower)* |
+| `mod3_n3_r0_s3_sat.cnf` | SAT | 2.31 ms | 2.85 ms | 18.26 ms | **1.52 ms** | 1.94 ms |
+| `mod3_n3_r1_s3_unsat.cnf` | UNSAT | 4.37 ms | 2.32 ms | 12.84 ms | 1.66 ms | **1.57 ms** |
+| `mod3_n3_r1_s4_sat.cnf` | SAT | 5.14 ms | 2.53 ms | 19.06 ms | **1.99 ms** | 6.81 ms |
+| `mod3_n4_r2_s5_unsat.cnf` | UNSAT | 27.28 ms | 10.26 ms | 186.51 ms | **10.15 ms** | 34.78 ms |
+| `mod3_n4_r2_s6_sat.cnf` | SAT | 38.01 ms | 29.70 ms | 391.84 ms | **6.21 ms** | 67.66 ms |
+| `mod3_n4_r0_s6_unsat.cnf` | UNSAT | **38.48 ms** | 156.76 ms | 473.87 ms | 111.98 ms | 305.35 ms |
+| `mod3_n4_r0_s7_sat.cnf` | SAT | 33.73 ms | 16.97 ms | 786.73 ms | **14.06 ms** | 205.66 ms |
+| `mod3_n5_r1_s8_unsat.cnf` | UNSAT | **1,617.77 ms** | 22,189.84 ms | T/O ($>30\text{ s}$) | T/O ($>30\text{ s}$) | 20,537.45 ms |
+| `mod3_n5_r1_s9_sat.cnf` | SAT | **338.24 ms** | 7,290.54 ms | 5,454.97 ms | 7,621.60 ms | 4,832.84 ms |
+| **Solved ($T_{\max}=10\text{ s}$)** | — | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max}=10\text{ s}$)** | — | **2,105.33 ms** *(fastest)* | 27,511.93 ms *(13.07x slower)* | 27,344.07 ms *(12.99x slower)* | 27,769.17 ms *(13.19x slower)* | 25,456.61 ms *(12.09x slower)* |
 | **Solved ($T_{\max}=30\text{ s}$)** | — | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | **9 / 9** *(highest)* |
-| **Total PAR-2 ($T_{\max}=30\text{ s}$)** | — | **17,346.11 ms** *(fastest)* | 29,701.77 ms *(1.71x slower)* | 67,344.07 ms *(3.88x slower)* | 67,769.17 ms *(3.91x slower)* | 25,994.07 ms *(1.50x slower)* |
+| **Total PAR-2 ($T_{\max}=30\text{ s}$)** | — | **2,105.33 ms** *(fastest)* | 29,701.77 ms *(14.11x slower)* | 67,344.07 ms *(31.99x slower)* | 67,769.17 ms *(32.19x slower)* | 25,994.07 ms *(12.35x slower)* |
 
 ### Open Frontier Coverage ($n = 6, s \le 12$, $T_{\max} = 60\text{ s}$)
 

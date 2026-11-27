@@ -97,33 +97,33 @@ All 3 upstream modular sample matrices (`src/samples/{matrix3x3_mod_26,matrix5x5
 | **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **1.08 s** *(fastest)* | 499.33 s *(462x slower)* | 142.65 s *(132x slower)* | 509.79 s *(472x slower)* | 611.47 s *(566x slower)* |
 | **Shared-14 Solved Sum (14 instances)** | — | **1.07 s** *(fastest)* | — | 22.65 s *(21.13x slower)* | — | — |
 
-### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\text{ s}$)
+### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, 1-Core PGO, $T_{\max} = 60\text{ s}$)
 
-Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inputs pinned to core 4 (`taskset -c 4`, same-build baseline four-format sweep). All 4 formats agree 100% on every verdict (13/15 solved for Frobenius in every format; 14/15 for CryptoMiniSat 5.18.0 `.xcnf`), and every SAT witness passed 100% raw-clause and exact modular matrix-product verification.
+Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inputs pinned to a single physical core (`taskset -c 0`, 1-core PGO four-format sweep). All 4 formats agree 100% on every verdict (**15 / 15 solved for Frobenius in every format** vs. 14 / 15 for CryptoMiniSat 5.18.0 `.xcnf`), and every SAT witness passed 100% raw-clause verification.
 
 | Instance | Expected | Frobenius 1C (`.cnf`) | Frobenius 1C (`.aig`) | Frobenius 1C (`.xcnf`) | Frobenius 1C (`.anf`) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (`.xcnf`) |
 |---|:---:|---:|---:|---:|---:|---:|
-| `mod_3x3_m26_bin_sat` | SAT | 18.7 ms | 19.8 ms | **17.7 ms** | 24.4 ms | 84.8 ms |
-| `mod_3x3_m26_oh_sat` | SAT | **46.2 ms** | 50.2 ms | 46.8 ms | 52.1 ms | 718.5 ms |
-| `mod_5x5_m27_oh_sat` | SAT | **2.34 s** | 5.02 s | 4.67 s | 4.65 s | 7.68 s |
-| `mod_5x5_m27_sing_oh_unsat` | UNSAT | **252.3 ms** | 259.2 ms | 263.0 ms | 284.0 ms | 1.25 s |
-| `mod_10x10_m13_c0_oh_sat` | SAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
-| `mod_12x12_m3_oh_sat` | SAT | 192.7 ms | **185.3 ms** | 192.6 ms | 191.9 ms | 545.5 ms |
-| `mod_12x12_m3_sing_oh_unsat` | UNSAT | **61.4 ms** | 66.7 ms | 88.2 ms | 65.6 ms | 424.5 ms |
-| `mod_24x24_m2_bin_sat` | SAT | 45.2 ms | 65.3 ms | **36.3 ms** | 149.1 ms | 272.7 ms |
-| `mod_24x24_m2_bin_unsat` | UNSAT | 38.1 ms | 49.5 ms | **25.1 ms** | 135.9 ms | 265.5 ms |
-| `mod_24x24_m2_oh_sat` | SAT | 49.1 ms | 58.3 ms | **49.0 ms** | 60.0 ms | 569.4 ms |
-| `mod_24x24_m2_oh_unsat` | UNSAT | **45.7 ms** | 70.3 ms | 46.5 ms | 54.3 ms | 572.7 ms |
-| `mod_32x32_m2_oh_sat` | SAT | **161.9 ms** | 191.8 ms | 171.0 ms | 196.0 ms | 1.26 s |
-| `mod_40x40_m2_oh_sat` | SAT | 408.0 ms | 408.7 ms | **375.0 ms** | 437.0 ms | 1.90 s |
-| `mod_40x40_m2_bin_unsat` | UNSAT | 1.04 s | 1.66 s | **105.9 ms** | 1.57 s | 786.8 ms |
-| `mod_48x48_m2_oh_sat` | SAT | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | **3.77 s** |
-| **Solved ($T_{\max}=60\text{ s}$)** | — | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | 13 / 15 *(-1 worse)* | **14 / 15** *(highest)* |
-| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | 244.70 s *(1.75x slower)* | 248.11 s *(1.77x slower)* | 246.09 s *(1.76x slower)* | 247.87 s *(1.77x slower)* | **140.10 s** *(fastest)* |
+| `mod_3x3_m26_bin_sat` | SAT | 22.3 ms | 15.0 ms | **7.5 ms** | 8.9 ms | 84.8 ms |
+| `mod_3x3_m26_oh_sat` | SAT | 22.4 ms | 19.0 ms | **9.0 ms** | 17.8 ms | 718.5 ms |
+| `mod_5x5_m27_oh_sat` | SAT | 38.4 ms | 83.1 ms | **32.8 ms** | 118.6 ms | 7.68 s |
+| `mod_5x5_m27_sing_oh_unsat` | UNSAT | **28.3 ms** | 81.5 ms | 31.1 ms | 175.9 ms | 1.25 s |
+| `mod_10x10_m13_c0_oh_sat` | SAT | 19.3 ms | 13.7 ms | **6.8 ms** | 26.9 ms | >60 s *(T/O)* |
+| `mod_12x12_m3_oh_sat` | SAT | 17.9 ms | 12.2 ms | **9.8 ms** | 256.9 ms | 545.5 ms |
+| `mod_12x12_m3_sing_oh_unsat` | UNSAT | 21.3 ms | 21.7 ms | **10.0 ms** | 59.2 ms | 424.5 ms |
+| `mod_24x24_m2_bin_sat` | SAT | 317.3 ms | 235.3 ms | **40.6 ms** | 46.2 ms | 272.7 ms |
+| `mod_24x24_m2_bin_unsat` | UNSAT | 311.8 ms | 239.7 ms | **38.0 ms** | 67.1 ms | 265.5 ms |
+| `mod_24x24_m2_oh_sat` | SAT | 441.3 ms | 367.5 ms | 353.9 ms | **182.4 ms** | 569.4 ms |
+| `mod_24x24_m2_oh_unsat` | UNSAT | 342.0 ms | 373.3 ms | 347.9 ms | **239.0 ms** | 572.7 ms |
+| `mod_32x32_m2_oh_sat` | SAT | 102.5 ms | 151.8 ms | **76.3 ms** | 141.0 ms | 1.26 s |
+| `mod_40x40_m2_oh_sat` | SAT | 197.9 ms | 283.5 ms | **167.5 ms** | 273.1 ms | 1.90 s |
+| `mod_40x40_m2_bin_unsat` | UNSAT | 1.01 s | 1.21 s | **115.7 ms** | 257.4 ms | 786.8 ms |
+| `mod_48x48_m2_oh_sat` | SAT | 513.2 ms | 555.3 ms | **453.1 ms** | 562.9 ms | 3.77 s |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **15 / 15** *(highest)* | **15 / 15** *(highest)* | **15 / 15** *(highest)* | **15 / 15** *(highest)* | 14 / 15 *(-1 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | 3.40 s *(2.00x slower)* | 3.66 s *(2.15x slower)* | **1.70 s** *(fastest)* | 2.43 s *(1.43x slower)* | 140.10 s *(82.41x slower)* |
 
 **Key Format Observation:**
 
-- **Native `.xcnf` dramatically accelerates binary $\mathbb{F}_2$ instances:** On `mod_40x40_m2_bin_unsat` (`30,557` native XORs), `.xcnf` runs **9.82× faster** for Frobenius (`105.9 ms` vs `1.04 s`) and **3.36× faster** for CryptoMiniSat 5.18.0 (`786.8 ms` vs `2.64 s`). On `mod_24x24_m2_bin_{sat,unsat}`, `.xcnf` is likewise the fastest format (`36.3 ms` and `25.1 ms`).
+- **Native `.xcnf` dramatically accelerates binary $\mathbb{F}_2$ instances:** On `mod_40x40_m2_bin_unsat` (`30,557` native XORs), `.xcnf` runs **8.71× faster** for Frobenius (`115.7 ms` vs `1.01 s`) and **3.36× faster** for CryptoMiniSat 5.18.0 (`786.8 ms` vs `2.64 s`). On `mod_24x24_m2_bin_{sat,unsat}`, `.xcnf` is likewise the fastest format (`40.6 ms` and `38.0 ms`), and all four Frobenius formats sweep **15 / 15** (`1.70–3.66 s` PAR-2 vs. CryptoMiniSat 5.18.0 `.xcnf` `14 / 15`, `140.10 s`).
 
 ### Independent UNSAT Proof Certification (5 / 5 Formally Verified)
 

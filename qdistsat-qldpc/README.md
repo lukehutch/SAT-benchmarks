@@ -49,20 +49,20 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 
 | Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|---:|
-| `BB_144_12_12_w11_unsat` | UNSAT | **24.00 ms** | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_144_12_12_w12_sat` | SAT | 6.03 ms | 4.49 ms | 262.67 ms | 100.53 ms | 73.87 ms | **2.72 ms** |
-| `BB_30_4_6_w5_unsat` | UNSAT | **1.55 ms** | 13.72 ms | 44.34 ms | 35.48 ms | 8.41 ms | 15.79 ms |
-| `BB_30_4_6_w6_sat` | SAT | **1.47 ms** | 2.75 ms | 31.24 ms | 27.31 ms | 2.79 ms | 7.36 ms |
+| `BB_144_12_12_w11_unsat` | UNSAT | **54.90 ms** | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `BB_144_12_12_w12_sat` | SAT | 7.18 ms | 4.49 ms | 262.67 ms | 100.53 ms | 73.87 ms | **2.72 ms** |
+| `BB_30_4_6_w5_unsat` | UNSAT | **5.02 ms** | 13.72 ms | 44.34 ms | 35.48 ms | 8.41 ms | 15.79 ms |
+| `BB_30_4_6_w6_sat` | SAT | 4.57 ms | **2.75 ms** | 31.24 ms | 27.31 ms | 2.79 ms | 7.36 ms |
 | `BB_360_12_24_w23_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_360_12_24_w24_sat` | SAT | **107.47 ms** | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_72_12_6_w5_unsat` | UNSAT | **3.05 ms** | 54.12 ms | 110.92 ms | 94.40 ms | 25.03 ms | 62.34 ms |
-| `BB_72_12_6_w6_sat` | SAT | 3.26 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
+| `BB_360_12_24_w24_sat` | SAT | **22.29 ms** | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `BB_72_12_6_w5_unsat` | UNSAT | **6.56 ms** | 54.12 ms | 110.92 ms | 94.40 ms | 25.03 ms | 62.34 ms |
+| `BB_72_12_6_w6_sat` | SAT | 3.11 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
 | `BB_756_16_34_w33_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
-| `BB_756_16_34_w34_sat` | SAT | **273.83 ms** | >10 s | >10 s | >10 s | >10 s | >10 s |
+| `BB_756_16_34_w34_sat` | SAT | **123.53 ms** | >10 s | >10 s | >10 s | >10 s | >10 s |
 | **Solved (10 files)** | — | **8 / 10** *(highest)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* |
-| **Total PAR-2** | — | **40,420.7 ms** *(fastest)* | 100,078.2 ms *(2.48x slower)* | 100,515.2 ms *(2.49x slower)* | 100,296.7 ms *(2.48x slower)* | 100,118.5 ms *(2.48x slower)* | 100,090.1 ms *(2.48x slower)* |
+| **Total PAR-2** | — | **40,227.2 ms** *(fastest)* | 100,078.2 ms *(2.49x slower)* | 100,515.2 ms *(2.50x slower)* | 100,296.7 ms *(2.49x slower)* | 100,118.5 ms *(2.49x slower)* | 100,090.1 ms *(2.49x slower)* |
 
-*Summary:* Within $T_{\max} = 10\text{ s}$, Frobenius 1C solves **8/10** instances in **`420.66 ms`** — **#1 overall** (`40,420.7 ms` PAR-2, **2.48x faster** than CaDiCaL 3.1.0 at `100,078.2 ms`, Kissat 4.0.4 at `100,090.1 ms`, dense-solver 0.0.4 at `100,118.5 ms`, CryptoMiniSat XCNF at `100,296.7 ms`, and CryptoMiniSat CNF at `100,515.2 ms`), uniquely solving `BB_144_12_12_w11_unsat` (**UNSAT `24.00 ms`**), `BB_360_12_24_w24_sat` (**SAT `107.47 ms`**, clause-verified), and `BB_756_16_34_w34_sat` (**SAT `273.83 ms`**, clause-verified) where all five external baselines time out past $10\text{ s}$, alongside `BB_30_4_6_w5_unsat` in **`1.55 ms`** and `BB_72_12_6_w5_unsat` in **`3.05 ms`** (previously triple-certified via direct LRAT: `54.3 ms` emit, `1.26 MB`, [`lrat-check`](https://github.com/marijnheule/drat-trim) `30.7 ms` + HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT` `36.2 ms`).
+*Summary:* Within $T_{\max} = 10\text{ s}$, Frobenius 1C PGO solves **8/10** instances in **`227.16 ms`** — **#1 overall** (`40,227.2 ms` PAR-2, **2.49x faster** than CaDiCaL 3.1.0 at `100,078.2 ms`, Kissat 4.0.4 at `100,090.1 ms`, dense-solver 0.0.4 at `100,118.5 ms`, CryptoMiniSat XCNF at `100,296.7 ms`, and CryptoMiniSat CNF at `100,515.2 ms`), uniquely solving `BB_144_12_12_w11_unsat` (**UNSAT `54.90 ms`**), `BB_360_12_24_w24_sat` (**SAT `22.29 ms`**, clause-verified), and `BB_756_16_34_w34_sat` (**SAT `123.53 ms`**, clause-verified) where all five external baselines time out past $10\text{ s}$, alongside `BB_30_4_6_w5_unsat` in **`5.02 ms`** and `BB_72_12_6_w5_unsat` in **`6.56 ms`** (previously triple-certified via direct LRAT: `54.3 ms` emit, `1.26 MB`, [`lrat-check`](https://github.com/marijnheule/drat-trim) `30.7 ms` + HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT` `36.2 ms`).
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -75,39 +75,39 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 
 | Instance | Expected | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|:---:|---:|---:|---:|---:|---:|
-| `golomb_m10_l54.cnf` | UNSAT | **6.83 s** | 14.36 s | 11.24 s | 19.43 s | 7.39 s |
-| `golomb_m10_l55.cnf` | SAT | **163.1 ms** | 2.17 s | 1.18 s | 3.41 s | 1.01 s |
-| `golomb_m5_l10.cnf` | UNSAT | 3.8 ms | **3.2 ms** | 30.5 ms | 3.4 ms | 5.4 ms |
-| `golomb_m5_l11.cnf` | SAT | 3.4 ms | **3.0 ms** | 33.5 ms | 3.3 ms | 6.1 ms |
-| `golomb_m6_l16.cnf` | UNSAT | **5.0 ms** | 5.4 ms | 52.7 ms | 5.5 ms | 15.2 ms |
-| `golomb_m6_l17.cnf` | SAT | 4.0 ms | **3.5 ms** | 57.9 ms | 4.5 ms | 15.1 ms |
-| `golomb_m7_l24.cnf` | UNSAT | 30.0 ms | 32.4 ms | 99.7 ms | **22.3 ms** | 39.6 ms |
-| `golomb_m7_l25.cnf` | SAT | 6.7 ms | **3.8 ms** | 96.5 ms | 16.0 ms | 19.9 ms |
-| `golomb_m8_l33.cnf` | UNSAT | **138.4 ms** | 194.9 ms | 270.0 ms | 172.4 ms | 250.4 ms |
-| `golomb_m8_l34.cnf` | SAT | **31.3 ms** | 179.8 ms | 197.6 ms | 57.7 ms | 243.3 ms |
-| `golomb_m9_l43.cnf` | UNSAT | 1.10 s | 1.34 s | 1.23 s | 1.97 s | **1.05 s** |
-| `golomb_m9_l44.cnf` | SAT | 925.6 ms | **483.1 ms** | 794.1 ms | 1.18 s | 520.5 ms |
+| `golomb_m10_l54.cnf` | UNSAT | **181.1 ms** | 14.36 s | 11.24 s | 19.43 s | 7.39 s |
+| `golomb_m10_l55.cnf` | SAT | **288.5 ms** | 2.17 s | 1.18 s | 3.41 s | 1.01 s |
+| `golomb_m5_l10.cnf` | UNSAT | 9.7 ms | **3.2 ms** | 30.5 ms | 3.4 ms | 5.4 ms |
+| `golomb_m5_l11.cnf` | SAT | 9.6 ms | **3.0 ms** | 33.5 ms | 3.3 ms | 6.1 ms |
+| `golomb_m6_l16.cnf` | UNSAT | 13.4 ms | **5.4 ms** | 52.7 ms | 5.5 ms | 15.2 ms |
+| `golomb_m6_l17.cnf` | SAT | 6.2 ms | **3.5 ms** | 57.9 ms | 4.5 ms | 15.1 ms |
+| `golomb_m7_l24.cnf` | UNSAT | 22.7 ms | 32.4 ms | 99.7 ms | **22.3 ms** | 39.6 ms |
+| `golomb_m7_l25.cnf` | SAT | 11.3 ms | **3.8 ms** | 96.5 ms | 16.0 ms | 19.9 ms |
+| `golomb_m8_l33.cnf` | UNSAT | **31.3 ms** | 194.9 ms | 270.0 ms | 172.4 ms | 250.4 ms |
+| `golomb_m8_l34.cnf` | SAT | **41.4 ms** | 179.8 ms | 197.6 ms | 57.7 ms | 243.3 ms |
+| `golomb_m9_l43.cnf` | UNSAT | **103.7 ms** | 1.34 s | 1.23 s | 1.97 s | 1.05 s |
+| `golomb_m9_l44.cnf` | SAT | **132.2 ms** | 483.1 ms | 794.1 ms | 1.18 s | 520.5 ms |
 | **Solved ($T_{\max} = 60\text{ s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* |
-| **Total PAR-2** | — | **9.24 s** *(fastest)* | 18.77 s *(2.03x slower)* | 15.29 s *(1.65x slower)* | 26.28 s *(2.84x slower)* | 10.56 s *(1.14x slower)* |
+| **Total PAR-2** | — | **0.85 s** *(fastest)* | 18.77 s *(22.1x slower)* | 15.29 s *(18.0x slower)* | 26.28 s *(30.9x slower)* | 10.56 s *(12.4x slower)* |
 
-### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
+### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, 1-Core PGO)
 
-Evaluated sequentially on physical core 9 (`taskset -c 9`) using uncompressed flat inputs in all 4 formats (same-build baseline four-format parity sweep). Every solved verdict agrees 100% across all four formats, and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
+Evaluated sequentially on a dedicated physical core (`taskset -c 0`) using uncompressed flat inputs in all 4 formats. Every solved verdict agrees 100% across all four formats (`12 / 12` in all four formats), and every SAT model emitted from `.aig`, `.xcnf`, or `.anf` passed 100% raw-clause verification when projected back onto the original DIMACS CNF variables.
 
 | Instance | Expected | Frobenius 1C (`.cnf`) | Frobenius 1C (`.aig`) | Frobenius 1C (`.xcnf`) | Frobenius 1C (`.anf`) |
 |---|:---:|---:|---:|---:|---:|
-| `golomb_m10_l54.cnf` | UNSAT | 11.25 s | 10.96 s | **10.93 s** | 11.05 s |
-| `golomb_m10_l55.cnf` | SAT | **1.00 s** | 1.03 s | 1.01 s | 1.03 s |
-| `golomb_m5_l10.cnf` | UNSAT | 5.0 ms | **4.3 ms** | 4.7 ms | **4.3 ms** |
-| `golomb_m5_l11.cnf` | SAT | 5.0 ms | **4.4 ms** | 4.9 ms | **4.4 ms** |
-| `golomb_m6_l16.cnf` | UNSAT | 8.1 ms | **7.6 ms** | 8.0 ms | 8.0 ms |
-| `golomb_m6_l17.cnf` | SAT | 8.4 ms | 7.9 ms | 8.2 ms | **7.8 ms** |
-| `golomb_m7_l24.cnf` | UNSAT | 22.5 ms | 22.3 ms | **21.9 ms** | 22.5 ms |
-| `golomb_m7_l25.cnf` | SAT | 15.2 ms | 15.5 ms | **15.0 ms** | 15.6 ms |
-| `golomb_m8_l33.cnf` | UNSAT | **170.0 ms** | 171.0 ms | 189.8 ms | 172.3 ms |
-| `golomb_m8_l34.cnf` | SAT | 28.2 ms | 27.1 ms | **26.2 ms** | 27.5 ms |
-| `golomb_m9_l43.cnf` | UNSAT | **1.18 s** | 1.24 s | 1.22 s | 1.23 s |
-| `golomb_m9_l44.cnf` | SAT | **330.2 ms** | 342.6 ms | 340.7 ms | 348.3 ms |
+| `golomb_m10_l54.cnf` | UNSAT | 323.0 ms | **225.7 ms** | 252.6 ms | 35.51 s |
+| `golomb_m10_l55.cnf` | SAT | 278.4 ms | **241.9 ms** | 281.3 ms | 2.12 s |
+| `golomb_m5_l10.cnf` | UNSAT | 11.1 ms | **8.0 ms** | 11.0 ms | 9.1 ms |
+| `golomb_m5_l11.cnf` | SAT | 9.7 ms | **8.1 ms** | 11.1 ms | 10.5 ms |
+| `golomb_m6_l16.cnf` | UNSAT | 16.4 ms | 13.7 ms | **8.2 ms** | 17.1 ms |
+| `golomb_m6_l17.cnf` | SAT | 12.5 ms | 11.1 ms | **6.9 ms** | 15.3 ms |
+| `golomb_m7_l24.cnf` | UNSAT | 35.1 ms | 51.0 ms | **24.6 ms** | 56.1 ms |
+| `golomb_m7_l25.cnf` | SAT | 22.7 ms | **10.4 ms** | 40.3 ms | 36.4 ms |
+| `golomb_m8_l33.cnf` | UNSAT | 55.4 ms | 71.3 ms | **36.2 ms** | 464.5 ms |
+| `golomb_m8_l34.cnf` | SAT | 58.3 ms | 39.2 ms | **36.0 ms** | 151.4 ms |
+| `golomb_m9_l43.cnf` | UNSAT | 169.0 ms | **122.8 ms** | 162.7 ms | 3.12 s |
+| `golomb_m9_l44.cnf` | SAT | 177.8 ms | 187.7 ms | **132.9 ms** | 965.3 ms |
 
 ### Independent UNSAT Proof Certification (6 / 6 Formally Verified)
 

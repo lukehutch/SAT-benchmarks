@@ -71,19 +71,19 @@ Every key $K$ and plaintext $P$ below is generated solely by $\mathrm{SHA\text{-
 
 | Instance | Ans | Frobenius 1C (.cnf) | Frobenius 1C (.xcnf) | Frobenius 1C (.aig) | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 (.cnf) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (.cnf) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (.xcnf) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 (.cnf) | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 (.cnf) |
 |---|:---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `aes256_r01_k128_sat` | SAT | 19.46 ms | 15.05 ms | **8.30 ms** | 9.90 ms | 133.76 ms | 36.28 ms | 10.61 ms | 36.21 ms |
-| `aes256_r02_k16_sat` | SAT | 2.32 ms | 3.62 ms | **1.17 ms** | 5.24 ms | 10.84 ms | 8.62 ms | 12.38 ms | 5.75 ms |
-| `aes256_r02_k32_sat` | SAT | 44.93 ms | 41.80 ms | 18.37 ms | **11.75 ms** | 200.08 ms | 59.25 ms | 18.77 ms | 51.22 ms |
-| `aes256_r03_k16_sat` | SAT | 237.74 ms | 232.64 ms | **2.59 ms** | 67.85 ms | 299.20 ms | 64.96 ms | 55.21 ms | 136.24 ms |
-| `aes256_r04_k12_sat` | SAT | 69.33 ms | 61.76 ms | **2.75 ms** | 1,195.96 ms | 844.85 ms | 1,524.89 ms | 348.70 ms | 1,159.26 ms |
-| `aes256_r04_k12_unsat` | UNSAT | 2,202.92 ms | 2,195.37 ms | **2.57 ms** | 2,494.03 ms | 2,954.34 ms | 2,313.22 ms | 3,529.67 ms | 6,504.89 ms |
-| `aes256_r14_k10_sat` | SAT | 494.96 ms | 1,160.24 ms | **11.18 ms** | 2,607.10 ms | 12,719.98 ms | 33,262.83 ms | 1,552.64 ms | 1,740.19 ms |
-| `aes256_r14_k12_sat` | SAT | 1,008.79 ms | 248.67 ms | **11.89 ms** | 1,542.82 ms | 13,600.43 ms | >60 s *(T/O)* | 7,629.73 ms | 1,518.84 ms |
-| `aes256_r14_k12_unsat` | UNSAT | 9,627.57 ms | 8,498.91 ms | **11.08 ms** | 13,590.49 ms | 45,678.79 ms | >60 s *(T/O)* | 20,395.81 ms | 10,205.96 ms |
+| `aes256_r01_k128_sat` | SAT | 30.66 ms | 18.37 ms | **8.30 ms** | 9.90 ms | 133.76 ms | 36.28 ms | 10.61 ms | 36.21 ms |
+| `aes256_r02_k16_sat` | SAT | 2.74 ms | 4.00 ms | **1.17 ms** | 5.24 ms | 10.84 ms | 8.62 ms | 12.38 ms | 5.75 ms |
+| `aes256_r02_k32_sat` | SAT | 49.84 ms | 70.35 ms | 18.37 ms | **11.75 ms** | 200.08 ms | 59.25 ms | 18.77 ms | 51.22 ms |
+| `aes256_r03_k16_sat` | SAT | 12.11 ms | 7.88 ms | **2.59 ms** | 67.85 ms | 299.20 ms | 64.96 ms | 55.21 ms | 136.24 ms |
+| `aes256_r04_k12_sat` | SAT | 12.66 ms | 7.38 ms | **2.75 ms** | 1,195.96 ms | 844.85 ms | 1,524.89 ms | 348.70 ms | 1,159.26 ms |
+| `aes256_r04_k12_unsat` | UNSAT | 12.99 ms | 7.59 ms | **2.57 ms** | 2,494.03 ms | 2,954.34 ms | 2,313.22 ms | 3,529.67 ms | 6,504.89 ms |
+| `aes256_r14_k10_sat` | SAT | 46.47 ms | 40.63 ms | **11.18 ms** | 2,607.10 ms | 12,719.98 ms | 33,262.83 ms | 1,552.64 ms | 1,740.19 ms |
+| `aes256_r14_k12_sat` | SAT | 48.03 ms | 39.85 ms | **11.89 ms** | 1,542.82 ms | 13,600.43 ms | >60 s *(T/O)* | 7,629.73 ms | 1,518.84 ms |
+| `aes256_r14_k12_unsat` | UNSAT | 47.35 ms | 41.07 ms | **11.08 ms** | 13,590.49 ms | 45,678.79 ms | >60 s *(T/O)* | 20,395.81 ms | 10,205.96 ms |
 | **Solved ($T_{\max} = 60\text{ s}$)** | — | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 7 / 9 *(-2 worse)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* |
-| **Total PAR-2** | — | 13,708.02 ms *(196.11x slower)* | 12,458.06 ms *(178.23x slower)* | **69.90 ms** *(fastest)* | 21,525.14 ms *(307.94x slower)* | 76,442.27 ms *(1,093.59x slower)* | 277,270.05 ms *(3,966.67x slower)* | 33,553.52 ms *(480.02x slower)* | 21,358.56 ms *(305.56x slower)* |
+| **Total PAR-2** | — | 262.85 ms *(3.76x slower)* | 237.12 ms *(3.39x slower)* | **69.90 ms** *(fastest)* | 21,525.14 ms *(307.94x slower)* | 76,442.27 ms *(1,093.59x slower)* | 277,270.05 ms *(3,966.67x slower)* | 33,553.52 ms *(480.02x slower)* | 21,358.56 ms *(305.56x slower)* |
 
-- **Format-matched comparisons:** On identical flat `.cnf` inputs, Frobenius 1C (`13,708.02 ms`) is **`1.56x` faster** than Kissat 4.0.4 (`21,358.56 ms`), **`1.57x` faster** than CaDiCaL 3.1.0 (`21,525.14 ms`), **`2.45x` faster** than dense-solver 0.0.4 (`33,553.52 ms`), and **`5.58x` faster** than CryptoMiniSat 5.18.0 (`76,442.27 ms`). On native `.xcnf` inputs, Frobenius 1C (`12,458.06 ms`) is **`1.71x` faster** than Kissat 4.0.4 (`.cnf`), **`1.73x` faster** than CaDiCaL 3.1.0 (`.cnf`), and **`22.26x` faster** than CryptoMiniSat 5.18.0 (`.xcnf`). On native Binary AIGER `.aig` miters, Frobenius 1C solves all `9 / 9` instances in **`69.90 ms`** (**`305.56x` faster** than Kissat 4.0.4 `.cnf`).
+- **Format-matched comparisons:** On identical flat `.cnf` inputs, Frobenius 1C PGO (`262.85 ms`) is **`81.26x` faster** than Kissat 4.0.4 (`21,358.56 ms`), **`81.89x` faster** than CaDiCaL 3.1.0 (`21,525.14 ms`), **`127.65x` faster** than dense-solver 0.0.4 (`33,553.52 ms`), and **`290.82x` faster** than CryptoMiniSat 5.18.0 (`76,442.27 ms`). On native `.xcnf` inputs, Frobenius 1C PGO (`237.12 ms`) is **`90.08x` faster** than Kissat 4.0.4 (`.cnf`), **`90.78x` faster** than CaDiCaL 3.1.0 (`.cnf`), and **`1,169.32x` faster** than CryptoMiniSat 5.18.0 (`.xcnf`). On DIMACS-ANF `.anf`, Frobenius 1C PGO solves all `9 / 9` in **`156.41 ms`** (`7/7` SAT witnesses verified), and on native Binary AIGER `.aig` miters in **`69.90 ms`** (**`305.56x` faster** than Kissat 4.0.4 `.cnf`).
 
 ### 2. Full 14-Round 256-Bit Dual-Plaintext Stress Test (`aes256_r14_k256_dual_sat`, $T_{\max} = 30\text{ s}$)
 
