@@ -1,536 +1,339 @@
 # SAT Benchmarks
 
-A curated, **four-format** (**Binary AIGER 1.9 `.aig.xz`**, **DIMACS `.cnf.xz`**, **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`**, and **DIMACS-ANF `.anf.xz`**) repository of **93 standalone top-level collections** (**89 SAT collections** totaling **1,115 instances** and **4,452 compressed SAT benchmark files** across all four formats, **2 MATA NFA collections** totaling **174 `.mata.xz` files**, and **2 URI-manifest collections** indexing the complete 25-year SAT Competition & SAT-Race archive plus all 97 UBC SATLIB archives, with bespoke reproducible **`diagram.svg`** vector illustrations across all **93 / 93** collections) spanning Boolean satisfiability, circuit inversion, algebraic cryptanalysis, quantum LDPC code distance, bilinear tensor decomposition & exact/modular matrix inversion, rectangle-free grid coloring, OEIS combinatorial frontiers (sorting/selection networks, Golomb rulers, van der Waerden numbers, peaceable queens, Zarankiewicz numbers, grid point patterns), Picat-SAT combinatorial encodings (VMTL, Golomb rulers, Costas arrays, MAPF, Numberlink, rectangle packing), graph theory, combinatorial chessboard puzzles, symmetry breaking, exact circuit synthesis, hardware/SHA-256 verification, finite-automata complementation, SATLIB/DIMACS classics, and SAT Competition corpora. All benchmark input files across the repository are stored xz-compressed (`.xz`) and strictly respect GitHub's `< 95 MB` per-file limit.
-
-## Uniform Collection Layout
-
-Every collection lives at the repository root in its own self-contained directory (`<collection>/`) with **zero** benchmark files at collection root:
-
-- **`README.md`** — Uniform 6-section page layout across all **93 / 93** collections: hero `diagram.svg` figure immediately below the title, followed by `## Provenance & Credit` (with `- **Recommended by:**` last when present), `## Problem Description`, `## Corpus & Data Sizes`, `## Benchmark Results` (Frobenius 1C, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0, [dense-solver](https://github.com/libdense/dense-solver) 0.0.4, [Kissat](https://github.com/arminbiere/kissat) 4.0.4, plus [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim) certification), `## Phase-Transition & Structural Analysis` (or `## Automata Structural Analysis`), and `## References`.
-- **`diagram.svg`** + **`src/gen_diagram.py`** — Reproducible bespoke vector illustration across all **93 / 93** collections, generated directly from real benchmark instances or problem geometry.
-- **`expected.tsv`** — Top-level 2-column ground-truth verdict manifest (`<instance_without_.xz>\t<SAT|UNSAT|UNKNOWN>`, no header, sorted alphabetically by instance name) across **92 / 93** collections (**21,514 rows**: `8,652 SAT / 6,204 UNSAT / 6,658 UNKNOWN`), covering 1-to-1 every file in `*-orig/` (flat relative POSIX paths such as `sortnet_n11_d7.cnf`, `bar.aig`, `aes256_r14_k256_dual_sat.xcnf`, `ARI056_1.mata`, plus `<hash>.cnf` entries for URI-only instance corpora and complementation verdicts for MATA NFAs), programmatically validated by [`src/verify_expected.py`](src/verify_expected.py).
-- **`<orig-fmt>-orig/`** — Native original compressed files directly inside: `aig-orig/` (11 collections, 101 instances), `cnf-orig/` (77 collections, 1,004 instances), `xcnf-orig/` (1 collection, 10 instances), or `mata-orig/` (2 NFA collections, 174 automata).
-- **`<conv-fmt>-converted/`** — Exact lossless conversions for all remaining SAT formats directly inside (with any `> 95 MB` GitHub-limit omissions explicitly documented in `<collection>/format_exclusions.tsv` and validated by [`src/verify_expected.py`](src/verify_expected.py)):
-  - `aig-converted/` (or `aig-orig/`): **1,111 / 1,115** **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT; `226.28 MB` total, verified via [Berkeley **ABC**](https://github.com/berkeley-abc/abc) `read_aiger` / binary AIGER 1.9 decode & witness simulation, `0` errors; 4 largest `guillochon-oeis-a067782-sortnet` files `> 95 MB` omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
-  - `cnf-converted/` (or `cnf-orig/`): **1,115 / 1,115** **DIMACS `.cnf.xz`** (`457.93 MB` total).
-  - `xcnf-converted/` (or `xcnf-orig/`): **1,115 / 1,115** **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** (`407.51 MB` total, with complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
-  - `anf-converted/`: **1,111 / 1,115** **DIMACS-ANF `.anf.xz`** (`405.17 MB` total, linear-size degree-$\le 2$ from `aig-orig/` and degree-$\le 3$ from `xcnf-orig/` / `xcnf-converted/`, generated via [`src/to_anf.py`](src/to_anf.py); same 4 `> 95 MB` `guillochon-oeis-a067782-sortnet` files omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
-- **`src/`** — Standalone generator, exporter, fetcher, diagram, or converter source code (alongside repository-wide [`src/run_benchmarks.py`](src/run_benchmarks.py) + [`src/BENCHMARK_RUNNER.md`](src/BENCHMARK_RUNNER.md) for offline multi-solver compilation & parallel core-pinned benchmarking, [`src/to_anf.py`](src/to_anf.py), [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py), and [`src/verify_expected.py`](src/verify_expected.py)).
+A curated, **four-format** (**AIGER `.aig.xz`**, **DIMACS `.cnf.xz`**, **CryptoMiniSat `.xcnf.xz`**, and **DIMACS-ANF `.anf.xz`**) suite of **93 benchmark collections** (`benchmarks/<category>/<name>/`) spanning cryptography, number theory, algebra, geometry, circuits & hardware, combinatorics, planning, random phase transitions, automata & Busy Beaver computability, and SAT Competition archives — each with verified ground-truth verdicts, multi-solver baselines, and bespoke vector diagrams.
 
 ## Benchmark Collections (93 Collections)
+
+Browse by domain: [Cryptography (4)](#cryptography-4) · [Number-Theoretic (7)](#number-theoretic-7) · [Algebraic (20)](#algebraic-20) · [Geometric (11)](#geometric-11) · [Circuits & Hardware (13)](#circuits--hardware-13) · [Combinatorial (15)](#combinatorial-15) · [Planning & Puzzles (5)](#planning--puzzles-5) · [Random & Phase-Transition (9)](#random--phase-transition-9) · [Automata & Computability (3)](#automata--computability-3) · [Competition & Multi-Domain Suites (6)](#competition--multi-domain-suites-6)
+
+### Cryptography (4)
 
 <table width="100%" cellpadding="12" cellspacing="0">
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="aes256-key-recovery/README.md"><img src="aes256-key-recovery/diagram.svg" width="230" alt="Synthetic NIST FIPS 197 AES-256 Key-Recovery &amp; Hash-Preimage Circuits"></a><br><br>
-      <a href="aes256-key-recovery/README.md"><b>Synthetic NIST FIPS 197 AES-256 Key-Recovery &amp; Hash-Preimage Circuits</b></a><br>
+      <a href="benchmarks/cryptography/aes256-key-recovery/README.md"><img src="benchmarks/cryptography/aes256-key-recovery/diagram.svg" width="230" alt="Synthetic NIST FIPS 197 AES-256 Key-Recovery &amp; Hash-Preimage Circuits"></a><br><br>
+      <a href="benchmarks/cryptography/aes256-key-recovery/README.md"><b>Synthetic NIST FIPS 197 AES-256 Key-Recovery &amp; Hash-Preimage Circuits</b></a><br>
       <sub><code>aes256-key-recovery</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="aloul-dac02-bench/README.md"><img src="aloul-dac02-bench/diagram.svg" width="230" alt="Aloul DAC 2002 Symmetry Benchmarks"></a><br><br>
-      <a href="aloul-dac02-bench/README.md"><b>Aloul DAC 2002 Symmetry Benchmarks</b></a><br>
-      <sub><code>aloul-dac02-bench</code></sub>
+      <a href="benchmarks/cryptography/hard-spn/README.md"><img src="benchmarks/cryptography/hard-spn/diagram.svg" width="230" alt="Hard SPN / LowMC-Style Linear-Form + Nonlinear Circuits"></a><br><br>
+      <a href="benchmarks/cryptography/hard-spn/README.md"><b>Hard SPN / LowMC-Style Linear-Form + Nonlinear Circuits</b></a><br>
+      <sub><code>hard-spn</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="aloul-difp-a/README.md"><img src="aloul-difp-a/diagram.svg" width="230" alt="Aloul Array-Multiplier Integer Factoring Benchmarks"></a><br><br>
-      <a href="aloul-difp-a/README.md"><b>Aloul Array-Multiplier Integer Factoring Benchmarks</b></a><br>
+      <a href="benchmarks/cryptography/sha256-64r-nonce-scaling/README.md"><img src="benchmarks/cryptography/sha256-64r-nonce-scaling/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 64-Round Nonce-Scaling Benchmark"></a><br><br>
+      <a href="benchmarks/cryptography/sha256-64r-nonce-scaling/README.md"><b>FIPS 180-4 SHA-256 64-Round Nonce-Scaling Benchmark</b></a><br>
+      <sub><code>sha256-64r-nonce-scaling</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/cryptography/sha256-preimage/README.md"><img src="benchmarks/cryptography/sha256-preimage/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 Preimage Circuits"></a><br><br>
+      <a href="benchmarks/cryptography/sha256-preimage/README.md"><b>FIPS 180-4 SHA-256 Preimage Circuits</b></a><br>
+      <sub><code>sha256-preimage</code></sub>
+    </td>
+  </tr>
+</table>
+
+### Number-Theoretic (7)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/number-theoretic/aloul-difp-a/README.md"><img src="benchmarks/number-theoretic/aloul-difp-a/diagram.svg" width="230" alt="Aloul Array-Multiplier Integer Factoring Benchmarks"></a><br><br>
+      <a href="benchmarks/number-theoretic/aloul-difp-a/README.md"><b>Aloul Array-Multiplier Integer Factoring Benchmarks</b></a><br>
       <sub><code>aloul-difp-a</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="aloul-difp-w/README.md"><img src="aloul-difp-w/diagram.svg" width="230" alt="Aloul Wallace-Multiplier Integer Factoring Benchmarks"></a><br><br>
-      <a href="aloul-difp-w/README.md"><b>Aloul Wallace-Multiplier Integer Factoring Benchmarks</b></a><br>
+      <a href="benchmarks/number-theoretic/aloul-difp-w/README.md"><img src="benchmarks/number-theoretic/aloul-difp-w/diagram.svg" width="230" alt="Aloul Wallace-Multiplier Integer Factoring Benchmarks"></a><br><br>
+      <a href="benchmarks/number-theoretic/aloul-difp-w/README.md"><b>Aloul Wallace-Multiplier Integer Factoring Benchmarks</b></a><br>
       <sub><code>aloul-difp-w</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
-      <a href="aloul-fpga-sb-sat/README.md"><img src="aloul-fpga-sb-sat/diagram.svg" width="230" alt="Aloul FPGA Switch-Box SAT Benchmarks — &quot;Bart&quot;"></a><br><br>
-      <a href="aloul-fpga-sb-sat/README.md"><b>Aloul FPGA Switch-Box SAT Benchmarks — "Bart"</b></a><br>
-      <sub><code>aloul-fpga-sb-sat</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="aloul-fpga-sb-uns/README.md"><img src="aloul-fpga-sb-uns/diagram.svg" width="230" alt="Aloul FPGA Switch-Box UNSAT Benchmarks — &quot;Homer&quot;"></a><br><br>
-      <a href="aloul-fpga-sb-uns/README.md"><b>Aloul FPGA Switch-Box UNSAT Benchmarks — "Homer"</b></a><br>
-      <sub><code>aloul-fpga-sb-uns</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="brewbaker-golomb-rulers/README.md"><img src="brewbaker-golomb-rulers/diagram.svg" width="230" alt="Optimal Golomb Ruler Synthesis"></a><br><br>
-      <a href="brewbaker-golomb-rulers/README.md"><b>Optimal Golomb Ruler Synthesis</b></a><br>
+      <a href="benchmarks/number-theoretic/brewbaker-golomb-rulers/README.md"><img src="benchmarks/number-theoretic/brewbaker-golomb-rulers/diagram.svg" width="230" alt="Optimal Golomb Ruler Synthesis"></a><br><br>
+      <a href="benchmarks/number-theoretic/brewbaker-golomb-rulers/README.md"><b>Optimal Golomb Ruler Synthesis</b></a><br>
       <sub><code>brewbaker-golomb-rulers</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="brewbaker-select-networks/README.md"><img src="brewbaker-select-networks/diagram.svg" width="230" alt="Fixed &amp; Adaptive Selection Network Synthesis"></a><br><br>
-      <a href="brewbaker-select-networks/README.md"><b>Fixed &amp; Adaptive Selection Network Synthesis</b></a><br>
-      <sub><code>brewbaker-select-networks</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="brewbaker-sha256-cec/README.md"><img src="brewbaker-sha256-cec/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 Ripple-vs-Prefix Adder CEC Miters"></a><br><br>
-      <a href="brewbaker-sha256-cec/README.md"><b>FIPS 180-4 SHA-256 Ripple-vs-Prefix Adder CEC Miters</b></a><br>
-      <sub><code>brewbaker-sha256-cec</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="brewbaker-sort-networks/README.md"><img src="brewbaker-sort-networks/diagram.svg" width="230" alt="Minimum-Comparator Sorting Network Synthesis"></a><br><br>
-      <a href="brewbaker-sort-networks/README.md"><b>Minimum-Comparator Sorting Network Synthesis</b></a><br>
-      <sub><code>brewbaker-sort-networks</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="brewbaker-tensor-cross/README.md"><img src="brewbaker-tensor-cross/diagram.svg" width="230" alt="Bilinear Rank-K 3D Cross-Product Tensor Synthesis"></a><br><br>
-      <a href="brewbaker-tensor-cross/README.md"><b>Bilinear Rank-<i>K</i> 3D Cross-Product Tensor Synthesis</b></a><br>
-      <sub><code>brewbaker-tensor-cross</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="brewbaker-tensor-dot/README.md"><img src="brewbaker-tensor-dot/diagram.svg" width="230" alt="Bilinear Rank-K Inner-Product Tensor Synthesis"></a><br><br>
-      <a href="brewbaker-tensor-dot/README.md"><b>Bilinear Rank-<i>K</i> Inner-Product Tensor Synthesis</b></a><br>
-      <sub><code>brewbaker-tensor-dot</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="brewbaker-tensor-matmul/README.md"><img src="brewbaker-tensor-matmul/diagram.svg" width="230" alt="Bilinear Rank-K Matrix Multiplication Tensor Synthesis"></a><br><br>
-      <a href="brewbaker-tensor-matmul/README.md"><b>Bilinear Rank-<i>K</i> Matrix Multiplication Tensor Synthesis</b></a><br>
-      <sub><code>brewbaker-tensor-matmul</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="busy-beaver-sat/README.md"><img src="busy-beaver-sat/diagram.svg" width="230" alt="Busy Beaver Halting Synthesis &amp; ZFC-Independence TM State-Compression"></a><br><br>
-      <a href="busy-beaver-sat/README.md"><b>Busy Beaver Halting Synthesis &amp; ZFC-Independence TM State-Compression</b></a><br>
-      <sub><code>busy-beaver-sat</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="cec-arithmetic-miters/README.md"><img src="cec-arithmetic-miters/diagram.svg" width="230" alt="EDA Arithmetic Combinational Equivalence Checking (CEC) Miters"></a><br><br>
-      <a href="cec-arithmetic-miters/README.md"><b>EDA Arithmetic Combinational Equivalence Checking (CEC) Miters</b></a><br>
-      <sub><code>cec-arithmetic-miters</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="coupled-linear-nonlinear/README.md"><img src="coupled-linear-nonlinear/diagram.svg" width="230" alt="Coupled Linear + Nonlinear Circuits"></a><br><br>
-      <a href="coupled-linear-nonlinear/README.md"><b>Coupled Linear + Nonlinear Circuits</b></a><br>
-      <sub><code>coupled-linear-nonlinear</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="davies-rectangle-free-27/README.md"><img src="davies-rectangle-free-27/diagram.svg" width="230" alt="Rectangle-Free 5-Coloring of the 27×27 Grid"></a><br><br>
-      <a href="davies-rectangle-free-27/README.md"><b>Rectangle-Free 5-Coloring of the 27×27 Grid</b></a><br>
-      <sub><code>davies-rectangle-free-27</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="dense-solver-public/README.md"><img src="dense-solver-public/diagram.svg" width="230" alt="dense-solver Public SAT Benchmarks"></a><br><br>
-      <a href="dense-solver-public/README.md"><b>dense-solver Public SAT Benchmarks</b></a><br>
-      <sub><code>dense-solver-public</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="dense-solver-synthetic-chessboard/README.md"><img src="dense-solver-synthetic-chessboard/diagram.svg" width="230" alt="dense-solver Synthetic Mutilated Chessboard Tiling Benchmarks"></a><br><br>
-      <a href="dense-solver-synthetic-chessboard/README.md"><b>dense-solver Synthetic Mutilated Chessboard Tiling Benchmarks</b></a><br>
-      <sub><code>dense-solver-synthetic-chessboard</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="dense-solver-synthetic-php/README.md"><img src="dense-solver-synthetic-php/diagram.svg" width="230" alt="dense-solver Synthetic Multi-Encoding Pigeonhole Principle Benchmarks"></a><br><br>
-      <a href="dense-solver-synthetic-php/README.md"><b>dense-solver Synthetic Multi-Encoding Pigeonhole Principle Benchmarks</b></a><br>
-      <sub><code>dense-solver-synthetic-php</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="f2-frobenius-circulants/README.md"><img src="f2-frobenius-circulants/diagram.svg" width="230" alt="𝔽2-Frobenius Circulants"></a><br><br>
-      <a href="f2-frobenius-circulants/README.md"><b>𝔽<sub>2</sub>-Frobenius Circulants</b></a><br>
-      <sub><code>f2-frobenius-circulants</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="fede-intern-challenge/README.md"><img src="fede-intern-challenge/diagram.svg" width="230" alt="@fede_intern 12-Instance Hard SAT Challenge Pack"></a><br><br>
-      <a href="fede-intern-challenge/README.md"><b>@fede_intern 12-Instance Hard SAT Challenge Pack</b></a><br>
-      <sub><code>fede-intern-challenge</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a067782-sortnet/README.md"><img src="guillochon-oeis-a067782-sortnet/diagram.svg" width="230" alt="OEIS A067782 — Optimal-Depth Sorting Networks"></a><br><br>
-      <a href="guillochon-oeis-a067782-sortnet/README.md"><b>OEIS A067782 — Optimal-Depth Sorting Networks</b></a><br>
-      <sub><code>guillochon-oeis-a067782-sortnet</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a171081-vdw/README.md"><img src="guillochon-oeis-a171081-vdw/diagram.svg" width="230" alt="OEIS A171081 / A007783 — Van der Waerden Numbers w(2; 3, t)"></a><br><br>
-      <a href="guillochon-oeis-a171081-vdw/README.md"><b>OEIS A171081 / A007783 — Van der Waerden Numbers <i>w</i>(2; 3, <i>t</i>)</b></a><br>
+      <a href="benchmarks/number-theoretic/guillochon-oeis-a171081-vdw/README.md"><img src="benchmarks/number-theoretic/guillochon-oeis-a171081-vdw/diagram.svg" width="230" alt="OEIS A171081 / A007783 — Van der Waerden Numbers w(2; 3, t)"></a><br><br>
+      <a href="benchmarks/number-theoretic/guillochon-oeis-a171081-vdw/README.md"><b>OEIS A171081 / A007783 — Van der Waerden Numbers <i>w</i>(2; 3, <i>t</i>)</b></a><br>
       <sub><code>guillochon-oeis-a171081-vdw</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a250000-queens/README.md"><img src="guillochon-oeis-a250000-queens/diagram.svg" width="230" alt="OEIS A250000 — Peaceable Coexisting Armies of Queens"></a><br><br>
-      <a href="guillochon-oeis-a250000-queens/README.md"><b>OEIS A250000 — Peaceable Coexisting Armies of Queens</b></a><br>
-      <sub><code>guillochon-oeis-a250000-queens</code></sub>
+      <a href="benchmarks/number-theoretic/integer-factoring/README.md"><img src="benchmarks/number-theoretic/integer-factoring/diagram.svg" width="230" alt="Pure-Logic Integer Factorization &amp; Masked Multiplier Circuits"></a><br><br>
+      <a href="benchmarks/number-theoretic/integer-factoring/README.md"><b>Pure-Logic Integer Factorization &amp; Masked Multiplier Circuits</b></a><br>
+      <sub><code>integer-factoring</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-a350304-zarankiewicz/README.md"><img src="guillochon-oeis-a350304-zarankiewicz/diagram.svg" width="230" alt="OEIS A350304 — Zarankiewicz Numbers z(n; 3) (K3,3-Free Binary Matrices)"></a><br><br>
-      <a href="guillochon-oeis-a350304-zarankiewicz/README.md"><b>OEIS A350304 — Zarankiewicz Numbers <i>z</i>(<i>n</i>; 3) (<i>K</i><sub>3,3</sub>-Free Binary Matrices)</b></a><br>
-      <sub><code>guillochon-oeis-a350304-zarankiewicz</code></sub>
+      <a href="benchmarks/number-theoretic/picat-golomb-rulers/README.md"><img src="benchmarks/number-theoretic/picat-golomb-rulers/diagram.svg" width="230" alt="Optimal Golomb Rulers"></a><br><br>
+      <a href="benchmarks/number-theoretic/picat-golomb-rulers/README.md"><b>Optimal Golomb Rulers</b></a><br>
+      <sub><code>picat-golomb-rulers</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-sq-any/README.md"><img src="guillochon-oeis-grid-sq-any/diagram.svg" width="230" alt="OEIS A240443 — Square-Grid No-Arbitrary-Square"></a><br><br>
-      <a href="guillochon-oeis-grid-sq-any/README.md"><b>OEIS A240443 — Square-Grid No-Arbitrary-Square</b></a><br>
-      <sub><code>guillochon-oeis-grid-sq-any</code></sub>
+      <a href="benchmarks/number-theoretic/rsa-ntt-factoring/README.md"><img src="benchmarks/number-theoretic/rsa-ntt-factoring/diagram.svg" width="230" alt="O(n log n) Fermat-Prime NTT RSA Factoring Circuits"></a><br><br>
+      <a href="benchmarks/number-theoretic/rsa-ntt-factoring/README.md"><b><i>O</i>(<i>n</i> log <i>n</i>) Fermat-Prime NTT RSA Factoring Circuits</b></a><br>
+      <sub><code>rsa-ntt-factoring</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top"></td>
+  </tr>
+</table>
+
+### Algebraic (20)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/algebraic/brewbaker-tensor-cross/README.md"><img src="benchmarks/algebraic/brewbaker-tensor-cross/diagram.svg" width="230" alt="Bilinear Rank-K 3D Cross-Product Tensor Synthesis"></a><br><br>
+      <a href="benchmarks/algebraic/brewbaker-tensor-cross/README.md"><b>Bilinear Rank-<i>K</i> 3D Cross-Product Tensor Synthesis</b></a><br>
+      <sub><code>brewbaker-tensor-cross</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-sq-axis/README.md"><img src="guillochon-oeis-grid-sq-axis/diagram.svg" width="230" alt="OEIS A227133 / A152125 — Square-Grid No-Axis-Aligned-Square"></a><br><br>
-      <a href="guillochon-oeis-grid-sq-axis/README.md"><b>OEIS A227133 / A152125 — Square-Grid No-Axis-Aligned-Square</b></a><br>
-      <sub><code>guillochon-oeis-grid-sq-axis</code></sub>
+      <a href="benchmarks/algebraic/brewbaker-tensor-dot/README.md"><img src="benchmarks/algebraic/brewbaker-tensor-dot/diagram.svg" width="230" alt="Bilinear Rank-K Inner-Product Tensor Synthesis"></a><br><br>
+      <a href="benchmarks/algebraic/brewbaker-tensor-dot/README.md"><b>Bilinear Rank-<i>K</i> Inner-Product Tensor Synthesis</b></a><br>
+      <sub><code>brewbaker-tensor-dot</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/algebraic/brewbaker-tensor-matmul/README.md"><img src="benchmarks/algebraic/brewbaker-tensor-matmul/diagram.svg" width="230" alt="Bilinear Rank-K Matrix Multiplication Tensor Synthesis"></a><br><br>
+      <a href="benchmarks/algebraic/brewbaker-tensor-matmul/README.md"><b>Bilinear Rank-<i>K</i> Matrix Multiplication Tensor Synthesis</b></a><br>
+      <sub><code>brewbaker-tensor-matmul</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/algebraic/coupled-linear-nonlinear/README.md"><img src="benchmarks/algebraic/coupled-linear-nonlinear/diagram.svg" width="230" alt="Coupled Linear + Nonlinear Circuits"></a><br><br>
+      <a href="benchmarks/algebraic/coupled-linear-nonlinear/README.md"><b>Coupled Linear + Nonlinear Circuits</b></a><br>
+      <sub><code>coupled-linear-nonlinear</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-tri-any/README.md"><img src="guillochon-oeis-grid-tri-any/diagram.svg" width="230" alt="OEIS A240114 / A319159 — Triangular-Grid No-Arbitrary-Equilateral-Triangle"></a><br><br>
-      <a href="guillochon-oeis-grid-tri-any/README.md"><b>OEIS A240114 / A319159 — Triangular-Grid No-Arbitrary-Equilateral-Triangle</b></a><br>
-      <sub><code>guillochon-oeis-grid-tri-any</code></sub>
+      <a href="benchmarks/algebraic/f2-frobenius-circulants/README.md"><img src="benchmarks/algebraic/f2-frobenius-circulants/diagram.svg" width="230" alt="𝔽2-Frobenius Circulants"></a><br><br>
+      <a href="benchmarks/algebraic/f2-frobenius-circulants/README.md"><b>𝔽<sub>2</sub>-Frobenius Circulants</b></a><br>
+      <sub><code>f2-frobenius-circulants</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-tri-axis/README.md"><img src="guillochon-oeis-grid-tri-axis/diagram.svg" width="230" alt="OEIS A227308 / A227116 — Triangular-Grid No-Axis-Aligned-Equilateral-Triangle"></a><br><br>
-      <a href="guillochon-oeis-grid-tri-axis/README.md"><b>OEIS A227308 / A227116 — Triangular-Grid No-Axis-Aligned-Equilateral-Triangle</b></a><br>
-      <sub><code>guillochon-oeis-grid-tri-axis</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="guillochon-oeis-grid-tri-up/README.md"><img src="guillochon-oeis-grid-tri-up/diagram.svg" width="230" alt="OEIS A157795 / A319158 — Triangular-Grid No-Upward-Equilateral-Triangle"></a><br><br>
-      <a href="guillochon-oeis-grid-tri-up/README.md"><b>OEIS A157795 / A319158 — Triangular-Grid No-Upward-Equilateral-Triangle</b></a><br>
-      <sub><code>guillochon-oeis-grid-tri-up</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="hamd-hamiltonian-cycle/README.md"><img src="hamd-hamiltonian-cycle/diagram.svg" width="230" alt="Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks"></a><br><br>
-      <a href="hamd-hamiltonian-cycle/README.md"><b>Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks</b></a><br>
-      <sub><code>hamd-hamiltonian-cycle</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="hard-spn/README.md"><img src="hard-spn/diagram.svg" width="230" alt="Hard SPN / LowMC-Style Linear-Form + Nonlinear Circuits"></a><br><br>
-      <a href="hard-spn/README.md"><b>Hard SPN / LowMC-Style Linear-Form + Nonlinear Circuits</b></a><br>
-      <sub><code>hard-spn</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-6pooled3and-c1/README.md"><img src="heule-matrix-6pooled3and-c1/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 1"></a><br><br>
-      <a href="heule-matrix-6pooled3and-c1/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 1</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-6pooled3and-c1/README.md"><img src="benchmarks/algebraic/heule-matrix-6pooled3and-c1/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 1"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-6pooled3and-c1/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 1</b></a><br>
       <sub><code>heule-matrix-6pooled3and-c1</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-6pooled3and-c3/README.md"><img src="heule-matrix-6pooled3and-c3/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 3"></a><br><br>
-      <a href="heule-matrix-6pooled3and-c3/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 3</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-6pooled3and-c3/README.md"><img src="benchmarks/algebraic/heule-matrix-6pooled3and-c3/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 3"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-6pooled3and-c3/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 3</b></a><br>
       <sub><code>heule-matrix-6pooled3and-c3</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-6pooled3and-c4/README.md"><img src="heule-matrix-6pooled3and-c4/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 4"></a><br><br>
-      <a href="heule-matrix-6pooled3and-c4/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 4</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-6pooled3and-c4/README.md"><img src="benchmarks/algebraic/heule-matrix-6pooled3and-c4/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 4"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-6pooled3and-c4/README.md"><b>Heule 3×3 Matrix Multiplication — 6pooled3and / Challenge 4</b></a><br>
       <sub><code>heule-matrix-6pooled3and-c4</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-challenge1/README.md"><img src="heule-matrix-challenge1/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 1"></a><br><br>
-      <a href="heule-matrix-challenge1/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 1</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge1/README.md"><img src="benchmarks/algebraic/heule-matrix-challenge1/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 1"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge1/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 1</b></a><br>
       <sub><code>heule-matrix-challenge1</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-challenge2/README.md"><img src="heule-matrix-challenge2/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 2"></a><br><br>
-      <a href="heule-matrix-challenge2/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 2</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge2/README.md"><img src="benchmarks/algebraic/heule-matrix-challenge2/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 2"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge2/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 2</b></a><br>
       <sub><code>heule-matrix-challenge2</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-challenge3/README.md"><img src="heule-matrix-challenge3/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 3"></a><br><br>
-      <a href="heule-matrix-challenge3/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 3</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge3/README.md"><img src="benchmarks/algebraic/heule-matrix-challenge3/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 3"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge3/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 3</b></a><br>
       <sub><code>heule-matrix-challenge3</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-challenge4/README.md"><img src="heule-matrix-challenge4/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 4"></a><br><br>
-      <a href="heule-matrix-challenge4/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 4</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge4/README.md"><img src="benchmarks/algebraic/heule-matrix-challenge4/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Challenge 4"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-challenge4/README.md"><b>Heule 3×3 Matrix Multiplication — Challenge 4</b></a><br>
       <sub><code>heule-matrix-challenge4</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-fraction/README.md"><img src="heule-matrix-fraction/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Fractional Variants"></a><br><br>
-      <a href="heule-matrix-fraction/README.md"><b>Heule 3×3 Matrix Multiplication — Fractional Variants</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-fraction/README.md"><img src="benchmarks/algebraic/heule-matrix-fraction/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — Fractional Variants"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-fraction/README.md"><b>Heule 3×3 Matrix Multiplication — Fractional Variants</b></a><br>
       <sub><code>heule-matrix-fraction</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="heule-matrix-xor6cut/README.md"><img src="heule-matrix-xor6cut/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — XOR-6 Cut Encodings"></a><br><br>
-      <a href="heule-matrix-xor6cut/README.md"><b>Heule 3×3 Matrix Multiplication — XOR-6 Cut Encodings</b></a><br>
+      <a href="benchmarks/algebraic/heule-matrix-xor6cut/README.md"><img src="benchmarks/algebraic/heule-matrix-xor6cut/diagram.svg" width="230" alt="Heule 3×3 Matrix Multiplication — XOR-6 Cut Encodings"></a><br><br>
+      <a href="benchmarks/algebraic/heule-matrix-xor6cut/README.md"><b>Heule 3×3 Matrix Multiplication — XOR-6 Cut Encodings</b></a><br>
       <sub><code>heule-matrix-xor6cut</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="integer-factoring/README.md"><img src="integer-factoring/diagram.svg" width="230" alt="Pure-Logic Integer Factorization &amp; Masked Multiplier Circuits"></a><br><br>
-      <a href="integer-factoring/README.md"><b>Pure-Logic Integer Factorization &amp; Masked Multiplier Circuits</b></a><br>
-      <sub><code>integer-factoring</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="knights-tour-obstacles/README.md"><img src="knights-tour-obstacles/diagram.svg" width="230" alt="Obstacle Knight&#x27;s Tour — Hamiltonian Cycle on Punched Chessboards"></a><br><br>
-      <a href="knights-tour-obstacles/README.md"><b>Obstacle Knight's Tour — Hamiltonian Cycle on Punched Chessboards</b></a><br>
-      <sub><code>knights-tour-obstacles</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="mata-presburger-nfa-tptp/README.md"><img src="mata-presburger-nfa-tptp/diagram.svg" width="230" alt="MATA Presburger Explicit-Complement NFA Benchmarks — TPTP"></a><br><br>
-      <a href="mata-presburger-nfa-tptp/README.md"><b>MATA Presburger Explicit-Complement NFA Benchmarks — TPTP</b></a><br>
-      <sub><code>mata-presburger-nfa-tptp</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="mata-presburger-nfa-ultimate-automizer/README.md"><img src="mata-presburger-nfa-ultimate-automizer/diagram.svg" width="230" alt="MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer"></a><br><br>
-      <a href="mata-presburger-nfa-ultimate-automizer/README.md"><b>MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer</b></a><br>
-      <sub><code>mata-presburger-nfa-ultimate-automizer</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="mod-circuit-sat/README.md"><img src="mod-circuit-sat/diagram.svg" width="230" alt="Exact Synthesis of Optimal MODn3,r Boolean Circuits"></a><br><br>
-      <a href="mod-circuit-sat/README.md"><b>Exact Synthesis of Optimal MOD<sub><i>n</i></sub><sup>3,<i>r</i></sup> Boolean Circuits</b></a><br>
-      <sub><code>mod-circuit-sat</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="picat-costas-arrays/README.md"><img src="picat-costas-arrays/diagram.svg" width="230" alt="Costas Arrays"></a><br><br>
-      <a href="picat-costas-arrays/README.md"><b>Costas Arrays</b></a><br>
-      <sub><code>picat-costas-arrays</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="picat-golomb-rulers/README.md"><img src="picat-golomb-rulers/diagram.svg" width="230" alt="Optimal Golomb Rulers"></a><br><br>
-      <a href="picat-golomb-rulers/README.md"><b>Optimal Golomb Rulers</b></a><br>
-      <sub><code>picat-golomb-rulers</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="picat-mapf/README.md"><img src="picat-mapf/diagram.svg" width="230" alt="Multi-Agent Path Finding — Makespan"></a><br><br>
-      <a href="picat-mapf/README.md"><b>Multi-Agent Path Finding — Makespan</b></a><br>
-      <sub><code>picat-mapf</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="picat-numberlink/README.md"><img src="picat-numberlink/diagram.svg" width="230" alt="Planar Numberlink Disjoint Paths"></a><br><br>
-      <a href="picat-numberlink/README.md"><b>Planar Numberlink Disjoint Paths</b></a><br>
-      <sub><code>picat-numberlink</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="picat-rectangle-packing/README.md"><img src="picat-rectangle-packing/diagram.svg" width="230" alt="2D Square &amp; Rectangle Packing — diffn + cumulative"></a><br><br>
-      <a href="picat-rectangle-packing/README.md"><b>2D Square &amp; Rectangle Packing — diffn + cumulative</b></a><br>
-      <sub><code>picat-rectangle-packing</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="picat-vmtl/README.md"><img src="picat-vmtl/diagram.svg" width="230" alt="Vertex Magic Total Labeling on Kn"></a><br><br>
-      <a href="picat-vmtl/README.md"><b>Vertex Magic Total Labeling on <i>K<sub>n</sub></i></b></a><br>
-      <sub><code>picat-vmtl</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="pretolani-pret/README.md"><img src="pretolani-pret/diagram.svg" width="230" alt="Pretolani Parity-Charged 2-Coloring Instances"></a><br><br>
-      <a href="pretolani-pret/README.md"><b>Pretolani Parity-Charged 2-Coloring Instances</b></a><br>
+      <a href="benchmarks/algebraic/pretolani-pret/README.md"><img src="benchmarks/algebraic/pretolani-pret/diagram.svg" width="230" alt="Pretolani Parity-Charged 2-Coloring Instances"></a><br><br>
+      <a href="benchmarks/algebraic/pretolani-pret/README.md"><b>Pretolani Parity-Charged 2-Coloring Instances</b></a><br>
       <sub><code>pretolani-pret</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="qdistsat-qldpc/README.md"><img src="qdistsat-qldpc/diagram.svg" width="230" alt="Quantum Error-Correcting LDPC Code Distance SAT Benchmarks (QDistSAT / Bivariate-Bicycle Codes)"></a><br><br>
-      <a href="qdistsat-qldpc/README.md"><b>Quantum Error-Correcting LDPC Code Distance SAT Benchmarks (QDistSAT / Bivariate-Bicycle Codes)</b></a><br>
+      <a href="benchmarks/algebraic/qdistsat-qldpc/README.md"><img src="benchmarks/algebraic/qdistsat-qldpc/diagram.svg" width="230" alt="Quantum Error-Correcting LDPC Code Distance SAT Benchmarks (QDistSAT / Bivariate-Bicycle Codes)"></a><br><br>
+      <a href="benchmarks/algebraic/qdistsat-qldpc/README.md"><b>Quantum Error-Correcting LDPC Code Distance SAT Benchmarks (QDistSAT / Bivariate-Bicycle Codes)</b></a><br>
       <sub><code>qdistsat-qldpc</code></sub>
     </td>
-    <td width="25%" align="center" valign="top">
-      <a href="queen-armies/README.md"><img src="queen-armies/diagram.svg" width="230" alt="Peaceable Queen Armies"></a><br><br>
-      <a href="queen-armies/README.md"><b>Peaceable Queen Armies</b></a><br>
-      <sub><code>queen-armies</code></sub>
-    </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="random-3sat-phase-transition/README.md"><img src="random-3sat-phase-transition/diagram.svg" width="230" alt="Critical &amp; Off-Threshold Phase-Transition Random 3-SAT"></a><br><br>
-      <a href="random-3sat-phase-transition/README.md"><b>Critical &amp; Off-Threshold Phase-Transition Random 3-SAT</b></a><br>
-      <sub><code>random-3sat-phase-transition</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="rb-bench-model-rb/README.md"><img src="rb-bench-model-rb/diagram.svg" width="230" alt="Model RB Forced-Satisfiable SAT Benchmarks (RB-bench / BHOSLIB)"></a><br><br>
-      <a href="rb-bench-model-rb/README.md"><b>Model RB Forced-Satisfiable SAT Benchmarks (RB-bench / BHOSLIB)</b></a><br>
-      <sub><code>rb-bench-model-rb</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="rsa-ntt-factoring/README.md"><img src="rsa-ntt-factoring/diagram.svg" width="230" alt="O(n log n) Fermat-Prime NTT RSA Factoring Circuits"></a><br><br>
-      <a href="rsa-ntt-factoring/README.md"><b><i>O</i>(<i>n</i> log <i>n</i>) Fermat-Prime NTT RSA Factoring Circuits</b></a><br>
-      <sub><code>rsa-ntt-factoring</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="sat-competition-2002-2026-uris/README.md"><img src="sat-competition-2002-2026-uris/diagram.svg" width="230" alt="International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)"></a><br><br>
-      <a href="sat-competition-2002-2026-uris/README.md"><b>International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)</b></a><br>
-      <sub><code>sat-competition-2002-2026-uris</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="sat-shortcut-challenge-tier1/README.md"><img src="sat-shortcut-challenge-tier1/diagram.svg" width="230" alt="SAT Shortcut Challenge — Tier 1 Structured Suite"></a><br><br>
-      <a href="sat-shortcut-challenge-tier1/README.md"><b>SAT Shortcut Challenge — Tier 1 Structured Suite</b></a><br>
-      <sub><code>sat-shortcut-challenge-tier1</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="sat-shortcut-challenge-tier3/README.md"><img src="sat-shortcut-challenge-tier3/diagram.svg" width="230" alt="SAT Shortcut Challenge — Tier 3 Random 3-SAT Suite"></a><br><br>
-      <a href="sat-shortcut-challenge-tier3/README.md"><b>SAT Shortcut Challenge — Tier 3 Random 3-SAT Suite</b></a><br>
-      <sub><code>sat-shortcut-challenge-tier3</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-ais/README.md"><img src="satlib-ais/diagram.svg" width="230" alt="SATLIB — All-Interval Series (full)"></a><br><br>
-      <a href="satlib-ais/README.md"><b>SATLIB — All-Interval Series (full)</b></a><br>
-      <sub><code>satlib-ais</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-archive-uris/README.md"><img src="satlib-archive-uris/diagram.svg" width="230" alt="UBC SATLIB Complete 97-Archive URI Manifest"></a><br><br>
-      <a href="satlib-archive-uris/README.md"><b>UBC SATLIB Complete 97-Archive URI Manifest</b></a><br>
-      <sub><code>satlib-archive-uris</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-beijing/README.md"><img src="satlib-beijing/diagram.svg" width="230" alt="SATLIB — 1996 Beijing SAT Competition (full)"></a><br><br>
-      <a href="satlib-beijing/README.md"><b>SATLIB — 1996 Beijing SAT Competition (full)</b></a><br>
-      <sub><code>satlib-beijing</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-bmc/README.md"><img src="satlib-bmc/diagram.svg" width="230" alt="SATLIB — Bounded Model Checking — Shtrichman (full)"></a><br><br>
-      <a href="satlib-bmc/README.md"><b>SATLIB — Bounded Model Checking — Shtrichman (full)</b></a><br>
-      <sub><code>satlib-bmc</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-bms-rti/README.md"><img src="satlib-bms-rti/diagram.svg" width="230" alt="SATLIB — Backbone-Minimal Random 3-SAT (sample / 1,000*)"></a><br><br>
-      <a href="satlib-bms-rti/README.md"><b>SATLIB — Backbone-Minimal Random 3-SAT (sample / 1,000*)</b></a><br>
-      <sub><code>satlib-bms-rti</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-cbs/README.md"><img src="satlib-cbs/diagram.svg" width="230" alt="SATLIB — Controlled Backbone Random 3-SAT (sample / 40,000*)"></a><br><br>
-      <a href="satlib-cbs/README.md"><b>SATLIB — Controlled Backbone Random 3-SAT (sample / 40,000*)</b></a><br>
-      <sub><code>satlib-cbs</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-aim/README.md"><img src="satlib-dimacs-aim/diagram.svg" width="230" alt="SATLIB — Artificial Random 3-SAT — Iwama et al. (full)"></a><br><br>
-      <a href="satlib-dimacs-aim/README.md"><b>SATLIB — Artificial Random 3-SAT — Iwama et al. (full)</b></a><br>
-      <sub><code>satlib-dimacs-aim</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-bf/README.md"><img src="satlib-dimacs-bf/diagram.svg" width="230" alt="SATLIB — Circuit Bridge-Fault Analysis (full)"></a><br><br>
-      <a href="satlib-dimacs-bf/README.md"><b>SATLIB — Circuit Bridge-Fault Analysis (full)</b></a><br>
-      <sub><code>satlib-dimacs-bf</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-dubois/README.md"><img src="satlib-dimacs-dubois/diagram.svg" width="230" alt="SATLIB — Dubois Hard Parity UNSAT (full)"></a><br><br>
-      <a href="satlib-dimacs-dubois/README.md"><b>SATLIB — Dubois Hard Parity UNSAT (full)</b></a><br>
-      <sub><code>satlib-dimacs-dubois</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-gcp-large/README.md"><img src="satlib-dimacs-gcp-large/diagram.svg" width="230" alt="SATLIB — Large Graph Colouring g125/g250 (full)"></a><br><br>
-      <a href="satlib-dimacs-gcp-large/README.md"><b>SATLIB — Large Graph Colouring g125/g250 (full)</b></a><br>
-      <sub><code>satlib-dimacs-gcp-large</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-hanoi/README.md"><img src="satlib-dimacs-hanoi/diagram.svg" width="230" alt="SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)"></a><br><br>
-      <a href="satlib-dimacs-hanoi/README.md"><b>SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)</b></a><br>
-      <sub><code>satlib-dimacs-hanoi</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-ii/README.md"><img src="satlib-dimacs-ii/diagram.svg" width="230" alt="SATLIB — Inductive Inference (full)"></a><br><br>
-      <a href="satlib-dimacs-ii/README.md"><b>SATLIB — Inductive Inference (full)</b></a><br>
-      <sub><code>satlib-dimacs-ii</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-jnh/README.md"><img src="satlib-dimacs-jnh/diagram.svg" width="230" alt="SATLIB — Variable-Length Random SAT — Hooker (full)"></a><br><br>
-      <a href="satlib-dimacs-jnh/README.md"><b>SATLIB — Variable-Length Random SAT — Hooker (full)</b></a><br>
-      <sub><code>satlib-dimacs-jnh</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-lran/README.md"><img src="satlib-dimacs-lran/diagram.svg" width="230" alt="SATLIB — Large Random 3-SAT f600 / f1000 / f2000 (full)"></a><br><br>
-      <a href="satlib-dimacs-lran/README.md"><b>SATLIB — Large Random 3-SAT f600 / f1000 / f2000 (full)</b></a><br>
-      <sub><code>satlib-dimacs-lran</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-parity/README.md"><img src="satlib-dimacs-parity/diagram.svg" width="230" alt="SATLIB — Parity Learning par8 / par16 / par32 (full)"></a><br><br>
-      <a href="satlib-dimacs-parity/README.md"><b>SATLIB — Parity Learning par8 / par16 / par32 (full)</b></a><br>
+      <a href="benchmarks/algebraic/satlib-dimacs-parity/README.md"><img src="benchmarks/algebraic/satlib-dimacs-parity/diagram.svg" width="230" alt="SATLIB — Parity Learning par8 / par16 / par32 (full)"></a><br><br>
+      <a href="benchmarks/algebraic/satlib-dimacs-parity/README.md"><b>SATLIB — Parity Learning par8 / par16 / par32 (full)</b></a><br>
       <sub><code>satlib-dimacs-parity</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-phole/README.md"><img src="satlib-dimacs-phole/diagram.svg" width="230" alt="SATLIB — Pigeonhole Principle hole6..10 (full)"></a><br><br>
-      <a href="satlib-dimacs-phole/README.md"><b>SATLIB — Pigeonhole Principle hole6..10 (full)</b></a><br>
-      <sub><code>satlib-dimacs-phole</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-dimacs-ssa/README.md"><img src="satlib-dimacs-ssa/diagram.svg" width="230" alt="SATLIB — Single-Stuck-At Circuit Faults (full)"></a><br><br>
-      <a href="satlib-dimacs-ssa/README.md"><b>SATLIB — Single-Stuck-At Circuit Faults (full)</b></a><br>
-      <sub><code>satlib-dimacs-ssa</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-flat-gcp/README.md"><img src="satlib-flat-gcp/diagram.svg" width="230" alt="SATLIB — Flat 3-Colourable Graphs flat30..200 (sample / 1,700*)"></a><br><br>
-      <a href="satlib-flat-gcp/README.md"><b>SATLIB — Flat 3-Colourable Graphs flat30..200 (sample / 1,700*)</b></a><br>
-      <sub><code>satlib-flat-gcp</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-planning-blocksworld/README.md"><img src="satlib-planning-blocksworld/diagram.svg" width="230" alt="SATLIB — SATPLAN Blocks World (full)"></a><br><br>
-      <a href="satlib-planning-blocksworld/README.md"><b>SATLIB — SATPLAN Blocks World (full)</b></a><br>
-      <sub><code>satlib-planning-blocksworld</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-planning-logistics/README.md"><img src="satlib-planning-logistics/diagram.svg" width="230" alt="SATLIB — SATPLAN Logistics a..d (full)"></a><br><br>
-      <a href="satlib-planning-logistics/README.md"><b>SATLIB — SATPLAN Logistics a..d (full)</b></a><br>
-      <sub><code>satlib-planning-logistics</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-qg/README.md"><img src="satlib-qg/diagram.svg" width="230" alt="SATLIB — Quasigroup / Latin Squares — Zhang (full)"></a><br><br>
-      <a href="satlib-qg/README.md"><b>SATLIB — Quasigroup / Latin Squares — Zhang (full)</b></a><br>
-      <sub><code>satlib-qg</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-rnd3sat/README.md"><img src="satlib-rnd3sat/diagram.svg" width="230" alt="SATLIB — Uniform Random 3-SAT uf/uuf50..250 (sample / 6,600*)"></a><br><br>
-      <a href="satlib-rnd3sat/README.md"><b>SATLIB — Uniform Random 3-SAT uf/uuf50..250 (sample / 6,600*)</b></a><br>
-      <sub><code>satlib-rnd3sat</code></sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <a href="satlib-sw-gcp/README.md"><img src="satlib-sw-gcp/diagram.svg" width="230" alt="SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)"></a><br><br>
-      <a href="satlib-sw-gcp/README.md"><b>SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)</b></a><br>
-      <sub><code>satlib-sw-gcp</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="sha256-64r-nonce-scaling/README.md"><img src="sha256-64r-nonce-scaling/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 64-Round Nonce-Scaling Benchmark"></a><br><br>
-      <a href="sha256-64r-nonce-scaling/README.md"><b>FIPS 180-4 SHA-256 64-Round Nonce-Scaling Benchmark</b></a><br>
-      <sub><code>sha256-64r-nonce-scaling</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="sha256-preimage/README.md"><img src="sha256-preimage/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 Preimage Circuits"></a><br><br>
-      <a href="sha256-preimage/README.md"><b>FIPS 180-4 SHA-256 Preimage Circuits</b></a><br>
-      <sub><code>sha256-preimage</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="tseitin-expanders/README.md"><img src="tseitin-expanders/diagram.svg" width="230" alt="MOD2-Tseitin Expanders &amp; Prisms"></a><br><br>
-      <a href="tseitin-expanders/README.md"><b>MOD<sub>2</sub>-Tseitin Expanders &amp; Prisms</b></a><br>
+      <a href="benchmarks/algebraic/tseitin-expanders/README.md"><img src="benchmarks/algebraic/tseitin-expanders/diagram.svg" width="230" alt="MOD2-Tseitin Expanders &amp; Prisms"></a><br><br>
+      <a href="benchmarks/algebraic/tseitin-expanders/README.md"><b>MOD<sub>2</sub>-Tseitin Expanders &amp; Prisms</b></a><br>
       <sub><code>tseitin-expanders</code></sub>
     </td>
-  </tr>
-  <tr>
     <td width="25%" align="center" valign="top">
-      <a href="vlsat-2/README.md"><img src="vlsat-2/diagram.svg" width="230" alt="VLSAT-2 Benchmark Suite (INRIA / CADP)"></a><br><br>
-      <a href="vlsat-2/README.md"><b>VLSAT-2 Benchmark Suite (INRIA / CADP)</b></a><br>
-      <sub><code>vlsat-2</code></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <a href="vzhn-sat-inv-matrix-int/README.md"><img src="vzhn-sat-inv-matrix-int/diagram.svg" width="230" alt="Exact Integer Matrix Inversion over ℤ"></a><br><br>
-      <a href="vzhn-sat-inv-matrix-int/README.md"><b>Exact Integer Matrix Inversion over ℤ</b></a><br>
+      <a href="benchmarks/algebraic/vzhn-sat-inv-matrix-int/README.md"><img src="benchmarks/algebraic/vzhn-sat-inv-matrix-int/diagram.svg" width="230" alt="Exact Integer Matrix Inversion over ℤ"></a><br><br>
+      <a href="benchmarks/algebraic/vzhn-sat-inv-matrix-int/README.md"><b>Exact Integer Matrix Inversion over ℤ</b></a><br>
       <sub><code>vzhn-sat-inv-matrix-int</code></sub>
     </td>
     <td width="25%" align="center" valign="top">
-      <a href="vzhn-sat-inv-matrix-mod/README.md"><img src="vzhn-sat-inv-matrix-mod/diagram.svg" width="230" alt="Modular Ring Matrix Inversion over ℤ/mℤ"></a><br><br>
-      <a href="vzhn-sat-inv-matrix-mod/README.md"><b>Modular Ring Matrix Inversion over ℤ/<i>m</i>ℤ</b></a><br>
+      <a href="benchmarks/algebraic/vzhn-sat-inv-matrix-mod/README.md"><img src="benchmarks/algebraic/vzhn-sat-inv-matrix-mod/diagram.svg" width="230" alt="Modular Ring Matrix Inversion over ℤ/mℤ"></a><br><br>
+      <a href="benchmarks/algebraic/vzhn-sat-inv-matrix-mod/README.md"><b>Modular Ring Matrix Inversion over ℤ/<i>m</i>ℤ</b></a><br>
       <sub><code>vzhn-sat-inv-matrix-mod</code></sub>
     </td>
+  </tr>
+</table>
+
+### Geometric (11)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
     <td width="25%" align="center" valign="top">
-      <a href="zed-adversarial-hub/README.md"><img src="zed-adversarial-hub/diagram.svg" width="230" alt="Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits"></a><br><br>
-      <a href="zed-adversarial-hub/README.md"><b>Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits</b></a><br>
-      <sub><code>zed-adversarial-hub</code></sub>
+      <a href="benchmarks/geometric/davies-rectangle-free-27/README.md"><img src="benchmarks/geometric/davies-rectangle-free-27/diagram.svg" width="230" alt="Rectangle-Free 5-Coloring of the 27×27 Grid"></a><br><br>
+      <a href="benchmarks/geometric/davies-rectangle-free-27/README.md"><b>Rectangle-Free 5-Coloring of the 27×27 Grid</b></a><br>
+      <sub><code>davies-rectangle-free-27</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/dense-solver-synthetic-chessboard/README.md"><img src="benchmarks/geometric/dense-solver-synthetic-chessboard/diagram.svg" width="230" alt="dense-solver Synthetic Mutilated Chessboard Tiling Benchmarks"></a><br><br>
+      <a href="benchmarks/geometric/dense-solver-synthetic-chessboard/README.md"><b>dense-solver Synthetic Mutilated Chessboard Tiling Benchmarks</b></a><br>
+      <sub><code>dense-solver-synthetic-chessboard</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/guillochon-oeis-a250000-queens/README.md"><img src="benchmarks/geometric/guillochon-oeis-a250000-queens/diagram.svg" width="230" alt="OEIS A250000 — Peaceable Coexisting Armies of Queens"></a><br><br>
+      <a href="benchmarks/geometric/guillochon-oeis-a250000-queens/README.md"><b>OEIS A250000 — Peaceable Coexisting Armies of Queens</b></a><br>
+      <sub><code>guillochon-oeis-a250000-queens</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/guillochon-oeis-grid-sq-any/README.md"><img src="benchmarks/geometric/guillochon-oeis-grid-sq-any/diagram.svg" width="230" alt="OEIS A240443 — Square-Grid No-Arbitrary-Square"></a><br><br>
+      <a href="benchmarks/geometric/guillochon-oeis-grid-sq-any/README.md"><b>OEIS A240443 — Square-Grid No-Arbitrary-Square</b></a><br>
+      <sub><code>guillochon-oeis-grid-sq-any</code></sub>
     </td>
   </tr>
   <tr>
     <td width="25%" align="center" valign="top">
-      <a href="zed-adversarial-php/README.md"><img src="zed-adversarial-php/diagram.svg" width="230" alt="Adversarial Scaled AIGER Pigeonhole Principle Circuits"></a><br><br>
-      <a href="zed-adversarial-php/README.md"><b>Adversarial Scaled AIGER Pigeonhole Principle Circuits</b></a><br>
-      <sub><code>zed-adversarial-php</code></sub>
+      <a href="benchmarks/geometric/guillochon-oeis-grid-sq-axis/README.md"><img src="benchmarks/geometric/guillochon-oeis-grid-sq-axis/diagram.svg" width="230" alt="OEIS A227133 / A152125 — Square-Grid No-Axis-Aligned-Square"></a><br><br>
+      <a href="benchmarks/geometric/guillochon-oeis-grid-sq-axis/README.md"><b>OEIS A227133 / A152125 — Square-Grid No-Axis-Aligned-Square</b></a><br>
+      <sub><code>guillochon-oeis-grid-sq-axis</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/guillochon-oeis-grid-tri-any/README.md"><img src="benchmarks/geometric/guillochon-oeis-grid-tri-any/diagram.svg" width="230" alt="OEIS A240114 / A319159 — Triangular-Grid No-Arbitrary-Equilateral-Triangle"></a><br><br>
+      <a href="benchmarks/geometric/guillochon-oeis-grid-tri-any/README.md"><b>OEIS A240114 / A319159 — Triangular-Grid No-Arbitrary-Equilateral-Triangle</b></a><br>
+      <sub><code>guillochon-oeis-grid-tri-any</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/guillochon-oeis-grid-tri-axis/README.md"><img src="benchmarks/geometric/guillochon-oeis-grid-tri-axis/diagram.svg" width="230" alt="OEIS A227308 / A227116 — Triangular-Grid No-Axis-Aligned-Equilateral-Triangle"></a><br><br>
+      <a href="benchmarks/geometric/guillochon-oeis-grid-tri-axis/README.md"><b>OEIS A227308 / A227116 — Triangular-Grid No-Axis-Aligned-Equilateral-Triangle</b></a><br>
+      <sub><code>guillochon-oeis-grid-tri-axis</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/guillochon-oeis-grid-tri-up/README.md"><img src="benchmarks/geometric/guillochon-oeis-grid-tri-up/diagram.svg" width="230" alt="OEIS A157795 / A319158 — Triangular-Grid No-Upward-Equilateral-Triangle"></a><br><br>
+      <a href="benchmarks/geometric/guillochon-oeis-grid-tri-up/README.md"><b>OEIS A157795 / A319158 — Triangular-Grid No-Upward-Equilateral-Triangle</b></a><br>
+      <sub><code>guillochon-oeis-grid-tri-up</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/knights-tour-obstacles/README.md"><img src="benchmarks/geometric/knights-tour-obstacles/diagram.svg" width="230" alt="Obstacle Knight&#x27;s Tour — Hamiltonian Cycle on Punched Chessboards"></a><br><br>
+      <a href="benchmarks/geometric/knights-tour-obstacles/README.md"><b>Obstacle Knight's Tour — Hamiltonian Cycle on Punched Chessboards</b></a><br>
+      <sub><code>knights-tour-obstacles</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/picat-rectangle-packing/README.md"><img src="benchmarks/geometric/picat-rectangle-packing/diagram.svg" width="230" alt="2D Square &amp; Rectangle Packing — diffn + cumulative"></a><br><br>
+      <a href="benchmarks/geometric/picat-rectangle-packing/README.md"><b>2D Square &amp; Rectangle Packing — diffn + cumulative</b></a><br>
+      <sub><code>picat-rectangle-packing</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/geometric/queen-armies/README.md"><img src="benchmarks/geometric/queen-armies/diagram.svg" width="230" alt="Peaceable Queen Armies"></a><br><br>
+      <a href="benchmarks/geometric/queen-armies/README.md"><b>Peaceable Queen Armies</b></a><br>
+      <sub><code>queen-armies</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top"></td>
+  </tr>
+</table>
+
+### Circuits & Hardware (13)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/aloul-fpga-sb-sat/README.md"><img src="benchmarks/circuits-hardware/aloul-fpga-sb-sat/diagram.svg" width="230" alt="Aloul FPGA Switch-Box SAT Benchmarks — &quot;Bart&quot;"></a><br><br>
+      <a href="benchmarks/circuits-hardware/aloul-fpga-sb-sat/README.md"><b>Aloul FPGA Switch-Box SAT Benchmarks — "Bart"</b></a><br>
+      <sub><code>aloul-fpga-sb-sat</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/aloul-fpga-sb-uns/README.md"><img src="benchmarks/circuits-hardware/aloul-fpga-sb-uns/diagram.svg" width="230" alt="Aloul FPGA Switch-Box UNSAT Benchmarks — &quot;Homer&quot;"></a><br><br>
+      <a href="benchmarks/circuits-hardware/aloul-fpga-sb-uns/README.md"><b>Aloul FPGA Switch-Box UNSAT Benchmarks — "Homer"</b></a><br>
+      <sub><code>aloul-fpga-sb-uns</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/brewbaker-select-networks/README.md"><img src="benchmarks/circuits-hardware/brewbaker-select-networks/diagram.svg" width="230" alt="Fixed &amp; Adaptive Selection Network Synthesis"></a><br><br>
+      <a href="benchmarks/circuits-hardware/brewbaker-select-networks/README.md"><b>Fixed &amp; Adaptive Selection Network Synthesis</b></a><br>
+      <sub><code>brewbaker-select-networks</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/brewbaker-sha256-cec/README.md"><img src="benchmarks/circuits-hardware/brewbaker-sha256-cec/diagram.svg" width="230" alt="FIPS 180-4 SHA-256 Ripple-vs-Prefix Adder CEC Miters"></a><br><br>
+      <a href="benchmarks/circuits-hardware/brewbaker-sha256-cec/README.md"><b>FIPS 180-4 SHA-256 Ripple-vs-Prefix Adder CEC Miters</b></a><br>
+      <sub><code>brewbaker-sha256-cec</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/brewbaker-sort-networks/README.md"><img src="benchmarks/circuits-hardware/brewbaker-sort-networks/diagram.svg" width="230" alt="Minimum-Comparator Sorting Network Synthesis"></a><br><br>
+      <a href="benchmarks/circuits-hardware/brewbaker-sort-networks/README.md"><b>Minimum-Comparator Sorting Network Synthesis</b></a><br>
+      <sub><code>brewbaker-sort-networks</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/cec-arithmetic-miters/README.md"><img src="benchmarks/circuits-hardware/cec-arithmetic-miters/diagram.svg" width="230" alt="EDA Arithmetic Combinational Equivalence Checking (CEC) Miters"></a><br><br>
+      <a href="benchmarks/circuits-hardware/cec-arithmetic-miters/README.md"><b>EDA Arithmetic Combinational Equivalence Checking (CEC) Miters</b></a><br>
+      <sub><code>cec-arithmetic-miters</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/README.md"><img src="benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/diagram.svg" width="230" alt="OEIS A067782 — Optimal-Depth Sorting Networks"></a><br><br>
+      <a href="benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/README.md"><b>OEIS A067782 — Optimal-Depth Sorting Networks</b></a><br>
+      <sub><code>guillochon-oeis-a067782-sortnet</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/mod-circuit-sat/README.md"><img src="benchmarks/circuits-hardware/mod-circuit-sat/diagram.svg" width="230" alt="Exact Synthesis of Optimal MODn3,r Boolean Circuits"></a><br><br>
+      <a href="benchmarks/circuits-hardware/mod-circuit-sat/README.md"><b>Exact Synthesis of Optimal MOD<sub><i>n</i></sub><sup>3,<i>r</i></sup> Boolean Circuits</b></a><br>
+      <sub><code>mod-circuit-sat</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/satlib-beijing/README.md"><img src="benchmarks/circuits-hardware/satlib-beijing/diagram.svg" width="230" alt="SATLIB — 1996 Beijing SAT Competition (full)"></a><br><br>
+      <a href="benchmarks/circuits-hardware/satlib-beijing/README.md"><b>SATLIB — 1996 Beijing SAT Competition (full)</b></a><br>
+      <sub><code>satlib-beijing</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/satlib-bmc/README.md"><img src="benchmarks/circuits-hardware/satlib-bmc/diagram.svg" width="230" alt="SATLIB — Bounded Model Checking — Shtrichman (full)"></a><br><br>
+      <a href="benchmarks/circuits-hardware/satlib-bmc/README.md"><b>SATLIB — Bounded Model Checking — Shtrichman (full)</b></a><br>
+      <sub><code>satlib-bmc</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/satlib-dimacs-bf/README.md"><img src="benchmarks/circuits-hardware/satlib-dimacs-bf/diagram.svg" width="230" alt="SATLIB — Circuit Bridge-Fault Analysis (full)"></a><br><br>
+      <a href="benchmarks/circuits-hardware/satlib-dimacs-bf/README.md"><b>SATLIB — Circuit Bridge-Fault Analysis (full)</b></a><br>
+      <sub><code>satlib-dimacs-bf</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/satlib-dimacs-ssa/README.md"><img src="benchmarks/circuits-hardware/satlib-dimacs-ssa/diagram.svg" width="230" alt="SATLIB — Single-Stuck-At Circuit Faults (full)"></a><br><br>
+      <a href="benchmarks/circuits-hardware/satlib-dimacs-ssa/README.md"><b>SATLIB — Single-Stuck-At Circuit Faults (full)</b></a><br>
+      <sub><code>satlib-dimacs-ssa</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/circuits-hardware/vlsat-2/README.md"><img src="benchmarks/circuits-hardware/vlsat-2/diagram.svg" width="230" alt="VLSAT-2 Benchmark Suite (INRIA / CADP)"></a><br><br>
+      <a href="benchmarks/circuits-hardware/vlsat-2/README.md"><b>VLSAT-2 Benchmark Suite (INRIA / CADP)</b></a><br>
+      <sub><code>vlsat-2</code></sub>
     </td>
     <td width="25%" align="center" valign="top"></td>
     <td width="25%" align="center" valign="top"></td>
@@ -538,7 +341,269 @@ Every collection lives at the repository root in its own self-contained director
   </tr>
 </table>
 
-**Archive & Aggregate Notes:** [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) stores 62 immutable GBD URI lists (`uris/<track>_<year>.uri`, 25 consecutive years 2002–2026 across 14 track categories, 32,194 track-year slots $\to$ **20,225 unique CNFs**: `7,818 SAT / 5,792 UNSAT / 6,615 UNKNOWN`), [`vlsat-2/vlsat2_100.uri`](vlsat-2/vlsat2_100.uri) stores all 100 INRIA URLs, and [`satlib-archive-uris/satlib_all_97_archives.uri`](satlib-archive-uris/satlib_all_97_archives.uri) stores all 97 official UBC SATLIB `.tar.gz` archive URLs rather than duplicating multi-gigabyte raw archives in Git. Across the repository, **1,097 SAT benchmark instances** across **89 SAT collections** are committed across all four formats (**1,093** verified Binary AIGER 1.9 `.aig.xz`, **1,097** DIMACS `.cnf.xz`, **1,097** [CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`, and **1,093** DIMACS-ANF `.anf.xz` = **4,380** xz-compressed SAT benchmark files, `1,496.89 MB` total; 4 largest `guillochon-oeis-a067782-sortnet` `.aig.xz`/`.anf.xz` files omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv) for GitHub's `< 95 MB` limit), alongside **174 `.mata.xz` NFA benchmarks** (`2.61 MB`), **29 verified OEIS solution certificates** across `guillochon-oeis-*/solutions/` (`174.57 MB`), **93 / 93** bespoke `diagram.svg` vector illustrations, and full generator/converter scripts.
+### Combinatorial (15)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/aloul-dac02-bench/README.md"><img src="benchmarks/combinatorial/aloul-dac02-bench/diagram.svg" width="230" alt="Aloul DAC 2002 Symmetry Benchmarks"></a><br><br>
+      <a href="benchmarks/combinatorial/aloul-dac02-bench/README.md"><b>Aloul DAC 2002 Symmetry Benchmarks</b></a><br>
+      <sub><code>aloul-dac02-bench</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/dense-solver-synthetic-php/README.md"><img src="benchmarks/combinatorial/dense-solver-synthetic-php/diagram.svg" width="230" alt="dense-solver Synthetic Multi-Encoding Pigeonhole Principle Benchmarks"></a><br><br>
+      <a href="benchmarks/combinatorial/dense-solver-synthetic-php/README.md"><b>dense-solver Synthetic Multi-Encoding Pigeonhole Principle Benchmarks</b></a><br>
+      <sub><code>dense-solver-synthetic-php</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/guillochon-oeis-a350304-zarankiewicz/README.md"><img src="benchmarks/combinatorial/guillochon-oeis-a350304-zarankiewicz/diagram.svg" width="230" alt="OEIS A350304 — Zarankiewicz Numbers z(n; 3) (K3,3-Free Binary Matrices)"></a><br><br>
+      <a href="benchmarks/combinatorial/guillochon-oeis-a350304-zarankiewicz/README.md"><b>OEIS A350304 — Zarankiewicz Numbers <i>z</i>(<i>n</i>; 3) (<i>K</i><sub>3,3</sub>-Free Binary Matrices)</b></a><br>
+      <sub><code>guillochon-oeis-a350304-zarankiewicz</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/hamd-hamiltonian-cycle/README.md"><img src="benchmarks/combinatorial/hamd-hamiltonian-cycle/diagram.svg" width="230" alt="Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks"></a><br><br>
+      <a href="benchmarks/combinatorial/hamd-hamiltonian-cycle/README.md"><b>Provably SAT/UNSAT Hamiltonian Cycle (HAMD / HCP) Benchmarks</b></a><br>
+      <sub><code>hamd-hamiltonian-cycle</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/picat-costas-arrays/README.md"><img src="benchmarks/combinatorial/picat-costas-arrays/diagram.svg" width="230" alt="Costas Arrays"></a><br><br>
+      <a href="benchmarks/combinatorial/picat-costas-arrays/README.md"><b>Costas Arrays</b></a><br>
+      <sub><code>picat-costas-arrays</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/picat-numberlink/README.md"><img src="benchmarks/combinatorial/picat-numberlink/diagram.svg" width="230" alt="Planar Numberlink Disjoint Paths"></a><br><br>
+      <a href="benchmarks/combinatorial/picat-numberlink/README.md"><b>Planar Numberlink Disjoint Paths</b></a><br>
+      <sub><code>picat-numberlink</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/picat-vmtl/README.md"><img src="benchmarks/combinatorial/picat-vmtl/diagram.svg" width="230" alt="Vertex Magic Total Labeling on Kn"></a><br><br>
+      <a href="benchmarks/combinatorial/picat-vmtl/README.md"><b>Vertex Magic Total Labeling on <i>K<sub>n</sub></i></b></a><br>
+      <sub><code>picat-vmtl</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/satlib-ais/README.md"><img src="benchmarks/combinatorial/satlib-ais/diagram.svg" width="230" alt="SATLIB — All-Interval Series (full)"></a><br><br>
+      <a href="benchmarks/combinatorial/satlib-ais/README.md"><b>SATLIB — All-Interval Series (full)</b></a><br>
+      <sub><code>satlib-ais</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/satlib-dimacs-gcp-large/README.md"><img src="benchmarks/combinatorial/satlib-dimacs-gcp-large/diagram.svg" width="230" alt="SATLIB — Large Graph Colouring g125/g250 (full)"></a><br><br>
+      <a href="benchmarks/combinatorial/satlib-dimacs-gcp-large/README.md"><b>SATLIB — Large Graph Colouring g125/g250 (full)</b></a><br>
+      <sub><code>satlib-dimacs-gcp-large</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/satlib-dimacs-phole/README.md"><img src="benchmarks/combinatorial/satlib-dimacs-phole/diagram.svg" width="230" alt="SATLIB — Pigeonhole Principle hole6..10 (full)"></a><br><br>
+      <a href="benchmarks/combinatorial/satlib-dimacs-phole/README.md"><b>SATLIB — Pigeonhole Principle hole6..10 (full)</b></a><br>
+      <sub><code>satlib-dimacs-phole</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/satlib-flat-gcp/README.md"><img src="benchmarks/combinatorial/satlib-flat-gcp/diagram.svg" width="230" alt="SATLIB — Flat 3-Colourable Graphs flat30..200 (sample / 1,700*)"></a><br><br>
+      <a href="benchmarks/combinatorial/satlib-flat-gcp/README.md"><b>SATLIB — Flat 3-Colourable Graphs flat30..200 (sample / 1,700*)</b></a><br>
+      <sub><code>satlib-flat-gcp</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/satlib-qg/README.md"><img src="benchmarks/combinatorial/satlib-qg/diagram.svg" width="230" alt="SATLIB — Quasigroup / Latin Squares — Zhang (full)"></a><br><br>
+      <a href="benchmarks/combinatorial/satlib-qg/README.md"><b>SATLIB — Quasigroup / Latin Squares — Zhang (full)</b></a><br>
+      <sub><code>satlib-qg</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/satlib-sw-gcp/README.md"><img src="benchmarks/combinatorial/satlib-sw-gcp/diagram.svg" width="230" alt="SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)"></a><br><br>
+      <a href="benchmarks/combinatorial/satlib-sw-gcp/README.md"><b>SATLIB — Morphed Small-World 5-Colouring lp0..p0 (sample / 901*)</b></a><br>
+      <sub><code>satlib-sw-gcp</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/zed-adversarial-hub/README.md"><img src="benchmarks/combinatorial/zed-adversarial-hub/diagram.svg" width="230" alt="Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits"></a><br><br>
+      <a href="benchmarks/combinatorial/zed-adversarial-hub/README.md"><b>Adversarial Bit-Vector Hub Arithmetic Disjunction Circuits</b></a><br>
+      <sub><code>zed-adversarial-hub</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/combinatorial/zed-adversarial-php/README.md"><img src="benchmarks/combinatorial/zed-adversarial-php/diagram.svg" width="230" alt="Adversarial Scaled AIGER Pigeonhole Principle Circuits"></a><br><br>
+      <a href="benchmarks/combinatorial/zed-adversarial-php/README.md"><b>Adversarial Scaled AIGER Pigeonhole Principle Circuits</b></a><br>
+      <sub><code>zed-adversarial-php</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top"></td>
+  </tr>
+</table>
+
+### Planning & Puzzles (5)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/planning-puzzles/picat-mapf/README.md"><img src="benchmarks/planning-puzzles/picat-mapf/diagram.svg" width="230" alt="Multi-Agent Path Finding — Makespan"></a><br><br>
+      <a href="benchmarks/planning-puzzles/picat-mapf/README.md"><b>Multi-Agent Path Finding — Makespan</b></a><br>
+      <sub><code>picat-mapf</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/planning-puzzles/satlib-dimacs-hanoi/README.md"><img src="benchmarks/planning-puzzles/satlib-dimacs-hanoi/diagram.svg" width="230" alt="SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)"></a><br><br>
+      <a href="benchmarks/planning-puzzles/satlib-dimacs-hanoi/README.md"><b>SATLIB — Towers of Hanoi hanoi4, hanoi5 (full)</b></a><br>
+      <sub><code>satlib-dimacs-hanoi</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/planning-puzzles/satlib-dimacs-ii/README.md"><img src="benchmarks/planning-puzzles/satlib-dimacs-ii/diagram.svg" width="230" alt="SATLIB — Inductive Inference (full)"></a><br><br>
+      <a href="benchmarks/planning-puzzles/satlib-dimacs-ii/README.md"><b>SATLIB — Inductive Inference (full)</b></a><br>
+      <sub><code>satlib-dimacs-ii</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/planning-puzzles/satlib-planning-blocksworld/README.md"><img src="benchmarks/planning-puzzles/satlib-planning-blocksworld/diagram.svg" width="230" alt="SATLIB — SATPLAN Blocks World (full)"></a><br><br>
+      <a href="benchmarks/planning-puzzles/satlib-planning-blocksworld/README.md"><b>SATLIB — SATPLAN Blocks World (full)</b></a><br>
+      <sub><code>satlib-planning-blocksworld</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/planning-puzzles/satlib-planning-logistics/README.md"><img src="benchmarks/planning-puzzles/satlib-planning-logistics/diagram.svg" width="230" alt="SATLIB — SATPLAN Logistics a..d (full)"></a><br><br>
+      <a href="benchmarks/planning-puzzles/satlib-planning-logistics/README.md"><b>SATLIB — SATPLAN Logistics a..d (full)</b></a><br>
+      <sub><code>satlib-planning-logistics</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top"></td>
+    <td width="25%" align="center" valign="top"></td>
+    <td width="25%" align="center" valign="top"></td>
+  </tr>
+</table>
+
+### Random & Phase-Transition (9)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/random-3sat-phase-transition/README.md"><img src="benchmarks/random-phase-transition/random-3sat-phase-transition/diagram.svg" width="230" alt="Critical &amp; Off-Threshold Phase-Transition Random 3-SAT"></a><br><br>
+      <a href="benchmarks/random-phase-transition/random-3sat-phase-transition/README.md"><b>Critical &amp; Off-Threshold Phase-Transition Random 3-SAT</b></a><br>
+      <sub><code>random-3sat-phase-transition</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/rb-bench-model-rb/README.md"><img src="benchmarks/random-phase-transition/rb-bench-model-rb/diagram.svg" width="230" alt="Model RB Forced-Satisfiable SAT Benchmarks (RB-bench / BHOSLIB)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/rb-bench-model-rb/README.md"><b>Model RB Forced-Satisfiable SAT Benchmarks (RB-bench / BHOSLIB)</b></a><br>
+      <sub><code>rb-bench-model-rb</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/satlib-bms-rti/README.md"><img src="benchmarks/random-phase-transition/satlib-bms-rti/diagram.svg" width="230" alt="SATLIB — Backbone-Minimal Random 3-SAT (sample / 1,000*)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/satlib-bms-rti/README.md"><b>SATLIB — Backbone-Minimal Random 3-SAT (sample / 1,000*)</b></a><br>
+      <sub><code>satlib-bms-rti</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/satlib-cbs/README.md"><img src="benchmarks/random-phase-transition/satlib-cbs/diagram.svg" width="230" alt="SATLIB — Controlled Backbone Random 3-SAT (sample / 40,000*)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/satlib-cbs/README.md"><b>SATLIB — Controlled Backbone Random 3-SAT (sample / 40,000*)</b></a><br>
+      <sub><code>satlib-cbs</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-aim/README.md"><img src="benchmarks/random-phase-transition/satlib-dimacs-aim/diagram.svg" width="230" alt="SATLIB — Artificial Random 3-SAT — Iwama et al. (full)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-aim/README.md"><b>SATLIB — Artificial Random 3-SAT — Iwama et al. (full)</b></a><br>
+      <sub><code>satlib-dimacs-aim</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-dubois/README.md"><img src="benchmarks/random-phase-transition/satlib-dimacs-dubois/diagram.svg" width="230" alt="SATLIB — Dubois Hard Parity UNSAT (full)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-dubois/README.md"><b>SATLIB — Dubois Hard Parity UNSAT (full)</b></a><br>
+      <sub><code>satlib-dimacs-dubois</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-jnh/README.md"><img src="benchmarks/random-phase-transition/satlib-dimacs-jnh/diagram.svg" width="230" alt="SATLIB — Variable-Length Random SAT — Hooker (full)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-jnh/README.md"><b>SATLIB — Variable-Length Random SAT — Hooker (full)</b></a><br>
+      <sub><code>satlib-dimacs-jnh</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-lran/README.md"><img src="benchmarks/random-phase-transition/satlib-dimacs-lran/diagram.svg" width="230" alt="SATLIB — Large Random 3-SAT f600 / f1000 / f2000 (full)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/satlib-dimacs-lran/README.md"><b>SATLIB — Large Random 3-SAT f600 / f1000 / f2000 (full)</b></a><br>
+      <sub><code>satlib-dimacs-lran</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/random-phase-transition/satlib-rnd3sat/README.md"><img src="benchmarks/random-phase-transition/satlib-rnd3sat/diagram.svg" width="230" alt="SATLIB — Uniform Random 3-SAT uf/uuf50..250 (sample / 6,600*)"></a><br><br>
+      <a href="benchmarks/random-phase-transition/satlib-rnd3sat/README.md"><b>SATLIB — Uniform Random 3-SAT uf/uuf50..250 (sample / 6,600*)</b></a><br>
+      <sub><code>satlib-rnd3sat</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top"></td>
+    <td width="25%" align="center" valign="top"></td>
+    <td width="25%" align="center" valign="top"></td>
+  </tr>
+</table>
+
+### Automata & Computability (3)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/automata-computability/busy-beaver-sat/README.md"><img src="benchmarks/automata-computability/busy-beaver-sat/diagram.svg" width="230" alt="Busy Beaver Halting Synthesis &amp; ZFC-Independence TM State-Compression"></a><br><br>
+      <a href="benchmarks/automata-computability/busy-beaver-sat/README.md"><b>Busy Beaver Halting Synthesis &amp; ZFC-Independence TM State-Compression</b></a><br>
+      <sub><code>busy-beaver-sat</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/automata-computability/mata-presburger-nfa-tptp/README.md"><img src="benchmarks/automata-computability/mata-presburger-nfa-tptp/diagram.svg" width="230" alt="MATA Presburger Explicit-Complement NFA Benchmarks — TPTP"></a><br><br>
+      <a href="benchmarks/automata-computability/mata-presburger-nfa-tptp/README.md"><b>MATA Presburger Explicit-Complement NFA Benchmarks — TPTP</b></a><br>
+      <sub><code>mata-presburger-nfa-tptp</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/automata-computability/mata-presburger-nfa-ultimate-automizer/README.md"><img src="benchmarks/automata-computability/mata-presburger-nfa-ultimate-automizer/diagram.svg" width="230" alt="MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer"></a><br><br>
+      <a href="benchmarks/automata-computability/mata-presburger-nfa-ultimate-automizer/README.md"><b>MATA Presburger Explicit-Complement NFA Benchmarks — Ultimate Automizer</b></a><br>
+      <sub><code>mata-presburger-nfa-ultimate-automizer</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top"></td>
+  </tr>
+</table>
+
+### Competition & Multi-Domain Suites (6)
+
+<table width="100%" cellpadding="12" cellspacing="0">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/competition-suites/dense-solver-public/README.md"><img src="benchmarks/competition-suites/dense-solver-public/diagram.svg" width="230" alt="dense-solver Public SAT Benchmarks"></a><br><br>
+      <a href="benchmarks/competition-suites/dense-solver-public/README.md"><b>dense-solver Public SAT Benchmarks</b></a><br>
+      <sub><code>dense-solver-public</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/competition-suites/fede-intern-challenge/README.md"><img src="benchmarks/competition-suites/fede-intern-challenge/diagram.svg" width="230" alt="@fede_intern 12-Instance Hard SAT Challenge Pack"></a><br><br>
+      <a href="benchmarks/competition-suites/fede-intern-challenge/README.md"><b>@fede_intern 12-Instance Hard SAT Challenge Pack</b></a><br>
+      <sub><code>fede-intern-challenge</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/competition-suites/sat-competition-2002-2026-uris/README.md"><img src="benchmarks/competition-suites/sat-competition-2002-2026-uris/diagram.svg" width="230" alt="International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)"></a><br><br>
+      <a href="benchmarks/competition-suites/sat-competition-2002-2026-uris/README.md"><b>International SAT Competition &amp; SAT-Race Archive URIs (2002–2026)</b></a><br>
+      <sub><code>sat-competition-2002-2026-uris</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/competition-suites/sat-shortcut-challenge-tier1/README.md"><img src="benchmarks/competition-suites/sat-shortcut-challenge-tier1/diagram.svg" width="230" alt="SAT Shortcut Challenge — Tier 1 Structured Suite"></a><br><br>
+      <a href="benchmarks/competition-suites/sat-shortcut-challenge-tier1/README.md"><b>SAT Shortcut Challenge — Tier 1 Structured Suite</b></a><br>
+      <sub><code>sat-shortcut-challenge-tier1</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/competition-suites/sat-shortcut-challenge-tier3/README.md"><img src="benchmarks/competition-suites/sat-shortcut-challenge-tier3/diagram.svg" width="230" alt="SAT Shortcut Challenge — Tier 3 Random 3-SAT Suite"></a><br><br>
+      <a href="benchmarks/competition-suites/sat-shortcut-challenge-tier3/README.md"><b>SAT Shortcut Challenge — Tier 3 Random 3-SAT Suite</b></a><br>
+      <sub><code>sat-shortcut-challenge-tier3</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <a href="benchmarks/competition-suites/satlib-archive-uris/README.md"><img src="benchmarks/competition-suites/satlib-archive-uris/diagram.svg" width="230" alt="UBC SATLIB Complete 97-Archive URI Manifest"></a><br><br>
+      <a href="benchmarks/competition-suites/satlib-archive-uris/README.md"><b>UBC SATLIB Complete 97-Archive URI Manifest</b></a><br>
+      <sub><code>satlib-archive-uris</code></sub>
+    </td>
+    <td width="25%" align="center" valign="top"></td>
+    <td width="25%" align="center" valign="top"></td>
+  </tr>
+</table>
+
+## Uniform Collection Layout
+
+Every collection lives under `benchmarks/<category>/<collection>/` across 10 logical domains (89 SAT collections totaling **1,115 instances** and **4,452 compressed SAT files** across 4 formats, 2 MATA NFA collections totaling **174 `.mata.xz` files**, and 2 URI-manifest archives indexing 25 years of SAT Competition & SATLIB corpora) with **zero** benchmark files at collection root:
+
+- **`README.md`** — Uniform 6-section page layout across all **93 / 93** collections: hero `diagram.svg` figure immediately below the title, followed by `## Provenance & Credit` (with `- **Recommended by:**` last when present), `## Problem Description`, `## Corpus & Data Sizes`, `## Benchmark Results` (Frobenius 1C, [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0, [dense-solver](https://github.com/libdense/dense-solver) 0.0.4, [Kissat](https://github.com/arminbiere/kissat) 4.0.4, plus [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) / [`lrat-check`](https://github.com/marijnheule/drat-trim) certification), `## Phase-Transition & Structural Analysis` (or `## Automata Structural Analysis`), and `## References`.
+- **`diagram.svg`** + **`src/gen_diagram.py`** — Reproducible bespoke vector illustration across all **93 / 93** collections, generated directly from real benchmark instances or problem geometry.
+- **`expected.tsv`** — Top-level 2-column ground-truth verdict manifest (`<instance_without_.xz>\t<SAT|UNSAT|UNKNOWN>`, no header, sorted alphabetically by instance name) across **92 / 93** collections (**21,514 rows**: `8,652 SAT / 6,204 UNSAT / 6,658 UNKNOWN`), covering 1-to-1 every file in `*-orig/` (flat relative POSIX paths such as `sortnet_n11_d7.cnf`, `bar.aig`, `aes256_r14_k256_dual_sat.xcnf`, `ARI056_1.mata`, plus `<hash>.cnf` entries for URI-only instance corpora and complementation verdicts for MATA NFAs), programmatically validated by [`src/verify_expected.py`](src/verify_expected.py).
+- **`<orig-fmt>-orig/`** — Native original compressed files directly inside: `aig-orig/` (11 collections, 101 instances), `cnf-orig/` (77 collections, 1,004 instances), `xcnf-orig/` (1 collection, 10 instances), or `mata-orig/` (2 NFA collections, 174 automata).
+- **`<conv-fmt>-converted/`** — Exact lossless conversions for all remaining SAT formats directly inside (with any `> 95 MB` GitHub-limit omissions explicitly documented in `<collection>/format_exclusions.tsv` and validated by [`src/verify_expected.py`](src/verify_expected.py)):
+  - `aig-converted/` (or `aig-orig/`): **1,111 / 1,115** **Binary AIGER 1.9** (`L = 0`, `O = 1` combinational miter where `PO_0 = 1` iff SAT; `226.28 MB` total, verified via [Berkeley **ABC**](https://github.com/berkeley-abc/abc) `read_aiger` / binary AIGER 1.9 decode & witness simulation, `0` errors; 4 largest `guillochon-oeis-a067782-sortnet` files `> 95 MB` omitted per [`format_exclusions.tsv`](benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
+  - `cnf-converted/` (or `cnf-orig/`): **1,115 / 1,115** **DIMACS `.cnf.xz`** (`457.93 MB` total).
+  - `xcnf-converted/` (or `xcnf-orig/`): **1,115 / 1,115** **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** (`407.51 MB` total, with complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
+  - `anf-converted/`: **1,111 / 1,115** **DIMACS-ANF `.anf.xz`** (`405.17 MB` total, linear-size degree-$\le 2$ from `aig-orig/` and degree-$\le 3$ from `xcnf-orig/` / `xcnf-converted/`, generated via [`src/to_anf.py`](src/to_anf.py); same 4 `> 95 MB` `guillochon-oeis-a067782-sortnet` files omitted per [`format_exclusions.tsv`](benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
+- **`src/`** — Standalone generator, exporter, fetcher, diagram, or converter source code (alongside repository-wide [`src/run_benchmarks.py`](src/run_benchmarks.py) + [`src/BENCHMARK_RUNNER.md`](src/BENCHMARK_RUNNER.md) for offline multi-solver compilation & parallel core-pinned benchmarking, [`src/to_anf.py`](src/to_anf.py), [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py), and [`src/verify_expected.py`](src/verify_expected.py)).
 
 ## Highlighted Solver Summary
 
@@ -575,9 +640,9 @@ Every collection lives at the repository root in its own self-contained director
 
 | Collection (Instances, $T_{\max}$) | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---|---:|---:|---:|---:|---:|
-| [**Obstacle Knight's Tour**](knights-tour-obstacles/README.md) (10, 15 s) | **Solved** | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | 2 / 10<br>*(-8 worse)* | **10 / 10**<br>*(highest)* |
+| [**Obstacle Knight's Tour**](benchmarks/geometric/knights-tour-obstacles/README.md) (10, 15 s) | **Solved** | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | 2 / 10<br>*(-8 worse)* | **10 / 10**<br>*(highest)* |
 | | **PAR-2** | **178.8 ms**<br>*(fastest)* | 11,302 ms<br>*(63.2x slower)* | 9,121 ms<br>*(51.0x slower)* | 250,274 ms<br>*(1,400x slower)* | 8,678 ms<br>*(48.5x slower)* |
-| [**Peaceable Queen Armies**](queen-armies/README.md) (8, 15 s) | **Solved** | **8 / 8**<br>*(highest)* | 1 / 8<br>*(-7 worse)* | 1 / 8<br>*(-7 worse)* | 2 / 8<br>*(-6 worse)* | 4 / 8<br>*(-4 worse)* |
+| [**Peaceable Queen Armies**](benchmarks/geometric/queen-armies/README.md) (8, 15 s) | **Solved** | **8 / 8**<br>*(highest)* | 1 / 8<br>*(-7 worse)* | 1 / 8<br>*(-7 worse)* | 2 / 8<br>*(-6 worse)* | 4 / 8<br>*(-4 worse)* |
 | | **PAR-2** | **6,235 ms**<br>*(fastest)* | 214,106 ms<br>*(34.3x slower)* | 211,830 ms<br>*(34.0x slower)* | 204,847 ms<br>*(32.9x slower)* | 160,604 ms<br>*(25.8x slower)* |
 
 ### 4. Imported External & Cryptographic Benchmark Collections (1-Core, Identical Flat `.cnf` Input; Plus Native `.mata.xz`)
@@ -587,78 +652,78 @@ Every collection lives at the repository root in its own self-contained director
 
 | Collection (Instances, $T_{\max}$) | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---|---:|---:|---:|---:|---:|
-| [**AES-256 Key-Recovery**](aes256-key-recovery/README.md)¹ (9 solvable, 60 s) | **Solved** | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* |
+| [**AES-256 Key-Recovery**](benchmarks/cryptography/aes256-key-recovery/README.md)¹ (9 solvable, 60 s) | **Solved** | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* |
 | | **PAR-2** | **263 ms**<br>*(fastest)* | 21,525 ms<br>*(81.9x slower)* | 76,442 ms<br>*(291x slower)* | 33,554 ms<br>*(128x slower)* | 21,359 ms<br>*(81.3x slower)* |
-| [**Aloul DAC02**](aloul-dac02-bench/README.md) (32, 5 s) | **Solved** | **32 / 32**<br>*(highest)* | 17 / 32<br>*(-15 worse)* | 23 / 32<br>*(-9 worse)* | **32 / 32**<br>*(highest)* | 24 / 32<br>*(-8 worse)* |
+| [**Aloul DAC02**](benchmarks/combinatorial/aloul-dac02-bench/README.md) (32, 5 s) | **Solved** | **32 / 32**<br>*(highest)* | 17 / 32<br>*(-15 worse)* | 23 / 32<br>*(-9 worse)* | **32 / 32**<br>*(highest)* | 24 / 32<br>*(-8 worse)* |
 | | **PAR-2** | **360.3 ms**<br>*(fastest)* | 154,076 ms<br>*(428x slower)* | 96,866 ms<br>*(269x slower)* | 450.7 ms<br>*(1.25x slower)* | 87,033 ms<br>*(242x slower)* |
-| [**Aloul DIFP-A**](aloul-difp-a/README.md) (14, 5 s) | **Solved** | **14 / 14**<br>*(highest)* | 8 / 14<br>*(-6 worse)* | 7 / 14<br>*(-7 worse)* | 5 / 14<br>*(-9 worse)* | 8 / 14<br>*(-6 worse)* |
+| [**Aloul DIFP-A**](benchmarks/number-theoretic/aloul-difp-a/README.md) (14, 5 s) | **Solved** | **14 / 14**<br>*(highest)* | 8 / 14<br>*(-6 worse)* | 7 / 14<br>*(-7 worse)* | 5 / 14<br>*(-9 worse)* | 8 / 14<br>*(-6 worse)* |
 | | **PAR-2** | **61.7 ms**<br>*(fastest)* | 82,148 ms<br>*(1,331x slower)* | 85,065 ms<br>*(1,378x slower)* | 106,012 ms<br>*(1,718x slower)* | 80,636 ms<br>*(1,307x slower)* |
-| [**Aloul DIFP-W**](aloul-difp-w/README.md) (15, 5 s) | **Solved** | **15 / 15**<br>*(highest)* | 6 / 15<br>*(-9 worse)* | 7 / 15<br>*(-8 worse)* | 4 / 15<br>*(-11 worse)* | 7 / 15<br>*(-8 worse)* |
+| [**Aloul DIFP-W**](benchmarks/number-theoretic/aloul-difp-w/README.md) (15, 5 s) | **Solved** | **15 / 15**<br>*(highest)* | 6 / 15<br>*(-9 worse)* | 7 / 15<br>*(-8 worse)* | 4 / 15<br>*(-11 worse)* | 7 / 15<br>*(-8 worse)* |
 | | **PAR-2** | **128.2 ms**<br>*(fastest)* | 101,152 ms<br>*(789x slower)* | 88,571 ms<br>*(691x slower)* | 115,672 ms<br>*(902x slower)* | 97,101 ms<br>*(757x slower)* |
-| [**Aloul FPGA Switch-Box**](aloul-fpga-sb-sat/README.md) ([SAT](aloul-fpga-sb-sat/README.md) + [UNSAT](aloul-fpga-sb-uns/README.md), 21, 5 s) | **Solved** | **21 / 21**<br>*(highest)* | 11 / 21<br>*(-10 worse)* | 11 / 21<br>*(-10 worse)* | **21 / 21**<br>*(highest)* | 12 / 21<br>*(-9 worse)* |
+| [**Aloul FPGA Switch-Box**](benchmarks/circuits-hardware/aloul-fpga-sb-sat/README.md) ([SAT](benchmarks/circuits-hardware/aloul-fpga-sb-sat/README.md) + [UNSAT](benchmarks/circuits-hardware/aloul-fpga-sb-uns/README.md), 21, 5 s) | **Solved** | **21 / 21**<br>*(highest)* | 11 / 21<br>*(-10 worse)* | 11 / 21<br>*(-10 worse)* | **21 / 21**<br>*(highest)* | 12 / 21<br>*(-9 worse)* |
 | | **PAR-2** | **17.6 ms**<br>*(fastest)* | 100,093 ms<br>*(5,674x slower)* | 100,380 ms<br>*(5,690x slower)* | 37.4 ms<br>*(2.12x slower)* | 93,237 ms<br>*(5,285x slower)* |
-| **Brewbaker 7-Suite Pack** ([Golomb](brewbaker-golomb-rulers/README.md), [Select](brewbaker-select-networks/README.md), [SHA256](brewbaker-sha256-cec/README.md), [Sort](brewbaker-sort-networks/README.md), [Cross](brewbaker-tensor-cross/README.md), [Dot](brewbaker-tensor-dot/README.md), [Matmul](brewbaker-tensor-matmul/README.md); 73, 60 s) | **Solved** | **73 / 73**<br>*(highest)* | 62 / 73<br>*(-11 worse)* | 59 / 73<br>*(-14 worse)* | 54 / 73<br>*(-19 worse)* | 62 / 73<br>*(-11 worse)* |
+| **Brewbaker 7-Suite Pack** ([Golomb](benchmarks/number-theoretic/brewbaker-golomb-rulers/README.md), [Select](benchmarks/circuits-hardware/brewbaker-select-networks/README.md), [SHA256](benchmarks/circuits-hardware/brewbaker-sha256-cec/README.md), [Sort](benchmarks/circuits-hardware/brewbaker-sort-networks/README.md), [Cross](benchmarks/algebraic/brewbaker-tensor-cross/README.md), [Dot](benchmarks/algebraic/brewbaker-tensor-dot/README.md), [Matmul](benchmarks/algebraic/brewbaker-tensor-matmul/README.md); 73, 60 s) | **Solved** | **73 / 73**<br>*(highest)* | 62 / 73<br>*(-11 worse)* | 59 / 73<br>*(-14 worse)* | 54 / 73<br>*(-19 worse)* | 62 / 73<br>*(-11 worse)* |
 | | **PAR-2** | **32.18 s**<br>*(fastest)* | 1,657.42 s<br>*(51.5x slower)* | 1,848.53 s<br>*(57.4x slower)* | 2,532.43 s<br>*(78.7x slower)* | 1,474.17 s<br>*(45.8x slower)* |
-| [**Davies Rectangle-Free $27\times 27$**](davies-rectangle-free-27/README.md)² (`01-known-unsat`, 1 / 2, 600 s) | **Solved** | **1 / 1**<br>*(highest)* | **1 / 1**<br>*(highest)* | **1 / 1**<br>*(highest)* | 0 / 1<br>*(-1 worse)* | **1 / 1**<br>*(highest)* |
+| [**Davies Rectangle-Free $27\times 27$**](benchmarks/geometric/davies-rectangle-free-27/README.md)² (`01-known-unsat`, 1 / 2, 600 s) | **Solved** | **1 / 1**<br>*(highest)* | **1 / 1**<br>*(highest)* | **1 / 1**<br>*(highest)* | 0 / 1<br>*(-1 worse)* | **1 / 1**<br>*(highest)* |
 | | **PAR-2** | **80.33 s**<br>*(fastest)* | 339.43 s<br>*(4.23x slower)* | 414.78 s<br>*(5.16x slower)* | 1,200.0 s<br>*(14.9x slower)* | 570.57 s<br>*(7.10x slower)* |
-| [**dense-solver Public**](dense-solver-public/README.md) (30, 5 s) | **Solved** | **30 / 30**<br>*(highest)* | 24 / 30<br>*(-6 worse)* | 20 / 30<br>*(-10 worse)* | 28 / 30<br>*(-2 worse)* | 25 / 30<br>*(-5 worse)* |
+| [**dense-solver Public**](benchmarks/competition-suites/dense-solver-public/README.md) (30, 5 s) | **Solved** | **30 / 30**<br>*(highest)* | 24 / 30<br>*(-6 worse)* | 20 / 30<br>*(-10 worse)* | 28 / 30<br>*(-2 worse)* | 25 / 30<br>*(-5 worse)* |
 | | **PAR-2** | **102.8 ms**<br>*(fastest)* | 64,035 ms<br>*(623x slower)* | 100,928 ms<br>*(982x slower)* | 20,460 ms<br>*(199x slower)* | 53,137 ms<br>*(517x slower)* |
-| [**dense-solver Synthetic — Chessboard**](dense-solver-synthetic-chessboard/README.md) (3, 5 s) | **Solved** | **3 / 3**<br>*(highest)* | 1 / 3<br>*(-2 worse)* | 1 / 3<br>*(-2 worse)* | **3 / 3**<br>*(highest)* | 1 / 3<br>*(-2 worse)* |
+| [**dense-solver Synthetic — Chessboard**](benchmarks/geometric/dense-solver-synthetic-chessboard/README.md) (3, 5 s) | **Solved** | **3 / 3**<br>*(highest)* | 1 / 3<br>*(-2 worse)* | 1 / 3<br>*(-2 worse)* | **3 / 3**<br>*(highest)* | 1 / 3<br>*(-2 worse)* |
 | | **PAR-2** | **4.0 ms**<br>*(fastest)* | 20,421 ms<br>*(5,058x slower)* | 20,495 ms<br>*(5,077x slower)* | 7.4 ms<br>*(1.83x slower)* | 20,399 ms<br>*(5,053x slower)* |
-| [**dense-solver Synthetic — PHP**](dense-solver-synthetic-php/README.md) (17, 5 s) | **Solved** | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* | 13 / 17<br>*(-4 worse)* | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* |
+| [**dense-solver Synthetic — PHP**](benchmarks/combinatorial/dense-solver-synthetic-php/README.md) (17, 5 s) | **Solved** | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* | 13 / 17<br>*(-4 worse)* | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* |
 | | **PAR-2** | **17.1 ms**<br>*(fastest)* | 40,653 ms<br>*(2,383x slower)* | 41,142 ms<br>*(2,411x slower)* | 38.2 ms<br>*(2.24x slower)* | 40,202 ms<br>*(2,356x slower)* |
-| [**`@fede_intern` 12-CNF Challenge**](fede-intern-challenge/README.md) (12, 60 s / 300 s) | **Solved (60 s)** | **10 / 12**<br>*(highest)* | 3 / 12<br>*(-7 worse)* | 0 / 12<br>*(-10 worse)* | 0 / 12<br>*(-10 worse)* | 3 / 12<br>*(-7 worse)* |
+| [**`@fede_intern` 12-CNF Challenge**](benchmarks/competition-suites/fede-intern-challenge/README.md) (12, 60 s / 300 s) | **Solved (60 s)** | **10 / 12**<br>*(highest)* | 3 / 12<br>*(-7 worse)* | 0 / 12<br>*(-10 worse)* | 0 / 12<br>*(-10 worse)* | 3 / 12<br>*(-7 worse)* |
 | | **PAR-2 (60 s)** | **286.67 s**<br>*(fastest)* | 1,120.20 s<br>*(3.91x slower)* | 1,440.00 s<br>*(5.02x slower)* | 1,440.00 s<br>*(5.02x slower)* | 1,117.65 s<br>*(3.90x slower)* |
 | | **Solved (300 s)** | **10 / 12**<br>*(highest)* | 4 / 12<br>*(-6 worse)* | — | — | 4 / 12<br>*(-6 worse)* |
 | | **PAR-2 (300 s)** | **1,243.25 s**<br>*(fastest)* | 5,002.12 s<br>*(4.02x slower)* | — | — | 4,926.02 s<br>*(3.96x slower)* |
-| **Guillochon OEIS SAT**³ ([A067782](guillochon-oeis-a067782-sortnet/README.md), [A171081](guillochon-oeis-a171081-vdw/README.md), [A250000](guillochon-oeis-a250000-queens/README.md), [A350304](guillochon-oeis-a350304-zarankiewicz/README.md), [5 Grid](guillochon-oeis-grid-sq-any/README.md); 30 cal. / 112, 60 s) | **Solved** | **24 / 30**<br>*(highest)* | 20 / 30<br>*(-4 worse)* | 15 / 30<br>*(-9 worse)* | 13 / 30<br>*(-11 worse)* | 19 / 30<br>*(-5 worse)* |
+| **Guillochon OEIS SAT**³ ([A067782](benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/README.md), [A171081](benchmarks/number-theoretic/guillochon-oeis-a171081-vdw/README.md), [A250000](benchmarks/geometric/guillochon-oeis-a250000-queens/README.md), [A350304](benchmarks/combinatorial/guillochon-oeis-a350304-zarankiewicz/README.md), [5 Grid](benchmarks/geometric/guillochon-oeis-grid-sq-any/README.md); 30 cal. / 112, 60 s) | **Solved** | **24 / 30**<br>*(highest)* | 20 / 30<br>*(-4 worse)* | 15 / 30<br>*(-9 worse)* | 13 / 30<br>*(-11 worse)* | 19 / 30<br>*(-5 worse)* |
 | | **PAR-2** | **913.7 s**<br>*(fastest)* | 1,293.2 s<br>*(1.42x slower)* | 2,046.9 s<br>*(2.24x slower)* | 2,134.7 s<br>*(2.34x slower)* | 1,598.2 s<br>*(1.75x slower)* |
-| [**Heule Matrix `xor6cut`**](heule-matrix-xor6cut/README.md)⁴ (6, 60 s) | **Solved** | **5 / 6**<br>*(highest)* | 2 / 6<br>*(-3 worse)* | 2 / 6<br>*(-3 worse)* | 0 / 6<br>*(-5 worse)* | 3 / 6<br>*(-2 worse)* |
+| [**Heule Matrix `xor6cut`**](benchmarks/algebraic/heule-matrix-xor6cut/README.md)⁴ (6, 60 s) | **Solved** | **5 / 6**<br>*(highest)* | 2 / 6<br>*(-3 worse)* | 2 / 6<br>*(-3 worse)* | 0 / 6<br>*(-5 worse)* | 3 / 6<br>*(-2 worse)* |
 | | **PAR-2** | **120,722 ms**<br>*(fastest)* | 493,170 ms<br>*(4.09x slower)* | 510,399 ms<br>*(4.23x slower)* | 720,000 ms<br>*(5.96x slower)* | 418,266 ms<br>*(3.46x slower)* |
-| [**MATA Presburger NFAs**](mata-presburger-nfa-tptp/README.md)⁵ ([TPTP](mata-presburger-nfa-tptp/README.md) + [UAutomizer](mata-presburger-nfa-ultimate-automizer/README.md), 174, 5 s, `.mata.xz`) | **Solved** | **174 / 174** | — | — | — | — |
+| [**MATA Presburger NFAs**](benchmarks/automata-computability/mata-presburger-nfa-tptp/README.md)⁵ ([TPTP](benchmarks/automata-computability/mata-presburger-nfa-tptp/README.md) + [UAutomizer](benchmarks/automata-computability/mata-presburger-nfa-ultimate-automizer/README.md), 174, 5 s, `.mata.xz`) | **Solved** | **174 / 174** | — | — | — | — |
 | | **PAR-2** | **1,596 ms** | — | — | — | — |
-| [**`mod-circuit-sat`**](mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **Solved** | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | 8 / 9<br>*(-1 worse)* | 8 / 9<br>*(-1 worse)* | **9 / 9**<br>*(highest)* |
+| [**`mod-circuit-sat`**](benchmarks/circuits-hardware/mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **Solved** | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | 8 / 9<br>*(-1 worse)* | 8 / 9<br>*(-1 worse)* | **9 / 9**<br>*(highest)* |
 | | **PAR-2** | **2,105 ms**<br>*(fastest)* | 29,702 ms<br>*(14.1x slower)* | 67,344 ms<br>*(32.0x slower)* | 67,769 ms<br>*(32.2x slower)* | 25,994 ms<br>*(12.3x slower)* |
-| [**Model RB Full Suite**](rb-bench-model-rb/README.md) (40, 5 s) | **Solved** | **37 / 40**<br>*(highest)* | 12 / 40<br>*(-25 worse)* | 10 / 40<br>*(-27 worse)* | 10 / 40<br>*(-27 worse)* | 11 / 40<br>*(-26 worse)* |
+| [**Model RB Full Suite**](benchmarks/random-phase-transition/rb-bench-model-rb/README.md) (40, 5 s) | **Solved** | **37 / 40**<br>*(highest)* | 12 / 40<br>*(-25 worse)* | 10 / 40<br>*(-27 worse)* | 10 / 40<br>*(-27 worse)* | 11 / 40<br>*(-26 worse)* |
 | | **PAR-2** | **48,014 ms**<br>*(fastest)* | 293,728 ms<br>*(6.12x slower)* | 308,697 ms<br>*(6.43x slower)* | 307,528 ms<br>*(6.41x slower)* | 306,309 ms<br>*(6.38x slower)* |
-| **Picat-SAT 6-Suite Pack** ([Costas](picat-costas-arrays/README.md), [Golomb](picat-golomb-rulers/README.md), [MAPF](picat-mapf/README.md), [Numberlink](picat-numberlink/README.md), [RectPack](picat-rectangle-packing/README.md), [VMTL](picat-vmtl/README.md); 56, 60 s) | **Solved** | **55 / 56**<br>*(highest)* | 52 / 56<br>*(-3 worse)* | 52 / 56<br>*(-3 worse)* | 52 / 56<br>*(-3 worse)* | 53 / 56<br>*(-2 worse)* |
+| **Picat-SAT 6-Suite Pack** ([Costas](benchmarks/combinatorial/picat-costas-arrays/README.md), [Golomb](benchmarks/number-theoretic/picat-golomb-rulers/README.md), [MAPF](benchmarks/planning-puzzles/picat-mapf/README.md), [Numberlink](benchmarks/combinatorial/picat-numberlink/README.md), [RectPack](benchmarks/geometric/picat-rectangle-packing/README.md), [VMTL](benchmarks/combinatorial/picat-vmtl/README.md); 56, 60 s) | **Solved** | **55 / 56**<br>*(highest)* | 52 / 56<br>*(-3 worse)* | 52 / 56<br>*(-3 worse)* | 52 / 56<br>*(-3 worse)* | 53 / 56<br>*(-2 worse)* |
 | | **PAR-2** | **166.69 s**<br>*(fastest)* | 554.22 s<br>*(3.32x slower)* | 605.87 s<br>*(3.63x slower)* | 594.24 s<br>*(3.56x slower)* | 497.87 s<br>*(2.99x slower)* |
-| [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | **Solved** | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+| [**Pretolani PRET**](benchmarks/algebraic/pretolani-pret/README.md) (8, 5 s) | **Solved** | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
 | | **PAR-2** | **4.94 ms**<br>*(fastest)* | 41.53 ms<br>*(8.41x slower)* | 161.74 ms<br>*(32.7x slower)* | 6.43 ms<br>*(1.30x slower)* | 58.45 ms<br>*(11.8x slower)* |
-| [**QDistSAT Full Suite**](qdistsat-qldpc/README.md)⁶ `BB_30..756` (10, 10 s) | **Solved** | **8 / 10**<br>*(highest)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* |
+| [**QDistSAT Full Suite**](benchmarks/algebraic/qdistsat-qldpc/README.md)⁶ `BB_30..756` (10, 10 s) | **Solved** | **8 / 10**<br>*(highest)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* |
 | | **PAR-2** | **40,227 ms**<br>*(fastest)* | 100,078 ms<br>*(2.49x slower)* | 100,515 ms<br>*(2.50x slower)* | 100,119 ms<br>*(2.49x slower)* | 100,090 ms<br>*(2.49x slower)* |
-| [**RSA-NTT Factoring ($O(n \log n)$, 24b–1,024b)**](rsa-ntt-factoring/README.md) (17, 60 s) | **Solved** | **2 / 17**<br>*(highest)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* |
+| [**RSA-NTT Factoring ($O(n \log n)$, 24b–1,024b)**](benchmarks/number-theoretic/rsa-ntt-factoring/README.md) (17, 60 s) | **Solved** | **2 / 17**<br>*(highest)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* |
 | | **PAR-2** | **1,803.5 s**<br>*(fastest)* | 2,040.0 s<br>*(1.13x slower)* | 2,040.0 s<br>*(1.13x slower)* | 2,040.0 s<br>*(1.13x slower)* | 2,040.0 s<br>*(1.13x slower)* |
-| [**SAT Competition 2023/2024 Gauntlet**](sat-competition-2002-2026-uris/README.md)⁷ (12, 5,000 s) | **Solved** | **12 / 12**<br>*(highest)* | 8 / 12<br>*(-4 worse)* | 9 / 12<br>*(-3 worse)* | 9 / 12<br>*(-3 worse)* | 8 / 12<br>*(-4 worse)* |
+| [**SAT Competition 2023/2024 Gauntlet**](benchmarks/competition-suites/sat-competition-2002-2026-uris/README.md)⁷ (12, 5,000 s) | **Solved** | **12 / 12**<br>*(highest)* | 8 / 12<br>*(-4 worse)* | 9 / 12<br>*(-3 worse)* | 9 / 12<br>*(-3 worse)* | 8 / 12<br>*(-4 worse)* |
 | | **PAR-2** | **2,342 ms**<br>*(fastest)* | 43,480,568 ms<br>*(18,567x slower)* | 36,241,382 ms<br>*(15,476x slower)* | 30,505,588 ms<br>*(13,027x slower)* | 40,251,149 ms<br>*(17,188x slower)* |
-| [**SAT Shortcut Challenge Tier-1**](sat-shortcut-challenge-tier1/README.md) (47, 300 s) | **Solved** | **47 / 47**<br>*(highest)* | 45 / 47<br>*(-2 worse)* | 46 / 47<br>*(-1 worse)* | 45 / 47<br>*(-2 worse)* | 45 / 47<br>*(-2 worse)* |
+| [**SAT Shortcut Challenge Tier-1**](benchmarks/competition-suites/sat-shortcut-challenge-tier1/README.md) (47, 300 s) | **Solved** | **47 / 47**<br>*(highest)* | 45 / 47<br>*(-2 worse)* | 46 / 47<br>*(-1 worse)* | 45 / 47<br>*(-2 worse)* | 45 / 47<br>*(-2 worse)* |
 | | **PAR-2** | **0.61 s**<br>*(fastest)* | 1,730.8 s<br>*(2,856x slower)* | 1,004.2 s<br>*(1,657x slower)* | 1,225.7 s<br>*(2,023x slower)* | 1,323.2 s<br>*(2,184x slower)* |
-| [**SAT Shortcut Challenge Tier-3**](sat-shortcut-challenge-tier3/README.md) (25, 300 s) | **Solved** | **17 / 25**<br>*(highest)* | **17 / 25**<br>*(highest)* | 12 / 25<br>*(-5 worse)* | 5 / 25<br>*(-12 worse)* | **17 / 25**<br>*(highest)* |
+| [**SAT Shortcut Challenge Tier-3**](benchmarks/competition-suites/sat-shortcut-challenge-tier3/README.md) (25, 300 s) | **Solved** | **17 / 25**<br>*(highest)* | **17 / 25**<br>*(highest)* | 12 / 25<br>*(-5 worse)* | 5 / 25<br>*(-12 worse)* | **17 / 25**<br>*(highest)* |
 | | **PAR-2** | **4,860.5 s**<br>*(fastest)* | 4,923.0 s<br>*(1.013x slower)* | 8,583.6 s<br>*(1.77x slower)* | 12,370.4 s<br>*(2.55x slower)* | 5,055.9 s<br>*(1.04x slower)* |
-| [**SATLIB All 22 Collections**](satlib-archive-uris/README.md) (331, 5 s) | **Solved** | **331 / 331**<br>*(highest)* | 316 / 331<br>*(-15 worse)* | 323 / 331<br>*(-8 worse)* | 313 / 331<br>*(-18 worse)* | 314 / 331<br>*(-17 worse)* |
+| [**SATLIB All 22 Collections**](benchmarks/competition-suites/satlib-archive-uris/README.md) (331, 5 s) | **Solved** | **331 / 331**<br>*(highest)* | 316 / 331<br>*(-15 worse)* | 323 / 331<br>*(-8 worse)* | 313 / 331<br>*(-18 worse)* | 314 / 331<br>*(-17 worse)* |
 | | **PAR-2** | **8,041 ms**<br>*(fastest)* | 174,495 ms<br>*(21.7x slower)* | 164,024 ms<br>*(20.4x slower)* | 207,808 ms<br>*(25.8x slower)* | 189,408 ms<br>*(23.6x slower)* |
-| [**SHA-256 64-Round Nonce Scaling**](sha256-64r-nonce-scaling/README.md)⁸ ($k = 1\dots 32$, 32, 300 s) | **Solved** | **32 / 32**<br>*(highest)* | 17 / 32<br>*(-15 worse)* | 12 / 32<br>*(-20 worse)* | 17 / 32<br>*(-15 worse)* | 15 / 32<br>*(-17 worse)* |
+| [**SHA-256 64-Round Nonce Scaling**](benchmarks/cryptography/sha256-64r-nonce-scaling/README.md)⁸ ($k = 1\dots 32$, 32, 300 s) | **Solved** | **32 / 32**<br>*(highest)* | 17 / 32<br>*(-15 worse)* | 12 / 32<br>*(-20 worse)* | 17 / 32<br>*(-15 worse)* | 15 / 32<br>*(-17 worse)* |
 | | **PAR-2** | **233.30 s**<br>*(fastest)* | 9,334.87 s<br>*(40.0x slower)* | 12,834.03 s<br>*(55.0x slower)* | 9,518.51 s<br>*(40.8x slower)* | 10,343.07 s<br>*(44.3x slower)* |
-| [**VLSAT-2 First 10**](vlsat-2/README.md) (10, 5 s) | **Solved** | **10 / 10**<br>*(highest)* | 0 / 10<br>*(-10 worse)* | 0 / 10<br>*(-10 worse)* | 7 / 10<br>*(-3 worse)* | 4 / 10<br>*(-6 worse)* |
+| [**VLSAT-2 First 10**](benchmarks/circuits-hardware/vlsat-2/README.md) (10, 5 s) | **Solved** | **10 / 10**<br>*(highest)* | 0 / 10<br>*(-10 worse)* | 0 / 10<br>*(-10 worse)* | 7 / 10<br>*(-3 worse)* | 4 / 10<br>*(-6 worse)* |
 | | **PAR-2** | **26.86 ms**<br>*(fastest)* | 100,000 ms<br>*(3,723x slower)* | 100,000 ms<br>*(3,723x slower)* | 30,031 ms<br>*(1,118x slower)* | 64,843 ms<br>*(2,414x slower)* |
-| [**`vzhn` Matrix Inversion — Integer ($\mathbb{Z}$)**](vzhn-sat-inv-matrix-int/README.md) (11, 60 s) | **Solved** | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* |
+| [**`vzhn` Matrix Inversion — Integer ($\mathbb{Z}$)**](benchmarks/algebraic/vzhn-sat-inv-matrix-int/README.md) (11, 60 s) | **Solved** | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* |
 | | **PAR-2** | **10.29 s**<br>*(fastest)* | 31.83 s<br>*(3.09x slower)* | 106.65 s<br>*(10.4x slower)* | 92.10 s<br>*(8.95x slower)* | 20.06 s<br>*(1.95x slower)* |
-| [**`vzhn` Matrix Inversion — Modular ($\mathbb{Z}/m\mathbb{Z}$)**](vzhn-sat-inv-matrix-mod/README.md) (15, 60 s) | **Solved** | **15 / 15**<br>*(highest)* | 11 / 15<br>*(-4 worse)* | 14 / 15<br>*(-1 worse)* | 11 / 15<br>*(-4 worse)* | 10 / 15<br>*(-5 worse)* |
+| [**`vzhn` Matrix Inversion — Modular ($\mathbb{Z}/m\mathbb{Z}$)**](benchmarks/algebraic/vzhn-sat-inv-matrix-mod/README.md) (15, 60 s) | **Solved** | **15 / 15**<br>*(highest)* | 11 / 15<br>*(-4 worse)* | 14 / 15<br>*(-1 worse)* | 11 / 15<br>*(-4 worse)* | 10 / 15<br>*(-5 worse)* |
 | | **PAR-2** | **1.08 s**<br>*(fastest)* | 499.33 s<br>*(464x slower)* | 142.65 s<br>*(133x slower)* | 509.79 s<br>*(474x slower)* | 611.47 s<br>*(569x slower)* |
 
 **Notes for Section 4:**
-1. **AES-256 Key-Recovery:** Synthetic NIST FIPS 197 AES-256 key-recovery & Davies–Meyer hash-preimage benchmark suite ([`aes256-key-recovery/`](aes256-key-recovery/README.md), 9 solvable partial-key / reduced-round instances at $T_{\max} = 60\text{ s}$, plus 30 s full 14-round 256-bit dual-plaintext throughput stress test). Row reports flat `.cnf` parity across all five solvers (`262.85 ms` for Frobenius 1C PGO, **`81.3x` faster than Kissat 4.0.4**); on native Binary AIGER `.aig` miters, Frobenius 1C solves all `9 / 9` in **`69.90 ms` (`306x` faster than Kissat 4.0.4 `.cnf`)**, on native `.xcnf` in **`237.12 ms` (`1,169x` faster than CryptoMiniSat 5.18.0 `.xcnf` `7 / 9`, `277,270 ms`)**, and on `.anf` in **`156.41 ms`**.
+1. **AES-256 Key-Recovery:** Synthetic NIST FIPS 197 AES-256 key-recovery & Davies–Meyer hash-preimage benchmark suite ([`aes256-key-recovery/`](benchmarks/cryptography/aes256-key-recovery/README.md), 9 solvable partial-key / reduced-round instances at $T_{\max} = 60\text{ s}$, plus 30 s full 14-round 256-bit dual-plaintext throughput stress test). Row reports flat `.cnf` parity across all five solvers (`262.85 ms` for Frobenius 1C PGO, **`81.3x` faster than Kissat 4.0.4**); on native Binary AIGER `.aig` miters, Frobenius 1C solves all `9 / 9` in **`69.90 ms` (`306x` faster than Kissat 4.0.4 `.cnf`)**, on native `.xcnf` in **`237.12 ms` (`1,169x` faster than CryptoMiniSat 5.18.0 `.xcnf` `7 / 9`, `277,270 ms`)**, and on `.anf` in **`156.41 ms`**.
 2. **Davies Rectangle-Free $27\times 27$:** Frobenius 1C with binary-DRAT proof emission (`--proof`) solved `01-known-unsat` in `91.54 s` (`1.14x slower` than default; independently verified by `drat-trim` and `cake_lpr`, and re-verified on PGO via `--proof --verify-proof`, `6,883,549` steps `proof_verified=OK`).
 3. **Guillochon OEIS SAT:** Frobenius 1C solved `7 / 13` UNSAT calibration rungs (`113.5 s` combined, including cracking both `sortnet_n11_d7` in `27.98 s` and `sortnet_n12_d7` in `41.64 s`, plus all `5 / 5` non-sortnet UNSAT rungs in `43.9 s`).
 4. **Heule Matrix `xor6cut`:** Frobenius 1C PGO solves all **5 / 6** SAT instances (`xor6cut-23..27`) in `722.4 ms` total across `.cnf` (`120,722 ms` PAR-2, and `5 / 6` across `.xcnf` `265.1 ms`, `.aig` `698.8 ms`, `.anf` `946.1 ms`, 20/20 witnesses verified), whereas CryptoMiniSat 5.18.0 on native `.xcnf` solves `3 / 6` (`455,099 ms` PAR-2, `3.77x slower`). Across the other 8 Heule $3\times 3$ matrix collections (37 instances, $T_{\max} = 10\text{ s}$ / $60\text{ s}$), all solvers timed out (`0 / 37`).
 5. **MATA Presburger NFAs:** Native `.mata.xz` NFA decision benchmarks (`--mata-complement`: `1,596 ms` total; emptiness mode: `1,692 ms`; explicit complement: `2,147 ms`). External baselines accept CNF/XCNF only (`—`).
 6. **QDistSAT Full Suite:** Frobenius 1C PGO solved its 8 solved instances in `227.2 ms` total wall time (`40,227 ms` PAR-2). On native `.xcnf` input, CryptoMiniSat 5.18.0 solved `5 / 10` with `100,297 ms` PAR-2 (`2.49x slower`).
-7. **SAT Competition 2023/2024 Gauntlet:** The curated 14-instance SC 2023/2024 Gauntlet slice (12 instances in Part II of the Unified 50-Benchmark Flat-CNF Gauntlet in Section 1 above) is indexed in [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) alongside all 25 years of SAT Competition & SAT-Race URI manifests (62 `.uri` manifests, 20,225 unique CNFs; SC 2024–2026 Main Track results summarized in Section 5 below).
+7. **SAT Competition 2023/2024 Gauntlet:** The curated 14-instance SC 2023/2024 Gauntlet slice (12 instances in Part II of the Unified 50-Benchmark Flat-CNF Gauntlet in Section 1 above) is indexed in [`sat-competition-2002-2026-uris/`](benchmarks/competition-suites/sat-competition-2002-2026-uris/README.md) alongside all 25 years of SAT Competition & SAT-Race URI manifests (62 `.uri` manifests, 20,225 unique CNFs; SC 2024–2026 Main Track results summarized in Section 5 below).
 8. **SHA-256 64-Round Nonce Scaling:** Zero-bias 32-instance ladder ($k = 1 \dots 32$ unknown LSBs of golden-ratio nonce $W_0 = \texttt{0x9E3779B9}$, full 64-round FIPS 180-4 SHA-256, $T_{\max} = 300\text{ s}$, 3-consecutive-timeout stopping rule, 302/302 SAT runs independently verified). Row reports flat `.cnf` parity: Frobenius 1C (`.cnf`) solves **all 32 / 32** with **`233.30 s`** total PAR-2 (`0` timeouts, full 32-bit $T(32) = \mathbf{106.62\text{ s} = 1.78\text{ min}}$ on 1 core at `22.3–22.5M` evals/s; `0.775 s` vs. CaDiCaL `334.87 s` / dense-solver `518.51 s` on $k = 1 \dots 17$). On native `.aig`, Frobenius 1C also solves **all 32 / 32** (`198.93 s` PAR-2, **`46.9x–65.2x` lower** than all 5 CDCL tracks, $T(32) = \mathbf{87.16\text{ s} = 1.45\text{ min}}$ at **`30.3M` evals/s** via Backward Frontier + 32-bit `WordDag` AVX2 JIT), while CryptoMiniSat 5.18.0 `.xcnf` solves `11 / 32` (`12,969.64 s` PAR-2). Pure log-linear M0 wins every post-knee fit ($k \ge 22$ for Frobenius: $R^2_{\log} \ge 0.9967$; measured 1C $T(32) = 1.45\text{--}1.78\text{ min}$ vs. $5.2\text{ days}\text{--}5.3\text{ yr}$ Tobit-extrapolated for CDCL, and `69,000x–3,940,000x` higher throughput in the exact $2^k$ exponential limit).
 
 ### 5. SAT Competition 2024–2026 Main Track (`sat-competition-2002-2026-uris/`, 1,166 Unique CNFs, 1-Core)
 
-- **Archive & Scope:** Part of the complete 25-year [`sat-competition-2002-2026-uris/`](sat-competition-2002-2026-uris/README.md) corpus (`2002–2026`, 62 `.uri` manifests across 14 track categories, 32,194 slots $\to$ **20,225 unique CNFs**). At $T_{\max} = 300\text{ s}$ with UNSAT proof logging, Frobenius 1C solved and formally certified **441 / 1,166** deduplicated SC 2024–2026 Main Track instances (**234 SAT** model-verified + **207 UNSAT** [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr)-certified, `0` errors).
+- **Archive & Scope:** Part of the complete 25-year [`sat-competition-2002-2026-uris/`](benchmarks/competition-suites/sat-competition-2002-2026-uris/README.md) corpus (`2002–2026`, 62 `.uri` manifests across 14 track categories, 32,194 slots $\to$ **20,225 unique CNFs**). At $T_{\max} = 300\text{ s}$ with UNSAT proof logging, Frobenius 1C solved and formally certified **441 / 1,166** deduplicated SC 2024–2026 Main Track instances (**234 SAT** model-verified + **207 UNSAT** [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr)-certified, `0` errors).
 - **Timeout:** Evaluated below at $T_{\max} = 15\text{ s}$ and $T_{\max} = 60\text{ s}$ cutoffs (official competition full runs used $T_{\max} = 5{,}000\text{ s}$).
 - **Same machine?** **No (different machines)** — Frobenius 1C ran on our local **AMD Ryzen 9 5950X** workstation (1 core per instance, unrestricted available RAM), whereas competitor scores are taken directly from official published competition logs/slides (**StarExec** cluster for SC 2024; **LMU / competition sequential clusters** for SC 2025–2026). CPU differences affect absolute runtimes, so ratios below reflect cross-machine published PAR-2 comparisons.
 
@@ -723,98 +788,98 @@ Every collection lives at the repository root in its own self-contained director
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Cross-Collection Phase-Transition & Structural Profile
 
-*Auto-generated across all **88 SAT collections (1,097 instances)** by [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py) (with the curated 14-instance SC 2023–2024 slice also detailed in [`sat-competition-2002-2026-uris/README.md`](sat-competition-2002-2026-uris/README.md)). Each row summarizes where the collection sits relative to the clause-length-weighted critical threshold $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (`Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), Gent–Walsh constrainedness $\kappa$, clause geometry ($\bar{k}$, `%Bin`, `%Horn`), variable-degree skew (`Deg CV`), extracted XOR parity blocks, and total ANF equations.*
+*Auto-generated across all **88 SAT collections (1,097 instances)** by [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py) (with the curated 14-instance SC 2023–2024 slice also detailed in [`benchmarks/competition-suites/sat-competition-2002-2026-uris/README.md`](benchmarks/competition-suites/sat-competition-2002-2026-uris/README.md)). Each row summarizes where the collection sits relative to the clause-length-weighted critical threshold $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (`Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), Gent–Walsh constrainedness $\kappa$, clause geometry ($\bar{k}$, `%Bin`, `%Horn`), variable-degree skew (`Deg CV`), extracted XOR parity blocks, and total ANF equations.*
 
 | Collection | Inst | Med $\alpha$ | Med $\alpha_c^{\mathrm{eff}}$ | Med $\rho_{\mathrm{crit}}$ [Min–Max] | Regime Split (U/N/O) | Med $\kappa$ | Med $\bar{k}$ | Bin% | Horn% | Deg CV | XORs | ANF Eqs |
 |---|---:|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
-| [`aes256-key-recovery/`](aes256-key-recovery/README.md) | 10 | 3.85 | 3.11 | **1.24x** [1.23x–1.26x] | 0 / 0 / 10 | 0.84 | 2.94 | 12% | 43% | 0.42 | 173,288 | 332,654 |
-| [`aloul-dac02-bench/`](aloul-dac02-bench/README.md) | 32 | 5.60 | 1.07 | **4.50x** [0.31x–9.75x] | 6 / 0 / 26 | 1.87 | 2.19 | 93% | 94% | 0.15 | 618 | 98,363 |
-| [`aloul-difp-a/`](aloul-difp-a/README.md) | 14 | 5.46 | 3.70 | **1.48x** [1.48x–1.48x] | 0 / 0 / 14 | 0.98 | 3.33 | 12% | 59% | 0.45 | 5,730 | 59,288 |
-| [`aloul-difp-w/`](aloul-difp-w/README.md) | 15 | 5.95 | 4.37 | **1.36x** [1.36x–1.36x] | 0 / 0 / 15 | 0.97 | 3.42 | 8% | 56% | 4.23 | 9,085 | 97,350 |
-| [`aloul-fpga-sb-sat/`](aloul-fpga-sb-sat/README.md) | 11 | 4.56 | 1.18 | **3.85x** [3.03x–4.60x] | 0 / 0 / 11 | 1.61 | 2.70 | 84% | 84% | 0.15 | 0 | 14,184 |
-| [`aloul-fpga-sb-uns/`](aloul-fpga-sb-uns/README.md) | 10 | 6.35 | 1.01 | **6.25x** [5.00x–9.50x] | 0 / 0 / 10 | 2.59 | 2.13 | 99% | 99% | 0.00 | 0 | 24,008 |
-| [`brewbaker-golomb-rulers/`](brewbaker-golomb-rulers/README.md) | 12 | 2.92 | 1.21 | **2.41x** [2.29x–2.47x] | 0 / 0 / 12 | 1.07 | 2.23 | 78% | 90% | 1.59 | 0 | 58,746 |
-| [`brewbaker-select-networks/`](brewbaker-select-networks/README.md) | 12 | 7.45 | 3.69 | **2.02x** [0.54x–3.55x] | 5 / 0 / 7 | 1.32 | 3.63 | 12% | 71% | 1.35 | 0 | 1,946,861 |
-| [`brewbaker-sha256-cec/`](brewbaker-sha256-cec/README.md) | 13 | 3.21 | 1.64 | **1.96x** [1.68x–1.98x] | 0 / 0 / 13 | 0.97 | 2.51 | 49% | 71% | 0.66 | 287,298 | 2,444,424 |
-| [`brewbaker-sort-networks/`](brewbaker-sort-networks/README.md) | 8 | 13.37 | 4.70 | **2.84x** [2.16x–3.66x] | 0 / 0 / 8 | 2.13 | 3.65 | 5% | 74% | 1.60 | 0 | 1,181,300 |
-| [`brewbaker-tensor-cross/`](brewbaker-tensor-cross/README.md) | 8 | 3.85 | 2.15 | **1.76x** [1.59x–2.36x] | 0 / 0 / 8 | 1.00 | 2.73 | 31% | 94% | 0.46 | 189 | 42,479 |
-| [`brewbaker-tensor-dot/`](brewbaker-tensor-dot/README.md) | 10 | 3.94 | 2.13 | **1.71x** [1.67x–2.35x] | 0 / 0 / 10 | 1.00 | 2.73 | 31% | 92% | 0.77 | 499 | 31,876 |
-| [`brewbaker-tensor-matmul/`](brewbaker-tensor-matmul/README.md) | 10 | 3.29 | 2.01 | **1.64x** [1.56x–2.40x] | 0 / 0 / 10 | 0.91 | 2.65 | 32% | 68% | 0.66 | 4,960 | 72,526 |
-| [`cec-arithmetic-miters/`](cec-arithmetic-miters/README.md) | 5 | 5.20 | 3.69 | **1.36x** [1.36x–1.64x] | 0 / 0 / 5 | 0.91 | 3.30 | 12% | 56% | 0.35 | 831 | 3,819 |
-| [`coupled-linear-nonlinear/`](coupled-linear-nonlinear/README.md) | 4 | 4.08 | 3.48 | **1.18x** [1.14x–1.22x] | 0 / 0 / 4 | 0.99 | 3.11 | 3% | 49% | 0.86 | 1,987 | 2,546 |
-| [`davies-rectangle-free-27/`](davies-rectangle-free-27/README.md) | 2 | 203.64 | 3.23 | **63.1x** [63.1x–63.1x] | 0 / 0 / 2 | 42.57 | 2.98 | 11% | 100% | 0.24 | 0 | 2,340,047 |
-| [`dense-solver-public/`](dense-solver-public/README.md) | 30 | 4.36 | 1.25 | **2.96x** [0.48x–14.5x] | 2 / 9 / 19 | 1.25 | 2.32 | 74% | 72% | 0.23 | 323 | 24,963 |
-| [`dense-solver-synthetic-chessboard/`](dense-solver-synthetic-chessboard/README.md) | 3 | 3.34 | 1.16 | **2.89x** [2.84x–2.97x] | 0 / 0 / 3 | 1.23 | 2.28 | 84% | 84% | 0.10 | 0 | 10,420 |
-| [`dense-solver-synthetic-php/`](dense-solver-synthetic-php/README.md) | 17 | 1.66 | 1.05 | **1.46x** [0.55x–32.0x] | 2 / 3 / 12 | 0.61 | 2.29 | 95% | 97% | 0.20 | 0 | 177,838 |
-| [`f2-frobenius-circulants/`](f2-frobenius-circulants/README.md) | 6 | 4.50 | 4.98 | **0.90x** [0.90x–0.91x] | 0 / 6 / 0 | 0.87 | 3.67 | 0% | 56% | 0.45 | 8,000 | 6,720 |
-| [`fede-intern-challenge/`](fede-intern-challenge/README.md) | 12 | 4.26 | 4.27 | **1.00x** [0.92x–8.19x] | 0 / 8 / 4 | 0.82 | 3.00 | 0% | 50% | 0.28 | 7,550 | 413,044 |
-| [`guillochon-oeis-a067782-sortnet/`](guillochon-oeis-a067782-sortnet/README.md) | 10 | 21.27 | 3.75 | **5.67x** [4.29x–6.08x] | 0 / 0 / 10 | 3.94 | 3.18 | 9% | 96% | 8.75 | 0 | 39,380,276 |
-| [`guillochon-oeis-a171081-vdw/`](guillochon-oeis-a171081-vdw/README.md) | 22 | 61.15 | 4.84 | **12.6x** [5.51x–22.7x] | 0 / 0 / 22 | 10.38 | 4.43 | 0% | 88% | 0.26 | 0 | 897,761 |
-| [`guillochon-oeis-a250000-queens/`](guillochon-oeis-a250000-queens/README.md) | 20 | 2.10 | 1.56 | **1.35x** [1.32x–1.39x] | 0 / 0 / 20 | 0.66 | 2.47 | 53% | 53% | 3.54 | 0 | 6,284,278 |
-| [`guillochon-oeis-a350304-zarankiewicz/`](guillochon-oeis-a350304-zarankiewicz/README.md) | 20 | 9.96 | 7.98 | **1.25x** [1.23x–1.26x] | 0 / 0 / 20 | 0.63 | 7.69 | 10% | 90% | 9.41 | 0 | 31,936,933 |
-| [`guillochon-oeis-grid-sq-any/`](guillochon-oeis-grid-sq-any/README.md) | 8 | 2.13 | 1.69 | **1.26x** [1.26x–1.27x] | 0 / 0 / 8 | 0.63 | 2.59 | 47% | 55% | 1.90 | 0 | 81,364 |
-| [`guillochon-oeis-grid-sq-axis/`](guillochon-oeis-grid-sq-axis/README.md) | 8 | 2.04 | 1.63 | **1.25x** [1.24x–1.25x] | 0 / 0 / 8 | 0.62 | 2.53 | 50% | 52% | 1.81 | 0 | 178,940 |
-| [`guillochon-oeis-grid-tri-any/`](guillochon-oeis-grid-tri-any/README.md) | 8 | 2.21 | 1.71 | **1.29x** [1.29x–1.30x] | 0 / 0 / 8 | 0.66 | 2.54 | 45% | 56% | 2.62 | 0 | 165,008 |
-| [`guillochon-oeis-grid-tri-axis/`](guillochon-oeis-grid-tri-axis/README.md) | 8 | 2.08 | 1.64 | **1.26x** [1.26x–1.27x] | 0 / 0 / 8 | 0.63 | 2.51 | 48% | 53% | 1.92 | 0 | 127,610 |
-| [`guillochon-oeis-grid-tri-up/`](guillochon-oeis-grid-tri-up/README.md) | 8 | 2.05 | 1.62 | **1.26x** [1.26x–1.27x] | 0 / 0 / 8 | 0.63 | 2.50 | 49% | 53% | 1.54 | 0 | 67,526 |
-| [`hamd-hamiltonian-cycle/`](hamd-hamiltonian-cycle/README.md) | 22 | 2.64 | 2.60 | **0.99x** [0.75x–1.31x] | 6 / 7 / 9 | 0.54 | 3.19 | 28% | 73% | 0.71 | 0 | 298,001 |
-| [`hard-spn/`](hard-spn/README.md) | 4 | 5.67 | 5.31 | **1.07x** [1.06x–1.11x] | 0 / 3 / 1 | 0.92 | 3.60 | 2% | 51% | 1.27 | 1,328 | 1,825 |
-| [`heule-matrix-6pooled3and-c1/`](heule-matrix-6pooled3and-c1/README.md) | 10 | 8.88 | 3.37 | **2.64x** [2.64x–2.64x] | 0 / 0 / 10 | 1.22 | 4.69 | 27% | 48% | 0.53 | 43,740 | 882,928 |
-| [`heule-matrix-6pooled3and-c3/`](heule-matrix-6pooled3and-c3/README.md) | 1 | 8.87 | 3.37 | **2.63x** [2.63x] | 0 / 0 / 1 | 1.22 | 4.70 | 27% | 48% | 0.53 | 4,374 | 88,236 |
-| [`heule-matrix-6pooled3and-c4/`](heule-matrix-6pooled3and-c4/README.md) | 1 | 9.25 | 3.45 | **2.68x** [2.68x] | 0 / 0 / 1 | 1.23 | 4.76 | 27% | 48% | 0.53 | 3,645 | 83,835 |
-| [`heule-matrix-challenge1/`](heule-matrix-challenge1/README.md) | 10 | 4.42 | 2.43 | **1.82x** [1.82x–1.82x] | 0 / 0 / 10 | 0.95 | 3.18 | 32% | 73% | 0.96 | 80,190 | 639,928 |
-| [`heule-matrix-challenge2/`](heule-matrix-challenge2/README.md) | 10 | 4.42 | 2.43 | **1.82x** [1.82x–1.82x] | 0 / 0 / 10 | 0.95 | 3.18 | 32% | 73% | 0.96 | 80,190 | 639,895 |
-| [`heule-matrix-challenge3/`](heule-matrix-challenge3/README.md) | 1 | 4.41 | 2.43 | **1.82x** [1.82x] | 0 / 0 / 1 | 0.94 | 3.18 | 32% | 73% | 0.96 | 8,019 | 63,936 |
-| [`heule-matrix-challenge4/`](heule-matrix-challenge4/README.md) | 1 | 4.48 | 2.45 | **1.83x** [1.83x] | 0 / 0 / 1 | 0.95 | 3.20 | 32% | 74% | 0.95 | 7,290 | 60,750 |
-| [`heule-matrix-fraction/`](heule-matrix-fraction/README.md) | 3 | 4.52 | 1.73 | **2.60x** [2.60x–2.60x] | 0 / 0 / 3 | 1.26 | 4.68 | 48% | 89% | 0.76 | 0 | 1,424,184 |
-| [`heule-matrix-xor6cut/`](heule-matrix-xor6cut/README.md) | 6 | 8.94 | 3.39 | **2.65x** [2.62x–2.68x] | 0 / 0 / 6 | 1.22 | 4.71 | 27% | 48% | 0.53 | 26,244 | 565,146 |
-| [`integer-factoring/`](integer-factoring/README.md) | 6 | 5.24 | 3.49 | **1.50x** [1.48x–1.51x] | 0 / 0 / 6 | 0.98 | 3.27 | 13% | 59% | 0.41 | 1,844 | 10,286 |
-| [`knights-tour-obstacles/`](knights-tour-obstacles/README.md) | 10 | 2.77 | 2.87 | **0.97x** [0.96x–1.04x] | 0 / 10 / 0 | 0.54 | 3.29 | 24% | 74% | 1.05 | 0 | 356,221 |
-| [`mod-circuit-sat/`](mod-circuit-sat/README.md) | 11 | 20.07 | 2.70 | **7.52x** [3.24x–14.2x] | 0 / 0 / 11 | 4.03 | 3.41 | 27% | 73% | 1.10 | 0 | 987,859 |
-| [`picat-costas-arrays/`](picat-costas-arrays/README.md) | 9 | 14.56 | 2.57 | **5.24x** [4.92x–5.95x] | 0 / 0 / 9 | 2.30 | 4.87 | 37% | 44% | 2.22 | 0 | 1,699,572 |
-| [`picat-golomb-rulers/`](picat-golomb-rulers/README.md) | 10 | 7.45 | 1.21 | **6.30x** [5.70x–8.33x] | 0 / 0 / 10 | 2.65 | 2.62 | 82% | 86% | 1.54 | 0 | 189,424 |
-| [`picat-mapf/`](picat-mapf/README.md) | 8 | 5.00 | 1.17 | **4.30x** [2.86x–4.48x] | 0 / 0 / 8 | 1.81 | 2.58 | 84% | 84% | 0.22 | 0 | 2,234,843 |
-| [`picat-numberlink/`](picat-numberlink/README.md) | 9 | 7.90 | 1.74 | **4.13x** [2.75x–5.43x] | 0 / 0 / 9 | 2.02 | 2.85 | 50% | 67% | 0.32 | 0 | 946,105 |
-| [`picat-rectangle-packing/`](picat-rectangle-packing/README.md) | 10 | 5.92 | 3.57 | **1.81x** [1.51x–1.89x] | 0 / 0 / 10 | 1.25 | 3.06 | 9% | 51% | 1.92 | 171 | 350,943 |
-| [`picat-vmtl/`](picat-vmtl/README.md) | 10 | 7.21 | 1.29 | **5.48x** [4.83x–7.18x] | 0 / 0 / 10 | 2.35 | 2.82 | 75% | 82% | 0.83 | 0 | 277,527 |
-| [`pretolani-pret/`](pretolani-pret/README.md) | 8 | 2.67 | 4.27 | **0.62x** [0.62x–0.62x] | 8 / 0 / 0 | 0.51 | 3.00 | 0% | 51% | 0.00 | 560 | 560 |
-| [`qdistsat-qldpc/`](qdistsat-qldpc/README.md) | 10 | 2.40 | 1.92 | **1.24x** [1.22x–1.25x] | 0 / 0 / 10 | 0.66 | 2.63 | 37% | 75% | 1.02 | 1,474 | 147,815 |
-| [`queen-armies/`](queen-armies/README.md) | 8 | 2.04 | 1.48 | **1.39x** [1.29x–1.48x] | 0 / 0 / 8 | 0.66 | 2.42 | 58% | 58% | 0.68 | 0 | 104,931 |
-| [`random-3sat-phase-transition/`](random-3sat-phase-transition/README.md) | 8 | 4.26 | 4.27 | **1.00x** [0.89x–1.17x] | 1 / 6 / 1 | 0.82 | 3.00 | 0% | 51% | 0.28 | 0 | 6,904 |
-| [`rb-bench-model-rb/`](rb-bench-model-rb/README.md) | 40 | 69.47 | 1.00 | **69.4x** [42.3x–86.2x] | 0 / 0 / 40 | 28.81 | 2.01 | 100% | 100% | 0.19 | 0 | 2,959,100 |
-| [`rsa-ntt-factoring/`](rsa-ntt-factoring/README.md) | 17 | 4.88 | 3.21 | **1.51x** [1.48x–1.54x] | 0 / 0 / 17 | 0.94 | 3.19 | 16% | 53% | 0.50 | 2,917,506 | 10,833,053 |
-| [`sat-shortcut-challenge-tier1/`](sat-shortcut-challenge-tier1/README.md) | 47 | 3.33 | 1.89 | **1.75x** [0.62x–72.0x] | 9 / 8 / 30 | 0.92 | 2.61 | 38% | 68% | 0.10 | 6,793 | 310,239 |
-| [`sat-shortcut-challenge-tier3/`](sat-shortcut-challenge-tier3/README.md) | 25 | 4.26 | 4.27 | **1.00x** [1.00x–1.00x] | 0 / 25 / 0 | 0.82 | 3.00 | 0% | 50% | 0.27 | 0 | 42,600 |
-| [`satlib-ais/`](satlib-ais/README.md) | 4 | 15.43 | 1.26 | **12.3x** [7.47x–17.1x] | 0 / 0 / 4 | 5.47 | 2.31 | 73% | 99% | 0.16 | 0 | 11,334 |
-| [`satlib-beijing/`](satlib-beijing/README.md) | 16 | 5.98 | 2.37 | **3.49x** [2.50x–24.8x] | 0 / 0 / 16 | 1.48 | 2.76 | 24% | 100% | 1.16 | 0 | 870,840 |
-| [`satlib-bmc/`](satlib-bmc/README.md) | 13 | 4.96 | 1.20 | **3.94x** [3.47x–6.33x] | 0 / 0 / 13 | 1.74 | 2.63 | 81% | 82% | 1.64 | 17,125 | 2,930,376 |
-| [`satlib-bms-rti/`](satlib-bms-rti/README.md) | 4 | 3.60 | 4.27 | **0.84x** [0.64x–1.01x] | 2 / 2 / 0 | 0.69 | 3.00 | 0% | 48% | 0.33 | 0 | 1,416 |
-| [`satlib-cbs/`](satlib-cbs/README.md) | 6 | 4.29 | 4.27 | **1.01x** [0.94x–1.05x] | 0 / 6 / 0 | 0.83 | 3.00 | 0% | 49% | 0.28 | 0 | 2,542 |
-| [`satlib-dimacs-aim/`](satlib-dimacs-aim/README.md) | 72 | 2.00 | 4.22 | **0.47x** [0.37x–1.45x] | 60 / 0 / 12 | 0.39 | 3.00 | 0% | 50% | 0.04 | 0 | 23,162 |
-| [`satlib-dimacs-bf/`](satlib-dimacs-bf/README.md) | 4 | 3.11 | 1.54 | **2.01x** [1.94x–2.11x] | 0 / 0 / 4 | 0.96 | 2.52 | 55% | 72% | 0.50 | 28 | 22,223 |
-| [`satlib-dimacs-dubois/`](satlib-dimacs-dubois/README.md) | 13 | 2.67 | 4.27 | **0.62x** [0.32x–0.62x] | 13 / 0 / 0 | 0.51 | 3.00 | 0% | 74% | 0.00 | 749 | 749 |
-| [`satlib-dimacs-gcp-large/`](satlib-dimacs-gcp-large/README.md) | 4 | 46.79 | 1.00 | **46.7x** [31.1x–62.7x] | 0 / 0 / 4 | 19.39 | 2.02 | 100% | 100% | 0.07 | 0 | 838,147 |
-| [`satlib-dimacs-hanoi/`](satlib-dimacs-hanoi/README.md) | 2 | 7.18 | 1.57 | **4.56x** [4.38x–4.74x] | 0 / 0 / 2 | 2.32 | 2.48 | 50% | 75% | 0.57 | 0 | 19,909 |
-| [`satlib-dimacs-ii/`](satlib-dimacs-ii/README.md) | 41 | 10.28 | 1.08 | **9.37x** [2.57x–24.1x] | 0 / 0 / 41 | 3.90 | 3.01 | 93% | 97% | 0.64 | 0 | 736,164 |
-| [`satlib-dimacs-jnh/`](satlib-dimacs-jnh/README.md) | 50 | 8.50 | 6.05 | **1.37x** [1.10x–1.59x] | 0 / 1 / 49 | 0.87 | 4.89 | 9% | 26% | 0.14 | 0 | 125,683 |
-| [`satlib-dimacs-lran/`](satlib-dimacs-lran/README.md) | 3 | 4.25 | 4.27 | **1.00x** [1.00x–1.00x] | 0 / 3 / 0 | 0.82 | 3.00 | 0% | 51% | 0.28 | 0 | 15,300 |
-| [`satlib-dimacs-parity/`](satlib-dimacs-parity/README.md) | 30 | 3.66 | 2.62 | **1.40x** [1.15x–1.59x] | 0 / 0 / 30 | 0.87 | 2.78 | 19% | 47% | 0.95 | 18,548 | 52,790 |
-| [`satlib-dimacs-phole/`](satlib-dimacs-phole/README.md) | 5 | 4.12 | 1.03 | **4.00x** [3.00x–5.00x] | 0 / 0 / 5 | 1.66 | 2.18 | 97% | 97% | 0.00 | 0 | 1,845 |
-| [`satlib-dimacs-ssa/`](satlib-dimacs-ssa/README.md) | 8 | 2.35 | 1.22 | **1.90x** [1.84x–2.04x] | 0 / 0 / 8 | 0.84 | 2.28 | 77% | 78% | 1.30 | 92 | 56,675 |
-| [`satlib-flat-gcp/`](satlib-flat-gcp/README.md) | 8 | 3.73 | 1.07 | **3.47x** [3.08x–3.49x] | 0 / 0 / 8 | 1.47 | 2.09 | 91% | 91% | 0.22 | 0 | 10,073 |
-| [`satlib-planning-blocksworld/`](satlib-planning-blocksworld/README.md) | 7 | 12.67 | 1.21 | **9.82x** [4.50x–17.3x] | 0 / 0 / 7 | 4.43 | 2.24 | 78% | 87% | 0.36 | 0 | 210,742 |
-| [`satlib-planning-logistics/`](satlib-planning-logistics/README.md) | 4 | 8.39 | 1.56 | **5.21x** [4.21x–6.02x] | 0 / 0 / 4 | 2.51 | 2.61 | 55% | 90% | 0.33 | 0 | 55,604 |
-| [`satlib-qg/`](satlib-qg/README.md) | 22 | 39.81 | 1.84 | **20.4x** [12.5x–40.6x] | 0 / 0 / 22 | 10.96 | 2.66 | 40% | 99% | 0.02 | 0 | 1,742,827 |
-| [`satlib-rnd3sat/`](satlib-rnd3sat/README.md) | 10 | 4.30 | 4.27 | **1.01x** [1.00x–1.02x] | 0 / 10 / 0 | 0.83 | 3.00 | 0% | 50% | 0.27 | 0 | 6,436 |
-| [`satlib-sw-gcp/`](satlib-sw-gcp/README.md) | 5 | 6.20 | 1.03 | **6.01x** [6.01x–6.01x] | 0 / 0 / 5 | 2.50 | 2.10 | 97% | 97% | 0.07 | 0 | 16,500 |
-| [`sha256-64r-nonce-scaling/`](sha256-64r-nonce-scaling/README.md) | 32 | 6.41 | 5.60 | **1.14x** [1.14x–116x] | 0 / 0 / 32 | 0.92 | 3.53 | 2% | 50% | 0.64 | 720,860 | 2,874,038 |
-| [`sha256-preimage/`](sha256-preimage/README.md) | 5 | 6.50 | 5.58 | **1.16x** [1.16x–1.23x] | 0 / 0 / 5 | 0.94 | 3.52 | 2% | 50% | 0.65 | 77,329 | 309,573 |
-| [`tseitin-expanders/`](tseitin-expanders/README.md) | 4 | 3.60 | 4.98 | **0.72x** [0.72x–0.72x] | 4 / 0 / 0 | 0.70 | 3.67 | 0% | 56% | 0.26 | 880 | 880 |
-| [`vlsat-2/`](vlsat-2/README.md) | 10 | 15.52 | 1.00 | **15.5x** [13.7x–22.2x] | 0 / 0 / 10 | 6.42 | 2.04 | 100% | 100% | 0.33 | 0 | 140,639 |
-| [`vzhn-sat-inv-matrix-int/`](vzhn-sat-inv-matrix-int/README.md) | 11 | 6.75 | 5.98 | **1.13x** [1.11x–1.25x] | 0 / 0 / 11 | 0.96 | 3.54 | 0% | 48% | 1.43 | 349,168 | 2,450,232 |
-| [`vzhn-sat-inv-matrix-mod/`](vzhn-sat-inv-matrix-mod/README.md) | 15 | 5.65 | 1.90 | **1.56x** [1.16x–23.2x] | 0 / 0 / 15 | 1.00 | 2.62 | 38% | 83% | 0.71 | 43,911 | 1,304,169 |
-| [`zed-adversarial-hub/`](zed-adversarial-hub/README.md) | 6 | 3.27 | 2.30 | **1.42x** [1.42x–1.42x] | 0 / 0 / 6 | 0.84 | 2.76 | 26% | 50% | 1.71 | 10,146 | 40,276 |
-| [`zed-adversarial-php/`](zed-adversarial-php/README.md) | 12 | 3.53 | 1.24 | **2.84x** [2.56x–3.08x] | 0 / 0 / 12 | 1.74 | 2.02 | 51% | 98% | 1.31 | 0 | 111,646 |
+| [`aes256-key-recovery/`](benchmarks/cryptography/aes256-key-recovery/README.md) | 10 | 3.85 | 3.11 | **1.24x** [1.23x–1.26x] | 0 / 0 / 10 | 0.84 | 2.94 | 12% | 43% | 0.42 | 173,288 | 332,654 |
+| [`aloul-dac02-bench/`](benchmarks/combinatorial/aloul-dac02-bench/README.md) | 32 | 5.60 | 1.07 | **4.50x** [0.31x–9.75x] | 6 / 0 / 26 | 1.87 | 2.19 | 93% | 94% | 0.15 | 618 | 98,363 |
+| [`aloul-difp-a/`](benchmarks/number-theoretic/aloul-difp-a/README.md) | 14 | 5.46 | 3.70 | **1.48x** [1.48x–1.48x] | 0 / 0 / 14 | 0.98 | 3.33 | 12% | 59% | 0.45 | 5,730 | 59,288 |
+| [`aloul-difp-w/`](benchmarks/number-theoretic/aloul-difp-w/README.md) | 15 | 5.95 | 4.37 | **1.36x** [1.36x–1.36x] | 0 / 0 / 15 | 0.97 | 3.42 | 8% | 56% | 4.23 | 9,085 | 97,350 |
+| [`aloul-fpga-sb-sat/`](benchmarks/circuits-hardware/aloul-fpga-sb-sat/README.md) | 11 | 4.56 | 1.18 | **3.85x** [3.03x–4.60x] | 0 / 0 / 11 | 1.61 | 2.70 | 84% | 84% | 0.15 | 0 | 14,184 |
+| [`aloul-fpga-sb-uns/`](benchmarks/circuits-hardware/aloul-fpga-sb-uns/README.md) | 10 | 6.35 | 1.01 | **6.25x** [5.00x–9.50x] | 0 / 0 / 10 | 2.59 | 2.13 | 99% | 99% | 0.00 | 0 | 24,008 |
+| [`brewbaker-golomb-rulers/`](benchmarks/number-theoretic/brewbaker-golomb-rulers/README.md) | 12 | 2.92 | 1.21 | **2.41x** [2.29x–2.47x] | 0 / 0 / 12 | 1.07 | 2.23 | 78% | 90% | 1.59 | 0 | 58,746 |
+| [`brewbaker-select-networks/`](benchmarks/circuits-hardware/brewbaker-select-networks/README.md) | 12 | 7.45 | 3.69 | **2.02x** [0.54x–3.55x] | 5 / 0 / 7 | 1.32 | 3.63 | 12% | 71% | 1.35 | 0 | 1,946,861 |
+| [`brewbaker-sha256-cec/`](benchmarks/circuits-hardware/brewbaker-sha256-cec/README.md) | 13 | 3.21 | 1.64 | **1.96x** [1.68x–1.98x] | 0 / 0 / 13 | 0.97 | 2.51 | 49% | 71% | 0.66 | 287,298 | 2,444,424 |
+| [`brewbaker-sort-networks/`](benchmarks/circuits-hardware/brewbaker-sort-networks/README.md) | 8 | 13.37 | 4.70 | **2.84x** [2.16x–3.66x] | 0 / 0 / 8 | 2.13 | 3.65 | 5% | 74% | 1.60 | 0 | 1,181,300 |
+| [`brewbaker-tensor-cross/`](benchmarks/algebraic/brewbaker-tensor-cross/README.md) | 8 | 3.85 | 2.15 | **1.76x** [1.59x–2.36x] | 0 / 0 / 8 | 1.00 | 2.73 | 31% | 94% | 0.46 | 189 | 42,479 |
+| [`brewbaker-tensor-dot/`](benchmarks/algebraic/brewbaker-tensor-dot/README.md) | 10 | 3.94 | 2.13 | **1.71x** [1.67x–2.35x] | 0 / 0 / 10 | 1.00 | 2.73 | 31% | 92% | 0.77 | 499 | 31,876 |
+| [`brewbaker-tensor-matmul/`](benchmarks/algebraic/brewbaker-tensor-matmul/README.md) | 10 | 3.29 | 2.01 | **1.64x** [1.56x–2.40x] | 0 / 0 / 10 | 0.91 | 2.65 | 32% | 68% | 0.66 | 4,960 | 72,526 |
+| [`cec-arithmetic-miters/`](benchmarks/circuits-hardware/cec-arithmetic-miters/README.md) | 5 | 5.20 | 3.69 | **1.36x** [1.36x–1.64x] | 0 / 0 / 5 | 0.91 | 3.30 | 12% | 56% | 0.35 | 831 | 3,819 |
+| [`coupled-linear-nonlinear/`](benchmarks/algebraic/coupled-linear-nonlinear/README.md) | 4 | 4.08 | 3.48 | **1.18x** [1.14x–1.22x] | 0 / 0 / 4 | 0.99 | 3.11 | 3% | 49% | 0.86 | 1,987 | 2,546 |
+| [`davies-rectangle-free-27/`](benchmarks/geometric/davies-rectangle-free-27/README.md) | 2 | 203.64 | 3.23 | **63.1x** [63.1x–63.1x] | 0 / 0 / 2 | 42.57 | 2.98 | 11% | 100% | 0.24 | 0 | 2,340,047 |
+| [`dense-solver-public/`](benchmarks/competition-suites/dense-solver-public/README.md) | 30 | 4.36 | 1.25 | **2.96x** [0.48x–14.5x] | 2 / 9 / 19 | 1.25 | 2.32 | 74% | 72% | 0.23 | 323 | 24,963 |
+| [`dense-solver-synthetic-chessboard/`](benchmarks/geometric/dense-solver-synthetic-chessboard/README.md) | 3 | 3.34 | 1.16 | **2.89x** [2.84x–2.97x] | 0 / 0 / 3 | 1.23 | 2.28 | 84% | 84% | 0.10 | 0 | 10,420 |
+| [`dense-solver-synthetic-php/`](benchmarks/combinatorial/dense-solver-synthetic-php/README.md) | 17 | 1.66 | 1.05 | **1.46x** [0.55x–32.0x] | 2 / 3 / 12 | 0.61 | 2.29 | 95% | 97% | 0.20 | 0 | 177,838 |
+| [`f2-frobenius-circulants/`](benchmarks/algebraic/f2-frobenius-circulants/README.md) | 6 | 4.50 | 4.98 | **0.90x** [0.90x–0.91x] | 0 / 6 / 0 | 0.87 | 3.67 | 0% | 56% | 0.45 | 8,000 | 6,720 |
+| [`fede-intern-challenge/`](benchmarks/competition-suites/fede-intern-challenge/README.md) | 12 | 4.26 | 4.27 | **1.00x** [0.92x–8.19x] | 0 / 8 / 4 | 0.82 | 3.00 | 0% | 50% | 0.28 | 7,550 | 413,044 |
+| [`guillochon-oeis-a067782-sortnet/`](benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/README.md) | 10 | 21.27 | 3.75 | **5.67x** [4.29x–6.08x] | 0 / 0 / 10 | 3.94 | 3.18 | 9% | 96% | 8.75 | 0 | 39,380,276 |
+| [`guillochon-oeis-a171081-vdw/`](benchmarks/number-theoretic/guillochon-oeis-a171081-vdw/README.md) | 22 | 61.15 | 4.84 | **12.6x** [5.51x–22.7x] | 0 / 0 / 22 | 10.38 | 4.43 | 0% | 88% | 0.26 | 0 | 897,761 |
+| [`guillochon-oeis-a250000-queens/`](benchmarks/geometric/guillochon-oeis-a250000-queens/README.md) | 20 | 2.10 | 1.56 | **1.35x** [1.32x–1.39x] | 0 / 0 / 20 | 0.66 | 2.47 | 53% | 53% | 3.54 | 0 | 6,284,278 |
+| [`guillochon-oeis-a350304-zarankiewicz/`](benchmarks/combinatorial/guillochon-oeis-a350304-zarankiewicz/README.md) | 20 | 9.96 | 7.98 | **1.25x** [1.23x–1.26x] | 0 / 0 / 20 | 0.63 | 7.69 | 10% | 90% | 9.41 | 0 | 31,936,933 |
+| [`guillochon-oeis-grid-sq-any/`](benchmarks/geometric/guillochon-oeis-grid-sq-any/README.md) | 8 | 2.13 | 1.69 | **1.26x** [1.26x–1.27x] | 0 / 0 / 8 | 0.63 | 2.59 | 47% | 55% | 1.90 | 0 | 81,364 |
+| [`guillochon-oeis-grid-sq-axis/`](benchmarks/geometric/guillochon-oeis-grid-sq-axis/README.md) | 8 | 2.04 | 1.63 | **1.25x** [1.24x–1.25x] | 0 / 0 / 8 | 0.62 | 2.53 | 50% | 52% | 1.81 | 0 | 178,940 |
+| [`guillochon-oeis-grid-tri-any/`](benchmarks/geometric/guillochon-oeis-grid-tri-any/README.md) | 8 | 2.21 | 1.71 | **1.29x** [1.29x–1.30x] | 0 / 0 / 8 | 0.66 | 2.54 | 45% | 56% | 2.62 | 0 | 165,008 |
+| [`guillochon-oeis-grid-tri-axis/`](benchmarks/geometric/guillochon-oeis-grid-tri-axis/README.md) | 8 | 2.08 | 1.64 | **1.26x** [1.26x–1.27x] | 0 / 0 / 8 | 0.63 | 2.51 | 48% | 53% | 1.92 | 0 | 127,610 |
+| [`guillochon-oeis-grid-tri-up/`](benchmarks/geometric/guillochon-oeis-grid-tri-up/README.md) | 8 | 2.05 | 1.62 | **1.26x** [1.26x–1.27x] | 0 / 0 / 8 | 0.63 | 2.50 | 49% | 53% | 1.54 | 0 | 67,526 |
+| [`hamd-hamiltonian-cycle/`](benchmarks/combinatorial/hamd-hamiltonian-cycle/README.md) | 22 | 2.64 | 2.60 | **0.99x** [0.75x–1.31x] | 6 / 7 / 9 | 0.54 | 3.19 | 28% | 73% | 0.71 | 0 | 298,001 |
+| [`hard-spn/`](benchmarks/cryptography/hard-spn/README.md) | 4 | 5.67 | 5.31 | **1.07x** [1.06x–1.11x] | 0 / 3 / 1 | 0.92 | 3.60 | 2% | 51% | 1.27 | 1,328 | 1,825 |
+| [`heule-matrix-6pooled3and-c1/`](benchmarks/algebraic/heule-matrix-6pooled3and-c1/README.md) | 10 | 8.88 | 3.37 | **2.64x** [2.64x–2.64x] | 0 / 0 / 10 | 1.22 | 4.69 | 27% | 48% | 0.53 | 43,740 | 882,928 |
+| [`heule-matrix-6pooled3and-c3/`](benchmarks/algebraic/heule-matrix-6pooled3and-c3/README.md) | 1 | 8.87 | 3.37 | **2.63x** [2.63x] | 0 / 0 / 1 | 1.22 | 4.70 | 27% | 48% | 0.53 | 4,374 | 88,236 |
+| [`heule-matrix-6pooled3and-c4/`](benchmarks/algebraic/heule-matrix-6pooled3and-c4/README.md) | 1 | 9.25 | 3.45 | **2.68x** [2.68x] | 0 / 0 / 1 | 1.23 | 4.76 | 27% | 48% | 0.53 | 3,645 | 83,835 |
+| [`heule-matrix-challenge1/`](benchmarks/algebraic/heule-matrix-challenge1/README.md) | 10 | 4.42 | 2.43 | **1.82x** [1.82x–1.82x] | 0 / 0 / 10 | 0.95 | 3.18 | 32% | 73% | 0.96 | 80,190 | 639,928 |
+| [`heule-matrix-challenge2/`](benchmarks/algebraic/heule-matrix-challenge2/README.md) | 10 | 4.42 | 2.43 | **1.82x** [1.82x–1.82x] | 0 / 0 / 10 | 0.95 | 3.18 | 32% | 73% | 0.96 | 80,190 | 639,895 |
+| [`heule-matrix-challenge3/`](benchmarks/algebraic/heule-matrix-challenge3/README.md) | 1 | 4.41 | 2.43 | **1.82x** [1.82x] | 0 / 0 / 1 | 0.94 | 3.18 | 32% | 73% | 0.96 | 8,019 | 63,936 |
+| [`heule-matrix-challenge4/`](benchmarks/algebraic/heule-matrix-challenge4/README.md) | 1 | 4.48 | 2.45 | **1.83x** [1.83x] | 0 / 0 / 1 | 0.95 | 3.20 | 32% | 74% | 0.95 | 7,290 | 60,750 |
+| [`heule-matrix-fraction/`](benchmarks/algebraic/heule-matrix-fraction/README.md) | 3 | 4.52 | 1.73 | **2.60x** [2.60x–2.60x] | 0 / 0 / 3 | 1.26 | 4.68 | 48% | 89% | 0.76 | 0 | 1,424,184 |
+| [`heule-matrix-xor6cut/`](benchmarks/algebraic/heule-matrix-xor6cut/README.md) | 6 | 8.94 | 3.39 | **2.65x** [2.62x–2.68x] | 0 / 0 / 6 | 1.22 | 4.71 | 27% | 48% | 0.53 | 26,244 | 565,146 |
+| [`integer-factoring/`](benchmarks/number-theoretic/integer-factoring/README.md) | 6 | 5.24 | 3.49 | **1.50x** [1.48x–1.51x] | 0 / 0 / 6 | 0.98 | 3.27 | 13% | 59% | 0.41 | 1,844 | 10,286 |
+| [`knights-tour-obstacles/`](benchmarks/geometric/knights-tour-obstacles/README.md) | 10 | 2.77 | 2.87 | **0.97x** [0.96x–1.04x] | 0 / 10 / 0 | 0.54 | 3.29 | 24% | 74% | 1.05 | 0 | 356,221 |
+| [`mod-circuit-sat/`](benchmarks/circuits-hardware/mod-circuit-sat/README.md) | 11 | 20.07 | 2.70 | **7.52x** [3.24x–14.2x] | 0 / 0 / 11 | 4.03 | 3.41 | 27% | 73% | 1.10 | 0 | 987,859 |
+| [`picat-costas-arrays/`](benchmarks/combinatorial/picat-costas-arrays/README.md) | 9 | 14.56 | 2.57 | **5.24x** [4.92x–5.95x] | 0 / 0 / 9 | 2.30 | 4.87 | 37% | 44% | 2.22 | 0 | 1,699,572 |
+| [`picat-golomb-rulers/`](benchmarks/number-theoretic/picat-golomb-rulers/README.md) | 10 | 7.45 | 1.21 | **6.30x** [5.70x–8.33x] | 0 / 0 / 10 | 2.65 | 2.62 | 82% | 86% | 1.54 | 0 | 189,424 |
+| [`picat-mapf/`](benchmarks/planning-puzzles/picat-mapf/README.md) | 8 | 5.00 | 1.17 | **4.30x** [2.86x–4.48x] | 0 / 0 / 8 | 1.81 | 2.58 | 84% | 84% | 0.22 | 0 | 2,234,843 |
+| [`picat-numberlink/`](benchmarks/combinatorial/picat-numberlink/README.md) | 9 | 7.90 | 1.74 | **4.13x** [2.75x–5.43x] | 0 / 0 / 9 | 2.02 | 2.85 | 50% | 67% | 0.32 | 0 | 946,105 |
+| [`picat-rectangle-packing/`](benchmarks/geometric/picat-rectangle-packing/README.md) | 10 | 5.92 | 3.57 | **1.81x** [1.51x–1.89x] | 0 / 0 / 10 | 1.25 | 3.06 | 9% | 51% | 1.92 | 171 | 350,943 |
+| [`picat-vmtl/`](benchmarks/combinatorial/picat-vmtl/README.md) | 10 | 7.21 | 1.29 | **5.48x** [4.83x–7.18x] | 0 / 0 / 10 | 2.35 | 2.82 | 75% | 82% | 0.83 | 0 | 277,527 |
+| [`pretolani-pret/`](benchmarks/algebraic/pretolani-pret/README.md) | 8 | 2.67 | 4.27 | **0.62x** [0.62x–0.62x] | 8 / 0 / 0 | 0.51 | 3.00 | 0% | 51% | 0.00 | 560 | 560 |
+| [`qdistsat-qldpc/`](benchmarks/algebraic/qdistsat-qldpc/README.md) | 10 | 2.40 | 1.92 | **1.24x** [1.22x–1.25x] | 0 / 0 / 10 | 0.66 | 2.63 | 37% | 75% | 1.02 | 1,474 | 147,815 |
+| [`queen-armies/`](benchmarks/geometric/queen-armies/README.md) | 8 | 2.04 | 1.48 | **1.39x** [1.29x–1.48x] | 0 / 0 / 8 | 0.66 | 2.42 | 58% | 58% | 0.68 | 0 | 104,931 |
+| [`random-3sat-phase-transition/`](benchmarks/random-phase-transition/random-3sat-phase-transition/README.md) | 8 | 4.26 | 4.27 | **1.00x** [0.89x–1.17x] | 1 / 6 / 1 | 0.82 | 3.00 | 0% | 51% | 0.28 | 0 | 6,904 |
+| [`rb-bench-model-rb/`](benchmarks/random-phase-transition/rb-bench-model-rb/README.md) | 40 | 69.47 | 1.00 | **69.4x** [42.3x–86.2x] | 0 / 0 / 40 | 28.81 | 2.01 | 100% | 100% | 0.19 | 0 | 2,959,100 |
+| [`rsa-ntt-factoring/`](benchmarks/number-theoretic/rsa-ntt-factoring/README.md) | 17 | 4.88 | 3.21 | **1.51x** [1.48x–1.54x] | 0 / 0 / 17 | 0.94 | 3.19 | 16% | 53% | 0.50 | 2,917,506 | 10,833,053 |
+| [`sat-shortcut-challenge-tier1/`](benchmarks/competition-suites/sat-shortcut-challenge-tier1/README.md) | 47 | 3.33 | 1.89 | **1.75x** [0.62x–72.0x] | 9 / 8 / 30 | 0.92 | 2.61 | 38% | 68% | 0.10 | 6,793 | 310,239 |
+| [`sat-shortcut-challenge-tier3/`](benchmarks/competition-suites/sat-shortcut-challenge-tier3/README.md) | 25 | 4.26 | 4.27 | **1.00x** [1.00x–1.00x] | 0 / 25 / 0 | 0.82 | 3.00 | 0% | 50% | 0.27 | 0 | 42,600 |
+| [`satlib-ais/`](benchmarks/combinatorial/satlib-ais/README.md) | 4 | 15.43 | 1.26 | **12.3x** [7.47x–17.1x] | 0 / 0 / 4 | 5.47 | 2.31 | 73% | 99% | 0.16 | 0 | 11,334 |
+| [`satlib-beijing/`](benchmarks/circuits-hardware/satlib-beijing/README.md) | 16 | 5.98 | 2.37 | **3.49x** [2.50x–24.8x] | 0 / 0 / 16 | 1.48 | 2.76 | 24% | 100% | 1.16 | 0 | 870,840 |
+| [`satlib-bmc/`](benchmarks/circuits-hardware/satlib-bmc/README.md) | 13 | 4.96 | 1.20 | **3.94x** [3.47x–6.33x] | 0 / 0 / 13 | 1.74 | 2.63 | 81% | 82% | 1.64 | 17,125 | 2,930,376 |
+| [`satlib-bms-rti/`](benchmarks/random-phase-transition/satlib-bms-rti/README.md) | 4 | 3.60 | 4.27 | **0.84x** [0.64x–1.01x] | 2 / 2 / 0 | 0.69 | 3.00 | 0% | 48% | 0.33 | 0 | 1,416 |
+| [`satlib-cbs/`](benchmarks/random-phase-transition/satlib-cbs/README.md) | 6 | 4.29 | 4.27 | **1.01x** [0.94x–1.05x] | 0 / 6 / 0 | 0.83 | 3.00 | 0% | 49% | 0.28 | 0 | 2,542 |
+| [`satlib-dimacs-aim/`](benchmarks/random-phase-transition/satlib-dimacs-aim/README.md) | 72 | 2.00 | 4.22 | **0.47x** [0.37x–1.45x] | 60 / 0 / 12 | 0.39 | 3.00 | 0% | 50% | 0.04 | 0 | 23,162 |
+| [`satlib-dimacs-bf/`](benchmarks/circuits-hardware/satlib-dimacs-bf/README.md) | 4 | 3.11 | 1.54 | **2.01x** [1.94x–2.11x] | 0 / 0 / 4 | 0.96 | 2.52 | 55% | 72% | 0.50 | 28 | 22,223 |
+| [`satlib-dimacs-dubois/`](benchmarks/random-phase-transition/satlib-dimacs-dubois/README.md) | 13 | 2.67 | 4.27 | **0.62x** [0.32x–0.62x] | 13 / 0 / 0 | 0.51 | 3.00 | 0% | 74% | 0.00 | 749 | 749 |
+| [`satlib-dimacs-gcp-large/`](benchmarks/combinatorial/satlib-dimacs-gcp-large/README.md) | 4 | 46.79 | 1.00 | **46.7x** [31.1x–62.7x] | 0 / 0 / 4 | 19.39 | 2.02 | 100% | 100% | 0.07 | 0 | 838,147 |
+| [`satlib-dimacs-hanoi/`](benchmarks/planning-puzzles/satlib-dimacs-hanoi/README.md) | 2 | 7.18 | 1.57 | **4.56x** [4.38x–4.74x] | 0 / 0 / 2 | 2.32 | 2.48 | 50% | 75% | 0.57 | 0 | 19,909 |
+| [`satlib-dimacs-ii/`](benchmarks/planning-puzzles/satlib-dimacs-ii/README.md) | 41 | 10.28 | 1.08 | **9.37x** [2.57x–24.1x] | 0 / 0 / 41 | 3.90 | 3.01 | 93% | 97% | 0.64 | 0 | 736,164 |
+| [`satlib-dimacs-jnh/`](benchmarks/random-phase-transition/satlib-dimacs-jnh/README.md) | 50 | 8.50 | 6.05 | **1.37x** [1.10x–1.59x] | 0 / 1 / 49 | 0.87 | 4.89 | 9% | 26% | 0.14 | 0 | 125,683 |
+| [`satlib-dimacs-lran/`](benchmarks/random-phase-transition/satlib-dimacs-lran/README.md) | 3 | 4.25 | 4.27 | **1.00x** [1.00x–1.00x] | 0 / 3 / 0 | 0.82 | 3.00 | 0% | 51% | 0.28 | 0 | 15,300 |
+| [`satlib-dimacs-parity/`](benchmarks/algebraic/satlib-dimacs-parity/README.md) | 30 | 3.66 | 2.62 | **1.40x** [1.15x–1.59x] | 0 / 0 / 30 | 0.87 | 2.78 | 19% | 47% | 0.95 | 18,548 | 52,790 |
+| [`satlib-dimacs-phole/`](benchmarks/combinatorial/satlib-dimacs-phole/README.md) | 5 | 4.12 | 1.03 | **4.00x** [3.00x–5.00x] | 0 / 0 / 5 | 1.66 | 2.18 | 97% | 97% | 0.00 | 0 | 1,845 |
+| [`satlib-dimacs-ssa/`](benchmarks/circuits-hardware/satlib-dimacs-ssa/README.md) | 8 | 2.35 | 1.22 | **1.90x** [1.84x–2.04x] | 0 / 0 / 8 | 0.84 | 2.28 | 77% | 78% | 1.30 | 92 | 56,675 |
+| [`satlib-flat-gcp/`](benchmarks/combinatorial/satlib-flat-gcp/README.md) | 8 | 3.73 | 1.07 | **3.47x** [3.08x–3.49x] | 0 / 0 / 8 | 1.47 | 2.09 | 91% | 91% | 0.22 | 0 | 10,073 |
+| [`satlib-planning-blocksworld/`](benchmarks/planning-puzzles/satlib-planning-blocksworld/README.md) | 7 | 12.67 | 1.21 | **9.82x** [4.50x–17.3x] | 0 / 0 / 7 | 4.43 | 2.24 | 78% | 87% | 0.36 | 0 | 210,742 |
+| [`satlib-planning-logistics/`](benchmarks/planning-puzzles/satlib-planning-logistics/README.md) | 4 | 8.39 | 1.56 | **5.21x** [4.21x–6.02x] | 0 / 0 / 4 | 2.51 | 2.61 | 55% | 90% | 0.33 | 0 | 55,604 |
+| [`satlib-qg/`](benchmarks/combinatorial/satlib-qg/README.md) | 22 | 39.81 | 1.84 | **20.4x** [12.5x–40.6x] | 0 / 0 / 22 | 10.96 | 2.66 | 40% | 99% | 0.02 | 0 | 1,742,827 |
+| [`satlib-rnd3sat/`](benchmarks/random-phase-transition/satlib-rnd3sat/README.md) | 10 | 4.30 | 4.27 | **1.01x** [1.00x–1.02x] | 0 / 10 / 0 | 0.83 | 3.00 | 0% | 50% | 0.27 | 0 | 6,436 |
+| [`satlib-sw-gcp/`](benchmarks/combinatorial/satlib-sw-gcp/README.md) | 5 | 6.20 | 1.03 | **6.01x** [6.01x–6.01x] | 0 / 0 / 5 | 2.50 | 2.10 | 97% | 97% | 0.07 | 0 | 16,500 |
+| [`sha256-64r-nonce-scaling/`](benchmarks/cryptography/sha256-64r-nonce-scaling/README.md) | 32 | 6.41 | 5.60 | **1.14x** [1.14x–116x] | 0 / 0 / 32 | 0.92 | 3.53 | 2% | 50% | 0.64 | 720,860 | 2,874,038 |
+| [`sha256-preimage/`](benchmarks/cryptography/sha256-preimage/README.md) | 5 | 6.50 | 5.58 | **1.16x** [1.16x–1.23x] | 0 / 0 / 5 | 0.94 | 3.52 | 2% | 50% | 0.65 | 77,329 | 309,573 |
+| [`tseitin-expanders/`](benchmarks/algebraic/tseitin-expanders/README.md) | 4 | 3.60 | 4.98 | **0.72x** [0.72x–0.72x] | 4 / 0 / 0 | 0.70 | 3.67 | 0% | 56% | 0.26 | 880 | 880 |
+| [`vlsat-2/`](benchmarks/circuits-hardware/vlsat-2/README.md) | 10 | 15.52 | 1.00 | **15.5x** [13.7x–22.2x] | 0 / 0 / 10 | 6.42 | 2.04 | 100% | 100% | 0.33 | 0 | 140,639 |
+| [`vzhn-sat-inv-matrix-int/`](benchmarks/algebraic/vzhn-sat-inv-matrix-int/README.md) | 11 | 6.75 | 5.98 | **1.13x** [1.11x–1.25x] | 0 / 0 / 11 | 0.96 | 3.54 | 0% | 48% | 1.43 | 349,168 | 2,450,232 |
+| [`vzhn-sat-inv-matrix-mod/`](benchmarks/algebraic/vzhn-sat-inv-matrix-mod/README.md) | 15 | 5.65 | 1.90 | **1.56x** [1.16x–23.2x] | 0 / 0 / 15 | 1.00 | 2.62 | 38% | 83% | 0.71 | 43,911 | 1,304,169 |
+| [`zed-adversarial-hub/`](benchmarks/combinatorial/zed-adversarial-hub/README.md) | 6 | 3.27 | 2.30 | **1.42x** [1.42x–1.42x] | 0 / 0 / 6 | 0.84 | 2.76 | 26% | 50% | 1.71 | 10,146 | 40,276 |
+| [`zed-adversarial-php/`](benchmarks/combinatorial/zed-adversarial-php/README.md) | 12 | 3.53 | 1.24 | **2.84x** [2.56x–3.08x] | 0 / 0 / 12 | 1.74 | 2.02 | 51% | 98% | 1.31 | 0 | 111,646 |
 <!-- END_STRUCTURAL_ANALYSIS -->
 
 ## Format Conventions
@@ -824,17 +889,17 @@ Every collection lives at the repository root in its own self-contained director
 - **DIMACS-ANF (`anf-converted/*.anf.xz`):** Standard Bosphorus/PolyBoRi Algebraic Normal Form (`p anf <nv> <neq>`, `x <mon1> <mon2> ... 0` over $\mathbb{F}_2$ with `T` = constant `1` and `.` monomial products), generated losslessly in linear size by [`src/to_anf.py`](src/to_anf.py) (degree $\le 2$ from `aig-orig/`, degree $\le 3$ from `xcnf-orig/` / `xcnf-converted/`).
 - **MATA Automata (`mata-orig/*.mata.xz`):** Standard VeriFIT `.mata` NFA format stored xz-compressed.
 - **Ground-Truth Verdict Manifests (`<collection>/expected.tsv`):** Strictly formatted 2-column tab-separated file with **no header**, sorted alphabetically by column 1 (`<instance_without_.xz>\t<SAT|UNSAT|UNKNOWN>`), where column 1 is the exact relative POSIX path inside the primary `*-orig/` directory stripped of `.xz` (e.g., `foo.cnf`, `sortnet_n11_d7.cnf`, `bar.aig`, `aes256_r14_k256_dual_sat.xcnf`, `ARI056_1.mata`, or `<hash>.cnf` for URI-manifest corpora). Programmatically validated across all 90 collections (89 with `expected.tsv`, 21,447 total rows), README tables, and live solver runs by [`src/verify_expected.py`](src/verify_expected.py) (`python3 src/verify_expected.py --check-hygiene` or `python3 src/verify_expected.py --check-run <results.json|logs_dir>`).
-- **Format Exclusion Manifests (`<collection>/format_exclusions.tsv`):** Optional 3-column tab-separated manifest (`<converted_dir>\t<rel_stem>\t<reason>`) explicitly documenting converted artifacts omitted to respect GitHub's `< 95 MB` per-file size limit (e.g., [`guillochon-oeis-a067782-sortnet/format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)); validated strictly by [`src/verify_expected.py`](src/verify_expected.py) so any accidental omission still fails.
+- **Format Exclusion Manifests (`<collection>/format_exclusions.tsv`):** Optional 3-column tab-separated manifest (`<converted_dir>\t<rel_stem>\t<reason>`) explicitly documenting converted artifacts omitted to respect GitHub's `< 95 MB` per-file size limit (e.g., [`benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/format_exclusions.tsv`](benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/format_exclusions.tsv)); validated strictly by [`src/verify_expected.py`](src/verify_expected.py) so any accidental omission still fails.
 
 ## License
 
 - Repository-authored original collections and generator/conversion scripts are licensed under the **MIT License** — see [`LICENSE`](LICENSE).
 - Sourced collections retain their original upstream licenses, notices, and provenance links inside their respective directories:
-  - [`sat-competition-2002-2026-uris/LICENSE`](sat-competition-2002-2026-uris/LICENSE) — Creative Commons Attribution 4.0 International (**CC-BY-4.0**) for SAT Competition / SAT-Race / GBD archives + MIT for scripts.
-  - [`sat-shortcut-challenge-tier1/LICENSE`](sat-shortcut-challenge-tier1/LICENSE) & [`sat-shortcut-challenge-tier3/LICENSE`](sat-shortcut-challenge-tier3/LICENSE) — **Apache License 2.0** (`keithadler/sat-shortcut-challenge`).
-  - [`dense-solver-public/LICENSE`](dense-solver-public/LICENSE), [`dense-solver-synthetic-chessboard/LICENSE`](dense-solver-synthetic-chessboard/LICENSE), [`dense-solver-synthetic-php/LICENSE`](dense-solver-synthetic-php/LICENSE), & [`SOURCES.md`](dense-solver-public/SOURCES.md) — **MIT License** (`libdense/dense-solver`) + preserved SATLIB / SC 2025 attributions.
-  - `guillochon-oeis-*/LICENSE` (e.g., [`guillochon-oeis-a067782-sortnet/LICENSE`](guillochon-oeis-a067782-sortnet/LICENSE) across all 9 OEIS collections) — **MIT License** for generator/verifier code (`guillochon/oeis-sat-instances`) + **CC0** public domain for DIMACS CNF instances.
-  - [`mata-presburger-nfa-tptp/LICENSE`](mata-presburger-nfa-tptp/LICENSE) & [`mata-presburger-nfa-ultimate-automizer/LICENSE`](mata-presburger-nfa-ultimate-automizer/LICENSE) — **MIT License** (`VeriFIT/mata`).
-  - [`qdistsat-qldpc/LICENSE`](qdistsat-qldpc/LICENSE) & [`NOTICE`](qdistsat-qldpc/NOTICE) — **GNU General Public License v3.0 or later (`GPL-3.0-or-later`)** (`guluchen/QDistSAT` / `DistQLDPC`, with retained `codeDistancePYPI` MIT notices).
+  - [`benchmarks/competition-suites/sat-competition-2002-2026-uris/LICENSE`](benchmarks/competition-suites/sat-competition-2002-2026-uris/LICENSE) — Creative Commons Attribution 4.0 International (**CC-BY-4.0**) for SAT Competition / SAT-Race / GBD archives + MIT for scripts.
+  - [`benchmarks/competition-suites/sat-shortcut-challenge-tier1/LICENSE`](benchmarks/competition-suites/sat-shortcut-challenge-tier1/LICENSE) & [`benchmarks/competition-suites/sat-shortcut-challenge-tier3/LICENSE`](benchmarks/competition-suites/sat-shortcut-challenge-tier3/LICENSE) — **Apache License 2.0** (`keithadler/sat-shortcut-challenge`).
+  - [`benchmarks/competition-suites/dense-solver-public/LICENSE`](benchmarks/competition-suites/dense-solver-public/LICENSE), [`benchmarks/geometric/dense-solver-synthetic-chessboard/LICENSE`](benchmarks/geometric/dense-solver-synthetic-chessboard/LICENSE), [`benchmarks/combinatorial/dense-solver-synthetic-php/LICENSE`](benchmarks/combinatorial/dense-solver-synthetic-php/LICENSE), & [`SOURCES.md`](benchmarks/competition-suites/dense-solver-public/SOURCES.md) — **MIT License** (`libdense/dense-solver`) + preserved SATLIB / SC 2025 attributions.
+  - `guillochon-oeis-*/LICENSE` (e.g., [`benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/LICENSE`](benchmarks/circuits-hardware/guillochon-oeis-a067782-sortnet/LICENSE) across all 9 OEIS collections) — **MIT License** for generator/verifier code (`guillochon/oeis-sat-instances`) + **CC0** public domain for DIMACS CNF instances.
+  - [`benchmarks/automata-computability/mata-presburger-nfa-tptp/LICENSE`](benchmarks/automata-computability/mata-presburger-nfa-tptp/LICENSE) & [`benchmarks/automata-computability/mata-presburger-nfa-ultimate-automizer/LICENSE`](benchmarks/automata-computability/mata-presburger-nfa-ultimate-automizer/LICENSE) — **MIT License** (`VeriFIT/mata`).
+  - [`benchmarks/algebraic/qdistsat-qldpc/LICENSE`](benchmarks/algebraic/qdistsat-qldpc/LICENSE) & [`NOTICE`](benchmarks/algebraic/qdistsat-qldpc/NOTICE) — **GNU General Public License v3.0 or later (`GPL-3.0-or-later`)** (`guluchen/QDistSAT` / `DistQLDPC`, with retained `codeDistancePYPI` MIT notices).
   - `picat-{costas-arrays,golomb-rulers,rectangle-packing}/LICENSE` (**MIT License**) & `picat-{mapf,numberlink,vmtl}/LICENSE` (**Mozilla Public License 2.0**, `picat-lang.org`).
   - Public academic archives and community-contributed collections without dedicated upstream `LICENSE` files (`aloul-*`, `brewbaker-*`, `davies-rectangle-free-27`, `fede-intern-challenge`, `heule-matrix-*`, `mod-circuit-sat`, `pretolani-pret`, `rb-bench-model-rb`, `satlib-*`, `vlsat-2`, `vzhn-sat-inv-matrix-*`) carry explicit author attributions, papers, and upstream links in each collection's `README.md`.

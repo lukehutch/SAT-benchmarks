@@ -1,0 +1,74 @@
+# $\mathrm{MOD}_2$-Tseitin Expanders & Prisms (`tseitin-expanders`)
+
+![MOD2 Tseitin 3-regular expander vs prism control with odd vertex parity charge](diagram.svg)
+
+*Figure: $\mathrm{MOD}_2$-Tseitin 3-regular expander (high expansion, $2^{\Omega(n)}$ Resolution barrier) vs. bounded-treewidth prism $C_{200} \times K_2$ control under odd global vertex parity charge $\sum \sigma(v) \equiv 1 \pmod 2$. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
+## Provenance & Credit
+
+- **Author:** Luke Hutchison ([`lukehutch`](https://github.com/lukehutch))
+- **License:** MIT License ([`../../../LICENSE`](../../../LICENSE))
+
+## Problem Description
+
+Unsatisfiable Tseitin parity formulas over deterministic 3-regular expander graphs ($n \in \lbrace 60, 120, 300\rbrace$ vertices; Hamiltonian cycle plus pseudorandom perfect matching) and the 3-regular prism graph $C_{200} \times K_2$ ($n = 400$ vertices), assigning total odd vertex charge ($c_0 = 1$, $c_v = 0$ for $v > 0$).
+
+- **Origin:** **Original** circuit-native AIG generator (MIT [`../../../LICENSE`](../../../LICENSE)), instantiating the classic Resolution proof-complexity lower-bound family introduced by Tseitin (1968) and Urquhart ([JACM 1987](https://doi.org/10.1145/7531.8928)).
+- **Why they are hard:** Every pure Resolution / CDCL refutation of a Tseitin formula on a 3-regular expander requires $2^{\Omega(n)}$ steps (Urquhart, JACM 1987). Both [Kissat](https://github.com/arminbiere/kissat) 4.0.4 and [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 time out past $5{,}000\text{ s}$ starting at $n = 120$.
+
+## Corpus & Data Sizes
+
+### Directory Layout & Regeneration
+
+- `aig-orig/` — Original native **Binary AIGER 1.9** circuits (`6.0 KB`, verified with [Berkeley ABC](https://github.com/berkeley-abc/abc)).
+- `cnf-converted/` — Tseitin **DIMACS `.cnf.xz`** conversions (`15.1 KB`).
+- `xcnf-converted/` — Native-XOR **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (`4.4 KB`).
+- `anf-converted/` — Lossless degree-1 linear **DIMACS-ANF `.anf.xz`** conversions (`4.0 KB`, generated via [`../../../src/to_anf.py`](../../../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for all 4 instances (**0 SAT / 4 UNSAT**).
+- `src/` — Standalone zero-dependency Rust generator crate (`cd src && cargo run --release`).
+
+### Problem Parameters & Data Sizes
+
+| Instance | Graph Family | Vertices $n$ | Edges $m$ | Seed | Ans | AIG ANDs | `.aig.xz` | CNF Vars | CNF Clauses | `.cnf.xz` | `.xcnf.xz` | `.anf.xz` |
+|---|---|---:|---:|---:|:---:|---:|---:|---:|---:|---:|---:|---:|
+| `tseitin_exp_n60` | 3-reg expander | 60 | 90 | `777` | UNSAT | 419 | 0.6 KB | 150 | 540 | 1.3 KB | 0.5 KB | 0.5 KB |
+| `tseitin_exp_n120` | 3-reg expander | 120 | 180 | `778` | UNSAT | 839 | 1.0 KB | 300 | 1,080 | 2.4 KB | 0.8 KB | 0.7 KB |
+| `tseitin_exp_n300` | 3-reg expander | 300 | 450 | `779` | UNSAT | 2,099 | 1.9 KB | 750 | 2,700 | 5.2 KB | 1.6 KB | 1.6 KB |
+| `tseitin_prism_n400` | Prism $C_{200} \times K_2$ | 400 | 600 | — | UNSAT | 2,799 | 2.5 KB | 1,000 | 3,600 | 6.2 KB | 1.6 KB | 1.3 KB |
+
+## Benchmark Results
+
+Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per run, default flags with `-t 1` for CryptoMiniSat 5.18.0 and `--max-cores 1` for Frobenius; exact median of 3 runs; $T_{\max} = 5{,}000\text{ s}$; all solvers read the identical flat `.cnf` file, except [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) which receives `xcnf-converted/*.xcnf`):
+
+| Instance | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|---:|---:|---:|---:|---:|---:|
+| `tseitin_exp_n60` | **0.60 ms** | 546.39 ms | 22.59 ms | 22.91 ms | 1.38 ms | 58.59 ms |
+| `tseitin_exp_n120` | **0.64 ms** | >5,000 s (T/O) | 27.62 ms | 23.45 ms | 1.63 ms | >5,000 s (T/O) |
+| `tseitin_exp_n300` | **0.66 ms** | >5,000 s (T/O) | 29.10 ms | 23.68 ms | 2.13 ms | >5,000 s (T/O) |
+| `tseitin_prism_n400` | **0.68 ms** | 9.56 ms | 27.82 ms | 23.21 ms | 2.05 ms | 13.60 ms |
+| **Solved (4 instances)** | **4 / 4**<br>*(highest)* | 2 / 4<br>*(-2 worse)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | 2 / 4<br>*(-2 worse)* |
+| **Total PAR-2 ($T_{\max}=5{,}000\text{ s}$)** | **2.58 ms**<br>*(fastest)* | 20,000,555.95 ms<br>*(7,752,153x slower)* | 107.13 ms<br>*(41.5x slower)* | 93.25 ms<br>*(36.1x slower)* | 7.19 ms<br>*(2.79x slower)* | 20,000,072.19 ms<br>*(7,751,966x slower)* |
+
+*(All three expander proofs emitted by Frobenius in LRAT format additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
+
+<!-- BEGIN_STRUCTURAL_ANALYSIS -->
+## Phase-Transition & Structural Analysis
+
+*Auto-generated by [`../../../src/analyze_benchmarks.py`](../../../src/analyze_benchmarks.py). Position relative to the critical phase transition is measured by $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (exact $\alpha/\alpha_c(k)$ for pure $k$-SAT; effective critical threshold $\alpha_c^{\mathrm{eff}} = \alpha/\rho_{\mathrm{crit}}$; `Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), alongside Gent–Walsh annealed constrainedness $\kappa = -\frac{1}{n}\sum_i \log_2(1-2^{-k_i})$ (AAAI 1996), clause-length profile ($\bar{k}$, `%Bin`, `%Horn`), variable-degree CV ($\sigma_d/\bar{d}$, uniformity vs. hub skew), and extracted native XOR parity clauses.*
+
+| Instance | Active $n$ | Clauses $m$ | $\alpha=m/n$ | $\alpha_c^{\mathrm{eff}}$ | $\rho_{\mathrm{crit}}$ (Regime) | $\kappa$ | $\bar{k}$ ($k_{\max}$) | Bin% | Horn% | Pos% | Deg CV | XORs |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `tseitin_exp_n120` | 300 | 1,080 | 3.60 | 4.98 | **0.72x** (Under) | 0.70 | 3.67 (4) | 0% | 56% | 49% | 0.26 | 120 |
+| `tseitin_exp_n300` | 750 | 2,700 | 3.60 | 4.98 | **0.72x** (Under) | 0.70 | 3.67 (4) | 0% | 56% | 48% | 0.26 | 300 |
+| `tseitin_exp_n60` | 150 | 540 | 3.60 | 4.98 | **0.72x** (Under) | 0.70 | 3.67 (4) | 0% | 56% | 49% | 0.26 | 60 |
+| `tseitin_prism_n400` | 1,000 | 3,600 | 3.60 | 4.98 | **0.72x** (Under) | 0.70 | 3.67 (4) | 0% | 56% | 48% | 0.26 | 400 |
+
+**Collection Phase-Transition Summary (4 instances, 4 formats: 4 CNF / 4 AIG / 4 XCNF / 4 ANF):** median $\rho_{\mathrm{crit}} = 0.72\times$ (range `0.72x–0.72x`), median $\kappa = 0.70$, regime split **4 Under / 0 Near-critical / 0 Over**, total extracted native XOR parity clauses = **880**, total ANF equations = **880**.
+<!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- G. S. Tseitin, *On the Complexity of Derivation in Propositional Calculus*, Studies in Constructive Mathematics and Mathematical Logic, 1968.
+- A. Urquhart, *Hard Examples for Resolution*, Journal of the ACM 34(1):209–219, 1987.
+- T. Philipp and A. Rebola-Pardo, *DRAT Proofs for XOR Reasoning*, JELIA 2016, LNCS 10021.
+- Y. K. Tan, M. J. H. Heule, and M. O. Myreen, *cake\_lpr: Verified Propagation Redundancy Checking in CakeML*, TACAS 2021.

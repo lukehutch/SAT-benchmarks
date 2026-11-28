@@ -253,14 +253,28 @@ def discover_collections(
     only_set = {c.rstrip("/") for c in only} if only else None
     excludes = excludes or []
     cols: list[str] = []
-    for entry in sorted(repo_root.iterdir()):
-        if not entry.is_dir() or entry.name.startswith(".") or entry.name == "src":
+    bench_root = repo_root / "benchmarks"
+    if bench_root.is_dir():
+        candidates = sorted(
+            f"benchmarks/{cat.name}/{col.name}"
+            for cat in bench_root.iterdir()
+            if cat.is_dir() and not cat.name.startswith(".")
+            for col in cat.iterdir()
+            if col.is_dir() and not col.name.startswith(".")
+        )
+    else:
+        candidates = sorted(
+            entry.name
+            for entry in repo_root.iterdir()
+            if entry.is_dir() and not entry.name.startswith(".") and entry.name != "src"
+        )
+    for rel in candidates:
+        base = rel.rsplit("/", 1)[-1]
+        if only_set is not None and rel not in only_set and base not in only_set:
             continue
-        if only_set is not None and entry.name not in only_set:
+        if any(fnmatch.fnmatch(rel, pat) or fnmatch.fnmatch(base, pat) for pat in excludes):
             continue
-        if any(fnmatch.fnmatch(entry.name, pat) for pat in excludes):
-            continue
-        cols.append(entry.name)
+        cols.append(rel)
     return cols
 
 
@@ -294,11 +308,15 @@ def detect_changed_collections(repo_root: Path) -> tuple[list[str], bool]:
             if rel_norm == "README.md":
                 root_readme_changed = True
                 continue
-            top = rel_norm.split("/", 1)[0]
-            if top.startswith(".") or top == "src":
+            parts = rel_norm.split("/")
+            if parts[0].startswith(".") or parts[0] == "src":
                 continue
-            if (repo_root / top).is_dir():
-                changed.add(top)
+            if parts[0] == "benchmarks" and len(parts) >= 3:
+                col_rel = "/".join(parts[:3])
+                if (repo_root / col_rel).is_dir():
+                    changed.add(col_rel)
+            elif (repo_root / parts[0]).is_dir() and parts[0] != "benchmarks":
+                changed.add(parts[0])
 
     return sorted(changed), root_readme_changed
 

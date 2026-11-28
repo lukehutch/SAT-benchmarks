@@ -1,22 +1,51 @@
-# Rust build artifacts (for suite generators in */src/)
+# Rust build artifacts (for suite generators in benchmarks/*/*/src/ and src/bench_tools/)
 **/target/
 **/Cargo.lock
 src/bench_tools/target/
 
-# Python bytecode & virtual environments
+# Python bytecode, caches, packaging & virtual environments
+**/__pycache__/
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
 .venv/
 venv/
-*.egg-info/
+ENV/
+env/
+.env
 
 # C/C++ build artifacts
 *.o
-*.so
 *.a
 *.out
-build/
 
 # Temporary solver proofs, logs, and downloaded competition archives
 *.drat
@@ -26,7 +55,7 @@ build/
 *.log
 *.tmp
 .cache/
-fede-intern-challenge/outputs/
+benchmarks/competition-suites/fede-intern-challenge/outputs/
 
 # Editor / OS clutter
 .DS_Store

@@ -80,7 +80,7 @@ def _layout_worker(args: tuple[str, Path]) -> list[str]:
     h2s = [line for line in lines if line.startswith("## ")]
     exp_analysis = (
         "## Automata Structural Analysis"
-        if rel.startswith("mata-presburger-nfa-")
+        if Path(col).name.startswith("mata-presburger-nfa-")
         else "## Phase-Transition & Structural Analysis"
     )
     exp_h2s = [

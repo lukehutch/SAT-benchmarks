@@ -1,0 +1,63 @@
+# Heule $3\times 3$ Matrix Multiplication — `6pooled3and/challenge3` (`heule-matrix-6pooled3and-c3`)
+
+![Heule 6pooled3and encoding applied to Challenge 3 no-type3](diagram.svg)
+
+*Figure: Direct 3-AND resolution shortcut showing how `MM-23-63-no-type3`'s 27 forbidding clauses eliminate $s_1$ straight inside Leaf Pool 1 of each $\delta = 1$ 6-XOR tree, with head-to-head metrics vs plain Challenge 3. Regenerated via [`src/gen_diagram.py`](src/gen_diagram.py).*
+
+## Provenance & Credit
+
+- **Authors:** Marijn J. H. Heule, Manuel Kauers, and Martina Seidl
+- **Upstream Repository:** [`marijnheule/matrix-challenges`](https://github.com/marijnheule/matrix-challenges)
+- **Primary Paper:** M. J. H. Heule, M. Kauers, and M. Seidl, *"Local Search for Fast Matrix Multiplication"*, Theory and Applications of Satisfiability Testing (SAT 2019), LNCS 11628, pp. 155–163, DOI: [`10.1007/978-3-030-24258-9_10`](https://doi.org/10.1007/978-3-030-24258-9_10), [`arXiv:1903.11391`](https://arxiv.org/abs/1903.11391).
+- **License:** Upstream repository does not include a dedicated `LICENSE` file; all `.cnf.xz` instances and C encoding/decoding utilities are preserved verbatim from [`marijnheule/matrix-challenges`](https://github.com/marijnheule/matrix-challenges) for scientific benchmarking and reproducibility.
+- **Sibling Matrix-Challenge Collections:** [`heule-matrix-6pooled3and-c1/`](../heule-matrix-6pooled3and-c1/README.md), [`heule-matrix-6pooled3and-c4/`](../heule-matrix-6pooled3and-c4/README.md), [`heule-matrix-challenge1/`](../heule-matrix-challenge1/README.md), [`heule-matrix-challenge2/`](../heule-matrix-challenge2/README.md), [`heule-matrix-challenge3/`](../heule-matrix-challenge3/README.md), [`heule-matrix-challenge4/`](../heule-matrix-challenge4/README.md), [`heule-matrix-fraction/`](../heule-matrix-fraction/README.md), [`heule-matrix-xor6cut/`](../heule-matrix-xor6cut/README.md)
+- **Recommended by:** [`@SMT_Solvers`](https://twitter.com/SMT_Solvers) (Twitter/X)
+
+## Problem Description
+
+Multiplying two $3 \times 3$ matrices over $\mathbb{F}_2$ requires finding a tensor decomposition of the $3\times 3$ matrix-multiplication tensor into $R$ rank-1 products (Laderman's 1976 scheme achieved $R = 23$, and whether $R \le 22$ exists over $\mathbb{F}_2$ or $\mathbb{Q}$ remains a famous open problem in algebraic complexity). Encoding the Brent equations over $\mathbb{F}_2$ yields structured, highly symmetric, non-linear XOR+AND polynomial systems whose clausal forms challenge both CDCL and local-search SAT solvers.
+
+Compact pooled-AND (`6pooled3and`) re-encoding of `challenge3`, asking whether an $R = 23$ $\mathbb{F}_2$ $3\times 3$ matrix-multiplication scheme exists whose last summand contains no type-3 term.
+
+## Corpus & Data Sizes
+
+- **`cnf-orig/`** — 1 original native **DIMACS `.cnf.xz`** files (333.0 KB).
+- **`aig-converted/`** — 1 exact **Binary AIGER 1.9 `.aig.xz`** conversions (292.7 KB, verified via [Berkeley ABC](https://github.com/berkeley-abc/abc) `read_aiger`).
+- **`xcnf-converted/`** — 1 lossless **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** conversions (77.1 KB, `4,374` extracted native XOR parity clauses).
+- **`anf-converted/`** — 1 lossless linear-size **DIMACS-ANF `.anf.xz`** conversions (230.9 KB, generated via [`../../../src/to_anf.py`](../../../src/to_anf.py)).
+- **[`expected.tsv`](expected.tsv)** — Ground-truth verdict manifest for the 1 instance (**0 SAT / 0 UNSAT / 1 UNKNOWN**).
+- **`src/`** — Upstream C utilities preserved from `marijnheule/matrix-challenges` (`encode.c`, `decode.c`, `exp2cnf.c`, `pair.c`, `palin.c`, `stats.c`, `type3.c`) plus `cnf2aig.py` and `cnf2xcnf.py`.
+
+| Format | Directory | Files | Key Dimensions (Range) | Compressed Size |
+|---|---|---:|---|---:|
+| **DIMACS CNF (origin)** | `cnf-orig/` | 1 | Vars: 21,033; Clauses: 186,651 | 333.0 KB |
+| **Binary AIGER 1.9** | `aig-converted/` | 1 | Inputs: 21,033; ANDs: 496,907 | 292.7 KB |
+| **[CryptoMiniSat](https://github.com/msoos/cryptominisat) XCNF** | `xcnf-converted/` | 1 | Native XOR clauses total: 4,374 | 77.1 KB |
+| **DIMACS-ANF** | `anf-converted/` | 1 | Vars: 37,800; Eqs: 88,236 (deg ≤ 3) | 230.9 KB |
+| **Total (4 Formats, Status: Open / Hard)** | | **4** | | **933.7 KB** |
+
+## Benchmark Results
+
+- **Hardware & Protocol:** Same machine (**AMD Ryzen 9 5950X**, 16C/32T Linux, **1 thread per run** pinned across 8 dedicated physical cores, $T_{\max} = 10\text{ s}$, PAR-2 penalty $20,000\text{ ms}$). All solvers ran with default single-thread flags (`-t 1` for CryptoMiniSat 5.18.0; `--max-cores 1` for Frobenius) on identical uncompressed flat `.cnf` inputs (with native `.xcnf` also supplied to CryptoMiniSat XCNF); **100% of the 1 instance** was run (no subsampling), every Frobenius SAT model was independently verified against 100% of input clauses, and **0 verdict disagreements** occurred across all solvers.
+
+| Instance | Verdict | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
+|---|:---:|---:|---:|---:|---:|---:|---:|
+| `MM-23-63-no-type3` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
+| **Solved (1 file)** | — | 0 / 1 | 0 / 1 | 0 / 1 | 0 / 1 | 0 / 1 | 0 / 1 |
+| **Total PAR-2** | — | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms | 20,000.0 ms |
+
+<!-- BEGIN_STRUCTURAL_ANALYSIS -->
+## Phase-Transition & Structural Analysis
+
+*Auto-generated by [`../../../src/analyze_benchmarks.py`](../../../src/analyze_benchmarks.py). Position relative to the critical phase transition is measured by $\rho_{\mathrm{crit}} = \frac{1}{n}\sum_k m_k / \alpha_c(k)$ (exact $\alpha/\alpha_c(k)$ for pure $k$-SAT; effective critical threshold $\alpha_c^{\mathrm{eff}} = \alpha/\rho_{\mathrm{crit}}$; `Under` $<0.90\times$, `Near-crit` $0.90\text{--}1.10\times$, `Over` $>1.10\times$), alongside Gent–Walsh annealed constrainedness $\kappa = -\frac{1}{n}\sum_i \log_2(1-2^{-k_i})$ (AAAI 1996), clause-length profile ($\bar{k}$, `%Bin`, `%Horn`), variable-degree CV ($\sigma_d/\bar{d}$, uniformity vs. hub skew), and extracted native XOR parity clauses.*
+
+| Instance | Active $n$ | Clauses $m$ | $\alpha=m/n$ | $\alpha_c^{\mathrm{eff}}$ | $\rho_{\mathrm{crit}}$ (Regime) | $\kappa$ | $\bar{k}$ ($k_{\max}$) | Bin% | Horn% | Pos% | Deg CV | XORs |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `MM-23-63-no-type3` | 21,033 | 186,651 | 8.87 | 3.37 | **2.63x** (Over) | 1.22 | 4.70 (6) | 27% | 48% | 48% | 0.53 | 4,374 |
+
+**Collection Phase-Transition Summary (1 instance, 4 formats: 1 CNF / 1 AIG / 1 XCNF / 1 ANF):** median $\rho_{\mathrm{crit}} = 2.63\times$ (range `2.63x–2.63x`), median $\kappa = 1.22$, regime split **0 Under / 0 Near-critical / 1 Over**, total extracted native XOR parity clauses = **4,374**, total ANF equations = **88,236**.
+<!-- END_STRUCTURAL_ANALYSIS -->
+
+## References
+
+- **Heule, Kauers, and Seidl (SAT 2019, `arXiv:1903.11391`):** Discovered over $17{,}000$ inequivalent $R = 23$ schemes over $\mathbb{F}_2$ using [YalSAT](https://github.com/arminbiere/yalsat) local search with random type-3 pairings and streamlining constraints; noted that complete CDCL solvers struggled even on satisfiable `challenge1` instances without streamlining, and left `challenge2`–`challenge4` as open solver benchmarks.

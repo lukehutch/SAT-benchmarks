@@ -605,21 +605,32 @@ def build_task_queue(args: argparse.Namespace, bins: dict[str, Path]) -> list[tu
     want_cols = set(c.strip() for c in args.collections.split(",") if c.strip()) if args.collections else None
     excl_cols = set(c.strip() for c in args.exclude_collections.split(",") if c.strip()) if args.exclude_collections else set()
 
-    all_cols = sorted(
-        d.name for d in REPO_ROOT.iterdir()
-        if d.is_dir() and (d / "README.md").is_file() and d.name != "src"
-    )
+    bench_root = REPO_ROOT / "benchmarks"
+    if bench_root.is_dir():
+        all_cols = sorted(
+            f"benchmarks/{cat.name}/{d.name}"
+            for cat in bench_root.iterdir()
+            if cat.is_dir() and not cat.name.startswith(".")
+            for d in cat.iterdir()
+            if d.is_dir() and (d / "README.md").is_file()
+        )
+    else:
+        all_cols = sorted(
+            d.name for d in REPO_ROOT.iterdir()
+            if d.is_dir() and (d / "README.md").is_file() and d.name != "src"
+        )
     if want_cols is not None:
-        all_cols = [c for c in all_cols if c in want_cols]
-    all_cols = [c for c in all_cols if c not in excl_cols]
+        all_cols = [c for c in all_cols if c in want_cols or Path(c).name in want_cols]
+    all_cols = [c for c in all_cols if c not in excl_cols and Path(c).name not in excl_cols]
 
     tasks: list[tuple[str, str, str, Path, str, float, str]] = []
     for col in all_cols:
         cdir = REPO_ROOT / col
+        col_short = Path(col).name
         txt = (cdir / "README.md").read_text()
-        tmax = args.timeout if args.timeout is not None else parse_collection_tmax(txt, col)
+        tmax = args.timeout if args.timeout is not None else parse_collection_tmax(txt, col_short)
         exp = load_expected_tsv(cdir)
-        is_oeis = col.startswith("guillochon-oeis-")
+        is_oeis = col_short.startswith("guillochon-oeis-")
 
         fmt_dirs: dict[str, Path] = {}
         for fmt, cands in (
