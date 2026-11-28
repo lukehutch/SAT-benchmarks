@@ -15,7 +15,7 @@ Every collection lives at the repository root in its own self-contained director
   - `cnf-converted/` (or `cnf-orig/`): **1,115 / 1,115** **DIMACS `.cnf.xz`** (`457.93 MB` total).
   - `xcnf-converted/` (or `xcnf-orig/`): **1,115 / 1,115** **[CryptoMiniSat](https://github.com/msoos/cryptominisat) `.xcnf.xz`** (`407.51 MB` total, with complete $2^{k-1}$-clause XOR parity blocks collapsed losslessly to native `x l1 ... lk 0` lines).
   - `anf-converted/`: **1,111 / 1,115** **DIMACS-ANF `.anf.xz`** (`405.17 MB` total, linear-size degree-$\le 2$ from `aig-orig/` and degree-$\le 3$ from `xcnf-orig/` / `xcnf-converted/`, generated via [`src/to_anf.py`](src/to_anf.py); same 4 `> 95 MB` `guillochon-oeis-a067782-sortnet` files omitted per [`format_exclusions.tsv`](guillochon-oeis-a067782-sortnet/format_exclusions.tsv)).
-- **`src/`** — Standalone generator, exporter, fetcher, diagram, or converter source code (alongside repository-wide [`src/to_anf.py`](src/to_anf.py), [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py), and [`src/verify_expected.py`](src/verify_expected.py)).
+- **`src/`** — Standalone generator, exporter, fetcher, diagram, or converter source code (alongside repository-wide [`src/run_benchmarks.py`](src/run_benchmarks.py) + [`src/BENCHMARK_RUNNER.md`](src/BENCHMARK_RUNNER.md) for offline multi-solver compilation & parallel core-pinned benchmarking, [`src/to_anf.py`](src/to_anf.py), [`src/analyze_benchmarks.py`](src/analyze_benchmarks.py), and [`src/verify_expected.py`](src/verify_expected.py)).
 
 ## Benchmark Collections (93 Collections)
 
