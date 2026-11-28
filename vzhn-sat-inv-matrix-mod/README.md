@@ -93,9 +93,9 @@ All 3 upstream modular sample matrices (`src/samples/{matrix3x3_mod_26,matrix5x5
 | `mod_40x40_m2_oh_sat` | SAT | **87.7 ms** | >60 s *(T/O)* | 2.17 s | >60 s *(T/O)* | >60 s *(T/O)* |
 | `mod_40x40_m2_bin_unsat` | UNSAT | **404.4 ms** | 1.41 s | 2.64 s | 2.50 s | >60 s *(T/O)* |
 | `mod_48x48_m2_oh_sat` | SAT | **169.7 ms** | >60 s *(T/O)* | 3.73 s | >60 s *(T/O)* | >60 s *(T/O)* |
-| **Solved ($T_{\max}=60\text{ s}$)** | — | **15 / 15** *(highest)* | 11 / 15 *(-4 worse)* | 14 / 15 *(-1 worse)* | 11 / 15 *(-4 worse)* | 10 / 15 *(-5 worse)* |
-| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **1.08 s** *(fastest)* | 499.33 s *(462x slower)* | 142.65 s *(132x slower)* | 509.79 s *(472x slower)* | 611.47 s *(566x slower)* |
-| **Shared-14 Solved Sum (14 instances)** | — | **1.07 s** *(fastest)* | — | 22.65 s *(21.13x slower)* | — | — |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **15 / 15**<br>*(highest)* | 11 / 15<br>*(-4 worse)* | 14 / 15<br>*(-1 worse)* | 11 / 15<br>*(-4 worse)* | 10 / 15<br>*(-5 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **1.08 s**<br>*(fastest)* | 499.33 s<br>*(462x slower)* | 142.65 s<br>*(132x slower)* | 509.79 s<br>*(472x slower)* | 611.47 s<br>*(566x slower)* |
+| **Shared-14 Solved Sum (14 instances)** | — | **1.07 s**<br>*(fastest)* | — | 22.65 s<br>*(21.13x slower)* | — | — |
 
 ### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, 1-Core PGO, $T_{\max} = 60\text{ s}$)
 
@@ -118,8 +118,8 @@ Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inp
 | `mod_40x40_m2_oh_sat` | SAT | 197.9 ms | 283.5 ms | **167.5 ms** | 273.1 ms | 1.90 s |
 | `mod_40x40_m2_bin_unsat` | UNSAT | 1.01 s | 1.21 s | **115.7 ms** | 257.4 ms | 786.8 ms |
 | `mod_48x48_m2_oh_sat` | SAT | 513.2 ms | 555.3 ms | **453.1 ms** | 562.9 ms | 3.77 s |
-| **Solved ($T_{\max}=60\text{ s}$)** | — | **15 / 15** *(highest)* | **15 / 15** *(highest)* | **15 / 15** *(highest)* | **15 / 15** *(highest)* | 14 / 15 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | 3.40 s *(2.00x slower)* | 3.66 s *(2.15x slower)* | **1.70 s** *(fastest)* | 2.43 s *(1.43x slower)* | 140.10 s *(82.41x slower)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **15 / 15**<br>*(highest)* | **15 / 15**<br>*(highest)* | **15 / 15**<br>*(highest)* | **15 / 15**<br>*(highest)* | 14 / 15<br>*(-1 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | 3.40 s<br>*(2.00x slower)* | 3.66 s<br>*(2.15x slower)* | **1.70 s**<br>*(fastest)* | 2.43 s<br>*(1.43x slower)* | 140.10 s<br>*(82.41x slower)* |
 
 **Key Format Observation:**
 

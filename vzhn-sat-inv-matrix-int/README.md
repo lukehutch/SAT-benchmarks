@@ -83,8 +83,8 @@ All 4 upstream integer matrices (`src/matrix/{4x4,8x8,10x10,16x16}.txt`) and the
 | `int_16x16_w5_unsat` | UNSAT | 507.0 ms | **265.3 ms** | 4.00 s | 1.39 s | 1.90 s |
 | `int_16x16_sing_w16_unsat` | UNSAT | **1.18 s** | 1.24 s | 17.89 s | 17.57 s | 2.90 s |
 | `int_16x16_w16_sat` | SAT | **7.45 s** | 24.98 s | 19.69 s | 22.39 s | 13.27 s |
-| **Solved ($T_{\max}=60\text{ s}$)** | — | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* |
-| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **10.29 s** *(fastest)* | 31.83 s *(3.09x slower)* | 106.65 s *(10.4x slower)* | 92.10 s *(8.95x slower)* | 20.06 s *(1.95x slower)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **10.29 s**<br>*(fastest)* | 31.83 s<br>*(3.09x slower)* | 106.65 s<br>*(10.4x slower)* | 92.10 s<br>*(8.95x slower)* | 20.06 s<br>*(1.95x slower)* |
 
 ### Format Effects (Frobenius Across All 4 Formats & CryptoMiniSat XCNF, Core 4, $T_{\max} = 60\text{ s}$)
 
@@ -103,8 +103,8 @@ Evaluated on identical uncompressed flat `.cnf`, `.aig`, `.xcnf`, and `.anf` inp
 | `int_16x16_w5_unsat` | UNSAT | 684.1 ms | 1.14 s | 578.3 ms | **386.3 ms** | 1.76 s |
 | `int_16x16_sing_w16_unsat` | UNSAT | 2.28 s | 2.68 s | **824.2 ms** | 2.77 s | 23.78 s |
 | `int_16x16_w16_sat` | SAT | 14.29 s | 22.19 s | **6.08 s** | 13.65 s | 24.94 s |
-| **Solved ($T_{\max}=60\text{ s}$)** | — | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | 10 / 11 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **29.31 s** *(fastest)* | 38.52 s *(1.31x slower)* | 60.64 s *(2.07x slower)* | 39.56 s *(1.35x slower)* | 178.22 s *(6.08x slower)* |
+| **Solved ($T_{\max}=60\text{ s}$)** | — | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | 10 / 11<br>*(-1 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **29.31 s**<br>*(fastest)* | 38.52 s<br>*(1.31x slower)* | 60.64 s<br>*(2.07x slower)* | 39.56 s<br>*(1.35x slower)* | 178.22 s<br>*(6.08x slower)* |
 
 **Key Format Observations:**
 

@@ -45,8 +45,8 @@ All 4 large graph coloring benchmarks (`g125.17`, `g125.18`, `g250.15`, `g250.29
 | `g125.18` | SAT | **13.25 ms** | 1,698.89 ms | >5 s | >5 s | >5 s |
 | `g250.15` | SAT | **37.46 ms** | 1,162.31 ms | 1,575.45 ms | >5 s | >5 s |
 | `g250.29` | SAT | **319.68 ms** | >5 s | >5 s | >5 s | >5 s |
-| **Solved (4 files)** | — | **4 / 4** *(highest)* | 2 / 4 *(-2 worse)* | 1 / 4 *(-3 worse)* | 0 / 4 *(-4 worse)* | 0 / 4 *(-4 worse)* |
-| **Total PAR-2** | — | **451.8 ms** *(fastest)* | 22,861.2 ms *(50.60x slower)* | 31,575.5 ms *(69.89x slower)* | 40,000.0 ms *(88.54x slower)* | 40,000.0 ms *(88.54x slower)* |
+| **Solved (4 files)** | — | **4 / 4**<br>*(highest)* | 2 / 4<br>*(-2 worse)* | 1 / 4<br>*(-3 worse)* | 0 / 4<br>*(-4 worse)* | 0 / 4<br>*(-4 worse)* |
+| **Total PAR-2** | — | **451.8 ms**<br>*(fastest)* | 22,861.2 ms<br>*(50.60x slower)* | 31,575.5 ms<br>*(69.89x slower)* | 40,000.0 ms<br>*(88.54x slower)* | 40,000.0 ms<br>*(88.54x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -48,8 +48,8 @@ Six compact XOR-6 cut encodings (`xor6cut-22` through `xor6cut-27`) of the $3\ti
 | `xor6cut-25` | SAT | **61.65 ms** | >60 s | >60 s | 40.49 s | >60 s | 39.85 s |
 | `xor6cut-26` | SAT | **90.36 ms** | 12.08 s | 16.20 s | 43.53 s | >60 s | 16.28 s |
 | `xor6cut-27` | SAT | **81.41 ms** | 1,093.31 ms | 14.20 s | 11.08 s | >60 s | 2,136.28 ms |
-| **Solved (6 files)** | — | **5 / 6** *(highest)* | 2 / 6 *(-3 worse)* | 2 / 6 *(-3 worse)* | 3 / 6 *(-2 worse)* | 0 / 6 *(-5 worse)* | 3 / 6 *(-2 worse)* |
-| **Total PAR-2** | — | **120,722.4 ms** *(fastest)* | 493,170.2 ms *(4.09x slower)* | 510,398.6 ms *(4.23x slower)* | 455,098.9 ms *(3.77x slower)* | 720,000.0 ms *(5.96x slower)* | 418,266.1 ms *(3.46x slower)* |
+| **Solved (6 files)** | — | **5 / 6**<br>*(highest)* | 2 / 6<br>*(-3 worse)* | 2 / 6<br>*(-3 worse)* | 3 / 6<br>*(-2 worse)* | 0 / 6<br>*(-5 worse)* | 3 / 6<br>*(-2 worse)* |
+| **Total PAR-2** | — | **120,722.4 ms**<br>*(fastest)* | 493,170.2 ms<br>*(4.09x slower)* | 510,398.6 ms<br>*(4.23x slower)* | 455,098.9 ms<br>*(3.77x slower)* | 720,000.0 ms<br>*(5.96x slower)* | 418,266.1 ms<br>*(3.46x slower)* |
 
 *(Four-format PGO parity, Core 0, $T_{\max} = 60\text{ s}$: Frobenius 1C solves all **5 / 6** SAT instances `xor6cut-23..27` across every format with 20 / 20 witnesses independently verified — `.xcnf` `265.05 ms` solved sum / `120.27 s` PAR-2, `.aig` `698.82 ms` / `120.70 s` PAR-2, `.cnf` `722.40 ms` / `120.72 s` PAR-2, and `.anf` `946.09 ms` / `120.95 s` PAR-2; open `xor6cut-22` times out across all formats.)*
 

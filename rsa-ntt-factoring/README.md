@@ -82,10 +82,10 @@ Evaluated on an AMD Ryzen 9 5950X (Linux, 1 dedicated physical core on CCD 0 per
 | `ntt_semiprime_40b` | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) |
 | `ntt_semiprime_48b` | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) |
 | `ntt_semiprime_64b` .. `rsa1024_1024b_ntt` *(12 inst.)* | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) | T/O (>60 s) |
-| **Solved (24-bit Tier, 2 inst.)** | **2 / 2** *(highest)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* |
-| **24-bit Tier PAR-2** | **3.53 s** *(fastest)* | 240.00 s *(68.1x slower)* | 240.00 s *(68.1x slower)* | 240.00 s *(68.1x slower)* | 240.00 s *(68.1x slower)* |
-| **Solved (Full Suite, 17 inst.)** | **2 / 17** *(highest)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* |
-| **Full-Suite PAR-2 (17 inst.)** | **1,803.53 s** *(fastest)* | 2,040.00 s *(1.13x slower)* | 2,040.00 s *(1.13x slower)* | 2,040.00 s *(1.13x slower)* | 2,040.00 s *(1.13x slower)* |
+| **Solved (24-bit Tier, 2 inst.)** | **2 / 2**<br>*(highest)* | 0 / 2<br>*(-2 worse)* | 0 / 2<br>*(-2 worse)* | 0 / 2<br>*(-2 worse)* | 0 / 2<br>*(-2 worse)* |
+| **24-bit Tier PAR-2** | **3.53 s**<br>*(fastest)* | 240.00 s<br>*(68.1x slower)* | 240.00 s<br>*(68.1x slower)* | 240.00 s<br>*(68.1x slower)* | 240.00 s<br>*(68.1x slower)* |
+| **Solved (Full Suite, 17 inst.)** | **2 / 17**<br>*(highest)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* |
+| **Full-Suite PAR-2 (17 inst.)** | **1,803.53 s**<br>*(fastest)* | 2,040.00 s<br>*(1.13x slower)* | 2,040.00 s<br>*(1.13x slower)* | 2,040.00 s<br>*(1.13x slower)* | 2,040.00 s<br>*(1.13x slower)* |
 
 *Note: [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 on native `.xcnf` also timed out (`> 60 s`) on `ntt_prime_24b_unsat`, `ntt_semiprime_24b`, and `ntt_semiprime_32b`.*
 

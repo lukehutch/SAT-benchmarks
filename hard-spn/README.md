@@ -46,8 +46,8 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `spn_sat_n64_d32` | **1.80 ms** | 30.83 ms | 77.31 ms | 27.36 ms | 9.47 ms | 84.09 ms |
 | `spn_sat_n96_d48` | **5.29 ms** | 176.70 ms | 247.54 ms | 105.45 ms | 267.05 ms | 326.02 ms |
 | `spn_sat_n128_d64` | **36.85 ms** | 2,136.73 ms | 10,804.67 ms | 1,850.59 ms | 59,819.29 ms | 4,329.94 ms |
-| **Solved (4 instances)** | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-| **Total PAR-2** | **45.84 ms** *(fastest)* | 2,366.61 ms *(51.6x slower)* | 11,187.83 ms *(244x slower)* | 2,010.46 ms *(43.9x slower)* | 60,102.78 ms *(1,311x slower)* | 4,772.52 ms *(104x slower)* |
+| **Solved (4 instances)** | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* |
+| **Total PAR-2** | **45.84 ms**<br>*(fastest)* | 2,366.61 ms<br>*(51.6x slower)* | 11,187.83 ms<br>*(244x slower)* | 2,010.46 ms<br>*(43.9x slower)* | 60,102.78 ms<br>*(1,311x slower)* | 4,772.52 ms<br>*(104x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

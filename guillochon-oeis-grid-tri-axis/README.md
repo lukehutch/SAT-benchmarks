@@ -96,8 +96,8 @@ Three calibration rungs ($N = 13$ optimal pair + $N = 16$ frontier lower bound) 
 | `tri-axis_n13_m39.cnf` | SAT | **215.0 ms** | 0.52 s | >60 s | 4.74 s | 16.78 s |
 | `tri-axis_n13_m40.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `tri-axis_n16_m54.cnf` | SAT | **1.56 s** | 2.19 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **2 / 3** *(highest)* | **2 / 3** *(highest)* | 0 / 3 *(-2 worse)* | 1 / 3 *(-1 worse)* | 1 / 3 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **121.78 s** *(fastest)* | 122.71 s *(1.01x slower)* | 360.00 s *(2.96x slower)* | 244.74 s *(2.01x slower)* | 256.78 s *(2.11x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **2 / 3**<br>*(highest)* | **2 / 3**<br>*(highest)* | 0 / 3<br>*(-2 worse)* | 1 / 3<br>*(-1 worse)* | 1 / 3<br>*(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **121.78 s**<br>*(fastest)* | 122.71 s<br>*(1.01x slower)* | 360.00 s<br>*(2.96x slower)* | 244.74 s<br>*(2.01x slower)* | 256.78 s<br>*(2.11x slower)* |
 
 ### Open OEIS Frontier Run (600 s, Single-Core Pinned)
 

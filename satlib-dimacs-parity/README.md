@@ -71,8 +71,8 @@ All 30 parity-learning SAT benchmarks (`par8`, `par16`, `par32`, original & comp
 | `par8-4-c` | SAT | 2.73 ms | 2.58 ms | 20.46 ms | **1.67 ms** | 2.83 ms |
 | `par8-5` | SAT | 3.41 ms | **2.78 ms** | 26.20 ms | 2.97 ms | 2.94 ms |
 | `par8-5-c` | SAT | 2.56 ms | 2.49 ms | 21.82 ms | **1.58 ms** | 2.74 ms |
-| **Solved (30 files)** | — | **30 / 30** *(highest)* | 20 / 30 *(-10 worse)* | **30 / 30** *(highest)* | 20 / 30 *(-10 worse)* | 20 / 30 *(-10 worse)* |
-| **Total PAR-2** | — | **311.3 ms** *(fastest)* | 100,504.6 ms *(322.83x slower)* | 11,150.4 ms *(35.82x slower)* | 100,313.4 ms *(322.22x slower)* | 100,364.4 ms *(322.38x slower)* |
+| **Solved (30 files)** | — | **30 / 30**<br>*(highest)* | 20 / 30<br>*(-10 worse)* | **30 / 30**<br>*(highest)* | 20 / 30<br>*(-10 worse)* | 20 / 30<br>*(-10 worse)* |
+| **Total PAR-2** | — | **311.3 ms**<br>*(fastest)* | 100,504.6 ms<br>*(322.83x slower)* | 11,150.4 ms<br>*(35.82x slower)* | 100,313.4 ms<br>*(322.22x slower)* | 100,364.4 ms<br>*(322.38x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

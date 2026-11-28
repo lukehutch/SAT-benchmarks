@@ -46,8 +46,8 @@ All 5 classic DIMACS Pigeonhole Principle UNSAT formulas (`hole6` through `hole1
 | `hole7` | UNSAT | **0.61 ms** | 28.14 ms | 52.26 ms | 1.35 ms | 10.36 ms |
 | `hole8` | UNSAT | **0.61 ms** | 266.52 ms | 326.03 ms | 1.36 ms | 46.83 ms |
 | `hole9` | UNSAT | **0.61 ms** | 3,117.30 ms | 4,740.79 ms | 1.68 ms | 126.11 ms |
-| **Solved (5 files)** | — | **5 / 5** *(highest)* | 4 / 5 *(-1 worse)* | 4 / 5 *(-1 worse)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* |
-| **Total PAR-2** | — | **3.1 ms** *(fastest)* | 13,417.3 ms *(4,342.18x slower)* | 15,141.0 ms *(4,900.01x slower)* | 6.9 ms *(2.24x slower)* | 1,467.4 ms *(474.89x slower)* |
+| **Solved (5 files)** | — | **5 / 5**<br>*(highest)* | 4 / 5<br>*(-1 worse)* | 4 / 5<br>*(-1 worse)* | **5 / 5**<br>*(highest)* | **5 / 5**<br>*(highest)* |
+| **Total PAR-2** | — | **3.1 ms**<br>*(fastest)* | 13,417.3 ms<br>*(4,342.18x slower)* | 15,141.0 ms<br>*(4,900.01x slower)* | 6.9 ms<br>*(2.24x slower)* | 1,467.4 ms<br>*(474.89x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

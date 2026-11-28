@@ -98,8 +98,8 @@ Four calibration rungs ($N = 11$ SAT/UNSAT optimal pair, plus $N = 12, 13$ SAT r
 | `tri-up_n11_m32.cnf` | UNSAT | 13.78 s | 26.49 s | 34.70 s | 26.37 s | **13.77 s** |
 | `tri-up_n12_m35.cnf` | SAT | 0.05 s *(0.03 s updated build)* | **0.04 s** | 3.35 s | 1.33 s | 0.26 s |
 | `tri-up_n13_m40.cnf` | SAT | 0.65 s | **0.55 s** | 11.79 s | 4.37 s | 17.61 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **15.34 s** *(fastest)* | 27.46 s *(1.79x slower)* | 50.31 s *(3.28x slower)* | 33.62 s *(2.19x slower)* | 36.54 s *(2.38x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **15.34 s**<br>*(fastest)* | 27.46 s<br>*(1.79x slower)* | 50.31 s<br>*(3.28x slower)* | 33.62 s<br>*(2.19x slower)* | 36.54 s<br>*(2.38x slower)* |
 
 - **Frontier lower-bound milestone:** Frobenius independently recovered James Guillochon's side-14 lower bound `tri-up_n14_m46.cnf` from scratch (pure SAT, zero annealing hints) in **`57.10 s`**, archived in [`solutions/tri-up_n14_m46.model.xz`](solutions/tri-up_n14_m46.model.xz).
 

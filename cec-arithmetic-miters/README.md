@@ -49,8 +49,8 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `cec_adder_32b_rc_vs_ks` | **7.47 ms** | 36.21 ms | 146.85 ms | 78.33 ms | 19.59 ms | 46.70 ms |
 | `cec_mult_6x6_arr_vs_wal` | **0.92 ms** | 146.33 ms | 494.59 ms | 285.64 ms | 67.47 ms | 213.67 ms |
 | `cec_mult_8x8_arr_vs_wal` | **1.15 ms** | 5,831.30 ms | 8,148.17 ms | 3,300.73 ms | 10,170.00 ms | 3,598.79 ms |
-| **Solved (3 instances)** | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* |
-| **Total PAR-2** | **9.54 ms** *(fastest)* | 6,013.84 ms *(630x slower)* | 8,789.61 ms *(921x slower)* | 3,664.70 ms *(384x slower)* | 10,257.06 ms *(1,075x slower)* | 3,859.16 ms *(405x slower)* |
+| **Solved (3 instances)** | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* |
+| **Total PAR-2** | **9.54 ms**<br>*(fastest)* | 6,013.84 ms<br>*(630x slower)* | 8,789.61 ms<br>*(921x slower)* | 3,664.70 ms<br>*(384x slower)* | 10,257.06 ms<br>*(1,075x slower)* | 3,859.16 ms<br>*(405x slower)* |
 
 ### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$)
 
@@ -60,8 +60,8 @@ Remaining two larger multiplier miter instances evaluated on identical uncompres
 |---|:---:|---:|---:|---:|---:|---:|---:|
 | `cec_array_vs_wallace_10x10` | UNSAT | **1.46 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
 | `cec_wallace_vs_karat_12x12` | UNSAT | **2.19 ms** | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) | >60 s (T/O) |
-| **Solved (2 supplementary)** | — | **2 / 2** *(highest)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* | 0 / 2 *(-2 worse)* |
-| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **3.65 ms** *(fastest)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* | 240,000.00 ms *(65,753x slower)* |
+| **Solved (2 supplementary)** | — | **2 / 2**<br>*(highest)* | 0 / 2<br>*(-2 worse)* | 0 / 2<br>*(-2 worse)* | 0 / 2<br>*(-2 worse)* | 0 / 2<br>*(-2 worse)* | 0 / 2<br>*(-2 worse)* |
+| **Total PAR-2 ($T_{\max}=60\text{ s}$)** | — | **3.65 ms**<br>*(fastest)* | 240,000.00 ms<br>*(65,753x slower)* | 240,000.00 ms<br>*(65,753x slower)* | 240,000.00 ms<br>*(65,753x slower)* | 240,000.00 ms<br>*(65,753x slower)* | 240,000.00 ms<br>*(65,753x slower)* |
 
 *(Frobenius 1C proves both `cec_array_vs_wallace_10x10` (**`1.46 ms`**) and `cec_wallace_vs_karat_12x12` (**`2.19 ms`**) UNSAT — closing all **5/5** miters in **`13.18 ms`** total where all five external baseline configurations time out past $60\text{ s}$.)*
 

@@ -87,8 +87,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `numberlink_15x15_p12.cnf` | SAT | 249.1 ms | 245.9 ms | 546.1 ms | **92.3 ms** | 188.9 ms |
 | `numberlink_15x15_p12_swap.cnf` | UNSAT | 10.7 ms | 16.5 ms | 32.7 ms | 13.6 ms | **8.2 ms** |
 | `numberlink_42x25_p62.cnf` | SAT | **8.61 s** | >60 s | >60 s | 38.27 s | 11.46 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **8.98 s** *(fastest)* | 120.39 s *(13.4x slower)* | 121.50 s *(13.5x slower)* | 38.51 s *(4.29x slower)* | 11.79 s *(1.31x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **9 / 9**<br>*(highest)* | 8 / 9<br>*(-1 worse)* | 8 / 9<br>*(-1 worse)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **8.98 s**<br>*(fastest)* | 120.39 s<br>*(13.4x slower)* | 121.50 s<br>*(13.5x slower)* | 38.51 s<br>*(4.29x slower)* | 11.79 s<br>*(1.31x slower)* |
 
 *Ground-truth SAT note on `numberlink_42x25_p62.cnf`:* Directly solved and 100%-clause model-verified by Frobenius (`8.61 s`), Kissat 4.0.4 (`11.46 s`), and dense-solver 0.0.4 (`38.27 s`), and independently cross-checked via Picat-SAT's integer-grid formulation (`hakank_numberlink.pi`, `INo=4`, `NP=62`, `1,050/1,050` cells degree-verified).
 

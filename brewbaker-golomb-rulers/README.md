@@ -87,8 +87,8 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `golomb_m8_l34.cnf` | SAT | **41.4 ms** | 179.8 ms | 197.6 ms | 57.7 ms | 243.3 ms |
 | `golomb_m9_l43.cnf` | UNSAT | **103.7 ms** | 1.34 s | 1.23 s | 1.97 s | 1.05 s |
 | `golomb_m9_l44.cnf` | SAT | **132.2 ms** | 483.1 ms | 794.1 ms | 1.18 s | 520.5 ms |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* | **12 / 12** *(highest)* |
-| **Total PAR-2** | — | **0.85 s** *(fastest)* | 18.77 s *(22.1x slower)* | 15.29 s *(18.0x slower)* | 26.28 s *(30.9x slower)* | 10.56 s *(12.4x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **12 / 12**<br>*(highest)* | **12 / 12**<br>*(highest)* | **12 / 12**<br>*(highest)* | **12 / 12**<br>*(highest)* | **12 / 12**<br>*(highest)* |
+| **Total PAR-2** | — | **0.85 s**<br>*(fastest)* | 18.77 s<br>*(22.1x slower)* | 15.29 s<br>*(18.0x slower)* | 26.28 s<br>*(30.9x slower)* | 10.56 s<br>*(12.4x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, 1-Core PGO)
 

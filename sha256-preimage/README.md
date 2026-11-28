@@ -48,8 +48,8 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `sha256_64r_k16_sat` | **89.35 ms** | 275,382.20 ms | >5,000 s (T/O) | 461,449.91 ms | 553,812.90 ms | 2,267,295.44 ms |
 | `sha256_64r_k16_unsat` | **98.86 ms** | 2,594,248.08 ms | >5,000 s (T/O) | >5,000 s (T/O) | 764,244.90 ms | 2,396,511.93 ms |
 | `sha256_64r_k20_sat` | **92.57 ms** | 2,606,732.29 ms | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) | >5,000 s (T/O) |
-| **Solved (5 instances)** | **5 / 5** *(highest)* | **5 / 5** *(highest)* | 2 / 5 *(-3 worse)* | 3 / 5 *(-2 worse)* | 4 / 5 *(-1 worse)* | 4 / 5 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max}=5{,}000\text{ s}$)** | **309.07 ms** *(fastest)* | 5,480,540.59 ms *(17,732x slower)* | 30,004,857.31 ms *(97,081x slower)* | 20,463,641.58 ms *(66,210x slower)* | 11,330,163.53 ms *(36,659x slower)* | 14,671,536.26 ms *(47,470x slower)* |
+| **Solved (5 instances)** | **5 / 5**<br>*(highest)* | **5 / 5**<br>*(highest)* | 2 / 5<br>*(-3 worse)* | 3 / 5<br>*(-2 worse)* | 4 / 5<br>*(-1 worse)* | 4 / 5<br>*(-1 worse)* |
+| **Total PAR-2 ($T_{\max}=5{,}000\text{ s}$)** | **309.07 ms**<br>*(fastest)* | 5,480,540.59 ms<br>*(17,732x slower)* | 30,004,857.31 ms<br>*(97,081x slower)* | 20,463,641.58 ms<br>*(66,210x slower)* | 11,330,163.53 ms<br>*(36,659x slower)* | 14,671,536.26 ms<br>*(47,470x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

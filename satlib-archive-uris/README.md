@@ -61,52 +61,52 @@ Every instance from all 17 structured SATLIB/DIMACS/Beijing families (298 instan
 
 | Collection (Instances) | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---|---:|---:|---:|---:|---:|
-| [`satlib-ais/`](../satlib-ais/README.md) (4) | **Solved** | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-|  | **PAR-2** | **4.0 ms** *(fastest)* | 15.9 ms *(3.98x slower)* | 458.9 ms *(115x slower)* | 20.9 ms *(5.22x slower)* | 8.8 ms *(2.20x slower)* |
-| [`satlib-beijing/`](../satlib-beijing/README.md) (16) | **Solved** | **16 / 16** *(highest)* | 15 / 16 *(-1 worse)* | 15 / 16 *(-1 worse)* | 15 / 16 *(-1 worse)* | **16 / 16** *(highest)* |
-|  | **PAR-2** | **232.2 ms** *(fastest)* | 10,375.0 ms *(44.7x slower)* | 18,153.0 ms *(78.2x slower)* | 13,334.9 ms *(57.4x slower)* | 3,813.0 ms *(16.4x slower)* |
-| [`satlib-bmc/`](../satlib-bmc/README.md) (13) | **Solved** | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* |
-|  | **PAR-2** | **1,987.6 ms** *(fastest)* | 4,923.8 ms *(2.48x slower)* | 19,129.8 ms *(9.62x slower)* | 12,123.0 ms *(6.10x slower)* | 2,709.7 ms *(1.36x slower)* |
-| [`satlib-bms-rti/`](../satlib-bms-rti/README.md) (4) | **Solved** | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-|  | **PAR-2** | **5.6 ms** *(fastest)* | 20.6 ms *(3.68x slower)* | 85.4 ms *(15.3x slower)* | 11.6 ms *(2.07x slower)* | 49.0 ms *(8.75x slower)* |
-| [`satlib-cbs/`](../satlib-cbs/README.md) (6) | **Solved** | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* |
-|  | **PAR-2** | **6.0 ms** *(fastest)* | 26.7 ms *(4.45x slower)* | 172.3 ms *(28.7x slower)* | 13.4 ms *(2.23x slower)* | 101.8 ms *(17.0x slower)* |
-| [`satlib-dimacs-aim/`](../satlib-dimacs-aim/README.md) (72) | **Solved** | **72 / 72** *(highest)* | **72 / 72** *(highest)* | **72 / 72** *(highest)* | **72 / 72** *(highest)* | **72 / 72** *(highest)* |
-|  | **PAR-2** | **106.5 ms** *(fastest)* | 211.9 ms *(1.99x slower)* | 1,538.6 ms *(14.4x slower)* | 131.1 ms *(1.23x slower)* | 239.9 ms *(2.25x slower)* |
-| [`satlib-dimacs-bf/`](../satlib-dimacs-bf/README.md) (4) | **Solved** | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-|  | **PAR-2** | **20.4 ms** *(fastest)* | 25.4 ms *(1.25x slower)* | 208.1 ms *(10.2x slower)* | 92.0 ms *(4.51x slower)* | 27.4 ms *(1.34x slower)* |
-| [`satlib-dimacs-dubois/`](../satlib-dimacs-dubois/README.md) (13) | **Solved** | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* | **13 / 13** *(highest)* |
-|  | **PAR-2** | **7.7 ms** *(fastest)* | 33.1 ms *(4.30x slower)* | 252.3 ms *(32.8x slower)* | 21.5 ms *(2.79x slower)* | 21.8 ms *(2.83x slower)* |
-| [`satlib-dimacs-gcp-large/`](../satlib-dimacs-gcp-large/README.md) (4) | **Solved** | **4 / 4** *(highest)* | 2 / 4 *(-2 worse)* | 1 / 4 *(-3 worse)* | 0 / 4 *(-4 worse)* | 0 / 4 *(-4 worse)* |
-|  | **PAR-2** | **451.8 ms** *(fastest)* | 22,861.2 ms *(50.6x slower)* | 31,575.5 ms *(69.9x slower)* | 40,000.0 ms *(88.5x slower)* | 40,000.0 ms *(88.5x slower)* |
-| [`satlib-dimacs-hanoi/`](../satlib-dimacs-hanoi/README.md) (2) | **Solved** | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* |
-|  | **PAR-2** | **141.5 ms** *(fastest)* | 173.9 ms *(1.23x slower)* | 704.8 ms *(4.98x slower)* | 211.5 ms *(1.49x slower)* | 558.9 ms *(3.95x slower)* |
-| [`satlib-dimacs-ii/`](../satlib-dimacs-ii/README.md) (41) | **Solved** | **41 / 41** *(highest)* | **41 / 41** *(highest)* | **41 / 41** *(highest)* | **41 / 41** *(highest)* | **41 / 41** *(highest)* |
-|  | **PAR-2** | **145.4 ms** *(fastest)* | 285.0 ms *(1.96x slower)* | 12,071.9 ms *(83.0x slower)* | 566.4 ms *(3.90x slower)* | 553.8 ms *(3.81x slower)* |
-| [`satlib-dimacs-jnh/`](../satlib-dimacs-jnh/README.md) (50) | **Solved** | **50 / 50** *(highest)* | **50 / 50** *(highest)* | **50 / 50** *(highest)* | **50 / 50** *(highest)* | **50 / 50** *(highest)* |
-|  | **PAR-2** | **101.8 ms** *(fastest)* | 158.6 ms *(1.56x slower)* | 1,105.1 ms *(10.9x slower)* | 112.2 ms *(1.10x slower)* | 279.1 ms *(2.74x slower)* |
-| [`satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md) (3) | **Solved** | **3 / 3** *(highest)* | 2 / 3 *(-1 worse)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* |
-|  | **PAR-2** | **170.7 ms** *(fastest)* | 13,747.5 ms *(80.5x slower)* | 30,000.0 ms *(176x slower)* | 30,000.0 ms *(176x slower)* | 30,000.0 ms *(176x slower)* |
-| [`satlib-dimacs-parity/`](../satlib-dimacs-parity/README.md) (30) | **Solved** | **30 / 30** *(highest)* | 20 / 30 *(-10 worse)* | **30 / 30** *(highest)* | 20 / 30 *(-10 worse)* | 20 / 30 *(-10 worse)* |
-|  | **PAR-2** | **311.3 ms** *(fastest)* | 100,504.6 ms *(323x slower)* | 11,150.4 ms *(35.8x slower)* | 100,313.4 ms *(322x slower)* | 100,364.4 ms *(322x slower)* |
-| [`satlib-dimacs-phole/`](../satlib-dimacs-phole/README.md) (5) | **Solved** | **5 / 5** *(highest)* | 4 / 5 *(-1 worse)* | 4 / 5 *(-1 worse)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* |
-|  | **PAR-2** | **3.1 ms** *(fastest)* | 13,417.3 ms *(4,328x slower)* | 15,141.0 ms *(4,884x slower)* | 6.9 ms *(2.23x slower)* | 1,467.4 ms *(473x slower)* |
-| [`satlib-dimacs-ssa/`](../satlib-dimacs-ssa/README.md) (8) | **Solved** | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-|  | **PAR-2** | **34.9 ms** *(fastest)* | 38.8 ms *(1.11x slower)* | 269.4 ms *(7.72x slower)* | 91.8 ms *(2.63x slower)* | 36.3 ms *(1.04x slower)* |
-| [`satlib-flat-gcp/`](../satlib-flat-gcp/README.md) (8) | **Solved** | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-|  | **PAR-2** | **10.7 ms** *(fastest)* | 30.7 ms *(2.87x slower)* | 233.4 ms *(21.8x slower)* | 21.3 ms *(1.99x slower)* | 48.3 ms *(4.51x slower)* |
-| [`satlib-planning-blocksworld/`](../satlib-planning-blocksworld/README.md) (7) | **Solved** | **7 / 7** *(highest)* | **7 / 7** *(highest)* | **7 / 7** *(highest)* | **7 / 7** *(highest)* | **7 / 7** *(highest)* |
-|  | **PAR-2** | **148.6 ms** *(fastest)* | 386.6 ms *(2.60x slower)* | 1,834.6 ms *(12.3x slower)* | 209.5 ms *(1.41x slower)* | 342.9 ms *(2.31x slower)* |
-| [`satlib-planning-logistics/`](../satlib-planning-logistics/README.md) (4) | **Solved** | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-|  | **PAR-2** | **26.0 ms** *(fastest)* | 32.5 ms *(1.25x slower)* | 954.9 ms *(36.7x slower)* | 73.4 ms *(2.82x slower)* | 119.5 ms *(4.60x slower)* |
-| [`satlib-qg/`](../satlib-qg/README.md) (22) | **Solved** | **22 / 22** *(highest)* | **22 / 22** *(highest)* | **22 / 22** *(highest)* | **22 / 22** *(highest)* | **22 / 22** *(highest)* |
-|  | **PAR-2** | **3,042.1 ms** *(fastest)* | 3,665.8 ms *(1.21x slower)* | 14,567.0 ms *(4.79x slower)* | 7,179.0 ms *(2.36x slower)* | 6,187.5 ms *(2.03x slower)* |
-| [`satlib-rnd3sat/`](../satlib-rnd3sat/README.md) (10) | **Solved** | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
-|  | **PAR-2** | **1,076.9 ms** *(fastest)* | 3,542.8 ms *(3.29x slower)* | 4,147.5 ms *(3.85x slower)* | 3,257.8 ms *(3.03x slower)* | 2,435.5 ms *(2.26x slower)* |
-| [`satlib-sw-gcp/`](../satlib-sw-gcp/README.md) (5) | **Solved** | **5 / 5** *(highest)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* | **5 / 5** *(highest)* |
-|  | **PAR-2** | **5.7 ms** *(fastest)* | 17.2 ms *(3.02x slower)* | 269.9 ms *(47.4x slower)* | 16.8 ms *(2.95x slower)* | 43.1 ms *(7.56x slower)* |
-| **Total (331 instances, 22 collections)** | **Solved** | **331 / 331** *(highest)* | 316 / 331 *(-15 worse)* | 323 / 331 *(-8 worse)* | 313 / 331 *(-18 worse)* | 314 / 331 *(-17 worse)* |
-|  | **PAR-2** | **8,040.5 ms** *(fastest)* | 174,494.9 ms *(21.70x slower)* | 164,024.0 ms *(20.40x slower)* | 207,808.4 ms *(25.85x slower)* | 189,408.0 ms *(23.56x slower)* |
+| [`satlib-ais/`](../satlib-ais/README.md) (4) | **Solved** | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* |
+|  | **PAR-2** | **4.0 ms**<br>*(fastest)* | 15.9 ms<br>*(3.98x slower)* | 458.9 ms<br>*(115x slower)* | 20.9 ms<br>*(5.22x slower)* | 8.8 ms<br>*(2.20x slower)* |
+| [`satlib-beijing/`](../satlib-beijing/README.md) (16) | **Solved** | **16 / 16**<br>*(highest)* | 15 / 16<br>*(-1 worse)* | 15 / 16<br>*(-1 worse)* | 15 / 16<br>*(-1 worse)* | **16 / 16**<br>*(highest)* |
+|  | **PAR-2** | **232.2 ms**<br>*(fastest)* | 10,375.0 ms<br>*(44.7x slower)* | 18,153.0 ms<br>*(78.2x slower)* | 13,334.9 ms<br>*(57.4x slower)* | 3,813.0 ms<br>*(16.4x slower)* |
+| [`satlib-bmc/`](../satlib-bmc/README.md) (13) | **Solved** | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* |
+|  | **PAR-2** | **1,987.6 ms**<br>*(fastest)* | 4,923.8 ms<br>*(2.48x slower)* | 19,129.8 ms<br>*(9.62x slower)* | 12,123.0 ms<br>*(6.10x slower)* | 2,709.7 ms<br>*(1.36x slower)* |
+| [`satlib-bms-rti/`](../satlib-bms-rti/README.md) (4) | **Solved** | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* |
+|  | **PAR-2** | **5.6 ms**<br>*(fastest)* | 20.6 ms<br>*(3.68x slower)* | 85.4 ms<br>*(15.3x slower)* | 11.6 ms<br>*(2.07x slower)* | 49.0 ms<br>*(8.75x slower)* |
+| [`satlib-cbs/`](../satlib-cbs/README.md) (6) | **Solved** | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* |
+|  | **PAR-2** | **6.0 ms**<br>*(fastest)* | 26.7 ms<br>*(4.45x slower)* | 172.3 ms<br>*(28.7x slower)* | 13.4 ms<br>*(2.23x slower)* | 101.8 ms<br>*(17.0x slower)* |
+| [`satlib-dimacs-aim/`](../satlib-dimacs-aim/README.md) (72) | **Solved** | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* |
+|  | **PAR-2** | **106.5 ms**<br>*(fastest)* | 211.9 ms<br>*(1.99x slower)* | 1,538.6 ms<br>*(14.4x slower)* | 131.1 ms<br>*(1.23x slower)* | 239.9 ms<br>*(2.25x slower)* |
+| [`satlib-dimacs-bf/`](../satlib-dimacs-bf/README.md) (4) | **Solved** | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* |
+|  | **PAR-2** | **20.4 ms**<br>*(fastest)* | 25.4 ms<br>*(1.25x slower)* | 208.1 ms<br>*(10.2x slower)* | 92.0 ms<br>*(4.51x slower)* | 27.4 ms<br>*(1.34x slower)* |
+| [`satlib-dimacs-dubois/`](../satlib-dimacs-dubois/README.md) (13) | **Solved** | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* | **13 / 13**<br>*(highest)* |
+|  | **PAR-2** | **7.7 ms**<br>*(fastest)* | 33.1 ms<br>*(4.30x slower)* | 252.3 ms<br>*(32.8x slower)* | 21.5 ms<br>*(2.79x slower)* | 21.8 ms<br>*(2.83x slower)* |
+| [`satlib-dimacs-gcp-large/`](../satlib-dimacs-gcp-large/README.md) (4) | **Solved** | **4 / 4**<br>*(highest)* | 2 / 4<br>*(-2 worse)* | 1 / 4<br>*(-3 worse)* | 0 / 4<br>*(-4 worse)* | 0 / 4<br>*(-4 worse)* |
+|  | **PAR-2** | **451.8 ms**<br>*(fastest)* | 22,861.2 ms<br>*(50.6x slower)* | 31,575.5 ms<br>*(69.9x slower)* | 40,000.0 ms<br>*(88.5x slower)* | 40,000.0 ms<br>*(88.5x slower)* |
+| [`satlib-dimacs-hanoi/`](../satlib-dimacs-hanoi/README.md) (2) | **Solved** | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* |
+|  | **PAR-2** | **141.5 ms**<br>*(fastest)* | 173.9 ms<br>*(1.23x slower)* | 704.8 ms<br>*(4.98x slower)* | 211.5 ms<br>*(1.49x slower)* | 558.9 ms<br>*(3.95x slower)* |
+| [`satlib-dimacs-ii/`](../satlib-dimacs-ii/README.md) (41) | **Solved** | **41 / 41**<br>*(highest)* | **41 / 41**<br>*(highest)* | **41 / 41**<br>*(highest)* | **41 / 41**<br>*(highest)* | **41 / 41**<br>*(highest)* |
+|  | **PAR-2** | **145.4 ms**<br>*(fastest)* | 285.0 ms<br>*(1.96x slower)* | 12,071.9 ms<br>*(83.0x slower)* | 566.4 ms<br>*(3.90x slower)* | 553.8 ms<br>*(3.81x slower)* |
+| [`satlib-dimacs-jnh/`](../satlib-dimacs-jnh/README.md) (50) | **Solved** | **50 / 50**<br>*(highest)* | **50 / 50**<br>*(highest)* | **50 / 50**<br>*(highest)* | **50 / 50**<br>*(highest)* | **50 / 50**<br>*(highest)* |
+|  | **PAR-2** | **101.8 ms**<br>*(fastest)* | 158.6 ms<br>*(1.56x slower)* | 1,105.1 ms<br>*(10.9x slower)* | 112.2 ms<br>*(1.10x slower)* | 279.1 ms<br>*(2.74x slower)* |
+| [`satlib-dimacs-lran/`](../satlib-dimacs-lran/README.md) (3) | **Solved** | **3 / 3**<br>*(highest)* | 2 / 3<br>*(-1 worse)* | 0 / 3<br>*(-3 worse)* | 0 / 3<br>*(-3 worse)* | 0 / 3<br>*(-3 worse)* |
+|  | **PAR-2** | **170.7 ms**<br>*(fastest)* | 13,747.5 ms<br>*(80.5x slower)* | 30,000.0 ms<br>*(176x slower)* | 30,000.0 ms<br>*(176x slower)* | 30,000.0 ms<br>*(176x slower)* |
+| [`satlib-dimacs-parity/`](../satlib-dimacs-parity/README.md) (30) | **Solved** | **30 / 30**<br>*(highest)* | 20 / 30<br>*(-10 worse)* | **30 / 30**<br>*(highest)* | 20 / 30<br>*(-10 worse)* | 20 / 30<br>*(-10 worse)* |
+|  | **PAR-2** | **311.3 ms**<br>*(fastest)* | 100,504.6 ms<br>*(323x slower)* | 11,150.4 ms<br>*(35.8x slower)* | 100,313.4 ms<br>*(322x slower)* | 100,364.4 ms<br>*(322x slower)* |
+| [`satlib-dimacs-phole/`](../satlib-dimacs-phole/README.md) (5) | **Solved** | **5 / 5**<br>*(highest)* | 4 / 5<br>*(-1 worse)* | 4 / 5<br>*(-1 worse)* | **5 / 5**<br>*(highest)* | **5 / 5**<br>*(highest)* |
+|  | **PAR-2** | **3.1 ms**<br>*(fastest)* | 13,417.3 ms<br>*(4,328x slower)* | 15,141.0 ms<br>*(4,884x slower)* | 6.9 ms<br>*(2.23x slower)* | 1,467.4 ms<br>*(473x slower)* |
+| [`satlib-dimacs-ssa/`](../satlib-dimacs-ssa/README.md) (8) | **Solved** | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+|  | **PAR-2** | **34.9 ms**<br>*(fastest)* | 38.8 ms<br>*(1.11x slower)* | 269.4 ms<br>*(7.72x slower)* | 91.8 ms<br>*(2.63x slower)* | 36.3 ms<br>*(1.04x slower)* |
+| [`satlib-flat-gcp/`](../satlib-flat-gcp/README.md) (8) | **Solved** | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+|  | **PAR-2** | **10.7 ms**<br>*(fastest)* | 30.7 ms<br>*(2.87x slower)* | 233.4 ms<br>*(21.8x slower)* | 21.3 ms<br>*(1.99x slower)* | 48.3 ms<br>*(4.51x slower)* |
+| [`satlib-planning-blocksworld/`](../satlib-planning-blocksworld/README.md) (7) | **Solved** | **7 / 7**<br>*(highest)* | **7 / 7**<br>*(highest)* | **7 / 7**<br>*(highest)* | **7 / 7**<br>*(highest)* | **7 / 7**<br>*(highest)* |
+|  | **PAR-2** | **148.6 ms**<br>*(fastest)* | 386.6 ms<br>*(2.60x slower)* | 1,834.6 ms<br>*(12.3x slower)* | 209.5 ms<br>*(1.41x slower)* | 342.9 ms<br>*(2.31x slower)* |
+| [`satlib-planning-logistics/`](../satlib-planning-logistics/README.md) (4) | **Solved** | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* |
+|  | **PAR-2** | **26.0 ms**<br>*(fastest)* | 32.5 ms<br>*(1.25x slower)* | 954.9 ms<br>*(36.7x slower)* | 73.4 ms<br>*(2.82x slower)* | 119.5 ms<br>*(4.60x slower)* |
+| [`satlib-qg/`](../satlib-qg/README.md) (22) | **Solved** | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* |
+|  | **PAR-2** | **3,042.1 ms**<br>*(fastest)* | 3,665.8 ms<br>*(1.21x slower)* | 14,567.0 ms<br>*(4.79x slower)* | 7,179.0 ms<br>*(2.36x slower)* | 6,187.5 ms<br>*(2.03x slower)* |
+| [`satlib-rnd3sat/`](../satlib-rnd3sat/README.md) (10) | **Solved** | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* |
+|  | **PAR-2** | **1,076.9 ms**<br>*(fastest)* | 3,542.8 ms<br>*(3.29x slower)* | 4,147.5 ms<br>*(3.85x slower)* | 3,257.8 ms<br>*(3.03x slower)* | 2,435.5 ms<br>*(2.26x slower)* |
+| [`satlib-sw-gcp/`](../satlib-sw-gcp/README.md) (5) | **Solved** | **5 / 5**<br>*(highest)* | **5 / 5**<br>*(highest)* | **5 / 5**<br>*(highest)* | **5 / 5**<br>*(highest)* | **5 / 5**<br>*(highest)* |
+|  | **PAR-2** | **5.7 ms**<br>*(fastest)* | 17.2 ms<br>*(3.02x slower)* | 269.9 ms<br>*(47.4x slower)* | 16.8 ms<br>*(2.95x slower)* | 43.1 ms<br>*(7.56x slower)* |
+| **Total (331 instances, 22 collections)** | **Solved** | **331 / 331**<br>*(highest)* | 316 / 331<br>*(-15 worse)* | 323 / 331<br>*(-8 worse)* | 313 / 331<br>*(-18 worse)* | 314 / 331<br>*(-17 worse)* |
+|  | **PAR-2** | **8,040.5 ms**<br>*(fastest)* | 174,494.9 ms<br>*(21.70x slower)* | 164,024.0 ms<br>*(20.40x slower)* | 207,808.4 ms<br>*(25.85x slower)* | 189,408.0 ms<br>*(23.56x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

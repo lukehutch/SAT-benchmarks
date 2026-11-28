@@ -43,8 +43,8 @@ The `PRET` benchmark family encodes a graph 2-coloring problem on an even-order 
 
 | Metric (1C, 8 instances) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| **Solved** | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-| **Total Wall Time** | **4.94 ms** *(fastest)* | 41.53 ms *(8.41x slower)* | 161.74 ms *(32.7x slower)* | 6.43 ms *(1.30x slower)* | 58.45 ms *(11.8x slower)* |
+| **Solved** | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+| **Total Wall Time** | **4.94 ms**<br>*(fastest)* | 41.53 ms<br>*(8.41x slower)* | 161.74 ms<br>*(32.7x slower)* | 6.43 ms<br>*(1.30x slower)* | 58.45 ms<br>*(11.8x slower)* |
 | **Per-Instance Range** | **0.60–0.65 ms** | 4.95–5.38 ms | 18.55–22.15 ms | 0.72–0.98 ms | 4.58–11.04 ms |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->

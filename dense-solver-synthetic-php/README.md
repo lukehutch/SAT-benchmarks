@@ -61,8 +61,8 @@ This collection holds the **17 structured Pigeonhole Principle CNFs** shipped wi
 | `php9x8-sequential-renamed` | UNSAT | **0.79 ms** | 10.38 ms | 48.68 ms | 1.64 ms | 5.93 ms |
 | `php9x8-sortnetwrk` | UNSAT | **1.17 ms** | 11.12 ms | 43.99 ms | 1.64 ms | 7.47 ms |
 | `php9x8-totalizer` | UNSAT | **0.86 ms** | 7.18 ms | 40.14 ms | 1.77 ms | 6.63 ms |
-| **Solved (17 files)** | — | **17 / 17** *(highest)* | 13 / 17 *(-4 worse)* | 13 / 17 *(-4 worse)* | **17 / 17** *(highest)* | 13 / 17 *(-4 worse)* |
-| **Total PAR-2** | — | **17.1 ms** *(fastest)* | 40,653.1 ms *(2,382.53x slower)* | 41,141.6 ms *(2,411.16x slower)* | 38.2 ms *(2.24x slower)* | 40,201.9 ms *(2,356.09x slower)* |
+| **Solved (17 files)** | — | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* | 13 / 17<br>*(-4 worse)* | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* |
+| **Total PAR-2** | — | **17.1 ms**<br>*(fastest)* | 40,653.1 ms<br>*(2,382.53x slower)* | 41,141.6 ms<br>*(2,411.16x slower)* | 38.2 ms<br>*(2.24x slower)* | 40,201.9 ms<br>*(2,356.09x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

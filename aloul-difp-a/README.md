@@ -53,8 +53,8 @@ Difficult Integer Factorization Problems (`difp_a`, 14 SAT instances) encoded vi
 | `difp_21_2_arr_rcr` | SAT | **6.17 ms** | >5 s | >5 s | >5 s | >5 s |
 | `difp_21_3_arr_rcr` | SAT | **6.05 ms** | >5 s | 1,638.21 ms | >5 s | 134.61 ms |
 | `difp_21_99_arr_rcr` | SAT | **5.62 ms** | >5 s | 4,378.83 ms | >5 s | >5 s |
-| **Solved (14 files)** | — | **14 / 14** *(highest)* | 8 / 14 *(-6 worse)* | 7 / 14 *(-7 worse)* | 5 / 14 *(-9 worse)* | 8 / 14 *(-6 worse)* |
-| **Total PAR-2** | — | **61.7 ms** *(fastest)* | 82,148.3 ms *(1,331.11x slower)* | 85,064.6 ms *(1,378.37x slower)* | 106,012.0 ms *(1,717.79x slower)* | 80,636.4 ms *(1,306.61x slower)* |
+| **Solved (14 files)** | — | **14 / 14**<br>*(highest)* | 8 / 14<br>*(-6 worse)* | 7 / 14<br>*(-7 worse)* | 5 / 14<br>*(-9 worse)* | 8 / 14<br>*(-6 worse)* |
+| **Total PAR-2** | — | **61.7 ms**<br>*(fastest)* | 82,148.3 ms<br>*(1,331.11x slower)* | 85,064.6 ms<br>*(1,378.37x slower)* | 106,012.0 ms<br>*(1,717.79x slower)* | 80,636.4 ms<br>*(1,306.61x slower)* |
 
 *Summary:* Frobenius 1C solves all **14/14** instances (including `difp_21_1_arr_rcr` and `difp_21_2_arr_rcr`, where all four baseline solvers time out at $5\text{ s}$) in **`61.7 ms` total** (`3.32–6.17 ms` per instance) — **1,306.61x faster** PAR-2 than Kissat 4.0.4, **1,331.11x faster** than CaDiCaL 3.1.0, **1,378.37x faster** than CryptoMiniSat 5.18.0, and **1,717.79x faster** than dense-solver 0.0.4.
 

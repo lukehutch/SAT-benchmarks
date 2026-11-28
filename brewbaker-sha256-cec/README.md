@@ -85,8 +85,8 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `sha256_trace_r64_abc.cnf` | SAT | **27.4 ms** | 56.1 ms | 99.6 ms | 3.22 s | 33.3 ms |
 | `sha256_trace_r64_abc_expect_flip.cnf` | UNSAT | 25.0 ms | 48.5 ms | 59.0 ms | 3.26 s | **24.2 ms** |
 | `sha256_trace_r64_abc_expect_ok.cnf` | SAT | **27.8 ms** | 58.2 ms | 101.9 ms | 3.26 s | 32.4 ms |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **13 / 13** *(highest)* | 7 / 13 *(-6 worse)* | 7 / 13 *(-6 worse)* | 6 / 13 *(-7 worse)* | 8 / 13 *(-5 worse)* |
-| **Total PAR-2** | — | **5.06 s** *(fastest)* | 739.66 s *(146x slower)* | 739.18 s *(146x slower)* | 851.91 s *(168x slower)* | 638.35 s *(126x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **13 / 13**<br>*(highest)* | 7 / 13<br>*(-6 worse)* | 7 / 13<br>*(-6 worse)* | 6 / 13<br>*(-7 worse)* | 8 / 13<br>*(-5 worse)* |
+| **Total PAR-2** | — | **5.06 s**<br>*(fastest)* | 739.66 s<br>*(146x slower)* | 739.18 s<br>*(146x slower)* | 851.91 s<br>*(168x slower)* | 638.35 s<br>*(126x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 

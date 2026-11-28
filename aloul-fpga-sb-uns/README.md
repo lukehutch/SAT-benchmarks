@@ -49,8 +49,8 @@ Unsatisfiable FPGA switch-box routing formulas (`fpga10_*`, `fpga11_*`; SAT 2002
 | `fpga11_14_uns_rcr` | UNSAT | **0.69 ms** | >5 s | >5 s | 1.48 ms | >5 s |
 | `fpga11_15_uns_rcr` | UNSAT | **0.71 ms** | >5 s | >5 s | 1.77 ms | >5 s |
 | `fpga11_20_uns_rcr` | UNSAT | **0.76 ms** | >5 s | >5 s | 1.76 ms | >5 s |
-| **Solved (10 files)** | — | **10 / 10** *(highest)* | 0 / 10 *(-10 worse)* | 0 / 10 *(-10 worse)* | **10 / 10** *(highest)* | 1 / 10 *(-9 worse)* |
-| **Total PAR-2** | — | **7.0 ms** *(fastest)* | 100,000.0 ms *(14,330.75x slower)* | 100,000.0 ms *(14,330.75x slower)* | 16.3 ms *(2.34x slower)* | 93,073.8 ms *(13,338.18x slower)* |
+| **Solved (10 files)** | — | **10 / 10**<br>*(highest)* | 0 / 10<br>*(-10 worse)* | 0 / 10<br>*(-10 worse)* | **10 / 10**<br>*(highest)* | 1 / 10<br>*(-9 worse)* |
+| **Total PAR-2** | — | **7.0 ms**<br>*(fastest)* | 100,000.0 ms<br>*(14,330.75x slower)* | 100,000.0 ms<br>*(14,330.75x slower)* | 16.3 ms<br>*(2.34x slower)* | 93,073.8 ms<br>*(13,338.18x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

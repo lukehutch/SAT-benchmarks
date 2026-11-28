@@ -95,8 +95,8 @@ Two $N = 13$ calibration rungs evaluated sequentially on identical uncompressed 
 |---|:---:|---:|---:|---:|---:|---:|
 | `tri-any_n13_m28.cnf` | SAT | **0.29 s** | 0.56 s | 37.60 s | >60 s | 27.19 s |
 | `tri-any_n13_m29.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | 0 / 2 *(-1 worse)* | **1 / 2** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **120.29 s** *(fastest)* | 120.56 s *(1.002x slower)* | 157.60 s *(1.31x slower)* | 240.00 s *(2.00x slower)* | 147.19 s *(1.22x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **1 / 2**<br>*(highest)* | **1 / 2**<br>*(highest)* | **1 / 2**<br>*(highest)* | 0 / 2<br>*(-1 worse)* | **1 / 2**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **120.29 s**<br>*(fastest)* | 120.56 s<br>*(1.002x slower)* | 157.60 s<br>*(1.31x slower)* | 240.00 s<br>*(2.00x slower)* | 147.19 s<br>*(1.22x slower)* |
 
 - **Frontier lower-bound milestone:** Beyond the 2-instance 60 s calibration slice, Frobenius independently recovered from scratch (pure SAT, zero annealing hints) both `tri-any_n15_m34.cnf` and James Guillochon's newly published side-16 lower bound `tri-any_n16_m36.cnf` (**`17.05 s`**), both archived in [`solutions/`](solutions/).
 

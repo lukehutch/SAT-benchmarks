@@ -46,8 +46,8 @@ All 4 combinational circuit bridge-fault test-pattern generation instances (`bf0
 | `bf1355-075` | UNSAT | **3.92 ms** | 5.87 ms | 40.35 ms | 30.81 ms | 5.52 ms |
 | `bf1355-638` | UNSAT | **4.22 ms** | 6.63 ms | 40.86 ms | 36.13 ms | 7.62 ms |
 | `bf2670-001` | UNSAT | **3.99 ms** | 5.11 ms | 49.87 ms | 12.29 ms | 7.69 ms |
-| **Solved (4 files)** | — | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* |
-| **Total PAR-2** | — | **20.4 ms** *(fastest)* | 25.4 ms *(1.24x slower)* | 208.1 ms *(10.20x slower)* | 92.0 ms *(4.51x slower)* | 27.4 ms *(1.34x slower)* |
+| **Solved (4 files)** | — | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* |
+| **Total PAR-2** | — | **20.4 ms**<br>*(fastest)* | 25.4 ms<br>*(1.24x slower)* | 208.1 ms<br>*(10.20x slower)* | 92.0 ms<br>*(4.51x slower)* | 27.4 ms<br>*(1.34x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

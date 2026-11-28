@@ -113,8 +113,8 @@ All 72 artificially generated random 3-SAT instances (`aim-50`, `aim-100`, `aim-
 | `aim-50-6_0-yes1-2` | SAT | **0.88 ms** | 3.04 ms | 6.20 ms | 1.97 ms | 2.14 ms |
 | `aim-50-6_0-yes1-3` | SAT | **0.85 ms** | 2.21 ms | 4.83 ms | 1.62 ms | 2.01 ms |
 | `aim-50-6_0-yes1-4` | SAT | **0.78 ms** | 2.37 ms | 4.89 ms | 1.51 ms | 1.97 ms |
-| **Solved (72 files)** | — | **72 / 72** *(highest)* | **72 / 72** *(highest)* | **72 / 72** *(highest)* | **72 / 72** *(highest)* | **72 / 72** *(highest)* |
-| **Total PAR-2** | — | **106.5 ms** *(fastest)* | 211.9 ms *(1.99x slower)* | 1,538.6 ms *(14.44x slower)* | 131.1 ms *(1.23x slower)* | 239.9 ms *(2.25x slower)* |
+| **Solved (72 files)** | — | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* | **72 / 72**<br>*(highest)* |
+| **Total PAR-2** | — | **106.5 ms**<br>*(fastest)* | 211.9 ms<br>*(1.99x slower)* | 1,538.6 ms<br>*(14.44x slower)* | 131.1 ms<br>*(1.23x slower)* | 239.9 ms<br>*(2.25x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

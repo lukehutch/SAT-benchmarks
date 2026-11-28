@@ -115,8 +115,8 @@ Seven calibration rungs spanning $t = 10 \dots 13$ evaluated sequentially on ide
 | `vdw_3_12_N134.cnf` | SAT | **194.8 ms** | 1.18 s | 38.88 s | 42.64 s | 49.18 s |
 | `vdw_3_12_N135.cnf` | UNSAT | **9.20 s** | >60 s | >60 s | >60 s | 51.28 s |
 | `vdw_3_13_N159.cnf` | SAT | **202.0 ms** | 1.13 s | 10.74 s | 2.82 s | 9.48 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **7 / 7** *(highest)* | 6 / 7 *(-1 worse)* | 6 / 7 *(-1 worse)* | 6 / 7 *(-1 worse)* | **7 / 7** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **11.78 s** *(fastest)* | 130.76 s *(11.10x slower)* | 180.12 s *(15.29x slower)* | 173.16 s *(14.70x slower)* | 118.59 s *(10.07x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **7 / 7**<br>*(highest)* | 6 / 7<br>*(-1 worse)* | 6 / 7<br>*(-1 worse)* | 6 / 7<br>*(-1 worse)* | **7 / 7**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **11.78 s**<br>*(fastest)* | 130.76 s<br>*(11.10x slower)* | 180.12 s<br>*(15.29x slower)* | 173.16 s<br>*(14.70x slower)* | 118.59 s<br>*(10.07x slower)* |
 
 - **Extended sweep milestone:** Beyond the 60 s cutoff, Frobenius also solved `vdw_3_14_N185.cnf` (SAT) in **`78.14 s`**, archived in [`solutions/vdw_3_14_N185.model.xz`](solutions/vdw_3_14_N185.model.xz).
 

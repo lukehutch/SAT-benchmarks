@@ -44,8 +44,8 @@ All 3 large critical-threshold uniform random 3-SAT formulas (`f600`, `f1000`, `
 | `f1000` | SAT | **22.80 ms** | 3,171.06 ms | >5 s | >5 s | >5 s |
 | `f2000` | SAT | **136.57 ms** | >5 s | >5 s | >5 s | >5 s |
 | `f600` | SAT | **11.28 ms** | 576.42 ms | >5 s | >5 s | >5 s |
-| **Solved (3 files)** | — | **3 / 3** *(highest)* | 2 / 3 *(-1 worse)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* | 0 / 3 *(-3 worse)* |
-| **Total PAR-2** | — | **170.7 ms** *(fastest)* | 13,747.5 ms *(80.55x slower)* | 30,000.0 ms *(175.79x slower)* | 30,000.0 ms *(175.79x slower)* | 30,000.0 ms *(175.79x slower)* |
+| **Solved (3 files)** | — | **3 / 3**<br>*(highest)* | 2 / 3<br>*(-1 worse)* | 0 / 3<br>*(-3 worse)* | 0 / 3<br>*(-3 worse)* | 0 / 3<br>*(-3 worse)* |
+| **Total PAR-2** | — | **170.7 ms**<br>*(fastest)* | 13,747.5 ms<br>*(80.55x slower)* | 30,000.0 ms<br>*(175.79x slower)* | 30,000.0 ms<br>*(175.79x slower)* | 30,000.0 ms<br>*(175.79x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

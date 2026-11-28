@@ -95,8 +95,8 @@ Two $N = 8$ calibration rungs evaluated sequentially on identical uncompressed f
 |---|:---:|---:|---:|---:|---:|---:|
 | `sq-any_n8_m34.cnf` | SAT | **0.07 s** | 0.19 s | 0.58 s | 1.10 s | 1.11 s |
 | `sq-any_n8_m35.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* | **1 / 2** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **120.07 s** *(fastest)* | 120.19 s *(1.001x slower)* | 120.58 s *(1.004x slower)* | 121.10 s *(1.01x slower)* | 121.11 s *(1.01x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **1 / 2**<br>*(highest)* | **1 / 2**<br>*(highest)* | **1 / 2**<br>*(highest)* | **1 / 2**<br>*(highest)* | **1 / 2**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **120.07 s**<br>*(fastest)* | 120.19 s<br>*(1.001x slower)* | 120.58 s<br>*(1.004x slower)* | 121.10 s<br>*(1.01x slower)* | 121.11 s<br>*(1.01x slower)* |
 
 ### Open OEIS Frontier Run (180 s, Single-Core Pinned)
 

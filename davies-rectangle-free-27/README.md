@@ -98,7 +98,7 @@ Both instances share **5,244 variables** and an identical **1,067,824-clause bas
 | Metric (1C, $T_{\max} = 600\text{ s}$) | Frobenius 1C (default) | Frobenius 1C (DRAT proof)\* | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
 | **Verdict** | **UNSAT** | **UNSAT** | **UNSAT** | **UNSAT** | T/O | **UNSAT** |
-| **Wall Time** | **80.33 s** *(fastest)* | 91.54 s *(1.14x slower)* | 339.43 s *(4.23x slower)* | 414.78 s *(5.16x slower)* | >600 s *(T/O)* | 570.57 s *(7.10x slower)* |
+| **Wall Time** | **80.33 s**<br>*(fastest)* | 91.54 s<br>*(1.14x slower)* | 339.43 s<br>*(4.23x slower)* | 414.78 s<br>*(5.16x slower)* | >600 s *(T/O)* | 570.57 s<br>*(7.10x slower)* |
 | **CPU Time** | — | 91.13 s | 334.99 s | 412.04 s | 594.97 s | 561.66 s |
 | **Conflicts** | — | 6,155,846 | 10,609,175 | 6,888,425 | — | 8,472,695 |
 | **Propagations** | — | 489.1M | 807.0M | 550.0M | — | 977.1M |

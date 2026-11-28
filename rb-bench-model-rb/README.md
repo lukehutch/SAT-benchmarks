@@ -88,8 +88,8 @@ The **40 forced-satisfiable SAT benchmarks** (`frb30-15` through `frb59-26`) are
 | `frb59-26-3` | SAT | **496.12 ms** | >5 s | >5 s | >5 s | >5 s |
 | `frb59-26-4` | SAT | **756.26 ms** | >5 s | >5 s | >5 s | >5 s |
 | `frb59-26-5` | SAT | **155.58 ms** | >5 s | >5 s | >5 s | >5 s |
-| **Solved (40 files)** | — | **37 / 40** *(highest)* | 12 / 40 *(-25 worse)* | 10 / 40 *(-27 worse)* | 10 / 40 *(-27 worse)* | 11 / 40 *(-26 worse)* |
-| **Total PAR-2** | — | **48,013.65 ms** *(fastest)* | 293,727.9 ms *(6.12x slower)* | 308,696.5 ms *(6.43x slower)* | 307,527.9 ms *(6.41x slower)* | 306,308.6 ms *(6.38x slower)* |
+| **Solved (40 files)** | — | **37 / 40**<br>*(highest)* | 12 / 40<br>*(-25 worse)* | 10 / 40<br>*(-27 worse)* | 10 / 40<br>*(-27 worse)* | 11 / 40<br>*(-26 worse)* |
+| **Total PAR-2** | — | **48,013.65 ms**<br>*(fastest)* | 293,727.9 ms<br>*(6.12x slower)* | 308,696.5 ms<br>*(6.43x slower)* | 307,527.9 ms<br>*(6.41x slower)* | 306,308.6 ms<br>*(6.38x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -80,8 +80,8 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `dot_n5_k5_m4.cnf` | SAT | **13.3 ms** | 78.0 ms | 275.9 ms | 325.0 ms | 119.0 ms |
 | `dot_n6_k5_m2.cnf` | UNSAT | **8.8 ms** | 4.52 s | 6.65 s | 23.06 s | 4.66 s |
 | `dot_n6_k6_m2.cnf` | SAT | 10.3 ms | 3.6 ms | 72.9 ms | 4.4 ms | **2.3 ms** |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | 9 / 10 *(-1 worse)* | 8 / 10 *(-2 worse)* | **10 / 10** *(highest)* |
-| **Total PAR-2** | — | **130.7 ms** *(fastest)* | 81.36 s *(622x slower)* | 147.89 s *(1,132x slower)* | 263.45 s *(2,016x slower)* | 14.91 s *(114x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | 9 / 10<br>*(-1 worse)* | 8 / 10<br>*(-2 worse)* | **10 / 10**<br>*(highest)* |
+| **Total PAR-2** | — | **130.7 ms**<br>*(fastest)* | 81.36 s<br>*(622x slower)* | 147.89 s<br>*(1,132x slower)* | 263.45 s<br>*(2,016x slower)* | 14.91 s<br>*(114x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 

@@ -59,8 +59,8 @@ Includes the exact upstream CSS parity-check and logical-basis matrices (`matric
 | `BB_72_12_6_w6_sat` | SAT | 3.11 ms | 3.15 ms | 66.04 ms | 39.00 ms | 8.43 ms | **1.87 ms** |
 | `BB_756_16_34_w33_unsat` | TIMEOUT | >10 s | >10 s | >10 s | >10 s | >10 s | >10 s |
 | `BB_756_16_34_w34_sat` | SAT | **123.53 ms** | >10 s | >10 s | >10 s | >10 s | >10 s |
-| **Solved (10 files)** | — | **8 / 10** *(highest)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* |
-| **Total PAR-2** | — | **40,227.2 ms** *(fastest)* | 100,078.2 ms *(2.49x slower)* | 100,515.2 ms *(2.50x slower)* | 100,296.7 ms *(2.49x slower)* | 100,118.5 ms *(2.49x slower)* | 100,090.1 ms *(2.49x slower)* |
+| **Solved (10 files)** | — | **8 / 10**<br>*(highest)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* |
+| **Total PAR-2** | — | **40,227.2 ms**<br>*(fastest)* | 100,078.2 ms<br>*(2.49x slower)* | 100,515.2 ms<br>*(2.50x slower)* | 100,296.7 ms<br>*(2.49x slower)* | 100,118.5 ms<br>*(2.49x slower)* | 100,090.1 ms<br>*(2.49x slower)* |
 
 *Summary:* Within $T_{\max} = 10\text{ s}$, Frobenius 1C PGO solves **8/10** instances in **`227.16 ms`** — **#1 overall** (`40,227.2 ms` PAR-2, **2.49x faster** than CaDiCaL 3.1.0 at `100,078.2 ms`, Kissat 4.0.4 at `100,090.1 ms`, dense-solver 0.0.4 at `100,118.5 ms`, CryptoMiniSat XCNF at `100,296.7 ms`, and CryptoMiniSat CNF at `100,515.2 ms`), uniquely solving `BB_144_12_12_w11_unsat` (**UNSAT `54.90 ms`**), `BB_360_12_24_w24_sat` (**SAT `22.29 ms`**, clause-verified), and `BB_756_16_34_w34_sat` (**SAT `123.53 ms`**, clause-verified) where all five external baselines time out past $10\text{ s}$, alongside `BB_30_4_6_w5_unsat` in **`5.02 ms`** and `BB_72_12_6_w5_unsat` in **`6.56 ms`** (previously triple-certified via direct LRAT: `54.3 ms` emit, `1.26 MB`, [`lrat-check`](https://github.com/marijnheule/drat-trim) `30.7 ms` + HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT` `36.2 ms`).
 

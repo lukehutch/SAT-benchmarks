@@ -83,8 +83,8 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `matmul_2x2x3_k10_m2.cnf` | UNSAT | **22.20 s** | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* | >60 s *(T/O)* |
 | `matmul_2x2x3_k11_m2.cnf` | SAT | **21.3 ms** | 3.11 s | 406.7 ms | >60 s *(T/O)* | 1.57 s |
 | `matmul_2x3x2_k11_m2.cnf` | SAT | **12.7 ms** | 8.73 s | 4.40 s | >60 s *(T/O)* | 5.66 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10** *(highest)* | 8 / 10 *(-2 worse)* | 7 / 10 *(-3 worse)* | 3 / 10 *(-7 worse)* | 8 / 10 *(-2 worse)* |
-| **Total PAR-2** | — | **23.07 s** *(fastest)* | 346.35 s *(15.0x slower)* | 429.80 s *(18.6x slower)* | 890.43 s *(38.6x slower)* | 284.23 s *(12.3x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10**<br>*(highest)* | 8 / 10<br>*(-2 worse)* | 7 / 10<br>*(-3 worse)* | 3 / 10<br>*(-7 worse)* | 8 / 10<br>*(-2 worse)* |
+| **Total PAR-2** | — | **23.07 s**<br>*(fastest)* | 346.35 s<br>*(15.0x slower)* | 429.80 s<br>*(18.6x slower)* | 890.43 s<br>*(38.6x slower)* | 284.23 s<br>*(12.3x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, 1-Core PGO)
 

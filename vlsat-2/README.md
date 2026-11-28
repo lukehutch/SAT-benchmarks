@@ -57,8 +57,8 @@ Following the benchmark protocol noted by [`@tavisrudd`](https://twitter.com/tav
 | `vlsat2_708_10259` | UNSAT | **2.57 ms** | >5 s | >5 s | 4.07 ms | 652.52 ms |
 | `vlsat2_736_11022` | UNSAT | **1.22 ms** | >5 s | >5 s | 3.49 ms | >5 s |
 | `vlsat2_798_17543` | UNSAT | **3.22 ms** | >5 s | >5 s | 8.85 ms | >5 s |
-| **Solved (10 files)** | — | **10 / 10** *(highest)* | 0 / 10 *(-10 worse)* | 0 / 10 *(-10 worse)* | 7 / 10 *(-3 worse)* | 4 / 10 *(-6 worse)* |
-| **Total PAR-2** | — | **26.86 ms** *(fastest)* | 100,000.0 ms *(3,723x slower)* | 100,000.0 ms *(3,723x slower)* | 30,031.4 ms *(1,118x slower)* | 64,843.1 ms *(2,414x slower)* |
+| **Solved (10 files)** | — | **10 / 10**<br>*(highest)* | 0 / 10<br>*(-10 worse)* | 0 / 10<br>*(-10 worse)* | 7 / 10<br>*(-3 worse)* | 4 / 10<br>*(-6 worse)* |
+| **Total PAR-2** | — | **26.86 ms**<br>*(fastest)* | 100,000.0 ms<br>*(3,723x slower)* | 100,000.0 ms<br>*(3,723x slower)* | 30,031.4 ms<br>*(1,118x slower)* | 64,843.1 ms<br>*(2,414x slower)* |
 
 *Summary & Independent UNSAT Certification:* Frobenius 1C solves **10/10** instances in **`26.86 ms`** (`26.86 ms` PAR-2, **1,118x faster** than dense-solver 0.0.4 and **2,414x faster** than Kissat 4.0.4), including `vlsat2_1000_22250` (SAT in **`5.18 ms`**, 100% clause-verified, where all four external baselines time out past $5\text{ s}$), `vlsat2_1125_15795` (UNSAT in **`3.74 ms`**, also timing out for all four external baselines), and `vlsat2_1022_14955` (UNSAT in **`3.52 ms`**, **714.1x faster** than Kissat 4.0.4). Both large UNSAT proofs were independently triple-certified from direct LRAT emission (`vlsat2_1125_15795`: `9.5 ms` emit, `460.2 KB`, [`lrat-check`](https://github.com/marijnheule/drat-trim) `22.7 ms` + HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) `s VERIFIED UNSAT` `21.4 ms`; `vlsat2_1022_14955`: `8.7 ms` emit, `349.7 KB`, `lrat-check` `21.6 ms` + `cake_lpr` `s VERIFIED UNSAT` `19.1 ms`).
 

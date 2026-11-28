@@ -94,8 +94,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `vmtl_n9_k207.cnf` | SAT | **1.06 s** | 5.07 s | 2.10 s | 4.25 s | 5.06 s |
 | `vmtl_n10_k257.cnf` | UNSAT | >60 s | >60 s | >60 s | >60 s | >60 s |
 | `vmtl_n10_k280.cnf` | SAT | 2.94 s | 4.08 s | 10.51 s | 3.19 s | **1.22 s** |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **9 / 10** *(highest)* | 7 / 10 *(-2 worse)* | 7 / 10 *(-2 worse)* | 7 / 10 *(-2 worse)* | 8 / 10 *(-1 worse)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **125.37 s** *(fastest)* | 372.99 s *(2.98x slower)* | 383.98 s *(3.06x slower)* | 394.34 s *(3.15x slower)* | 300.00 s *(2.39x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **9 / 10**<br>*(highest)* | 7 / 10<br>*(-2 worse)* | 7 / 10<br>*(-2 worse)* | 7 / 10<br>*(-2 worse)* | 8 / 10<br>*(-1 worse)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **125.37 s**<br>*(fastest)* | 372.99 s<br>*(2.98x slower)* | 383.98 s<br>*(3.06x slower)* | 394.34 s<br>*(3.15x slower)* | 300.00 s<br>*(2.39x slower)* |
 
 *Ground-truth UNSAT note:* `vmtl_n4_k19.cnf` is formally proof-certified (`drat-trim` + `lrat-check` + `cake_lpr`); `vmtl_n5_k34.cnf`, `vmtl_n6_k58.cnf`, and `vmtl_n10_k257.cnf` are mathematically UNSAT via the exact global double-counting theorem $K < K_{\min}(n)$ (`34 < 35`, `58 < 59`, `257 < 258`), making them exceptionally compact (`490–6,065` variables) CDCL refutation challenges.
 

@@ -86,8 +86,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `mapf_g16_p10_a10_m19.cnf` | SAT | 8.8 ms | 10.9 ms | 564.1 ms | 213.6 ms | **6.9 ms** |
 | `mapf_g16_p20_a20_m23.cnf` | SAT | 40.6 ms | 31.7 ms | 1.01 s | 734.2 ms | **14.2 ms** |
 | `mapf_g16_p20_a40_m22.cnf` | SAT | **129.8 ms** | 206.9 ms | 1.43 s | 1.73 s | 197.4 ms |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **0.48 s** *(fastest)* | 1.26 s *(2.62x slower)* | 9.58 s *(20.0x slower)* | 6.32 s *(13.2x slower)* | 1.00 s *(2.08x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **0.48 s**<br>*(fastest)* | 1.26 s<br>*(2.62x slower)* | 9.58 s<br>*(20.0x slower)* | 6.32 s<br>*(13.2x slower)* | 1.00 s<br>*(2.08x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

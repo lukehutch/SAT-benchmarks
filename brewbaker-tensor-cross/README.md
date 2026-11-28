@@ -76,8 +76,8 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `cross_k5_m3.cnf` | SAT | 20.2 ms | **17.1 ms** | 120.8 ms | 101.3 ms | 37.1 ms |
 | `cross_k5_m4.cnf` | SAT | **54.1 ms** | 158.7 ms | 625.9 ms | 215.3 ms | 336.8 ms |
 | `cross_k5_m5.cnf` | SAT | **105.3 ms** | 280.7 ms | 481.6 ms | 1.77 s | 692.2 ms |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **8 / 8** *(highest)* | 7 / 8 *(-1 worse)* | 7 / 8 *(-1 worse)* | 7 / 8 *(-1 worse)* | 7 / 8 *(-1 worse)* |
-| **Total PAR-2** | — | **308.6 ms** *(fastest)* | 149.37 s *(484x slower)* | 135.00 s *(437x slower)* | 173.44 s *(562x slower)* | 123.22 s *(399x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **8 / 8**<br>*(highest)* | 7 / 8<br>*(-1 worse)* | 7 / 8<br>*(-1 worse)* | 7 / 8<br>*(-1 worse)* | 7 / 8<br>*(-1 worse)* |
+| **Total PAR-2** | — | **308.6 ms**<br>*(fastest)* | 149.37 s<br>*(484x slower)* | 135.00 s<br>*(437x slower)* | 173.44 s<br>*(562x slower)* | 123.22 s<br>*(399x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 

@@ -31,14 +31,14 @@ Note: Unlike the propositional SAT collections in this repository, MATA instance
 
 | Metric (1C, 21 NFAs, $T_{\max} = 5\text{ s}$) | Frobenius 1C — Emptiness (default) | Frobenius 1C — Complement (`--mata-complement`) | Frobenius 1C — Explicit (`--mata-explicit-complement`) |
 |---|---:|---:|---:|
-| **Solved** | **21 / 21** *(highest)* | **21 / 21** *(highest)* | **21 / 21** *(highest)* |
+| **Solved** | **21 / 21**<br>*(highest)* | **21 / 21**<br>*(highest)* | **21 / 21**<br>*(highest)* |
 | **SAT** | 21 | 17 | 17 |
 | **UNSAT** | 0 | 4 | 4 |
-| **Total Wall Time** | 49.67 ms *(1.18x slower)* | 42.56 ms *(1.01x slower)* | **42.00 ms** *(fastest)* |
-| **Min** | **1.61 ms** *(fastest)* | 1.62 ms *(1.01x slower)* | 1.65 ms *(1.02x slower)* |
-| **Median** | 2.20 ms *(1.18x slower)* | 1.97 ms *(1.06x slower)* | **1.86 ms** *(fastest)* |
-| **Mean** | 2.37 ms *(1.19x slower)* | 2.03 ms *(1.02x slower)* | **2.00 ms** *(fastest)* |
-| **Max** | 3.42 ms *(1.10x slower)* | **3.11 ms** *(fastest)* | 4.02 ms *(1.29x slower)* |
+| **Total Wall Time** | 49.67 ms<br>*(1.18x slower)* | 42.56 ms<br>*(1.01x slower)* | **42.00 ms**<br>*(fastest)* |
+| **Min** | **1.61 ms**<br>*(fastest)* | 1.62 ms<br>*(1.01x slower)* | 1.65 ms<br>*(1.02x slower)* |
+| **Median** | 2.20 ms<br>*(1.18x slower)* | 1.97 ms<br>*(1.06x slower)* | **1.86 ms**<br>*(fastest)* |
+| **Mean** | 2.37 ms<br>*(1.19x slower)* | 2.03 ms<br>*(1.02x slower)* | **2.00 ms**<br>*(fastest)* |
+| **Max** | 3.42 ms<br>*(1.10x slower)* | **3.11 ms**<br>*(fastest)* | 4.02 ms<br>*(1.29x slower)* |
 
 ### Per-Automaton Timings (All 21 NFAs)
 

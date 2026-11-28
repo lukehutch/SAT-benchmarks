@@ -90,8 +90,8 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `hamd_planted_n64_dense_sat` | **16.97 ms** | >15 s (T/O) | 8,211.6 ms | >15 s (T/O) | 8,099.2 ms | Cycle + CNF OK |
 | `hamd_planted_n100_sparse_sat` | **10.62 ms** | 1,016.6 ms | 1,320.8 ms | 1,435.92 ms | 669.8 ms | Cycle + CNF OK |
 | `hamd_planted_n80_vdense_sat` | **44.29 ms** | 10,564.7 ms | >15 s (T/O) | >15 s (T/O) | 7,838.6 ms | Cycle + CNF OK |
-| **Solved (22 instances)** | **22 / 22** *(highest)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* | **10/10 [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + 12/12 HC** |
-| **Total PAR-2** | **140.19 ms** *(fastest)* | 163,592.80 ms *(1,167x slower)* | 148,852.60 ms *(1,062x slower)* | 159,432.38 ms *(1,137x slower)* | 140,869.50 ms *(1,005x slower)* | — |
+| **Solved (22 instances)** | **22 / 22**<br>*(highest)* | 17 / 22<br>*(-5 worse)* | 18 / 22<br>*(-4 worse)* | 17 / 22<br>*(-5 worse)* | 18 / 22<br>*(-4 worse)* | **10/10 [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) + 12/12 HC** |
+| **Total PAR-2** | **140.19 ms**<br>*(fastest)* | 163,592.80 ms<br>*(1,167x slower)* | 148,852.60 ms<br>*(1,062x slower)* | 159,432.38 ms<br>*(1,137x slower)* | 140,869.50 ms<br>*(1,005x slower)* | — |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

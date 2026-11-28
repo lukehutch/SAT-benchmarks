@@ -73,8 +73,8 @@ Following [`@jasonslenderman`](https://twitter.com/jasonslenderman)'s recommenda
 | `rand3sat_n200_r445_unsat` (4.45) | UNSAT | **82.37 ms** | 241.13 ms | 228.32 ms | 241.28 ms | 114.02 ms | 278.28 ms |
 | `rand3sat_n200_r465_unsat` (4.65) | UNSAT | **53.82 ms** | 218.58 ms | 227.29 ms | 222.57 ms | 99.04 ms | 203.30 ms |
 | `rand3sat_n200_r500_unsat` (5.00) | UNSAT | **11.82 ms** | 45.88 ms | 81.35 ms | 81.24 ms | 18.71 ms | 67.91 ms |
-| **Solved (8 instances)** | — | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-| **Total PAR-2** | — | **248.31 ms** *(fastest)* | 1,166.94 ms *(4.70x slower)* | 1,258.22 ms *(5.07x slower)* | 1,269.88 ms *(5.11x slower)* | 482.86 ms *(1.94x slower)* | 1,112.90 ms *(4.48x slower)* |
+| **Solved (8 instances)** | — | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+| **Total PAR-2** | — | **248.31 ms**<br>*(fastest)* | 1,166.94 ms<br>*(4.70x slower)* | 1,258.22 ms<br>*(5.07x slower)* | 1,269.88 ms<br>*(5.11x slower)* | 482.86 ms<br>*(1.94x slower)* | 1,112.90 ms<br>*(4.48x slower)* |
 
 *(Across a broader 10-seed $n = 200, m = 852$ cohort [7 SAT / 3 UNSAT], Frobenius achieved median `115.68 ms` / mean `274.43 ms` vs. [Kissat](https://github.com/arminbiere/kissat) `98.41 / 305.15 ms`, [CaDiCaL](https://github.com/arminbiere/cadical) `318.43 / 402.75 ms`, and [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 `303.07 / 534.09 ms`; across 10 seeds at $n = 250, m = 1{,}065$ [3 SAT / 7 UNSAT], Frobenius achieved `8.01 s` median / `7.80 s` mean vs. [Kissat](https://github.com/arminbiere/kissat) `4.50 / 4.46 s`, [CaDiCaL](https://github.com/arminbiere/cadical) `6.69 / 6.50 s`, [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 `7.88 / 10.58 s`.)*
 

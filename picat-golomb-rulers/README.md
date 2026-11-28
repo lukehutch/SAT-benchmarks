@@ -90,8 +90,8 @@ All five solvers were evaluated strictly sequentially on an **AMD Ryzen 9 5950X*
 | `golomb_m9_l44.cnf` | SAT | 688.7 ms | 924.7 ms | 1.41 s | 768.4 ms | **258.9 ms** |
 | `golomb_m10_l54.cnf` | UNSAT | **4.80 s** | 6.00 s | 6.55 s | 12.49 s | 6.56 s |
 | `golomb_m10_l55.cnf` | SAT | **374.1 ms** | 5.55 s | 7.13 s | 3.21 s | 6.32 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **7.20 s** *(fastest)* | 13.92 s *(1.93x slower)* | 18.53 s *(2.57x slower)* | 18.49 s *(2.57x slower)* | 14.81 s *(2.06x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **7.20 s**<br>*(fastest)* | 13.92 s<br>*(1.93x slower)* | 18.53 s<br>*(2.57x slower)* | 18.49 s<br>*(2.57x slower)* | 14.81 s<br>*(2.06x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

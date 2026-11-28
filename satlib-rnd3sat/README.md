@@ -51,8 +51,8 @@ Stratified sample of 10 critical-threshold uniform random 3-SAT instances (`uf`/
 | `uuf200-01` | UNSAT | **66.43 ms** | 175.47 ms | 213.71 ms | 113.90 ms | 279.51 ms |
 | `uuf250-01` | UNSAT | **986.37 ms** | 2,793.47 ms | 3,560.43 ms | 2,986.46 ms | 1,919.79 ms |
 | `uuf50-01` | UNSAT | 2.05 ms | 2.45 ms | 13.42 ms | **1.35 ms** | 2.11 ms |
-| **Solved (10 files)** | — | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* |
-| **Total PAR-2** | — | **1,076.9 ms** *(fastest)* | 3,542.8 ms *(3.29x slower)* | 4,147.5 ms *(3.85x slower)* | 3,257.8 ms *(3.03x slower)* | 2,435.5 ms *(2.26x slower)* |
+| **Solved (10 files)** | — | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* |
+| **Total PAR-2** | — | **1,076.9 ms**<br>*(fastest)* | 3,542.8 ms<br>*(3.29x slower)* | 4,147.5 ms<br>*(3.85x slower)* | 3,257.8 ms<br>*(3.03x slower)* | 2,435.5 ms<br>*(2.26x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

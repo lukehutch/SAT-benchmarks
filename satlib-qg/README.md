@@ -63,8 +63,8 @@ All 22 Quasigroup existence / Latin Square (`qg1`–`qg7`) SAT and UNSAT instanc
 | `qg7-11` | UNSAT | **24.32 ms** | 29.51 ms | 649.02 ms | 29.49 ms | 53.11 ms |
 | `qg7-12` | UNSAT | 284.74 ms | 213.63 ms | 838.03 ms | **127.10 ms** | 263.38 ms |
 | `qg7-13` | SAT | 36.38 ms | **24.35 ms** | 1,134.27 ms | 71.80 ms | 104.73 ms |
-| **Solved (22 files)** | — | **22 / 22** *(highest)* | **22 / 22** *(highest)* | **22 / 22** *(highest)* | **22 / 22** *(highest)* | **22 / 22** *(highest)* |
-| **Total PAR-2** | — | **3,042.1 ms** *(fastest)* | 3,665.8 ms *(1.21x slower)* | 14,567.0 ms *(4.79x slower)* | 7,179.0 ms *(2.36x slower)* | 6,187.5 ms *(2.03x slower)* |
+| **Solved (22 files)** | — | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* | **22 / 22**<br>*(highest)* |
+| **Total PAR-2** | — | **3,042.1 ms**<br>*(fastest)* | 3,665.8 ms<br>*(1.21x slower)* | 14,567.0 ms<br>*(4.79x slower)* | 7,179.0 ms<br>*(2.36x slower)* | 6,187.5 ms<br>*(2.03x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

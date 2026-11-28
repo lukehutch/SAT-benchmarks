@@ -66,8 +66,8 @@
 | `random3sat_n500_s3` | TIMEOUT | >300 s | >300 s | >300 s | >300 s | >300 s |
 | `random3sat_n500_s4` | SAT | **84.66 ms** | 956.91 ms | >300 s | >300 s | 38.70 s |
 | `random3sat_n500_s5` | SAT | **78.12 ms** | 1,482.56 ms | >300 s | >300 s | 3,286.19 ms |
-| **Solved (25 files)** | — | **17 / 25** *(highest)* | **17 / 25** *(highest)* | 12 / 25 *(-5 worse)* | 5 / 25 *(-12 worse)* | **17 / 25** *(highest)* |
-| **Total PAR-2** | — | **4,860.46 s** *(fastest)* | 4,923.04 s *(1.013x slower)* | 8,583.65 s *(1.77x slower)* | 12,370.38 s *(2.55x slower)* | 5,055.87 s *(1.04x slower)* |
+| **Solved (25 files)** | — | **17 / 25**<br>*(highest)* | **17 / 25**<br>*(highest)* | 12 / 25<br>*(-5 worse)* | 5 / 25<br>*(-12 worse)* | **17 / 25**<br>*(highest)* |
+| **Total PAR-2** | — | **4,860.46 s**<br>*(fastest)* | 4,923.04 s<br>*(1.013x slower)* | 8,583.65 s<br>*(1.77x slower)* | 12,370.38 s<br>*(2.55x slower)* | 5,055.87 s<br>*(1.04x slower)* |
 
 ### Uncontended Solo-CCD Timings & Formally Verified UNSAT Proofs (`n = 300` UNSAT)
 
@@ -77,8 +77,8 @@ To eliminate 14-core L3/RAM contention on the two solved UNSAT instances highlig
 |---|---:|---:|---:|---:|---:|---|
 | `random3sat_n300_s1` | 41.18 s | 31.70 s | 57.45 s | 72.76 s | **21.03 s** | LRAT `52.10 s` (`457 MB` / `116 MB .xz`), `lrat-check` `6.81 s`, `cake_lpr` **OK** (`26.75 s`) |
 | `random3sat_n300_s5` | 60.80 s | 50.13 s | 115.96 s | 87.30 s | **27.47 s** | LRAT `60.33 s` (`505 MB` / `128 MB .xz`), `lrat-check` `7.66 s`, `cake_lpr` **OK** (`27.96 s`) |
-| **Solved (2 UNSAT instances)** | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | 2/2 formally verified (`s VERIFIED UNSAT`) |
-| **Total Wall Time** | 101.99 s *(2.10x slower)* | 81.83 s *(1.69x slower)* | 173.40 s *(3.58x slower)* | 160.06 s *(3.30x slower)* | **48.50 s** *(fastest)* | — |
+| **Solved (2 UNSAT instances)** | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | 2/2 formally verified (`s VERIFIED UNSAT`) |
+| **Total Wall Time** | 101.99 s<br>*(2.10x slower)* | 81.83 s<br>*(1.69x slower)* | 173.40 s<br>*(3.58x slower)* | 160.06 s<br>*(3.30x slower)* | **48.50 s**<br>*(fastest)* | — |
 
 ### Same-Machine Comparison on the 15 Satisfiable Instances vs. Keith Adler's 60-Line `src/probsat.c`
 
@@ -101,8 +101,8 @@ Compiled verbatim (`cc -O2 -o probsat src/probsat.c -lm`) and run on **solo core
 | `random3sat_n500_s2` | 55.42 ms | 1,450.93 ms | 9,599.65 ms | **5.12 ms** *(max 7.69 ms; wall med 7.29 ms)* |
 | `random3sat_n500_s4` | 55.56 ms | 956.91 ms | 38.70 s | **18.59 ms** *(max 51.98 ms; wall med 20.74 ms)* |
 | `random3sat_n500_s5` | 55.26 ms | 1,482.56 ms | 3,286.19 ms | **10.90 ms** *(max 15.11 ms; wall med 12.82 ms)* |
-| **Solved (15 SAT instances)** | **15 / 15** *(highest)* | **15 / 15** *(highest)* | **15 / 15** *(highest)* | **15 / 15** *(highest)* |
-| **Total Wall Time** | 1.13 s *(4.32x slower)* | 26.79 s *(103x slower)* | 200.32 s *(767x slower)* | **261.3 ms** *(fastest)* |
+| **Solved (15 SAT instances)** | **15 / 15**<br>*(highest)* | **15 / 15**<br>*(highest)* | **15 / 15**<br>*(highest)* | **15 / 15**<br>*(highest)* |
+| **Total Wall Time** | 1.13 s<br>*(4.32x slower)* | 26.79 s<br>*(103x slower)* | 200.32 s<br>*(767x slower)* | **261.3 ms**<br>*(fastest)* |
 
 *(Note: probSAT's sum of search-only medians across the 15 SAT instances is `228.7 ms`, compared against full process wall-clock time `261.3 ms` used for the Total Wall Time row above.)*
 

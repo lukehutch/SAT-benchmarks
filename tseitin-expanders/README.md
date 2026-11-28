@@ -46,8 +46,8 @@ Evaluated sequentially on an AMD Ryzen 9 5950X (16C/32T Linux, 1 core/thread per
 | `tseitin_exp_n120` | **0.64 ms** | >5,000 s (T/O) | 27.62 ms | 23.45 ms | 1.63 ms | >5,000 s (T/O) |
 | `tseitin_exp_n300` | **0.66 ms** | >5,000 s (T/O) | 29.10 ms | 23.68 ms | 2.13 ms | >5,000 s (T/O) |
 | `tseitin_prism_n400` | **0.68 ms** | 9.56 ms | 27.82 ms | 23.21 ms | 2.05 ms | 13.60 ms |
-| **Solved (4 instances)** | **4 / 4** *(highest)* | 2 / 4 *(-2 worse)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | **4 / 4** *(highest)* | 2 / 4 *(-2 worse)* |
-| **Total PAR-2 ($T_{\max}=5{,}000\text{ s}$)** | **2.58 ms** *(fastest)* | 20,000,555.95 ms *(7,752,153x slower)* | 107.13 ms *(41.5x slower)* | 93.25 ms *(36.1x slower)* | 7.19 ms *(2.79x slower)* | 20,000,072.19 ms *(7,751,966x slower)* |
+| **Solved (4 instances)** | **4 / 4**<br>*(highest)* | 2 / 4<br>*(-2 worse)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | **4 / 4**<br>*(highest)* | 2 / 4<br>*(-2 worse)* |
+| **Total PAR-2 ($T_{\max}=5{,}000\text{ s}$)** | **2.58 ms**<br>*(fastest)* | 20,000,555.95 ms<br>*(7,752,153x slower)* | 107.13 ms<br>*(41.5x slower)* | 93.25 ms<br>*(36.1x slower)* | 7.19 ms<br>*(2.79x slower)* | 20,000,072.19 ms<br>*(7,751,966x slower)* |
 
 *(All three expander proofs emitted by Frobenius in LRAT format additionally pass formal verification in HOL4/CakeML [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) and [`lrat-check`](https://github.com/marijnheule/drat-trim).)*
 

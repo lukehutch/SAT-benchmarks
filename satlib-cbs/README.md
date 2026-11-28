@@ -47,8 +47,8 @@ Stratified sample of 6 instances from the 40,000-instance SATLIB Controlled Back
 | `CBS_k3_n100_m429_b50_0` | SAT | **0.81 ms** | 3.45 ms | 20.74 ms | 2.01 ms | 13.50 ms |
 | `CBS_k3_n100_m429_b90_0` | SAT | **0.97 ms** | 3.74 ms | 32.74 ms | 2.61 ms | 17.47 ms |
 | `CBS_k3_n100_m449_b90_0` | SAT | **0.78 ms** | 5.75 ms | 52.03 ms | 1.74 ms | 28.02 ms |
-| **Solved (6 files)** | — | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* | **6 / 6** *(highest)* |
-| **Total PAR-2** | — | **6.0 ms** *(fastest)* | 26.7 ms *(4.44x slower)* | 172.3 ms *(28.62x slower)* | 13.4 ms *(2.23x slower)* | 101.8 ms *(16.91x slower)* |
+| **Solved (6 files)** | — | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* | **6 / 6**<br>*(highest)* |
+| **Total PAR-2** | — | **6.0 ms**<br>*(fastest)* | 26.7 ms<br>*(4.44x slower)* | 172.3 ms<br>*(28.62x slower)* | 13.4 ms<br>*(2.23x slower)* | 101.8 ms<br>*(16.91x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

@@ -108,8 +108,8 @@ Two $n = 10$ calibration rungs evaluated sequentially on identical uncompressed 
 |---|:---:|---:|---:|---:|---:|---:|
 | `zaran3_n10_m60.cnf` | SAT | 4.34 s | 7.35 s | 5.84 s | **2.03 s** | 4.69 s |
 | `zaran3_n10_m61.cnf` | UNSAT | **18.80 s** | 26.52 s | 40.54 s | >60 s | 26.33 s |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **2 / 2** *(highest)* | **2 / 2** *(highest)* | **2 / 2** *(highest)* | 1 / 2 *(-1 worse)* | **2 / 2** *(highest)* |
-| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **23.14 s** *(fastest)* | 33.87 s *(1.46x slower)* | 46.38 s *(2.00x slower)* | 122.03 s *(5.27x slower)* | 31.02 s *(1.34x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | **2 / 2**<br>*(highest)* | 1 / 2<br>*(-1 worse)* | **2 / 2**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max} = 60\text{ s}$)** | — | **23.14 s**<br>*(fastest)* | 33.87 s<br>*(1.46x slower)* | 46.38 s<br>*(2.00x slower)* | 122.03 s<br>*(5.27x slower)* | 31.02 s<br>*(1.34x slower)* |
 
 - **Extended sweep milestone:** Frobenius also solved `zaran3_n11_m69.cnf` (SAT), verified and archived in [`solutions/zaran3_n11_m69.model.xz`](solutions/zaran3_n11_m69.model.xz).
 

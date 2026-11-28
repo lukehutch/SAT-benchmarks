@@ -50,8 +50,8 @@ Stratified sample of 8 instances (`flat30` through `flat200`) from the 1,700-ins
 | `flat30-1` | SAT | **0.76 ms** | 2.15 ms | 10.35 ms | 1.46 ms | 1.31 ms |
 | `flat50-1` | SAT | **0.81 ms** | 1.92 ms | 11.26 ms | 1.44 ms | 1.25 ms |
 | `flat75-1` | SAT | **0.99 ms** | 2.42 ms | 19.70 ms | 1.47 ms | 4.67 ms |
-| **Solved (8 files)** | — | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-| **Total PAR-2** | — | **10.7 ms** *(fastest)* | 30.7 ms *(2.87x slower)* | 233.4 ms *(21.83x slower)* | 21.3 ms *(1.99x slower)* | 48.3 ms *(4.52x slower)* |
+| **Solved (8 files)** | — | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+| **Total PAR-2** | — | **10.7 ms**<br>*(fastest)* | 30.7 ms<br>*(2.87x slower)* | 233.4 ms<br>*(21.83x slower)* | 21.3 ms<br>*(1.99x slower)* | 48.3 ms<br>*(4.52x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

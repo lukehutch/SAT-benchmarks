@@ -539,12 +539,12 @@ Every collection lives at the repository root in its own self-contained director
 
 | Metric (1C, $T_{\max}=5{,}000\text{ s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (XCNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|---:|
-| **Solved** | **50 / 50** *(highest)* | 42 / 50 *(-8 worse)* | 41 / 50 *(-9 worse)* | 42 / 50 *(-8 worse)* | 44 / 50 *(-6 worse)* | 40 / 50 *(-10 worse)* |
-| **Fastest Wins (vs. all 5 solvers)** | **49 / 50** *(highest)* | 0 / 50 *(-49 worse)* | 0 / 50 *(-49 worse)* | 0 / 50 *(-49 worse)* | 1 / 50 *(-48 worse)* | 0 / 50 *(-49 worse)* |
-| **Fastest Wins (vs. 4 CDCL solvers)** | **50 / 50** *(highest)* | 0 / 50 *(-50 worse)* | 0 / 50 *(-50 worse)* | 0 / 50 *(-50 worse)* | — | 0 / 50 *(-50 worse)* |
-| **Part I PAR-2** (30) | **399.13 ms** *(fastest)* | 25,715,225.61 ms *(64,428x slower)* | 30,027,443.01 ms *(75,232x slower)* | 20,471,425.77 ms *(51,290x slower)* | 11,402,189.74 ms *(28,568x slower)* | 35,047,925.98 ms *(87,811x slower)* |
-| **Part II PAR-2** (20) | **2,590.51 ms** *(fastest)* | 63,590,706.89 ms *(24,548x slower)* | 66,244,167.48 ms *(25,572x slower)* | 66,319,713.99 ms *(25,601x slower)* | 51,005,536.14 ms *(19,689x slower)* | 70,251,994.22 ms *(27,119x slower)* |
-| **Unified 50 PAR-2** | **2,989.64 ms** *(fastest)* | 89,305,932.50 ms *(29,872x slower)* | 96,271,610.49 ms *(32,202x slower)* | 86,791,139.76 ms *(29,031x slower)* | 62,407,725.88 ms *(20,875x slower)* | 105,299,920.20 ms *(35,222x slower)* |
+| **Solved** | **50 / 50**<br>*(highest)* | 42 / 50<br>*(-8 worse)* | 41 / 50<br>*(-9 worse)* | 42 / 50<br>*(-8 worse)* | 44 / 50<br>*(-6 worse)* | 40 / 50<br>*(-10 worse)* |
+| **Fastest Wins (vs. all 5 solvers)** | **49 / 50**<br>*(highest)* | 0 / 50<br>*(-49 worse)* | 0 / 50<br>*(-49 worse)* | 0 / 50<br>*(-49 worse)* | 1 / 50<br>*(-48 worse)* | 0 / 50<br>*(-49 worse)* |
+| **Fastest Wins (vs. 4 CDCL solvers)** | **50 / 50**<br>*(highest)* | 0 / 50<br>*(-50 worse)* | 0 / 50<br>*(-50 worse)* | 0 / 50<br>*(-50 worse)* | — | 0 / 50<br>*(-50 worse)* |
+| **Part I PAR-2** (30) | **399.13 ms**<br>*(fastest)* | 25,715,225.61 ms<br>*(64,428x slower)* | 30,027,443.01 ms<br>*(75,232x slower)* | 20,471,425.77 ms<br>*(51,290x slower)* | 11,402,189.74 ms<br>*(28,568x slower)* | 35,047,925.98 ms<br>*(87,811x slower)* |
+| **Part II PAR-2** (20) | **2,590.51 ms**<br>*(fastest)* | 63,590,706.89 ms<br>*(24,548x slower)* | 66,244,167.48 ms<br>*(25,572x slower)* | 66,319,713.99 ms<br>*(25,601x slower)* | 51,005,536.14 ms<br>*(19,689x slower)* | 70,251,994.22 ms<br>*(27,119x slower)* |
+| **Unified 50 PAR-2** | **2,989.64 ms**<br>*(fastest)* | 89,305,932.50 ms<br>*(29,872x slower)* | 96,271,610.49 ms<br>*(32,202x slower)* | 86,791,139.76 ms<br>*(29,031x slower)* | 62,407,725.88 ms<br>*(20,875x slower)* | 105,299,920.20 ms<br>*(35,222x slower)* |
 
 ### 2. 22-Instance Provable HAMD Suite (1-Core, Identical Flat `.cnf` Input)
 
@@ -553,9 +553,9 @@ Every collection lives at the repository root in its own self-contained director
 
 | Metric (1C, $T_{\max}=15\text{ s}$) | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 (CNF) | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---:|---:|---:|---:|---:|
-| **Solved** | **22 / 22** *(highest)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* | 17 / 22 *(-5 worse)* | 18 / 22 *(-4 worse)* |
-| **Fastest Wins** | **22 / 22** *(highest)* | 0 / 22 *(-22 worse)* | 0 / 22 *(-22 worse)* | 0 / 22 *(-22 worse)* | 0 / 22 *(-22 worse)* |
-| **Total PAR-2** | **140.19 ms** *(fastest)* | 163,592.80 ms *(1,167x slower)* | 148,852.60 ms *(1,062x slower)* | 159,432.38 ms *(1,137x slower)* | 140,869.50 ms *(1,005x slower)* |
+| **Solved** | **22 / 22**<br>*(highest)* | 17 / 22<br>*(-5 worse)* | 18 / 22<br>*(-4 worse)* | 17 / 22<br>*(-5 worse)* | 18 / 22<br>*(-4 worse)* |
+| **Fastest Wins** | **22 / 22**<br>*(highest)* | 0 / 22<br>*(-22 worse)* | 0 / 22<br>*(-22 worse)* | 0 / 22<br>*(-22 worse)* | 0 / 22<br>*(-22 worse)* |
+| **Total PAR-2** | **140.19 ms**<br>*(fastest)* | 163,592.80 ms<br>*(1,167x slower)* | 148,852.60 ms<br>*(1,062x slower)* | 159,432.38 ms<br>*(1,137x slower)* | 140,869.50 ms<br>*(1,005x slower)* |
 | **Verification** | 12/12 SAT + 10/10 UNSAT [`cake_lpr`](https://github.com/tanyongkiam/cake_lpr) & [`lrat-check`](https://github.com/marijnheule/drat-trim) OK | 100% agreement on solved | 100% agreement on solved | 100% agreement on solved | 100% agreement on solved |
 
 ### 3. Combinatorial Chessboard Suites (1-Core, Identical Flat `.cnf` Input)
@@ -565,10 +565,10 @@ Every collection lives at the repository root in its own self-contained director
 
 | Collection (Instances, $T_{\max}$) | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---|---:|---:|---:|---:|---:|
-| [**Obstacle Knight's Tour**](knights-tour-obstacles/README.md) (10, 15 s) | **Solved** | **10 / 10** *(highest)* | **10 / 10** *(highest)* | **10 / 10** *(highest)* | 2 / 10 *(-8 worse)* | **10 / 10** *(highest)* |
-| | **PAR-2** | **178.8 ms** *(fastest)* | 11,302 ms *(63.2x slower)* | 9,121 ms *(51.0x slower)* | 250,274 ms *(1,400x slower)* | 8,678 ms *(48.5x slower)* |
-| [**Peaceable Queen Armies**](queen-armies/README.md) (8, 15 s) | **Solved** | **8 / 8** *(highest)* | 1 / 8 *(-7 worse)* | 1 / 8 *(-7 worse)* | 2 / 8 *(-6 worse)* | 4 / 8 *(-4 worse)* |
-| | **PAR-2** | **6,235 ms** *(fastest)* | 214,106 ms *(34.3x slower)* | 211,830 ms *(34.0x slower)* | 204,847 ms *(32.9x slower)* | 160,604 ms *(25.8x slower)* |
+| [**Obstacle Knight's Tour**](knights-tour-obstacles/README.md) (10, 15 s) | **Solved** | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | **10 / 10**<br>*(highest)* | 2 / 10<br>*(-8 worse)* | **10 / 10**<br>*(highest)* |
+| | **PAR-2** | **178.8 ms**<br>*(fastest)* | 11,302 ms<br>*(63.2x slower)* | 9,121 ms<br>*(51.0x slower)* | 250,274 ms<br>*(1,400x slower)* | 8,678 ms<br>*(48.5x slower)* |
+| [**Peaceable Queen Armies**](queen-armies/README.md) (8, 15 s) | **Solved** | **8 / 8**<br>*(highest)* | 1 / 8<br>*(-7 worse)* | 1 / 8<br>*(-7 worse)* | 2 / 8<br>*(-6 worse)* | 4 / 8<br>*(-4 worse)* |
+| | **PAR-2** | **6,235 ms**<br>*(fastest)* | 214,106 ms<br>*(34.3x slower)* | 211,830 ms<br>*(34.0x slower)* | 204,847 ms<br>*(32.9x slower)* | 160,604 ms<br>*(25.8x slower)* |
 
 ### 4. Imported External & Cryptographic Benchmark Collections (1-Core, Identical Flat `.cnf` Input; Plus Native `.mata.xz`)
 
@@ -577,64 +577,64 @@ Every collection lives at the repository root in its own self-contained director
 
 | Collection (Instances, $T_{\max}$) | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) 3.1.0 | [CryptoMiniSat](https://github.com/msoos/cryptominisat) 5.18.0 | [dense-solver](https://github.com/libdense/dense-solver) 0.0.4 | [Kissat](https://github.com/arminbiere/kissat) 4.0.4 |
 |---|---|---:|---:|---:|---:|---:|
-| [**AES-256 Key-Recovery**](aes256-key-recovery/README.md)¹ (9 solvable, 60 s) | **Solved** | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* | **9 / 9** *(highest)* |
-| | **PAR-2** | **263 ms** *(fastest)* | 21,525 ms *(81.9x slower)* | 76,442 ms *(291x slower)* | 33,554 ms *(128x slower)* | 21,359 ms *(81.3x slower)* |
-| [**Aloul DAC02**](aloul-dac02-bench/README.md) (32, 5 s) | **Solved** | **32 / 32** *(highest)* | 17 / 32 *(-15 worse)* | 23 / 32 *(-9 worse)* | **32 / 32** *(highest)* | 24 / 32 *(-8 worse)* |
-| | **PAR-2** | **360.3 ms** *(fastest)* | 154,076 ms *(428x slower)* | 96,866 ms *(269x slower)* | 450.7 ms *(1.25x slower)* | 87,033 ms *(242x slower)* |
-| [**Aloul DIFP-A**](aloul-difp-a/README.md) (14, 5 s) | **Solved** | **14 / 14** *(highest)* | 8 / 14 *(-6 worse)* | 7 / 14 *(-7 worse)* | 5 / 14 *(-9 worse)* | 8 / 14 *(-6 worse)* |
-| | **PAR-2** | **61.7 ms** *(fastest)* | 82,148 ms *(1,331x slower)* | 85,065 ms *(1,378x slower)* | 106,012 ms *(1,718x slower)* | 80,636 ms *(1,307x slower)* |
-| [**Aloul DIFP-W**](aloul-difp-w/README.md) (15, 5 s) | **Solved** | **15 / 15** *(highest)* | 6 / 15 *(-9 worse)* | 7 / 15 *(-8 worse)* | 4 / 15 *(-11 worse)* | 7 / 15 *(-8 worse)* |
-| | **PAR-2** | **128.2 ms** *(fastest)* | 101,152 ms *(789x slower)* | 88,571 ms *(691x slower)* | 115,672 ms *(902x slower)* | 97,101 ms *(757x slower)* |
-| [**Aloul FPGA Switch-Box**](aloul-fpga-sb-sat/README.md) ([SAT](aloul-fpga-sb-sat/README.md) + [UNSAT](aloul-fpga-sb-uns/README.md), 21, 5 s) | **Solved** | **21 / 21** *(highest)* | 11 / 21 *(-10 worse)* | 11 / 21 *(-10 worse)* | **21 / 21** *(highest)* | 12 / 21 *(-9 worse)* |
-| | **PAR-2** | **17.6 ms** *(fastest)* | 100,093 ms *(5,674x slower)* | 100,380 ms *(5,690x slower)* | 37.4 ms *(2.12x slower)* | 93,237 ms *(5,285x slower)* |
-| **Brewbaker 7-Suite Pack** ([Golomb](brewbaker-golomb-rulers/README.md), [Select](brewbaker-select-networks/README.md), [SHA256](brewbaker-sha256-cec/README.md), [Sort](brewbaker-sort-networks/README.md), [Cross](brewbaker-tensor-cross/README.md), [Dot](brewbaker-tensor-dot/README.md), [Matmul](brewbaker-tensor-matmul/README.md); 73, 60 s) | **Solved** | **73 / 73** *(highest)* | 62 / 73 *(-11 worse)* | 59 / 73 *(-14 worse)* | 54 / 73 *(-19 worse)* | 62 / 73 *(-11 worse)* |
-| | **PAR-2** | **32.18 s** *(fastest)* | 1,657.42 s *(51.5x slower)* | 1,848.53 s *(57.4x slower)* | 2,532.43 s *(78.7x slower)* | 1,474.17 s *(45.8x slower)* |
-| [**Davies Rectangle-Free $27\times 27$**](davies-rectangle-free-27/README.md)² (`01-known-unsat`, 1 / 2, 600 s) | **Solved** | **1 / 1** *(highest)* | **1 / 1** *(highest)* | **1 / 1** *(highest)* | 0 / 1 *(-1 worse)* | **1 / 1** *(highest)* |
-| | **PAR-2** | **80.33 s** *(fastest)* | 339.43 s *(4.23x slower)* | 414.78 s *(5.16x slower)* | 1,200.0 s *(14.9x slower)* | 570.57 s *(7.10x slower)* |
-| [**dense-solver Public**](dense-solver-public/README.md) (30, 5 s) | **Solved** | **30 / 30** *(highest)* | 24 / 30 *(-6 worse)* | 20 / 30 *(-10 worse)* | 28 / 30 *(-2 worse)* | 25 / 30 *(-5 worse)* |
-| | **PAR-2** | **102.8 ms** *(fastest)* | 64,035 ms *(623x slower)* | 100,928 ms *(982x slower)* | 20,460 ms *(199x slower)* | 53,137 ms *(517x slower)* |
-| [**dense-solver Synthetic — Chessboard**](dense-solver-synthetic-chessboard/README.md) (3, 5 s) | **Solved** | **3 / 3** *(highest)* | 1 / 3 *(-2 worse)* | 1 / 3 *(-2 worse)* | **3 / 3** *(highest)* | 1 / 3 *(-2 worse)* |
-| | **PAR-2** | **4.0 ms** *(fastest)* | 20,421 ms *(5,058x slower)* | 20,495 ms *(5,077x slower)* | 7.4 ms *(1.83x slower)* | 20,399 ms *(5,053x slower)* |
-| [**dense-solver Synthetic — PHP**](dense-solver-synthetic-php/README.md) (17, 5 s) | **Solved** | **17 / 17** *(highest)* | 13 / 17 *(-4 worse)* | 13 / 17 *(-4 worse)* | **17 / 17** *(highest)* | 13 / 17 *(-4 worse)* |
-| | **PAR-2** | **17.1 ms** *(fastest)* | 40,653 ms *(2,383x slower)* | 41,142 ms *(2,411x slower)* | 38.2 ms *(2.24x slower)* | 40,202 ms *(2,356x slower)* |
-| [**`@fede_intern` 12-CNF Challenge**](fede-intern-challenge/README.md) (12, 60 s / 300 s) | **Solved (60 s)** | **10 / 12** *(highest)* | 3 / 12 *(-7 worse)* | 0 / 12 *(-10 worse)* | 0 / 12 *(-10 worse)* | 3 / 12 *(-7 worse)* |
-| | **PAR-2 (60 s)** | **286.67 s** *(fastest)* | 1,120.20 s *(3.91x slower)* | 1,440.00 s *(5.02x slower)* | 1,440.00 s *(5.02x slower)* | 1,117.65 s *(3.90x slower)* |
-| | **Solved (300 s)** | **10 / 12** *(highest)* | 4 / 12 *(-6 worse)* | — | — | 4 / 12 *(-6 worse)* |
-| | **PAR-2 (300 s)** | **1,243.25 s** *(fastest)* | 5,002.12 s *(4.02x slower)* | — | — | 4,926.02 s *(3.96x slower)* |
-| **Guillochon OEIS SAT**³ ([A067782](guillochon-oeis-a067782-sortnet/README.md), [A171081](guillochon-oeis-a171081-vdw/README.md), [A250000](guillochon-oeis-a250000-queens/README.md), [A350304](guillochon-oeis-a350304-zarankiewicz/README.md), [5 Grid](guillochon-oeis-grid-sq-any/README.md); 30 cal. / 112, 60 s) | **Solved** | **24 / 30** *(highest)* | 20 / 30 *(-4 worse)* | 15 / 30 *(-9 worse)* | 13 / 30 *(-11 worse)* | 19 / 30 *(-5 worse)* |
-| | **PAR-2** | **913.7 s** *(fastest)* | 1,293.2 s *(1.42x slower)* | 2,046.9 s *(2.24x slower)* | 2,134.7 s *(2.34x slower)* | 1,598.2 s *(1.75x slower)* |
-| [**Heule Matrix `xor6cut`**](heule-matrix-xor6cut/README.md)⁴ (6, 60 s) | **Solved** | **5 / 6** *(highest)* | 2 / 6 *(-3 worse)* | 2 / 6 *(-3 worse)* | 0 / 6 *(-5 worse)* | 3 / 6 *(-2 worse)* |
-| | **PAR-2** | **120,722 ms** *(fastest)* | 493,170 ms *(4.09x slower)* | 510,399 ms *(4.23x slower)* | 720,000 ms *(5.96x slower)* | 418,266 ms *(3.46x slower)* |
+| [**AES-256 Key-Recovery**](aes256-key-recovery/README.md)¹ (9 solvable, 60 s) | **Solved** | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* |
+| | **PAR-2** | **263 ms**<br>*(fastest)* | 21,525 ms<br>*(81.9x slower)* | 76,442 ms<br>*(291x slower)* | 33,554 ms<br>*(128x slower)* | 21,359 ms<br>*(81.3x slower)* |
+| [**Aloul DAC02**](aloul-dac02-bench/README.md) (32, 5 s) | **Solved** | **32 / 32**<br>*(highest)* | 17 / 32<br>*(-15 worse)* | 23 / 32<br>*(-9 worse)* | **32 / 32**<br>*(highest)* | 24 / 32<br>*(-8 worse)* |
+| | **PAR-2** | **360.3 ms**<br>*(fastest)* | 154,076 ms<br>*(428x slower)* | 96,866 ms<br>*(269x slower)* | 450.7 ms<br>*(1.25x slower)* | 87,033 ms<br>*(242x slower)* |
+| [**Aloul DIFP-A**](aloul-difp-a/README.md) (14, 5 s) | **Solved** | **14 / 14**<br>*(highest)* | 8 / 14<br>*(-6 worse)* | 7 / 14<br>*(-7 worse)* | 5 / 14<br>*(-9 worse)* | 8 / 14<br>*(-6 worse)* |
+| | **PAR-2** | **61.7 ms**<br>*(fastest)* | 82,148 ms<br>*(1,331x slower)* | 85,065 ms<br>*(1,378x slower)* | 106,012 ms<br>*(1,718x slower)* | 80,636 ms<br>*(1,307x slower)* |
+| [**Aloul DIFP-W**](aloul-difp-w/README.md) (15, 5 s) | **Solved** | **15 / 15**<br>*(highest)* | 6 / 15<br>*(-9 worse)* | 7 / 15<br>*(-8 worse)* | 4 / 15<br>*(-11 worse)* | 7 / 15<br>*(-8 worse)* |
+| | **PAR-2** | **128.2 ms**<br>*(fastest)* | 101,152 ms<br>*(789x slower)* | 88,571 ms<br>*(691x slower)* | 115,672 ms<br>*(902x slower)* | 97,101 ms<br>*(757x slower)* |
+| [**Aloul FPGA Switch-Box**](aloul-fpga-sb-sat/README.md) ([SAT](aloul-fpga-sb-sat/README.md) + [UNSAT](aloul-fpga-sb-uns/README.md), 21, 5 s) | **Solved** | **21 / 21**<br>*(highest)* | 11 / 21<br>*(-10 worse)* | 11 / 21<br>*(-10 worse)* | **21 / 21**<br>*(highest)* | 12 / 21<br>*(-9 worse)* |
+| | **PAR-2** | **17.6 ms**<br>*(fastest)* | 100,093 ms<br>*(5,674x slower)* | 100,380 ms<br>*(5,690x slower)* | 37.4 ms<br>*(2.12x slower)* | 93,237 ms<br>*(5,285x slower)* |
+| **Brewbaker 7-Suite Pack** ([Golomb](brewbaker-golomb-rulers/README.md), [Select](brewbaker-select-networks/README.md), [SHA256](brewbaker-sha256-cec/README.md), [Sort](brewbaker-sort-networks/README.md), [Cross](brewbaker-tensor-cross/README.md), [Dot](brewbaker-tensor-dot/README.md), [Matmul](brewbaker-tensor-matmul/README.md); 73, 60 s) | **Solved** | **73 / 73**<br>*(highest)* | 62 / 73<br>*(-11 worse)* | 59 / 73<br>*(-14 worse)* | 54 / 73<br>*(-19 worse)* | 62 / 73<br>*(-11 worse)* |
+| | **PAR-2** | **32.18 s**<br>*(fastest)* | 1,657.42 s<br>*(51.5x slower)* | 1,848.53 s<br>*(57.4x slower)* | 2,532.43 s<br>*(78.7x slower)* | 1,474.17 s<br>*(45.8x slower)* |
+| [**Davies Rectangle-Free $27\times 27$**](davies-rectangle-free-27/README.md)² (`01-known-unsat`, 1 / 2, 600 s) | **Solved** | **1 / 1**<br>*(highest)* | **1 / 1**<br>*(highest)* | **1 / 1**<br>*(highest)* | 0 / 1<br>*(-1 worse)* | **1 / 1**<br>*(highest)* |
+| | **PAR-2** | **80.33 s**<br>*(fastest)* | 339.43 s<br>*(4.23x slower)* | 414.78 s<br>*(5.16x slower)* | 1,200.0 s<br>*(14.9x slower)* | 570.57 s<br>*(7.10x slower)* |
+| [**dense-solver Public**](dense-solver-public/README.md) (30, 5 s) | **Solved** | **30 / 30**<br>*(highest)* | 24 / 30<br>*(-6 worse)* | 20 / 30<br>*(-10 worse)* | 28 / 30<br>*(-2 worse)* | 25 / 30<br>*(-5 worse)* |
+| | **PAR-2** | **102.8 ms**<br>*(fastest)* | 64,035 ms<br>*(623x slower)* | 100,928 ms<br>*(982x slower)* | 20,460 ms<br>*(199x slower)* | 53,137 ms<br>*(517x slower)* |
+| [**dense-solver Synthetic — Chessboard**](dense-solver-synthetic-chessboard/README.md) (3, 5 s) | **Solved** | **3 / 3**<br>*(highest)* | 1 / 3<br>*(-2 worse)* | 1 / 3<br>*(-2 worse)* | **3 / 3**<br>*(highest)* | 1 / 3<br>*(-2 worse)* |
+| | **PAR-2** | **4.0 ms**<br>*(fastest)* | 20,421 ms<br>*(5,058x slower)* | 20,495 ms<br>*(5,077x slower)* | 7.4 ms<br>*(1.83x slower)* | 20,399 ms<br>*(5,053x slower)* |
+| [**dense-solver Synthetic — PHP**](dense-solver-synthetic-php/README.md) (17, 5 s) | **Solved** | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* | 13 / 17<br>*(-4 worse)* | **17 / 17**<br>*(highest)* | 13 / 17<br>*(-4 worse)* |
+| | **PAR-2** | **17.1 ms**<br>*(fastest)* | 40,653 ms<br>*(2,383x slower)* | 41,142 ms<br>*(2,411x slower)* | 38.2 ms<br>*(2.24x slower)* | 40,202 ms<br>*(2,356x slower)* |
+| [**`@fede_intern` 12-CNF Challenge**](fede-intern-challenge/README.md) (12, 60 s / 300 s) | **Solved (60 s)** | **10 / 12**<br>*(highest)* | 3 / 12<br>*(-7 worse)* | 0 / 12<br>*(-10 worse)* | 0 / 12<br>*(-10 worse)* | 3 / 12<br>*(-7 worse)* |
+| | **PAR-2 (60 s)** | **286.67 s**<br>*(fastest)* | 1,120.20 s<br>*(3.91x slower)* | 1,440.00 s<br>*(5.02x slower)* | 1,440.00 s<br>*(5.02x slower)* | 1,117.65 s<br>*(3.90x slower)* |
+| | **Solved (300 s)** | **10 / 12**<br>*(highest)* | 4 / 12<br>*(-6 worse)* | — | — | 4 / 12<br>*(-6 worse)* |
+| | **PAR-2 (300 s)** | **1,243.25 s**<br>*(fastest)* | 5,002.12 s<br>*(4.02x slower)* | — | — | 4,926.02 s<br>*(3.96x slower)* |
+| **Guillochon OEIS SAT**³ ([A067782](guillochon-oeis-a067782-sortnet/README.md), [A171081](guillochon-oeis-a171081-vdw/README.md), [A250000](guillochon-oeis-a250000-queens/README.md), [A350304](guillochon-oeis-a350304-zarankiewicz/README.md), [5 Grid](guillochon-oeis-grid-sq-any/README.md); 30 cal. / 112, 60 s) | **Solved** | **24 / 30**<br>*(highest)* | 20 / 30<br>*(-4 worse)* | 15 / 30<br>*(-9 worse)* | 13 / 30<br>*(-11 worse)* | 19 / 30<br>*(-5 worse)* |
+| | **PAR-2** | **913.7 s**<br>*(fastest)* | 1,293.2 s<br>*(1.42x slower)* | 2,046.9 s<br>*(2.24x slower)* | 2,134.7 s<br>*(2.34x slower)* | 1,598.2 s<br>*(1.75x slower)* |
+| [**Heule Matrix `xor6cut`**](heule-matrix-xor6cut/README.md)⁴ (6, 60 s) | **Solved** | **5 / 6**<br>*(highest)* | 2 / 6<br>*(-3 worse)* | 2 / 6<br>*(-3 worse)* | 0 / 6<br>*(-5 worse)* | 3 / 6<br>*(-2 worse)* |
+| | **PAR-2** | **120,722 ms**<br>*(fastest)* | 493,170 ms<br>*(4.09x slower)* | 510,399 ms<br>*(4.23x slower)* | 720,000 ms<br>*(5.96x slower)* | 418,266 ms<br>*(3.46x slower)* |
 | [**MATA Presburger NFAs**](mata-presburger-nfa-tptp/README.md)⁵ ([TPTP](mata-presburger-nfa-tptp/README.md) + [UAutomizer](mata-presburger-nfa-ultimate-automizer/README.md), 174, 5 s, `.mata.xz`) | **Solved** | **174 / 174** | — | — | — | — |
 | | **PAR-2** | **1,596 ms** | — | — | — | — |
-| [**`mod-circuit-sat`**](mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **Solved** | **9 / 9** *(highest)* | **9 / 9** *(highest)* | 8 / 9 *(-1 worse)* | 8 / 9 *(-1 worse)* | **9 / 9** *(highest)* |
-| | **PAR-2** | **2,105 ms** *(fastest)* | 29,702 ms *(14.1x slower)* | 67,344 ms *(32.0x slower)* | 67,769 ms *(32.2x slower)* | 25,994 ms *(12.3x slower)* |
-| [**Model RB Full Suite**](rb-bench-model-rb/README.md) (40, 5 s) | **Solved** | **37 / 40** *(highest)* | 12 / 40 *(-25 worse)* | 10 / 40 *(-27 worse)* | 10 / 40 *(-27 worse)* | 11 / 40 *(-26 worse)* |
-| | **PAR-2** | **48,014 ms** *(fastest)* | 293,728 ms *(6.12x slower)* | 308,697 ms *(6.43x slower)* | 307,528 ms *(6.41x slower)* | 306,309 ms *(6.38x slower)* |
-| **Picat-SAT 6-Suite Pack** ([Costas](picat-costas-arrays/README.md), [Golomb](picat-golomb-rulers/README.md), [MAPF](picat-mapf/README.md), [Numberlink](picat-numberlink/README.md), [RectPack](picat-rectangle-packing/README.md), [VMTL](picat-vmtl/README.md); 56, 60 s) | **Solved** | **55 / 56** *(highest)* | 52 / 56 *(-3 worse)* | 52 / 56 *(-3 worse)* | 52 / 56 *(-3 worse)* | 53 / 56 *(-2 worse)* |
-| | **PAR-2** | **166.69 s** *(fastest)* | 554.22 s *(3.32x slower)* | 605.87 s *(3.63x slower)* | 594.24 s *(3.56x slower)* | 497.87 s *(2.99x slower)* |
-| [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | **Solved** | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* | **8 / 8** *(highest)* |
-| | **PAR-2** | **4.94 ms** *(fastest)* | 41.53 ms *(8.41x slower)* | 161.74 ms *(32.7x slower)* | 6.43 ms *(1.30x slower)* | 58.45 ms *(11.8x slower)* |
-| [**QDistSAT Full Suite**](qdistsat-qldpc/README.md)⁶ `BB_30..756` (10, 10 s) | **Solved** | **8 / 10** *(highest)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* | 5 / 10 *(-3 worse)* |
-| | **PAR-2** | **40,227 ms** *(fastest)* | 100,078 ms *(2.49x slower)* | 100,515 ms *(2.50x slower)* | 100,119 ms *(2.49x slower)* | 100,090 ms *(2.49x slower)* |
-| [**RSA-NTT Factoring ($O(n \log n)$, 24b–1,024b)**](rsa-ntt-factoring/README.md) (17, 60 s) | **Solved** | **2 / 17** *(highest)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* | 0 / 17 *(-2 worse)* |
-| | **PAR-2** | **1,803.5 s** *(fastest)* | 2,040.0 s *(1.13x slower)* | 2,040.0 s *(1.13x slower)* | 2,040.0 s *(1.13x slower)* | 2,040.0 s *(1.13x slower)* |
-| [**SAT Competition 2023/2024 Gauntlet**](sat-competition-2002-2026-uris/README.md)⁷ (12, 5,000 s) | **Solved** | **12 / 12** *(highest)* | 8 / 12 *(-4 worse)* | 9 / 12 *(-3 worse)* | 9 / 12 *(-3 worse)* | 8 / 12 *(-4 worse)* |
-| | **PAR-2** | **2,342 ms** *(fastest)* | 43,480,568 ms *(18,567x slower)* | 36,241,382 ms *(15,476x slower)* | 30,505,588 ms *(13,027x slower)* | 40,251,149 ms *(17,188x slower)* |
-| [**SAT Shortcut Challenge Tier-1**](sat-shortcut-challenge-tier1/README.md) (47, 300 s) | **Solved** | **47 / 47** *(highest)* | 45 / 47 *(-2 worse)* | 46 / 47 *(-1 worse)* | 45 / 47 *(-2 worse)* | 45 / 47 *(-2 worse)* |
-| | **PAR-2** | **0.61 s** *(fastest)* | 1,730.8 s *(2,856x slower)* | 1,004.2 s *(1,657x slower)* | 1,225.7 s *(2,023x slower)* | 1,323.2 s *(2,184x slower)* |
-| [**SAT Shortcut Challenge Tier-3**](sat-shortcut-challenge-tier3/README.md) (25, 300 s) | **Solved** | **17 / 25** *(highest)* | **17 / 25** *(highest)* | 12 / 25 *(-5 worse)* | 5 / 25 *(-12 worse)* | **17 / 25** *(highest)* |
-| | **PAR-2** | **4,860.5 s** *(fastest)* | 4,923.0 s *(1.013x slower)* | 8,583.6 s *(1.77x slower)* | 12,370.4 s *(2.55x slower)* | 5,055.9 s *(1.04x slower)* |
-| [**SATLIB All 22 Collections**](satlib-archive-uris/README.md) (331, 5 s) | **Solved** | **331 / 331** *(highest)* | 316 / 331 *(-15 worse)* | 323 / 331 *(-8 worse)* | 313 / 331 *(-18 worse)* | 314 / 331 *(-17 worse)* |
-| | **PAR-2** | **8,041 ms** *(fastest)* | 174,495 ms *(21.7x slower)* | 164,024 ms *(20.4x slower)* | 207,808 ms *(25.8x slower)* | 189,408 ms *(23.6x slower)* |
-| [**SHA-256 64-Round Nonce Scaling**](sha256-64r-nonce-scaling/README.md)⁸ ($k = 1\dots 32$, 32, 300 s) | **Solved** | **32 / 32** *(highest)* | 17 / 32 *(-15 worse)* | 12 / 32 *(-20 worse)* | 17 / 32 *(-15 worse)* | 15 / 32 *(-17 worse)* |
-| | **PAR-2** | **233.30 s** *(fastest)* | 9,334.87 s *(40.0x slower)* | 12,834.03 s *(55.0x slower)* | 9,518.51 s *(40.8x slower)* | 10,343.07 s *(44.3x slower)* |
-| [**VLSAT-2 First 10**](vlsat-2/README.md) (10, 5 s) | **Solved** | **10 / 10** *(highest)* | 0 / 10 *(-10 worse)* | 0 / 10 *(-10 worse)* | 7 / 10 *(-3 worse)* | 4 / 10 *(-6 worse)* |
-| | **PAR-2** | **26.86 ms** *(fastest)* | 100,000 ms *(3,723x slower)* | 100,000 ms *(3,723x slower)* | 30,031 ms *(1,118x slower)* | 64,843 ms *(2,414x slower)* |
-| [**`vzhn` Matrix Inversion — Integer ($\mathbb{Z}$)**](vzhn-sat-inv-matrix-int/README.md) (11, 60 s) | **Solved** | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* | **11 / 11** *(highest)* |
-| | **PAR-2** | **10.29 s** *(fastest)* | 31.83 s *(3.09x slower)* | 106.65 s *(10.4x slower)* | 92.10 s *(8.95x slower)* | 20.06 s *(1.95x slower)* |
-| [**`vzhn` Matrix Inversion — Modular ($\mathbb{Z}/m\mathbb{Z}$)**](vzhn-sat-inv-matrix-mod/README.md) (15, 60 s) | **Solved** | **15 / 15** *(highest)* | 11 / 15 *(-4 worse)* | 14 / 15 *(-1 worse)* | 11 / 15 *(-4 worse)* | 10 / 15 *(-5 worse)* |
-| | **PAR-2** | **1.08 s** *(fastest)* | 499.33 s *(464x slower)* | 142.65 s *(133x slower)* | 509.79 s *(474x slower)* | 611.47 s *(569x slower)* |
+| [**`mod-circuit-sat`**](mod-circuit-sat/README.md) $n=3\text{--}5$ (9, 30 s) | **Solved** | **9 / 9**<br>*(highest)* | **9 / 9**<br>*(highest)* | 8 / 9<br>*(-1 worse)* | 8 / 9<br>*(-1 worse)* | **9 / 9**<br>*(highest)* |
+| | **PAR-2** | **2,105 ms**<br>*(fastest)* | 29,702 ms<br>*(14.1x slower)* | 67,344 ms<br>*(32.0x slower)* | 67,769 ms<br>*(32.2x slower)* | 25,994 ms<br>*(12.3x slower)* |
+| [**Model RB Full Suite**](rb-bench-model-rb/README.md) (40, 5 s) | **Solved** | **37 / 40**<br>*(highest)* | 12 / 40<br>*(-25 worse)* | 10 / 40<br>*(-27 worse)* | 10 / 40<br>*(-27 worse)* | 11 / 40<br>*(-26 worse)* |
+| | **PAR-2** | **48,014 ms**<br>*(fastest)* | 293,728 ms<br>*(6.12x slower)* | 308,697 ms<br>*(6.43x slower)* | 307,528 ms<br>*(6.41x slower)* | 306,309 ms<br>*(6.38x slower)* |
+| **Picat-SAT 6-Suite Pack** ([Costas](picat-costas-arrays/README.md), [Golomb](picat-golomb-rulers/README.md), [MAPF](picat-mapf/README.md), [Numberlink](picat-numberlink/README.md), [RectPack](picat-rectangle-packing/README.md), [VMTL](picat-vmtl/README.md); 56, 60 s) | **Solved** | **55 / 56**<br>*(highest)* | 52 / 56<br>*(-3 worse)* | 52 / 56<br>*(-3 worse)* | 52 / 56<br>*(-3 worse)* | 53 / 56<br>*(-2 worse)* |
+| | **PAR-2** | **166.69 s**<br>*(fastest)* | 554.22 s<br>*(3.32x slower)* | 605.87 s<br>*(3.63x slower)* | 594.24 s<br>*(3.56x slower)* | 497.87 s<br>*(2.99x slower)* |
+| [**Pretolani PRET**](pretolani-pret/README.md) (8, 5 s) | **Solved** | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* | **8 / 8**<br>*(highest)* |
+| | **PAR-2** | **4.94 ms**<br>*(fastest)* | 41.53 ms<br>*(8.41x slower)* | 161.74 ms<br>*(32.7x slower)* | 6.43 ms<br>*(1.30x slower)* | 58.45 ms<br>*(11.8x slower)* |
+| [**QDistSAT Full Suite**](qdistsat-qldpc/README.md)⁶ `BB_30..756` (10, 10 s) | **Solved** | **8 / 10**<br>*(highest)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* | 5 / 10<br>*(-3 worse)* |
+| | **PAR-2** | **40,227 ms**<br>*(fastest)* | 100,078 ms<br>*(2.49x slower)* | 100,515 ms<br>*(2.50x slower)* | 100,119 ms<br>*(2.49x slower)* | 100,090 ms<br>*(2.49x slower)* |
+| [**RSA-NTT Factoring ($O(n \log n)$, 24b–1,024b)**](rsa-ntt-factoring/README.md) (17, 60 s) | **Solved** | **2 / 17**<br>*(highest)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* | 0 / 17<br>*(-2 worse)* |
+| | **PAR-2** | **1,803.5 s**<br>*(fastest)* | 2,040.0 s<br>*(1.13x slower)* | 2,040.0 s<br>*(1.13x slower)* | 2,040.0 s<br>*(1.13x slower)* | 2,040.0 s<br>*(1.13x slower)* |
+| [**SAT Competition 2023/2024 Gauntlet**](sat-competition-2002-2026-uris/README.md)⁷ (12, 5,000 s) | **Solved** | **12 / 12**<br>*(highest)* | 8 / 12<br>*(-4 worse)* | 9 / 12<br>*(-3 worse)* | 9 / 12<br>*(-3 worse)* | 8 / 12<br>*(-4 worse)* |
+| | **PAR-2** | **2,342 ms**<br>*(fastest)* | 43,480,568 ms<br>*(18,567x slower)* | 36,241,382 ms<br>*(15,476x slower)* | 30,505,588 ms<br>*(13,027x slower)* | 40,251,149 ms<br>*(17,188x slower)* |
+| [**SAT Shortcut Challenge Tier-1**](sat-shortcut-challenge-tier1/README.md) (47, 300 s) | **Solved** | **47 / 47**<br>*(highest)* | 45 / 47<br>*(-2 worse)* | 46 / 47<br>*(-1 worse)* | 45 / 47<br>*(-2 worse)* | 45 / 47<br>*(-2 worse)* |
+| | **PAR-2** | **0.61 s**<br>*(fastest)* | 1,730.8 s<br>*(2,856x slower)* | 1,004.2 s<br>*(1,657x slower)* | 1,225.7 s<br>*(2,023x slower)* | 1,323.2 s<br>*(2,184x slower)* |
+| [**SAT Shortcut Challenge Tier-3**](sat-shortcut-challenge-tier3/README.md) (25, 300 s) | **Solved** | **17 / 25**<br>*(highest)* | **17 / 25**<br>*(highest)* | 12 / 25<br>*(-5 worse)* | 5 / 25<br>*(-12 worse)* | **17 / 25**<br>*(highest)* |
+| | **PAR-2** | **4,860.5 s**<br>*(fastest)* | 4,923.0 s<br>*(1.013x slower)* | 8,583.6 s<br>*(1.77x slower)* | 12,370.4 s<br>*(2.55x slower)* | 5,055.9 s<br>*(1.04x slower)* |
+| [**SATLIB All 22 Collections**](satlib-archive-uris/README.md) (331, 5 s) | **Solved** | **331 / 331**<br>*(highest)* | 316 / 331<br>*(-15 worse)* | 323 / 331<br>*(-8 worse)* | 313 / 331<br>*(-18 worse)* | 314 / 331<br>*(-17 worse)* |
+| | **PAR-2** | **8,041 ms**<br>*(fastest)* | 174,495 ms<br>*(21.7x slower)* | 164,024 ms<br>*(20.4x slower)* | 207,808 ms<br>*(25.8x slower)* | 189,408 ms<br>*(23.6x slower)* |
+| [**SHA-256 64-Round Nonce Scaling**](sha256-64r-nonce-scaling/README.md)⁸ ($k = 1\dots 32$, 32, 300 s) | **Solved** | **32 / 32**<br>*(highest)* | 17 / 32<br>*(-15 worse)* | 12 / 32<br>*(-20 worse)* | 17 / 32<br>*(-15 worse)* | 15 / 32<br>*(-17 worse)* |
+| | **PAR-2** | **233.30 s**<br>*(fastest)* | 9,334.87 s<br>*(40.0x slower)* | 12,834.03 s<br>*(55.0x slower)* | 9,518.51 s<br>*(40.8x slower)* | 10,343.07 s<br>*(44.3x slower)* |
+| [**VLSAT-2 First 10**](vlsat-2/README.md) (10, 5 s) | **Solved** | **10 / 10**<br>*(highest)* | 0 / 10<br>*(-10 worse)* | 0 / 10<br>*(-10 worse)* | 7 / 10<br>*(-3 worse)* | 4 / 10<br>*(-6 worse)* |
+| | **PAR-2** | **26.86 ms**<br>*(fastest)* | 100,000 ms<br>*(3,723x slower)* | 100,000 ms<br>*(3,723x slower)* | 30,031 ms<br>*(1,118x slower)* | 64,843 ms<br>*(2,414x slower)* |
+| [**`vzhn` Matrix Inversion — Integer ($\mathbb{Z}$)**](vzhn-sat-inv-matrix-int/README.md) (11, 60 s) | **Solved** | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* | **11 / 11**<br>*(highest)* |
+| | **PAR-2** | **10.29 s**<br>*(fastest)* | 31.83 s<br>*(3.09x slower)* | 106.65 s<br>*(10.4x slower)* | 92.10 s<br>*(8.95x slower)* | 20.06 s<br>*(1.95x slower)* |
+| [**`vzhn` Matrix Inversion — Modular ($\mathbb{Z}/m\mathbb{Z}$)**](vzhn-sat-inv-matrix-mod/README.md) (15, 60 s) | **Solved** | **15 / 15**<br>*(highest)* | 11 / 15<br>*(-4 worse)* | 14 / 15<br>*(-1 worse)* | 11 / 15<br>*(-4 worse)* | 10 / 15<br>*(-5 worse)* |
+| | **PAR-2** | **1.08 s**<br>*(fastest)* | 499.33 s<br>*(464x slower)* | 142.65 s<br>*(133x slower)* | 509.79 s<br>*(474x slower)* | 611.47 s<br>*(569x slower)* |
 
 **Notes for Section 4:**
 1. **AES-256 Key-Recovery:** Synthetic NIST FIPS 197 AES-256 key-recovery & Davies–Meyer hash-preimage benchmark suite ([`aes256-key-recovery/`](aes256-key-recovery/README.md), 9 solvable partial-key / reduced-round instances at $T_{\max} = 60\text{ s}$, plus 30 s full 14-round 256-bit dual-plaintext throughput stress test). Row reports flat `.cnf` parity across all five solvers (`262.85 ms` for Frobenius 1C PGO, **`81.3x` faster than Kissat 4.0.4**); on native Binary AIGER `.aig` miters, Frobenius 1C solves all `9 / 9` in **`69.90 ms` (`306x` faster than Kissat 4.0.4 `.cnf`)**, on native `.xcnf` in **`237.12 ms` (`1,169x` faster than CryptoMiniSat 5.18.0 `.xcnf` `7 / 9`, `277,270 ms`)**, and on `.anf` in **`156.41 ms`**.
@@ -656,10 +656,10 @@ Every collection lives at the repository root in its own self-contained director
 
 | Metric | Frobenius 1C | [CaDiCaL](https://github.com/arminbiere/cadical) (Main #7) | [kissat-sc2024](https://github.com/arminbiere/kissat) (Main #1 Gold) |
 |---|---:|---:|---:|
-| **$T_{\max}=15\text{ s}$ Solved** | **72 / 400** *(highest)* | 26 / 400 *(-46 worse)* | 43 / 400 *(-29 worse)* |
-| **$T_{\max}=15\text{ s}$ PAR-2** | **25.04 s** *(fastest)* | 28.24 s *(1.13x slower)* | 27.15 s *(1.08x slower)* |
-| **$T_{\max}=60\text{ s}$ Solved** | **111 / 400** *(highest)* | 54 / 400 *(-57 worse)* | 81 / 400 *(-30 worse)* |
-| **$T_{\max}=60\text{ s}$ PAR-2** | **91.02 s** *(fastest)* | 106.69 s *(1.17x slower)* | 99.47 s *(1.09x slower)* |
+| **$T_{\max}=15\text{ s}$ Solved** | **72 / 400**<br>*(highest)* | 26 / 400<br>*(-46 worse)* | 43 / 400<br>*(-29 worse)* |
+| **$T_{\max}=15\text{ s}$ PAR-2** | **25.04 s**<br>*(fastest)* | 28.24 s<br>*(1.13x slower)* | 27.15 s<br>*(1.08x slower)* |
+| **$T_{\max}=60\text{ s}$ Solved** | **111 / 400**<br>*(highest)* | 54 / 400<br>*(-57 worse)* | 81 / 400<br>*(-30 worse)* |
+| **$T_{\max}=60\text{ s}$ PAR-2** | **91.02 s**<br>*(fastest)* | 106.69 s<br>*(1.17x slower)* | 99.47 s<br>*(1.09x slower)* |
 
 #### SC 2025 Main Track (400 CNFs)
 
@@ -676,10 +676,10 @@ Every collection lives at the repository root in its own self-contained director
 
 | Metric | Frobenius 1C | [Lymphosat](https://c.mov/lymphosat/) (AI-Track #1 Gold) | [satsuma-iter-kissat](https://github.com/markusa4/satsuma) (Main #1 Gold) |
 |---|---:|---:|---:|
-| **$T_{\max}=15\text{ s}$ Solved** | **122 / 400** *(highest)* | 81 / 400 *(-41 worse)* | 70 / 400 *(-52 worse)* |
-| **$T_{\max}=15\text{ s}$ PAR-2** | **21.37 s** *(fastest)* | 24.58 s *(1.15x slower)* | 25.13 s *(1.18x slower)* |
-| **$T_{\max}=60\text{ s}$ Solved** | **139 / 400** *(highest)* | 109 / 400 *(-30 worse)* | 112 / 400 *(-27 worse)* |
-| **$T_{\max}=60\text{ s}$ PAR-2** | **80.24 s** *(fastest)* | 90.07 s *(1.12x slower)* | 90.46 s *(1.13x slower)* |
+| **$T_{\max}=15\text{ s}$ Solved** | **122 / 400**<br>*(highest)* | 81 / 400<br>*(-41 worse)* | 70 / 400<br>*(-52 worse)* |
+| **$T_{\max}=15\text{ s}$ PAR-2** | **21.37 s**<br>*(fastest)* | 24.58 s<br>*(1.15x slower)* | 25.13 s<br>*(1.18x slower)* |
+| **$T_{\max}=60\text{ s}$ Solved** | **139 / 400**<br>*(highest)* | 109 / 400<br>*(-30 worse)* | 112 / 400<br>*(-27 worse)* |
+| **$T_{\max}=60\text{ s}$ PAR-2** | **80.24 s**<br>*(fastest)* | 90.07 s<br>*(1.12x slower)* | 90.46 s<br>*(1.13x slower)* |
 
 ### 6. Four-Format Cross-Product Parity (`.aig.xz` × `.cnf.xz` × `.xcnf.xz` × `.anf.xz`, 1-Core)
 
@@ -707,8 +707,8 @@ Every collection lives at the repository root in its own self-contained director
 | `cnf-orig` | `c08` *(Fede 48b factoring)* | SAT | 36.87 ms | 18.24 ms | **11.32 ms** | 21.65 ms |
 | `cnf-orig` | `c11` *(SC25 `ramsey_4_4_18`)* | UNSAT | 70.97 ms | 57.94 ms | **57.82 ms** | 83.93 ms |
 | `cnf-orig` | `c12` *(SC25 `cliquecol`)* | UNSAT | 6.70 ms | **6.09 ms** | 6.26 ms | 9.26 ms |
-| **Solved ($T_{\max}=30\text{ s}$)** | — | — | **18 / 18** *(highest)* | **18 / 18** *(highest)* | **18 / 18** *(highest)* | **18 / 18** *(highest)* |
-| **Total PAR-2 ($T_{\max}=30\text{ s}$)** | — | — | 455.75 ms *(1.25x slower)* | 417.53 ms *(1.15x slower)* | **364.41 ms** *(fastest)* | 3,446.20 ms *(9.46x slower)* |
+| **Solved ($T_{\max}=30\text{ s}$)** | — | — | **18 / 18**<br>*(highest)* | **18 / 18**<br>*(highest)* | **18 / 18**<br>*(highest)* | **18 / 18**<br>*(highest)* |
+| **Total PAR-2 ($T_{\max}=30\text{ s}$)** | — | — | 455.75 ms<br>*(1.25x slower)* | 417.53 ms<br>*(1.15x slower)* | **364.41 ms**<br>*(fastest)* | 3,446.20 ms<br>*(9.46x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Cross-Collection Phase-Transition & Structural Profile

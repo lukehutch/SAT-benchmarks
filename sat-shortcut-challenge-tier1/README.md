@@ -98,8 +98,8 @@ Designed by Keith Adler to separate detecting known polynomial-time structure fr
 | `xor_plus_clauses_n160_free16_s2` | UNSAT | **1.11 ms** | 14.56 ms | 66.35 ms | 10.68 ms | 6.88 ms |
 | `xor_plus_clauses_n240_free18_s3` | UNSAT | **1.28 ms** | 56.42 ms | 132.74 ms | 23.97 ms | 21.41 ms |
 | `xor_plus_clauses_n240_free18_s4` | UNSAT | **1.26 ms** | 102.00 ms | 116.16 ms | 6.29 ms | 46.96 ms |
-| **Solved (47 files)** | — | **47 / 47** *(highest)* | 45 / 47 *(-2 worse)* | 46 / 47 *(-1 worse)* | 45 / 47 *(-2 worse)* | 45 / 47 *(-2 worse)* |
-| **Total PAR-2** | — | **0.61 s** *(fastest)* | 1,730.80 s *(2,856.47x slower)* | 1,004.18 s *(1,657.27x slower)* | 1,225.68 s *(2,022.83x slower)* | 1,323.20 s *(2,183.78x slower)* |
+| **Solved (47 files)** | — | **47 / 47**<br>*(highest)* | 45 / 47<br>*(-2 worse)* | 46 / 47<br>*(-1 worse)* | 45 / 47<br>*(-2 worse)* | 45 / 47<br>*(-2 worse)* |
+| **Total PAR-2** | — | **0.61 s**<br>*(fastest)* | 1,730.80 s<br>*(2,856.47x slower)* | 1,004.18 s<br>*(1,657.27x slower)* | 1,225.68 s<br>*(2,022.83x slower)* | 1,323.20 s<br>*(2,183.78x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis

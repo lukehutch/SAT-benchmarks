@@ -85,8 +85,8 @@ This directory is one of **7 single-problem-type collections** built from Chad B
 | `select_n6_r3_k7_adaptive.cnf` | UNSAT | **900.8 ms** | 50.15 s | >60 s *(T/O)* | 21.39 s | >60 s *(T/O)* |
 | `select_n6_r3_k8_fixed.cnf` | UNSAT | **148.0 ms** | 4.01 s | 6.79 s | 18.71 s | 4.25 s |
 | `select_n7_r4_k13_fixed.cnf` | SAT | **505.0 ms** | 1.53 s | 1.28 s | 3.66 s | 746.0 ms |
-| **Solved ($T_{\max} = 60\text{ s}$)** | — | **12 / 12** *(highest)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* | **12 / 12** *(highest)* | 11 / 12 *(-1 worse)* |
-| **Total PAR-2** | — | **1.96 s** *(fastest)* | 56.29 s *(28.7x slower)* | 131.94 s *(67.3x slower)* | 45.29 s *(23.1x slower)* | 126.35 s *(64.5x slower)* |
+| **Solved ($T_{\max} = 60\text{ s}$)** | — | **12 / 12**<br>*(highest)* | **12 / 12**<br>*(highest)* | 11 / 12<br>*(-1 worse)* | **12 / 12**<br>*(highest)* | 11 / 12<br>*(-1 worse)* |
+| **Total PAR-2** | — | **1.96 s**<br>*(fastest)* | 56.29 s<br>*(28.7x slower)* | 131.94 s<br>*(67.3x slower)* | 45.29 s<br>*(23.1x slower)* | 126.35 s<br>*(64.5x slower)* |
 
 ### Four-Format Parity (Frobenius Across `.cnf`, `.aig`, `.xcnf`, `.anf`, Core 9)
 

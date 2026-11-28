@@ -57,8 +57,8 @@ Evaluated sequentially on an **AMD Ryzen 9 5950X** (16C/32T Linux, **1 core/thre
 | `hub_20_unsat` | UNSAT | **5.10 ms** | 11.17 ms | 276.33 ms | 168.34 ms | 8.16 ms | 41.27 ms |
 | `hub_60_sat` | SAT | **14.17 ms** | 46.78 ms | 653.06 ms | 434.73 ms | 29.82 ms | 78.82 ms |
 | `hub_60_unsat` | UNSAT | **12.46 ms** | 24.35 ms | 697.72 ms | 409.68 ms | 23.93 ms | 85.89 ms |
-| **Solved (3 promoted)** | — | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* |
-| **Total PAR-2** | — | **31.7 ms** *(fastest)* | 82.3 ms *(2.59x slower)* | 1,627.1 ms *(51.29x slower)* | 1,012.8 ms *(31.92x slower)* | 61.9 ms *(1.95x slower)* | 206.0 ms *(6.49x slower)* |
+| **Solved (3 promoted)** | — | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* |
+| **Total PAR-2** | — | **31.7 ms**<br>*(fastest)* | 82.3 ms<br>*(2.59x slower)* | 1,627.1 ms<br>*(51.29x slower)* | 1,012.8 ms<br>*(31.92x slower)* | 61.9 ms<br>*(1.95x slower)* | 206.0 ms<br>*(6.49x slower)* |
 
 ### Supplementary Full-Corpus Coverage ($T_{\max} = 60\text{ s}$)
 
@@ -69,8 +69,8 @@ Remaining 3 non-Gauntlet corpus instances evaluated on identical uncompressed fl
 | `hub_24_unsat` | UNSAT | **5.80 ms** | 5.84 ms | 185.09 ms | 125.59 ms | 10.51 ms | 25.69 ms |
 | `hub_30_unsat` | UNSAT | 6.83 ms | **6.47 ms** | 216.66 ms | 149.57 ms | 12.51 ms | 27.28 ms |
 | `hub_80_unsat` | UNSAT | 15.15 ms | **13.30 ms** | 354.40 ms | 256.10 ms | 34.65 ms | 42.36 ms |
-| **Solved (3 supplementary)** | — | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* | **3 / 3** *(highest)* |
-| **Total PAR-2** | — | 27.8 ms *(1.09x slower)* | **25.6 ms** *(fastest)* | 756.2 ms *(29.54x slower)* | 531.3 ms *(20.75x slower)* | 57.7 ms *(2.25x slower)* | 95.3 ms *(3.72x slower)* |
+| **Solved (3 supplementary)** | — | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* | **3 / 3**<br>*(highest)* |
+| **Total PAR-2** | — | 27.8 ms<br>*(1.09x slower)* | **25.6 ms**<br>*(fastest)* | 756.2 ms<br>*(29.54x slower)* | 531.3 ms<br>*(20.75x slower)* | 57.7 ms<br>*(2.25x slower)* | 95.3 ms<br>*(3.72x slower)* |
 
 <!-- BEGIN_STRUCTURAL_ANALYSIS -->
 ## Phase-Transition & Structural Analysis
