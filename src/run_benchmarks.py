@@ -2,29 +2,41 @@
 """Offline Reproducible Multi-Solver Benchmark Harness for SAT-benchmarks.
 
 Zero-dependency Python 3 standard-library CLI that:
-  1. `build-solvers`: creates a solvers directory (if missing), clones and compiles
-     CaDiCaL 3.1.0, CryptoMiniSat 5.18.0, dense-solver 0.0.4, and Kissat 4.0.4
-     from upstream GitHub repositories (and optionally builds Frobenius).
-  2. `run`: executes all (or selected) SAT-benchmarks collections across Frobenius
-     and all installed competitor solvers in a parallel work queue pinned strictly
-     1 job per dedicated physical CPU core (up to `--max-cores`), decompressing
-     inputs before timing, verifying 100% of SAT models against raw CNF, and
-     streaming complete structured JSONL records incrementally for live monitoring
-     and seamless `--resume`.
+  1. `build-solvers`: creates an engines/solvers directory (if missing), clones
+     and compiles CaDiCaL 3.1.0, CryptoMiniSat 5.18.0, dense-solver 0.0.4, and
+     Kissat 4.0.4 from upstream GitHub repositories (and optionally builds
+     Frobenius).
+  2. `run`: executes an optional list of engines (`--engines`) against an
+     optional list of SAT problems (`--problems`). When omitted, automatically
+     discovers and runs ALL executable engines in `--engines-dir` (plus
+     Frobenius from `--frobenius-dir`/`--frobenius-bin` if given) against ALL
+     SAT problems found under `--benchmarks-dir` in a parallel work queue
+     pinned strictly 1 job per dedicated physical CPU core (up to
+     `--max-cores`), decompressing inputs before timing, verifying 100% of SAT
+     models against raw CNF, and streaming complete structured JSONL records
+     incrementally for live monitoring and seamless `--resume`.
   3. `summarize`: inspects an in-progress or completed JSONL file to report live
      per-collection PAR-2 tables, fairness metrics, errors, and every case where
      Frobenius is not the fastest solver.
 
 Examples:
   # Step 1: Clone & compile all competitor solvers into ~/solvers
-  python3 src/run_benchmarks.py build-solvers --solvers-dir ~/solvers --jobs 8
+  python3 src/run_benchmarks.py build-solvers --engines-dir ~/solvers --jobs 8
 
-  # Step 2: Run all 93 collections offline on 8 cores, streaming to results.jsonl
+  # Step 2a: Run ALL engines in ~/solvers (+ Frobenius) on ALL SAT problems
   python3 src/run_benchmarks.py run \\
-      --solvers-dir ~/solvers \\
+      --engines-dir ~/solvers \\
       --frobenius-dir /path/to/papers/new/P_NE_NP/solver \\
       --max-cores 8 \\
       --output ~/sat_bench_results.jsonl
+
+  # Step 2b: Run a specific subset of engines on specific SAT problems
+  python3 src/run_benchmarks.py run \\
+      --engines-dir ~/solvers \\
+      --frobenius-dir /path/to/papers/new/P_NE_NP/solver \\
+      --engines frobenius,kissat,cadical \\
+      --problems costas_n13 costas_n14 integer-factoring/factor_karatsuba_36b \\
+      --output ~/subset_results.jsonl
 
   # Step 3 (in another terminal, live while running or after completion):
   python3 src/run_benchmarks.py summarize --input ~/sat_bench_results.jsonl
@@ -34,13 +46,13 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import datetime as dt
+import fnmatch
 import json
 import lzma
 import os
 import platform
 import queue
 import re
-import resource
 import shutil
 import signal
 import subprocess
@@ -81,13 +93,36 @@ UPSTREAM_SOLVERS: dict[str, dict[str, Any]] = {
     },
 }
 
-DEFAULT_RUN_SOLVERS = [
+FALLBACK_PATH_ENGINES = [
     "frobenius",
     "cadical",
-    "cryptominisat5-cnf",
+    "cryptominisat5",
     "dense-solver",
     "kissat",
 ]
+
+ALL_FORMATS = ("cnf", "xcnf", "aig", "anf", "mata")
+
+FORMAT_SUBDIRS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("cnf", ("cnf-orig", "cnf-converted")),
+    ("xcnf", ("xcnf-orig", "xcnf-converted")),
+    ("aig", ("aig-orig", "aig-converted")),
+    ("anf", ("anf-converted",)),
+    ("mata", ("mata-orig",)),
+)
+
+NON_ENGINE_EXTENSIONS = {
+    ".a", ".bash", ".bz2", ".c", ".cc", ".cmake", ".cpp", ".csv", ".d",
+    ".gz", ".h", ".hpp", ".json", ".jsonl", ".lock", ".log", ".md", ".o",
+    ".pdf", ".png", ".py", ".real", ".rs", ".sh", ".so", ".svg", ".tar",
+    ".toml", ".tsv", ".txt", ".xz", ".yaml", ".yml", ".zip", ".zsh", ".zst",
+}
+
+# Proof checkers / format utilities that commonly share a bin/ dir with solvers.
+NON_ENGINE_NAMES = {
+    "aigtoaig", "aigtocnf", "cake_lpr", "cnf2aig",
+    "drat-trim", "gratchk", "gratgen", "lrat-check", "lrat-trim",
+}
 
 
 def utc_now_iso() -> str:
@@ -134,6 +169,33 @@ def detect_physical_cores() -> list[int]:
     return list(range(n))
 
 
+def flatten_list_arg(raw: list[str] | str | None) -> list[str]:
+    """Parse space-separated, comma-separated, repeatable, or @file list arguments."""
+    if not raw:
+        return []
+    chunks = [raw] if isinstance(raw, str) else list(raw)
+    out: list[str] = []
+    seen: set[str] = set()
+    for chunk in chunks:
+        for part in chunk.split(","):
+            s = part.strip()
+            if not s:
+                continue
+            if s.startswith("@") and len(s) > 1:
+                lf = Path(s[1:]).expanduser()
+                if not lf.is_file():
+                    sys.exit(f"ERROR: list file not found: {lf}")
+                for ln in lf.read_text(encoding="utf-8").splitlines():
+                    ln = ln.strip()
+                    if ln and not ln.startswith("#") and ln not in seen:
+                        seen.add(ln)
+                        out.append(ln)
+            elif s not in seen:
+                seen.add(s)
+                out.append(s)
+    return out
+
+
 def run_checked(cmd: list[str], cwd: Path | None = None, env: dict[str, str] | None = None) -> None:
     print(f"  $ {' '.join(cmd)}", flush=True)
     subprocess.run(cmd, cwd=str(cwd) if cwd else None, env=env, check=True)
@@ -142,10 +204,9 @@ def run_checked(cmd: list[str], cwd: Path | None = None, env: dict[str, str] | N
 def query_solver_version(bin_path: Path, solver_key: str) -> str:
     if not bin_path.is_file():
         return "missing"
-    flag = "--version"
     try:
         p = subprocess.run(
-            [str(bin_path), flag],
+            [str(bin_path), "--version"],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             timeout=5.0,
@@ -173,7 +234,6 @@ def clone_or_checkout(repo_url: str, ref: str, dst: Path) -> str:
         try:
             run_checked(["git", "-C", str(dst), "checkout", ref])
         except subprocess.CalledProcessError:
-            # Fallback to default branch if tag name differs upstream
             run_checked(["git", "-C", str(dst), "checkout", "HEAD"])
     sha = subprocess.check_output(["git", "-C", str(dst), "rev-parse", "--short", "HEAD"], text=True).strip()
     return sha
@@ -195,7 +255,6 @@ def build_one_solver(name: str, solvers_dir: Path, jobs: int, rebuild: bool) -> 
     try:
         sha = clone_or_checkout(spec["repo"], spec["ref"], src_dir)
     except subprocess.CalledProcessError:
-        # Fallback: shallow clone default branch if pinned tag is absent
         if not (src_dir / ".git").is_dir():
             run_checked(["git", "clone", "--depth", "1", spec["repo"], str(src_dir)])
         sha = subprocess.check_output(["git", "-C", str(src_dir), "rev-parse", "--short", "HEAD"], text=True).strip()
@@ -203,13 +262,11 @@ def build_one_solver(name: str, solvers_dir: Path, jobs: int, rebuild: bool) -> 
     if name == "cadical":
         run_checked(["./configure"], cwd=src_dir)
         run_checked(["make", f"-j{jobs}"], cwd=src_dir)
-        built = src_dir / "build" / "cadical"
-        shutil.copy2(built, out_bin)
+        shutil.copy2(src_dir / "build" / "cadical", out_bin)
     elif name == "kissat":
         run_checked(["./configure"], cwd=src_dir)
         run_checked(["make", f"-j{jobs}"], cwd=src_dir)
-        built = src_dir / "build" / "kissat"
-        shutil.copy2(built, out_bin)
+        shutil.copy2(src_dir / "build" / "kissat", out_bin)
     elif name == "cryptominisat":
         bdir = src_dir / "build"
         bdir.mkdir(exist_ok=True)
@@ -224,10 +281,8 @@ def build_one_solver(name: str, solvers_dir: Path, jobs: int, rebuild: bool) -> 
             cwd=bdir,
         )
         run_checked(["cmake", "--build", ".", f"-j{jobs}", "--target", "cryptominisat5"], cwd=bdir)
-        built = bdir / "cryptominisat5"
-        shutil.copy2(built, out_bin)
+        shutil.copy2(bdir / "cryptominisat5", out_bin)
     elif name == "dense-solver":
-        # Support either Cargo (Rust) or CMake/Make upstream layout
         if (src_dir / "Cargo.toml").is_file():
             env = os.environ.copy()
             env["CARGO_BUILD_JOBS"] = str(jobs)
@@ -260,7 +315,9 @@ def build_one_solver(name: str, solvers_dir: Path, jobs: int, rebuild: bool) -> 
 def cmd_build_solvers(args: argparse.Namespace) -> int:
     solvers_dir = Path(args.solvers_dir).expanduser().resolve()
     solvers_dir.mkdir(parents=True, exist_ok=True)
-    want = [s.strip() for s in args.solvers.split(",") if s.strip()]
+    want = flatten_list_arg(args.solvers) or list(UPSTREAM_SOLVERS.keys())
+    alias_map = {"cryptominisat5": "cryptominisat"}
+    want = [alias_map.get(s, s) for s in want]
     for s in want:
         if s not in UPSTREAM_SOLVERS:
             sys.exit(f"ERROR: unknown solver '{s}' (choices: {', '.join(UPSTREAM_SOLVERS)})")
@@ -299,6 +356,45 @@ def cmd_build_solvers(args: argparse.Namespace) -> int:
 # ============================================================================
 # Mode 2: run (Parallel Core-Pinned Work Queue + Incremental JSONL Output)
 # ============================================================================
+
+def is_engine_binary(path: Path) -> bool:
+    """Return True if path is a runnable solver binary (not a doc/config/library/checker)."""
+    if not path.is_file() or path.name.startswith("."):
+        return False
+    if path.name in NON_ENGINE_NAMES:
+        return False
+    if not os.access(path, os.X_OK):
+        return False
+    if ".so." in path.name:
+        return False
+    if path.suffix.lower() in NON_ENGINE_EXTENSIONS:
+        return False
+    return True
+
+
+def engine_kind(solver: str, bin_path: Path | None = None) -> str:
+    lo = solver.lower()
+    b_lo = bin_path.name.lower() if bin_path else ""
+    if lo == "frobenius" or lo.startswith("frobenius") or b_lo.startswith("frobenius"):
+        return "frobenius"
+    if "cryptominisat" in lo or "cryptominisat" in b_lo:
+        return "cryptominisat"
+    return "dimacs"
+
+
+def engine_supports_format(solver: str, fmt: str, bin_path: Path | None = None) -> bool:
+    kind = engine_kind(solver, bin_path)
+    if kind == "frobenius":
+        return fmt in ALL_FORMATS
+    if kind == "cryptominisat":
+        lo = solver.lower()
+        if lo.endswith("-cnf"):
+            return fmt == "cnf"
+        if lo.endswith("-xcnf"):
+            return fmt == "xcnf"
+        return fmt in ("cnf", "xcnf")
+    return fmt == "cnf"
+
 
 def parse_collection_tmax(readme_text: str, col: str) -> float:
     if col in ("hard-spn", "integer-factoring", "zed-adversarial-hub"):
@@ -367,7 +463,7 @@ def verify_cnf_model(cnf_path: Path, model_lits: list[int]) -> tuple[bool, str]:
     return True, f"{total}/{total} clauses verified"
 
 
-def parse_solver_stats(solver: str, stdout: str) -> dict[str, Any]:
+def parse_solver_stats(solver: str, bin_path: Path, stdout: str) -> dict[str, Any]:
     """Extract conflicts, decisions, propagations, and internal reported time when available."""
     stats: dict[str, Any] = {
         "internal_ms": None,
@@ -375,7 +471,7 @@ def parse_solver_stats(solver: str, stdout: str) -> dict[str, Any]:
         "decisions": None,
         "propagations": None,
     }
-    if solver == "frobenius":
+    if engine_kind(solver, bin_path) == "frobenius":
         m = re.search(r"time=([\d.]+)ms", stdout)
         if m:
             stats["internal_ms"] = float(m.group(1))
@@ -397,61 +493,110 @@ def parse_solver_stats(solver: str, stdout: str) -> dict[str, Any]:
     return stats
 
 
-def resolve_solver_bins(solvers_dir: Path | None, frobenius_dir: Path | None, frobenius_bin: Path | None) -> dict[str, Path]:
-    bins: dict[str, Path] = {}
-    # Frobenius
-    if frobenius_bin:
-        bins["frobenius"] = frobenius_bin.expanduser().resolve()
-    elif frobenius_dir:
+def resolve_engine_bins(
+    engines_dir: Path | None,
+    frobenius_dir: Path | None,
+    frobenius_bin: Path | None,
+    requested_engines: list[str],
+) -> dict[str, Path]:
+    """Discover all executable engines in engines_dir (+ Frobenius), optionally filtered."""
+    discovered: dict[str, Path] = {}
+
+    # 1. Discover every executable engine in --engines-dir (/bin first, then root)
+    if engines_dir is not None:
+        ed = engines_dir.expanduser().resolve()
+        if not ed.is_dir():
+            sys.exit(f"ERROR: --engines-dir / --solvers-dir does not exist: {ed}")
+        for scan_dir in (ed / "bin", ed):
+            if not scan_dir.is_dir():
+                continue
+            for entry in sorted(scan_dir.iterdir(), key=lambda p: p.name):
+                if is_engine_binary(entry):
+                    discovered.setdefault(entry.name, entry.resolve())
+
+    # 2. Add Frobenius if explicitly provided via --frobenius-bin or --frobenius-dir
+    if frobenius_bin is not None:
+        fb = frobenius_bin.expanduser().resolve()
+        if not fb.is_file():
+            sys.exit(f"ERROR: --frobenius-bin not found: {fb}")
+        discovered["frobenius"] = fb
+    elif frobenius_dir is not None:
         fdir = frobenius_dir.expanduser().resolve()
+        found_frob = None
         for cand in (
             fdir / "target" / "release" / "frobenius",
             fdir / "target" / "fast-release" / "frobenius",
             fdir / "frobenius",
         ):
-            if cand.is_file():
-                bins["frobenius"] = cand
-                break
-    # Competitors
-    search_dirs: list[Path] = []
-    if solvers_dir:
-        sd = solvers_dir.expanduser().resolve()
-        search_dirs.extend([sd / "bin", sd])
-    for key, bname in (
-        ("cadical", "cadical"),
-        ("cryptominisat5-cnf", "cryptominisat5"),
-        ("cryptominisat5-xcnf", "cryptominisat5"),
-        ("dense-solver", "dense-solver"),
-        ("kissat", "kissat"),
-    ):
-        for d in search_dirs:
-            cand = d / bname
             if cand.is_file() and os.access(cand, os.X_OK):
-                bins[key] = cand
+                found_frob = cand.resolve()
                 break
-        if key not in bins:
+        if found_frob is None:
+            sys.exit(f"ERROR: no compiled frobenius binary found under --frobenius-dir {fdir}")
+        discovered["frobenius"] = found_frob
+
+    # 3. If no directory flags were given at all and no explicit list, check PATH fallback
+    if not discovered and engines_dir is None and not requested_engines:
+        for bname in FALLBACK_PATH_ENGINES:
             w = shutil.which(bname)
             if w:
-                bins[key] = Path(w)
-    return bins
+                discovered[bname] = Path(w).resolve()
+
+    # 4. If --engines / --solvers was omitted, run ALL discovered engines
+    if not requested_engines:
+        ordered: dict[str, Path] = {}
+        if "frobenius" in discovered:
+            ordered["frobenius"] = discovered["frobenius"]
+        for k in sorted(discovered):
+            if k not in ordered:
+                ordered[k] = discovered[k]
+        return ordered
+
+    # 5. Otherwise resolve each explicitly requested engine name or path
+    selected: dict[str, Path] = {}
+    for req in requested_engines:
+        if req in discovered:
+            selected[req] = discovered[req]
+            continue
+        # Legacy & convenience aliases for CryptoMiniSat
+        if req in ("cryptominisat5-cnf", "cryptominisat5-xcnf") and "cryptominisat5" in discovered:
+            selected[req] = discovered["cryptominisat5"]
+            continue
+        if req == "cryptominisat" and "cryptominisat5" in discovered:
+            selected["cryptominisat5"] = discovered["cryptominisat5"]
+            continue
+        # Direct executable path
+        req_path = Path(req).expanduser()
+        if req_path.is_file() and os.access(req_path, os.X_OK):
+            key = req_path.name
+            if key in selected and selected[key] != req_path.resolve():
+                key = str(req_path.resolve())
+            selected[key] = req_path.resolve()
+            continue
+        # PATH lookup if --engines-dir wasn't restricting the engine set
+        if engines_dir is None:
+            lookup = "cryptominisat5" if req in ("cryptominisat", "cryptominisat5-cnf", "cryptominisat5-xcnf") else req
+            w = shutil.which(lookup)
+            if w:
+                selected[req] = Path(w).resolve()
+                continue
+        avail = ", ".join(sorted(discovered)) or "none"
+        sys.exit(f"ERROR: requested engine '{req}' not found (discovered engines: {avail})")
+
+    return selected
 
 
 def build_solver_cmd(solver: str, bin_path: Path, in_path: Path, fmt: str, core: int, timeout_s: float) -> list[str]:
     prefix = ["taskset", "-c", str(core)] if shutil.which("taskset") else []
-    if solver == "frobenius":
+    kind = engine_kind(solver, bin_path)
+    if kind == "frobenius":
         cmd = prefix + [str(bin_path), str(in_path), "--max-cores", "1", "--timeout", f"{timeout_s:.3f}"]
         if fmt == "mata":
             cmd.append("--mata-complement")
         return cmd
-    if solver == "cadical":
-        return prefix + [str(bin_path), str(in_path)]
-    if solver == "kissat":
-        return prefix + [str(bin_path), str(in_path)]
-    if solver in ("cryptominisat5-cnf", "cryptominisat5-xcnf"):
+    if kind == "cryptominisat":
         return prefix + [str(bin_path), "-t", "1", str(in_path)]
-    if solver == "dense-solver":
-        return prefix + [str(bin_path), str(in_path)]
-    raise ValueError(f"Unsupported solver '{solver}'")
+    return prefix + [str(bin_path), str(in_path)]
 
 
 def execute_single_run(
@@ -492,7 +637,6 @@ def execute_single_run(
             stderr=subprocess.PIPE,
             start_new_session=True,
         )
-        # Wait with timeout while collecting exact child rusage via os.wait4 when finished cleanly
         out_chunks: list[bytes] = []
         err_chunks: list[bytes] = []
 
@@ -566,7 +710,7 @@ def execute_single_run(
             else:
                 model_verified, model_verify_msg = None, "no v-lines printed"
 
-        extra = parse_solver_stats(solver, stdout)
+        extra = parse_solver_stats(solver, bin_path, stdout)
         return {
             "timestamp_utc": utc_now_iso(),
             "collection": col,
@@ -599,76 +743,282 @@ def execute_single_run(
                 pass
 
 
-def build_task_queue(args: argparse.Namespace, bins: dict[str, Path]) -> list[tuple[str, str, str, Path, str, float, str]]:
-    want_solvers = [s.strip() for s in args.solvers.split(",") if s.strip()]
-    want_formats = [f.strip() for f in args.formats.split(",") if f.strip()]
-    want_cols = set(c.strip() for c in args.collections.split(",") if c.strip()) if args.collections else None
-    excl_cols = set(c.strip() for c in args.exclude_collections.split(",") if c.strip()) if args.exclude_collections else set()
+def detect_format_and_stem(fp: Path) -> tuple[str, str, str] | None:
+    """Return (fmt, base_without_xz, stem) if fp is a supported SAT problem file."""
+    name = fp.name
+    for fmt in ALL_FORMATS:
+        if name.endswith(f".{fmt}.xz"):
+            base = name[:-3]
+            return fmt, base, base[: -(len(fmt) + 1)]
+        if name.endswith(f".{fmt}"):
+            return fmt, name, name[: -(len(fmt) + 1)]
+    return None
 
-    bench_root = REPO_ROOT / "benchmarks"
-    if bench_root.is_dir():
-        all_cols = sorted(
-            f"benchmarks/{cat.name}/{d.name}"
-            for cat in bench_root.iterdir()
-            if cat.is_dir() and not cat.name.startswith(".")
-            for d in cat.iterdir()
-            if d.is_dir() and (d / "README.md").is_file()
-        )
-    else:
-        all_cols = sorted(
-            d.name for d in REPO_ROOT.iterdir()
-            if d.is_dir() and (d / "README.md").is_file() and d.name != "src"
-        )
-    if want_cols is not None:
-        all_cols = [c for c in all_cols if c in want_cols or Path(c).name in want_cols]
-    all_cols = [c for c in all_cols if c not in excl_cols and Path(c).name not in excl_cols]
 
-    tasks: list[tuple[str, str, str, Path, str, float, str]] = []
-    for col in all_cols:
-        cdir = REPO_ROOT / col
-        col_short = Path(col).name
-        txt = (cdir / "README.md").read_text()
-        tmax = args.timeout if args.timeout is not None else parse_collection_tmax(txt, col_short)
-        exp = load_expected_tsv(cdir)
-        is_oeis = col_short.startswith("guillochon-oeis-")
+def find_structured_collections(bench_root: Path) -> list[Path]:
+    """Find structured SAT-benchmarks collections under bench_root (supports 10-category, category, single, or flat layouts)."""
+    all_fmt_subdirs = {sub for _, cands in FORMAT_SUBDIRS for sub in cands}
 
-        fmt_dirs: dict[str, Path] = {}
-        for fmt, cands in (
-            ("cnf", ("cnf-orig", "cnf-converted")),
-            ("xcnf", ("xcnf-orig", "xcnf-converted")),
-            ("aig", ("aig-orig", "aig-converted")),
-            ("anf", ("anf-converted",)),
-            ("mata", ("mata-orig",)),
-        ):
+    def _is_collection_dir(d: Path) -> bool:
+        if not (d / "README.md").is_file():
+            return False
+        return any((d / sub).is_dir() for sub in all_fmt_subdirs)
+
+    if _is_collection_dir(bench_root):
+        return [bench_root]
+
+    found: list[Path] = []
+    scan_roots: list[Path] = [bench_root / "benchmarks"] if (bench_root / "benchmarks").is_dir() else [bench_root]
+    for root in scan_roots:
+        for d1 in sorted(root.iterdir(), key=lambda p: p.name):
+            if not d1.is_dir() or d1.name.startswith(".") or d1.name in ("src", "__pycache__"):
+                continue
+            if _is_collection_dir(d1):
+                found.append(d1)
+                continue
+            for d2 in sorted(d1.iterdir(), key=lambda p: p.name):
+                if not d2.is_dir() or d2.name.startswith(".") or d2.name in ("src", "__pycache__"):
+                    continue
+                if _is_collection_dir(d2):
+                    found.append(d2)
+    return found
+
+
+def discover_problems(
+    bench_root: Path,
+    want_formats: list[str],
+    timeout_override: float | None,
+    skip_oeis_unknown: bool,
+) -> list[tuple[str, str, str, str, Path, str, float]]:
+    """Discover all SAT problems under bench_root.
+
+    Returns tuples of: (col_rel, col_short, fmt, stem, file_path, expected, tmax).
+    """
+    problems: list[tuple[str, str, str, str, Path, str, float]] = []
+    cols = find_structured_collections(bench_root)
+
+    if cols:
+        for cdir in cols:
+            rel = cdir.relative_to(bench_root).as_posix() if cdir != bench_root else cdir.name
+            col_short = cdir.name
+            txt = (cdir / "README.md").read_text(errors="ignore")
+            tmax = timeout_override if timeout_override is not None else parse_collection_tmax(txt, col_short)
+            exp = load_expected_tsv(cdir)
+            is_oeis = col_short.startswith("guillochon-oeis-")
+
+            fmt_dirs: dict[str, Path] = {}
+            for fmt, cands in FORMAT_SUBDIRS:
+                if fmt not in want_formats:
+                    continue
+                for sub in cands:
+                    p = cdir / sub
+                    if p.is_dir():
+                        fmt_dirs[fmt] = p
+                        break
+
+            for fmt, fdir in fmt_dirs.items():
+                ext_xz = f".{fmt}.xz"
+                ext_raw = f".{fmt}"
+                for fp in sorted(fdir.iterdir(), key=lambda p: p.name):
+                    if not fp.is_file() or not (fp.name.endswith(ext_xz) or fp.name.endswith(ext_raw)):
+                        continue
+                    base = fp.name[:-3] if fp.name.endswith(".xz") else fp.name
+                    stem = base[: -(len(fmt) + 1)]
+                    ev = exp.get(base) or exp.get(stem) or "UNKNOWN"
+                    if is_oeis and skip_oeis_unknown and ev == "UNKNOWN":
+                        continue
+                    problems.append((rel, col_short, fmt, stem, fp.resolve(), ev, tmax))
+        return problems
+
+    # Fallback: arbitrary directory containing raw or .xz SAT problem files
+    tmax = timeout_override if timeout_override is not None else 60.0
+    exp_cache: dict[Path, dict[str, str]] = {}
+    for root, dirs, files in os.walk(bench_root):
+        dirs[:] = sorted(d for d in dirs if not d.startswith(".") and d != "__pycache__")
+        rpath = Path(root)
+        for fname in sorted(files):
+            fp = rpath / fname
+            det = detect_format_and_stem(fp)
+            if det is None:
+                continue
+            fmt, base, stem = det
             if fmt not in want_formats:
                 continue
-            for sub in cands:
-                p = cdir / sub
-                if p.is_dir():
-                    fmt_dirs[fmt] = p
-                    break
+            if rpath not in exp_cache:
+                exp_cache[rpath] = load_expected_tsv(rpath)
+            ev = exp_cache[rpath].get(base) or exp_cache[rpath].get(stem) or "UNKNOWN"
+            rel_dir = rpath.relative_to(bench_root).as_posix() if rpath != bench_root else bench_root.name
+            problems.append((rel_dir, rpath.name, fmt, stem, fp.resolve(), ev, tmax))
+    return problems
 
-        for fmt, fdir in fmt_dirs.items():
-            ext = f".{fmt}.xz"
-            for fp in sorted(fdir.iterdir()):
-                if not (fp.name.endswith(ext) or fp.name.endswith(f".{fmt}")):
-                    continue
-                base = fp.name[:-3] if fp.name.endswith(".xz") else fp.name
-                stem = Path(base).stem
-                ev = exp.get(base) or exp.get(stem) or "UNKNOWN"
-                if is_oeis and args.skip_oeis_unknown and ev == "UNKNOWN":
-                    continue
-                for sname in want_solvers:
-                    if sname not in bins:
-                        continue
-                    # Match solver to supported formats
-                    if fmt == "cnf" and sname not in ("frobenius", "cadical", "cryptominisat5-cnf", "dense-solver", "kissat"):
-                        continue
-                    if fmt == "xcnf" and sname not in ("frobenius", "cryptominisat5-xcnf"):
-                        continue
-                    if fmt in ("aig", "anf", "mata") and sname != "frobenius":
-                        continue
-                    tasks.append((col, fmt, stem, fp, ev, tmax, sname))
+
+def filter_problems(
+    all_problems: list[tuple[str, str, str, str, Path, str, float]],
+    bench_root: Path,
+    want_problems: list[str],
+    want_cols: set[str] | None,
+    excl_cols: set[str],
+    want_formats: list[str],
+    timeout_override: float | None,
+) -> list[tuple[str, str, str, str, Path, str, float]]:
+    """Filter discovered SAT problems by --collections / --exclude-collections / --problems."""
+    pool = all_problems
+    if want_cols is not None:
+        pool = [
+            p for p in pool
+            if p[0] in want_cols
+            or p[1] in want_cols
+            or any(part in want_cols for part in Path(p[0]).parts)
+        ]
+    if excl_cols:
+        pool = [
+            p for p in pool
+            if p[0] not in excl_cols
+            and p[1] not in excl_cols
+            and not any(part in excl_cols for part in Path(p[0]).parts)
+        ]
+
+    if not want_problems:
+        return pool
+
+    by_resolved_path = {p[4]: p for p in pool}
+    selected: list[tuple[str, str, str, str, Path, str, float]] = []
+    selected_paths: set[Path] = set()
+
+    def _add(p: tuple[str, str, str, str, Path, str, float]) -> None:
+        if p[4] not in selected_paths:
+            selected_paths.add(p[4])
+            selected.append(p)
+
+    for spec in want_problems:
+        matched_any = False
+
+        # 1. Direct file or directory path (relative to CWD or relative to bench_root)
+        path_cands = [Path(spec).expanduser()]
+        if not path_cands[0].is_absolute():
+            path_cands.append(bench_root / spec)
+        resolved_hit: Path | None = None
+        for cand in path_cands:
+            if cand.exists():
+                resolved_hit = cand.resolve()
+                break
+
+        if resolved_hit is not None:
+            if resolved_hit.is_file():
+                if resolved_hit in by_resolved_path:
+                    _add(by_resolved_path[resolved_hit])
+                    matched_any = True
+                else:
+                    det = detect_format_and_stem(resolved_hit)
+                    if det is not None:
+                        fmt, base, stem = det
+                        exp = load_expected_tsv(resolved_hit.parent)
+                        ev = exp.get(base) or exp.get(stem) or "UNKNOWN"
+                        col_rel = (
+                            resolved_hit.parent.relative_to(bench_root).as_posix()
+                            if resolved_hit.is_relative_to(bench_root)
+                            else resolved_hit.parent.name
+                        )
+                        tmax = timeout_override if timeout_override is not None else 60.0
+                        _add((col_rel, resolved_hit.parent.name, fmt, stem, resolved_hit, ev, tmax))
+                        matched_any = True
+            elif resolved_hit.is_dir():
+                for p in pool:
+                    if p[4].is_relative_to(resolved_hit):
+                        _add(p)
+                        matched_any = True
+                if not matched_any:
+                    # Directory outside bench_root or containing standalone SAT files
+                    extra_probs = discover_problems(
+                        resolved_hit,
+                        want_formats=want_formats,
+                        timeout_override=timeout_override,
+                        skip_oeis_unknown=False,
+                    )
+                    for p in extra_probs:
+                        _add(p)
+                        matched_any = True
+
+        if matched_any:
+            continue
+
+        # 2. Match by collection, category, <collection>/<stem>, filename, stem, or glob pattern
+        is_glob = any(ch in spec for ch in "*?[")
+        norm_spec = spec.strip("/")
+        for p in pool:
+            col_rel, col_short, fmt, stem, fp, _ev, _tmax = p
+            base = fp.name[:-3] if fp.name.endswith(".xz") else fp.name
+            rel_file = fp.relative_to(bench_root).as_posix() if fp.is_relative_to(bench_root) else fp.name
+            parts = Path(col_rel).parts
+            cat_candidates = []
+            if len(parts) >= 2 and parts[0] == "benchmarks":
+                cat_candidates = [parts[1], f"benchmarks/{parts[1]}"]
+            keys = (
+                col_rel,
+                col_short,
+                *cat_candidates,
+                f"{col_short}/{stem}",
+                f"{col_rel}/{stem}",
+                f"{col_short}/{fp.name}",
+                f"{col_rel}/{fp.name}",
+                f"{col_short}/{base}",
+                stem,
+                base,
+                fp.name,
+                rel_file,
+            )
+            hit = any(fnmatch.fnmatch(k, norm_spec) for k in keys) if is_glob else (norm_spec in keys)
+            if hit:
+                _add(p)
+                matched_any = True
+
+        if not matched_any:
+            sys.exit(f"ERROR: --problems selector '{spec}' matched 0 SAT problems under {bench_root}")
+
+    return selected
+
+
+def build_task_queue(args: argparse.Namespace, bins: dict[str, Path]) -> list[tuple[str, str, str, Path, str, float, str]]:
+    bench_root = Path(args.benchmarks_dir).expanduser().resolve() if args.benchmarks_dir else REPO_ROOT
+    if not bench_root.is_dir():
+        sys.exit(f"ERROR: --benchmarks-dir does not exist: {bench_root}")
+
+    raw_formats = flatten_list_arg(args.formats)
+    if not raw_formats or "all" in raw_formats:
+        want_formats = list(ALL_FORMATS)
+    else:
+        for f in raw_formats:
+            if f not in ALL_FORMATS:
+                sys.exit(f"ERROR: unknown format '{f}' (choices: {', '.join(ALL_FORMATS)}, all)")
+        want_formats = raw_formats
+
+    want_cols_list = flatten_list_arg(args.collections)
+    want_cols = set(want_cols_list) if want_cols_list else None
+    excl_cols = set(flatten_list_arg(args.exclude_collections))
+    want_problems = flatten_list_arg(args.problems)
+
+    all_problems = discover_problems(
+        bench_root=bench_root,
+        want_formats=want_formats,
+        timeout_override=args.timeout,
+        skip_oeis_unknown=args.skip_oeis_unknown,
+    )
+    problems = filter_problems(
+        all_problems=all_problems,
+        bench_root=bench_root,
+        want_problems=want_problems,
+        want_cols=want_cols,
+        excl_cols=excl_cols,
+        want_formats=want_formats,
+        timeout_override=args.timeout,
+    )
+
+    tasks: list[tuple[str, str, str, Path, str, float, str]] = []
+    for col_rel, _col_short, fmt, stem, fp, ev, tmax in problems:
+        for sname, bpath in bins.items():
+            if not engine_supports_format(sname, fmt, bpath):
+                continue
+            tasks.append((col_rel, fmt, stem, fp, ev, tmax, sname))
     return tasks
 
 
@@ -700,7 +1050,6 @@ def write_summary_files(jsonl_path: Path, quiet: bool = False) -> dict[str, Any]
             except Exception:
                 continue
 
-    # Deduplicate by latest record per (col, fmt, inst, solver)
     latest: dict[tuple[str, str, str, str], dict[str, Any]] = {}
     for r in records:
         latest[(r["collection"], r["format"], r["instance"], r["solver"])] = r
@@ -739,7 +1088,6 @@ def write_summary_files(jsonl_path: Path, quiet: bool = False) -> dict[str, Any]
                     "ratio": round(frob["par2_ms"] / max(bc["par2_ms"], 0.01), 3),
                 })
 
-        # Instance-level deficits
         by_inst: dict[str, dict[str, dict[str, Any]]] = {}
         for sname, srows in smap.items():
             for r in srows:
@@ -821,19 +1169,20 @@ def write_summary_files(jsonl_path: Path, quiet: bool = False) -> dict[str, Any]
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    solvers_dir = Path(args.solvers_dir) if args.solvers_dir else None
+    engines_dir = Path(args.engines_dir) if args.engines_dir else None
     frobenius_dir = Path(args.frobenius_dir) if args.frobenius_dir else None
     frobenius_bin = Path(args.frobenius_bin) if args.frobenius_bin else None
-    bins = resolve_solver_bins(solvers_dir, frobenius_dir, frobenius_bin)
+    requested_engines = flatten_list_arg(args.engines)
+
+    bins = resolve_engine_bins(engines_dir, frobenius_dir, frobenius_bin, requested_engines)
     if not bins:
-        sys.exit("ERROR: no solver binaries found; pass --solvers-dir and/or --frobenius-dir/--frobenius-bin")
+        sys.exit("ERROR: no engine binaries found; pass --engines-dir and/or --frobenius-dir/--frobenius-bin")
 
     versions = {k: query_solver_version(p, k) for k, p in bins.items()}
-    print("[run] Resolved solver binaries:", flush=True)
-    for k, p in sorted(bins.items()):
+    print("[run] Resolved engine binaries:", flush=True)
+    for k, p in bins.items():
         print(f"  {k:20s} -> {p} ({versions[k]})", flush=True)
 
-    # Determine dedicated physical CPU cores
     if args.cores:
         cores = [int(c.strip()) for c in args.cores.split(",") if c.strip()]
     else:
@@ -852,15 +1201,15 @@ def cmd_run(args: argparse.Namespace) -> int:
         tasks = [t for t in tasks if (t[0], t[1], t[2], t[6]) not in done_keys]
         print(f"[run] --resume skipped {before - len(tasks)} already-completed runs ({len(tasks)} remaining).", flush=True)
 
-    # LPT ordering (longest timeouts first) for balanced parallel core utilization
     tasks.sort(key=lambda t: (-t[5], t[0], t[2], t[6]))
     print(f"[run] Queue: {len(tasks)} runs | Cores ({len(cores)}): {cores} | Output: {out_path}", flush=True)
 
     if args.dry_run:
         cols_seen = sorted({t[0] for t in tasks})
-        print(f"[dry-run] {len(cols_seen)} collections, {len(tasks)} solver runs ready. First 10 tasks:")
+        probs_seen = sorted({(t[0], t[1], t[2]) for t in tasks})
+        print(f"[dry-run] {len(cols_seen)} collections, {len(probs_seen)} problems, {len(bins)} engines -> {len(tasks)} runs ready. First 10 tasks:")
         for t in tasks[:10]:
-            print(f"  {t[0]}/{t[1]}/{t[2]} solver={t[6]} timeout={t[5]}s exp={t[4]}")
+            print(f"  {t[0]}/{t[1]}/{t[2]} engine={t[6]} timeout={t[5]}s exp={t[4]}")
         return 0
 
     if args.load_guard > 0:
@@ -887,7 +1236,7 @@ def cmd_run(args: argparse.Namespace) -> int:
         col, fmt, stem, fp, ev, tmax, sname = task
         core = core_q.get()
         try:
-            rec = execute_single_run(
+            return execute_single_run(
                 solver=sname,
                 bin_path=bins[sname],
                 solver_version=versions[sname],
@@ -901,7 +1250,6 @@ def cmd_run(args: argparse.Namespace) -> int:
                 verify_models=args.verify_models,
                 tmp_root=tmp_root,
             )
-            return rec
         finally:
             core_q.put(core)
 
@@ -960,27 +1308,29 @@ def build_parser() -> argparse.ArgumentParser:
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     # build-solvers
-    p_b = sub.add_parser("build-solvers", help="Clone and compile competitor solvers (and optionally Frobenius) into --solvers-dir.")
-    p_b.add_argument("--solvers-dir", required=True, help="Directory to create/populate with src/ and bin/ for all solvers.")
-    p_b.add_argument("--solvers", default=",".join(UPSTREAM_SOLVERS.keys()), help="Comma-separated solvers to build.")
+    p_b = sub.add_parser("build-solvers", help="Clone and compile competitor solvers (and optionally Frobenius) into --engines-dir.")
+    p_b.add_argument("--engines-dir", "--solvers-dir", dest="solvers_dir", required=True, help="Directory to create/populate with src/ and bin/ for all solvers.")
+    p_b.add_argument("--engines", "--solvers", dest="solvers", nargs="+", default=None, help="Optional list of engines to build (default: all upstream competitors).")
     p_b.add_argument("--frobenius-dir", default="", help="Optional path to Frobenius solver/ crate to compile as well.")
     p_b.add_argument("--pgo", action="store_true", help="If --frobenius-dir is given, build via ./scripts/build_pgo.sh 1.")
     p_b.add_argument("--jobs", type=int, default=max(1, min(8, os.cpu_count() or 1)), help="Parallel make/cargo build jobs.")
-    p_b.add_argument("--rebuild", action="store_true", help="Force recompile even if binary already exists in --solvers-dir/bin/.")
+    p_b.add_argument("--rebuild", action="store_true", help="Force recompile even if binary already exists in --engines-dir/bin/.")
     p_b.set_defaults(func=cmd_build_solvers)
 
     # run
     p_r = sub.add_parser("run", help="Run benchmarks in parallel (1 task per dedicated physical core) and stream JSONL output.")
-    p_r.add_argument("--solvers-dir", default="", help="Directory containing competitor binaries (bin/<solver> or <solver>).")
-    p_r.add_argument("--frobenius-dir", default="", help="Path to Frobenius solver/ directory (auto-finds target/release/frobenius).")
-    p_r.add_argument("--frobenius-bin", default="", help="Direct path to frobenius binary (overrides --frobenius-dir).")
+    p_r.add_argument("--engines-dir", "--solvers-dir", dest="engines_dir", default="", help="Directory containing engine binaries (scans <dir>/bin/ and <dir>/).")
+    p_r.add_argument("--benchmarks-dir", default="", help="SAT benchmarks root directory (default: this SAT-benchmarks repository).")
+    p_r.add_argument("--frobenius-dir", default="", help="Optional path to Frobenius solver/ directory (auto-finds target/release/frobenius).")
+    p_r.add_argument("--frobenius-bin", default="", help="Optional direct path to frobenius binary (overrides --frobenius-dir).")
+    p_r.add_argument("--engines", "--solvers", dest="engines", nargs="+", default=None, help="Optional list of engines to run (names or paths; comma- or space-separated). Default: ALL engines in --engines-dir (+ Frobenius if provided).")
+    p_r.add_argument("--problems", "--instances", dest="problems", nargs="+", default=None, help="Optional list of SAT problems to run (paths, dirs, collections, <col>/<stem>, stems, globs, or @file). Default: ALL SAT problems in --benchmarks-dir.")
     p_r.add_argument("--output", required=True, help="Output JSONL path (written & fsynced incrementally after every run).")
     p_r.add_argument("--max-cores", type=int, default=max(1, len(detect_physical_cores()) - 1), help="Maximum parallel physical cores (1 job/core).")
     p_r.add_argument("--cores", default="", help="Optional explicit comma-separated CPU core IDs (e.g. 0,1,2,3,4,5,6,7).")
-    p_r.add_argument("--solvers", default=",".join(DEFAULT_RUN_SOLVERS), help="Comma-separated solvers to run.")
-    p_r.add_argument("--formats", default="cnf", help="Comma-separated formats (cnf,xcnf,aig,anf,mata).")
-    p_r.add_argument("--collections", default="", help="Optional comma-separated subset of collection names.")
-    p_r.add_argument("--exclude-collections", default="", help="Optional comma-separated collections to skip.")
+    p_r.add_argument("--formats", default="cnf", help="Comma-separated formats (cnf,xcnf,aig,anf,mata, or 'all').")
+    p_r.add_argument("--collections", nargs="+", default=None, help="Optional subset of collection or category names.")
+    p_r.add_argument("--exclude-collections", nargs="+", default=None, help="Optional collections or categories to skip.")
     p_r.add_argument("--timeout", type=float, default=None, help="Global timeout override in seconds (default: per-collection README T_max).")
     p_r.add_argument("--resume", action="store_true", help="Resume by skipping (collection, format, instance, solver) tuples already in --output.")
     p_r.add_argument("--load-guard", type=float, default=0.0, help="If >0, pause before starting until 1m host load average <= value.")
@@ -989,7 +1339,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_r.add_argument("--include-oeis-unknown", dest="skip_oeis_unknown", action="store_false", help="Also run UNKNOWN rows in guillochon-oeis-*.")
     p_r.add_argument("--log-every", type=int, default=25, help="Print progress every N completed runs.")
     p_r.add_argument("--summary-every", type=int, default=100, help="Refresh <output>.summary.{md,json} every N runs.")
-    p_r.add_argument("--dry-run", action="store_true", help="Show resolved binaries and task queue without running solvers.")
+    p_r.add_argument("--dry-run", action="store_true", help="Show resolved engines and task queue without running solvers.")
     p_r.set_defaults(func=cmd_run, verify_models=True, skip_oeis_unknown=True)
 
     # summarize
