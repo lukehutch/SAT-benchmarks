@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420" width="920" height="420" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="barZfc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="barRec" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="920" height="420" rx="12" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="28" y="36" fill="#f8fafc" font-size="18" font-weight="700">Busy Beaver Halting Synthesis &amp; ZFC-Independence TM State-Compression (busy-beaver-sat)</text>
+  <text x="28" y="56" fill="#94a3b8" font-size="12">Exact BB(2..4) Halting Transitions &amp; Bisimulation State-Quotient SAT Ladder Scaling to the 192-State ZFC Frontier</text>
+
+  <!-- Left Panel: Exact BB(n) Halting Tape & TNF State Transitions -->
+  <rect x="24" y="74" width="415" height="320" rx="10" fill="#111c33" stroke="#334155" stroke-width="1.2"/>
+  <text x="42" y="99" fill="#e2e8f0" font-size="13.5" font-weight="700">Part A: Exact Busy Beaver Halting Synthesis (TNF)</text>
+  <text x="42" y="116" fill="#94a3b8" font-size="11">Sharp SAT/UNSAT cliffs at exact BB(n) step maxima</text>
+
+  <!-- Tape cells illustration -->
+  <g transform="translate(46, 132)">
+    <text x="0" y="12" fill="#cbd5e1" font-size="10.5" font-weight="600">Binary Tape Snapshot (BB(3) = 21 steps, 6 ones):</text>
+    <g transform="translate(0, 22)">
+      <rect x="0" y="0" width="38" height="32" rx="4" fill="#1e293b" stroke="#475569"/>
+      <text x="19" y="21" fill="#64748b" font-size="13" text-anchor="middle" font-family="monospace">0</text>
+      <rect x="42" y="0" width="38" height="32" rx="4" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="61" y="21" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle" font-family="monospace">1</text>
+      <rect x="84" y="0" width="38" height="32" rx="4" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="103" y="21" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle" font-family="monospace">1</text>
+      <rect x="126" y="0" width="38" height="32" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="2"/>
+      <text x="145" y="21" fill="#34d399" font-size="14" font-weight="700" text-anchor="middle" font-family="monospace">1</text>
+      <rect x="168" y="0" width="38" height="32" rx="4" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="187" y="21" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle" font-family="monospace">1</text>
+      <rect x="210" y="0" width="38" height="32" rx="4" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="229" y="21" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle" font-family="monospace">1</text>
+      <rect x="252" y="0" width="38" height="32" rx="4" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="271" y="21" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle" font-family="monospace">1</text>
+      <rect x="294" y="0" width="38" height="32" rx="4" fill="#1e293b" stroke="#475569"/>
+      <text x="313" y="21" fill="#64748b" font-size="13" text-anchor="middle" font-family="monospace">0</text>
+      <polygon points="145,38 139,48 151,48" fill="#34d399"/>
+      <text x="145" y="61" fill="#34d399" font-size="10.5" font-weight="600" text-anchor="middle">Head @ HALT (t = 21)</text>
+    </g>
+  </g>
+
+  <!-- BB(n) exact cliff table -->
+  <g transform="translate(42, 224)" font-size="11.5">
+    <rect x="0" y="0" width="378" height="24" rx="4" fill="#1e293b"/>
+    <text x="10" y="16" fill="#94a3b8" font-weight="700">States N</text>
+    <text x="90" y="16" fill="#94a3b8" font-weight="700">Exact BB(N)</text>
+    <text x="195" y="16" fill="#34d399" font-weight="700">SAT Target</text>
+    <text x="288" y="16" fill="#f87171" font-weight="700">UNSAT Cliff</text>
+
+    <text x="10" y="44" fill="#e2e8f0" font-family="monospace">N = 2</text>
+    <text x="90" y="44" fill="#e2e8f0">6 steps</text>
+    <text x="195" y="44" fill="#34d399" font-family="monospace">s6 (SAT)</text>
+    <text x="288" y="44" fill="#f87171" font-family="monospace">s7 (UNSAT)</text>
+
+    <line x1="0" y1="54" x2="378" y2="54" stroke="#1e293b"/>
+    <text x="10" y="74" fill="#e2e8f0" font-family="monospace">N = 3</text>
+    <text x="90" y="74" fill="#e2e8f0">21 steps</text>
+    <text x="195" y="74" fill="#34d399" font-family="monospace">s14, s21</text>
+    <text x="288" y="74" fill="#f87171" font-family="monospace">s22 (UNSAT)</text>
+
+    <line x1="0" y1="84" x2="378" y2="84" stroke="#1e293b"/>
+    <text x="10" y="104" fill="#e2e8f0" font-family="monospace">N = 4</text>
+    <text x="90" y="104" fill="#e2e8f0">107 steps</text>
+    <text x="195" y="104" fill="#34d399" font-family="monospace">s32, s107</text>
+    <text x="288" y="104" fill="#f87171" font-family="monospace">s108 (UNSAT)</text>
+
+    <line x1="0" y1="114" x2="378" y2="114" stroke="#1e293b"/>
+    <text x="10" y="136" fill="#fbbf24" font-family="monospace">N = 5</text>
+    <text x="90" y="136" fill="#fbbf24">47,176,870</text>
+    <text x="195" y="136" fill="#94a3b8" font-size="10.5">(Coq-certified 2024)</text>
+  </g>
+
+  <!-- Right Panel: Shrinking ZFC Independence Bound -> 192 States + SAT Compression Ladder -->
+  <rect x="456" y="74" width="440" height="320" rx="10" fill="#111c33" stroke="#334155" stroke-width="1.2"/>
+  <text x="474" y="99" fill="#e2e8f0" font-size="13.5" font-weight="700">Part B: ZFC-Independence Bound &amp; SAT State-Compression</text>
+  <text x="474" y="116" fill="#94a3b8" font-size="11">Log-scale collapse of ZFC-independent TM states (7,910 &#8594; 192)</text>
+
+  <!-- Log-scale horizontal bars -->
+  <g transform="translate(474, 134)" font-size="11">
+    <!-- Yedidia-Aaronson 2016: 7910 -->
+    <text x="0" y="14" fill="#cbd5e1">Yedidia-Aaronson (2016)</text>
+    <rect x="160" y="3" width="235" height="16" rx="3" fill="url(#barZfc)"/>
+    <text x="399" y="15" fill="#e2e8f0" font-weight="700" font-size="10.5">7,910</text>
+
+    <!-- O'Rear 2016: 1919 -->
+    <text x="0" y="40" fill="#cbd5e1">O'Rear Metamath (2016)</text>
+    <rect x="160" y="29" width="198" height="16" rx="3" fill="url(#barZfc)"/>
+    <text x="364" y="41" fill="#e2e8f0" font-weight="700" font-size="10.5">1,919</text>
+
+    <!-- O'Rear / Riebel 2018-23: 745 -->
+    <text x="0" y="66" fill="#cbd5e1">O'Rear / Riebel (2023)</text>
+    <rect x="160" y="55" width="172" height="16" rx="3" fill="url(#barZfc)"/>
+    <text x="338" y="67" fill="#e2e8f0" font-weight="700" font-size="10.5">745</text>
+
+    <!-- BB(192) ZFC Record -->
+    <text x="0" y="92" fill="#34d399" font-weight="700">ZFC Frontier (BB(192))</text>
+    <rect x="160" y="81" width="136" height="16" rx="3" fill="url(#barRec)"/>
+    <text x="302" y="93" fill="#34d399" font-weight="700" font-size="11">192 states</text>
+  </g>
+
+  <!-- SAT Compression Ladder Box -->
+  <rect x="474" y="246" width="404" height="132" rx="8" fill="#0f172a" stroke="#334155"/>
+  <text x="488" y="268" fill="#38bdf8" font-size="12" font-weight="700">Exact Bisimulation Quotient SAT Ladder (10 Instances)</text>
+  <text x="488" y="286" fill="#cbd5e1" font-size="10.8">Log-bit encoding: phi(u) &#8712; [0..K-1], exact homomorphism for all t &#8594; &#8734;</text>
+
+  <g transform="translate(488, 300)" font-family="monospace" font-size="11">
+    <rect x="0" y="0" width="70" height="58" rx="5" fill="#1e293b" stroke="#475569"/>
+    <text x="35" y="18" fill="#f8fafc" text-anchor="middle" font-weight="700">M = 16</text>
+    <text x="35" y="34" fill="#34d399" text-anchor="middle">K=12 SAT</text>
+    <text x="35" y="49" fill="#f87171" text-anchor="middle">K=11 UNS</text>
+
+    <rect x="78" y="0" width="70" height="58" rx="5" fill="#1e293b" stroke="#475569"/>
+    <text x="113" y="18" fill="#f8fafc" text-anchor="middle" font-weight="700">M = 32</text>
+    <text x="113" y="34" fill="#34d399" text-anchor="middle">K=24 SAT</text>
+    <text x="113" y="49" fill="#f87171" text-anchor="middle">K=23 UNS</text>
+
+    <rect x="156" y="0" width="70" height="58" rx="5" fill="#1e293b" stroke="#475569"/>
+    <text x="191" y="18" fill="#f8fafc" text-anchor="middle" font-weight="700">M = 64</text>
+    <text x="191" y="34" fill="#34d399" text-anchor="middle">K=48 SAT</text>
+    <text x="191" y="49" fill="#f87171" text-anchor="middle">K=47 UNS</text>
+
+    <rect x="234" y="0" width="70" height="58" rx="5" fill="#1e293b" stroke="#475569"/>
+    <text x="269" y="18" fill="#f8fafc" text-anchor="middle" font-weight="700">M = 128</text>
+    <text x="269" y="34" fill="#34d399" text-anchor="middle">K=96 SAT</text>
+    <text x="269" y="49" fill="#f87171" text-anchor="middle">K=95 UNS</text>
+
+    <rect x="312" y="0" width="72" height="58" rx="5" fill="#064e3b" stroke="#34d399" stroke-width="1.8"/>
+    <text x="348" y="18" fill="#34d399" text-anchor="middle" font-weight="700">M = 192</text>
+    <text x="348" y="34" fill="#a7f3d0" text-anchor="middle">K=144 SAT</text>
+    <text x="348" y="49" fill="#fca5a5" text-anchor="middle">K=143 UNS</text>
+  </g>
+</svg>
